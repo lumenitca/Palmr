@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  firstName String
+  lastName  String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  image     String?
+  isAdmin   Boolean  @default(false)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  files  File[]
+  shares Share[]
+
+  loginAttempts LoginAttempt?
+
+  passwordResets PasswordReset[]
+
+  @@map("users")
+}
+
+model File {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  extension   String
+  size        BigInt
+  objectName  String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shares Share[] @relation("ShareFiles")
+
+  @@map("files")
+}
+
+model Share {
+  id          String    @id @default(cuid())
+  name        String?
+  views       Int       @default(0)
+  expiration  DateTime?
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  creatorId String?
+  creator   User?   @relation(fields: [creatorId], references: [id], onDelete: SetNull)
+
+  securityId String        @unique
+  security   ShareSecurity @relation(fields: [securityId], references: [id])
+
+  files      File[]           @relation("ShareFiles")
+  recipients ShareRecipient[]
+
+  alias ShareAlias?
+
+  @@map("shares")
+}
+
+model ShareSecurity {
+  id        String   @id @default(cuid())
+  password  String?
+  maxViews  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  share Share?
+
+  @@map("share_security")
+}
+
+model ShareRecipient {
+  id    String @id @default(cuid())
+  email String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shareId String
+  share   Share  @relation(fields: [shareId], references: [id], onDelete: Cascade)
+
+  @@map("share_recipients")
+}
+
+model AppConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String
+  group     String
+  isSystem  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("app_configs")
+}
+
+model LoginAttempt {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attempts    Int      @default(1)
+  lastAttempt DateTime @default(now())
+
+  @@map("login_attempts")
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("password_resets")
+}
+
+model ShareAlias {
+  id        String   @id @default(cuid())
+  alias     String   @unique
+  shareId   String   @unique
+  share     Share    @relation(fields: [shareId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("share_aliases")
+}

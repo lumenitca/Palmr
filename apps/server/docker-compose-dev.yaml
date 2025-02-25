@@ -1,0 +1,62 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000" 
+      - "9001:9001" 
+    environment:
+      - MINIO_ROOT_USER=palmr
+      - MINIO_ROOT_PASSWORD=palmr123
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    restart: "unless-stopped"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      sh -c "
+      mc alias set myminio http://minio:9000 palmr palmr123 &&
+      mc mb myminio/files --ignore-existing
+      "
+    restart: "no"
+    environment:
+      MINIO_ROOT_USER: palmr
+      MINIO_ROOT_PASSWORD: palmr123
+
+  postgres:
+    image: bitnami/postgresql:17.2.0
+    container_name: palmr-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=palmr
+      - POSTGRESQL_PASSWORD=palmr123
+      - POSTGRESQL_DATABASE=palmr
+    volumes:
+      - postgres_data:/bitnami/postgresql
+    restart: "unless-stopped"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "palmr"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  minio_data:
+  postgres_data:
+
+networks:
+  default:
+    name: palmr-network
+    driver: bridge
