@@ -63,10 +63,10 @@ export function UserFormModal({ isOpen, onClose, modalMode, selectedUser, formMe
                   isInvalid={!!errors.isAdmin}
                   label={t("users.form.role")}
                 >
-                  <SelectItem key="false" value="false">
+                  <SelectItem key="false" >
                     {t("users.form.roleUser")}
                   </SelectItem>
-                  <SelectItem key="true" value="true">
+                  <SelectItem key="true" >
                     {t("users.form.roleAdmin")}
                   </SelectItem>
                 </Select>

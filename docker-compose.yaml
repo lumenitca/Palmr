@@ -1,7 +1,4 @@
-version: "3.8"
-
 services:
-  
   api:
     image: kyantech/palmr-api:v1-beta
     container_name: palmr-api

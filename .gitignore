@@ -23,11 +23,6 @@ apps/web/*.njsproj
 apps/web/*.sln
 apps/web/*.sw?
 
-apps/web/pnpm-lock.yaml
-apps/web/yarn.lock
-apps/web/package-lock.json
-apps/web/bun.lockb
-
 #SERVER
 apps/server/node_modules
 apps/server/.env

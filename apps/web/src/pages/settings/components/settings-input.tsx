@@ -56,10 +56,10 @@ export function SettingsInput({ config, register, watch, error, smtpEnabled }: C
           labelPlacement="outside"
           size="md"
         >
-          <SelectItem key="true" value="true">
+          <SelectItem key="true">
             {t("common.yes")}
           </SelectItem>
-          <SelectItem key="false" value="false">
+          <SelectItem key="false">
             {t("common.no")}
           </SelectItem>
         </Select>
