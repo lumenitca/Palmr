@@ -9,12 +9,12 @@ services:
         condition: "service_healthy"
     environment:
       - PORT=3333
-      - DATABASE_URL=postgresql://palmr:palmr123@postgres:5432/palmr?schema=public
+      - DATABASE_URL=postgresql://default:{{DB_PASSWORD}}@postgres:5432/palmr_db?schema=public
       - MINIO_ENDPOINT=127.0.0.1
       - MINIO_PORT=9000
       - MINIO_USE_SSL=false
-      - MINIO_ROOT_USER=palmr
-      - MINIO_ROOT_PASSWORD=palmr123
+      - MINIO_ROOT_USER={{MINIO_ROOT_USER}}
+      - MINIO_ROOT_PASSWORD={{MINIO_ROOT_PASSWORD}}
       - MINIO_REGION=sa-east-1
       - MINIO_BUCKET_NAME=files
       - FRONTEND_URL=http://localhost:4173
@@ -49,11 +49,11 @@ services:
       start_period: 10s
 
   minio:
-    image: minio/minio:latest
+    image: minio/minio:RELEASE.2025-03-12T18-04-18Z
     container_name: minio
     environment:
-      - MINIO_ROOT_USER=palmr
-      - MINIO_ROOT_PASSWORD=palmr123
+      - MINIO_ROOT_USER={{MINIO_ROOT_USER}}
+      - MINIO_ROOT_PASSWORD={{MINIO_ROOT_PASSWORD}}
       - MINIO_SITE_REGION=sa-east-1
     command: server /data --console-address ":9001"
     volumes:
@@ -69,7 +69,7 @@ services:
       retries: 5
 
   minio-init:
-    image: minio/mc:latest
+    image: minio/mc:RELEASE.2025-03-12T17-29-24Z
     container_name: minio-init
     depends_on:
       minio:
@@ -78,7 +78,7 @@ services:
     entrypoint: >
       sh -c "
         sleep 5 &&
-        mc alias set myminio http://minio:9000 palmr palmr123 &&
+        mc alias set myminio http://minio:9000 {{MINIO_ROOT_USER}} {{MINIO_ROOT_PASSWORD}} &&
         mc mb myminio/files --ignore-existing &&
         mc anonymous set download myminio/files
       "
@@ -87,9 +87,9 @@ services:
     image: bitnami/postgresql:17.2.0
     container_name: palmr-postgres
     environment:
-      - POSTGRESQL_USERNAME=palmr
-      - POSTGRESQL_PASSWORD=palmr123
-      - POSTGRESQL_DATABASE=palmr
+      - POSTGRESQL_USERNAME=default
+      - POSTGRESQL_PASSWORD={{DB_PASSWORD}}
+      - POSTGRESQL_DATABASE=palmr_db
     volumes:
       - postgres_data:/bitnami/postgresql
     ports:
