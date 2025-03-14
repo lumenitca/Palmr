@@ -1,4 +1,5 @@
 import { prisma } from "../src/shared/prisma";
+import {env} from "../src/env"
 import bcrypt from "bcryptjs";
 import crypto from "node:crypto";
 
@@ -24,7 +25,7 @@ const defaultConfigs = [
   },
   {
     key: "appLogo",
-    value: "https://i.ibb.co/xSjDkgVT/image-1.png",
+    value: `${env.BASE_URL}/uploads/logo/logo.png`,
     type: "string",
     group: "general",
   },

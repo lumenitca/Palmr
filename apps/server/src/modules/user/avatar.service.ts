@@ -1,67 +1,67 @@
-import { minioClient } from "../../config/minio.config";
-import { PrismaClient } from "@prisma/client";
 import { randomUUID } from "crypto";
 import sharp from "sharp";
-
-const prisma = new PrismaClient();
+import fs from "fs";
+import path from "path";
+import { env } from "../../env";
+import multer from 'multer';
+import { Request } from 'express';
 
 export class AvatarService {
-  private readonly bucketName = "avatars";
+  private readonly uploadsDir = "/app/uploads/avatars";
 
   constructor() {
-    this.initializeBucket();
+    this.initializeUploadsDir();
   }
 
-  private async initializeBucket() {
+  private initializeUploadsDir() {
     try {
-      const bucketExists = await minioClient.bucketExists(this.bucketName);
-      if (!bucketExists) {
-        await minioClient.makeBucket(this.bucketName, "sa-east-1");
-        const policy = {
-          Version: "2012-10-17",
-          Statement: [
-            {
-              Effect: "Allow",
-              Principal: { AWS: ["*"] },
-              Action: ["s3:GetObject"],
-              Resource: [`arn:aws:s3:::${this.bucketName}/*`],
-            },
-          ],
-        };
-        await minioClient.setBucketPolicy(this.bucketName, JSON.stringify(policy));
+      if (!fs.existsSync(this.uploadsDir)) {
+        fs.mkdirSync(this.uploadsDir, { recursive: true });
       }
     } catch (error) {
-      console.error("Error initializing avatar bucket:", error);
+      console.error("Error initializing uploads directory:", error);
     }
   }
 
-  async uploadAvatar(userId: string, imageBuffer: Buffer): Promise<string> {
+  async uploadAvatar(userId: string, filePath: string): Promise<string> {
     try {
-      // Buscar usuário atual para verificar se tem avatar
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: { image: true },
-      });
-
-      // Deletar avatar anterior se existir
-      if (user?.image) {
-        await this.deleteAvatar(user.image);
+      if (!fs.existsSync(filePath)) {
+        throw new Error("Upload file not found");
       }
 
-      // Validar e fazer upload do novo avatar
-      const metadata = await sharp(imageBuffer).metadata();
+      const metadata = await sharp(filePath).metadata();
       if (!metadata.width || !metadata.height) {
+        await fs.promises.unlink(filePath);
         throw new Error("Invalid image file");
       }
 
-      const webpBuffer = await sharp(imageBuffer).resize(256, 256, { fit: "cover" }).webp({ quality: 80 }).toBuffer();
+      const userDir = path.join(this.uploadsDir, userId);
+      if (!fs.existsSync(userDir)) {
+        fs.mkdirSync(userDir, { recursive: true });
+      }
 
-      const objectName = `${userId}/${randomUUID()}.webp`;
-      await minioClient.putObject(this.bucketName, objectName, webpBuffer);
+      const webpBuffer = await sharp(filePath)
+        .resize(256, 256, { fit: "cover" })
+        .webp({ quality: 80 })
+        .toBuffer();
 
-      const publicUrl = `${process.env.MINIO_PUBLIC_URL}/${this.bucketName}/${objectName}`;
-      return publicUrl;
+      const filename = `${randomUUID()}.webp`;
+      const outputPath = path.join(userDir, filename);
+      
+      await fs.promises.writeFile(outputPath, webpBuffer);
+
+      await fs.promises.unlink(filePath);
+
+      return `${env.BASE_URL}/uploads/avatars/${userId}/${filename}`;
     } catch (error) {
+      try {
+        if (fs.existsSync(filePath)) {
+          await fs.promises.unlink(filePath);
+        }
+      } catch (cleanupError) {
+        console.error("Error cleaning up file:", cleanupError);
+      }
+      
       console.error("Error uploading avatar:", error);
       throw error;
     }
@@ -69,11 +69,25 @@ export class AvatarService {
 
   async deleteAvatar(imageUrl: string) {
     try {
-      const objectName = imageUrl.split(`/${this.bucketName}/`)[1];
-      console.log("Deleting avatar:", objectName);
-      await minioClient.removeObject(this.bucketName, objectName);
+      const parts = imageUrl.split('/avatars/')[1]?.split('/');
+      if (!parts || parts.length !== 2) {
+        throw new Error("Invalid avatar URL - could not extract user ID and filename");
+      }
+
+      const [userId, filename] = parts;
+      const filePath = path.join(this.uploadsDir, userId, filename);
+      
+      if (fs.existsSync(filePath)) {
+        await fs.promises.unlink(filePath);
+        
+        const userDir = path.join(this.uploadsDir, userId);
+        const remainingFiles = await fs.promises.readdir(userDir);
+        if (remainingFiles.length === 0) {
+          await fs.promises.rmdir(userDir);
+        }
+      }
     } catch (error) {
-      console.error("Error deleting avatar:", error);
+      console.error("Error in avatar deletion process:", error);
       throw error;
     }
   }

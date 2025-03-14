@@ -58,7 +58,7 @@ export async function fileRoutes(app: FastifyInstance) {
               name: z.string().describe("The file name"),
               description: z.string().nullable().describe("The file description"),
               extension: z.string().describe("The file extension"),
-              size: z.string().describe("The file size"), // BigInt retornado como string
+              size: z.string().describe("The file size"), 
               objectName: z.string().describe("The object name of the file"),
               userId: z.string().describe("The user ID"),
               createdAt: z.date().describe("The file creation date"),
@@ -116,7 +116,7 @@ export async function fileRoutes(app: FastifyInstance) {
                 name: z.string().describe("The file name"),
                 description: z.string().nullable().describe("The file description"),
                 extension: z.string().describe("The file extension"),
-                size: z.string().describe("The file size"), // BigInt retornado como string
+                size: z.string().describe("The file size"), 
                 objectName: z.string().describe("The object name of the file"),
                 userId: z.string().describe("The user ID"),
                 createdAt: z.date().describe("The file creation date"),

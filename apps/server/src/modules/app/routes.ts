@@ -75,7 +75,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get(
     "/app/configs",
     {
-      preValidation: adminPreValidation,
+      // preValidation: adminPreValidation,
       schema: {
         tags: ["App"],
         operationId: "getAllConfigs",
@@ -126,10 +126,6 @@ export async function appRoutes(app: FastifyInstance) {
         operationId: "uploadLogo",
         summary: "Upload app logo",
         description: "Upload a new app logo (admin only)",
-        consumes: ["multipart/form-data"],
-        body: z.object({
-          file: z.any().describe("Image file (JPG, PNG, GIF)"),
-        }),
         response: {
           200: z.object({
             logo: z.string().describe("The logo URL"),

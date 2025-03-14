@@ -1,52 +1,61 @@
-import { minioClient } from "../../config/minio.config";
 import { randomUUID } from "crypto";
 import sharp from "sharp";
+import fs from "fs";
+import path from "path";
+import { env } from "../../env";
 
 export class LogoService {
-  private readonly bucketName = "logos";
+  private readonly uploadsDir = "/app/uploads/logo";
 
   constructor() {
-    this.initializeBucket();
+    this.initializeUploadsDir();
   }
 
-  private async initializeBucket() {
+  private initializeUploadsDir() {
     try {
-      const bucketExists = await minioClient.bucketExists(this.bucketName);
-      if (!bucketExists) {
-        await minioClient.makeBucket(this.bucketName, "sa-east-1");
-        const policy = {
-          Version: "2012-10-17",
-          Statement: [
-            {
-              Effect: "Allow",
-              Principal: { AWS: ["*"] },
-              Action: ["s3:GetObject"],
-              Resource: [`arn:aws:s3:::${this.bucketName}/*`],
-            },
-          ],
-        };
-        await minioClient.setBucketPolicy(this.bucketName, JSON.stringify(policy));
+      if (!fs.existsSync(this.uploadsDir)) {
+        fs.mkdirSync(this.uploadsDir, { recursive: true });
       }
     } catch (error) {
-      console.error("Error initializing logo bucket:", error);
+      console.error("Error initializing uploads directory:", error);
+      throw error;
     }
   }
 
-  async uploadLogo(imageBuffer: Buffer): Promise<string> {
+  async uploadLogo(filePath: string): Promise<string> {
     try {
-      const metadata = await sharp(imageBuffer).metadata();
+      if (!fs.existsSync(filePath)) {
+        throw new Error("Upload file not found");
+      }
+
+      const metadata = await sharp(filePath).metadata();
       if (!metadata.width || !metadata.height) {
+        await fs.promises.unlink(filePath);
         throw new Error("Invalid image file");
       }
 
-      const webpBuffer = await sharp(imageBuffer).resize(256, 256, { fit: "contain" }).webp({ quality: 80 }).toBuffer();
+      const webpBuffer = await sharp(filePath)
+        .resize(256, 256, { fit: "contain" })
+        .webp({ quality: 80 })
+        .toBuffer();
 
-      const objectName = `app/${randomUUID()}.webp`;
-      await minioClient.putObject(this.bucketName, objectName, webpBuffer);
+      const filename = `${randomUUID()}.webp`;
+      const outputPath = path.join(this.uploadsDir, filename);
+      
+      await fs.promises.writeFile(outputPath, webpBuffer);
 
-      const publicUrl = `${process.env.MINIO_PUBLIC_URL}/${this.bucketName}/${objectName}`;
-      return publicUrl;
+      await fs.promises.unlink(filePath);
+
+      return `${env.BASE_URL}/uploads/logo/${filename}`;
     } catch (error) {
+      try {
+        if (fs.existsSync(filePath)) {
+          await fs.promises.unlink(filePath);
+        }
+      } catch (cleanupError) {
+        console.error("Error cleaning up file:", cleanupError);
+      }
+      
       console.error("Error uploading logo:", error);
       throw error;
     }
@@ -54,10 +63,19 @@ export class LogoService {
 
   async deleteLogo(imageUrl: string) {
     try {
-      const objectName = imageUrl.split(`/${this.bucketName}/`)[1];
-      await minioClient.removeObject(this.bucketName, objectName);
+      const filename = imageUrl.split('/logo/')[1];
+      
+      if (!filename) {
+        throw new Error("Invalid logo URL - could not extract filename");
+      }
+
+      const filePath = path.join(this.uploadsDir, filename);
+      
+      if (fs.existsSync(filePath)) {
+        await fs.promises.unlink(filePath);
+      }
     } catch (error) {
-      console.error("Error deleting logo:", error);
+      console.error("Error in logo deletion process:", error);
       throw error;
     }
   }

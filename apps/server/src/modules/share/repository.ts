@@ -31,7 +31,6 @@ export class PrismaShareRepository implements IShareRepository {
   ): Promise<Share> {
     const { files, recipients, expiration, ...shareData } = data;
 
-    // Validate and filter arrays
     const validFiles = (files ?? []).filter((id) => id && id.trim().length > 0);
     const validRecipients = (recipients ?? []).filter((email) => email && email.trim().length > 0);
 

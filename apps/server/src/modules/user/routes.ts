@@ -4,6 +4,7 @@ import { UpdateUserSchema, UserResponseSchema } from "./dto";
 import { validatePasswordMiddleware } from "./middleware";
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
+import multer from "multer";
 
 export async function userRoutes(app: FastifyInstance) {
   const userController = new UserController();
@@ -312,16 +313,20 @@ export async function userRoutes(app: FastifyInstance) {
   app.post(
     "/users/avatar",
     {
-      preValidation,
+      preValidation: async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+          await request.jwtVerify();
+        } catch (err) {
+          console.error(err);
+          return reply.status(401).send({ error: "Unauthorized" });
+        }
+      },
       schema: {
         tags: ["User"],
         operationId: "uploadAvatar",
         summary: "Upload user avatar",
         description: "Upload and update user profile image",
         consumes: ["multipart/form-data"],
-        body: z.object({
-          file: z.any().describe("Image file (JPG, PNG, GIF)"),
-        }),
         response: {
           200: UserResponseSchema,
           400: z.object({ error: z.string() }),

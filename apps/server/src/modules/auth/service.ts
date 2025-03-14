@@ -88,7 +88,7 @@ export class AuthService {
     if (user.loginAttempts) {
       const maxAttempts = Number(await this.configService.getValue("maxLoginAttempts"));
       const blockDurationSeconds = Number(await this.configService.getValue("loginBlockDuration"));
-      const blockDuration = blockDurationSeconds * 1000; // convert seconds to milliseconds
+      const blockDuration = blockDurationSeconds * 1000; 
 
       if (
         user.loginAttempts.attempts >= maxAttempts &&

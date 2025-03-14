@@ -1,8 +1,42 @@
 import { AvatarService } from "./avatar.service";
 import { UpdateUserSchema, createRegisterUserSchema } from "./dto";
 import { UserService } from "./service";
-import { MultipartFile } from "@fastify/multipart";
 import { FastifyReply, FastifyRequest } from "fastify";
+import multer from 'multer';
+import path from 'path';
+import { Request, Response } from 'express';
+import fs from 'fs';
+
+const uploadsDir = "/app/uploads/avatars";
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadsDir);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, `${uniqueSuffix}${ext}`);
+  }
+});
+
+const fileFilter = (req: any, file: any, cb: any) => {
+  if (!file.mimetype.startsWith('image/')) {
+    return cb(new Error('Only images are allowed'));
+  }
+  cb(null, true);
+};
+
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024 
+  }
+}).single('file');
 
 export class UserController {
   private userService = new UserService();
@@ -91,25 +125,51 @@ export class UserController {
   }
 
   async uploadAvatar(request: FastifyRequest, reply: FastifyReply) {
-    try {
-      const userId = (request as any).user?.userId;
-      if (!userId) {
-        return reply.status(401).send({ error: "Unauthorized" });
-      }
-
-      const file = (request.body as any).file as MultipartFile;
-      if (!file) {
-        return reply.status(400).send({ error: "No file uploaded" });
-      }
-
-      const buffer = await file.toBuffer();
-      const imageUrl = await this.avatarService.uploadAvatar(userId, buffer);
-      const updatedUser = await this.userService.updateUserImage(userId, imageUrl);
-      return reply.send(updatedUser);
-    } catch (error: any) {
-      console.error("Upload error:", error);
-      return reply.status(400).send({ error: error.message });
+    if (!request.isMultipart()) {
+      return reply.status(400).send({ error: "Request must be multipart/form-data" });
     }
+
+    const userId = (request as any).user?.userId;
+    if (!userId) {
+      return reply.status(401).send({ error: "Unauthorized" });
+    }
+
+    return new Promise((resolve) => {
+      const rawRequest = request.raw;
+      rawRequest.headers = request.headers;
+
+      upload(rawRequest as Request, reply.raw as Response, async (err) => {
+        if (err) {
+          console.error("Upload error:", err);
+          if (err.code === 'LIMIT_FILE_SIZE') {
+            return resolve(reply.status(400).send({ error: "File size cannot be larger than 5MB" }));
+          }
+          return resolve(reply.status(400).send({ error: err.message }));
+        }
+
+        const file = (rawRequest as any).file;
+        if (!file) {
+          return resolve(reply.status(400).send({ error: "No file uploaded" }));
+        }
+
+        try {
+          const imageUrl = await this.avatarService.uploadAvatar(userId, file.path);
+          const updatedUser = await this.userService.updateUserImage(userId, imageUrl);
+          resolve(reply.send(updatedUser));
+        } catch (error: any) {
+
+          try {
+            if (fs.existsSync(file.path)) {
+              await fs.promises.unlink(file.path);
+            }
+          } catch (cleanupError) {
+            console.error("Error cleaning up temp file:", cleanupError);
+          }
+          console.error("Upload error:", error);
+          resolve(reply.status(400).send({ error: error.message }));
+        }
+      });
+    });
   }
 
   async removeAvatar(request: FastifyRequest, reply: FastifyReply) {

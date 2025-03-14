@@ -14,15 +14,13 @@ export class AuthController {
         isAdmin: user.isAdmin,
       });
 
-      // Set token in HTTP-only cookie
       reply.setCookie("token", token, {
         httpOnly: true,
         path: "/",
-        secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
-        sameSite: "strict", // Protect against CSRF
+        secure: process.env.NODE_ENV === "production", 
+        sameSite: "strict", 
       });
 
-      // Return only user data
       return reply.send({ user });
     } catch (error: any) {
       return reply.status(400).send({ error: error.message });

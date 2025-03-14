@@ -1,4 +1,5 @@
 services:
+
   minio:
     image: minio/minio:latest
     container_name: minio
@@ -53,10 +54,4 @@ services:
       retries: 5
 
 volumes:
-  minio_data:
   postgres_data:
-
-networks:
-  default:
-    name: palmr-network
-    driver: bridge

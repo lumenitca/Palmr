@@ -20,8 +20,11 @@ export class StorageService {
   }> {
     try {
       if (isAdmin) {
-        // Original implementation for admins
-        const command = process.platform === "win32" ? "wmic logicaldisk get size,freespace,caption" : "df -B1 .";
+        const command = process.platform === "win32" 
+          ? "wmic logicaldisk get size,freespace,caption" 
+          : process.platform === "darwin" 
+            ? "df -k ." 
+            : "df -B1 .";
 
         const { stdout } = await execAsync(command);
         let total = 0;
@@ -34,6 +37,11 @@ export class StorageService {
             total += parseInt(size) || 0;
             available += parseInt(freespace) || 0;
           }
+        } else if (process.platform === "darwin") {
+          const lines = stdout.trim().split("\n");
+          const [, size, , avail] = lines[1].trim().split(/\s+/);
+          total = parseInt(size) * 1024;
+          available = parseInt(avail) * 1024;
         } else {
           const lines = stdout.trim().split("\n");
           const [, size, , avail] = lines[1].trim().split(/\s+/);
@@ -50,17 +58,14 @@ export class StorageService {
           uploadAllowed: true,
         };
       } else if (userId) {
-        // Implementation for regular users
         const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
         const maxStorageGB = Number(maxTotalStorage) / (1024 * 1024 * 1024);
 
-        // Busca apenas os arquivos que pertencem diretamente ao usuário
         const userFiles = await prisma.file.findMany({
           where: { userId },
           select: { size: true },
         });
 
-        // Calcula o total de espaço usado somando os arquivos
         const totalUsedStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
 
         const usedStorageGB = Number(totalUsedStorage) / (1024 * 1024 * 1024);

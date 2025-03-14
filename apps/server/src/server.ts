@@ -8,15 +8,27 @@ import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
 import { userRoutes } from "./modules/user/routes";
 import fastifyMultipart from "@fastify/multipart";
+import fastifyStatic from "@fastify/static";
+import path from "path";
 
 async function startServer() {
   const app = await buildApp();
 
   await app.register(fastifyMultipart, {
     limits: {
-      fileSize: 5 * 1024 * 1024,
-    },
-    attachFieldsToBody: true,
+      fieldNameSize: 100,
+      fieldSize: 100, 
+      fields: 10,
+      fileSize: 5 * 1024 * 1024, 
+      files: 1, 
+      headerPairs: 2000 
+    }
+  });
+
+  await app.register(fastifyStatic, {
+    root: "/app/uploads",
+    prefix: "/uploads/",
+    decorateReply: false,
   });
 
   app.register(authRoutes);

@@ -281,7 +281,6 @@ export class ShareService {
       throw new Error("Unauthorized to update this share");
     }
 
-    // Verifica se o alias já está em uso por outro share
     const existingAlias = await prisma.shareAlias.findUnique({
       where: { alias },
     });
@@ -290,7 +289,6 @@ export class ShareService {
       throw new Error("Alias already in use");
     }
 
-    // Cria ou atualiza o alias
     const shareAlias = await prisma.shareAlias.upsert({
       where: { shareId },
       create: { shareId, alias },
@@ -322,7 +320,6 @@ export class ShareService {
       throw new Error("Share not found");
     }
 
-    // Reutiliza a lógica existente do getShare
     return this.getShare(shareAlias.shareId, password);
   }
 
