@@ -1,5 +1,5 @@
 services:
-  api:
+  palmr-api:
     build: ./apps/server
     container_name: palmr-api
     depends_on:
@@ -19,9 +19,12 @@ services:
       - MINIO_BUCKET_NAME=files
       - FRONTEND_URL=http://localhost:4173
       - MINIO_PUBLIC_URL=http://localhost:9000
+      - BASE_URL=http://localhost:3333
     ports:
       - "3333:3333"
     restart: unless-stopped
+    volumes:
+      - palmr_uploads:/app/uploads
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3333/health"]
       interval: 10s
@@ -29,7 +32,7 @@ services:
       retries: 5
       start_period: 30s
 
-  web:
+  palmr-app:
     build: 
       context: ./apps/web
       args:
@@ -38,7 +41,7 @@ services:
     ports:
       - "4173:4173"
     depends_on:
-      api:
+      palmr-api:
         condition: "service_healthy"
     restart: unless-stopped
     healthcheck:
@@ -104,3 +107,4 @@ services:
 volumes:
   minio_data:
   postgres_data:
+  palmr_uploads:
