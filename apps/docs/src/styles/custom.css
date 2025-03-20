@@ -1,0 +1,162 @@
+/* Tema escuro (padrão) */
+[data-theme='dark'] {
+	--sl-color-accent-low: #022c1f;
+	--sl-color-accent: #16a34a;
+	--sl-color-accent-high: #dcfce7;
+	--sl-color-bg: #0a0a0a;
+	--sl-color-bg-sidebar: #0a0a0a;
+	--sl-color-bg-nav: #0f0f0f;
+	--sl-color-bg-inline-code: #022c1f;
+	--sl-color-bg-nav-hover: #022c1f;
+	--sl-color-text: #ffffff;
+	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-text-invert: var(--sl-color-black);
+	--sl-color-hairline: #1a1a1a;
+	--sl-color-border: #262626;
+	--sl-color-selection-text: #ffffff;
+	--sl-color-selection-bg: #16a34a;
+	--sl-color-code-text: #86efac;
+	--sl-color-code-bg: #052e16;
+	--sl-color-code-border: #064e3b;
+}
+
+/* Tema claro */
+[data-theme='light'] {
+	--sl-color-accent-low: #f0fdf4 !important;
+	--sl-color-accent: #16a34a !important;
+	--sl-color-accent-high: #052e16 !important;
+	--sl-color-bg: #ffffff !important;
+	--sl-color-bg-sidebar: #f8f9fa !important;
+	--sl-color-bg-nav: #ffffff !important;
+	--sl-color-bg-inline-code: #f0fdf4 !important;
+	--sl-color-bg-nav-hover: #f0fdf4 !important;
+	--sl-color-text: #111827 !important;
+	--sl-color-text-accent: #16a34a !important;
+	--sl-color-text-invert: #ffffff !important;
+	--sl-color-hairline: #e5e7eb !important;
+	--sl-color-border: #d1d5db !important;
+	--sl-color-selection-text: #ffffff !important;
+	--sl-color-selection-bg: #16a34a !important;
+	--sl-color-code-text: #16a34a !important;
+	--sl-color-code-bg: #f0fdf4 !important;
+	--sl-color-code-border: #dcfce7 !important;
+}
+
+/* Estilo para links gerais */
+a {
+	color: var(--sl-color-accent) !important;
+}
+
+a:hover {
+	color: #15803d !important;
+}
+
+/* Estilo para botões */
+.button, button[type="button"], button[type="submit"] {
+	background-color: var(--sl-color-accent) !important;
+	color: var(--sl-color-text-invert) !important;
+	border-color: var(--sl-color-accent) !important;
+}
+
+.button:hover, button[type="button"]:hover, button[type="submit"]:hover {
+	background-color: #15803d !important;
+	border-color: #15803d !important;
+}
+
+/* Estilos específicos para a sidebar */
+.sidebar-content a {
+	color: var(--sl-color-text) !important;
+}
+
+.sidebar-content a:hover {
+	color: var(--sl-color-accent) !important;
+}
+
+.sidebar-content [aria-current="page"] {
+	color: var(--sl-color-text-invert) !important;
+	background-color: var(--sl-color-accent) !important;
+}
+
+/* Ajuste para o título da seção na sidebar */
+.sidebar-content .nav-group-title {
+	color: var(--sl-color-text) !important;
+	opacity: 0.7;
+}
+
+/* Seleção de texto */
+::selection {
+	background-color: var(--sl-color-selection-bg) !important;
+	color: var(--sl-color-selection-text) !important;
+}
+
+/* Blocos de código */
+code, pre {
+	color: var(--sl-color-code-text) !important;
+	background-color: var(--sl-color-code-bg) !important;
+	border-color: var(--sl-color-code-border) !important;
+}
+
+/* Links de paginação e navegação */
+.pagination-links a, .nav-link, .breadcrumb {
+	color: var(--sl-color-text) !important;
+}
+
+.pagination-links a:hover, .nav-link:hover {
+	color: var(--sl-color-accent) !important;
+}
+
+/* Cabeçalhos e elementos de destaque */
+h1, h2, h3, h4, h5, h6, p, li, td, th, label, span {
+	color: var(--sl-color-text) !important;
+}
+
+/* Elementos de entrada e pesquisa */
+input, .search-input {
+	background-color: var(--sl-color-bg) !important;
+	border-color: var(--sl-color-border) !important;
+	color: var(--sl-color-text) !important;
+}
+
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar-thumb {
+	background-color: var(--sl-color-border) !important;
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--sl-color-bg) !important;
+}
+
+/* Elementos de navegação e menu */
+nav, .nav-wrapper, .menu-item {
+	color: var(--sl-color-text) !important;
+}
+
+/* Elementos de destaque e badges */
+.badge, .tag, .pill {
+	background-color: var(--sl-color-accent) !important;
+	color: var(--sl-color-text-invert) !important;
+}
+
+/* Elementos de tabela */
+table {
+	border-color: var(--sl-color-border) !important;
+}
+
+/* Elementos de formulário */
+select, textarea {
+	background-color: var(--sl-color-bg) !important;
+	border-color: var(--sl-color-border) !important;
+	color: var(--sl-color-text) !important;
+}
+
+/* Elementos de alerta e notificação */
+.alert, .notification {
+	border-color: var(--sl-color-border) !important;
+	background-color: var(--sl-color-bg) !important;
+}
+
+/* Right sidebar */
+.right-sidebar {
+	color: var(--sl-color-text) !important;
+	border-color: var(--sl-color-border) !important;
+} 

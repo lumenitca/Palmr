@@ -1,0 +1,121 @@
+---
+title: Installation
+description: Guide to install and run Palmr using Docker Compose
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+### Startup Script for Docker Compose  
+
+To simplify the execution of the project and enable it to run on any machine, a **startup script** for Docker Compose was created. This script automates the generation of secure credentials and facilitates local setup.  
+
+To execute the project using this approach, you need to have **Docker** and **Docker Compose** installed on your machine. While this is the simplest way to execute the project, it is **not recommended for production environments**.  
+
+---
+
+### Ways to Execute the Startup Script  
+
+First of all, clone the official repository: `https://github.com/kyantech/Palmr.git`
+
+There are two ways to execute the script:  
+
+<Tabs>
+  <TabItem label="1. Using a Makefile">
+    To use this method, you need to have the `make` command installed on your machine.
+    
+    To generate the `docker-compose.yml` file using a Makefile, run the following command from the project root:  
+
+    ```bash
+    make gen-compose
+    ```
+
+    This command will generate a `docker-compose.yml` file in the root of the project.  
+    - The script's primary function is to generate secure passwords for **MinIO** (object storage) and **Postgres** (database).  
+    - The generated `docker-compose.yml` file serves as a base and can be modified at any time.  
+    - It is configured to run locally via `localhost` and is **not intended for production** or VPS environments.  
+
+    After the file is generated, you can modify or adapt it for deployment in other environments.  
+  </TabItem>
+  <TabItem label="2. Running the Script Directly">
+    To generate the `docker-compose.yml` file by running the script directly, use the following commands:  
+
+    ```bash
+    chmod +x ./scripts/generate-docker-compose.sh  
+    ./scripts/generate-docker-compose.sh  
+    ```
+
+    This will have the same effect as running `make gen-compose`.  
+  </TabItem>
+</Tabs>
+
+---
+
+### Running the Project  
+After generating the `docker-compose.yml` file, you can start the project by running the following command from the project root:  
+
+```bash
+docker compose up -d
+```
+
+To access Palmr. in a local environment, open your browser and visit:  
+
+[http://localhost:4173](http://localhost:4173)  
+
+---
+
+### Deployment in Production  
+For production environments, we recommend using **Kubernetes**, **Docker Swarm**, or a similar container orchestrator.  
+
+For local execution or testing environments, you can use Docker Compose with the `docker-compose.yml` file. This file pulls the latest Palmr. images from Docker and makes them available on specific ports, as shown below:  
+
+- **Frontend:** [http://localhost:4173](http://localhost:4173)  
+- **Backend:** [http://localhost:3333](http://localhost:3333)  
+- **MinIO API:** [http://localhost:9000](http://localhost:9000)  
+- **MinIO Console:** [http://localhost:9001](http://localhost:9001)  
+- **Postgres Database:** [http://localhost:5423](http://localhost:5423)  
+
+---
+
+### Port Configuration Recommendations  
+In this version of `docker-compose.yml`, none of the ports for the frontend and backend should be modified. Consequently, none of the URLs should be changed because the frontend image contains a pre-built version configured to work on port **4173**.  
+
+Due to technical limitations related to **ReactJS**, environment variables executed at runtime cannot be changed. Therefore, to ensure that the system functions correctly as designed, keep the `docker-compose.yml` file unchanged.  
+
+---
+
+### Running in Development Mode  
+If you want to modify the ports in a local environment and run the project using Docker with Docker Compose, we recommend using the `docker-compose-dev.yaml` file. This file builds the project based on the files in the cloned repository.  
+
+When using `docker-compose-dev.yaml`, make sure to configure all port and URL settings correctly. Incorrect configuration will prevent Palmr. from functioning as expected.  
+
+---
+
+### Docker Compose in Production Environments  
+We **do not recommend** using `docker-compose.yml` in production or VPS environments. Docker Compose is designed for development and testing purposes only, not for handling production workloads.  
+
+---
+
+### Recommended Deployment for Production  
+For production environments, we recommend using **Kubernetes**. However, the repository does not include a ready-to-use Kubernetes configuration, so you will need to configure it manually.  
+
+Alternatively, you can set up the application using separate services as follows:  
+
+- **Frontend:** Host on **Vercel** or **AWS Amplify**.  
+- **Backend:** Host on **Render.com** or similar services.  
+- **MinIO:** Deploy separately on a server using Docker.  
+- **Database:** Host on a managed service like **Neon.tech**.  
+
+---
+
+### Environment Variables  
+The Palmr. code is completely open-source, allowing you to adjust the deployment to meet your needs. Ensure that the environment variables are correctly configured to avoid issues during execution.  
+
+---
+
+### Additional Resources
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [MinIO Documentation](https://min.io/docs/minio/container/index.html)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)

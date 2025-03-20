@@ -9,7 +9,7 @@ services:
         condition: "service_healthy"
     environment:
       - PORT=3333
-      - DATABASE_URL=postgresql://default:{{DB_PASSWORD}}@postgres:5432/palmr_db?schema=public
+      - DATABASE_URL=postgresql://postgres:{{DB_PASSWORD}}@postgres:5432/palmr_db?schema=public
       - MINIO_ENDPOINT=127.0.0.1
       - MINIO_PORT=9000
       - MINIO_USE_SSL=false
@@ -87,7 +87,7 @@ services:
     image: bitnami/postgresql:17.2.0
     container_name: palmr-postgres
     environment:
-      - POSTGRESQL_USERNAME=default
+      - POSTGRESQL_USERNAME=postgres
       - POSTGRESQL_PASSWORD={{DB_PASSWORD}}
       - POSTGRESQL_DATABASE=palmr_db
     volumes:

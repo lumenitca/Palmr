@@ -1,31 +1,18 @@
 {
-  "name": "documentation",
-  "version": "0.0.0",
-  "private": true,
+  "name": "palmr-docs",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "fumadocs-ui": "15.0.13",
-    "fumadocs-core": "15.0.13",
-    "fumadocs-mdx": "11.5.6"
-  },
-  "devDependencies": {
-    "@types/node": "22.13.4",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "typescript": "^5.7.3",
-    "@types/mdx": "^2.0.13",
-    "@tailwindcss/postcss": "^4.0.7",
-    "tailwindcss": "^4.0.7",
-    "postcss": "^8.5.3",
-    "eslint": "^8",
-    "eslint-config-next": "15.1.7"
+    "@astrojs/starlight": "^0.32.2",
+    "astro": "^5.1.5",
+    "lucide-react": "^0.483.0",
+    "sharp": "^0.32.5"
   }
 }
