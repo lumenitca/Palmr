@@ -4,10 +4,7 @@ title: Available languages
 
 The project uses i18next for internationalization (i18n) support. The language detection is handled automatically through i18next-browser-languagedetector .
 
-## Available Languages
-Looking at the dependencies and implementation:
-
-# Available Languages in Palmr.
+### Available Languages in Palmr.
 ----
 
 ##### 1. 🇺🇸 English (en-US)
@@ -25,7 +22,7 @@ Looking at the dependencies and implementation:
 
 </br>
 
-## Language Selection
+### Language Selection
 ##### The language can be changed in two ways:
 
 #### 1. Automatic Detection
@@ -34,16 +31,18 @@ Looking at the dependencies and implementation:
    - Uses the browser's language settings as the initial language
 
 #### 2. Manual Selection
+
+![Palmr Profile Menu](/src/assets/language-selector.png) 
    
    - Users can manually switch languages through the language selector in the UI
    - Language preference is saved in the browser's localStorage
 
-## Default Language
+### Default Language
 ##### English (en-US) is set as the fallback language.
 </br>
 
-## Language Detection
+### Language Detection
 The application automatically detects the user's browser language and sets it as the initial language. Users can manually change the language using the language switcher in the interface (globe icon in the navigation bar).
 
-## RTL Support
+### RTL Support
 The application includes special handling for right-to-left (RTL) languages, specifically for Arabic (ar-SA).

@@ -27,28 +27,28 @@ export default defineConfig({
 				{
 					label: 'How to use Palmr.',
 					items: [
-						{ label: 'First login (Admin)', link: '/main/login' },
-						// { label: 'Adding users', link: '/' },
-						// { label: 'Password reset', link: '/' },
-						// { label: 'Uploading a file', link: '/' },
-						// { label: 'Editing an upload', link: '/' },
-						// { label: 'Creating a share', link: '/' },
-						// { label: 'Generate a share link', link: '/' },
+						{ label: 'First login (Admin)', link: '/main/login' }, 
+						{ label: 'Manage users', link: '/main/manage-users' }, 
+						// { label: 'Uploading a file', link: '/' }, // !TODO
+						// { label: 'Editing an upload', link: '/' }, // !TODO
+						// { label: 'Creating a share', link: '/' }, // !TODO
+						// { label: 'Generate a share link', link: '/' }, // !TODO
+						// { label: 'Password reset', link: '/' }, // !TODO
 						{ label: 'Available languages', link: '/main/available-languages' },
 					],
 				},
 				{
 					label: 'Developers',
 					items: [
-						{ label: 'How to open an issue', link: '/' },
-						{ label: 'How to contribute', link: '/' },
+						{ label: 'How to contribute', link: '/developers/contribute' },
+						{ label: 'How to open an issue', link: '/developers/open-an-issue' },
 					],
 				},
 				{
 					label: 'Sponsor this project',
 					items: [
-						{ label: 'Github Sponsors', link: '/' },
-						{ label: 'Star this project on Github', link: '/' },
+						{ label: 'Star this project on Github', link: '/sponsor/gh-star' },
+						{ label: 'Github Sponsors', link: '/sponsor/gh-sponsor' },
 					],
 				},
 			],
