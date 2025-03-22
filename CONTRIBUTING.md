@@ -1,6 +1,5 @@
----
-title: How to Contribute to the Palmr. Project
----
+# How to Contribute to the Palmr. Project
+
 
 Thank you for your interest in contributing to the **Palmr.** project! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. This guide will walk you through the process of contributing to Palmr.
 
