@@ -25,7 +25,7 @@ const defaultConfigs = [
   },
   {
     key: "appLogo",
-    value: `${env.BASE_URL}/uploads/logo/logo.png`,
+    value: "https://i.ibb.co/V0hdRtjV/logo.png",
     type: "string",
     group: "general",
   },

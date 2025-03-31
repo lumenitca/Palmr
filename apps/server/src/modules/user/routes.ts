@@ -4,7 +4,6 @@ import { UpdateUserSchema, UserResponseSchema } from "./dto";
 import { validatePasswordMiddleware } from "./middleware";
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import multer from "multer";
 
 export async function userRoutes(app: FastifyInstance) {
   const userController = new UserController();

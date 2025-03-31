@@ -1,9 +1,10 @@
 import { minioClient, bucketName } from "../../config/minio.config";
+import { minioLocalClient } from "../../config/minio.config.local";
 
 export class FileService {
   getPresignedPutUrl(objectName: string, expires: number): Promise<string> {
     return new Promise((resolve, reject) => {
-      (minioClient as any).presignedPutObject(bucketName, objectName, expires, {}, ((
+      (minioLocalClient as any).presignedPutObject(bucketName, objectName, expires, {}, ((
         err: Error | null,
         presignedUrl?: string
       ) => {
@@ -21,7 +22,7 @@ export class FileService {
 
   getPresignedGetUrl(objectName: string, expires: number): Promise<string> {
     return new Promise((resolve, reject) => {
-      (minioClient as any).presignedGetObject(bucketName, objectName, expires, ((
+      (minioLocalClient as any).presignedGetObject(bucketName, objectName, expires, ((
         err: Error | null,
         presignedUrl?: string
       ) => {

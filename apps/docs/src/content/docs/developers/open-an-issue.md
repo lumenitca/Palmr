@@ -10,8 +10,6 @@ Opening an issue on GitHub is a great way to report bugs, request features, or a
 
 Before you can star a project, you need to be logged into your GitHub account. If you don't have an account yet, you can sign up for free at [GitHub](https://github.com/).
 
-![Palmr Profile Menu](/src/assets/gh-login.png)
-
 ---
 
 ### Step 2: Go to the Palmr. Repository

@@ -29,7 +29,7 @@ export default defineConfig({
 					items: [
 						{ label: 'First login (Admin)', link: '/main/login' }, 
 						{ label: 'Manage users', link: '/main/manage-users' }, 
-						// { label: 'Uploading a file', link: '/' }, // !TODO
+						{ label: 'Uploading a file', link: 'main/upload-file ' }, // !TODO
 						// { label: 'Editing an upload', link: '/' }, // !TODO
 						// { label: 'Creating a share', link: '/' }, // !TODO
 						// { label: 'Generate a share link', link: '/' }, // !TODO

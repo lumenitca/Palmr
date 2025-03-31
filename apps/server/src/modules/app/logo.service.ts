@@ -1,81 +1,47 @@
-import { randomUUID } from "crypto";
 import sharp from "sharp";
-import fs from "fs";
-import path from "path";
-import { env } from "../../env";
+import { prisma } from "../../shared/prisma";
 
 export class LogoService {
-  private readonly uploadsDir = "/app/uploads/logo";
 
-  constructor() {
-    this.initializeUploadsDir();
-  }
-
-  private initializeUploadsDir() {
+  async uploadLogo(buffer: Buffer): Promise<string> {
     try {
-      if (!fs.existsSync(this.uploadsDir)) {
-        fs.mkdirSync(this.uploadsDir, { recursive: true });
-      }
-    } catch (error) {
-      console.error("Error initializing uploads directory:", error);
-      throw error;
-    }
-  }
-
-  async uploadLogo(filePath: string): Promise<string> {
-    try {
-      if (!fs.existsSync(filePath)) {
-        throw new Error("Upload file not found");
-      }
-
-      const metadata = await sharp(filePath).metadata();
+      const metadata = await sharp(buffer).metadata();
       if (!metadata.width || !metadata.height) {
-        await fs.promises.unlink(filePath);
         throw new Error("Invalid image file");
       }
 
-      const webpBuffer = await sharp(filePath)
-        .resize(256, 256, { fit: "contain" })
-        .webp({ quality: 80 })
+      const webpBuffer = await sharp(buffer)
+        .resize(100, 100, { 
+          fit: "contain",
+          background: { r: 255, g: 255, b: 255, alpha: 0 } // Fundo transparente
+        })
+        .webp({ 
+          quality: 60,
+          effort: 6,
+          nearLossless: true,
+          alphaQuality: 100, // Melhor qualidade para transparência
+          lossless: true    // Preserva melhor a transparência
+        })
         .toBuffer();
 
-      const filename = `${randomUUID()}.webp`;
-      const outputPath = path.join(this.uploadsDir, filename);
-      
-      await fs.promises.writeFile(outputPath, webpBuffer);
-
-      await fs.promises.unlink(filePath);
-
-      return `${env.BASE_URL}/uploads/logo/${filename}`;
+      return `data:image/webp;base64,${webpBuffer.toString('base64')}`;
     } catch (error) {
-      try {
-        if (fs.existsSync(filePath)) {
-          await fs.promises.unlink(filePath);
-        }
-      } catch (cleanupError) {
-        console.error("Error cleaning up file:", cleanupError);
-      }
-      
-      console.error("Error uploading logo:", error);
+      console.error("Error processing logo:", error);
       throw error;
     }
   }
 
-  async deleteLogo(imageUrl: string) {
+  async deleteLogo(): Promise<void> {
     try {
-      const filename = imageUrl.split('/logo/')[1];
-      
-      if (!filename) {
-        throw new Error("Invalid logo URL - could not extract filename");
-      }
-
-      const filePath = path.join(this.uploadsDir, filename);
-      
-      if (fs.existsSync(filePath)) {
-        await fs.promises.unlink(filePath);
-      }
+      await prisma.appConfig.update({
+        where: { key: 'appLogo' },
+        data: {
+          value: '',
+          updatedAt: new Date(),
+        },
+      });
     } catch (error) {
-      console.error("Error in logo deletion process:", error);
+      console.error("Error deleting logo from database:", error);
       throw error;
     }
   }
