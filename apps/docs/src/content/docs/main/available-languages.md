@@ -32,7 +32,7 @@ The project uses i18next for internationalization (i18n) support. The language d
 
 #### 2. Manual Selection
 
-![Palmr Profile Menu](/src/assets/main/language/language-selector.png)
+![Palmr Profile Menu](/public/main/language/language-selector.png)
    
    - Users can manually switch languages through the language selector in the UI
    - Language preference is saved in the browser's localStorage

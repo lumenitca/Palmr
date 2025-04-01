@@ -7,7 +7,7 @@ title: Architecture of Palmr.
 
 Understanding the architecture of Palmr. is crucial for both deploying and scaling the application. Below is a diagram illustrating the main components:
 
-![Palmr Banner](/src/assets/general/architecture.png)
+![Palmr Banner](/public/general/architecture.png)
 
 ## **Technologies Used**  
 

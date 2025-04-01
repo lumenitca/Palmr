@@ -17,36 +17,36 @@ Now let's focus on the file upload process. As mentioned, it is very simple, and
 On the home page, there is a **"Recent Uploads"** section. On the first initialization (when no file has been uploaded yet), 
 it will appear like this:
 
-![Recent Uploads Section](/src/assets/main/upload/recent-uploads.png)
+![Recent Uploads Section](/public/main/upload/recent-uploads.png)
 
 To upload a file, simply click on the **"Upload File"** button. This will open a modal where you can select the file you want 
 to upload from your device. Some file types, such as images, audio, and video, will have a preview available.
 
-![Upload File Button](/src/assets/main/upload/upload-file-button.png)
+![Upload File Button](/public/main/upload/upload-file-button.png)
 
 ### Example with an image:
-![Preview Example](/src/assets/main/upload/preview-example.png)
+![Preview Example](/public/main/upload/preview-example.png)
 
 After selecting the file, you can either confirm the upload by clicking the **"Upload"** button or cancel the operation by clicking the **"Cancel"** button.
 
-![Upload and Cancel Buttons](/src/assets/main/upload/upload-cancel-buttons.png)
+![Upload and Cancel Buttons](/public/main/upload/upload-cancel-buttons.png)
 
 Once one or more files have been uploaded, the **"Recent Uploads"** section will update and look like this:
 
-![Recent Uploads with Files](/src/assets/main/upload/recent-uploads-filled.png)
+![Recent Uploads with Files](/public/main/upload/recent-uploads-filled.png)
 
 To upload a new file from this screen, click the **"Upload File"** button in the upper right corner of the section, and follow the same steps as before.
 
-![New Upload Button](/src/assets/main/upload/new-upload-button.png)
+![New Upload Button](/public/main/upload/new-upload-button.png)
 
 This list on the home page shows only the **last 5 uploads**. To view older files or upload more, you need to go to the **"My Files"** page. 
 You can access this by clicking on the **"View All"** button in the upper right corner of the section or by clicking on the **"My Files"** card on the home page.
 
-![View All Button](/src/assets/main/upload/view-all-button.png)
+![View All Button](/public/main/upload/view-all-button.png)
 
 Or:
 
-![My Files Card](/src/assets/main/files/my-files-card.png)
+![My Files Card](/public/main/files/my-files-card.png)
 
 ---
 
@@ -54,7 +54,7 @@ Or:
 
 On the **"My Files"** page, the layout will look like this:
 
-![My Files Page](/src/assets/main/upload/my-files-page.png)
+![My Files Page](/public/main/upload/my-files-page.png)
 
 Here, you have the option to **filter** your uploaded files or upload new ones by clicking the **"Upload File"** button and following the same steps explained earlier.
 
@@ -72,13 +72,13 @@ The table fields include:
 ### Actions Column
 In the **"Actions"** column, you will find an icon that opens the following dropdown:
 
-![Actions Dropdown](/src/assets/main/upload/actions-dropdown.png)
+![Actions Dropdown](/public/main/upload/actions-dropdown.png)
 
 Each option is self-explanatory, but let’s detail the **Edit** option:
 
 - **Edit** – Opens a modal where you can edit the file name, description, and other details.
 
-  ![Edit Modal](/src/assets/main/upload/edit-modal.png)
+  ![Edit Modal](/public/main/upload/edit-modal.png)
 
 - You can also **delete** a file directly from the dropdown by selecting the **Delete** option.
 

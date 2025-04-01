@@ -24,7 +24,7 @@ Alternatively, you can search for "Palmr" in the GitHub search bar and click on 
 
 On the Palmr repository page, you'll see a "Sponsor" button at the top right corner of the page. Click this button to proceed.
 
-![Palmr Profile Menu](/src/assets/sponsor/sponsor-btn.png)
+![Palmr Profile Menu](/public/sponsor/sponsor-btn.png)
 
 ---
 
@@ -35,7 +35,7 @@ GitHub Sponsors allows you to sponsor the project with a **custom amount startin
 2. Type in the amount you'd like to sponsor (e.g., $1, $5, $10, or any amount you choose).
 3. Select the billing frequency (monthly or one-time).
 
-![Palmr Profile Menu](/src/assets/sponsor/sponsor-page.png)
+![Palmr Profile Menu](/public/sponsor/sponsor-page.png)
 
 
 ---

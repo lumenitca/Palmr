@@ -13,7 +13,7 @@ To begin, you need to navigate to the **User Management** section:
 1. Click on the **user icon** located in the header of the app.
 2. A dropdown menu will appear. From the options available, select **"User Management"**
 
-![Palmr Profile Menu](/src/assets/ui/menu.png) 
+![Palmr Profile Menu](/public/ui/menu.png) 
 
 ---
 
@@ -25,7 +25,7 @@ After selecting **User Management**, you will be redirected to the **User Manage
 - If you need to update the Admin user details, you must follow the steps outlined in the **Profile Management** section.  
 - User details for the logged-in Admin cannot be modified from the **User Management Dashboard**.
 
-![Palmr Profile Menu](/src/assets/main/users/users-management.png) 
+![Palmr Profile Menu](/public/main/users/users-management.png) 
 
 ---
 
@@ -33,18 +33,18 @@ After selecting **User Management**, you will be redirected to the **User Manage
 
 1. To add a new user, click on the **"Add User"** button located at the top right corner of the screen.
 
-![Palmr Profile Menu](/src/assets/main/users/add-users-btn.png) 
+![Palmr Profile Menu](/public/main/users/add-users-btn.png) 
 
 2. A modal form will appear, allowing you to enter the new user's details:
 
-![Palmr Profile Menu](/src/assets/main/users/add-user-modal.png) 
+![Palmr Profile Menu](/public/main/users/add-user-modal.png) 
 
 3. After filling in the user details, click on **"Create"** to confirm.  
    Alternatively, you can click **"Cancel"** to abort the user creation process.
 
 4. Once the user is created successfully, it will appear in the user list.
 
-![Palmr Profile Menu](/src/assets/main/users/new-user-table.png) 
+![Palmr Profile Menu](/public/main/users/new-user-table.png) 
 
 ---
 
@@ -52,7 +52,7 @@ After selecting **User Management**, you will be redirected to the **User Manage
 
 In the **User List**, under the **"Actions"** column, you will find a dropdown menu for each user.
 
-![Palmr Profile Menu](/src/assets/main/users/add-user-actions-dropdown.png) 
+![Palmr Profile Menu](/public/main/users/add-user-actions-dropdown.png) 
 
 
 Available actions include:
@@ -61,7 +61,7 @@ Available actions include:
    - Change user details including role.
    - Change the user password.
 
-![Palmr Profile Menu](/src/assets/main/users/edit-user-modal.png) 
+![Palmr Profile Menu](/public/main/users/edit-user-modal.png) 
 
 - **Deactivate User** – Marks the user as inactive, preventing them from logging into the system.
 - **Activate User** – Reactivates a deactivated user, allowing them to log in again.
