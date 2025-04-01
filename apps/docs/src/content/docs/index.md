@@ -11,7 +11,7 @@ ___
 ## **Why Choose Palmr.?**  
 ___
 ### **1. No Artificial Limits**  
-Unlike traditional services, Palmr. does not impose file size or quantity limits. The only limit is the **available storage** on your server or VPS. If you have the storage capacity, you can send files without restrictions — no premium plans, no ads, and no hidden fees.  
+Unlike traditional services, Palmr. does not impose file size or quantity limits. The only limit is the **available storage** on your server or VPS. If you have the storage capacity, you can send files without restrictions, no premium plans, no ads, and no hidden fees.  
 
 ### **2. Open Source and Free**  
 
@@ -26,7 +26,7 @@ By hosting Palmr. on your own infrastructure, you retain **full control over you
 
 ### **4. Highly Customizable**  
 Palmr. is fully customizable, allowing you to align it with your brand identity and user experience:  
-- Add your own **logo** and **colors**.  
+- Add your own **logo**.  
 - Set a **custom app name**.  
 - Configure an **SMTP server** for email notifications.  
 - Customize some text to create a unique experience for users.  
@@ -36,10 +36,7 @@ Palmr. offers a robust user and admin management system:
 - Create and manage multiple **administrators** .  
 - Add unlimited **users**.  
 - Control who can view, upload, and manage files.  
-- Easily monitor usage and file traffic.  
+- Easily monitor usage.  
 
 ### **6. Fast, Lightweight, and Scalable**  
 Palmr. is designed to be lightweight and scalable, ensuring high performance even with large files or high user traffic. Its efficient architecture allows you to scale easily as your needs grow.  
-
-
-

@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-
 export default defineConfig({
 	integrations: [
 		starlight({
@@ -31,7 +30,6 @@ export default defineConfig({
 						{ label: 'Manage users', link: '/main/manage-users' }, 
 						{ label: 'Uploading files', link: '/main/upload' }, 
 						// { label: 'Creating a share', link: '/' }, // !TODO
-						// { label: 'Generate a share link', link: '/' }, // !TODO
 						// { label: 'Password reset', link: '/' }, // !TODO
 						{ label: 'Available languages', link: '/main/available-languages' },
 					],
