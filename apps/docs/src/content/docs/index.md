@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-![Palmr Banner](/src/assets/banner.png)
+![Palmr Banner](/src/assets/general/banner.png) 
 
 ## 🌴 What is **Palmr.** ?   
 ___

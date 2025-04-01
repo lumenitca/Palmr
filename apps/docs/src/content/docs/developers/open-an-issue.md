@@ -24,7 +24,7 @@ Alternatively, you can search for "Palmr" in the GitHub search bar and click on 
 
 On the Palmr repository page, click on the **Issues** tab near the top of the page. This will take you to the issues section of the repository.
 
-![Palmr Profile Menu](/src/assets/issues-tab.png)
+![Palmr Profile Menu](/src/assets/developers/issues-tab.png)
 
 
 ---
@@ -33,7 +33,7 @@ On the Palmr repository page, click on the **Issues** tab near the top of the pa
 
 Once you're in the issues section, click the **New Issue** button to start creating a new issue.
 
-![Palmr Profile Menu](/src/assets/new-issue-btn.png)
+![Palmr Profile Menu](/src/assets/developers/new-issue-btn.png)
 
 
 ---
@@ -47,7 +47,7 @@ You’ll now see a form where you can provide details about your issue. Here’s
 3. **Labels (Optional)**: Add labels to categorize your issue (e.g., `bug`, `enhancement`, `question`). This helps the maintainers organize and prioritize issues.
 4. **Attachments (Optional)**: You can attach screenshots, logs, or other files to help explain the issue.
 
-![Palmr Profile Menu](/src/assets/new-issue-form.png)
+![Palmr Profile Menu](/src/assets/developers/new-issue-form.png)
 
 ---
 

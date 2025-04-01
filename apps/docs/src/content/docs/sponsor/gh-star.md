@@ -24,7 +24,7 @@ Alternatively, you can search for "Palmr" in the GitHub search bar and click on 
 
 On the Palmr. repository page, you'll see a "Star" button at the top right corner of the page. Click this button to star the repository.
 
-![Palmr Profile Menu](/src/assets/star-btn.png)
+![Palmr Profile Menu](/src/assets/sponsor/star-btn.png)
 
 ---
 
@@ -32,7 +32,7 @@ On the Palmr. repository page, you'll see a "Star" button at the top right corne
 
 After clicking the "Star" button, the button will change to "Unstar," indicating that the repository has been successfully starred. You can always unstar the repository by clicking the "Unstar" button.
 
-![Palmr Profile Menu](/src/assets/starred-button.png)
+![Palmr Profile Menu](/src/assets/sponsor/starred-button.png)
 
 
 ---

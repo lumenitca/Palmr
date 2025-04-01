@@ -9,7 +9,7 @@ Once you have started all the services as described in the deployment instructio
 
 Upon accessing the frontend, you will see a screen similar to the image below:  
 
-![Palmr Landing Page](/src/assets/lp.png)  
+![Palmr Landing Page](/src/assets/general/lp.png)  
 
 This is the **Palmr. landing page**, which provides basic information about the application. This landing page can be hidden later when you configure your app, allowing the login page to become the default home page. However, on the first execution, it is displayed by default.  
 
@@ -19,13 +19,13 @@ This is the **Palmr. landing page**, which provides basic information about the 
 
 At the top of the landing page, you will see a button to log in to Palmr.:  
 
-> **But you may wonder:** "How can I log in if I haven't created an account yet?"  
+> **But you may wonder:** 
 
 To simplify the process, Palmr. comes pre-configured with **seed data** upon the first initialization. This seed data includes a default **admin user** with full access to all settings and user management within the application.  
 
 After clicking the **Login** button, you will be redirected to the login screen, which looks like this:  
 
-![Palmr Login Page](/src/assets/login.png)  
+![Palmr Login Page](/src/assets/ui/login.png)  
 
 Use the following default credentials to log in for the first time:  
 
@@ -35,7 +35,7 @@ Use the following default credentials to log in for the first time:
 
 If everything is set up correctly, you will be authenticated and redirected to Palmr.'s main dashboard, which looks like this:  
 
-![Palmr Dashboard](/src/assets/dashboard.png)  
+![Palmr Dashboard](/src/assets/ui/dashboard.png)  
 
 At this point, you are officially logged in and ready to start using all the features of Palmr.!  
 
@@ -51,11 +51,11 @@ Follow these steps to update the admin credentials and secure your Palmr. instan
 1. Click the **user icon** located in the top right corner of the screen.  
 2. A dropdown menu will appear with several options:  
 
-![Palmr Profile Menu](/src/assets/menu.png)  
+![Palmr Profile Menu](/src/assets/ui/menu.png)  
 
 3. Select **"Profile"** from the dropdown menu. This will redirect you to the profile settings page:  
 
-![Palmr Profile Page](/src/assets/profile.png)  
+![Palmr Profile Page](/src/assets/ui/profile.png)  
 
 ---
 
@@ -78,7 +78,7 @@ You can also update the profile picture for better personalization.
 1. Click the **camera icon** next to the avatar.  
 2. Select an image from your local device.  
 
-![Palmr Profile Picture](/src/assets/profile_picture.png)  
+![Palmr Profile Picture](/src/assets/ui/profile_picture.png)  
 
 > **Recommendation:** Use a square image to ensure proper display.  
 

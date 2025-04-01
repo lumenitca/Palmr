@@ -11,7 +11,7 @@ Palmr. provides a **highly documented and typed API** that can be accessed at:
 
 The API documentation is powered by **Scalar** ([https://scalar.com](https://scalar.com)), which offers a fully interactive interface for testing all the available requests within Palmr. Below is an example screenshot of the API documentation interface:  
 
-![Palmr API Documentation](/src/assets/scalar.png)  
+![Palmr API Documentation](/src/assets/api-docs/scalar.png)  
 
 ---  
 
@@ -31,7 +31,7 @@ We recommend using **Scalar** for querying and testing the API because the syste
 
 If you prefer not to use Scalar or are more comfortable with an alternative tool, a **Swagger-based version** of the documentation is also available. 
 
-![Palmr API Documentation](/src/assets/swagger.png)  
+![Palmr API Documentation](/src/assets/api-docs/swagger.png)  
 
 You can access it at:  
 

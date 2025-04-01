@@ -24,7 +24,7 @@ Alternatively, you can search for "Palmr" in the GitHub search bar and click on 
 
 On the Palmr repository page, you'll see a "Sponsor" button at the top right corner of the page. Click this button to proceed.
 
-![Palmr Profile Menu](/src/assets/sponsor-btn.png)
+![Palmr Profile Menu](/src/assets/sponsor/sponsor-btn.png)
 
 ---
 
@@ -35,20 +35,20 @@ GitHub Sponsors allows you to sponsor the project with a **custom amount startin
 2. Type in the amount you'd like to sponsor (e.g., $1, $5, $10, or any amount you choose).
 3. Select the billing frequency (monthly or one-time).
 
-![Palmr Profile Menu](/src/assets/sponsor-page.png)
+![Palmr Profile Menu](/src/assets/sponsor/sponsor-page.png)
 
 
 ---
 
 ### Step 5: Complete the Sponsorship
 
-After entering your custom amount and selecting the billing frequency, you’ll be prompted to enter your payment details. Follow the instructions to complete the sponsorship process. Once done, you’ll officially be a sponsor of the Palmr project!
+After entering your custom amount and selecting the billing frequency, you'll be prompted to enter your payment details. Follow the instructions to complete the sponsorship process. Once done, you'll officially be a sponsor of the Palmr project!
 
 ---
 
 ### Why Sponsoring is Important for Project Development
 
-Sponsoring a project goes beyond starring—it provides direct financial support to the developers, enabling them to focus on improving and maintaining the project. Here’s why sponsoring is so important:
+Sponsoring a project goes beyond starring—it provides direct financial support to the developers, enabling them to focus on improving and maintaining the project. Here's why sponsoring is so important:
 
 #### 1. **Supports Sustainability**
    - Sponsoring helps ensure the long-term sustainability of the project by providing developers with the resources they need to continue their work.
@@ -60,10 +60,10 @@ Sponsoring a project goes beyond starring—it provides direct financial support
    - Sponsoring is a tangible way to show your appreciation for the hard work and effort that goes into maintaining and developing a project.
 
 #### 4. **Gives You Recognition**
-   - Many projects offer recognition for sponsors, such as listing your name or company on the project’s README or website.
+   - Many projects offer recognition for sponsors, such as listing your name or company on the project's README or website.
 
 #### 5. **Helps Open Source Thrive**
-   - Open-source projects like Palmr rely on community support. By sponsoring, you’re contributing to the growth and success of the open-source ecosystem.
+   - Open-source projects like Palmr rely on community support. By sponsoring, you're contributing to the growth and success of the open-source ecosystem.
 
 ---
 
