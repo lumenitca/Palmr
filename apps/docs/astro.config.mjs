@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Palmr Documentation',
+      title: '🌴 Palmr. - Documentation',
       defaultLocale: 'root',
       social: {
         github: 'https://github.com/kyantech/Palmr',
