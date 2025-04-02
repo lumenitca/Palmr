@@ -28,7 +28,7 @@ export default defineConfig({
             { label: 'First login (Admin)', link: '/main/login' }, 
             { label: 'Manage users', link: '/main/manage-users' }, 
             { label: 'Uploading files', link: '/main/upload' }, 
-            // { label: 'Creating a share', link: '/' }, // !TODO
+            { label: 'Creating a share', link: '/main/generate-share' }, // !TODO
             // { label: 'Password reset', link: '/' }, // !TODO
             { label: 'Available languages', link: '/main/available-languages' },
           ],

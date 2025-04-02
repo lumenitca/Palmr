@@ -12,7 +12,6 @@
   "dependencies": {
     "@astrojs/starlight": "^0.32.2",
     "astro": "^5.1.5",
-    "lucide-react": "^0.483.0",
     "sharp": "^0.32.5"
   }
 }
