@@ -29,7 +29,7 @@ export default defineConfig({
             { label: 'Manage users', link: '/main/manage-users' }, 
             { label: 'Uploading files', link: '/main/upload' }, 
             { label: 'Creating a share', link: '/main/generate-share' },
-            // { label: 'Password reset', link: '/' }, // !TODO
+            { label: 'Configuring SMTP', link: '/main/configuring-smtp' },
             { label: 'Available languages', link: '/main/available-languages' },
           ],
         },
