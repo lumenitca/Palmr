@@ -54,7 +54,7 @@ Or:
 
 On the **"My Files"** page, the layout will look like this:
 
-![My Files Page](/public/main/upload/my-files-page.png)
+![My Files Page](/public/main/files/my-files-page.png)
 
 Here, you have the option to **filter** your uploaded files or upload new ones by clicking the **"Upload File"** button and following the same steps explained earlier.
 
@@ -72,13 +72,13 @@ The table fields include:
 ### Actions Column
 In the **"Actions"** column, you will find an icon that opens the following dropdown:
 
-![Actions Dropdown](/public/main/upload/actions-dropdown.png)
+![Actions Dropdown](/public/main/files/actions-dropdown.png)
 
 Each option is self-explanatory, but let’s detail the **Edit** option:
 
 - **Edit** – Opens a modal where you can edit the file name, description, and other details.
 
-  ![Edit Modal](/public/main/upload/edit-modal.png)
+  ![Edit Modal](/public/main/files/edit-modal.png)
 
 - You can also **delete** a file directly from the dropdown by selecting the **Delete** option.
 
