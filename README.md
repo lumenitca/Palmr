@@ -47,8 +47,9 @@
 |------------------|
 | <img src="https://github.com/danielalves96.png" width="150px" alt="Daniel Luiz Alves" /> |
 
+</br>
 
-## Star History
+## ⭐ Star History
 
   <a href="https://www.star-history.com/#kyantech/Palmr&Date">
    <picture>
