@@ -47,6 +47,19 @@
 |------------------|
 | <img src="https://github.com/danielalves96.png" width="150px" alt="Daniel Luiz Alves" /> |
 
+
+## Star History
+
+<p align="center">
+  <a href="https://www.star-history.com/#kyantech/Palmr&Date">
+   <picture>
+     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=kyantech/Palmr&type=Date&theme=dark" />
+     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=kyantech/Palmr&type=Date" />
+     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=kyantech/Palmr&type=Date" />
+   </picture>
+  </a>
+</p>
+
 ## 🛠️ Contributing
 
 For contribution guidelines, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
