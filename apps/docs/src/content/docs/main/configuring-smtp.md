@@ -18,15 +18,15 @@ Now, let's go through the step-by-step process to configure the **SMTP Server**.
 
 To access **Settings**, an **ADMIN** user must click on the profile picture in the **header** and select **Settings** from the dropdown menu.
 
-<!-- ![Dropdown Menu](/public/main/smtp/dropdown-menu.png) -->
+![Dropdown Menu](/public/main/smtp/dropdown-menu.png)
 
 Once inside the **Settings** panel, click on the **Email** card to expand the SMTP configuration options.
 
-<!-- ![Closed Settings Card](/public/main/settings/closed-card.png) -->
+![Closed Settings Card](/public/main/smtp/closed-card.png)
 
 After expanding the card, the following SMTP configuration fields will appear:
 
-<!-- ![Opened Settings Card](/public/main/settings/opened-card.png) -->
+![Opened Settings Card](/public/main/smtp/opened-card.png)
 
 ---
 
@@ -34,7 +34,7 @@ After expanding the card, the following SMTP configuration fields will appear:
 
 The first step is to **enable SMTP** by selecting "Yes" in the **SMTP Enabled** field.
 
-<!-- ![SMTP Enabled](/public/main/settings/smtp-enabled.png) -->
+![SMTP Enabled](/public/main/smtp/smtp-enabled.png)
 
 Once SMTP is enabled, you can configure the other necessary fields:
 
@@ -43,7 +43,7 @@ Once SMTP is enabled, you can configure the other necessary fields:
 - **SMTP Server** – The SMTP server address. You can use any email service provider. For Gmail, use `smtp.gmail.com` (this is the recommended option and set as default).
 - **SMTP Port** – The server port. For Gmail, the standard port is **587**.
 - **SMTP Username** – The username for the SMTP server. For Gmail, enter your email address.
-- **SMTP Password** – The SMTP password. 
+- **SMTP Password** – The SMTP password. (Generate an App Password for Gmail)
 
 > **Important:** If using **Gmail**, you need to generate an **App Password** instead of using your standard email password.
 > For other email services, consult the official documentation of the service provider you are using. We recommend using Gmail for simplicity and limits the number of emails sent.
