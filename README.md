@@ -1,63 +1,54 @@
-# 🌴 Palmr.
+# 🌴 Palmr. - Open-Source File Transfer
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/dc2a105a-e66b-4db5-b56c-87d872a1edf8" alt="Palmr Logo">
+  <img src="https://github.com/user-attachments/assets/dc2a105a-e66b-4db5-b56c-87d872a1edf8" alt="Palmr Logo" style="width: 60%;">
 </p>
 
-
-## What is **Palmr.** ?  
-
-**Palmr.** is a powerful and **flexible open-source alternative** to popular file transfer services like **WeTransfer**, **SendGB**, **Send Anywhere**, and **Files.fm**.  
-
-### See full documentation here: https://palmr-docs.kyantech.com.br
-</br>
-
-✅ **Host it on your own infrastructure** (Dedicated Server or VPS).  
-🔒 **Full control over your files & security** (No third-party dependencies).  
-🚀 **No artificial limits or hidden fees** (Unlimited file sharing).  
+**Palmr.** is a **flexible** and **open-source** alternative to file transfer services like **WeTransfer**, **SendGB**, **Send Anywhere**, and **Files.fm**.
 
 
-## 🛠️ **Technologies Used**  
+🔗 **For detailed documentation visit:** [Palmr. - Documentation](https://palmr-docs.kyantech.com.br)
 
-Each component in the **Palmr.** architecture plays a vital role in ensuring reliability, performance, and scalability:  
+## 📌 Why Choose Palmr.?
 
-### 🐘 PostgreSQL  
-Palmr. uses **PostgreSQL** as the primary database solution.  
-⚡ High performance and reliability.  
-🔎 Advanced indexing and query optimization.  
-🛡️ Secure and scalable data storage.  
+- **Self-hosted** – Deploy on your own server or VPS.
+- **Full control** – No third-party dependencies, ensuring privacy and security.
+- **No artificial limits** – Share files without hidden restrictions or fees.
 
-### ⚛️ React + TypeScript + Vite  
-The frontend of **Palmr.** is built using modern web technologies:  
-🎨 **React** → Component-based UI for a dynamic user experience.  
-📝 **TypeScript** → Static typing for better code quality.  
-⚡ **Vite** → Lightning-fast development & HMR support.  
+## 🚀 Technologies Used
 
-### ☁️ MinIO (Object Storage)  
-Palmr. leverages **MinIO** for scalable file storage:  
-📂 **High-throughput storage & retrieval**.  
-🛡️ **Ensures data integrity & redundancy**.  
-🔄 **Fully compatible with AWS S3 APIs**.  
+### **Palmr.** is built with a focus on **performance**, **scalability**, and **security**.
 
-### ⚡ Fastify (Backend API)  
-The backend of **Palmr.** is powered by **Fastify**, a high-performance Node.js framework:  
-🚀 **Super-fast request handling**.  
-🛡️ **Built-in schema-based validation** for secure APIs.  
-🔌 **Plugin-based architecture** for easy extensibility.  
+<div align="center">
+  <img src="https://i.ibb.co/3Y8bhm7v/Captura-de-Tela-2025-04-03-s-10-56-12.png" style="width: 100%; border-radius: 15px;" />
+</div>
+
+
+### **Backend & API**
+- **Fastify (Node.js)** – High-performance API framework with built-in schema validation.
+- **PostgreSQL** – Reliable, secure, and scalable database solution.
+- **MinIO (Object Storage)** – AWS S3-compatible storage for high availability.
+
+### **Frontend**
+- **React + TypeScript + Vite** – Modern, interactive, and fast web interface.
 
 ---
 
-## 🔄 **How It Works**  
+## 🛠️ How It Works
 
-1️⃣ **Frontend** → React + TypeScript + Vite for a fast, interactive UI.  
-2️⃣ **Backend** → Fastify processes requests & interacts with storage.  
-3️⃣ **Database** → PostgreSQL manages metadata & transactional data.  
-4️⃣ **Object Storage** → MinIO ensures reliable file storage.  
+1. **Web Interface** → Built with React, TypeScript, and Vite for a seamless user experience.
+2. **Backend API** → Fastify handles requests and interacts with storage.
+3. **Database** → PostgreSQL stores metadata and transactional data.
+4. **Storage** → MinIO ensures reliable file storage and retrieval.
 
 ---
 
-# Core Maintainers
+## 👨‍💻 Core Maintainers
 
-| Daniel Luiz Alves | 
-|------------|
-| <img src="https://github.com/danielalves96.png" width="200px" alt="Daniel Luiz Alves" /> | 
+| **Daniel Luiz Alves** |
+|------------------|
+| <img src="https://github.com/danielalves96.png" width="150px" alt="Daniel Luiz Alves" /> |
+
+## 🛠️ Contributing
+
+For contribution guidelines, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
