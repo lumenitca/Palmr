@@ -1,7 +1,7 @@
 # 🌴 Palmr. - Open-Source File Transfer
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/dc2a105a-e66b-4db5-b56c-87d872a1edf8" alt="Palmr Logo" style="width: 60%;">
+  <img src="https://github.com/user-attachments/assets/dc2a105a-e66b-4db5-b56c-87d872a1edf8" alt="Palmr Logo" style="width: 100%;">
 </p>
 
 **Palmr.** is a **flexible** and **open-source** alternative to file transfer services like **WeTransfer**, **SendGB**, **Send Anywhere**, and **Files.fm**.
@@ -32,7 +32,6 @@
 ### **Frontend**
 - **React + TypeScript + Vite** – Modern, interactive, and fast web interface.
 
----
 
 ## 🛠️ How It Works
 
@@ -41,7 +40,6 @@
 3. **Database** → PostgreSQL stores metadata and transactional data.
 4. **Storage** → MinIO ensures reliable file storage and retrieval.
 
----
 
 ## 👨‍💻 Core Maintainers
 
