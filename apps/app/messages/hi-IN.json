@@ -1,0 +1,638 @@
+{
+  "login": {
+    "welcome": "स्वागत है में",
+    "signInToContinue": "जारी रखने के लिए साइन इन करें",
+    "emailLabel": "ईमेल पता",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "passwordLabel": "पासवर्ड",
+    "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+    "signIn": "साइन इन करें",
+    "signingIn": "साइन इन हो रहा है...",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "pageTitle": "लॉगिन"
+  },
+  "errors": {
+    "invalidCredentials": "गलत ईमेल या पासवर्ड",
+    "userNotFound": "उपयोगकर्ता नहीं मिला",
+    "accountLocked": "खाता लॉक है। कृपया बाद में प्रयास करें",
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें"
+  },
+  "validation": {
+    "invalidEmail": "अमान्य ईमेल पता",
+    "passwordMinLength": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए",
+    "firstNameRequired": "पहला नाम आवश्यक है",
+    "lastNameRequired": "अंतिम नाम आवश्यक है",
+    "usernameLength": "उपयोगकर्ता नाम कम से कम 3 अक्षर का होना चाहिए",
+    "usernameSpaces": "उपयोगकर्ता नाम में रिक्त स्थान नहीं हो सकते",
+    "passwordLength": "पासवर्ड कम से कम 8 अक्षर का होना चाहिए",
+    "passwordsMatch": "पासवर्ड मेल नहीं खाते",
+    "emailRequired": "ईमेल आवश्यक है",
+    "passwordRequired": "पासवर्ड आवश्यक है"
+  },
+  "fileSelector": {
+    "availableFiles": "उपलब्ध फाइलें ({{count}})",
+    "shareFiles": "फाइलें साझा करें ({{count}})",
+    "searchPlaceholder": "फाइलें खोजें...",
+    "noMatchingFiles": "कोई मेल खाने वाली फाइलें नहीं",
+    "noAvailableFiles": "कोई फाइल उपलब्ध नहीं",
+    "noFilesInShare": "साझाकरण में कोई फाइलें नहीं",
+    "saveChanges": "परिवर्तन सहेजें"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "प्राप्तकर्ता का ईमेल दर्ज करें",
+    "add": "जोड़ें",
+    "recipients": "प्राप्तकर्ता ({{count}})",
+    "notifyAll": "सभी को सूचित करें",
+    "noRecipients": "अभी तक कोई प्राप्तकर्ता नहीं जोड़ा गया",
+    "addSuccess": "प्राप्तकर्ता सफलतापूर्वक जोड़ा गया",
+    "addError": "प्राप्तकर्ता जोड़ने में विफल",
+    "removeSuccess": "प्राप्तकर्ता सफलतापूर्वक हटाया गया",
+    "removeError": "प्राप्तकर्ता हटाने में विफल",
+    "sendingNotifications": "सूचनाएँ भेजी जा रही हैं...",
+    "notifySuccess": "प्राप्तकर्ताओं को सफलतापूर्वक सूचित किया गया",
+    "notifyError": "प्राप्तकर्ताओं को सूचित करने में विफल"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड"
+  },
+  "common": {
+    "loading": "लोड हो रहा है, कृपया प्रतीक्षा करें...",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "delete": "हटाएं",
+    "close": "बंद करें",
+    "download": "डाउनलोड करें",
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "dashboard": "डैशबोर्ड"
+  },
+  "createShare": {
+    "title": "साझा करें बनाएं",
+    "nameLabel": "साझाकरण का नाम",
+    "expirationLabel": "समाप्ति तिथि",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "अधिकतम दृश्य",
+    "maxViewsPlaceholder": "अनलिमिटेड के लिए खाली छोड़ें",
+    "passwordProtection": "पासवर्ड सुरक्षा",
+    "passwordLabel": "पासवर्ड",
+    "create": "साझा करें बनाएं",
+    "success": "साझाकरण सफलतापूर्वक बनाया गया",
+    "error": "साझाकरण बनाने में विफल"
+  },
+  "fileActions": {
+    "editFile": "फाइल संपादित करें",
+    "nameLabel": "नाम",
+    "namePlaceholder": "नया नाम दर्ज करें",
+    "extension": "एक्सटेंशन",
+    "descriptionLabel": "विवरण",
+    "descriptionPlaceholder": "फाइल का विवरण दर्ज करें",
+    "deleteFile": "फाइल हटाएं",
+    "deleteConfirmation": "क्या आप वाकई \"{{fileName}}\" हटाना चाहते हैं?",
+    "deleteWarning": "यह क्रिया अपरिवर्तनीय है।"
+  },
+  "filePreview": {
+    "loading": "पूर्वावलोकन लोड हो रहा है...",
+    "notAvailable": "पूर्वावलोकन उपलब्ध नहीं",
+    "downloadToView": "सामग्री देखने के लिए फाइल डाउनलोड करें",
+    "audioNotSupported": "आपका ब्राउज़र ऑडियो तत्व का समर्थन नहीं करता",
+    "videoNotSupported": "आपका ब्राउज़र वीडियो तत्व का समर्थन नहीं करता",
+    "loadError": "पूर्वावलोकन लोड करने में विफल",
+    "downloadError": "फाइल डाउनलोड करने में विफल"
+  },
+  "generateShareLink": {
+    "generateTitle": "साझाकरण लिंक उत्पन्न करें",
+    "updateTitle": "साझाकरण लिंक अपडेट करें",
+    "generateDescription": "अपनी फाइलें साझा करने के लिए एक लिंक उत्पन्न करें",
+    "updateDescription": "इस साझाकरण लिंक के लिए उपनाम अपडेट करें",
+    "aliasPlaceholder": "उपनाम दर्ज करें",
+    "linkReady": "आपका साझाकरण लिंक तैयार है:",
+    "generateButton": "लिंक उत्पन्न करें",
+    "updateButton": "लिंक अपडेट करें",
+    "copyButton": "लिंक कॉपी करें",
+    "success": "लिंक सफलतापूर्वक उत्पन्न हुआ",
+    "error": "लिंक उत्पन्न करने में विफल",
+    "copied": "लिंक क्लिपबोर्ड में कॉपी किया गया"
+  },
+  "shareActions": {
+    "deleteTitle": "साझाकरण हटाएं",
+    "deleteConfirmation": "क्या आप वाकई इस साझाकरण को हटाना चाहते हैं? यह क्रिया अपरिवर्तनीय है।",
+    "editTitle": "साझाकरण संपादित करें",
+    "nameLabel": "साझाकरण का नाम",
+    "expirationLabel": "समाप्ति तिथि",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "अधिकतम दृश्य",
+    "maxViewsPlaceholder": "अनलिमिटेड के लिए खाली छोड़ें",
+    "passwordProtection": "पासवर्ड सुरक्षा",
+    "passwordLabel": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड दर्ज करें",
+    "newPasswordLabel": "नया पासवर्ड (वर्तमान रखने के लिए खाली छोड़ें)",
+    "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
+    "manageFilesTitle": "फाइलें प्रबंधित करें",
+    "manageRecipientsTitle": "प्राप्तकर्ताओं का प्रबंधन करें",
+    "editSuccess": "साझाकरण सफलतापूर्वक अपडेट हुआ",
+    "editError": "साझाकरण अपडेट करने में विफल"
+  },
+  "shareDetails": {
+    "title": "साझाकरण विवरण",
+    "subtitle": "इस साझाकरण की विस्तृत जानकारी",
+    "basicInfo": "मूल जानकारी",
+    "name": "नाम",
+    "untitled": "बिना शीर्षक के",
+    "views": "दृश्य",
+    "dates": "तिथियाँ",
+    "created": "बनाया गया",
+    "expires": "समाप्त होता है",
+    "never": "कभी नहीं",
+    "security": "सुरक्षा",
+    "passwordProtected": "पासवर्ड द्वारा संरक्षित",
+    "publicAccess": "सार्वजनिक पहुँच",
+    "maxViews": "अधिकतम दृश्य: {{count}}",
+    "files": "फाइलें ({{count}})",
+    "recipients": "प्राप्तकर्ता ({{count}})",
+    "notAvailable": "एन/ए",
+    "invalidDate": "अमान्य तिथि",
+    "loadError": "साझाकरण विवरण लोड करने में विफल"
+  },
+  "uploadFile": {
+    "title": "फाइल अपलोड करें",
+    "selectFile": "फाइल चुनने के लिए क्लिक करें",
+    "preview": "पूर्वावलोकन",
+    "uploadProgress": "अपलोड प्रगति",
+    "upload": "अपलोड करें",
+    "success": "फाइल सफलतापूर्वक अपलोड हुई",
+    "error": "फाइल अपलोड करने में विफल"
+  },
+  "filesTable": {
+    "ariaLabel": "फाइल टेबल",
+    "columns": {
+      "name": "नाम",
+      "description": "विवरण",
+      "size": "आकार",
+      "createdAt": "बनाया गया",
+      "updatedAt": "अपडेट किया गया",
+      "actions": "क्रियाएं"
+    },
+    "actions": {
+      "menu": "फाइल क्रिया मेनू",
+      "preview": "पूर्वावलोकन",
+      "edit": "संपादित करें",
+      "download": "डाउनलोड करें",
+      "delete": "हटाएं"
+    }
+  },
+  "sharesTable": {
+    "ariaLabel": "साझाकरण टेबल",
+    "never": "कभी नहीं",
+    "columns": {
+      "name": "नाम",
+      "createdAt": "बनाया गया",
+      "expiresAt": "समाप्त होता है",
+      "status": "स्थिति",
+      "security": "सुरक्षा",
+      "files": "फाइलें",
+      "recipients": "प्राप्तकर्ता",
+      "actions": "क्रियाएं"
+    },
+    "status": {
+      "neverExpires": "कभी समाप्त नहीं",
+      "active": "सक्रिय",
+      "expired": "समाप्त"
+    },
+    "security": {
+      "protected": "संरक्षित",
+      "public": "सार्वजनिक"
+    },
+    "filesCount": "{{count}} फाइलें",
+    "recipientsCount": "{{count}} प्राप्तकर्ता",
+    "actions": {
+      "menu": "साझाकरण क्रिया मेनू",
+      "edit": "संपादित करें",
+      "manageFiles": "फाइलें प्रबंधित करें",
+      "manageRecipients": "प्राप्तकर्ताओं का प्रबंधन करें",
+      "viewDetails": "विवरण देखें",
+      "generateLink": "लिंक उत्पन्न करें",
+      "editLink": "लिंक संपादित करें",
+      "copyLink": "लिंक कॉपी करें",
+      "notifyRecipients": "प्राप्तकर्ताओं को सूचित करें",
+      "delete": "हटाएं"
+    }
+  },
+  "footer": {
+    "poweredBy": "द्वारा संचालित",
+    "kyanHomepage": "Kyantech होमपेज"
+  },
+  "fileManager": {
+    "downloadError": "फाइल डाउनलोड करने में त्रुटि",
+    "updateSuccess": "फाइल सफलतापूर्वक अपडेट हुई",
+    "updateError": "फाइल अपडेट करने में त्रुटि",
+    "deleteSuccess": "फाइल सफलतापूर्वक हटाई गई",
+    "deleteError": "फाइल हटाने में त्रुटि"
+  },
+  "shareManager": {
+    "deleteSuccess": "साझाकरण सफलतापूर्वक हटाया गया",
+    "deleteError": "साझाकरण हटाने में त्रुटि",
+    "updateSuccess": "साझाकरण सफलतापूर्वक अपडेट हुआ",
+    "updateError": "साझाकरण अपडेट करने में त्रुटि",
+    "filesUpdateSuccess": "फाइलें सफलतापूर्वक अपडेट हुईं",
+    "filesUpdateError": "फाइलें अपडेट करने में त्रुटि",
+    "recipientsUpdateSuccess": "प्राप्तकर्ता सफलतापूर्वक अपडेट हुए",
+    "recipientsUpdateError": "प्राप्तकर्ता अपडेट करने में त्रुटि",
+    "linkGenerateSuccess": "साझाकरण लिंक सफलतापूर्वक उत्पन्न हुआ",
+    "linkGenerateError": "साझाकरण लिंक उत्पन्न करने में त्रुटि",
+    "notifyLoading": "सूचनाएँ भेजी जा रही हैं...",
+    "notifySuccess": "प्राप्तकर्ताओं को सफलतापूर्वक सूचित किया गया",
+    "notifyError": "प्राप्तकर्ताओं को सूचित करने में त्रुटि"
+  },
+  "quickAccess": {
+    "files": {
+      "title": "मेरी फाइलें",
+      "description": "अपलोड की गई फाइलों तक पहुंच और प्रबंधन"
+    },
+    "shares": {
+      "title": "मेरे साझाकरण",
+      "description": "साझा की गई फाइलों को देखें और प्रबंधित करें"
+    }
+  },
+  "recentFiles": {
+    "title": "हाल की अपलोड्स",
+    "viewAll": "सभी देखें",
+    "uploadFile": "फाइल अपलोड करें",
+    "noFiles": "अभी तक कोई फाइल अपलोड नहीं हुई"
+  },
+  "recentShares": {
+    "title": "हाल के साझाकरण",
+    "viewAll": "सभी देखें",
+    "createShare": "साझा करें बनाएं",
+    "noShares": "अभी तक कोई साझाकरण नहीं बनाया गया",
+    "createFirst": "अपना पहला साझाकरण बनाएं"
+  },
+  "storageUsage": {
+    "title": "स्टोरेज उपयोग",
+    "ariaLabel": "स्टोरेज उपयोग प्रगति पट्टी",
+    "used": "{{size}} उपयोग किया गया",
+    "available": "{{size}} उपलब्ध"
+  },
+  "dashboard": {
+    "loadError": "डैशबोर्ड डेटा लोड करने में त्रुटि",
+    "linkCopied": "लिंक क्लिपबोर्ड में कॉपी हुआ",
+    "pageTitle": "डैशबोर्ड",
+    "breadcrumb": "डैशबोर्ड"
+  },
+  "emptyState": {
+    "noFiles": "अभी तक कोई फाइल अपलोड नहीं हुई",
+    "uploadFile": "फाइल अपलोड करें"
+  },
+  "files": {
+    "title": "सभी फाइलें",
+    "uploadFile": "फाइल अपलोड करें",
+    "loadError": "फाइलें लोड करने में त्रुटि",
+    "pageTitle": "मेरी फाइलें",
+    "breadcrumb": "मेरी फाइलें"
+  },
+  "searchBar": {
+    "placeholder": "फाइलें खोजें...",
+    "results": "{{total}} में से {{filtered}} फाइलें मिलीं"
+  },
+  "forgotPassword": {
+    "emailLabel": "ईमेल पता",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "sending": "भेजा जा रहा है...",
+    "submit": "रीसेट निर्देश भेजें",
+    "backToLogin": "लॉगिन पर वापस जाएं",
+    "title": "पासवर्ड भूल गए",
+    "description": "अपना ईमेल पता दर्ज करें और हम आपको पासवर्ड रीसेट करने के निर्देश भेजेंगे।",
+    "resetInstructions": "रीसेट निर्देश आपके ईमेल पर भेज दिए गए हैं",
+    "pageTitle": "पासवर्ड भूल गए"
+  },
+  "home": {
+    "description": "WeTransfer का ओपन-सोर्स विकल्प। फाइलें सुरक्षित रूप से साझा करें, बिना ट्रैकिंग या सीमाओं के।",
+    "documentation": "दस्तावेज",
+    "starOnGithub": "GitHub पर स्टार करें",
+    "privacyMessage": "गोपनीयता को ध्यान में रखते हुए बनाया गया। अपलोड से पहले आपकी फाइलें केवल उनके लिए उपलब्ध हैं जिनके पास साझाकरण लिंक है। हमेशा मुफ्त और ओपन सोर्स।",
+    "header": {
+      "fileSharing": "फाइल साझा करें",
+      "tagline": "सरल और मुफ्त"
+    },
+    "pageTitle": "होम"
+  },
+  "profile": {
+    "password": {
+      "title": "पासवर्ड बदलें",
+      "newPassword": "नया पासवर्ड",
+      "confirmPassword": "नया पासवर्ड पुष्टि करें",
+      "updateButton": "पासवर्ड अपडेट करें"
+    },
+    "form": {
+      "title": "प्रोफ़ाइल जानकारी",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "username": "उपयोगकर्ता नाम",
+      "email": "ईमेल",
+      "updateButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "header": {
+      "title": "प्रोफ़ाइल",
+      "subtitle": "अपनी व्यक्तिगत जानकारी और पासवर्ड प्रबंधित करें"
+    },
+    "picture": {
+      "title": "प्रोफ़ाइल चित्र",
+      "description": "प्रोफ़ाइल चित्र बदलने के लिए कैमरा आइकन पर क्लिक करें",
+      "uploadPhoto": "फोटो अपलोड करें",
+      "removePhoto": "फोटो हटाएं"
+    },
+    "errors": {
+      "loadFailed": "उपयोगकर्ता डेटा लोड करने में विफल",
+      "updateFailed": "प्रोफ़ाइल अपडेट करने में त्रुटि",
+      "passwordFailed": "पासवर्ड अपडेट करने में त्रुटि",
+      "imageFailed": "प्रोफ़ाइल चित्र अपडेट करने में त्रुटि",
+      "imageRemoveFailed": "प्रोफ़ाइल चित्र हटाने में त्रुटि"
+    },
+    "messages": {
+      "noChanges": "सहेजने के लिए कोई परिवर्तन नहीं",
+      "updateSuccess": "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई",
+      "fillPasswords": "कृपया दोनों पासवर्ड फील्ड भरें",
+      "passwordSuccess": "पासवर्ड सफलतापूर्वक अपडेट हुआ",
+      "imageSuccess": "प्रोफ़ाइल चित्र सफलतापूर्वक अपडेट हुआ",
+      "imageRemoved": "प्रोफ़ाइल चित्र सफलतापूर्वक हटाया गया"
+    },
+    "pageTitle": "प्रोफ़ाइल"
+  },
+  "resetPassword": {
+    "pageTitle": "पासवर्ड रीसेट करें",
+    "header": {
+      "title": "पासवर्ड रीसेट करें",
+      "description": "नीचे अपना नया पासवर्ड दर्ज करें"
+    },
+    "form": {
+      "newPassword": "नया पासवर्ड",
+      "newPasswordPlaceholder": "अपना नया पासवर्ड दर्ज करें",
+      "confirmPassword": "नया पासवर्ड पुष्टि करें",
+      "confirmPasswordPlaceholder": "अपना नया पासवर्ड पुष्टि करें",
+      "resetting": "पासवर्ड रीसेट हो रहा है...",
+      "submit": "पासवर्ड रीसेट करें",
+      "backToLogin": "लॉगिन पर वापस जाएं"
+    },
+    "messages": {
+      "success": "पासवर्ड सफलतापूर्वक रीसेट हुआ"
+    },
+    "errors": {
+      "serverError": "पासवर्ड रीसेट करने में विफल। कृपया पुनः प्रयास करें।",
+      "invalidToken": "अमान्य या गायब रीसेट टोकन"
+    }
+  },
+  "settings": {
+    "groups": {
+      "defaultDescription": "कॉन्फ़िगरेशन विकल्प",
+      "general": {
+        "title": "सामान्य",
+        "description": "एप्लिकेशन की बुनियादी सेटिंग्स"
+      },
+      "email": {
+        "title": "ईमेल",
+        "description": "ईमेल सर्वर कॉन्फ़िगरेशन"
+      },
+      "security": {
+        "title": "सुरक्षा",
+        "description": "सुरक्षा और प्रमाणीकरण सेटिंग्स"
+      },
+      "storage": {
+        "title": "स्टोरेज",
+        "description": "फाइल स्टोरेज कॉन्फ़िगरेशन"
+      }
+    },
+    "fields": {
+      "noDescription": "कोई विवरण उपलब्ध नहीं",
+      "appLogo": {
+        "title": "एप्लिकेशन लोगो",
+        "description": "एप्लिकेशन का लोगो चित्र"
+      },
+      "appName": {
+        "title": "एप्लिकेशन नाम",
+        "description": "उपयोगकर्ताओं को दिखाया जाने वाला एप्लिकेशन नाम"
+      },
+      "appDescription": {
+        "title": "एप्लिकेशन विवरण",
+        "description": "एप्लिकेशन का संक्षिप्त विवरण"
+      },
+      "showHomePage": {
+        "title": "होम पेज दिखाएं",
+        "description": "इंस्टॉलेशन के बाद होम पेज दिखाएं"
+      },
+      "smtpEnabled": {
+        "title": "SMTP सक्षम",
+        "description": "SMTP ईमेल कार्यक्षमता सक्षम या अक्षम करें"
+      },
+      "smtpHost": {
+        "title": "SMTP सर्वर",
+        "description": "SMTP सर्वर पता"
+      },
+      "smtpPort": {
+        "title": "SMTP पोर्ट",
+        "description": "SMTP सर्वर पोर्ट"
+      },
+      "smtpUser": {
+        "title": "SMTP उपयोगकर्ता",
+        "description": "SMTP प्रमाणीकरण के लिए उपयोगकर्ता नाम"
+      },
+      "smtpPass": {
+        "title": "SMTP पासवर्ड",
+        "description": "SMTP प्रमाणीकरण के लिए पासवर्ड"
+      },
+      "smtpFromName": {
+        "title": "प्रेषक का नाम",
+        "description": "भेजे गए ईमेल के लिए डिस्प्ले नाम"
+      },
+      "smtpFromEmail": {
+        "title": "प्रेषक का ईमेल",
+        "description": "प्रेषक का ईमेल पता"
+      },
+      "maxLoginAttempts": {
+        "title": "अधिकतम लॉगिन प्रयास",
+        "description": "ब्लॉक करने से पहले अधिकतम लॉगिन प्रयासों की संख्या"
+      },
+      "loginBlockDuration": {
+        "title": "लॉगिन ब्लॉक अवधि",
+        "description": "प्रयासों की सीमा पार करने पर ब्लॉक की अवधि (सेकंड में)"
+      },
+      "passwordMinLength": {
+        "title": "न्यूनतम पासवर्ड लंबाई",
+        "description": "पासवर्ड के लिए न्यूनतम अक्षरों की संख्या"
+      },
+      "passwordResetTokenExpiration": {
+        "title": "रीसेट टोकन समाप्ति",
+        "description": "पासवर्ड रीसेट टोकन की वैधता (सेकंड में)"
+      },
+      "maxFileSize": {
+        "title": "अधिकतम फाइल आकार",
+        "description": "अपलोड के लिए अधिकतम अनुमत फाइल आकार (बाइट में)"
+      },
+      "maxTotalStoragePerUser": {
+        "title": "प्रति उपयोगकर्ता अधिकतम स्टोरेज",
+        "description": "प्रति उपयोगकर्ता कुल स्टोरेज सीमा (बाइट में)"
+      }
+    },
+    "buttons": {
+      "save": "{{group}} सहेजें"
+    },
+    "errors": {
+      "loadFailed": "सेटिंग्स लोड करने में विफल",
+      "updateFailed": "सेटिंग्स अपडेट करने में विफल"
+    },
+    "messages": {
+      "noChanges": "सहेजने के लिए कोई परिवर्तन नहीं",
+      "updateSuccess": "{{group}} सेटिंग्स सफलतापूर्वक अपडेट हुईं"
+    },
+    "title": "सेटिंग्स",
+    "breadcrumb": "सेटिंग्स",
+    "pageTitle": "सेटिंग्स"
+  },
+  "share": {
+    "errors": {
+      "invalidPassword": "अमान्य पासवर्ड। कृपया पुनः प्रयास करें।",
+      "loadFailed": "साझाकरण लोड करने में विफल",
+      "downloadFailed": "फाइल डाउनलोड करने में विफल"
+    },
+    "messages": {
+      "downloadStarted": "डाउनलोड शुरू हुआ"
+    },
+    "password": {
+      "title": "पासवर्ड संरक्षित साझाकरण",
+      "protected": "यह साझाकरण पासवर्ड द्वारा संरक्षित है",
+      "incorrect": "गलत पासवर्ड। कृपया पुनः प्रयास करें।",
+      "label": "पासवर्ड",
+      "placeholder": "साझाकरण का पासवर्ड दर्ज करें",
+      "submit": "सबमिट करें"
+    },
+    "details": {
+      "untitled": "बिना शीर्षक के",
+      "created": "बनाया गया: {{date}}",
+      "expires": "समाप्त होता है: {{date}}"
+    },
+    "notFound": {
+      "title": "साझाकरण नहीं मिला",
+      "description": "यह साझाकरण हटा दिया गया हो सकता है या समाप्त हो चुका है।"
+    },
+    "pageTitle": "साझाकरण"
+  },
+  "shares": {
+    "errors": {
+      "loadFailed": "साझाकरण लोड करने में विफल",
+      "notifyFailed": "प्राप्तकर्ताओं को सूचित करने में विफल",
+      "smtpConfigFailed": "SMTP कॉन्फ़िगरेशन लोड करने में विफल"
+    },
+    "messages": {
+      "linkCopied": "लिंक क्लिपबोर्ड में कॉपी किया गया",
+      "recipientsNotified": "प्राप्तकर्ताओं को सफलतापूर्वक सूचित किया गया"
+    },
+    "empty": {
+      "message": "अभी तक कोई साझाकरण नहीं बनाया गया",
+      "createButton": "साझाकरण बनाएं"
+    },
+    "header": {
+      "title": "मेरे साझाकरण",
+      "myShares": "मेरे साझाकरण"
+    },
+    "search": {
+      "title": "सभी साझाकरण",
+      "createButton": "साझाकरण बनाएं",
+      "placeholder": "साझाकरण खोजें...",
+      "results": "{{total}} में से {{filtered}} साझाकरण मिले"
+    },
+    "pageTitle": "साझाकरण"
+  },
+  "users": {
+    "modes": {
+      "create": "बनाएं",
+      "edit": "संपादित करें"
+    },
+    "errors": {
+      "loadFailed": "उपयोगकर्ता लोड करने में विफल",
+      "submitFailed": "{{mode}} करने में विफल",
+      "deleteFailed": "उपयोगकर्ता हटाने में विफल",
+      "statusUpdateFailed": "उपयोगकर्ता की स्थिति अपडेट करने में विफल"
+    },
+    "messages": {
+      "createSuccess": "उपयोगकर्ता सफलतापूर्वक बनाया गया",
+      "updateSuccess": "उपयोगकर्ता सफलतापूर्वक अपडेट हुआ",
+      "deleteSuccess": "उपयोगकर्ता सफलतापूर्वक हटाया गया",
+      "activateSuccess": "उपयोगकर्ता सफलतापूर्वक सक्रिय हुआ",
+      "deactivateSuccess": "उपयोगकर्ता सफलतापूर्वक निष्क्रिय हुआ"
+    },
+    "actions": {
+      "edit": "संपादित करें",
+      "activate": "सक्रिय करें",
+      "deactivate": "निष्क्रिय करें",
+      "delete": "हटाएं"
+    },
+    "delete": {
+      "title": "उपयोगकर्ता हटाने की पुष्टि करें",
+      "confirmation": "क्या आप वाकई {{firstName}} {{lastName}} को हटाना चाहते हैं? यह क्रिया अपरिवर्तनीय है।",
+      "confirm": "उपयोगकर्ता हटाएं"
+    },
+    "form": {
+      "titleCreate": "नया उपयोगकर्ता जोड़ें",
+      "titleEdit": "उपयोगकर्ता संपादित करें",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "username": "उपयोगकर्ता नाम",
+      "email": "ईमेल",
+      "password": "पासवर्ड",
+      "newPassword": "नया पासवर्ड (वैकल्पिक)",
+      "passwordPlaceholder": "वर्तमान पासवर्ड रखने के लिए खाली छोड़ें",
+      "role": "भूमिका",
+      "roleUser": "उपयोगकर्ता",
+      "roleAdmin": "व्यवस्थापक",
+      "create": "बनाएं",
+      "save": "सहेजें"
+    },
+    "status": {
+      "title": "स्थिति परिवर्तन की पुष्टि करें",
+      "confirmation": "क्या आप वाकई {{firstName}} {{lastName}} को {{action}} करना चाहते हैं?",
+      "activate": "सक्रिय करें",
+      "deactivate": "निष्क्रिय करें",
+      "user": "उपयोगकर्ता"
+    },
+    "header": {
+      "title": "उपयोगकर्ता प्रबंधन",
+      "addUser": "उपयोगकर्ता जोड़ें",
+      "management": "उपयोगकर्ता प्रबंधन"
+    },
+    "table": {
+      "user": "उपयोगकर्ता",
+      "email": "ईमेल",
+      "status": "स्थिति",
+      "role": "भूमिका",
+      "actions": "क्रियाएं",
+      "active": "सक्रिय",
+      "inactive": "निष्क्रिय",
+      "admin": "व्यवस्थापक",
+      "userr": "उपयोगकर्ता"
+    }
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "एप्लिकेशन लोगो"
+    },
+    "buttons": {
+      "upload": "लोगो अपलोड करें",
+      "remove": "लोगो हटाएं"
+    },
+    "messages": {
+      "uploadSuccess": "लोगो सफलतापूर्वक अपलोड हुआ",
+      "removeSuccess": "लोगो सफलतापूर्वक हटाया गया"
+    },
+    "errors": {
+      "uploadFailed": "लोगो अपलोड करने में विफल",
+      "removeFailed": "लोगो हटाने में विफल"
+    }
+  },
+  "navbar": {
+    "logoAlt": "एप्लिकेशन लोगो",
+    "profileMenu": "प्रोफ़ाइल मेन्यू",
+    "profile": "प्रोफ़ाइल",
+    "settings": "सेटिंग्स",
+    "usersManagement": "उपयोगकर्ता प्रबंधन",
+    "logout": "लॉग आउट"
+  }
+}
