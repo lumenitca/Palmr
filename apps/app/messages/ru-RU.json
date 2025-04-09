@@ -203,8 +203,8 @@
       "protected": "Защищено",
       "public": "Публично"
     },
-    "filesCount": "{{count}} файлов",
-    "recipientsCount": "{{count}} получателей",
+    "filesCount": "файлов",
+    "recipientsCount": "получателей",
     "actions": {
       "menu": "Меню действий общего доступа",
       "edit": "Редактировать",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Использование хранилища",
     "ariaLabel": "Индикатор использования хранилища",
-    "used": "Использовано: {{size}}",
-    "available": "Доступно: {{size}}"
+    "used": "Использовано",
+    "available": "Доступно"
   },
   "dashboard": {
     "loadError": "Ошибка загрузки данных панели управления",

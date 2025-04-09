@@ -203,8 +203,8 @@
       "protected": "Protected",
       "public": "Public"
     },
-    "filesCount": "{{count}} files",
-    "recipientsCount": "{{count}} recipients",
+    "filesCount": "files",
+    "recipientsCount": "recipients",
     "actions": {
       "menu": "Share actions menu",
       "edit": "Edit",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Storage Usage",
     "ariaLabel": "Storage usage progress bar",
-    "used": "{{size}} used",
-    "available": "{{size}} available"
+    "used": "used",
+    "available": "available"
   },
   "dashboard": {
     "loadError": "Failed to load dashboard data",

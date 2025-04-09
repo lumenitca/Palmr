@@ -203,8 +203,8 @@
       "protected": "संरक्षित",
       "public": "सार्वजनिक"
     },
-    "filesCount": "{{count}} फाइलें",
-    "recipientsCount": "{{count}} प्राप्तकर्ता",
+    "filesCount": "फाइलें",
+    "recipientsCount": "प्राप्तकर्ता",
     "actions": {
       "menu": "साझाकरण क्रिया मेनू",
       "edit": "संपादित करें",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "स्टोरेज उपयोग",
     "ariaLabel": "स्टोरेज उपयोग प्रगति पट्टी",
-    "used": "{{size}} उपयोग किया गया",
-    "available": "{{size}} उपलब्ध"
+    "used": "उपयोग किया गया",
+    "available": "उपलब्ध"
   },
   "dashboard": {
     "loadError": "डैशबोर्ड डेटा लोड करने में त्रुटि",

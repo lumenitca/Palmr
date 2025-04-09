@@ -203,8 +203,8 @@
       "protected": "保護済み",
       "public": "公開"
     },
-    "filesCount": "{{count}} ファイル",
-    "recipientsCount": "{{count}} 受信者",
+    "filesCount": "ファイル",
+    "recipientsCount": "受信者",
     "actions": {
       "menu": "共有操作メニュー",
       "edit": "編集",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "ストレージ使用量",
     "ariaLabel": "ストレージ使用状況のプログレスバー",
-    "used": "{{size}} 使用済み",
-    "available": "{{size}} 利用可能"
+    "used": "使用済み",
+    "available": "利用可能"
   },
   "dashboard": {
     "loadError": "ダッシュボードデータの読み込みに失敗しました",

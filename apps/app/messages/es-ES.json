@@ -203,8 +203,8 @@
       "protected": "Protegida",
       "public": "Pública"
     },
-    "filesCount": "{{count}} archivos",
-    "recipientsCount": "{{count}} destinatarios",
+    "filesCount": "archivos",
+    "recipientsCount": "destinatarios",
     "actions": {
       "menu": "Menú de acciones de la compartición",
       "edit": "Editar",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Uso de almacenamiento",
     "ariaLabel": "Barra de progreso del uso de almacenamiento",
-    "used": "{{size}} usados",
-    "available": "{{size}} disponibles"
+    "used": "usados",
+    "available": "disponibles"
   },
   "dashboard": {
     "loadError": "Error al cargar los datos del tablero",

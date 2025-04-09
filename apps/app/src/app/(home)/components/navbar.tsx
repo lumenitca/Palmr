@@ -6,7 +6,7 @@ import Link from "next/link";
 import { IconHeart, IconMenu2 } from "@tabler/icons-react";
 
 import { LanguageSwitcher } from "@/components/general/language-switcher";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "@/components/general/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";

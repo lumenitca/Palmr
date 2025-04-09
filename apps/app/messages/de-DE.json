@@ -203,8 +203,8 @@
       "protected": "Geschützt",
       "public": "Öffentlich"
     },
-    "filesCount": "{{count}} Dateien",
-    "recipientsCount": "{{count}} Empfänger",
+    "filesCount": "Dateien",
+    "recipientsCount": "Empfänger",
     "actions": {
       "menu": "Freigabeaktionsmenü",
       "edit": "Bearbeiten",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Speichernutzung",
     "ariaLabel": "Fortschrittsbalken der Speichernutzung",
-    "used": "{{size}} genutzt",
-    "available": "{{size}} verfügbar"
+    "used": "genutzt",
+    "available": "verfügbar"
   },
   "dashboard": {
     "loadError": "Fehler beim Laden der Dashboard-Daten",

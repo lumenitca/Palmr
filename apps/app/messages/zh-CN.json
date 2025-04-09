@@ -203,8 +203,8 @@
       "protected": "受保护",
       "public": "公开"
     },
-    "filesCount": "{{count}} 个文件",
-    "recipientsCount": "{{count}} 个收件人",
+    "filesCount": "个文件",
+    "recipientsCount": "个收件人",
     "actions": {
       "menu": "共享操作菜单",
       "edit": "编辑",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "存储使用情况",
     "ariaLabel": "存储使用进度条",
-    "used": "已使用：{{size}}",
-    "available": "可用：{{size}}"
+    "used": "已使用：",
+    "available": "可用："
   },
   "dashboard": {
     "loadError": "加载仪表盘数据失败",

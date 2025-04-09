@@ -203,8 +203,8 @@
       "protected": "محمي",
       "public": "عام"
     },
-    "filesCount": "{{count}} ملف",
-    "recipientsCount": "{{count}} مستلم",
+    "filesCount": "ملف",
+    "recipientsCount": "مستلم",
     "actions": {
       "menu": "قائمة إجراءات المشاركة",
       "edit": "تعديل",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "استخدام التخزين",
     "ariaLabel": "شريط تقدم استخدام التخزين",
-    "used": "المستخدمة: {{size}}",
-    "available": "المتاحة: {{size}}"
+    "used": "المستخدمة",
+    "available": "المتاحة"
   },
   "dashboard": {
     "loadError": "فشل في تحميل بيانات لوحة التحكم",

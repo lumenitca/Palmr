@@ -203,8 +203,8 @@
       "protected": "Protégé",
       "public": "Public"
     },
-    "filesCount": "{{count}} fichiers",
-    "recipientsCount": "{{count}} destinataires",
+    "filesCount": "fichiers",
+    "recipientsCount": "destinataires",
     "actions": {
       "menu": "Menu d'actions du partage",
       "edit": "Modifier",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Utilisation du Stockage",
     "ariaLabel": "Barre de progression de l'utilisation du stockage",
-    "used": "{{size}} utilisé",
-    "available": "{{size}} disponible"
+    "used": "utilisé",
+    "available": "disponible"
   },
   "dashboard": {
     "loadError": "Échec du chargement des données du tableau de bord",

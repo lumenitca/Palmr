@@ -203,8 +203,8 @@
       "protected": "Korunuyor",
       "public": "Genel"
     },
-    "filesCount": "{{count}} dosya",
-    "recipientsCount": "{{count}} alıcı",
+    "filesCount": "dosya",
+    "recipientsCount": "alıcı",
     "actions": {
       "menu": "Paylaşım İşlem Menüsü",
       "edit": "Düzenle",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "Depolama Kullanımı",
     "ariaLabel": "Depolama kullanım ilerleme çubuğu",
-    "used": "{{size}} kullanıldı",
-    "available": "{{size}} kullanılabilir"
+    "used": "kullanıldı",
+    "available": "kullanılabilir"
   },
   "dashboard": {
     "loadError": "Gösterge paneli verileri yüklenemedi",

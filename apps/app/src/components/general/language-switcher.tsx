@@ -1,3 +1,5 @@
+"use client"
+
 import { useRouter } from "next/navigation";
 import { IconLanguage } from "@tabler/icons-react";
 import { useLocale } from "next-intl";

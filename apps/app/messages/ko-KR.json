@@ -203,8 +203,8 @@
       "protected": "보호됨",
       "public": "공개"
     },
-    "filesCount": "{{count}}개의 파일",
-    "recipientsCount": "{{count}}명의 수신자",
+    "filesCount": "개의 파일",
+    "recipientsCount": "명의 수신자",
     "actions": {
       "menu": "공유 작업 메뉴",
       "edit": "편집",
@@ -270,8 +270,8 @@
   "storageUsage": {
     "title": "스토리지 사용량",
     "ariaLabel": "스토리지 사용량 진행 바",
-    "used": "{{size}} 사용됨",
-    "available": "{{size}} 사용 가능"
+    "used": "사용됨",
+    "available": "사용 가능"
   },
   "dashboard": {
     "loadError": "대시보드 데이터를 불러오는데 실패했습니다",
