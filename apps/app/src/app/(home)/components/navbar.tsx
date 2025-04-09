@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { IconHeart, IconMenu2 } from "@tabler/icons-react";
 

@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "Willkommen zu",
-    "signInToContinue": "Melden Sie sich an, um fortzufahren",
-    "emailLabel": "E-Mail-Adresse",
-    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
-    "passwordLabel": "Passwort",
-    "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
-    "signIn": "Anmelden",
-    "signingIn": "Melde an...",
-    "forgotPassword": "Passwort vergessen?",
-    "pageTitle": "Anmeldung"
-  },
-  "errors": {
-    "invalidCredentials": "Ungültige E-Mail oder Passwort",
-    "userNotFound": "Benutzer nicht gefunden",
-    "accountLocked": "Konto gesperrt. Bitte versuchen Sie es später erneut",
-    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut"
-  },
-  "validation": {
-    "invalidEmail": "Ungültige E-Mail-Adresse",
-    "passwordMinLength": "Das Passwort muss mindestens 6 Zeichen lang sein",
-    "firstNameRequired": "Vorname ist erforderlich",
-    "lastNameRequired": "Nachname ist erforderlich",
-    "usernameLength": "Der Benutzername muss mindestens 3 Zeichen lang sein",
-    "usernameSpaces": "Der Benutzername darf keine Leerzeichen enthalten",
-    "passwordLength": "Das Passwort muss mindestens 8 Zeichen lang sein",
-    "passwordsMatch": "Die Passwörter stimmen nicht überein",
-    "emailRequired": "E-Mail ist erforderlich",
-    "passwordRequired": "Passwort ist erforderlich"
-  },
-  "fileSelector": {
-    "availableFiles": "Verfügbare Dateien ({{count}})",
-    "shareFiles": "Dateien teilen ({{count}})",
-    "searchPlaceholder": "Dateien suchen...",
-    "noMatchingFiles": "Keine übereinstimmenden Dateien",
-    "noAvailableFiles": "Keine Dateien verfügbar",
-    "noFilesInShare": "Keine Dateien in der Freigabe",
-    "saveChanges": "Änderungen speichern"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "Empfänger-E-Mail eingeben",
-    "add": "Hinzufügen",
-    "recipients": "Empfänger ({{count}})",
-    "notifyAll": "Alle benachrichtigen",
-    "noRecipients": "Noch keine Empfänger hinzugefügt",
-    "addSuccess": "Empfänger erfolgreich hinzugefügt",
-    "addError": "Fehler beim Hinzufügen des Empfängers",
-    "removeSuccess": "Empfänger erfolgreich entfernt",
-    "removeError": "Fehler beim Entfernen des Empfängers",
-    "sendingNotifications": "Benachrichtigungen werden gesendet...",
-    "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
-  },
-  "navigation": {
-    "dashboard": "Übersicht"
-  },
   "common": {
     "loading": "Lädt, bitte warten...",
     "cancel": "Abbrechen",
@@ -80,6 +24,22 @@
     "success": "Freigabe erfolgreich erstellt",
     "error": "Fehler beim Erstellen der Freigabe"
   },
+  "dashboard": {
+    "loadError": "Fehler beim Laden der Dashboard-Daten",
+    "linkCopied": "Link in die Zwischenablage kopiert",
+    "pageTitle": "Übersicht",
+    "breadcrumb": "Übersicht"
+  },
+  "emptyState": {
+    "noFiles": "Noch keine Dateien hochgeladen",
+    "uploadFile": "Datei hochladen"
+  },
+  "errors": {
+    "invalidCredentials": "Ungültige E-Mail oder Passwort",
+    "userNotFound": "Benutzer nicht gefunden",
+    "accountLocked": "Konto gesperrt. Bitte versuchen Sie es später erneut",
+    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut"
+  },
   "fileActions": {
     "editFile": "Datei bearbeiten",
     "nameLabel": "Name",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "Sind Sie sicher, dass Sie \"{{fileName}}\" löschen möchten?",
     "deleteWarning": "Diese Aktion kann nicht rückgängig gemacht werden."
   },
+  "fileManager": {
+    "downloadError": "Fehler beim Herunterladen der Datei",
+    "updateSuccess": "Datei erfolgreich aktualisiert",
+    "updateError": "Fehler beim Aktualisieren der Datei",
+    "deleteSuccess": "Datei erfolgreich gelöscht",
+    "deleteError": "Fehler beim Löschen der Datei"
+  },
   "filePreview": {
     "loading": "Vorschau wird geladen...",
     "notAvailable": "Vorschau nicht verfügbar",
@@ -100,68 +67,21 @@
     "loadError": "Fehler beim Laden der Vorschau",
     "downloadError": "Fehler beim Herunterladen der Datei"
   },
-  "generateShareLink": {
-    "generateTitle": "Freigabelink generieren",
-    "updateTitle": "Freigabelink aktualisieren",
-    "generateDescription": "Erstellen Sie einen Link, um Ihre Dateien zu teilen",
-    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabelink",
-    "aliasPlaceholder": "Alias eingeben",
-    "linkReady": "Ihr Freigabelink ist fertig:",
-    "generateButton": "Link generieren",
-    "updateButton": "Link aktualisieren",
-    "copyButton": "Link kopieren",
-    "success": "Link erfolgreich generiert",
-    "error": "Fehler beim Generieren des Links",
-    "copied": "Link in die Zwischenablage kopiert"
+  "fileSelector": {
+    "availableFiles": "Verfügbare Dateien ({{count}})",
+    "shareFiles": "Dateien teilen ({{count}})",
+    "searchPlaceholder": "Dateien suchen...",
+    "noMatchingFiles": "Keine übereinstimmenden Dateien",
+    "noAvailableFiles": "Keine Dateien verfügbar",
+    "noFilesInShare": "Keine Dateien in der Freigabe",
+    "saveChanges": "Änderungen speichern"
   },
-  "shareActions": {
-    "deleteTitle": "Freigabe löschen",
-    "deleteConfirmation": "Sind Sie sicher, dass Sie diese Freigabe löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
-    "editTitle": "Freigabe bearbeiten",
-    "nameLabel": "Freigabename",
-    "expirationLabel": "Ablaufdatum",
-    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
-    "maxViewsLabel": "Maximale Ansichten",
-    "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwortgeschützt",
-    "passwordLabel": "Passwort",
-    "passwordPlaceholder": "Passwort eingeben",
-    "newPasswordLabel": "Neues Passwort (leer lassen, um das aktuelle zu behalten)",
-    "newPasswordPlaceholder": "Neues Passwort eingeben",
-    "manageFilesTitle": "Dateien verwalten",
-    "manageRecipientsTitle": "Empfänger verwalten",
-    "editSuccess": "Freigabe erfolgreich aktualisiert",
-    "editError": "Fehler beim Aktualisieren der Freigabe"
-  },
-  "shareDetails": {
-    "title": "Freigabedetails",
-    "subtitle": "Detaillierte Informationen zu dieser Freigabe",
-    "basicInfo": "Grundinformationen",
-    "name": "Name",
-    "untitled": "Ohne Titel",
-    "views": "Aufrufe",
-    "dates": "Daten",
-    "created": "Erstellt",
-    "expires": "Läuft ab",
-    "never": "Nie",
-    "security": "Sicherheit",
-    "passwordProtected": "Passwortgeschützt",
-    "publicAccess": "Öffentlicher Zugriff",
-    "maxViews": "Maximale Ansichten: {{count}}",
-    "files": "Dateien ({{count}})",
-    "recipients": "Empfänger ({{count}})",
-    "notAvailable": "N/V",
-    "invalidDate": "Ungültiges Datum",
-    "loadError": "Fehler beim Laden der Freigabedetails"
-  },
-  "uploadFile": {
-    "title": "Datei hochladen",
-    "selectFile": "Klicken Sie, um eine Datei auszuwählen",
-    "preview": "Vorschau",
-    "uploadProgress": "Upload-Fortschritt",
-    "upload": "Hochladen",
-    "success": "Datei erfolgreich hochgeladen",
-    "error": "Fehler beim Hochladen der Datei"
+  "files": {
+    "title": "Alle Dateien",
+    "uploadFile": "Datei hochladen",
+    "loadError": "Fehler beim Laden der Dateien",
+    "pageTitle": "Meine Dateien",
+    "breadcrumb": "Meine Dateien"
   },
   "filesTable": {
     "ariaLabel": "Dateitabelle",
@@ -181,118 +101,9 @@
       "delete": "Löschen"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "Freigabetabelle",
-    "never": "Nie",
-    "columns": {
-      "name": "NAME",
-      "createdAt": "ERSTELLT AM",
-      "expiresAt": "LÄUFT AB",
-      "status": "STATUS",
-      "security": "SICHERHEIT",
-      "files": "DATEIEN",
-      "recipients": "EMPFÄNGER",
-      "actions": "AKTIONEN"
-    },
-    "status": {
-      "neverExpires": "Läuft nie ab",
-      "active": "Aktiv",
-      "expired": "Abgelaufen"
-    },
-    "security": {
-      "protected": "Geschützt",
-      "public": "Öffentlich"
-    },
-    "filesCount": "Dateien",
-    "recipientsCount": "Empfänger",
-    "actions": {
-      "menu": "Freigabeaktionsmenü",
-      "edit": "Bearbeiten",
-      "manageFiles": "Dateien verwalten",
-      "manageRecipients": "Empfänger verwalten",
-      "viewDetails": "Details anzeigen",
-      "generateLink": "Link generieren",
-      "editLink": "Link bearbeiten",
-      "copyLink": "Link kopieren",
-      "notifyRecipients": "Empfänger benachrichtigen",
-      "delete": "Löschen"
-    }
-  },
   "footer": {
     "poweredBy": "Powered by",
     "kyanHomepage": "Kyantech Homepage"
-  },
-  "fileManager": {
-    "downloadError": "Fehler beim Herunterladen der Datei",
-    "updateSuccess": "Datei erfolgreich aktualisiert",
-    "updateError": "Fehler beim Aktualisieren der Datei",
-    "deleteSuccess": "Datei erfolgreich gelöscht",
-    "deleteError": "Fehler beim Löschen der Datei"
-  },
-  "shareManager": {
-    "deleteSuccess": "Freigabe erfolgreich gelöscht",
-    "deleteError": "Fehler beim Löschen der Freigabe",
-    "updateSuccess": "Freigabe erfolgreich aktualisiert",
-    "updateError": "Fehler beim Aktualisieren der Freigabe",
-    "filesUpdateSuccess": "Dateien erfolgreich aktualisiert",
-    "filesUpdateError": "Fehler beim Aktualisieren der Dateien",
-    "recipientsUpdateSuccess": "Empfänger erfolgreich aktualisiert",
-    "recipientsUpdateError": "Fehler beim Aktualisieren der Empfänger",
-    "linkGenerateSuccess": "Freigabelink erfolgreich generiert",
-    "linkGenerateError": "Fehler beim Generieren des Freigabelinks",
-    "notifyLoading": "Benachrichtigungen werden gesendet...",
-    "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "Meine Dateien",
-      "description": "Zugriff und Verwaltung Ihrer hochgeladenen Dateien"
-    },
-    "shares": {
-      "title": "Meine Freigaben",
-      "description": "Anzeigen und Verwalten Ihrer geteilten Dateien"
-    }
-  },
-  "recentFiles": {
-    "title": "Kürzlich hochgeladen",
-    "viewAll": "Alle anzeigen",
-    "uploadFile": "Datei hochladen",
-    "noFiles": "Noch keine Dateien hochgeladen"
-  },
-  "recentShares": {
-    "title": "Kürzlich geteilte",
-    "viewAll": "Alle anzeigen",
-    "createShare": "Freigabe erstellen",
-    "noShares": "Noch keine Freigaben erstellt",
-    "createFirst": "Erstellen Sie Ihre erste Freigabe"
-  },
-  "storageUsage": {
-    "title": "Speichernutzung",
-    "ariaLabel": "Fortschrittsbalken der Speichernutzung",
-    "used": "genutzt",
-    "available": "verfügbar"
-  },
-  "dashboard": {
-    "loadError": "Fehler beim Laden der Dashboard-Daten",
-    "linkCopied": "Link in die Zwischenablage kopiert",
-    "pageTitle": "Übersicht",
-    "breadcrumb": "Übersicht"
-  },
-  "emptyState": {
-    "noFiles": "Noch keine Dateien hochgeladen",
-    "uploadFile": "Datei hochladen"
-  },
-  "files": {
-    "title": "Alle Dateien",
-    "uploadFile": "Datei hochladen",
-    "loadError": "Fehler beim Laden der Dateien",
-    "pageTitle": "Meine Dateien",
-    "breadcrumb": "Meine Dateien"
-  },
-  "searchBar": {
-    "placeholder": "Dateien suchen...",
-    "results": "Gefunden {{filtered}} von {{total}} Dateien"
   },
   "forgotPassword": {
     "emailLabel": "E-Mail-Adresse",
@@ -305,6 +116,20 @@
     "resetInstructions": "Anweisungen zum Zurücksetzen wurden an Ihre E-Mail gesendet",
     "pageTitle": "Passwort vergessen"
   },
+  "generateShareLink": {
+    "generateTitle": "Freigabelink generieren",
+    "updateTitle": "Freigabelink aktualisieren",
+    "generateDescription": "Erstellen Sie einen Link, um Ihre Dateien zu teilen",
+    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabelink",
+    "aliasPlaceholder": "Alias eingeben",
+    "linkReady": "Ihr Freigabelink ist fertig:",
+    "generateButton": "Link generieren",
+    "updateButton": "Link aktualisieren",
+    "copyButton": "Link kopieren",
+    "success": "Link erfolgreich generiert",
+    "error": "Fehler beim Generieren des Links",
+    "copied": "Link in die Zwischenablage kopiert"
+  },
   "home": {
     "description": "Die Open-Source-Alternative zu WeTransfer. Teilen Sie Dateien sicher, ohne Tracking oder Einschränkungen.",
     "documentation": "Dokumentation",
@@ -315,6 +140,46 @@
       "tagline": "einfach und kostenlos"
     },
     "pageTitle": "Startseite"
+  },
+  "login": {
+    "welcome": "Willkommen zu",
+    "signInToContinue": "Melden Sie sich an, um fortzufahren",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+    "signIn": "Anmelden",
+    "signingIn": "Melde an...",
+    "forgotPassword": "Passwort vergessen?",
+    "pageTitle": "Anmeldung"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "Anwendungslogo"
+    },
+    "buttons": {
+      "upload": "Logo hochladen",
+      "remove": "Logo entfernen"
+    },
+    "messages": {
+      "uploadSuccess": "Logo erfolgreich hochgeladen",
+      "removeSuccess": "Logo erfolgreich entfernt"
+    },
+    "errors": {
+      "uploadFailed": "Fehler beim Hochladen des Logos",
+      "removeFailed": "Fehler beim Entfernen des Logos"
+    }
+  },
+  "navbar": {
+    "logoAlt": "Anwendungslogo",
+    "profileMenu": "Profilmenü",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "usersManagement": "Benutzerverwaltung",
+    "logout": "Abmelden"
+  },
+  "navigation": {
+    "dashboard": "Übersicht"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "Profil"
   },
+  "quickAccess": {
+    "files": {
+      "title": "Meine Dateien",
+      "description": "Zugriff und Verwaltung Ihrer hochgeladenen Dateien"
+    },
+    "shares": {
+      "title": "Meine Freigaben",
+      "description": "Anzeigen und Verwalten Ihrer geteilten Dateien"
+    }
+  },
+  "recentFiles": {
+    "title": "Kürzlich hochgeladen",
+    "viewAll": "Alle anzeigen",
+    "uploadFile": "Datei hochladen",
+    "noFiles": "Noch keine Dateien hochgeladen"
+  },
+  "recentShares": {
+    "title": "Kürzlich geteilte",
+    "viewAll": "Alle anzeigen",
+    "createShare": "Freigabe erstellen",
+    "noShares": "Noch keine Freigaben erstellt",
+    "createFirst": "Erstellen Sie Ihre erste Freigabe"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Empfänger-E-Mail eingeben",
+    "add": "Hinzufügen",
+    "recipients": "Empfänger ({{count}})",
+    "notifyAll": "Alle benachrichtigen",
+    "noRecipients": "Noch keine Empfänger hinzugefügt",
+    "addSuccess": "Empfänger erfolgreich hinzugefügt",
+    "addError": "Fehler beim Hinzufügen des Empfängers",
+    "removeSuccess": "Empfänger erfolgreich entfernt",
+    "removeError": "Fehler beim Entfernen des Empfängers",
+    "sendingNotifications": "Benachrichtigungen werden gesendet...",
+    "notifySuccess": "Empfänger erfolgreich benachrichtigt",
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+  },
   "resetPassword": {
     "pageTitle": "Passwort zurücksetzen",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es erneut.",
       "invalidToken": "Ungültiges oder fehlendes Zurücksetzungstoken"
     }
+  },
+  "searchBar": {
+    "placeholder": "Dateien suchen...",
+    "results": "Gefunden {{filtered}} von {{total}} Dateien"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "Freigabe"
   },
+  "shareActions": {
+    "deleteTitle": "Freigabe löschen",
+    "deleteConfirmation": "Sind Sie sicher, dass Sie diese Freigabe löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "editTitle": "Freigabe bearbeiten",
+    "nameLabel": "Freigabename",
+    "expirationLabel": "Ablaufdatum",
+    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
+    "maxViewsLabel": "Maximale Ansichten",
+    "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
+    "passwordProtection": "Passwortgeschützt",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "newPasswordLabel": "Neues Passwort (leer lassen, um das aktuelle zu behalten)",
+    "newPasswordPlaceholder": "Neues Passwort eingeben",
+    "manageFilesTitle": "Dateien verwalten",
+    "manageRecipientsTitle": "Empfänger verwalten",
+    "editSuccess": "Freigabe erfolgreich aktualisiert",
+    "editError": "Fehler beim Aktualisieren der Freigabe"
+  },
+  "shareDetails": {
+    "title": "Freigabedetails",
+    "subtitle": "Detaillierte Informationen zu dieser Freigabe",
+    "basicInfo": "Grundinformationen",
+    "name": "Name",
+    "untitled": "Ohne Titel",
+    "views": "Aufrufe",
+    "dates": "Daten",
+    "created": "Erstellt",
+    "expires": "Läuft ab",
+    "never": "Nie",
+    "security": "Sicherheit",
+    "passwordProtected": "Passwortgeschützt",
+    "publicAccess": "Öffentlicher Zugriff",
+    "maxViews": "Maximale Ansichten: {{count}}",
+    "files": "Dateien ({{count}})",
+    "recipients": "Empfänger ({{count}})",
+    "notAvailable": "N/V",
+    "invalidDate": "Ungültiges Datum",
+    "loadError": "Fehler beim Laden der Freigabedetails"
+  },
+  "shareManager": {
+    "deleteSuccess": "Freigabe erfolgreich gelöscht",
+    "deleteError": "Fehler beim Löschen der Freigabe",
+    "updateSuccess": "Freigabe erfolgreich aktualisiert",
+    "updateError": "Fehler beim Aktualisieren der Freigabe",
+    "filesUpdateSuccess": "Dateien erfolgreich aktualisiert",
+    "filesUpdateError": "Fehler beim Aktualisieren der Dateien",
+    "recipientsUpdateSuccess": "Empfänger erfolgreich aktualisiert",
+    "recipientsUpdateError": "Fehler beim Aktualisieren der Empfänger",
+    "linkGenerateSuccess": "Freigabelink erfolgreich generiert",
+    "linkGenerateError": "Fehler beim Generieren des Freigabelinks",
+    "notifyLoading": "Benachrichtigungen werden gesendet...",
+    "notifySuccess": "Empfänger erfolgreich benachrichtigt",
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+  },
   "shares": {
     "errors": {
       "loadFailed": "Fehler beim Laden der Freigaben",
@@ -540,6 +501,58 @@
       "results": "Gefunden {{filtered}} von {{total}} Freigaben"
     },
     "pageTitle": "Freigaben"
+  },
+  "sharesTable": {
+    "ariaLabel": "Freigabetabelle",
+    "never": "Nie",
+    "columns": {
+      "name": "NAME",
+      "createdAt": "ERSTELLT AM",
+      "expiresAt": "LÄUFT AB",
+      "status": "STATUS",
+      "security": "SICHERHEIT",
+      "files": "DATEIEN",
+      "recipients": "EMPFÄNGER",
+      "actions": "AKTIONEN"
+    },
+    "status": {
+      "neverExpires": "Läuft nie ab",
+      "active": "Aktiv",
+      "expired": "Abgelaufen"
+    },
+    "security": {
+      "protected": "Geschützt",
+      "public": "Öffentlich"
+    },
+    "filesCount": "Dateien",
+    "recipientsCount": "Empfänger",
+    "actions": {
+      "menu": "Freigabeaktionsmenü",
+      "edit": "Bearbeiten",
+      "manageFiles": "Dateien verwalten",
+      "manageRecipients": "Empfänger verwalten",
+      "viewDetails": "Details anzeigen",
+      "generateLink": "Link generieren",
+      "editLink": "Link bearbeiten",
+      "copyLink": "Link kopieren",
+      "notifyRecipients": "Empfänger benachrichtigen",
+      "delete": "Löschen"
+    }
+  },
+  "storageUsage": {
+    "title": "Speichernutzung",
+    "ariaLabel": "Fortschrittsbalken der Speichernutzung",
+    "used": "genutzt",
+    "available": "verfügbar"
+  },
+  "uploadFile": {
+    "title": "Datei hochladen",
+    "selectFile": "Klicken Sie, um eine Datei auszuwählen",
+    "preview": "Vorschau",
+    "uploadProgress": "Upload-Fortschritt",
+    "upload": "Hochladen",
+    "success": "Datei erfolgreich hochgeladen",
+    "error": "Fehler beim Hochladen der Datei"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "Benutzer"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "Anwendungslogo"
-    },
-    "buttons": {
-      "upload": "Logo hochladen",
-      "remove": "Logo entfernen"
-    },
-    "messages": {
-      "uploadSuccess": "Logo erfolgreich hochgeladen",
-      "removeSuccess": "Logo erfolgreich entfernt"
-    },
-    "errors": {
-      "uploadFailed": "Fehler beim Hochladen des Logos",
-      "removeFailed": "Fehler beim Entfernen des Logos"
-    }
-  },
-  "navbar": {
-    "logoAlt": "Anwendungslogo",
-    "profileMenu": "Profilmenü",
-    "profile": "Profil",
-    "settings": "Einstellungen",
-    "usersManagement": "Benutzerverwaltung",
-    "logout": "Abmelden"
+  "validation": {
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "passwordMinLength": "Das Passwort muss mindestens 6 Zeichen lang sein",
+    "firstNameRequired": "Vorname ist erforderlich",
+    "lastNameRequired": "Nachname ist erforderlich",
+    "usernameLength": "Der Benutzername muss mindestens 3 Zeichen lang sein",
+    "usernameSpaces": "Der Benutzername darf keine Leerzeichen enthalten",
+    "passwordLength": "Das Passwort muss mindestens 8 Zeichen lang sein",
+    "passwordsMatch": "Die Passwörter stimmen nicht überein",
+    "emailRequired": "E-Mail ist erforderlich",
+    "passwordRequired": "Passwort ist erforderlich"
   }
 }

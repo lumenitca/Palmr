@@ -1,7 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 import { IconFoldersFilled, IconShare2 } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 export function QuickAccessCards() {
   const t = useTranslations();
@@ -34,7 +35,9 @@ export function QuickAccessCards() {
         >
           <CardContent>
             <div className="flex flex-col gap-4">
-              <div className={`${card.color} w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-sm`}>
+              <div
+                className={`${card.color} w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-sm`}
+              >
                 {card.icon}
               </div>
               <div>

@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
+import Link from "next/link";
+import { IconLayoutDashboard } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
 import { Navbar } from "@/components/layout/navbar";
 import { DefaultFooter } from "@/components/ui/default-footer";
 import { Separator } from "@/components/ui/separator";
-import { IconLayoutDashboard } from "@tabler/icons-react";
-import { useTranslations } from "next-intl";
-import { ReactNode } from "react";
-import Link from "next/link";
 
 interface FileManagerLayoutProps {
   children: ReactNode;

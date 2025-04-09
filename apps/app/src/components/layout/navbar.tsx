@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  IconSettings,
-  IconLogout,
-  IconUser,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconLogout, IconSettings, IconUser, IconUsers } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/general/language-switcher";
@@ -55,8 +50,8 @@ export function Navbar() {
             <ModeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger className="rounded-full">
-                <Avatar className="cursor-pointer h-10 w-10 rounded-full" >
-                  <AvatarImage src={user?.image as string | undefined}  />
+                <Avatar className="cursor-pointer h-10 w-10 rounded-full">
+                  <AvatarImage src={user?.image as string | undefined} />
                   <AvatarFallback>{user?.firstName?.[0]}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>

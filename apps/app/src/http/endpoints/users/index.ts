@@ -1,21 +1,22 @@
+import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
 import type {
-  RegisterUserResult,
-  ListUsersResult,
-  UpdateUserResult,
-  GetUserByIdResult,
-  DeleteUserResult,
   ActivateUserResult,
   DeactivateUserResult,
-  UpdateUserImageResult,
-  UploadAvatarResult,
-  RemoveAvatarResult,
+  DeleteUserResult,
+  GetUserByIdResult,
+  ListUsersResult,
   RegisterUserBody,
+  RegisterUserResult,
+  RemoveAvatarResult,
   UpdateUserBody,
   UpdateUserImageBody,
+  UpdateUserImageResult,
+  UpdateUserResult,
   UploadAvatarBody,
+  UploadAvatarResult,
 } from "./types";
-import axiosInstance from "@/config/axios";
-import type { AxiosRequestConfig } from "axios";
 
 /**
  * Register a new user (admin only)

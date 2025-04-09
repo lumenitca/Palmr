@@ -1,4 +1,3 @@
-import { DashboardModalsProps } from "../types";
 import { CreateShareModal } from "@/components/modals/create-share-modal";
 import { FileActionsModals } from "@/components/modals/file-actions-modals";
 import { FilePreviewModal } from "@/components/modals/file-preview-modal";
@@ -6,6 +5,7 @@ import { GenerateShareLinkModal } from "@/components/modals/generate-share-link-
 import { ShareActionsModals } from "@/components/modals/share-actions-modals";
 import { ShareDetailsModal } from "@/components/modals/share-details-modal";
 import { UploadFileModal } from "@/components/modals/upload-file-modal";
+import { DashboardModalsProps } from "../types";
 
 export function DashboardModals({ modals, fileManager, shareManager, onSuccess }: DashboardModalsProps) {
   return (

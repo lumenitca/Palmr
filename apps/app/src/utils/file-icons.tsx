@@ -1,16 +1,16 @@
-import { Icon } from "@tabler/icons-react";
 import {
+  Icon,
   IconFile,
-  IconPhoto,
-  IconFileTypePdf,
-  IconFileText,
-  IconFileSpreadsheet,
-  IconPresentation,
-  IconFileMusic,
-  IconVideo,
-  IconFileZip,
   IconFileCode,
   IconFileDescription,
+  IconFileMusic,
+  IconFileSpreadsheet,
+  IconFileText,
+  IconFileTypePdf,
+  IconFileZip,
+  IconPhoto,
+  IconPresentation,
+  IconVideo,
 } from "@tabler/icons-react";
 
 interface FileIconMapping {

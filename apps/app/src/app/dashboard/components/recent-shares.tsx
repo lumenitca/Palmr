@@ -1,10 +1,11 @@
-import { RecentSharesProps } from "../types";
+import { useRouter } from "next/navigation";
+import { IconPlus, IconShare } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
 import { SharesTable } from "@/components/tables/shares-table";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useTranslations } from "next-intl";
-import { IconShare, IconPlus } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { RecentSharesProps } from "../types";
 import { EmptySharesState } from "./empty-shares-state";
 
 export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLink }: RecentSharesProps) {
@@ -63,5 +64,3 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
     </Card>
   );
 }
-
-

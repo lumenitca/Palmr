@@ -1,12 +1,13 @@
-import type {
-  UpdateConfigResult,
-  GetAllConfigsResult,
-  BulkUpdateConfigsResult,
-  UpdateConfigBody,
-  BulkUpdateConfigsBodyItem,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
+import type {
+  BulkUpdateConfigsBodyItem,
+  BulkUpdateConfigsResult,
+  GetAllConfigsResult,
+  UpdateConfigBody,
+  UpdateConfigResult,
+} from "./types";
 
 /**
  * Update a configuration value (admin only)

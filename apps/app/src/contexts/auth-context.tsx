@@ -1,8 +1,9 @@
-"use client"
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { getCurrentUser } from "@/http/endpoints";
 import type { GetCurrentUser200User } from "@/http/models";
-import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthUser = Omit<GetCurrentUser200User, "isAdmin">;
 

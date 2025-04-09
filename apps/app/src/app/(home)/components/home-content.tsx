@@ -5,20 +5,20 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { HomeContentProps } from "../types";
 import { BackgroundLights } from "../../../components/ui/background-lights";
+import { HomeContentProps } from "../types";
 import { HomeHeader } from "./home-header";
 
 const fadeInAnimation = {
   animate: { opacity: 1 },
   initial: { opacity: 0 },
-  transition: { duration: 0.5 }
+  transition: { duration: 0.5 },
 };
 
 const fadeInUpAnimation = {
   animate: { opacity: 1, y: 0 },
   initial: { opacity: 0, y: 20 },
-  transition: { duration: 0.5 }
+  transition: { duration: 0.5 },
 };
 
 function ActionButtons({ t }: { t: (key: string) => string }) {
@@ -65,9 +65,7 @@ export function HomeContent({ isLoading }: HomeContentProps) {
           transition={{ delay: 0.8, ...fadeInUpAnimation.transition }}
         >
           <ActionButtons t={t} />
-          <p className="text-sm opacity-70 max-w-md text-center">
-            {t("home.privacyMessage")}
-          </p>
+          <p className="text-sm opacity-70 max-w-md text-center">{t("home.privacyMessage")}</p>
         </motion.div>
       </section>
     </div>

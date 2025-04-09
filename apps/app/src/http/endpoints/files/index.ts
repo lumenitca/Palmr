@@ -1,16 +1,17 @@
-import type {
-  GetPresignedUrlResult,
-  RegisterFileResult,
-  ListFilesResult,
-  GetDownloadUrlResult,
-  DeleteFileResult,
-  UpdateFileResult,
-  GetPresignedUrlParams,
-  RegisterFileBody,
-  UpdateFileBody,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
+import type {
+  DeleteFileResult,
+  GetDownloadUrlResult,
+  GetPresignedUrlParams,
+  GetPresignedUrlResult,
+  ListFilesResult,
+  RegisterFileBody,
+  RegisterFileResult,
+  UpdateFileBody,
+  UpdateFileResult,
+} from "./types";
 
 /**
  * Generates a pre-signed URL for direct upload to MinIO

@@ -1,20 +1,21 @@
+import type { AxiosResponse } from "axios";
+
 import type {
-  RegisterUser201,
-  RegisterUserBody,
-  ListUsers200Item,
-  UpdateUser200,
-  UpdateUserBody,
-  GetUserById200,
-  DeleteUser200,
   ActivateUser200,
   DeactivateUser200,
+  DeleteUser200,
+  GetUserById200,
+  ListUsers200Item,
+  RegisterUser201,
+  RegisterUserBody,
+  RemoveAvatar200,
+  UpdateUser200,
+  UpdateUserBody,
   UpdateUserImage200,
   UpdateUserImageBody,
   UploadAvatar200,
   UploadAvatarBody,
-  RemoveAvatar200,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type RegisterUserResult = AxiosResponse<RegisterUser201>;
 export type ListUsersResult = AxiosResponse<ListUsers200Item[]>;

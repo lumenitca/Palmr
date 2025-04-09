@@ -1,12 +1,12 @@
-import type { RecentFilesProps } from "../types";
+import { useRouter } from "next/navigation";
+import { IconCloudUpload, IconFolderOpen } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
+import { FilesTable } from "@/components/tables/files-table";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import type { RecentFilesProps } from "../types";
 import { EmptyFilesState } from "./empty-file-state";
-import { IconCloudUpload, IconFolderOpen } from "@tabler/icons-react";
-import { FilesTable } from "@/components/tables/files-table";
 
 export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFilesProps) {
   const t = useTranslations();
@@ -57,5 +57,3 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
     </Card>
   );
 }
-
-

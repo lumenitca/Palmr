@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "Welcome to",
-    "signInToContinue": "Sign in to continue",
-    "emailLabel": "Email Address",
-    "emailPlaceholder": "Enter your email",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "signIn": "Sign In",
-    "signingIn": "Signing in...",
-    "forgotPassword": "Forgot password?",
-    "pageTitle": "Login"
-  },
-  "errors": {
-    "invalidCredentials": "Invalid email or password",
-    "userNotFound": "User not found",
-    "accountLocked": "Account locked. Please try again later",
-    "unexpectedError": "An unexpected error occurred. Please try again"
-  },
-  "validation": {
-    "invalidEmail": "Invalid email address",
-    "passwordMinLength": "Password must be at least 6 characters",
-    "firstNameRequired": "First name is required",
-    "lastNameRequired": "Last name is required",
-    "usernameLength": "Username must be at least 3 characters",
-    "usernameSpaces": "Username cannot contain spaces",
-    "passwordLength": "Password must be at least 8 characters",
-    "passwordsMatch": "Passwords do not match",
-    "emailRequired": "Email is required",
-    "passwordRequired": "Password is required"
-  },
-  "fileSelector": {
-    "availableFiles": "Available Files ({{count}})",
-    "shareFiles": "Share Files ({{count}})",
-    "searchPlaceholder": "Search files...",
-    "noMatchingFiles": "No matching files",
-    "noAvailableFiles": "No files available",
-    "noFilesInShare": "No files in share",
-    "saveChanges": "Save Changes"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "Enter recipient email",
-    "add": "Add",
-    "recipients": "Recipients ({{count}})",
-    "notifyAll": "Notify All",
-    "noRecipients": "No recipients added yet",
-    "addSuccess": "Recipient added successfully",
-    "addError": "Failed to add recipient",
-    "removeSuccess": "Recipient removed successfully",
-    "removeError": "Failed to remove recipient",
-    "sendingNotifications": "Sending notifications...",
-    "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
-  },
-  "navigation": {
-    "dashboard": "Dashboard"
-  },
   "common": {
     "loading": "Loading, please wait...",
     "cancel": "Cancel",
@@ -80,6 +24,22 @@
     "success": "Share created successfully",
     "error": "Failed to create share"
   },
+  "dashboard": {
+    "loadError": "Failed to load dashboard data",
+    "linkCopied": "Link copied to clipboard",
+    "pageTitle": "Dashboard",
+    "breadcrumb": "Dashboard"
+  },
+  "emptyState": {
+    "noFiles": "No files uploaded yet",
+    "uploadFile": "Upload File"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid email or password",
+    "userNotFound": "User not found",
+    "accountLocked": "Account locked. Please try again later",
+    "unexpectedError": "An unexpected error occurred. Please try again"
+  },
   "fileActions": {
     "editFile": "Edit File",
     "nameLabel": "Name",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "Are you sure you want to delete \"{{fileName}}\"?",
     "deleteWarning": "This action cannot be undone."
   },
+  "fileManager": {
+    "downloadError": "Failed to download file",
+    "updateSuccess": "File updated successfully",
+    "updateError": "Failed to update file",
+    "deleteSuccess": "File deleted successfully",
+    "deleteError": "Failed to delete file"
+  },
   "filePreview": {
     "loading": "Loading preview...",
     "notAvailable": "Preview not available",
@@ -100,68 +67,21 @@
     "loadError": "Failed to load preview",
     "downloadError": "Failed to download file"
   },
-  "generateShareLink": {
-    "generateTitle": "Generate Share Link",
-    "updateTitle": "Update Share Link",
-    "generateDescription": "Generate a link to share your files",
-    "updateDescription": "Update the alias for this share link",
-    "aliasPlaceholder": "Enter alias",
-    "linkReady": "Your share link is ready:",
-    "generateButton": "Generate Link",
-    "updateButton": "Update Link",
-    "copyButton": "Copy Link",
-    "success": "Link generated successfully",
-    "error": "Failed to generate link",
-    "copied": "Link copied to clipboard"
+  "fileSelector": {
+    "availableFiles": "Available Files ({{count}})",
+    "shareFiles": "Share Files ({{count}})",
+    "searchPlaceholder": "Search files...",
+    "noMatchingFiles": "No matching files",
+    "noAvailableFiles": "No files available",
+    "noFilesInShare": "No files in share",
+    "saveChanges": "Save Changes"
   },
-  "shareActions": {
-    "deleteTitle": "Delete Share",
-    "deleteConfirmation": "Are you sure you want to delete this share? This action cannot be undone.",
-    "editTitle": "Edit Share",
-    "nameLabel": "Share Name",
-    "expirationLabel": "Expiration Date",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "Max Views",
-    "maxViewsPlaceholder": "Leave empty for unlimited",
-    "passwordProtection": "Password Protected",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter password",
-    "newPasswordLabel": "New Password (leave empty to keep current)",
-    "newPasswordPlaceholder": "Enter new password",
-    "manageFilesTitle": "Manage Files",
-    "manageRecipientsTitle": "Manage Recipients",
-    "editSuccess": "Share updated successfully",
-    "editError": "Failed to update share"
-  },
-  "shareDetails": {
-    "title": "Share Details",
-    "subtitle": "Detailed information about this share",
-    "basicInfo": "Basic Information",
-    "name": "Name",
-    "untitled": "Untitled",
-    "views": "Views",
-    "dates": "Dates",
-    "created": "Created",
-    "expires": "Expires",
-    "never": "Never",
-    "security": "Security",
-    "passwordProtected": "Password Protected",
-    "publicAccess": "Public Access",
-    "maxViews": "Max Views: {{count}}",
-    "files": "Files ({{count}})",
-    "recipients": "Recipients ({{count}})",
-    "notAvailable": "N/A",
-    "invalidDate": "Invalid date",
-    "loadError": "Failed to load share details"
-  },
-  "uploadFile": {
-    "title": "Upload File",
-    "selectFile": "Click to select a file",
-    "preview": "Preview",
-    "uploadProgress": "Upload progress",
-    "upload": "Upload",
-    "success": "File uploaded successfully",
-    "error": "Failed to upload file"
+  "files": {
+    "title": "All Files",
+    "uploadFile": "Upload File",
+    "loadError": "Failed to load files",
+    "pageTitle": "My Files",
+    "breadcrumb": "My Files"
   },
   "filesTable": {
     "ariaLabel": "Files table",
@@ -181,118 +101,9 @@
       "delete": "Delete"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "Shares table",
-    "never": "Never",
-    "columns": {
-      "name": "NAME",
-      "createdAt": "CREATED AT",
-      "expiresAt": "EXPIRES AT",
-      "status": "STATUS",
-      "security": "SECURITY",
-      "files": "FILES",
-      "recipients": "RECIPIENTS",
-      "actions": "ACTIONS"
-    },
-    "status": {
-      "neverExpires": "Never Expires",
-      "active": "Active",
-      "expired": "Expired"
-    },
-    "security": {
-      "protected": "Protected",
-      "public": "Public"
-    },
-    "filesCount": "files",
-    "recipientsCount": "recipients",
-    "actions": {
-      "menu": "Share actions menu",
-      "edit": "Edit",
-      "manageFiles": "Manage Files",
-      "manageRecipients": "Manage Recipients",
-      "viewDetails": "View Details",
-      "generateLink": "Generate Link",
-      "editLink": "Edit Link",
-      "copyLink": "Copy Link",
-      "notifyRecipients": "Notify Recipients",
-      "delete": "Delete"
-    }
-  },
   "footer": {
     "poweredBy": "Powered by",
     "kyanHomepage": "Kyantech homepage"
-  },
-  "fileManager": {
-    "downloadError": "Failed to download file",
-    "updateSuccess": "File updated successfully",
-    "updateError": "Failed to update file",
-    "deleteSuccess": "File deleted successfully",
-    "deleteError": "Failed to delete file"
-  },
-  "shareManager": {
-    "deleteSuccess": "Share deleted successfully",
-    "deleteError": "Failed to delete share",
-    "updateSuccess": "Share updated successfully",
-    "updateError": "Failed to update share",
-    "filesUpdateSuccess": "Files updated successfully",
-    "filesUpdateError": "Failed to update files",
-    "recipientsUpdateSuccess": "Recipients updated successfully",
-    "recipientsUpdateError": "Failed to update recipients",
-    "linkGenerateSuccess": "Share link generated successfully",
-    "linkGenerateError": "Failed to generate share link",
-    "notifyLoading": "Sending notifications...",
-    "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "My Files",
-      "description": "Access and manage your uploaded files"
-    },
-    "shares": {
-      "title": "My Shares",
-      "description": "View and manage your shared files"
-    }
-  },
-  "recentFiles": {
-    "title": "Recent Uploads",
-    "viewAll": "View All",
-    "uploadFile": "Upload File",
-    "noFiles": "No files uploaded yet"
-  },
-  "recentShares": {
-    "title": "Recent Shares",
-    "viewAll": "View All",
-    "createShare": "Create Share",
-    "noShares": "No shares created yet",
-    "createFirst": "Create your first share"
-  },
-  "storageUsage": {
-    "title": "Storage Usage",
-    "ariaLabel": "Storage usage progress bar",
-    "used": "used",
-    "available": "available"
-  },
-  "dashboard": {
-    "loadError": "Failed to load dashboard data",
-    "linkCopied": "Link copied to clipboard",
-    "pageTitle": "Dashboard",
-    "breadcrumb": "Dashboard"
-  },
-  "emptyState": {
-    "noFiles": "No files uploaded yet",
-    "uploadFile": "Upload File"
-  },
-  "files": {
-    "title": "All Files",
-    "uploadFile": "Upload File",
-    "loadError": "Failed to load files",
-    "pageTitle": "My Files",
-    "breadcrumb": "My Files"
-  },
-  "searchBar": {
-    "placeholder": "Search files...",
-    "results": "Found {{filtered}} of {{total}} files"
   },
   "forgotPassword": {
     "emailLabel": "Email Address",
@@ -305,6 +116,20 @@
     "resetInstructions": "Reset instructions sent to your email",
     "pageTitle": "Forgot Password"
   },
+  "generateShareLink": {
+    "generateTitle": "Generate Share Link",
+    "updateTitle": "Update Share Link",
+    "generateDescription": "Generate a link to share your files",
+    "updateDescription": "Update the alias for this share link",
+    "aliasPlaceholder": "Enter alias",
+    "linkReady": "Your share link is ready:",
+    "generateButton": "Generate Link",
+    "updateButton": "Update Link",
+    "copyButton": "Copy Link",
+    "success": "Link generated successfully",
+    "error": "Failed to generate link",
+    "copied": "Link copied to clipboard"
+  },
   "home": {
     "description": "The open-source alternative to WeTransfer. Share files securely, without tracking, or limitations.",
     "documentation": "Documentation",
@@ -315,6 +140,46 @@
       "tagline": "made simple and free"
     },
     "pageTitle": "Home"
+  },
+  "login": {
+    "welcome": "Welcome to",
+    "signInToContinue": "Sign in to continue",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "forgotPassword": "Forgot password?",
+    "pageTitle": "Login"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "App Logo"
+    },
+    "buttons": {
+      "upload": "Upload Logo",
+      "remove": "Remove Logo"
+    },
+    "messages": {
+      "uploadSuccess": "Logo uploaded successfully",
+      "removeSuccess": "Logo removed successfully"
+    },
+    "errors": {
+      "uploadFailed": "Failed to upload logo",
+      "removeFailed": "Failed to remove logo"
+    }
+  },
+  "navbar": {
+    "logoAlt": "App Logo",
+    "profileMenu": "Profile Menu",
+    "profile": "Profile",
+    "settings": "Settings",
+    "usersManagement": "Users Management",
+    "logout": "Log Out"
+  },
+  "navigation": {
+    "dashboard": "Dashboard"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "Profile"
   },
+  "quickAccess": {
+    "files": {
+      "title": "My Files",
+      "description": "Access and manage your uploaded files"
+    },
+    "shares": {
+      "title": "My Shares",
+      "description": "View and manage your shared files"
+    }
+  },
+  "recentFiles": {
+    "title": "Recent Uploads",
+    "viewAll": "View All",
+    "uploadFile": "Upload File",
+    "noFiles": "No files uploaded yet"
+  },
+  "recentShares": {
+    "title": "Recent Shares",
+    "viewAll": "View All",
+    "createShare": "Create Share",
+    "noShares": "No shares created yet",
+    "createFirst": "Create your first share"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Enter recipient email",
+    "add": "Add",
+    "recipients": "Recipients ({{count}})",
+    "notifyAll": "Notify All",
+    "noRecipients": "No recipients added yet",
+    "addSuccess": "Recipient added successfully",
+    "addError": "Failed to add recipient",
+    "removeSuccess": "Recipient removed successfully",
+    "removeError": "Failed to remove recipient",
+    "sendingNotifications": "Sending notifications...",
+    "notifySuccess": "Recipients notified successfully",
+    "notifyError": "Failed to notify recipients"
+  },
   "resetPassword": {
     "pageTitle": "Reset Password",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "Failed to reset password. Please try again.",
       "invalidToken": "Invalid or missing reset token"
     }
+  },
+  "searchBar": {
+    "placeholder": "Search files...",
+    "results": "Found {{filtered}} of {{total}} files"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "Share"
   },
+  "shareActions": {
+    "deleteTitle": "Delete Share",
+    "deleteConfirmation": "Are you sure you want to delete this share? This action cannot be undone.",
+    "editTitle": "Edit Share",
+    "nameLabel": "Share Name",
+    "expirationLabel": "Expiration Date",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "Max Views",
+    "maxViewsPlaceholder": "Leave empty for unlimited",
+    "passwordProtection": "Password Protected",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "newPasswordLabel": "New Password (leave empty to keep current)",
+    "newPasswordPlaceholder": "Enter new password",
+    "manageFilesTitle": "Manage Files",
+    "manageRecipientsTitle": "Manage Recipients",
+    "editSuccess": "Share updated successfully",
+    "editError": "Failed to update share"
+  },
+  "shareDetails": {
+    "title": "Share Details",
+    "subtitle": "Detailed information about this share",
+    "basicInfo": "Basic Information",
+    "name": "Name",
+    "untitled": "Untitled",
+    "views": "Views",
+    "dates": "Dates",
+    "created": "Created",
+    "expires": "Expires",
+    "never": "Never",
+    "security": "Security",
+    "passwordProtected": "Password Protected",
+    "publicAccess": "Public Access",
+    "maxViews": "Max Views: {{count}}",
+    "files": "Files ({{count}})",
+    "recipients": "Recipients ({{count}})",
+    "notAvailable": "N/A",
+    "invalidDate": "Invalid date",
+    "loadError": "Failed to load share details"
+  },
+  "shareManager": {
+    "deleteSuccess": "Share deleted successfully",
+    "deleteError": "Failed to delete share",
+    "updateSuccess": "Share updated successfully",
+    "updateError": "Failed to update share",
+    "filesUpdateSuccess": "Files updated successfully",
+    "filesUpdateError": "Failed to update files",
+    "recipientsUpdateSuccess": "Recipients updated successfully",
+    "recipientsUpdateError": "Failed to update recipients",
+    "linkGenerateSuccess": "Share link generated successfully",
+    "linkGenerateError": "Failed to generate share link",
+    "notifyLoading": "Sending notifications...",
+    "notifySuccess": "Recipients notified successfully",
+    "notifyError": "Failed to notify recipients"
+  },
   "shares": {
     "errors": {
       "loadFailed": "Failed to load shares",
@@ -540,6 +501,58 @@
       "results": "Found {{filtered}} of {{total}} shares"
     },
     "pageTitle": "Shares"
+  },
+  "sharesTable": {
+    "ariaLabel": "Shares table",
+    "never": "Never",
+    "columns": {
+      "name": "NAME",
+      "createdAt": "CREATED AT",
+      "expiresAt": "EXPIRES AT",
+      "status": "STATUS",
+      "security": "SECURITY",
+      "files": "FILES",
+      "recipients": "RECIPIENTS",
+      "actions": "ACTIONS"
+    },
+    "status": {
+      "neverExpires": "Never Expires",
+      "active": "Active",
+      "expired": "Expired"
+    },
+    "security": {
+      "protected": "Protected",
+      "public": "Public"
+    },
+    "filesCount": "files",
+    "recipientsCount": "recipients",
+    "actions": {
+      "menu": "Share actions menu",
+      "edit": "Edit",
+      "manageFiles": "Manage Files",
+      "manageRecipients": "Manage Recipients",
+      "viewDetails": "View Details",
+      "generateLink": "Generate Link",
+      "editLink": "Edit Link",
+      "copyLink": "Copy Link",
+      "notifyRecipients": "Notify Recipients",
+      "delete": "Delete"
+    }
+  },
+  "storageUsage": {
+    "title": "Storage Usage",
+    "ariaLabel": "Storage usage progress bar",
+    "used": "used",
+    "available": "available"
+  },
+  "uploadFile": {
+    "title": "Upload File",
+    "selectFile": "Click to select a file",
+    "preview": "Preview",
+    "uploadProgress": "Upload progress",
+    "upload": "Upload",
+    "success": "File uploaded successfully",
+    "error": "Failed to upload file"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "User"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "App Logo"
-    },
-    "buttons": {
-      "upload": "Upload Logo",
-      "remove": "Remove Logo"
-    },
-    "messages": {
-      "uploadSuccess": "Logo uploaded successfully",
-      "removeSuccess": "Logo removed successfully"
-    },
-    "errors": {
-      "uploadFailed": "Failed to upload logo",
-      "removeFailed": "Failed to remove logo"
-    }
-  },
-  "navbar": {
-    "logoAlt": "App Logo",
-    "profileMenu": "Profile Menu",
-    "profile": "Profile",
-    "settings": "Settings",
-    "usersManagement": "Users Management",
-    "logout": "Log Out"
-  }  
+  "validation": {
+    "invalidEmail": "Invalid email address",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "usernameLength": "Username must be at least 3 characters",
+    "usernameSpaces": "Username cannot contain spaces",
+    "passwordLength": "Password must be at least 8 characters",
+    "passwordsMatch": "Passwords do not match",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required"
+  }
 }

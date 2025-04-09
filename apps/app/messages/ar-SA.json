@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "مرحبا بك",
-    "signInToContinue": "قم بتسجيل الدخول للمتابعة",
-    "emailLabel": "البريد الإلكتروني",
-    "emailPlaceholder": "أدخل بريدك الإلكتروني",
-    "passwordLabel": "كلمة المرور",
-    "passwordPlaceholder": "أدخل كلمة المرور",
-    "signIn": "تسجيل الدخول",
-    "signingIn": "جاري تسجيل الدخول...",
-    "forgotPassword": "نسيت كلمة المرور؟",
-    "pageTitle": "تسجيل الدخول"
-  },
-  "errors": {
-    "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
-    "userNotFound": "المستخدم غير موجود",
-    "accountLocked": "تم قفل الحساب. يرجى المحاولة لاحقًا",
-    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى"
-  },
-  "validation": {
-    "invalidEmail": "عنوان بريد إلكتروني غير صالح",
-    "passwordMinLength": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل",
-    "firstNameRequired": "الاسم الأول مطلوب",
-    "lastNameRequired": "اسم العائلة مطلوب",
-    "usernameLength": "يجب أن يحتوي اسم المستخدم على 3 أحرف على الأقل",
-    "usernameSpaces": "لا يمكن أن يحتوي اسم المستخدم على فراغات",
-    "passwordLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
-    "passwordsMatch": "كلمتا المرور غير متطابقتين",
-    "emailRequired": "البريد الإلكتروني مطلوب",
-    "passwordRequired": "كلمة المرور مطلوبة"
-  },
-  "fileSelector": {
-    "availableFiles": "الملفات المتاحة ({{count}})",
-    "shareFiles": "مشاركة الملفات ({{count}})",
-    "searchPlaceholder": "ابحث عن الملفات...",
-    "noMatchingFiles": "لا توجد ملفات مطابقة",
-    "noAvailableFiles": "لا توجد ملفات متاحة",
-    "noFilesInShare": "لا توجد ملفات للمشاركة",
-    "saveChanges": "احفظ التغييرات"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "أدخل بريد المستلم الإلكتروني",
-    "add": "أضف",
-    "recipients": "المستلمون ({{count}})",
-    "notifyAll": "أبلغ الجميع",
-    "noRecipients": "لم يتم إضافة أي مستلمين بعد",
-    "addSuccess": "تم إضافة المستلم بنجاح",
-    "addError": "فشل في إضافة المستلم",
-    "removeSuccess": "تم إزالة المستلم بنجاح",
-    "removeError": "فشل في إزالة المستلم",
-    "sendingNotifications": "جاري إرسال الإشعارات...",
-    "notifySuccess": "تم إعلام المستلمين بنجاح",
-    "notifyError": "فشل في إعلام المستلمين"
-  },
-  "navigation": {
-    "dashboard": "لوحة التحكم"
-  },
   "common": {
     "loading": "جاري التحميل، يرجى الانتظار...",
     "cancel": "إلغاء",
@@ -80,6 +24,22 @@
     "success": "تم إنشاء المشاركة بنجاح",
     "error": "فشل في إنشاء المشاركة"
   },
+  "dashboard": {
+    "loadError": "فشل في تحميل بيانات لوحة التحكم",
+    "linkCopied": "تم نسخ الرابط إلى الحافظة",
+    "pageTitle": "لوحة التحكم",
+    "breadcrumb": "لوحة التحكم"
+  },
+  "emptyState": {
+    "noFiles": "لم يتم رفع أي ملفات بعد",
+    "uploadFile": "رفع ملف"
+  },
+  "errors": {
+    "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "userNotFound": "المستخدم غير موجود",
+    "accountLocked": "تم قفل الحساب. يرجى المحاولة لاحقًا",
+    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى"
+  },
   "fileActions": {
     "editFile": "تعديل الملف",
     "nameLabel": "الاسم",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "هل أنت متأكد أنك تريد حذف \"{{fileName}}\"؟",
     "deleteWarning": "هذا الإجراء لا يمكن التراجع عنه."
   },
+  "fileManager": {
+    "downloadError": "فشل في تنزيل الملف",
+    "updateSuccess": "تم تحديث الملف بنجاح",
+    "updateError": "فشل في تحديث الملف",
+    "deleteSuccess": "تم حذف الملف بنجاح",
+    "deleteError": "فشل في حذف الملف"
+  },
   "filePreview": {
     "loading": "جاري تحميل المعاينة...",
     "notAvailable": "المعاينة غير متوفرة",
@@ -100,68 +67,21 @@
     "loadError": "فشل في تحميل المعاينة",
     "downloadError": "فشل في تنزيل الملف"
   },
-  "generateShareLink": {
-    "generateTitle": "إنشاء رابط المشاركة",
-    "updateTitle": "تحديث رابط المشاركة",
-    "generateDescription": "أنشئ رابطاً لمشاركة ملفاتك",
-    "updateDescription": "قم بتحديث اللقب لهذا الرابط",
-    "aliasPlaceholder": "أدخل لقبًا",
-    "linkReady": "رابط المشاركة جاهز:",
-    "generateButton": "إنشاء الرابط",
-    "updateButton": "تحديث الرابط",
-    "copyButton": "نسخ الرابط",
-    "success": "تم إنشاء الرابط بنجاح",
-    "error": "فشل في إنشاء الرابط",
-    "copied": "تم نسخ الرابط إلى الحافظة"
+  "fileSelector": {
+    "availableFiles": "الملفات المتاحة ({{count}})",
+    "shareFiles": "مشاركة الملفات ({{count}})",
+    "searchPlaceholder": "ابحث عن الملفات...",
+    "noMatchingFiles": "لا توجد ملفات مطابقة",
+    "noAvailableFiles": "لا توجد ملفات متاحة",
+    "noFilesInShare": "لا توجد ملفات للمشاركة",
+    "saveChanges": "احفظ التغييرات"
   },
-  "shareActions": {
-    "deleteTitle": "حذف المشاركة",
-    "deleteConfirmation": "هل أنت متأكد من رغبتك في حذف هذه المشاركة؟ هذا الإجراء لا يمكن التراجع عنه.",
-    "editTitle": "تعديل المشاركة",
-    "nameLabel": "اسم المشاركة",
-    "expirationLabel": "تاريخ الانتهاء",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "أقصى عدد للمشاهدات",
-    "maxViewsPlaceholder": "اتركه فارغاً للمحدودية غير المحدودة",
-    "passwordProtection": "محمي بكلمة المرور",
-    "passwordLabel": "كلمة المرور",
-    "passwordPlaceholder": "أدخل كلمة المرور",
-    "newPasswordLabel": "كلمة مرور جديدة (اتركه فارغاً للاحتفاظ بالحالي)",
-    "newPasswordPlaceholder": "أدخل كلمة مرور جديدة",
-    "manageFilesTitle": "إدارة الملفات",
-    "manageRecipientsTitle": "إدارة المستلمين",
-    "editSuccess": "تم تحديث المشاركة بنجاح",
-    "editError": "فشل في تحديث المشاركة"
-  },
-  "shareDetails": {
-    "title": "تفاصيل المشاركة",
-    "subtitle": "معلومات مفصلة عن هذه المشاركة",
-    "basicInfo": "المعلومات الأساسية",
-    "name": "الاسم",
-    "untitled": "بدون عنوان",
-    "views": "المشاهدات",
-    "dates": "التواريخ",
-    "created": "تم الإنشاء",
-    "expires": "تنتهي",
-    "never": "أبدًا",
-    "security": "الأمان",
-    "passwordProtected": "محمي بكلمة المرور",
-    "publicAccess": "الوصول العام",
-    "maxViews": "أقصى عدد للمشاهدات: {{count}}",
-    "files": "الملفات ({{count}})",
-    "recipients": "المستلمون ({{count}})",
-    "notAvailable": "غير متوفر",
-    "invalidDate": "تاريخ غير صالح",
-    "loadError": "فشل في تحميل تفاصيل المشاركة"
-  },
-  "uploadFile": {
-    "title": "رفع الملف",
-    "selectFile": "اضغط لاختيار ملف",
-    "preview": "المعاينة",
-    "uploadProgress": "تقدم الرفع",
-    "upload": "رفع",
-    "success": "تم رفع الملف بنجاح",
-    "error": "فشل في رفع الملف"
+  "files": {
+    "title": "كل الملفات",
+    "uploadFile": "رفع ملف",
+    "loadError": "فشل في تحميل الملفات",
+    "pageTitle": "ملفاتي",
+    "breadcrumb": "ملفاتي"
   },
   "filesTable": {
     "ariaLabel": "جدول الملفات",
@@ -181,118 +101,9 @@
       "delete": "حذف"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "جدول المشاركات",
-    "never": "أبدًا",
-    "columns": {
-      "name": "الاسم",
-      "createdAt": "تاريخ الإنشاء",
-      "expiresAt": "تاريخ الانتهاء",
-      "status": "الحالة",
-      "security": "الأمان",
-      "files": "الملفات",
-      "recipients": "المستلمون",
-      "actions": "الإجراءات"
-    },
-    "status": {
-      "neverExpires": "لا تنتهي",
-      "active": "نشطة",
-      "expired": "منتهية"
-    },
-    "security": {
-      "protected": "محمي",
-      "public": "عام"
-    },
-    "filesCount": "ملف",
-    "recipientsCount": "مستلم",
-    "actions": {
-      "menu": "قائمة إجراءات المشاركة",
-      "edit": "تعديل",
-      "manageFiles": "إدارة الملفات",
-      "manageRecipients": "إدارة المستلمين",
-      "viewDetails": "عرض التفاصيل",
-      "generateLink": "إنشاء الرابط",
-      "editLink": "تعديل الرابط",
-      "copyLink": "نسخ الرابط",
-      "notifyRecipients": "إعلام المستلمين",
-      "delete": "حذف"
-    }
-  },
   "footer": {
     "poweredBy": "مدعوم من",
     "kyanHomepage": "الصفحة الرئيسية لـ Kyantech"
-  },
-  "fileManager": {
-    "downloadError": "فشل في تنزيل الملف",
-    "updateSuccess": "تم تحديث الملف بنجاح",
-    "updateError": "فشل في تحديث الملف",
-    "deleteSuccess": "تم حذف الملف بنجاح",
-    "deleteError": "فشل في حذف الملف"
-  },
-  "shareManager": {
-    "deleteSuccess": "تم حذف المشاركة بنجاح",
-    "deleteError": "فشل في حذف المشاركة",
-    "updateSuccess": "تم تحديث المشاركة بنجاح",
-    "updateError": "فشل في تحديث المشاركة",
-    "filesUpdateSuccess": "تم تحديث الملفات بنجاح",
-    "filesUpdateError": "فشل في تحديث الملفات",
-    "recipientsUpdateSuccess": "تم تحديث المستلمين بنجاح",
-    "recipientsUpdateError": "فشل في تحديث المستلمين",
-    "linkGenerateSuccess": "تم إنشاء رابط المشاركة بنجاح",
-    "linkGenerateError": "فشل في إنشاء رابط المشاركة",
-    "notifyLoading": "جاري إرسال الإشعارات...",
-    "notifySuccess": "تم إعلام المستلمين بنجاح",
-    "notifyError": "فشل في إعلام المستلمين"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "ملفاتي",
-      "description": "الوصول إلى الملفات المرفوعة وإدارتها"
-    },
-    "shares": {
-      "title": "مشاركاتي",
-      "description": "عرض وإدارة الملفات المشتركة"
-    }
-  },
-  "recentFiles": {
-    "title": "الرفع الأخير",
-    "viewAll": "عرض الكل",
-    "uploadFile": "رفع ملف",
-    "noFiles": "لم يتم رفع أي ملفات بعد"
-  },
-  "recentShares": {
-    "title": "المشاركات الأخيرة",
-    "viewAll": "عرض الكل",
-    "createShare": "إنشاء مشاركة",
-    "noShares": "لم يتم إنشاء أي مشاركات بعد",
-    "createFirst": "أنشئ مشاركتك الأولى"
-  },
-  "storageUsage": {
-    "title": "استخدام التخزين",
-    "ariaLabel": "شريط تقدم استخدام التخزين",
-    "used": "المستخدمة",
-    "available": "المتاحة"
-  },
-  "dashboard": {
-    "loadError": "فشل في تحميل بيانات لوحة التحكم",
-    "linkCopied": "تم نسخ الرابط إلى الحافظة",
-    "pageTitle": "لوحة التحكم",
-    "breadcrumb": "لوحة التحكم"
-  },
-  "emptyState": {
-    "noFiles": "لم يتم رفع أي ملفات بعد",
-    "uploadFile": "رفع ملف"
-  },
-  "files": {
-    "title": "كل الملفات",
-    "uploadFile": "رفع ملف",
-    "loadError": "فشل في تحميل الملفات",
-    "pageTitle": "ملفاتي",
-    "breadcrumb": "ملفاتي"
-  },
-  "searchBar": {
-    "placeholder": "ابحث عن الملفات...",
-    "results": "تم العثور على {{filtered}} من {{total}} ملف"
   },
   "forgotPassword": {
     "emailLabel": "البريد الإلكتروني",
@@ -305,6 +116,20 @@
     "resetInstructions": "تم إرسال تعليمات إعادة التعيين إلى بريدك الإلكتروني",
     "pageTitle": "نسيت كلمة المرور"
   },
+  "generateShareLink": {
+    "generateTitle": "إنشاء رابط المشاركة",
+    "updateTitle": "تحديث رابط المشاركة",
+    "generateDescription": "أنشئ رابطاً لمشاركة ملفاتك",
+    "updateDescription": "قم بتحديث اللقب لهذا الرابط",
+    "aliasPlaceholder": "أدخل لقبًا",
+    "linkReady": "رابط المشاركة جاهز:",
+    "generateButton": "إنشاء الرابط",
+    "updateButton": "تحديث الرابط",
+    "copyButton": "نسخ الرابط",
+    "success": "تم إنشاء الرابط بنجاح",
+    "error": "فشل في إنشاء الرابط",
+    "copied": "تم نسخ الرابط إلى الحافظة"
+  },
   "home": {
     "description": "البديل مفتوح المصدر لـ WeTransfer. شارك ملفاتك بأمان، دون تتبع أو قيود.",
     "documentation": "التوثيق",
@@ -315,6 +140,46 @@
       "tagline": "بسيط ومجاني"
     },
     "pageTitle": "الصفحة الرئيسية"
+  },
+  "login": {
+    "welcome": "مرحبا بك",
+    "signInToContinue": "قم بتسجيل الدخول للمتابعة",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signingIn": "جاري تسجيل الدخول...",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "pageTitle": "تسجيل الدخول"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "شعار التطبيق"
+    },
+    "buttons": {
+      "upload": "رفع الشعار",
+      "remove": "حذف الشعار"
+    },
+    "messages": {
+      "uploadSuccess": "تم رفع الشعار بنجاح",
+      "removeSuccess": "تم حذف الشعار بنجاح"
+    },
+    "errors": {
+      "uploadFailed": "فشل في رفع الشعار",
+      "removeFailed": "فشل في حذف الشعار"
+    }
+  },
+  "navbar": {
+    "logoAlt": "شعار التطبيق",
+    "profileMenu": "قائمة الملف الشخصي",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "usersManagement": "إدارة المستخدمين",
+    "logout": "تسجيل الخروج"
+  },
+  "navigation": {
+    "dashboard": "لوحة التحكم"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "الملف الشخصي"
   },
+  "quickAccess": {
+    "files": {
+      "title": "ملفاتي",
+      "description": "الوصول إلى الملفات المرفوعة وإدارتها"
+    },
+    "shares": {
+      "title": "مشاركاتي",
+      "description": "عرض وإدارة الملفات المشتركة"
+    }
+  },
+  "recentFiles": {
+    "title": "الرفع الأخير",
+    "viewAll": "عرض الكل",
+    "uploadFile": "رفع ملف",
+    "noFiles": "لم يتم رفع أي ملفات بعد"
+  },
+  "recentShares": {
+    "title": "المشاركات الأخيرة",
+    "viewAll": "عرض الكل",
+    "createShare": "إنشاء مشاركة",
+    "noShares": "لم يتم إنشاء أي مشاركات بعد",
+    "createFirst": "أنشئ مشاركتك الأولى"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "أدخل بريد المستلم الإلكتروني",
+    "add": "أضف",
+    "recipients": "المستلمون ({{count}})",
+    "notifyAll": "أبلغ الجميع",
+    "noRecipients": "لم يتم إضافة أي مستلمين بعد",
+    "addSuccess": "تم إضافة المستلم بنجاح",
+    "addError": "فشل في إضافة المستلم",
+    "removeSuccess": "تم إزالة المستلم بنجاح",
+    "removeError": "فشل في إزالة المستلم",
+    "sendingNotifications": "جاري إرسال الإشعارات...",
+    "notifySuccess": "تم إعلام المستلمين بنجاح",
+    "notifyError": "فشل في إعلام المستلمين"
+  },
   "resetPassword": {
     "pageTitle": "إعادة تعيين كلمة المرور",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "فشل في إعادة تعيين كلمة المرور. يرجى المحاولة مرة أخرى.",
       "invalidToken": "رمز إعادة التعيين غير صالح أو مفقود"
     }
+  },
+  "searchBar": {
+    "placeholder": "ابحث عن الملفات...",
+    "results": "تم العثور على {{filtered}} من {{total}} ملف"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "المشاركة"
   },
+  "shareActions": {
+    "deleteTitle": "حذف المشاركة",
+    "deleteConfirmation": "هل أنت متأكد من رغبتك في حذف هذه المشاركة؟ هذا الإجراء لا يمكن التراجع عنه.",
+    "editTitle": "تعديل المشاركة",
+    "nameLabel": "اسم المشاركة",
+    "expirationLabel": "تاريخ الانتهاء",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "أقصى عدد للمشاهدات",
+    "maxViewsPlaceholder": "اتركه فارغاً للمحدودية غير المحدودة",
+    "passwordProtection": "محمي بكلمة المرور",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "newPasswordLabel": "كلمة مرور جديدة (اتركه فارغاً للاحتفاظ بالحالي)",
+    "newPasswordPlaceholder": "أدخل كلمة مرور جديدة",
+    "manageFilesTitle": "إدارة الملفات",
+    "manageRecipientsTitle": "إدارة المستلمين",
+    "editSuccess": "تم تحديث المشاركة بنجاح",
+    "editError": "فشل في تحديث المشاركة"
+  },
+  "shareDetails": {
+    "title": "تفاصيل المشاركة",
+    "subtitle": "معلومات مفصلة عن هذه المشاركة",
+    "basicInfo": "المعلومات الأساسية",
+    "name": "الاسم",
+    "untitled": "بدون عنوان",
+    "views": "المشاهدات",
+    "dates": "التواريخ",
+    "created": "تم الإنشاء",
+    "expires": "تنتهي",
+    "never": "أبدًا",
+    "security": "الأمان",
+    "passwordProtected": "محمي بكلمة المرور",
+    "publicAccess": "الوصول العام",
+    "maxViews": "أقصى عدد للمشاهدات: {{count}}",
+    "files": "الملفات ({{count}})",
+    "recipients": "المستلمون ({{count}})",
+    "notAvailable": "غير متوفر",
+    "invalidDate": "تاريخ غير صالح",
+    "loadError": "فشل في تحميل تفاصيل المشاركة"
+  },
+  "shareManager": {
+    "deleteSuccess": "تم حذف المشاركة بنجاح",
+    "deleteError": "فشل في حذف المشاركة",
+    "updateSuccess": "تم تحديث المشاركة بنجاح",
+    "updateError": "فشل في تحديث المشاركة",
+    "filesUpdateSuccess": "تم تحديث الملفات بنجاح",
+    "filesUpdateError": "فشل في تحديث الملفات",
+    "recipientsUpdateSuccess": "تم تحديث المستلمين بنجاح",
+    "recipientsUpdateError": "فشل في تحديث المستلمين",
+    "linkGenerateSuccess": "تم إنشاء رابط المشاركة بنجاح",
+    "linkGenerateError": "فشل في إنشاء رابط المشاركة",
+    "notifyLoading": "جاري إرسال الإشعارات...",
+    "notifySuccess": "تم إعلام المستلمين بنجاح",
+    "notifyError": "فشل في إعلام المستلمين"
+  },
   "shares": {
     "errors": {
       "loadFailed": "فشل في تحميل المشاركات",
@@ -540,6 +501,58 @@
       "results": "تم العثور على {{filtered}} من {{total}} مشاركات"
     },
     "pageTitle": "المشاركات"
+  },
+  "sharesTable": {
+    "ariaLabel": "جدول المشاركات",
+    "never": "أبدًا",
+    "columns": {
+      "name": "الاسم",
+      "createdAt": "تاريخ الإنشاء",
+      "expiresAt": "تاريخ الانتهاء",
+      "status": "الحالة",
+      "security": "الأمان",
+      "files": "الملفات",
+      "recipients": "المستلمون",
+      "actions": "الإجراءات"
+    },
+    "status": {
+      "neverExpires": "لا تنتهي",
+      "active": "نشطة",
+      "expired": "منتهية"
+    },
+    "security": {
+      "protected": "محمي",
+      "public": "عام"
+    },
+    "filesCount": "ملف",
+    "recipientsCount": "مستلم",
+    "actions": {
+      "menu": "قائمة إجراءات المشاركة",
+      "edit": "تعديل",
+      "manageFiles": "إدارة الملفات",
+      "manageRecipients": "إدارة المستلمين",
+      "viewDetails": "عرض التفاصيل",
+      "generateLink": "إنشاء الرابط",
+      "editLink": "تعديل الرابط",
+      "copyLink": "نسخ الرابط",
+      "notifyRecipients": "إعلام المستلمين",
+      "delete": "حذف"
+    }
+  },
+  "storageUsage": {
+    "title": "استخدام التخزين",
+    "ariaLabel": "شريط تقدم استخدام التخزين",
+    "used": "المستخدمة",
+    "available": "المتاحة"
+  },
+  "uploadFile": {
+    "title": "رفع الملف",
+    "selectFile": "اضغط لاختيار ملف",
+    "preview": "المعاينة",
+    "uploadProgress": "تقدم الرفع",
+    "upload": "رفع",
+    "success": "تم رفع الملف بنجاح",
+    "error": "فشل في رفع الملف"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "مستخدم"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "شعار التطبيق"
-    },
-    "buttons": {
-      "upload": "رفع الشعار",
-      "remove": "حذف الشعار"
-    },
-    "messages": {
-      "uploadSuccess": "تم رفع الشعار بنجاح",
-      "removeSuccess": "تم حذف الشعار بنجاح"
-    },
-    "errors": {
-      "uploadFailed": "فشل في رفع الشعار",
-      "removeFailed": "فشل في حذف الشعار"
-    }
-  },
-  "navbar": {
-    "logoAlt": "شعار التطبيق",
-    "profileMenu": "قائمة الملف الشخصي",
-    "profile": "الملف الشخصي",
-    "settings": "الإعدادات",
-    "usersManagement": "إدارة المستخدمين",
-    "logout": "تسجيل الخروج"
+  "validation": {
+    "invalidEmail": "عنوان بريد إلكتروني غير صالح",
+    "passwordMinLength": "يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "usernameLength": "يجب أن يحتوي اسم المستخدم على 3 أحرف على الأقل",
+    "usernameSpaces": "لا يمكن أن يحتوي اسم المستخدم على فراغات",
+    "passwordLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+    "passwordsMatch": "كلمتا المرور غير متطابقتين",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة"
   }
 }

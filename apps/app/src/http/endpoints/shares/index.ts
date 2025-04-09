@@ -1,31 +1,32 @@
-import type {
-  CreateShareResult,
-  UpdateShareResult,
-  ListUserSharesResult,
-  GetShareResult,
-  DeleteShareResult,
-  UpdateSharePasswordResult,
-  AddFilesResult,
-  RemoveFilesResult,
-  AddRecipientsResult,
-  RemoveRecipientsResult,
-  CreateShareAliasResult,
-  GetShareByAliasResult,
-  NotifyRecipientsResult,
-  CreateShareBody,
-  UpdateShareBody,
-  GetShareParams,
-  UpdateSharePasswordBody,
-  AddFilesBody,
-  RemoveFilesBody,
-  AddRecipientsBody,
-  RemoveRecipientsBody,
-  CreateShareAliasBody,
-  GetShareByAliasParams,
-  NotifyRecipientsBody,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
+import type {
+  AddFilesBody,
+  AddFilesResult,
+  AddRecipientsBody,
+  AddRecipientsResult,
+  CreateShareAliasBody,
+  CreateShareAliasResult,
+  CreateShareBody,
+  CreateShareResult,
+  DeleteShareResult,
+  GetShareByAliasParams,
+  GetShareByAliasResult,
+  GetShareParams,
+  GetShareResult,
+  ListUserSharesResult,
+  NotifyRecipientsBody,
+  NotifyRecipientsResult,
+  RemoveFilesBody,
+  RemoveFilesResult,
+  RemoveRecipientsBody,
+  RemoveRecipientsResult,
+  UpdateShareBody,
+  UpdateSharePasswordBody,
+  UpdateSharePasswordResult,
+  UpdateShareResult,
+} from "./types";
 
 /**
  * Create a new share

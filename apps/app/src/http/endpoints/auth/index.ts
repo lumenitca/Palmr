@@ -1,15 +1,16 @@
+import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
 import type {
-  LoginResult,
-  LogoutResult,
-  RequestPasswordResetResult,
-  ResetPasswordResult,
   GetCurrentUserResult,
   LoginBody,
+  LoginResult,
+  LogoutResult,
   RequestPasswordResetBody,
+  RequestPasswordResetResult,
   ResetPasswordBody,
+  ResetPasswordResult,
 } from "./types";
-import axiosInstance from "@/config/axios";
-import type { AxiosRequestConfig } from "axios";
 
 export const login = <TData = LoginResult>(loginBody: LoginBody, options?: AxiosRequestConfig): Promise<TData> => {
   return axiosInstance.post(`/auth/login`, loginBody, options);

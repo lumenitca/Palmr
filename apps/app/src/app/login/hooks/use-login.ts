@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/contexts/auth-context";
-import { login, getCurrentUser } from "@/http/endpoints";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
+
+import { useAuth } from "@/contexts/auth-context";
+import { getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
 
 export function useLogin() {
@@ -23,7 +24,7 @@ export function useLogin() {
         if (!userResponse?.data?.user) {
           throw new Error("No user data");
         }
-        
+
         const { isAdmin, ...userData } = userResponse.data.user;
         setUser(userData);
         setIsAdmin(isAdmin);

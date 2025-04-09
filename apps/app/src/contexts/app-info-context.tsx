@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+import { create } from "zustand";
+
 import { getAppInfo } from "@/http/endpoints";
 
 interface AppInfoStore {
@@ -22,17 +23,19 @@ const updateTitle = (name: string) => {
 };
 
 export const useAppInfo = create<AppInfoStore>((set) => {
-  if (typeof window !== 'undefined') {
-    getAppInfo().then((response) => {
-      set({
-        appName: response.data.appName,
-        appLogo: response.data.appLogo,
+  if (typeof window !== "undefined") {
+    getAppInfo()
+      .then((response) => {
+        set({
+          appName: response.data.appName,
+          appLogo: response.data.appLogo,
+        });
+        updateTitle(response.data.appName);
+        updateFavicon(response.data.appLogo);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch app info:", error);
       });
-      updateTitle(response.data.appName);
-      updateFavicon(response.data.appLogo);
-    }).catch((error) => {
-      console.error("Failed to fetch app info:", error);
-    });
   }
 
   return {

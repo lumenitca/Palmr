@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
+import { motion } from "framer-motion";
+
+import { LanguageSwitcher } from "@/components/general/language-switcher";
+import { LoadingScreen } from "@/components/layout/loading-screen";
+import { DefaultFooter } from "@/components/ui/default-footer";
 import { LoginForm } from "./components/login-form";
 import { LoginHeader } from "./components/login-header";
 import { StaticBackgroundLights } from "./components/static-background-lights";
 import { useLogin } from "./hooks/use-login";
-import { LoadingScreen } from "@/components/layout/loading-screen";
-import { DefaultFooter } from "@/components/ui/default-footer";
-import { motion } from "framer-motion";
-import { LanguageSwitcher } from "@/components/general/language-switcher";
 
 export default function LoginPage() {
   const login = useLogin();

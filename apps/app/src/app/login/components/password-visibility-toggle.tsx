@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { IconEye, IconEyeClosed } from "@tabler/icons-react";
+
+import { Button } from "@/components/ui/button";
 
 interface PasswordVisibilityToggleProps {
   isVisible: boolean;

@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { IconPlus, IconShare } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
-import { IconShare, IconPlus } from "@tabler/icons-react";
 
-export function EmptySharesState({ onCreate }: { onCreate: () => void; }) {
+import { Button } from "@/components/ui/button";
+
+export function EmptySharesState({ onCreate }: { onCreate: () => void }) {
   const t = useTranslations();
 
   return (

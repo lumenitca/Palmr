@@ -1,5 +1,6 @@
-import { LoginFormData } from "../hooks/use-login";
 import { UseFormReturn } from "react-hook-form";
+
+import { LoginFormData } from "../hooks/use-login";
 
 export interface LoginFormProps {
   form: UseFormReturn<LoginFormData>;

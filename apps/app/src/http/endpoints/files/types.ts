@@ -1,15 +1,16 @@
+import type { AxiosResponse } from "axios";
+
 import type {
+  DeleteFile200,
+  GetDownloadUrl200,
   GetPresignedUrl200,
   GetPresignedUrlParams,
+  ListFiles200,
   RegisterFile201,
   RegisterFileBody,
-  ListFiles200,
-  GetDownloadUrl200,
-  DeleteFile200,
   UpdateFile200,
   UpdateFileBody,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type GetPresignedUrlResult = AxiosResponse<GetPresignedUrl200>;
 export type RegisterFileResult = AxiosResponse<RegisterFile201>;

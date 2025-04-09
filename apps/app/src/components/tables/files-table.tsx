@@ -1,5 +1,6 @@
-import { getFileIcon } from "@/utils/file-icons";
-import { formatFileSize } from "@/utils/format-file-size";
+import { IconDotsVertical, IconDownload, IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,22 +8,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
-import { useTranslations } from "next-intl";
-import {
-  IconEye,
-  IconEdit,
-  IconDownload,
-  IconTrash,
-  IconDotsVertical,
-} from "@tabler/icons-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { getFileIcon } from "@/utils/file-icons";
+import { formatFileSize } from "@/utils/format-file-size";
 
 interface File {
   id: string;
@@ -63,27 +51,27 @@ export function FilesTable({ files, onPreview, onRename, onDownload, onDelete }:
       <Table>
         <TableHeader>
           <TableRow className="border-b-0">
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 rounded-tl-lg">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4 rounded-tl-lg">
               {t("filesTable.columns.name")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("filesTable.columns.description")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("filesTable.columns.size")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("filesTable.columns.createdAt")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("filesTable.columns.updatedAt")}
             </TableHead>
-            <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50 rounded-tr-lg">
+            <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50 px-4 rounded-tr-lg">
               {t("filesTable.columns.actions")}
             </TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody >
+        <TableBody>
           {files.map((file) => {
             const { icon: FileIcon, color } = getFileIcon(file.name);
 
@@ -104,11 +92,7 @@ export function FilesTable({ files, onPreview, onRename, onDownload, onDelete }:
                 <TableCell className="h-12 px-4 text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button 
-                        variant="ghost" 
-                        size="icon"
-                        className="h-8 w-8 hover:bg-muted"
-                      >
+                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-muted cursor-pointer">
                         <IconDotsVertical className="h-4 w-4" />
                         <span className="sr-only">{t("filesTable.actions.menu")}</span>
                       </Button>
@@ -122,7 +106,10 @@ export function FilesTable({ files, onPreview, onRename, onDownload, onDelete }:
                         <IconEdit className="mr-2 h-4 w-4" />
                         {t("filesTable.actions.edit")}
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onDownload(file.objectName, file.name)}>
+                      <DropdownMenuItem
+                        className="cursor-pointer py-2"
+                        onClick={() => onDownload(file.objectName, file.name)}
+                      >
                         <IconDownload className="mr-2 h-4 w-4" />
                         {t("filesTable.actions.download")}
                       </DropdownMenuItem>

@@ -1,15 +1,16 @@
-import type {
-  GetAppInfoResult,
-  UploadLogoResult,
-  RemoveLogoResult,
-  CheckHealthResult,
-  GetDiskSpaceResult,
-  CheckUploadAllowedResult,
-  UploadLogoBody,
-  CheckUploadAllowedParams,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import axiosInstance from "@/config/axios";
+import type {
+  CheckHealthResult,
+  CheckUploadAllowedParams,
+  CheckUploadAllowedResult,
+  GetAppInfoResult,
+  GetDiskSpaceResult,
+  RemoveLogoResult,
+  UploadLogoBody,
+  UploadLogoResult,
+} from "./types";
 
 /**
  * Get application base information

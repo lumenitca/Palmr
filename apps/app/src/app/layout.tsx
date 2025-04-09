@@ -6,8 +6,9 @@ import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 import { useAppInfo } from "@/contexts/app-info-context";
-import { ThemeProvider } from "../providers/theme-provider";
 import { AuthProvider } from "@/contexts/auth-context";
+import { ShareProvider } from "@/contexts/share-context";
+import { ThemeProvider } from "../providers/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     useAppInfo.getState().refreshAppInfo();
   }
 
@@ -42,7 +43,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
-              {children}
+              <ShareProvider>{children}</ShareProvider>
             </AuthProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

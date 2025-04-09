@@ -1,36 +1,29 @@
-import { useShareContext } from "../../contexts/share-context";
-import { Button } from "@/components/ui/button";
+import {
+  IconCopy,
+  IconDotsVertical,
+  IconEdit,
+  IconEye,
+  IconFolder,
+  IconLink,
+  IconLock,
+  IconLockOpen,
+  IconMail,
+  IconTrash,
+  IconUsers,
+} from "@tabler/icons-react";
+import { format } from "date-fns";
+import { useTranslations } from "next-intl";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
-import { format } from "date-fns";
-import { useTranslations } from "next-intl";
-
-import {
-  IconEdit,
-  IconTrash,
-  IconUsers,
-  IconFolder,
-  IconDotsVertical,
-  IconLock,
-  IconLockOpen,
-  IconEye,
-  IconCopy,
-  IconLink,
-  IconMail,
-} from "@tabler/icons-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useShareContext } from "../../contexts/share-context";
 
 export interface SharesTableProps {
   shares: any[];
@@ -63,28 +56,28 @@ export function SharesTable({
       <Table>
         <TableHeader>
           <TableRow className="border-b-0">
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.name")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.createdAt")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.expiresAt")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.status")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.security")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.files")}
             </TableHead>
-            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.recipients")}
             </TableHead>
-            <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50">
+            <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.actions")}
             </TableHead>
           </TableRow>
@@ -92,17 +85,20 @@ export function SharesTable({
         <TableBody>
           {shares.map((share) => (
             <TableRow key={share.id} className="hover:bg-muted/50 transition-colors border-0">
-              <TableCell className="h-12  border-0">{share.name}</TableCell>
-              <TableCell className="h-12 ">{format(new Date(share.createdAt), "MM/dd/yyyy HH:mm")}</TableCell>
-              <TableCell className="h-12 ">
+              <TableCell className="h-12 px-4 border-0">{share.name}</TableCell>
+              <TableCell className="h-12 px-4">{format(new Date(share.createdAt), "MM/dd/yyyy HH:mm")}</TableCell>
+              <TableCell className="h-12 px-4">
                 {share.expiration ? format(new Date(share.expiration), "MM/dd/yyyy HH:mm") : t("sharesTable.never")}
               </TableCell>
-              <TableCell className="h-12 ">
-                <Badge variant="secondary" className={
-                  !share.expiration || new Date(share.expiration) > new Date()
-                    ? "bg-green-500/20 hover:bg-green-500/30 text-green-500"
-                    : "bg-red-500/20 hover:bg-red-500/30 text-red-500"
-                }>
+              <TableCell className="h-12 px-4">
+                <Badge
+                  variant="secondary"
+                  className={
+                    !share.expiration || new Date(share.expiration) > new Date()
+                      ? "bg-green-500/20 hover:bg-green-500/30 text-green-500"
+                      : "bg-red-500/20 hover:bg-red-500/30 text-red-500"
+                  }
+                >
                   {!share.expiration
                     ? t("sharesTable.status.neverExpires")
                     : new Date(share.expiration) > new Date()
@@ -110,32 +106,29 @@ export function SharesTable({
                       : t("sharesTable.status.expired")}
                 </Badge>
               </TableCell>
-              <TableCell className="h-12 ">
-                <Badge variant="secondary" className={`flex items-center gap-1 ${
-                  share.security.hasPassword
-                    ? "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500"
-                    : "bg-green-500/20 hover:bg-green-500/30 text-green-500"
-                }`}>
-                  {share.security.hasPassword ? (
-                    <IconLock className="h-4 w-4" />
-                  ) : (
-                    <IconLockOpen className="h-4 w-4" />
-                  )}
-                  {share.security.hasPassword
-                    ? t("sharesTable.security.protected")
-                    : t("sharesTable.security.public")}
+              <TableCell className="h-12 px-4">
+                <Badge
+                  variant="secondary"
+                  className={`flex items-center gap-1 ${
+                    share.security.hasPassword
+                      ? "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500"
+                      : "bg-green-500/20 hover:bg-green-500/30 text-green-500"
+                  }`}
+                >
+                  {share.security.hasPassword ? <IconLock className="h-4 w-4" /> : <IconLockOpen className="h-4 w-4" />}
+                  {share.security.hasPassword ? t("sharesTable.security.protected") : t("sharesTable.security.public")}
                 </Badge>
               </TableCell>
-              <TableCell className="h-12">{ share.files?.length || 0 } {t("sharesTable.filesCount")}</TableCell>
-              <TableCell className="h-12">{ share.recipients?.length || 0 } {t("sharesTable.recipientsCount")}</TableCell>
-              <TableCell className="h-12 text-right">
+              <TableCell className="h-12 px-4">
+                {share.files?.length || 0} {t("sharesTable.filesCount")}
+              </TableCell>
+              <TableCell className="h-12 px-4">
+                {share.recipients?.length || 0} {t("sharesTable.recipientsCount")}
+              </TableCell>
+              <TableCell className="h-12 px-4 text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 hover:bg-muted"
-                    >
+                    <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-muted cursor-pointer">
                       <IconDotsVertical className="h-4 w-4" />
                       <span className="sr-only">{t("sharesTable.actions.menu")}</span>
                     </Button>

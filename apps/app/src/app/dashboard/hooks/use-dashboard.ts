@@ -1,12 +1,13 @@
-"use client"
+"use client";
+
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { useFileManager } from "@/hooks/use-file-manager";
 import { useShareManager } from "@/hooks/use-share-manager";
-import { getDiskSpace, listFiles, listUserShares, getAllConfigs } from "@/http/endpoints";
+import { getAllConfigs, getDiskSpace, listFiles, listUserShares } from "@/http/endpoints";
 import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
-import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
 
 export function useDashboard() {
   const t = useTranslations();

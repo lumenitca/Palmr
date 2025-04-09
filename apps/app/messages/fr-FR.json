@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "Bienvenue à",
-    "signInToContinue": "Connectez-vous pour continuer",
-    "emailLabel": "Adresse e-mail",
-    "emailPlaceholder": "Entrez votre e-mail",
-    "passwordLabel": "Mot de passe",
-    "passwordPlaceholder": "Entrez votre mot de passe",
-    "signIn": "Se connecter",
-    "signingIn": "Connexion en cours...",
-    "forgotPassword": "Mot de passe oublié ?",
-    "pageTitle": "Connexion"
-  },
-  "errors": {
-    "invalidCredentials": "E-mail ou mot de passe invalide",
-    "userNotFound": "Utilisateur non trouvé",
-    "accountLocked": "Compte bloqué. Veuillez réessayer plus tard",
-    "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer"
-  },
-  "validation": {
-    "invalidEmail": "Adresse email invalide",
-    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
-    "firstNameRequired": "Le prénom est requis",
-    "lastNameRequired": "Le nom est requis",
-    "usernameLength": "Le nom d'utilisateur doit contenir au moins 3 caractères",
-    "usernameSpaces": "Le nom d'utilisateur ne peut pas contenir d'espaces",
-    "passwordLength": "Le mot de passe doit contenir au moins 8 caractères",
-    "passwordsMatch": "Les mots de passe ne correspondent pas",
-    "emailRequired": "L'email est requis",
-    "passwordRequired": "Le mot de passe est requis"
-  },
-  "fileSelector": {
-    "availableFiles": "Fichiers Disponibles ({{count}})",
-    "shareFiles": "Fichiers Partagés ({{count}})",
-    "searchPlaceholder": "Rechercher des fichiers...",
-    "noMatchingFiles": "Aucun fichier correspondant",
-    "noAvailableFiles": "Aucun fichier disponible",
-    "noFilesInShare": "Aucun fichier partagé",
-    "saveChanges": "Enregistrer les Modifications"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "Entrez l'e-mail du destinataire",
-    "add": "Ajouter",
-    "recipients": "Destinataires ({{count}})",
-    "notifyAll": "Notifier Tous",
-    "noRecipients": "Aucun destinataire ajouté",
-    "addSuccess": "Destinataire ajouté avec succès",
-    "addError": "Échec de l'ajout du destinataire",
-    "removeSuccess": "Destinataire supprimé avec succès",
-    "removeError": "Échec de la suppression du destinataire",
-    "sendingNotifications": "Envoi des notifications...",
-    "notifySuccess": "Destinataires notifiés avec succès",
-    "notifyError": "Échec de la notification des destinataires"
-  },
-  "navigation": {
-    "dashboard": "Tableau de bord"
-  },
   "common": {
     "loading": "Chargement, veuillez patienter...",
     "cancel": "Annuler",
@@ -80,6 +24,22 @@
     "success": "Partage créé avec succès",
     "error": "Échec de la création du partage"
   },
+  "dashboard": {
+    "loadError": "Échec du chargement des données du tableau de bord",
+    "linkCopied": "Lien copié dans le presse-papiers",
+    "pageTitle": "Tableau de Bord",
+    "breadcrumb": "Tableau de Bord"
+  },
+  "emptyState": {
+    "noFiles": "Aucun fichier téléchargé pour le moment",
+    "uploadFile": "Envoyer un Fichier"
+  },
+  "errors": {
+    "invalidCredentials": "E-mail ou mot de passe invalide",
+    "userNotFound": "Utilisateur non trouvé",
+    "accountLocked": "Compte bloqué. Veuillez réessayer plus tard",
+    "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer"
+  },
   "fileActions": {
     "editFile": "Modifier le Fichier",
     "nameLabel": "Nom",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer \"{{fileName}}\" ?",
     "deleteWarning": "Cette action ne peut pas être annulée."
   },
+  "fileManager": {
+    "downloadError": "Échec du téléchargement du fichier",
+    "updateSuccess": "Fichier mis à jour avec succès",
+    "updateError": "Échec de la mise à jour du fichier",
+    "deleteSuccess": "Fichier supprimé avec succès",
+    "deleteError": "Échec de la suppression du fichier"
+  },
   "filePreview": {
     "loading": "Chargement de l'aperçu...",
     "notAvailable": "Aperçu non disponible",
@@ -100,68 +67,21 @@
     "loadError": "Échec du chargement de l'aperçu",
     "downloadError": "Échec du téléchargement du fichier"
   },
-  "generateShareLink": {
-    "generateTitle": "Générer un Lien de Partage",
-    "updateTitle": "Mettre à Jour le Lien de Partage",
-    "generateDescription": "Générez un lien pour partager vos fichiers",
-    "updateDescription": "Mettez à jour l'alias de ce lien de partage",
-    "aliasPlaceholder": "Entrez l'alias",
-    "linkReady": "Votre lien de partage est prêt :",
-    "generateButton": "Générer le Lien",
-    "updateButton": "Mettre à Jour le Lien",
-    "copyButton": "Copier le Lien",
-    "success": "Lien généré avec succès",
-    "error": "Échec de la génération du lien",
-    "copied": "Lien copié dans le presse-papiers"
+  "fileSelector": {
+    "availableFiles": "Fichiers Disponibles ({{count}})",
+    "shareFiles": "Fichiers Partagés ({{count}})",
+    "searchPlaceholder": "Rechercher des fichiers...",
+    "noMatchingFiles": "Aucun fichier correspondant",
+    "noAvailableFiles": "Aucun fichier disponible",
+    "noFilesInShare": "Aucun fichier partagé",
+    "saveChanges": "Enregistrer les Modifications"
   },
-  "shareActions": {
-    "deleteTitle": "Supprimer le Partage",
-    "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce partage ? Cette action ne peut pas être annulée.",
-    "editTitle": "Modifier le Partage",
-    "nameLabel": "Nom du Partage",
-    "expirationLabel": "Date d'Expiration",
-    "expirationPlaceholder": "JJ/MM/AAAA HH:MM",
-    "maxViewsLabel": "Vues Maximales",
-    "maxViewsPlaceholder": "Laisser vide pour illimité",
-    "passwordProtection": "Protégé par Mot de Passe",
-    "passwordLabel": "Mot de Passe",
-    "passwordPlaceholder": "Entrez le mot de passe",
-    "newPasswordLabel": "Nouveau Mot de Passe (laisser vide pour garder l'actuel)",
-    "newPasswordPlaceholder": "Entrez le nouveau mot de passe",
-    "manageFilesTitle": "Gérer les Fichiers",
-    "manageRecipientsTitle": "Gérer les Destinataires",
-    "editSuccess": "Partage mis à jour avec succès",
-    "editError": "Échec de la mise à jour du partage"
-  },
-  "shareDetails": {
-    "title": "Détails du Partage",
-    "subtitle": "Informations détaillées sur ce partage",
-    "basicInfo": "Informations de Base",
-    "name": "Nom",
-    "untitled": "Partage sans titre",
-    "views": "Vues",
-    "dates": "Dates",
-    "created": "Créé le: {{date}}",
-    "expires": "Expire le: {{date}}",
-    "never": "Jamais",
-    "security": "Sécurité",
-    "passwordProtected": "Protégé par Mot de Passe",
-    "publicAccess": "Accès Public",
-    "maxViews": "Vues Maximales : {{count}}",
-    "files": "Fichiers ({{count}})",
-    "recipients": "Destinataires ({{count}})",
-    "notAvailable": "N/D",
-    "invalidDate": "Date invalide",
-    "loadError": "Échec du chargement des détails du partage"
-  },
-  "uploadFile": {
-    "title": "Envoyer un Fichier",
-    "selectFile": "Cliquez pour sélectionner un fichier",
-    "preview": "Aperçu",
-    "uploadProgress": "Progression de l'envoi",
-    "upload": "Envoyer",
-    "success": "Fichier envoyé avec succès",
-    "error": "Échec de l'envoi du fichier"
+  "files": {
+    "title": "Tous les Fichiers",
+    "uploadFile": "Envoyer un Fichier",
+    "loadError": "Échec du chargement des fichiers",
+    "pageTitle": "Mes Fichiers",
+    "breadcrumb": "Mes Fichiers"
   },
   "filesTable": {
     "ariaLabel": "Tableau des fichiers",
@@ -181,118 +101,9 @@
       "delete": "Supprimer"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "Tableau des partages",
-    "never": "Jamais",
-    "columns": {
-      "name": "NOM",
-      "createdAt": "CRÉÉ LE",
-      "expiresAt": "EXPIRE LE",
-      "status": "STATUT",
-      "security": "SÉCURITÉ",
-      "files": "FICHIERS",
-      "recipients": "DESTINATAIRES",
-      "actions": "ACTIONS"
-    },
-    "status": {
-      "neverExpires": "N'expire Jamais",
-      "active": "Actif",
-      "expired": "Expiré"
-    },
-    "security": {
-      "protected": "Protégé",
-      "public": "Public"
-    },
-    "filesCount": "fichiers",
-    "recipientsCount": "destinataires",
-    "actions": {
-      "menu": "Menu d'actions du partage",
-      "edit": "Modifier",
-      "manageFiles": "Gérer les Fichiers",
-      "manageRecipients": "Gérer les Destinataires",
-      "viewDetails": "Voir les Détails",
-      "generateLink": "Générer un Lien",
-      "editLink": "Modifier le Lien",
-      "copyLink": "Copier le Lien",
-      "notifyRecipients": "Notifier les Destinataires",
-      "delete": "Supprimer"
-    }
-  },
   "footer": {
     "poweredBy": "Propulsé par",
     "kyanHomepage": "Page d'accueil de Kyantech"
-  },
-  "fileManager": {
-    "downloadError": "Échec du téléchargement du fichier",
-    "updateSuccess": "Fichier mis à jour avec succès",
-    "updateError": "Échec de la mise à jour du fichier",
-    "deleteSuccess": "Fichier supprimé avec succès",
-    "deleteError": "Échec de la suppression du fichier"
-  },
-  "shareManager": {
-    "deleteSuccess": "Partage supprimé avec succès",
-    "deleteError": "Échec de la suppression du partage",
-    "updateSuccess": "Partage mis à jour avec succès",
-    "updateError": "Échec de la mise à jour du partage",
-    "filesUpdateSuccess": "Fichiers mis à jour avec succès",
-    "filesUpdateError": "Échec de la mise à jour des fichiers",
-    "recipientsUpdateSuccess": "Destinataires mis à jour avec succès",
-    "recipientsUpdateError": "Échec de la mise à jour des destinataires",
-    "linkGenerateSuccess": "Lien de partage généré avec succès",
-    "linkGenerateError": "Échec de la génération du lien de partage",
-    "notifyLoading": "Envoi des notifications...",
-    "notifySuccess": "Destinataires notifiés avec succès",
-    "notifyError": "Échec de la notification des destinataires"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "Mes Fichiers",
-      "description": "Accédez et gérez vos fichiers téléchargés"
-    },
-    "shares": {
-      "title": "Mes Partages",
-      "description": "Visualisez et gérez vos fichiers partagés"
-    }
-  },
-  "recentFiles": {
-    "title": "Téléchargements Récents",
-    "viewAll": "Voir Tout",
-    "uploadFile": "Envoyer un Fichier",
-    "noFiles": "Aucun fichier téléchargé pour le moment"
-  },
-  "recentShares": {
-    "title": "Partages Récents",
-    "viewAll": "Voir Tout",
-    "createShare": "Créer un Partage",
-    "noShares": "Aucun partage créé pour le moment",
-    "createFirst": "Créer votre premier partage"
-  },
-  "storageUsage": {
-    "title": "Utilisation du Stockage",
-    "ariaLabel": "Barre de progression de l'utilisation du stockage",
-    "used": "utilisé",
-    "available": "disponible"
-  },
-  "dashboard": {
-    "loadError": "Échec du chargement des données du tableau de bord",
-    "linkCopied": "Lien copié dans le presse-papiers",
-    "pageTitle": "Tableau de Bord",
-    "breadcrumb": "Tableau de Bord"
-  },
-  "emptyState": {
-    "noFiles": "Aucun fichier téléchargé pour le moment",
-    "uploadFile": "Envoyer un Fichier"
-  },
-  "files": {
-    "title": "Tous les Fichiers",
-    "uploadFile": "Envoyer un Fichier",
-    "loadError": "Échec du chargement des fichiers",
-    "pageTitle": "Mes Fichiers",
-    "breadcrumb": "Mes Fichiers"
-  },
-  "searchBar": {
-    "placeholder": "Rechercher des fichiers...",
-    "results": "Trouvé {{filtered}} sur {{total}} fichiers"
   },
   "forgotPassword": {
     "emailLabel": "Adresse Email",
@@ -305,6 +116,20 @@
     "resetInstructions": "Instructions de réinitialisation envoyées à votre email",
     "pageTitle": "Mot de Passe Oublié"
   },
+  "generateShareLink": {
+    "generateTitle": "Générer un Lien de Partage",
+    "updateTitle": "Mettre à Jour le Lien de Partage",
+    "generateDescription": "Générez un lien pour partager vos fichiers",
+    "updateDescription": "Mettez à jour l'alias de ce lien de partage",
+    "aliasPlaceholder": "Entrez l'alias",
+    "linkReady": "Votre lien de partage est prêt :",
+    "generateButton": "Générer le Lien",
+    "updateButton": "Mettre à Jour le Lien",
+    "copyButton": "Copier le Lien",
+    "success": "Lien généré avec succès",
+    "error": "Échec de la génération du lien",
+    "copied": "Lien copié dans le presse-papiers"
+  },
   "home": {
     "description": "L'alternative open-source à WeTransfer. Partagez des fichiers en toute sécurité, sans suivi ni limitations.",
     "documentation": "Documentation",
@@ -315,6 +140,46 @@
       "tagline": "simple et gratuit"
     },
     "pageTitle": "Accueil"
+  },
+  "login": {
+    "welcome": "Bienvenue à",
+    "signInToContinue": "Connectez-vous pour continuer",
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion en cours...",
+    "forgotPassword": "Mot de passe oublié ?",
+    "pageTitle": "Connexion"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "Logo de l'application"
+    },
+    "buttons": {
+      "upload": "Télécharger le logo",
+      "remove": "Supprimer le logo"
+    },
+    "messages": {
+      "uploadSuccess": "Logo téléchargé avec succès",
+      "removeSuccess": "Logo supprimé avec succès"
+    },
+    "errors": {
+      "uploadFailed": "Échec du téléchargement du logo",
+      "removeFailed": "Échec de la suppression du logo"
+    }
+  },
+  "navbar": {
+    "logoAlt": "Logo de l'Application",
+    "profileMenu": "Menu du Profil",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "usersManagement": "Gestion des Utilisateurs",
+    "logout": "Déconnexion"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "Profil"
   },
+  "quickAccess": {
+    "files": {
+      "title": "Mes Fichiers",
+      "description": "Accédez et gérez vos fichiers téléchargés"
+    },
+    "shares": {
+      "title": "Mes Partages",
+      "description": "Visualisez et gérez vos fichiers partagés"
+    }
+  },
+  "recentFiles": {
+    "title": "Téléchargements Récents",
+    "viewAll": "Voir Tout",
+    "uploadFile": "Envoyer un Fichier",
+    "noFiles": "Aucun fichier téléchargé pour le moment"
+  },
+  "recentShares": {
+    "title": "Partages Récents",
+    "viewAll": "Voir Tout",
+    "createShare": "Créer un Partage",
+    "noShares": "Aucun partage créé pour le moment",
+    "createFirst": "Créer votre premier partage"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Entrez l'e-mail du destinataire",
+    "add": "Ajouter",
+    "recipients": "Destinataires ({{count}})",
+    "notifyAll": "Notifier Tous",
+    "noRecipients": "Aucun destinataire ajouté",
+    "addSuccess": "Destinataire ajouté avec succès",
+    "addError": "Échec de l'ajout du destinataire",
+    "removeSuccess": "Destinataire supprimé avec succès",
+    "removeError": "Échec de la suppression du destinataire",
+    "sendingNotifications": "Envoi des notifications...",
+    "notifySuccess": "Destinataires notifiés avec succès",
+    "notifyError": "Échec de la notification des destinataires"
+  },
   "resetPassword": {
     "pageTitle": "Réinitialiser le Mot de Passe",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "Échec de la réinitialisation du mot de passe. Veuillez réessayer.",
       "invalidToken": "Jeton de réinitialisation invalide ou manquant"
     }
+  },
+  "searchBar": {
+    "placeholder": "Rechercher des fichiers...",
+    "results": "Trouvé {{filtered}} sur {{total}} fichiers"
   },
   "settings": {
     "title": "Paramètres",
@@ -514,6 +420,61 @@
     },
     "pageTitle": "Partage"
   },
+  "shareActions": {
+    "deleteTitle": "Supprimer le Partage",
+    "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce partage ? Cette action ne peut pas être annulée.",
+    "editTitle": "Modifier le Partage",
+    "nameLabel": "Nom du Partage",
+    "expirationLabel": "Date d'Expiration",
+    "expirationPlaceholder": "JJ/MM/AAAA HH:MM",
+    "maxViewsLabel": "Vues Maximales",
+    "maxViewsPlaceholder": "Laisser vide pour illimité",
+    "passwordProtection": "Protégé par Mot de Passe",
+    "passwordLabel": "Mot de Passe",
+    "passwordPlaceholder": "Entrez le mot de passe",
+    "newPasswordLabel": "Nouveau Mot de Passe (laisser vide pour garder l'actuel)",
+    "newPasswordPlaceholder": "Entrez le nouveau mot de passe",
+    "manageFilesTitle": "Gérer les Fichiers",
+    "manageRecipientsTitle": "Gérer les Destinataires",
+    "editSuccess": "Partage mis à jour avec succès",
+    "editError": "Échec de la mise à jour du partage"
+  },
+  "shareDetails": {
+    "title": "Détails du Partage",
+    "subtitle": "Informations détaillées sur ce partage",
+    "basicInfo": "Informations de Base",
+    "name": "Nom",
+    "untitled": "Partage sans titre",
+    "views": "Vues",
+    "dates": "Dates",
+    "created": "Créé le: {{date}}",
+    "expires": "Expire le: {{date}}",
+    "never": "Jamais",
+    "security": "Sécurité",
+    "passwordProtected": "Protégé par Mot de Passe",
+    "publicAccess": "Accès Public",
+    "maxViews": "Vues Maximales : {{count}}",
+    "files": "Fichiers ({{count}})",
+    "recipients": "Destinataires ({{count}})",
+    "notAvailable": "N/D",
+    "invalidDate": "Date invalide",
+    "loadError": "Échec du chargement des détails du partage"
+  },
+  "shareManager": {
+    "deleteSuccess": "Partage supprimé avec succès",
+    "deleteError": "Échec de la suppression du partage",
+    "updateSuccess": "Partage mis à jour avec succès",
+    "updateError": "Échec de la mise à jour du partage",
+    "filesUpdateSuccess": "Fichiers mis à jour avec succès",
+    "filesUpdateError": "Échec de la mise à jour des fichiers",
+    "recipientsUpdateSuccess": "Destinataires mis à jour avec succès",
+    "recipientsUpdateError": "Échec de la mise à jour des destinataires",
+    "linkGenerateSuccess": "Lien de partage généré avec succès",
+    "linkGenerateError": "Échec de la génération du lien de partage",
+    "notifyLoading": "Envoi des notifications...",
+    "notifySuccess": "Destinataires notifiés avec succès",
+    "notifyError": "Échec de la notification des destinataires"
+  },
   "shares": {
     "errors": {
       "loadFailed": "Échec du chargement des partages",
@@ -539,6 +500,58 @@
       "results": "Trouvé {{filtered}} sur {{total}} partages"
     },
     "pageTitle": "Partages"
+  },
+  "sharesTable": {
+    "ariaLabel": "Tableau des partages",
+    "never": "Jamais",
+    "columns": {
+      "name": "NOM",
+      "createdAt": "CRÉÉ LE",
+      "expiresAt": "EXPIRE LE",
+      "status": "STATUT",
+      "security": "SÉCURITÉ",
+      "files": "FICHIERS",
+      "recipients": "DESTINATAIRES",
+      "actions": "ACTIONS"
+    },
+    "status": {
+      "neverExpires": "N'expire Jamais",
+      "active": "Actif",
+      "expired": "Expiré"
+    },
+    "security": {
+      "protected": "Protégé",
+      "public": "Public"
+    },
+    "filesCount": "fichiers",
+    "recipientsCount": "destinataires",
+    "actions": {
+      "menu": "Menu d'actions du partage",
+      "edit": "Modifier",
+      "manageFiles": "Gérer les Fichiers",
+      "manageRecipients": "Gérer les Destinataires",
+      "viewDetails": "Voir les Détails",
+      "generateLink": "Générer un Lien",
+      "editLink": "Modifier le Lien",
+      "copyLink": "Copier le Lien",
+      "notifyRecipients": "Notifier les Destinataires",
+      "delete": "Supprimer"
+    }
+  },
+  "storageUsage": {
+    "title": "Utilisation du Stockage",
+    "ariaLabel": "Barre de progression de l'utilisation du stockage",
+    "used": "utilisé",
+    "available": "disponible"
+  },
+  "uploadFile": {
+    "title": "Envoyer un Fichier",
+    "selectFile": "Cliquez pour sélectionner un fichier",
+    "preview": "Aperçu",
+    "uploadProgress": "Progression de l'envoi",
+    "upload": "Envoyer",
+    "success": "Fichier envoyé avec succès",
+    "error": "Échec de l'envoi du fichier"
   },
   "users": {
     "modes": {
@@ -609,29 +622,16 @@
       "userr": "Utilisateur"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "Logo de l'application"
-    },
-    "buttons": {
-      "upload": "Télécharger le logo",
-      "remove": "Supprimer le logo"
-    },
-    "messages": {
-      "uploadSuccess": "Logo téléchargé avec succès",
-      "removeSuccess": "Logo supprimé avec succès"
-    },
-    "errors": {
-      "uploadFailed": "Échec du téléchargement du logo",
-      "removeFailed": "Échec de la suppression du logo"
-    }
-  },
-  "navbar": {
-    "logoAlt": "Logo de l'Application",
-    "profileMenu": "Menu du Profil",
-    "profile": "Profil",
-    "settings": "Paramètres",
-    "usersManagement": "Gestion des Utilisateurs",
-    "logout": "Déconnexion"
+  "validation": {
+    "invalidEmail": "Adresse email invalide",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "firstNameRequired": "Le prénom est requis",
+    "lastNameRequired": "Le nom est requis",
+    "usernameLength": "Le nom d'utilisateur doit contenir au moins 3 caractères",
+    "usernameSpaces": "Le nom d'utilisateur ne peut pas contenir d'espaces",
+    "passwordLength": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordsMatch": "Les mots de passe ne correspondent pas",
+    "emailRequired": "L'email est requis",
+    "passwordRequired": "Le mot de passe est requis"
   }
 }

@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "欢迎您",
-    "signInToContinue": "请登录以继续",
-    "emailLabel": "电子邮件地址",
-    "emailPlaceholder": "请输入您的电子邮件",
-    "passwordLabel": "密码",
-    "passwordPlaceholder": "请输入您的密码",
-    "signIn": "登录",
-    "signingIn": "正在登录...",
-    "forgotPassword": "忘记密码？",
-    "pageTitle": "登录"
-  },
-  "errors": {
-    "invalidCredentials": "电子邮件或密码错误",
-    "userNotFound": "未找到用户",
-    "accountLocked": "账户已锁定。请稍后再试",
-    "unexpectedError": "发生意外错误。请重试"
-  },
-  "validation": {
-    "invalidEmail": "无效的电子邮件地址",
-    "passwordMinLength": "密码至少需要6个字符",
-    "firstNameRequired": "名字为必填项",
-    "lastNameRequired": "姓氏为必填项",
-    "usernameLength": "用户名至少需要3个字符",
-    "usernameSpaces": "用户名不能包含空格",
-    "passwordLength": "密码至少需要8个字符",
-    "passwordsMatch": "密码不匹配",
-    "emailRequired": "电子邮件为必填项",
-    "passwordRequired": "密码为必填项"
-  },
-  "fileSelector": {
-    "availableFiles": "可用文件 ({{count}})",
-    "shareFiles": "共享文件 ({{count}})",
-    "searchPlaceholder": "搜索文件...",
-    "noMatchingFiles": "没有匹配的文件",
-    "noAvailableFiles": "没有可用的文件",
-    "noFilesInShare": "共享中没有文件",
-    "saveChanges": "保存更改"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "请输入收件人电子邮件",
-    "add": "添加",
-    "recipients": "收件人 ({{count}})",
-    "notifyAll": "通知所有人",
-    "noRecipients": "还没有添加收件人",
-    "addSuccess": "收件人添加成功",
-    "addError": "添加收件人失败",
-    "removeSuccess": "收件人删除成功",
-    "removeError": "删除收件人失败",
-    "sendingNotifications": "正在发送通知...",
-    "notifySuccess": "收件人通知成功",
-    "notifyError": "通知收件人失败"
-  },
-  "navigation": {
-    "dashboard": "仪表盘"
-  },
   "common": {
     "loading": "加载中，请稍候...",
     "cancel": "取消",
@@ -80,6 +24,22 @@
     "success": "共享创建成功",
     "error": "创建共享失败"
   },
+  "dashboard": {
+    "loadError": "加载仪表盘数据失败",
+    "linkCopied": "链接已复制到剪贴板",
+    "pageTitle": "仪表盘",
+    "breadcrumb": "仪表盘"
+  },
+  "emptyState": {
+    "noFiles": "尚未上传任何文件",
+    "uploadFile": "上传文件"
+  },
+  "errors": {
+    "invalidCredentials": "电子邮件或密码错误",
+    "userNotFound": "未找到用户",
+    "accountLocked": "账户已锁定。请稍后再试",
+    "unexpectedError": "发生意外错误。请重试"
+  },
   "fileActions": {
     "editFile": "编辑文件",
     "nameLabel": "名称",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "您确定要删除“{{fileName}}”吗？",
     "deleteWarning": "此操作不可撤销。"
   },
+  "fileManager": {
+    "downloadError": "文件下载失败",
+    "updateSuccess": "文件更新成功",
+    "updateError": "文件更新失败",
+    "deleteSuccess": "文件删除成功",
+    "deleteError": "文件删除失败"
+  },
   "filePreview": {
     "loading": "正在加载预览...",
     "notAvailable": "预览不可用",
@@ -100,68 +67,21 @@
     "loadError": "加载预览失败",
     "downloadError": "下载文件失败"
   },
-  "generateShareLink": {
-    "generateTitle": "生成共享链接",
-    "updateTitle": "更新共享链接",
-    "generateDescription": "生成用于共享文件的链接",
-    "updateDescription": "更新此共享链接的别名",
-    "aliasPlaceholder": "请输入别名",
-    "linkReady": "您的共享链接已准备好：",
-    "generateButton": "生成链接",
-    "updateButton": "更新链接",
-    "copyButton": "复制链接",
-    "success": "链接生成成功",
-    "error": "生成链接失败",
-    "copied": "链接已复制到剪贴板"
+  "fileSelector": {
+    "availableFiles": "可用文件 ({{count}})",
+    "shareFiles": "共享文件 ({{count}})",
+    "searchPlaceholder": "搜索文件...",
+    "noMatchingFiles": "没有匹配的文件",
+    "noAvailableFiles": "没有可用的文件",
+    "noFilesInShare": "共享中没有文件",
+    "saveChanges": "保存更改"
   },
-  "shareActions": {
-    "deleteTitle": "删除共享",
-    "deleteConfirmation": "您确定要删除此共享吗？此操作不可撤销。",
-    "editTitle": "编辑共享",
-    "nameLabel": "共享名称",
-    "expirationLabel": "过期日期",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "最大查看次数",
-    "maxViewsPlaceholder": "留空表示无限",
-    "passwordProtection": "密码保护",
-    "passwordLabel": "密码",
-    "passwordPlaceholder": "请输入密码",
-    "newPasswordLabel": "新密码（留空表示保持当前密码）",
-    "newPasswordPlaceholder": "请输入新密码",
-    "manageFilesTitle": "管理文件",
-    "manageRecipientsTitle": "管理收件人",
-    "editSuccess": "共享更新成功",
-    "editError": "更新共享失败"
-  },
-  "shareDetails": {
-    "title": "共享详情",
-    "subtitle": "关于此共享的详细信息",
-    "basicInfo": "基本信息",
-    "name": "名称",
-    "untitled": "未命名",
-    "views": "查看次数",
-    "dates": "日期",
-    "created": "创建于",
-    "expires": "过期于",
-    "never": "从不",
-    "security": "安全性",
-    "passwordProtected": "受密码保护",
-    "publicAccess": "公开访问",
-    "maxViews": "最大查看次数：{{count}}",
-    "files": "文件 ({{count}})",
-    "recipients": "收件人 ({{count}})",
-    "notAvailable": "不适用",
-    "invalidDate": "无效的日期",
-    "loadError": "加载共享详情失败"
-  },
-  "uploadFile": {
-    "title": "上传文件",
-    "selectFile": "点击选择文件",
-    "preview": "预览",
-    "uploadProgress": "上传进度",
-    "upload": "上传",
-    "success": "文件上传成功",
-    "error": "文件上传失败"
+  "files": {
+    "title": "所有文件",
+    "uploadFile": "上传文件",
+    "loadError": "加载文件失败",
+    "pageTitle": "我的文件",
+    "breadcrumb": "我的文件"
   },
   "filesTable": {
     "ariaLabel": "文件表格",
@@ -181,118 +101,9 @@
       "delete": "删除"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "共享表格",
-    "never": "从不",
-    "columns": {
-      "name": "名称",
-      "createdAt": "创建时间",
-      "expiresAt": "过期时间",
-      "status": "状态",
-      "security": "安全性",
-      "files": "文件",
-      "recipients": "收件人",
-      "actions": "操作"
-    },
-    "status": {
-      "neverExpires": "永不过期",
-      "active": "活跃",
-      "expired": "已过期"
-    },
-    "security": {
-      "protected": "受保护",
-      "public": "公开"
-    },
-    "filesCount": "个文件",
-    "recipientsCount": "个收件人",
-    "actions": {
-      "menu": "共享操作菜单",
-      "edit": "编辑",
-      "manageFiles": "管理文件",
-      "manageRecipients": "管理收件人",
-      "viewDetails": "查看详情",
-      "generateLink": "生成链接",
-      "editLink": "编辑链接",
-      "copyLink": "复制链接",
-      "notifyRecipients": "通知收件人",
-      "delete": "删除"
-    }
-  },
   "footer": {
     "poweredBy": "技术支持：",
     "kyanHomepage": "Kyantech 主页"
-  },
-  "fileManager": {
-    "downloadError": "文件下载失败",
-    "updateSuccess": "文件更新成功",
-    "updateError": "文件更新失败",
-    "deleteSuccess": "文件删除成功",
-    "deleteError": "文件删除失败"
-  },
-  "shareManager": {
-    "deleteSuccess": "共享删除成功",
-    "deleteError": "共享删除失败",
-    "updateSuccess": "共享更新成功",
-    "updateError": "共享更新失败",
-    "filesUpdateSuccess": "文件更新成功",
-    "filesUpdateError": "文件更新失败",
-    "recipientsUpdateSuccess": "收件人更新成功",
-    "recipientsUpdateError": "收件人更新失败",
-    "linkGenerateSuccess": "共享链接生成成功",
-    "linkGenerateError": "共享链接生成失败",
-    "notifyLoading": "正在发送通知...",
-    "notifySuccess": "通知收件人成功",
-    "notifyError": "通知收件人失败"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "我的文件",
-      "description": "访问和管理您上传的文件"
-    },
-    "shares": {
-      "title": "我的共享",
-      "description": "查看和管理您共享的文件"
-    }
-  },
-  "recentFiles": {
-    "title": "最近上传",
-    "viewAll": "查看全部",
-    "uploadFile": "上传文件",
-    "noFiles": "尚未上传文件"
-  },
-  "recentShares": {
-    "title": "最近共享",
-    "viewAll": "查看全部",
-    "createShare": "创建共享",
-    "noShares": "尚未创建共享",
-    "createFirst": "请创建您的第一个共享"
-  },
-  "storageUsage": {
-    "title": "存储使用情况",
-    "ariaLabel": "存储使用进度条",
-    "used": "已使用：",
-    "available": "可用："
-  },
-  "dashboard": {
-    "loadError": "加载仪表盘数据失败",
-    "linkCopied": "链接已复制到剪贴板",
-    "pageTitle": "仪表盘",
-    "breadcrumb": "仪表盘"
-  },
-  "emptyState": {
-    "noFiles": "尚未上传任何文件",
-    "uploadFile": "上传文件"
-  },
-  "files": {
-    "title": "所有文件",
-    "uploadFile": "上传文件",
-    "loadError": "加载文件失败",
-    "pageTitle": "我的文件",
-    "breadcrumb": "我的文件"
-  },
-  "searchBar": {
-    "placeholder": "搜索文件...",
-    "results": "共{{total}}个文件，找到{{filtered}}个"
   },
   "forgotPassword": {
     "emailLabel": "电子邮件地址",
@@ -305,6 +116,20 @@
     "resetInstructions": "密码重置指令已发送到您的电子邮件",
     "pageTitle": "忘记密码？"
   },
+  "generateShareLink": {
+    "generateTitle": "生成共享链接",
+    "updateTitle": "更新共享链接",
+    "generateDescription": "生成用于共享文件的链接",
+    "updateDescription": "更新此共享链接的别名",
+    "aliasPlaceholder": "请输入别名",
+    "linkReady": "您的共享链接已准备好：",
+    "generateButton": "生成链接",
+    "updateButton": "更新链接",
+    "copyButton": "复制链接",
+    "success": "链接生成成功",
+    "error": "生成链接失败",
+    "copied": "链接已复制到剪贴板"
+  },
   "home": {
     "description": "WeTransfer的开源替代方案。安全分享文件，无需跟踪或限制。",
     "documentation": "文档",
@@ -315,6 +140,46 @@
       "tagline": "简单且免费"
     },
     "pageTitle": "首页"
+  },
+  "login": {
+    "welcome": "欢迎您",
+    "signInToContinue": "请登录以继续",
+    "emailLabel": "电子邮件地址",
+    "emailPlaceholder": "请输入您的电子邮件",
+    "passwordLabel": "密码",
+    "passwordPlaceholder": "请输入您的密码",
+    "signIn": "登录",
+    "signingIn": "正在登录...",
+    "forgotPassword": "忘记密码？",
+    "pageTitle": "登录"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "应用Logo"
+    },
+    "buttons": {
+      "upload": "上传Logo",
+      "remove": "删除Logo"
+    },
+    "messages": {
+      "uploadSuccess": "Logo上传成功",
+      "removeSuccess": "Logo删除成功"
+    },
+    "errors": {
+      "uploadFailed": "Logo上传失败",
+      "removeFailed": "Logo删除失败"
+    }
+  },
+  "navbar": {
+    "logoAlt": "应用Logo",
+    "profileMenu": "个人菜单",
+    "profile": "个人资料",
+    "settings": "设置",
+    "usersManagement": "用户管理",
+    "logout": "退出登录"
+  },
+  "navigation": {
+    "dashboard": "仪表盘"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "个人资料"
   },
+  "quickAccess": {
+    "files": {
+      "title": "我的文件",
+      "description": "访问和管理您上传的文件"
+    },
+    "shares": {
+      "title": "我的共享",
+      "description": "查看和管理您共享的文件"
+    }
+  },
+  "recentFiles": {
+    "title": "最近上传",
+    "viewAll": "查看全部",
+    "uploadFile": "上传文件",
+    "noFiles": "尚未上传文件"
+  },
+  "recentShares": {
+    "title": "最近共享",
+    "viewAll": "查看全部",
+    "createShare": "创建共享",
+    "noShares": "尚未创建共享",
+    "createFirst": "请创建您的第一个共享"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "请输入收件人电子邮件",
+    "add": "添加",
+    "recipients": "收件人 ({{count}})",
+    "notifyAll": "通知所有人",
+    "noRecipients": "还没有添加收件人",
+    "addSuccess": "收件人添加成功",
+    "addError": "添加收件人失败",
+    "removeSuccess": "收件人删除成功",
+    "removeError": "删除收件人失败",
+    "sendingNotifications": "正在发送通知...",
+    "notifySuccess": "收件人通知成功",
+    "notifyError": "通知收件人失败"
+  },
   "resetPassword": {
     "pageTitle": "重置密码",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "密码重置失败，请重试。",
       "invalidToken": "无效或缺失重置令牌"
     }
+  },
+  "searchBar": {
+    "placeholder": "搜索文件...",
+    "results": "共{{total}}个文件，找到{{filtered}}个"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "共享"
   },
+  "shareActions": {
+    "deleteTitle": "删除共享",
+    "deleteConfirmation": "您确定要删除此共享吗？此操作不可撤销。",
+    "editTitle": "编辑共享",
+    "nameLabel": "共享名称",
+    "expirationLabel": "过期日期",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "最大查看次数",
+    "maxViewsPlaceholder": "留空表示无限",
+    "passwordProtection": "密码保护",
+    "passwordLabel": "密码",
+    "passwordPlaceholder": "请输入密码",
+    "newPasswordLabel": "新密码（留空表示保持当前密码）",
+    "newPasswordPlaceholder": "请输入新密码",
+    "manageFilesTitle": "管理文件",
+    "manageRecipientsTitle": "管理收件人",
+    "editSuccess": "共享更新成功",
+    "editError": "更新共享失败"
+  },
+  "shareDetails": {
+    "title": "共享详情",
+    "subtitle": "关于此共享的详细信息",
+    "basicInfo": "基本信息",
+    "name": "名称",
+    "untitled": "未命名",
+    "views": "查看次数",
+    "dates": "日期",
+    "created": "创建于",
+    "expires": "过期于",
+    "never": "从不",
+    "security": "安全性",
+    "passwordProtected": "受密码保护",
+    "publicAccess": "公开访问",
+    "maxViews": "最大查看次数：{{count}}",
+    "files": "文件 ({{count}})",
+    "recipients": "收件人 ({{count}})",
+    "notAvailable": "不适用",
+    "invalidDate": "无效的日期",
+    "loadError": "加载共享详情失败"
+  },
+  "shareManager": {
+    "deleteSuccess": "共享删除成功",
+    "deleteError": "共享删除失败",
+    "updateSuccess": "共享更新成功",
+    "updateError": "共享更新失败",
+    "filesUpdateSuccess": "文件更新成功",
+    "filesUpdateError": "文件更新失败",
+    "recipientsUpdateSuccess": "收件人更新成功",
+    "recipientsUpdateError": "收件人更新失败",
+    "linkGenerateSuccess": "共享链接生成成功",
+    "linkGenerateError": "共享链接生成失败",
+    "notifyLoading": "正在发送通知...",
+    "notifySuccess": "通知收件人成功",
+    "notifyError": "通知收件人失败"
+  },
   "shares": {
     "errors": {
       "loadFailed": "加载共享失败",
@@ -540,6 +501,58 @@
       "results": "在总共{{total}}个共享中找到了{{filtered}}个"
     },
     "pageTitle": "共享"
+  },
+  "sharesTable": {
+    "ariaLabel": "共享表格",
+    "never": "从不",
+    "columns": {
+      "name": "名称",
+      "createdAt": "创建时间",
+      "expiresAt": "过期时间",
+      "status": "状态",
+      "security": "安全性",
+      "files": "文件",
+      "recipients": "收件人",
+      "actions": "操作"
+    },
+    "status": {
+      "neverExpires": "永不过期",
+      "active": "活跃",
+      "expired": "已过期"
+    },
+    "security": {
+      "protected": "受保护",
+      "public": "公开"
+    },
+    "filesCount": "个文件",
+    "recipientsCount": "个收件人",
+    "actions": {
+      "menu": "共享操作菜单",
+      "edit": "编辑",
+      "manageFiles": "管理文件",
+      "manageRecipients": "管理收件人",
+      "viewDetails": "查看详情",
+      "generateLink": "生成链接",
+      "editLink": "编辑链接",
+      "copyLink": "复制链接",
+      "notifyRecipients": "通知收件人",
+      "delete": "删除"
+    }
+  },
+  "storageUsage": {
+    "title": "存储使用情况",
+    "ariaLabel": "存储使用进度条",
+    "used": "已使用：",
+    "available": "可用："
+  },
+  "uploadFile": {
+    "title": "上传文件",
+    "selectFile": "点击选择文件",
+    "preview": "预览",
+    "uploadProgress": "上传进度",
+    "upload": "上传",
+    "success": "文件上传成功",
+    "error": "文件上传失败"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "用户"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "应用Logo"
-    },
-    "buttons": {
-      "upload": "上传Logo",
-      "remove": "删除Logo"
-    },
-    "messages": {
-      "uploadSuccess": "Logo上传成功",
-      "removeSuccess": "Logo删除成功"
-    },
-    "errors": {
-      "uploadFailed": "Logo上传失败",
-      "removeFailed": "Logo删除失败"
-    }
-  },
-  "navbar": {
-    "logoAlt": "应用Logo",
-    "profileMenu": "个人菜单",
-    "profile": "个人资料",
-    "settings": "设置",
-    "usersManagement": "用户管理",
-    "logout": "退出登录"
+  "validation": {
+    "invalidEmail": "无效的电子邮件地址",
+    "passwordMinLength": "密码至少需要6个字符",
+    "firstNameRequired": "名字为必填项",
+    "lastNameRequired": "姓氏为必填项",
+    "usernameLength": "用户名至少需要3个字符",
+    "usernameSpaces": "用户名不能包含空格",
+    "passwordLength": "密码至少需要8个字符",
+    "passwordsMatch": "密码不匹配",
+    "emailRequired": "电子邮件为必填项",
+    "passwordRequired": "密码为必填项"
   }
 }

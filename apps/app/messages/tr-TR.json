@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "Hoş geldiniz'e",
-    "signInToContinue": "Devam etmek için oturum açın",
-    "emailLabel": "E-posta Adresi",
-    "emailPlaceholder": "E-posta adresinizi girin",
-    "passwordLabel": "Şifre",
-    "passwordPlaceholder": "Şifrenizi girin",
-    "signIn": "Oturum Aç",
-    "signingIn": "Oturum açılıyor...",
-    "forgotPassword": "Şifrenizi mi unuttunuz?",
-    "pageTitle": "Giriş"
-  },
-  "errors": {
-    "invalidCredentials": "Geçersiz e-posta veya şifre",
-    "userNotFound": "Kullanıcı bulunamadı",
-    "accountLocked": "Hesap kilitlendi. Lütfen daha sonra tekrar deneyin",
-    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin"
-  },
-  "validation": {
-    "invalidEmail": "Geçersiz e-posta adresi",
-    "passwordMinLength": "Şifre en az 6 karakter olmalıdır",
-    "firstNameRequired": "Ad gerekli",
-    "lastNameRequired": "Soyad gerekli",
-    "usernameLength": "Kullanıcı adı en az 3 karakter olmalıdır",
-    "usernameSpaces": "Kullanıcı adında boşluk olamaz",
-    "passwordLength": "Şifre en az 8 karakter olmalıdır",
-    "passwordsMatch": "Şifreler eşleşmiyor",
-    "emailRequired": "E-posta gerekli",
-    "passwordRequired": "Şifre gerekli"
-  },
-  "fileSelector": {
-    "availableFiles": "Kullanılabilir Dosyalar ({{count}})",
-    "shareFiles": "Dosyaları Paylaş ({{count}})",
-    "searchPlaceholder": "Dosya ara...",
-    "noMatchingFiles": "Eşleşen dosya bulunamadı",
-    "noAvailableFiles": "Kullanılabilir dosya yok",
-    "noFilesInShare": "Paylaşımda dosya yok",
-    "saveChanges": "Değişiklikleri Kaydet"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "Alıcının e-postasını girin",
-    "add": "Ekle",
-    "recipients": "Alıcılar ({{count}})",
-    "notifyAll": "Hepsini Bildir",
-    "noRecipients": "Henüz alıcı eklenmedi",
-    "addSuccess": "Alıcı başarıyla eklendi",
-    "addError": "Alıcı eklenemedi",
-    "removeSuccess": "Alıcı başarıyla kaldırıldı",
-    "removeError": "Alıcı kaldırılamadı",
-    "sendingNotifications": "Bildirimler gönderiliyor...",
-    "notifySuccess": "Alıcılar başarıyla bildirildi",
-    "notifyError": "Alıcılara bildirim gönderilemedi"
-  },
-  "navigation": {
-    "dashboard": "Gösterge Paneli"
-  },
   "common": {
     "loading": "Yükleniyor, lütfen bekleyin...",
     "cancel": "İptal",
@@ -80,6 +24,22 @@
     "success": "Paylaşım başarıyla oluşturuldu",
     "error": "Paylaşım oluşturulamadı"
   },
+  "dashboard": {
+    "loadError": "Gösterge paneli verileri yüklenemedi",
+    "linkCopied": "Bağlantı panoya kopyalandı",
+    "pageTitle": "Gösterge Paneli",
+    "breadcrumb": "Gösterge Paneli"
+  },
+  "emptyState": {
+    "noFiles": "Henüz dosya yüklenmedi",
+    "uploadFile": "Dosya Yükle"
+  },
+  "errors": {
+    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "userNotFound": "Kullanıcı bulunamadı",
+    "accountLocked": "Hesap kilitlendi. Lütfen daha sonra tekrar deneyin",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin"
+  },
   "fileActions": {
     "editFile": "Dosyayı Düzenle",
     "nameLabel": "Ad",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "\"{{fileName}}\" dosyasını silmek istediğinize emin misiniz?",
     "deleteWarning": "Bu işlem geri alınamaz."
   },
+  "fileManager": {
+    "downloadError": "Dosya indirilemedi",
+    "updateSuccess": "Dosya başarıyla güncellendi",
+    "updateError": "Dosya güncellenemedi",
+    "deleteSuccess": "Dosya başarıyla silindi",
+    "deleteError": "Dosya silinemedi"
+  },
   "filePreview": {
     "loading": "Önizleme yükleniyor...",
     "notAvailable": "Önizleme mevcut değil",
@@ -100,68 +67,21 @@
     "loadError": "Önizleme yüklenemedi",
     "downloadError": "Dosya indirilemedi"
   },
-  "generateShareLink": {
-    "generateTitle": "Paylaşım Bağlantısı Oluştur",
-    "updateTitle": "Paylaşım Bağlantısını Güncelle",
-    "generateDescription": "Dosyalarınızı paylaşmak için bir bağlantı oluşturun",
-    "updateDescription": "Bu paylaşım bağlantısı için takma ad güncelleyin",
-    "aliasPlaceholder": "Takma ad girin",
-    "linkReady": "Paylaşım bağlantınız hazır:",
-    "generateButton": "Bağlantıyı Oluştur",
-    "updateButton": "Bağlantıyı Güncelle",
-    "copyButton": "Bağlantıyı Kopyala",
-    "success": "Bağlantı başarıyla oluşturuldu",
-    "error": "Bağlantı oluşturulamadı",
-    "copied": "Bağlantı panoya kopyalandı"
+  "fileSelector": {
+    "availableFiles": "Kullanılabilir Dosyalar ({{count}})",
+    "shareFiles": "Dosyaları Paylaş ({{count}})",
+    "searchPlaceholder": "Dosya ara...",
+    "noMatchingFiles": "Eşleşen dosya bulunamadı",
+    "noAvailableFiles": "Kullanılabilir dosya yok",
+    "noFilesInShare": "Paylaşımda dosya yok",
+    "saveChanges": "Değişiklikleri Kaydet"
   },
-  "shareActions": {
-    "deleteTitle": "Paylaşımı Sil",
-    "deleteConfirmation": "Bu paylaşımı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
-    "editTitle": "Paylaşımı Düzenle",
-    "nameLabel": "Paylaşım Adı",
-    "expirationLabel": "Son Kullanma Tarihi",
-    "expirationPlaceholder": "MM/GG/YYYY SS:DD",
-    "maxViewsLabel": "Maksimum Görüntüleme",
-    "maxViewsPlaceholder": "Sınırsız için boş bırakın",
-    "passwordProtection": "Şifre Korumalı",
-    "passwordLabel": "Şifre",
-    "passwordPlaceholder": "Şifreyi girin",
-    "newPasswordLabel": "Yeni Şifre (mevcut şifreyi korumak için boş bırakın)",
-    "newPasswordPlaceholder": "Yeni şifreyi girin",
-    "manageFilesTitle": "Dosyaları Yönet",
-    "manageRecipientsTitle": "Alıcıları Yönet",
-    "editSuccess": "Paylaşım başarıyla güncellendi",
-    "editError": "Paylaşım güncellenemedi"
-  },
-  "shareDetails": {
-    "title": "Paylaşım Detayları",
-    "subtitle": "Bu paylaşım hakkında ayrıntılı bilgi",
-    "basicInfo": "Temel Bilgiler",
-    "name": "Ad",
-    "untitled": "Adsız",
-    "views": "Görüntüleme",
-    "dates": "Tarihler",
-    "created": "Oluşturuldu",
-    "expires": "Sona Eriyor",
-    "never": "Asla",
-    "security": "Güvenlik",
-    "passwordProtected": "Şifre ile Korunuyor",
-    "publicAccess": "Genel Erişim",
-    "maxViews": "Maksimum Görüntüleme: {{count}}",
-    "files": "Dosyalar ({{count}})",
-    "recipients": "Alıcılar ({{count}})",
-    "notAvailable": "Mevcut Değil",
-    "invalidDate": "Geçersiz tarih",
-    "loadError": "Paylaşım detayları yüklenemedi"
-  },
-  "uploadFile": {
-    "title": "Dosya Yükle",
-    "selectFile": "Dosya seçmek için tıklayın",
-    "preview": "Önizleme",
-    "uploadProgress": "Yükleme İlerlemesi",
-    "upload": "Yükle",
-    "success": "Dosya başarıyla yüklendi",
-    "error": "Dosya yüklenemedi"
+  "files": {
+    "title": "Tüm Dosyalar",
+    "uploadFile": "Dosya Yükle",
+    "loadError": "Dosyalar yüklenemedi",
+    "pageTitle": "Benim Dosyalarım",
+    "breadcrumb": "Benim Dosyalarım"
   },
   "filesTable": {
     "ariaLabel": "Dosya Tablosu",
@@ -181,118 +101,9 @@
       "delete": "Sil"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "Paylaşım Tablosu",
-    "never": "Asla",
-    "columns": {
-      "name": "Ad",
-      "createdAt": "Oluşturulma Tarihi",
-      "expiresAt": "Son Kullanma Tarihi",
-      "status": "Durum",
-      "security": "Güvenlik",
-      "files": "Dosyalar",
-      "recipients": "Alıcılar",
-      "actions": "İşlemler"
-    },
-    "status": {
-      "neverExpires": "Sona Ermez",
-      "active": "Aktif",
-      "expired": "Sona Erdi"
-    },
-    "security": {
-      "protected": "Korunuyor",
-      "public": "Genel"
-    },
-    "filesCount": "dosya",
-    "recipientsCount": "alıcı",
-    "actions": {
-      "menu": "Paylaşım İşlem Menüsü",
-      "edit": "Düzenle",
-      "manageFiles": "Dosyaları Yönet",
-      "manageRecipients": "Alıcıları Yönet",
-      "viewDetails": "Detayları Görüntüle",
-      "generateLink": "Bağlantı Oluştur",
-      "editLink": "Bağlantıyı Düzenle",
-      "copyLink": "Bağlantıyı Kopyala",
-      "notifyRecipients": "Alıcıları Bildir",
-      "delete": "Sil"
-    }
-  },
   "footer": {
     "poweredBy": "Tarafından destekleniyor:",
     "kyanHomepage": "Kyantech Ana Sayfası"
-  },
-  "fileManager": {
-    "downloadError": "Dosya indirilemedi",
-    "updateSuccess": "Dosya başarıyla güncellendi",
-    "updateError": "Dosya güncellenemedi",
-    "deleteSuccess": "Dosya başarıyla silindi",
-    "deleteError": "Dosya silinemedi"
-  },
-  "shareManager": {
-    "deleteSuccess": "Paylaşım başarıyla silindi",
-    "deleteError": "Paylaşım silinemedi",
-    "updateSuccess": "Paylaşım başarıyla güncellendi",
-    "updateError": "Paylaşım güncellenemedi",
-    "filesUpdateSuccess": "Dosyalar başarıyla güncellendi",
-    "filesUpdateError": "Dosyalar güncellenemedi",
-    "recipientsUpdateSuccess": "Alıcılar başarıyla güncellendi",
-    "recipientsUpdateError": "Alıcılar güncellenemedi",
-    "linkGenerateSuccess": "Paylaşım bağlantısı başarıyla oluşturuldu",
-    "linkGenerateError": "Paylaşım bağlantısı oluşturulamadı",
-    "notifyLoading": "Bildirimler gönderiliyor...",
-    "notifySuccess": "Alıcılara başarıyla bildirildi",
-    "notifyError": "Alıcılara bildirim gönderilemedi"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "Benim Dosyalarım",
-      "description": "Yüklenen dosyalara erişin ve yönetin"
-    },
-    "shares": {
-      "title": "Benim Paylaşımlarım",
-      "description": "Paylaşılan dosyaları görüntüleyin ve yönetin"
-    }
-  },
-  "recentFiles": {
-    "title": "Son Yüklemeler",
-    "viewAll": "Tümünü Görüntüle",
-    "uploadFile": "Dosya Yükle",
-    "noFiles": "Henüz dosya yüklenmedi"
-  },
-  "recentShares": {
-    "title": "Son Paylaşımlar",
-    "viewAll": "Tümünü Görüntüle",
-    "createShare": "Paylaşım Oluştur",
-    "noShares": "Henüz paylaşım oluşturulmadı",
-    "createFirst": "İlk paylaşımınızı oluşturun"
-  },
-  "storageUsage": {
-    "title": "Depolama Kullanımı",
-    "ariaLabel": "Depolama kullanım ilerleme çubuğu",
-    "used": "kullanıldı",
-    "available": "kullanılabilir"
-  },
-  "dashboard": {
-    "loadError": "Gösterge paneli verileri yüklenemedi",
-    "linkCopied": "Bağlantı panoya kopyalandı",
-    "pageTitle": "Gösterge Paneli",
-    "breadcrumb": "Gösterge Paneli"
-  },
-  "emptyState": {
-    "noFiles": "Henüz dosya yüklenmedi",
-    "uploadFile": "Dosya Yükle"
-  },
-  "files": {
-    "title": "Tüm Dosyalar",
-    "uploadFile": "Dosya Yükle",
-    "loadError": "Dosyalar yüklenemedi",
-    "pageTitle": "Benim Dosyalarım",
-    "breadcrumb": "Benim Dosyalarım"
-  },
-  "searchBar": {
-    "placeholder": "Dosya ara...",
-    "results": "Toplam {{total}} dosya içinde {{filtered}} dosya bulundu"
   },
   "forgotPassword": {
     "emailLabel": "E-posta Adresi",
@@ -305,6 +116,20 @@
     "resetInstructions": "Şifre sıfırlama talimatları e-posta adresinize gönderildi",
     "pageTitle": "Şifrenizi mi Unuttunuz?"
   },
+  "generateShareLink": {
+    "generateTitle": "Paylaşım Bağlantısı Oluştur",
+    "updateTitle": "Paylaşım Bağlantısını Güncelle",
+    "generateDescription": "Dosyalarınızı paylaşmak için bir bağlantı oluşturun",
+    "updateDescription": "Bu paylaşım bağlantısı için takma ad güncelleyin",
+    "aliasPlaceholder": "Takma ad girin",
+    "linkReady": "Paylaşım bağlantınız hazır:",
+    "generateButton": "Bağlantıyı Oluştur",
+    "updateButton": "Bağlantıyı Güncelle",
+    "copyButton": "Bağlantıyı Kopyala",
+    "success": "Bağlantı başarıyla oluşturuldu",
+    "error": "Bağlantı oluşturulamadı",
+    "copied": "Bağlantı panoya kopyalandı"
+  },
   "home": {
     "description": "WeTransfer'e açık kaynaklı alternatif. Takip veya kısıtlama olmadan dosyalarınızı güvenle paylaşın.",
     "documentation": "Belgelendirme",
@@ -315,6 +140,46 @@
       "tagline": "Basit ve Ücretsiz"
     },
     "pageTitle": "Ana Sayfa"
+  },
+  "login": {
+    "welcome": "Hoş geldiniz'e",
+    "signInToContinue": "Devam etmek için oturum açın",
+    "emailLabel": "E-posta Adresi",
+    "emailPlaceholder": "E-posta adresinizi girin",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "Şifrenizi girin",
+    "signIn": "Oturum Aç",
+    "signingIn": "Oturum açılıyor...",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "pageTitle": "Giriş"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "Uygulama Logosu"
+    },
+    "buttons": {
+      "upload": "Logoyu Yükle",
+      "remove": "Logoyu Kaldır"
+    },
+    "messages": {
+      "uploadSuccess": "Logo başarıyla yüklendi",
+      "removeSuccess": "Logo başarıyla kaldırıldı"
+    },
+    "errors": {
+      "uploadFailed": "Logo yüklenemedi",
+      "removeFailed": "Logo kaldırılamadı"
+    }
+  },
+  "navbar": {
+    "logoAlt": "Uygulama Logosu",
+    "profileMenu": "Profil Menüsü",
+    "profile": "Profil",
+    "settings": "Ayarlar",
+    "usersManagement": "Kullanıcı Yönetimi",
+    "logout": "Oturumu Kapat"
+  },
+  "navigation": {
+    "dashboard": "Gösterge Paneli"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "Profil"
   },
+  "quickAccess": {
+    "files": {
+      "title": "Benim Dosyalarım",
+      "description": "Yüklenen dosyalara erişin ve yönetin"
+    },
+    "shares": {
+      "title": "Benim Paylaşımlarım",
+      "description": "Paylaşılan dosyaları görüntüleyin ve yönetin"
+    }
+  },
+  "recentFiles": {
+    "title": "Son Yüklemeler",
+    "viewAll": "Tümünü Görüntüle",
+    "uploadFile": "Dosya Yükle",
+    "noFiles": "Henüz dosya yüklenmedi"
+  },
+  "recentShares": {
+    "title": "Son Paylaşımlar",
+    "viewAll": "Tümünü Görüntüle",
+    "createShare": "Paylaşım Oluştur",
+    "noShares": "Henüz paylaşım oluşturulmadı",
+    "createFirst": "İlk paylaşımınızı oluşturun"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Alıcının e-postasını girin",
+    "add": "Ekle",
+    "recipients": "Alıcılar ({{count}})",
+    "notifyAll": "Hepsini Bildir",
+    "noRecipients": "Henüz alıcı eklenmedi",
+    "addSuccess": "Alıcı başarıyla eklendi",
+    "addError": "Alıcı eklenemedi",
+    "removeSuccess": "Alıcı başarıyla kaldırıldı",
+    "removeError": "Alıcı kaldırılamadı",
+    "sendingNotifications": "Bildirimler gönderiliyor...",
+    "notifySuccess": "Alıcılar başarıyla bildirildi",
+    "notifyError": "Alıcılara bildirim gönderilemedi"
+  },
   "resetPassword": {
     "pageTitle": "Şifreyi Sıfırla",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "Şifre sıfırlama başarısız. Lütfen tekrar deneyin.",
       "invalidToken": "Geçersiz veya eksik sıfırlama belirteci"
     }
+  },
+  "searchBar": {
+    "placeholder": "Dosya ara...",
+    "results": "Toplam {{total}} dosya içinde {{filtered}} dosya bulundu"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "Paylaşım"
   },
+  "shareActions": {
+    "deleteTitle": "Paylaşımı Sil",
+    "deleteConfirmation": "Bu paylaşımı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "editTitle": "Paylaşımı Düzenle",
+    "nameLabel": "Paylaşım Adı",
+    "expirationLabel": "Son Kullanma Tarihi",
+    "expirationPlaceholder": "MM/GG/YYYY SS:DD",
+    "maxViewsLabel": "Maksimum Görüntüleme",
+    "maxViewsPlaceholder": "Sınırsız için boş bırakın",
+    "passwordProtection": "Şifre Korumalı",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "Şifreyi girin",
+    "newPasswordLabel": "Yeni Şifre (mevcut şifreyi korumak için boş bırakın)",
+    "newPasswordPlaceholder": "Yeni şifreyi girin",
+    "manageFilesTitle": "Dosyaları Yönet",
+    "manageRecipientsTitle": "Alıcıları Yönet",
+    "editSuccess": "Paylaşım başarıyla güncellendi",
+    "editError": "Paylaşım güncellenemedi"
+  },
+  "shareDetails": {
+    "title": "Paylaşım Detayları",
+    "subtitle": "Bu paylaşım hakkında ayrıntılı bilgi",
+    "basicInfo": "Temel Bilgiler",
+    "name": "Ad",
+    "untitled": "Adsız",
+    "views": "Görüntüleme",
+    "dates": "Tarihler",
+    "created": "Oluşturuldu",
+    "expires": "Sona Eriyor",
+    "never": "Asla",
+    "security": "Güvenlik",
+    "passwordProtected": "Şifre ile Korunuyor",
+    "publicAccess": "Genel Erişim",
+    "maxViews": "Maksimum Görüntüleme: {{count}}",
+    "files": "Dosyalar ({{count}})",
+    "recipients": "Alıcılar ({{count}})",
+    "notAvailable": "Mevcut Değil",
+    "invalidDate": "Geçersiz tarih",
+    "loadError": "Paylaşım detayları yüklenemedi"
+  },
+  "shareManager": {
+    "deleteSuccess": "Paylaşım başarıyla silindi",
+    "deleteError": "Paylaşım silinemedi",
+    "updateSuccess": "Paylaşım başarıyla güncellendi",
+    "updateError": "Paylaşım güncellenemedi",
+    "filesUpdateSuccess": "Dosyalar başarıyla güncellendi",
+    "filesUpdateError": "Dosyalar güncellenemedi",
+    "recipientsUpdateSuccess": "Alıcılar başarıyla güncellendi",
+    "recipientsUpdateError": "Alıcılar güncellenemedi",
+    "linkGenerateSuccess": "Paylaşım bağlantısı başarıyla oluşturuldu",
+    "linkGenerateError": "Paylaşım bağlantısı oluşturulamadı",
+    "notifyLoading": "Bildirimler gönderiliyor...",
+    "notifySuccess": "Alıcılara başarıyla bildirildi",
+    "notifyError": "Alıcılara bildirim gönderilemedi"
+  },
   "shares": {
     "errors": {
       "loadFailed": "Paylaşımlar yüklenemedi",
@@ -540,6 +501,58 @@
       "results": "Toplam {{total}} paylaşım arasında {{filtered}} paylaşım bulundu"
     },
     "pageTitle": "Paylaşımlar"
+  },
+  "sharesTable": {
+    "ariaLabel": "Paylaşım Tablosu",
+    "never": "Asla",
+    "columns": {
+      "name": "Ad",
+      "createdAt": "Oluşturulma Tarihi",
+      "expiresAt": "Son Kullanma Tarihi",
+      "status": "Durum",
+      "security": "Güvenlik",
+      "files": "Dosyalar",
+      "recipients": "Alıcılar",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "neverExpires": "Sona Ermez",
+      "active": "Aktif",
+      "expired": "Sona Erdi"
+    },
+    "security": {
+      "protected": "Korunuyor",
+      "public": "Genel"
+    },
+    "filesCount": "dosya",
+    "recipientsCount": "alıcı",
+    "actions": {
+      "menu": "Paylaşım İşlem Menüsü",
+      "edit": "Düzenle",
+      "manageFiles": "Dosyaları Yönet",
+      "manageRecipients": "Alıcıları Yönet",
+      "viewDetails": "Detayları Görüntüle",
+      "generateLink": "Bağlantı Oluştur",
+      "editLink": "Bağlantıyı Düzenle",
+      "copyLink": "Bağlantıyı Kopyala",
+      "notifyRecipients": "Alıcıları Bildir",
+      "delete": "Sil"
+    }
+  },
+  "storageUsage": {
+    "title": "Depolama Kullanımı",
+    "ariaLabel": "Depolama kullanım ilerleme çubuğu",
+    "used": "kullanıldı",
+    "available": "kullanılabilir"
+  },
+  "uploadFile": {
+    "title": "Dosya Yükle",
+    "selectFile": "Dosya seçmek için tıklayın",
+    "preview": "Önizleme",
+    "uploadProgress": "Yükleme İlerlemesi",
+    "upload": "Yükle",
+    "success": "Dosya başarıyla yüklendi",
+    "error": "Dosya yüklenemedi"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "Kullanıcı"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "Uygulama Logosu"
-    },
-    "buttons": {
-      "upload": "Logoyu Yükle",
-      "remove": "Logoyu Kaldır"
-    },
-    "messages": {
-      "uploadSuccess": "Logo başarıyla yüklendi",
-      "removeSuccess": "Logo başarıyla kaldırıldı"
-    },
-    "errors": {
-      "uploadFailed": "Logo yüklenemedi",
-      "removeFailed": "Logo kaldırılamadı"
-    }
-  },
-  "navbar": {
-    "logoAlt": "Uygulama Logosu",
-    "profileMenu": "Profil Menüsü",
-    "profile": "Profil",
-    "settings": "Ayarlar",
-    "usersManagement": "Kullanıcı Yönetimi",
-    "logout": "Oturumu Kapat"
+  "validation": {
+    "invalidEmail": "Geçersiz e-posta adresi",
+    "passwordMinLength": "Şifre en az 6 karakter olmalıdır",
+    "firstNameRequired": "Ad gerekli",
+    "lastNameRequired": "Soyad gerekli",
+    "usernameLength": "Kullanıcı adı en az 3 karakter olmalıdır",
+    "usernameSpaces": "Kullanıcı adında boşluk olamaz",
+    "passwordLength": "Şifre en az 8 karakter olmalıdır",
+    "passwordsMatch": "Şifreler eşleşmiyor",
+    "emailRequired": "E-posta gerekli",
+    "passwordRequired": "Şifre gerekli"
   }
 }

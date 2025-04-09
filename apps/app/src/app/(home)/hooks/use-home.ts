@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { create } from 'zustand';
+import { create } from "zustand";
+
 import { getAllConfigs } from "@/http/endpoints";
 
 interface Config {
@@ -12,7 +13,7 @@ interface Config {
 
 interface HomeStore {
   isLoading: boolean;
-  checkHomePageAccess: () => Promise<boolean>; 
+  checkHomePageAccess: () => Promise<boolean>;
 }
 
 const useHomeStore = create<HomeStore>((set) => ({
@@ -20,9 +21,8 @@ const useHomeStore = create<HomeStore>((set) => ({
   checkHomePageAccess: async () => {
     try {
       const response = await getAllConfigs();
-      const showHomePage = response.data.configs.find(
-        (config: Config) => config.key === "showHomePage"
-      )?.value === "true";
+      const showHomePage =
+        response.data.configs.find((config: Config) => config.key === "showHomePage")?.value === "true";
 
       set({ isLoading: false });
       return showHomePage;
@@ -31,7 +31,7 @@ const useHomeStore = create<HomeStore>((set) => ({
       set({ isLoading: false });
       return false;
     }
-  }
+  },
 }));
 
 export function useHome() {
@@ -39,7 +39,7 @@ export function useHome() {
   const { isLoading, checkHomePageAccess } = useHomeStore();
 
   useEffect(() => {
-    checkHomePageAccess().then(hasAccess => {
+    checkHomePageAccess().then((hasAccess) => {
       if (!hasAccess) {
         router.push("/login");
       }

@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 import { IconCloudUpload, IconFolderOpen } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
-export function EmptyFilesState({ onUpload }: { onUpload: () => void; }) {
+import { Button } from "@/components/ui/button";
+
+export function EmptyFilesState({ onUpload }: { onUpload: () => void }) {
   const t = useTranslations();
 
   return (

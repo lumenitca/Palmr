@@ -1,11 +1,11 @@
-import { useAppInfo } from "@/contexts/app-info-context";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 
+import { useAppInfo } from "@/contexts/app-info-context";
 
 export function LoginHeader() {
-  const  t  = useTranslations();
+  const t = useTranslations();
   const { appName, refreshAppInfo } = useAppInfo();
 
   useEffect(() => {
@@ -19,7 +19,9 @@ export function LoginHeader() {
       initial={{ opacity: 0 }}
       transition={{ delay: 0.2, duration: 0.5 }}
     >
-      <h1 className="text-2xl font-semibold tracking-tight text-center">{t("login.welcome")} {appName}</h1>
+      <h1 className="text-2xl font-semibold tracking-tight text-center">
+        {t("login.welcome")} {appName}
+      </h1>
       <p className="text-default-500 text-sm">{t("login.signInToContinue")}</p>
     </motion.div>
   );

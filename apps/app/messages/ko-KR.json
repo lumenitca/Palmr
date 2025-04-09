@@ -1,60 +1,4 @@
 {
-  "login": {
-    "welcome": "에 오신 것을 환영합니다",
-    "signInToContinue": "계속하려면 로그인하세요",
-    "emailLabel": "이메일 주소",
-    "emailPlaceholder": "이메일을 입력하세요",
-    "passwordLabel": "비밀번호",
-    "passwordPlaceholder": "비밀번호를 입력하세요",
-    "signIn": "로그인",
-    "signingIn": "로그인 중...",
-    "forgotPassword": "비밀번호를 잊으셨나요?",
-    "pageTitle": "로그인"
-  },
-  "errors": {
-    "invalidCredentials": "잘못된 이메일 또는 비밀번호입니다",
-    "userNotFound": "사용자를 찾을 수 없습니다",
-    "accountLocked": "계정이 잠겼습니다. 나중에 다시 시도하세요",
-    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해주세요"
-  },
-  "validation": {
-    "invalidEmail": "유효하지 않은 이메일 주소입니다",
-    "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
-    "firstNameRequired": "이름은 필수입니다",
-    "lastNameRequired": "성을 입력하세요",
-    "usernameLength": "사용자 이름은 최소 3자 이상이어야 합니다",
-    "usernameSpaces": "사용자 이름에는 공백을 사용할 수 없습니다",
-    "passwordLength": "비밀번호는 최소 8자 이상이어야 합니다",
-    "passwordsMatch": "비밀번호가 일치하지 않습니다",
-    "emailRequired": "이메일은 필수입니다",
-    "passwordRequired": "비밀번호는 필수입니다"
-  },
-  "fileSelector": {
-    "availableFiles": "사용 가능한 파일 ({{count}})",
-    "shareFiles": "파일 공유 ({{count}})",
-    "searchPlaceholder": "파일 검색...",
-    "noMatchingFiles": "일치하는 파일이 없습니다",
-    "noAvailableFiles": "사용 가능한 파일이 없습니다",
-    "noFilesInShare": "공유된 파일이 없습니다",
-    "saveChanges": "변경 사항 저장"
-  },
-  "recipientSelector": {
-    "emailPlaceholder": "수신자 이메일을 입력하세요",
-    "add": "추가",
-    "recipients": "수신자 ({{count}})",
-    "notifyAll": "모두에게 알림",
-    "noRecipients": "아직 수신자가 추가되지 않았습니다",
-    "addSuccess": "수신자가 성공적으로 추가되었습니다",
-    "addError": "수신자 추가에 실패했습니다",
-    "removeSuccess": "수신자가 성공적으로 제거되었습니다",
-    "removeError": "수신자 제거에 실패했습니다",
-    "sendingNotifications": "알림 전송 중...",
-    "notifySuccess": "수신자에게 성공적으로 알렸습니다",
-    "notifyError": "수신자 알림 전송에 실패했습니다"
-  },
-  "navigation": {
-    "dashboard": "대시보드"
-  },
   "common": {
     "loading": "로딩 중입니다. 잠시 기다려주세요...",
     "cancel": "취소",
@@ -80,6 +24,22 @@
     "success": "공유가 성공적으로 생성되었습니다",
     "error": "공유 생성에 실패했습니다"
   },
+  "dashboard": {
+    "loadError": "대시보드 데이터를 불러오는데 실패했습니다",
+    "linkCopied": "링크가 클립보드에 복사되었습니다",
+    "pageTitle": "대시보드",
+    "breadcrumb": "대시보드"
+  },
+  "emptyState": {
+    "noFiles": "아직 파일이 업로드되지 않았습니다",
+    "uploadFile": "파일 업로드"
+  },
+  "errors": {
+    "invalidCredentials": "잘못된 이메일 또는 비밀번호입니다",
+    "userNotFound": "사용자를 찾을 수 없습니다",
+    "accountLocked": "계정이 잠겼습니다. 나중에 다시 시도하세요",
+    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해주세요"
+  },
   "fileActions": {
     "editFile": "파일 편집",
     "nameLabel": "이름",
@@ -91,6 +51,13 @@
     "deleteConfirmation": "\"{{fileName}}\"을(를) 삭제하시겠습니까?",
     "deleteWarning": "이 작업은 취소할 수 없습니다."
   },
+  "fileManager": {
+    "downloadError": "파일 다운로드에 실패했습니다",
+    "updateSuccess": "파일이 성공적으로 업데이트되었습니다",
+    "updateError": "파일 업데이트에 실패했습니다",
+    "deleteSuccess": "파일이 성공적으로 삭제되었습니다",
+    "deleteError": "파일 삭제에 실패했습니다"
+  },
   "filePreview": {
     "loading": "미리보기를 불러오는 중...",
     "notAvailable": "미리보기를 사용할 수 없습니다",
@@ -100,68 +67,21 @@
     "loadError": "미리보기 불러오기에 실패했습니다",
     "downloadError": "파일 다운로드에 실패했습니다"
   },
-  "generateShareLink": {
-    "generateTitle": "공유 링크 생성",
-    "updateTitle": "공유 링크 업데이트",
-    "generateDescription": "파일을 공유할 링크를 생성합니다",
-    "updateDescription": "이 공유 링크의 별칭을 업데이트합니다",
-    "aliasPlaceholder": "별칭을 입력하세요",
-    "linkReady": "공유 링크가 준비되었습니다:",
-    "generateButton": "링크 생성",
-    "updateButton": "링크 업데이트",
-    "copyButton": "링크 복사",
-    "success": "링크가 성공적으로 생성되었습니다",
-    "error": "링크 생성에 실패했습니다",
-    "copied": "링크가 클립보드에 복사되었습니다"
+  "fileSelector": {
+    "availableFiles": "사용 가능한 파일 ({{count}})",
+    "shareFiles": "파일 공유 ({{count}})",
+    "searchPlaceholder": "파일 검색...",
+    "noMatchingFiles": "일치하는 파일이 없습니다",
+    "noAvailableFiles": "사용 가능한 파일이 없습니다",
+    "noFilesInShare": "공유된 파일이 없습니다",
+    "saveChanges": "변경 사항 저장"
   },
-  "shareActions": {
-    "deleteTitle": "공유 삭제",
-    "deleteConfirmation": "이 공유를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
-    "editTitle": "공유 편집",
-    "nameLabel": "공유 이름",
-    "expirationLabel": "만료 날짜",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "최대 조회수",
-    "maxViewsPlaceholder": "무제한인 경우 비워두세요",
-    "passwordProtection": "비밀번호 보호",
-    "passwordLabel": "비밀번호",
-    "passwordPlaceholder": "비밀번호를 입력하세요",
-    "newPasswordLabel": "새 비밀번호 (현재 비밀번호 유지 시 비워두세요)",
-    "newPasswordPlaceholder": "새 비밀번호를 입력하세요",
-    "manageFilesTitle": "파일 관리",
-    "manageRecipientsTitle": "수신자 관리",
-    "editSuccess": "공유가 성공적으로 업데이트되었습니다",
-    "editError": "공유 업데이트에 실패했습니다"
-  },
-  "shareDetails": {
-    "title": "공유 세부 정보",
-    "subtitle": "이 공유에 대한 자세한 정보",
-    "basicInfo": "기본 정보",
-    "name": "이름",
-    "untitled": "제목 없음",
-    "views": "조회수",
-    "dates": "날짜",
-    "created": "생성됨",
-    "expires": "만료됨",
-    "never": "없음",
-    "security": "보안",
-    "passwordProtected": "비밀번호 보호됨",
-    "publicAccess": "공개 접근",
-    "maxViews": "최대 조회수: {{count}}",
-    "files": "파일 ({{count}})",
-    "recipients": "수신자 ({{count}})",
-    "notAvailable": "해당 없음",
-    "invalidDate": "유효하지 않은 날짜입니다",
-    "loadError": "공유 세부 정보를 불러오는데 실패했습니다"
-  },
-  "uploadFile": {
-    "title": "파일 업로드",
-    "selectFile": "파일 선택을 위해 클릭하세요",
-    "preview": "미리보기",
-    "uploadProgress": "업로드 진행",
-    "upload": "업로드",
-    "success": "파일이 성공적으로 업로드되었습니다",
-    "error": "파일 업로드에 실패했습니다"
+  "files": {
+    "title": "모든 파일",
+    "uploadFile": "파일 업로드",
+    "loadError": "파일을 불러오는데 실패했습니다",
+    "pageTitle": "내 파일",
+    "breadcrumb": "내 파일"
   },
   "filesTable": {
     "ariaLabel": "파일 테이블",
@@ -181,118 +101,9 @@
       "delete": "삭제"
     }
   },
-  "sharesTable": {
-    "ariaLabel": "공유 테이블",
-    "never": "없음",
-    "columns": {
-      "name": "이름",
-      "createdAt": "생성일",
-      "expiresAt": "만료일",
-      "status": "상태",
-      "security": "보안",
-      "files": "파일",
-      "recipients": "수신자",
-      "actions": "작업"
-    },
-    "status": {
-      "neverExpires": "만료되지 않음",
-      "active": "활성",
-      "expired": "만료됨"
-    },
-    "security": {
-      "protected": "보호됨",
-      "public": "공개"
-    },
-    "filesCount": "개의 파일",
-    "recipientsCount": "명의 수신자",
-    "actions": {
-      "menu": "공유 작업 메뉴",
-      "edit": "편집",
-      "manageFiles": "파일 관리",
-      "manageRecipients": "수신자 관리",
-      "viewDetails": "세부 정보 보기",
-      "generateLink": "링크 생성",
-      "editLink": "링크 편집",
-      "copyLink": "링크 복사",
-      "notifyRecipients": "수신자 알림",
-      "delete": "삭제"
-    }
-  },
   "footer": {
     "poweredBy": "제공:",
     "kyanHomepage": "Kyantech 홈페이지"
-  },
-  "fileManager": {
-    "downloadError": "파일 다운로드에 실패했습니다",
-    "updateSuccess": "파일이 성공적으로 업데이트되었습니다",
-    "updateError": "파일 업데이트에 실패했습니다",
-    "deleteSuccess": "파일이 성공적으로 삭제되었습니다",
-    "deleteError": "파일 삭제에 실패했습니다"
-  },
-  "shareManager": {
-    "deleteSuccess": "공유가 성공적으로 삭제되었습니다",
-    "deleteError": "공유 삭제에 실패했습니다",
-    "updateSuccess": "공유가 성공적으로 업데이트되었습니다",
-    "updateError": "공유 업데이트에 실패했습니다",
-    "filesUpdateSuccess": "파일이 성공적으로 업데이트되었습니다",
-    "filesUpdateError": "파일 업데이트에 실패했습니다",
-    "recipientsUpdateSuccess": "수신자가 성공적으로 업데이트되었습니다",
-    "recipientsUpdateError": "수신자 업데이트에 실패했습니다",
-    "linkGenerateSuccess": "공유 링크가 성공적으로 생성되었습니다",
-    "linkGenerateError": "공유 링크 생성에 실패했습니다",
-    "notifyLoading": "알림 전송 중...",
-    "notifySuccess": "수신자에게 성공적으로 알렸습니다",
-    "notifyError": "수신자 알림 전송에 실패했습니다"
-  },
-  "quickAccess": {
-    "files": {
-      "title": "내 파일",
-      "description": "업로드된 파일에 접근하고 관리합니다"
-    },
-    "shares": {
-      "title": "내 공유",
-      "description": "공유된 파일을 보고 관리합니다"
-    }
-  },
-  "recentFiles": {
-    "title": "최근 업로드",
-    "viewAll": "전체 보기",
-    "uploadFile": "파일 업로드",
-    "noFiles": "아직 파일이 업로드되지 않았습니다"
-  },
-  "recentShares": {
-    "title": "최근 공유",
-    "viewAll": "전체 보기",
-    "createShare": "공유 생성",
-    "noShares": "아직 공유가 생성되지 않았습니다",
-    "createFirst": "첫 번째 공유를 생성하세요"
-  },
-  "storageUsage": {
-    "title": "스토리지 사용량",
-    "ariaLabel": "스토리지 사용량 진행 바",
-    "used": "사용됨",
-    "available": "사용 가능"
-  },
-  "dashboard": {
-    "loadError": "대시보드 데이터를 불러오는데 실패했습니다",
-    "linkCopied": "링크가 클립보드에 복사되었습니다",
-    "pageTitle": "대시보드",
-    "breadcrumb": "대시보드"
-  },
-  "emptyState": {
-    "noFiles": "아직 파일이 업로드되지 않았습니다",
-    "uploadFile": "파일 업로드"
-  },
-  "files": {
-    "title": "모든 파일",
-    "uploadFile": "파일 업로드",
-    "loadError": "파일을 불러오는데 실패했습니다",
-    "pageTitle": "내 파일",
-    "breadcrumb": "내 파일"
-  },
-  "searchBar": {
-    "placeholder": "파일 검색...",
-    "results": "전체 {{total}}개 중 {{filtered}}개 파일을 찾았습니다"
   },
   "forgotPassword": {
     "emailLabel": "이메일 주소",
@@ -305,6 +116,20 @@
     "resetInstructions": "비밀번호 재설정 지침이 이메일로 전송되었습니다",
     "pageTitle": "비밀번호를 잊으셨나요?"
   },
+  "generateShareLink": {
+    "generateTitle": "공유 링크 생성",
+    "updateTitle": "공유 링크 업데이트",
+    "generateDescription": "파일을 공유할 링크를 생성합니다",
+    "updateDescription": "이 공유 링크의 별칭을 업데이트합니다",
+    "aliasPlaceholder": "별칭을 입력하세요",
+    "linkReady": "공유 링크가 준비되었습니다:",
+    "generateButton": "링크 생성",
+    "updateButton": "링크 업데이트",
+    "copyButton": "링크 복사",
+    "success": "링크가 성공적으로 생성되었습니다",
+    "error": "링크 생성에 실패했습니다",
+    "copied": "링크가 클립보드에 복사되었습니다"
+  },
   "home": {
     "description": "WeTransfer의 오픈소스 대안입니다. 추적이나 제한 없이 파일을 안전하게 공유하세요.",
     "documentation": "문서",
@@ -315,6 +140,46 @@
       "tagline": "심플하고 무료"
     },
     "pageTitle": "홈"
+  },
+  "login": {
+    "welcome": "에 오신 것을 환영합니다",
+    "signInToContinue": "계속하려면 로그인하세요",
+    "emailLabel": "이메일 주소",
+    "emailPlaceholder": "이메일을 입력하세요",
+    "passwordLabel": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력하세요",
+    "signIn": "로그인",
+    "signingIn": "로그인 중...",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "pageTitle": "로그인"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "애플리케이션 로고"
+    },
+    "buttons": {
+      "upload": "로고 업로드",
+      "remove": "로고 삭제"
+    },
+    "messages": {
+      "uploadSuccess": "로고가 성공적으로 업로드되었습니다",
+      "removeSuccess": "로고가 성공적으로 삭제되었습니다"
+    },
+    "errors": {
+      "uploadFailed": "로고 업로드에 실패했습니다",
+      "removeFailed": "로고 삭제에 실패했습니다"
+    }
+  },
+  "navbar": {
+    "logoAlt": "애플리케이션 로고",
+    "profileMenu": "프로필 메뉴",
+    "profile": "프로필",
+    "settings": "설정",
+    "usersManagement": "사용자 관리",
+    "logout": "로그아웃"
+  },
+  "navigation": {
+    "dashboard": "대시보드"
   },
   "profile": {
     "password": {
@@ -358,6 +223,43 @@
     },
     "pageTitle": "프로필"
   },
+  "quickAccess": {
+    "files": {
+      "title": "내 파일",
+      "description": "업로드된 파일에 접근하고 관리합니다"
+    },
+    "shares": {
+      "title": "내 공유",
+      "description": "공유된 파일을 보고 관리합니다"
+    }
+  },
+  "recentFiles": {
+    "title": "최근 업로드",
+    "viewAll": "전체 보기",
+    "uploadFile": "파일 업로드",
+    "noFiles": "아직 파일이 업로드되지 않았습니다"
+  },
+  "recentShares": {
+    "title": "최근 공유",
+    "viewAll": "전체 보기",
+    "createShare": "공유 생성",
+    "noShares": "아직 공유가 생성되지 않았습니다",
+    "createFirst": "첫 번째 공유를 생성하세요"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "수신자 이메일을 입력하세요",
+    "add": "추가",
+    "recipients": "수신자 ({{count}})",
+    "notifyAll": "모두에게 알림",
+    "noRecipients": "아직 수신자가 추가되지 않았습니다",
+    "addSuccess": "수신자가 성공적으로 추가되었습니다",
+    "addError": "수신자 추가에 실패했습니다",
+    "removeSuccess": "수신자가 성공적으로 제거되었습니다",
+    "removeError": "수신자 제거에 실패했습니다",
+    "sendingNotifications": "알림 전송 중...",
+    "notifySuccess": "수신자에게 성공적으로 알렸습니다",
+    "notifyError": "수신자 알림 전송에 실패했습니다"
+  },
   "resetPassword": {
     "pageTitle": "비밀번호 재설정",
     "header": {
@@ -380,6 +282,10 @@
       "serverError": "비밀번호 재설정에 실패했습니다. 다시 시도해주세요.",
       "invalidToken": "유효하지 않거나 누락된 재설정 토큰"
     }
+  },
+  "searchBar": {
+    "placeholder": "파일 검색...",
+    "results": "전체 {{total}}개 중 {{filtered}}개 파일을 찾았습니다"
   },
   "settings": {
     "groups": {
@@ -515,6 +421,61 @@
     },
     "pageTitle": "공유"
   },
+  "shareActions": {
+    "deleteTitle": "공유 삭제",
+    "deleteConfirmation": "이 공유를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "editTitle": "공유 편집",
+    "nameLabel": "공유 이름",
+    "expirationLabel": "만료 날짜",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "최대 조회수",
+    "maxViewsPlaceholder": "무제한인 경우 비워두세요",
+    "passwordProtection": "비밀번호 보호",
+    "passwordLabel": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력하세요",
+    "newPasswordLabel": "새 비밀번호 (현재 비밀번호 유지 시 비워두세요)",
+    "newPasswordPlaceholder": "새 비밀번호를 입력하세요",
+    "manageFilesTitle": "파일 관리",
+    "manageRecipientsTitle": "수신자 관리",
+    "editSuccess": "공유가 성공적으로 업데이트되었습니다",
+    "editError": "공유 업데이트에 실패했습니다"
+  },
+  "shareDetails": {
+    "title": "공유 세부 정보",
+    "subtitle": "이 공유에 대한 자세한 정보",
+    "basicInfo": "기본 정보",
+    "name": "이름",
+    "untitled": "제목 없음",
+    "views": "조회수",
+    "dates": "날짜",
+    "created": "생성됨",
+    "expires": "만료됨",
+    "never": "없음",
+    "security": "보안",
+    "passwordProtected": "비밀번호 보호됨",
+    "publicAccess": "공개 접근",
+    "maxViews": "최대 조회수: {{count}}",
+    "files": "파일 ({{count}})",
+    "recipients": "수신자 ({{count}})",
+    "notAvailable": "해당 없음",
+    "invalidDate": "유효하지 않은 날짜입니다",
+    "loadError": "공유 세부 정보를 불러오는데 실패했습니다"
+  },
+  "shareManager": {
+    "deleteSuccess": "공유가 성공적으로 삭제되었습니다",
+    "deleteError": "공유 삭제에 실패했습니다",
+    "updateSuccess": "공유가 성공적으로 업데이트되었습니다",
+    "updateError": "공유 업데이트에 실패했습니다",
+    "filesUpdateSuccess": "파일이 성공적으로 업데이트되었습니다",
+    "filesUpdateError": "파일 업데이트에 실패했습니다",
+    "recipientsUpdateSuccess": "수신자가 성공적으로 업데이트되었습니다",
+    "recipientsUpdateError": "수신자 업데이트에 실패했습니다",
+    "linkGenerateSuccess": "공유 링크가 성공적으로 생성되었습니다",
+    "linkGenerateError": "공유 링크 생성에 실패했습니다",
+    "notifyLoading": "알림 전송 중...",
+    "notifySuccess": "수신자에게 성공적으로 알렸습니다",
+    "notifyError": "수신자 알림 전송에 실패했습니다"
+  },
   "shares": {
     "errors": {
       "loadFailed": "공유 목록을 불러오는데 실패했습니다",
@@ -540,6 +501,58 @@
       "results": "전체 {{total}}개 중 {{filtered}}개가 검색되었습니다"
     },
     "pageTitle": "공유"
+  },
+  "sharesTable": {
+    "ariaLabel": "공유 테이블",
+    "never": "없음",
+    "columns": {
+      "name": "이름",
+      "createdAt": "생성일",
+      "expiresAt": "만료일",
+      "status": "상태",
+      "security": "보안",
+      "files": "파일",
+      "recipients": "수신자",
+      "actions": "작업"
+    },
+    "status": {
+      "neverExpires": "만료되지 않음",
+      "active": "활성",
+      "expired": "만료됨"
+    },
+    "security": {
+      "protected": "보호됨",
+      "public": "공개"
+    },
+    "filesCount": "개의 파일",
+    "recipientsCount": "명의 수신자",
+    "actions": {
+      "menu": "공유 작업 메뉴",
+      "edit": "편집",
+      "manageFiles": "파일 관리",
+      "manageRecipients": "수신자 관리",
+      "viewDetails": "세부 정보 보기",
+      "generateLink": "링크 생성",
+      "editLink": "링크 편집",
+      "copyLink": "링크 복사",
+      "notifyRecipients": "수신자 알림",
+      "delete": "삭제"
+    }
+  },
+  "storageUsage": {
+    "title": "스토리지 사용량",
+    "ariaLabel": "스토리지 사용량 진행 바",
+    "used": "사용됨",
+    "available": "사용 가능"
+  },
+  "uploadFile": {
+    "title": "파일 업로드",
+    "selectFile": "파일 선택을 위해 클릭하세요",
+    "preview": "미리보기",
+    "uploadProgress": "업로드 진행",
+    "upload": "업로드",
+    "success": "파일이 성공적으로 업로드되었습니다",
+    "error": "파일 업로드에 실패했습니다"
   },
   "users": {
     "modes": {
@@ -610,29 +623,16 @@
       "userr": "사용자"
     }
   },
-  "logo": {
-    "labels": {
-      "appLogo": "애플리케이션 로고"
-    },
-    "buttons": {
-      "upload": "로고 업로드",
-      "remove": "로고 삭제"
-    },
-    "messages": {
-      "uploadSuccess": "로고가 성공적으로 업로드되었습니다",
-      "removeSuccess": "로고가 성공적으로 삭제되었습니다"
-    },
-    "errors": {
-      "uploadFailed": "로고 업로드에 실패했습니다",
-      "removeFailed": "로고 삭제에 실패했습니다"
-    }
-  },
-  "navbar": {
-    "logoAlt": "애플리케이션 로고",
-    "profileMenu": "프로필 메뉴",
-    "profile": "프로필",
-    "settings": "설정",
-    "usersManagement": "사용자 관리",
-    "logout": "로그아웃"
+  "validation": {
+    "invalidEmail": "유효하지 않은 이메일 주소입니다",
+    "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
+    "firstNameRequired": "이름은 필수입니다",
+    "lastNameRequired": "성을 입력하세요",
+    "usernameLength": "사용자 이름은 최소 3자 이상이어야 합니다",
+    "usernameSpaces": "사용자 이름에는 공백을 사용할 수 없습니다",
+    "passwordLength": "비밀번호는 최소 8자 이상이어야 합니다",
+    "passwordsMatch": "비밀번호가 일치하지 않습니다",
+    "emailRequired": "이메일은 필수입니다",
+    "passwordRequired": "비밀번호는 필수입니다"
   }
 }

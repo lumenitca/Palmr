@@ -1,11 +1,16 @@
-import { deleteShare, notifyRecipients, updateShare } from "@/http/endpoints";
-import { addFiles, addRecipients } from "@/http/endpoints";
-import { createShareAlias } from "@/http/endpoints";
-import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
-
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import {
+  addFiles,
+  addRecipients,
+  createShareAlias,
+  deleteShare,
+  notifyRecipients,
+  updateShare,
+} from "@/http/endpoints";
+import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
 
 export interface ShareManagerHook {
   shareToDelete: ListUserShares200SharesItem | null;
@@ -29,7 +34,7 @@ export interface ShareManagerHook {
 }
 
 export function useShareManager(onSuccess: () => void) {
-  const  t  = useTranslations();
+  const t = useTranslations();
   const [shareToDelete, setShareToDelete] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToEdit, setShareToEdit] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToManageFiles, setShareToManageFiles] = useState<ListUserShares200SharesItem | null>(null);

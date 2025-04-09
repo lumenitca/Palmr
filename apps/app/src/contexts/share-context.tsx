@@ -1,7 +1,8 @@
 "use client";
 
+import { createContext, useContext, useEffect, useState } from "react";
+
 import { getAllConfigs } from "@/http/endpoints";
-import { createContext, useContext, useState, useEffect } from "react";
 
 interface ShareContextType {
   smtpEnabled: string;

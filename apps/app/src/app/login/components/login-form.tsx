@@ -1,10 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { createLoginSchema, type LoginFormValues } from "../schemas/schema";
 import { PasswordVisibilityToggle } from "./password-visibility-toggle";
 
@@ -28,13 +29,12 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
 
   const isSubmitting = form.formState.isSubmitting;
 
-  const renderErrorMessage = () => (
+  const renderErrorMessage = () =>
     error && (
       <p className="text-destructive text-sm text-center bg-destructive/10 p-2 rounded-md">
-        {error.replace('errors.', '')}
+        {error.replace("errors.", "")}
       </p>
-    )
-  );
+    );
 
   const renderEmailField = () => (
     <FormField
@@ -74,10 +74,7 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
                 disabled={isSubmitting}
                 className="bg-transparent backdrop-blur-md pr-10"
               />
-              <PasswordVisibilityToggle 
-                isVisible={isVisible} 
-                onToggle={onToggleVisibility} 
-              />
+              <PasswordVisibilityToggle isVisible={isVisible} onToggle={onToggleVisibility} />
             </div>
           </FormControl>
           <FormMessage />
@@ -100,10 +97,7 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
       </Form>
 
       <div className="flex w-full items-center justify-center px-1 mt-2">
-        <Link
-          className="text-muted-foreground hover:text-primary text-sm"
-          href="/forgot-password"
-        >
+        <Link className="text-muted-foreground hover:text-primary text-sm" href="/forgot-password">
           {t("login.forgotPassword")}
         </Link>
       </div>
