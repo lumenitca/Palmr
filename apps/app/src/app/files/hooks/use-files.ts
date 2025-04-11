@@ -1,0 +1,54 @@
+"use client";
+
+import { useFileManager } from "@/hooks/use-file-manager";
+import { listFiles } from "@/http/endpoints";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+
+export function useFiles() {
+  const t = useTranslations();
+  const [files, setFiles] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
+  const loadFiles = async () => {
+    try {
+      const response = await listFiles();
+      const allFiles = response.data.files || [];
+      const sortedFiles = [...allFiles].sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+
+      setFiles(sortedFiles);
+    } catch (error) {
+      toast.error(t("files.loadError"));
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fileManager = useFileManager(loadFiles);
+  const filteredFiles = files.filter((file) => file.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  useEffect(() => {
+    loadFiles();
+  }, []);
+
+  return {
+    isLoading,
+    files,
+    searchQuery,
+    modals: {
+      isUploadModalOpen,
+      onOpenUploadModal: () => setIsUploadModalOpen(true),
+      onCloseUploadModal: () => setIsUploadModalOpen(false),
+    },
+    fileManager,
+    filteredFiles,
+    handleSearch: setSearchQuery,
+    loadFiles,
+  };
+}

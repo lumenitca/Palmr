@@ -6,6 +6,13 @@ import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/layout/navbar";
 import { DefaultFooter } from "@/components/ui/default-footer";
 import { Separator } from "@/components/ui/separator";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 interface FileManagerLayoutProps {
   children: ReactNode;
@@ -36,24 +43,24 @@ export function FileManagerLayout({
             </div>
             <Separator />
             {showBreadcrumb && breadcrumbLabel && (
-              <nav className="flex" aria-label="Breadcrumb">
-                <ol className="flex items-center gap-2">
-                  <li className="flex items-center">
-                    <Link
-                      href="/dashboard"
-                      className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <IconLayoutDashboard className="h-4 w-4 mr-1" />
-                      {t("navigation.dashboard")}
-                    </Link>
-                  </li>
-                  <li className="flex items-center before:content-['/'] before:mx-2 before:text-muted-foreground">
-                    <span className="flex items-center">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink asChild>
+                      <Link href="/dashboard" className="flex items-center">
+                        <IconLayoutDashboard size={20} className="mr-2" />
+                        {t("navigation.dashboard")}
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <span className="flex items-center gap-2">
                       {icon} {breadcrumbLabel}
                     </span>
-                  </li>
-                </ol>
-              </nav>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
             )}
           </div>
 

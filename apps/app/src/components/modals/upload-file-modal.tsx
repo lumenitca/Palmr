@@ -1,3 +1,5 @@
+"use client";
+
 import { getPresignedUrl, registerFile } from "@/http/endpoints";
 import { generateSafeFileName } from "@/utils/file-utils";
 import { Button } from "@/components/ui/button";
@@ -12,7 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
-import { IconCloudUpload, IconFile, IconFileText, IconPhoto, IconFileTypography, IconFileTypePdf } from "@tabler/icons-react";
+import { IconCloudUpload, IconFileText, IconPhoto, IconFileTypography, IconFileTypePdf } from "@tabler/icons-react";
 import { toast } from "sonner";
 
 interface UploadFileModalProps {

@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable jsx-a11y/media-has-caption */
 import { getDownloadUrl } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";

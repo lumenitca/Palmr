@@ -68,8 +68,8 @@
     "downloadError": "Failed to download file"
   },
   "fileSelector": {
-    "availableFiles": "Available Files ({{count}})",
-    "shareFiles": "Share Files ({{count}})",
+    "availableFiles": "Available Files ({count})",
+    "shareFiles": "Share Files ({count})",
     "searchPlaceholder": "Search files...",
     "noMatchingFiles": "No matching files",
     "noAvailableFiles": "No files available",
@@ -249,7 +249,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Enter recipient email",
     "add": "Add",
-    "recipients": "Recipients ({{count}})",
+    "recipients": "Recipients ({count})",
     "notifyAll": "Notify All",
     "noRecipients": "No recipients added yet",
     "addSuccess": "Recipient added successfully",
@@ -285,7 +285,7 @@
   },
   "searchBar": {
     "placeholder": "Search files...",
-    "results": "Found {{filtered}} of {{total}} files"
+    "results": "Found {filtered} of {total} files"
   },
   "settings": {
     "groups": {
@@ -379,7 +379,7 @@
       }
     },
     "buttons": {
-      "save": "Save {{group}}"
+      "save": "Save {group}"
     },
     "errors": {
       "loadFailed": "Failed to load settings",
@@ -387,7 +387,7 @@
     },
     "messages": {
       "noChanges": "No changes to save",
-      "updateSuccess": "{{group}} settings updated successfully"
+      "updateSuccess": "{group} settings updated successfully"
     },
     "title": "Settings",
     "breadcrumb": "Settings",
@@ -412,8 +412,8 @@
     },
     "details": {
       "untitled": "Untitled Share",
-      "created": "Created: {{date}}",
-      "expires": "Expires: {{date}}"
+      "created": "Created: {date}",
+      "expires": "Expires: {date}"
     },
     "notFound": {
       "title": "Share Not Found",
@@ -498,7 +498,7 @@
       "title": "All Shares",
       "createButton": "Create Share",
       "placeholder": "Search shares...",
-      "results": "Found {{filtered}} of {{total}} shares"
+      "results": "Found {filtered} of {total} shares"
     },
     "pageTitle": "Shares"
   },
@@ -561,7 +561,7 @@
     },
     "errors": {
       "loadFailed": "Failed to load users",
-      "submitFailed": "Failed to {{mode}} user",
+      "submitFailed": "Failed to {mode} user",
       "deleteFailed": "Failed to delete user",
       "statusUpdateFailed": "Failed to update user status"
     },
@@ -580,7 +580,7 @@
     },
     "delete": {
       "title": "Confirm Delete User",
-      "confirmation": "Are you sure you want to delete user {{firstName}} {{lastName}}? This action cannot be undone.",
+      "confirmation": "Are you sure you want to delete user {firstName} {lastName}? This action cannot be undone.",
       "confirm": "Delete User"
     },
     "form": {
@@ -601,7 +601,7 @@
     },
     "status": {
       "title": "Confirm Status Change",
-      "confirmation": "Are you sure you want to {{action}} user {{firstName}} {{lastName}}?",
+      "confirmation": "Are you sure you want to {action} user {firstName} {lastName}?",
       "activate": "activate",
       "deactivate": "deactivate",
       "user": "User"
