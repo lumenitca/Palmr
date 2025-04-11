@@ -1,19 +1,14 @@
-import { createShare } from "@/http/endpoints";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { IconCalendar, IconEye, IconLock, IconShare } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { IconShare, IconLock, IconCalendar, IconEye } from "@tabler/icons-react";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { createShare } from "@/http/endpoints";
 
 interface CreateShareModalProps {
   isOpen: boolean;
@@ -72,12 +67,9 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
         <div className="flex flex-col gap-4">
           <div className="space-y-2">
             <Label>{t("createShare.nameLabel")}</Label>
-            <Input
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            />
+            <Input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
           </div>
-          
+
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
               <IconCalendar size={16} />
@@ -139,11 +131,7 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
             {t("common.cancel")}
           </Button>
           <Button disabled={isLoading} onClick={handleSubmit}>
-            {isLoading ? (
-              <div className="animate-spin">⠋</div>
-            ) : (
-              t("createShare.create")
-            )}
+            {isLoading ? <div className="animate-spin">⠋</div> : t("createShare.create")}
           </Button>
         </DialogFooter>
       </DialogContent>

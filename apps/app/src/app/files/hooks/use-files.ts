@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import { useFileManager } from "@/hooks/use-file-manager";
 import { listFiles } from "@/http/endpoints";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
 
 export function useFiles() {
   const t = useTranslations();

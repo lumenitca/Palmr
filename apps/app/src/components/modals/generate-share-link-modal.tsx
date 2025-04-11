@@ -1,18 +1,13 @@
-import type { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
 import { IconCopy } from "@tabler/icons-react";
-import { customNanoid } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import type { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
+import { customNanoid } from "@/lib/utils";
 
 interface GenerateShareLinkModalProps {
   shareId: string | null;
@@ -22,7 +17,7 @@ interface GenerateShareLinkModalProps {
   onGenerate: (shareId: string, alias: string) => Promise<void>;
 }
 
-const generateCustomId = () => customNanoid(10, '0123456789abcdefghijklmnopqrstuvwxyz');
+const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
 
 export function GenerateShareLinkModal({
   shareId,
@@ -100,10 +95,7 @@ export function GenerateShareLinkModal({
         )}
         <DialogFooter>
           {!generatedLink ? (
-            <Button 
-              disabled={!alias || isLoading} 
-              onClick={handleGenerate}
-            >
+            <Button disabled={!alias || isLoading} onClick={handleGenerate}>
               {isEdit ? t("generateShareLink.updateButton") : t("generateShareLink.generateButton")}
             </Button>
           ) : (

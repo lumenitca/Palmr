@@ -1,7 +1,8 @@
-import type { SearchBarProps } from "../types";
-import { Input } from "@/components/ui/input";
-import { useTranslations } from "next-intl";
 import { IconSearch } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import { Input } from "@/components/ui/input";
+import type { SearchBarProps } from "../types";
 
 export function SearchBar({ searchQuery, onSearch, totalFiles, filteredCount }: SearchBarProps) {
   const t = useTranslations();

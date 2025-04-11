@@ -1,21 +1,16 @@
 "use client";
 
-import { getPresignedUrl, registerFile } from "@/http/endpoints";
-import { generateSafeFileName } from "@/utils/file-utils";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Progress } from "@/components/ui/progress";
+import { useEffect, useRef, useState } from "react";
+import { IconCloudUpload, IconFileText, IconFileTypePdf, IconFileTypography, IconPhoto } from "@tabler/icons-react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
-import { useState, useRef, useEffect } from "react";
-import { IconCloudUpload, IconFileText, IconPhoto, IconFileTypography, IconFileTypePdf } from "@tabler/icons-react";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { getPresignedUrl, registerFile } from "@/http/endpoints";
+import { generateSafeFileName } from "@/utils/file-utils";
 
 interface UploadFileModalProps {
   isOpen: boolean;
@@ -151,19 +146,12 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                 <div className="flex items-center gap-2">
                   {/* <IconFile size={24} className="text-gray-500" /> */}
                   <span className="font-medium">
-                    {selectedFile.name.length > 40
-                      ? selectedFile.name.substring(0, 40) + "..."
-                      : selectedFile.name}
-                    {' '} ({selectedFile.size / 1000} KB)
+                    {selectedFile.name.length > 40 ? selectedFile.name.substring(0, 40) + "..." : selectedFile.name} (
+                    {selectedFile.size / 1000} KB)
                   </span>
                 </div>
               </div>
-              {isUploading && (
-                <Progress
-                  value={uploadProgress}
-                  className="w-full"
-                />
-              )}
+              {isUploading && <Progress value={uploadProgress} className="w-full" />}
             </div>
           )}
         </div>
@@ -171,14 +159,8 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
           <Button variant="outline" onClick={handleClose}>
             {t("common.cancel")}
           </Button>
-          <Button
-            variant="default"
-            disabled={!selectedFile || isUploading}
-            onClick={handleUpload}
-          >
-            {isUploading && (
-              <IconCloudUpload className="mr-2 h-4 w-4 animate-spin" />
-            )}
+          <Button variant="default" disabled={!selectedFile || isUploading} onClick={handleUpload}>
+            {isUploading && <IconCloudUpload className="mr-2 h-4 w-4 animate-spin" />}
             {t("uploadFile.upload")}
           </Button>
         </DialogFooter>

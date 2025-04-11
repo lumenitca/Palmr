@@ -1,21 +1,22 @@
-import { getShare } from "@/http/endpoints";
-import { getFileIcon } from "@/utils/file-icons";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { IconLock, IconLockOpen, IconMail } from "@tabler/icons-react";
+import { format } from "date-fns";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Loader } from "@/components/ui/loader";
-import { format } from "date-fns";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { IconLock, IconLockOpen, IconMail } from "@tabler/icons-react";
-import { toast } from "sonner";
+import { getShare } from "@/http/endpoints";
+import { getFileIcon } from "@/utils/file-icons";
 
 interface ShareDetailsModalProps {
   shareId: string | null;
@@ -147,14 +148,16 @@ export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) 
                   )}
                   {share.security?.maxViews && (
                     <Badge variant="secondary">
-                      {t("shareDetails.maxViews")} { share.security.maxViews }
+                      {t("shareDetails.maxViews")} {share.security.maxViews}
                     </Badge>
                   )}
                 </div>
               </div>
 
               <div className="rounded-lg border p-4">
-                <h3 className="font-medium">{t("shareDetails.files")} ({share.files?.length || 0})</h3>
+                <h3 className="font-medium">
+                  {t("shareDetails.files")} ({share.files?.length || 0})
+                </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {share.files?.map((file: ShareFile) => {
                     const { icon: FileIcon, color } = getFileIcon(file.name);
@@ -185,9 +188,7 @@ export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) 
           )}
         </div>
         <DialogFooter>
-          <Button onClick={onClose}>
-            {t("common.close")}
-          </Button>
+          <Button onClick={onClose}>{t("common.close")}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

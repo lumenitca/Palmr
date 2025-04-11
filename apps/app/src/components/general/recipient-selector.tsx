@@ -1,13 +1,14 @@
 "use client";
 
-import { useShareContext } from "@/contexts/share-context";
-import { addRecipients, removeRecipients, notifyRecipients } from "@/http/endpoints";
+import { useEffect, useState } from "react";
+import { IconBell, IconMail, IconPlus, IconTrash } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState, useEffect } from "react";
-import { IconPlus, IconTrash, IconMail, IconBell } from "@tabler/icons-react";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+import { useShareContext } from "@/contexts/share-context";
+import { addRecipients, notifyRecipients, removeRecipients } from "@/http/endpoints";
 
 interface Recipient {
   id: string;

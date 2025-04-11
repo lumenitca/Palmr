@@ -1,7 +1,7 @@
-import type { FilesModalsProps } from "../types";
 import { FileActionsModals } from "@/components/modals/file-actions-modals";
 import { FilePreviewModal } from "@/components/modals/file-preview-modal";
 import { UploadFileModal } from "@/components/modals/upload-file-modal";
+import type { FilesModalsProps } from "../types";
 
 export function FilesModals({ fileManager, modals, onSuccess }: FilesModalsProps) {
   return (

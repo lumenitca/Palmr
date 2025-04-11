@@ -4,8 +4,6 @@ import { IconLayoutDashboard } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Navbar } from "@/components/layout/navbar";
-import { DefaultFooter } from "@/components/ui/default-footer";
-import { Separator } from "@/components/ui/separator";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +11,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { DefaultFooter } from "@/components/ui/default-footer";
+import { Separator } from "@/components/ui/separator";
 
 interface FileManagerLayoutProps {
   children: ReactNode;

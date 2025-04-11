@@ -1,7 +1,8 @@
-import type { EmptyStateProps } from "../types";
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 import { IconCloudUpload, IconFolder } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import { Button } from "@/components/ui/button";
+import type { EmptyStateProps } from "../types";
 
 export function EmptyState({ onUpload }: EmptyStateProps) {
   const t = useTranslations();

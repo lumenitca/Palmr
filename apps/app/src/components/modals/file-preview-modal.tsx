@@ -1,20 +1,17 @@
 "use client";
+
 /* eslint-disable jsx-a11y/media-has-caption */
+import { useEffect, useState } from "react";
+import { IconDownload } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { getDownloadUrl } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
-import { IconDownload } from "@tabler/icons-react";
-import { toast } from "sonner";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface FilePreviewModalProps {
   isOpen: boolean;
@@ -132,11 +129,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       case "image":
         return (
           <AspectRatio ratio={16 / 9} className="bg-muted">
-            <img
-              src={previewUrl}
-              alt={file.name}
-              className="object-contain w-full h-full rounded-md"
-            />
+            <img src={previewUrl} alt={file.name} className="object-contain w-full h-full rounded-md" />
           </AspectRatio>
         );
       case "audio":

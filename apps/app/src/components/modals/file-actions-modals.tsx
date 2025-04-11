@@ -1,15 +1,16 @@
+import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
-import { useTranslations } from "next-intl";
+import { Input } from "@/components/ui/input";
 
 interface FileActionsModalsProps {
   fileToRename: { id: string; name: string; description?: string } | null;
@@ -109,9 +110,11 @@ export function FileActionsModals({
           </DialogHeader>
           <DialogDescription>
             <p className="text-base font-semibold mb-2 text-foreground">{t("fileActions.deleteConfirmation")}</p>
-            <p>{fileToDelete?.name && (fileToDelete.name.length > 50 
-              ? fileToDelete.name.substring(0, 50) + "..." 
-              : fileToDelete.name) || ''}</p>
+            <p>
+              {(fileToDelete?.name &&
+                (fileToDelete.name.length > 50 ? fileToDelete.name.substring(0, 50) + "..." : fileToDelete.name)) ||
+                ""}
+            </p>
             <p className="text-sm  mt-2 text-amber-500">{t("fileActions.deleteWarning")}</p>
           </DialogDescription>
           <DialogFooter>

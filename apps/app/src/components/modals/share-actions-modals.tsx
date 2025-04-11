@@ -1,21 +1,22 @@
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import { FileSelector } from "@/components/general/file-selector";
 import { RecipientSelector } from "@/components/general/recipient-selector";
-import { updateSharePassword } from "@/http/endpoints";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
+import { Switch } from "@/components/ui/switch";
+import { updateSharePassword } from "@/http/endpoints";
 
 export interface ShareActionsModalsProps {
   shareToDelete: any;
@@ -133,10 +134,7 @@ export function ShareActionsModals({
           <div className="flex flex-col gap-4">
             <div className="grid w-full items-center gap-1.5">
               <Label>{t("shareActions.nameLabel")}</Label>
-              <Input
-                value={editForm.name}
-                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-              />
+              <Input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} />
             </div>
             <div className="grid w-full items-center gap-1.5">
               <Label>{t("shareActions.expirationLabel")}</Label>

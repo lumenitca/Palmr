@@ -1,10 +1,11 @@
-import { addFiles, listFiles, removeFiles } from "@/http/endpoints";
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { IconFile, IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { IconArrowLeft, IconArrowRight, IconFile } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { addFiles, listFiles, removeFiles } from "@/http/endpoints";
 
 interface FileSelectorProps {
   shareId: string;
