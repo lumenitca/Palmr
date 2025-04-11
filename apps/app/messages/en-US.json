@@ -624,14 +624,13 @@
     }
   },
   "validation": {
-    "invalidEmail": "Invalid email address",
-    "passwordMinLength": "Password must be at least 6 characters",
     "firstNameRequired": "First name is required",
     "lastNameRequired": "Last name is required",
-    "usernameLength": "Username must be at least 3 characters",
+    "usernameLength": "Username must be at least 3 characters long",
     "usernameSpaces": "Username cannot contain spaces",
-    "passwordLength": "Password must be at least 8 characters",
-    "passwordsMatch": "Passwords do not match",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordLength": "Password must be at least 8 characters long",
+    "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
     "passwordRequired": "Password is required"
   }
