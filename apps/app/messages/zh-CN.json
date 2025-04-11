@@ -454,9 +454,9 @@
     "security": "安全性",
     "passwordProtected": "受密码保护",
     "publicAccess": "公开访问",
-    "maxViews": "最大查看次数：{{count}}",
-    "files": "文件 ({{count}})",
-    "recipients": "收件人 ({{count}})",
+    "maxViews": "最大查看次数:",
+    "files": "文件",
+    "recipients": "收件人",
     "notAvailable": "不适用",
     "invalidDate": "无效的日期",
     "loadError": "加载共享详情失败"

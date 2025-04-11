@@ -60,12 +60,12 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* <DashboardModals
+        <DashboardModals
           fileManager={fileManager}
           modals={modals}
           shareManager={shareManager}
           onSuccess={loadDashboardData}
-        /> */}
+        />
       </FileManagerLayout>
     </ProtectedRoute>
   );

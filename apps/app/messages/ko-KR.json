@@ -48,7 +48,7 @@
     "descriptionLabel": "설명",
     "descriptionPlaceholder": "파일 설명을 입력하세요",
     "deleteFile": "파일 삭제",
-    "deleteConfirmation": "\"{{fileName}}\"을(를) 삭제하시겠습니까?",
+    "deleteConfirmation": "을(를) 삭제하시겠습니까?",
     "deleteWarning": "이 작업은 취소할 수 없습니다."
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "보안",
     "passwordProtected": "비밀번호 보호됨",
     "publicAccess": "공개 접근",
-    "maxViews": "최대 조회수: {{count}}",
-    "files": "파일 ({{count}})",
-    "recipients": "수신자 ({{count}})",
+    "maxViews": "최대 조회수:",
+    "files": "파일",
+    "recipients": "수신자",
     "notAvailable": "해당 없음",
     "invalidDate": "유효하지 않은 날짜입니다",
     "loadError": "공유 세부 정보를 불러오는데 실패했습니다"

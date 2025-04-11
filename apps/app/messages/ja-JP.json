@@ -48,7 +48,7 @@
     "descriptionLabel": "説明",
     "descriptionPlaceholder": "ファイルの説明を入力してください",
     "deleteFile": "ファイルを削除",
-    "deleteConfirmation": "\"{{fileName}}\"を削除してもよろしいですか？",
+    "deleteConfirmation": "を削除してもよろしいですか？",
     "deleteWarning": "この操作は元に戻せません。"
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "セキュリティ",
     "passwordProtected": "パスワード保護",
     "publicAccess": "公開アクセス",
-    "maxViews": "最大ビュー数: {{count}}",
-    "files": "ファイル ({{count}})",
-    "recipients": "受信者 ({{count}})",
+    "maxViews": "最大ビュー数:",
+    "files": "ファイル",
+    "recipients": "受信者",
     "notAvailable": "該当なし",
     "invalidDate": "無効な日付です",
     "loadError": "共有の詳細の読み込みに失敗しました"

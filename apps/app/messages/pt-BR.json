@@ -48,7 +48,7 @@
     "descriptionLabel": "Descrição",
     "descriptionPlaceholder": "Digite a descrição do arquivo",
     "deleteFile": "Excluir Arquivo",
-    "deleteConfirmation": "Tem certeza que deseja excluir \"{{fileName}}\"?",
+    "deleteConfirmation": "Tem certeza que deseja excluir ?",
     "deleteWarning": "Esta ação não pode ser desfeita."
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "Segurança",
     "passwordProtected": "Protegido por Senha",
     "publicAccess": "Acesso Público",
-    "maxViews": "Máximo de Visualizações: {{count}}",
-    "files": "Arquivos ({{count}})",
-    "recipients": "Destinatários ({{count}})",
+    "maxViews": "Máximo de Visualizações:",
+    "files": "Arquivos",
+    "recipients": "Destinatários",
     "notAvailable": "N/A",
     "invalidDate": "Data inválida",
     "loadError": "Falha ao carregar detalhes do compartilhamento"

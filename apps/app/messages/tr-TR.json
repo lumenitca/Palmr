@@ -48,7 +48,7 @@
     "descriptionLabel": "Açıklama",
     "descriptionPlaceholder": "Dosya açıklamasını girin",
     "deleteFile": "Dosyayı Sil",
-    "deleteConfirmation": "\"{{fileName}}\" dosyasını silmek istediğinize emin misiniz?",
+    "deleteConfirmation": " dosyasını silmek istediğinize emin misiniz?",
     "deleteWarning": "Bu işlem geri alınamaz."
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "Güvenlik",
     "passwordProtected": "Şifre ile Korunuyor",
     "publicAccess": "Genel Erişim",
-    "maxViews": "Maksimum Görüntüleme: {{count}}",
-    "files": "Dosyalar ({{count}})",
-    "recipients": "Alıcılar ({{count}})",
+    "maxViews": "Maksimum Görüntüleme:",
+    "files": "Dosyala",
+    "recipients": "Alıcıla",
     "notAvailable": "Mevcut Değil",
     "invalidDate": "Geçersiz tarih",
     "loadError": "Paylaşım detayları yüklenemedi"

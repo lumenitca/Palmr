@@ -11,7 +11,7 @@ export function EmptyFilesState({ onUpload }: { onUpload: () => void }) {
       <IconFolderOpen className="h-10 w-10 text-gray-500" />
       <p className="text-gray-500">{t("recentFiles.noFiles")}</p>
       <Button variant="secondary" size="sm" onClick={onUpload}>
-        <IconCloudUpload className="mr-2 h-4 w-4" />
+        <IconCloudUpload className="h-4 w-4" />
         {t("recentFiles.uploadFile")}
       </Button>
     </div>

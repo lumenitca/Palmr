@@ -1,0 +1,152 @@
+import { createShare } from "@/http/endpoints";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { toast } from "sonner";
+import { IconShare, IconLock, IconCalendar, IconEye } from "@tabler/icons-react";
+
+interface CreateShareModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModalProps) {
+  const t = useTranslations();
+  const [formData, setFormData] = useState({
+    name: "",
+    password: "",
+    expiresAt: "",
+    isPasswordProtected: false,
+    maxViews: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+      await createShare({
+        name: formData.name,
+        password: formData.isPasswordProtected ? formData.password : undefined,
+        expiration: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : undefined,
+        maxViews: formData.maxViews ? parseInt(formData.maxViews) : undefined,
+        files: [],
+      });
+      toast.success(t("createShare.success"));
+      onSuccess();
+      onClose();
+      setFormData({
+        name: "",
+        password: "",
+        expiresAt: "",
+        isPasswordProtected: false,
+        maxViews: "",
+      });
+    } catch (error) {
+      toast.error(t("createShare.error"));
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <IconShare size={20} />
+            {t("createShare.title")}
+          </DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col gap-4">
+          <div className="space-y-2">
+            <Label>{t("createShare.nameLabel")}</Label>
+            <Input
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
+              <IconCalendar size={16} />
+              {t("createShare.expirationLabel")}
+            </Label>
+            <Input
+              placeholder={t("createShare.expirationPlaceholder")}
+              type="datetime-local"
+              value={formData.expiresAt}
+              onChange={(e) => setFormData({ ...formData, expiresAt: e.target.value })}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
+              <IconEye size={16} />
+              {t("createShare.maxViewsLabel")}
+            </Label>
+            <Input
+              min="1"
+              placeholder={t("createShare.maxViewsPlaceholder")}
+              type="number"
+              value={formData.maxViews}
+              onChange={(e) => setFormData({ ...formData, maxViews: e.target.value })}
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Switch
+              checked={formData.isPasswordProtected}
+              onCheckedChange={(checked) =>
+                setFormData({
+                  ...formData,
+                  isPasswordProtected: checked,
+                  password: "",
+                })
+              }
+              id="password-protection"
+            />
+            <Label htmlFor="password-protection" className="flex items-center gap-2">
+              <IconLock size={16} />
+              {t("createShare.passwordProtection")}
+            </Label>
+          </div>
+
+          {formData.isPasswordProtected && (
+            <div className="space-y-2">
+              <Label>{t("createShare.passwordLabel")}</Label>
+              <Input
+                type="password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+            </div>
+          )}
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose}>
+            {t("common.cancel")}
+          </Button>
+          <Button disabled={isLoading} onClick={handleSubmit}>
+            {isLoading ? (
+              <div className="animate-spin">⠋</div>
+            ) : (
+              t("createShare.create")
+            )}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}

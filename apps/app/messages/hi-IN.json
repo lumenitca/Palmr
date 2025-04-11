@@ -48,7 +48,7 @@
     "descriptionLabel": "विवरण",
     "descriptionPlaceholder": "फाइल का विवरण दर्ज करें",
     "deleteFile": "फाइल हटाएं",
-    "deleteConfirmation": "क्या आप वाकई \"{{fileName}}\" हटाना चाहते हैं?",
+    "deleteConfirmation": "क्या आप वाकई  हटाना चाहते हैं?",
     "deleteWarning": "यह क्रिया अपरिवर्तनीय है।"
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "सुरक्षा",
     "passwordProtected": "पासवर्ड द्वारा संरक्षित",
     "publicAccess": "सार्वजनिक पहुँच",
-    "maxViews": "अधिकतम दृश्य: {{count}}",
-    "files": "फाइलें ({{count}})",
-    "recipients": "प्राप्तकर्ता ({{count}})",
+    "maxViews": "अधिकतम दृश्य:",
+    "files": "फाइलें",
+    "recipients": "प्राप्तकर्ता",
     "notAvailable": "एन/ए",
     "invalidDate": "अमान्य तिथि",
     "loadError": "साझाकरण विवरण लोड करने में विफल"

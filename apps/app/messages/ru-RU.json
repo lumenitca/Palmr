@@ -48,7 +48,7 @@
     "descriptionLabel": "Описание",
     "descriptionPlaceholder": "Введите описание файла",
     "deleteFile": "Удалить файл",
-    "deleteConfirmation": "Вы уверены, что хотите удалить \"{{fileName}}\"?",
+    "deleteConfirmation": "Вы уверены, что хотите удалить ?",
     "deleteWarning": "Это действие необратимо."
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "Безопасность",
     "passwordProtected": "Защищено паролем",
     "publicAccess": "Публичный доступ",
-    "maxViews": "Максимум просмотров: {{count}}",
-    "files": "Файлы ({{count}})",
-    "recipients": "Получатели ({{count}})",
+    "maxViews": "Максимум просмотров:",
+    "files": "Файлы",
+    "recipients": "Получатели",
     "notAvailable": "Н/Д",
     "invalidDate": "Неверная дата",
     "loadError": "Ошибка загрузки деталей общего доступа"

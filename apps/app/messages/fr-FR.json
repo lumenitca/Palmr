@@ -48,7 +48,7 @@
     "descriptionLabel": "Description",
     "descriptionPlaceholder": "Entrez la description du fichier",
     "deleteFile": "Supprimer le Fichier",
-    "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer \"{{fileName}}\" ?",
+    "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer  ?",
     "deleteWarning": "Cette action ne peut pas être annulée."
   },
   "fileManager": {
@@ -453,9 +453,9 @@
     "security": "Sécurité",
     "passwordProtected": "Protégé par Mot de Passe",
     "publicAccess": "Accès Public",
-    "maxViews": "Vues Maximales : {{count}}",
-    "files": "Fichiers ({{count}})",
-    "recipients": "Destinataires ({{count}})",
+    "maxViews": "Vues Maximales:",
+    "files": "Fichiers",
+    "recipients": "Destinataires",
     "notAvailable": "N/D",
     "invalidDate": "Date invalide",
     "loadError": "Échec du chargement des détails du partage"

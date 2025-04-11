@@ -48,7 +48,7 @@
     "descriptionLabel": "Beschreibung",
     "descriptionPlaceholder": "Dateibeschreibung eingeben",
     "deleteFile": "Datei löschen",
-    "deleteConfirmation": "Sind Sie sicher, dass Sie \"{{fileName}}\" löschen möchten?",
+    "deleteConfirmation": "Sind Sie sicher, dass Sie  löschen möchten?",
     "deleteWarning": "Diese Aktion kann nicht rückgängig gemacht werden."
   },
   "fileManager": {
@@ -454,9 +454,9 @@
     "security": "Sicherheit",
     "passwordProtected": "Passwortgeschützt",
     "publicAccess": "Öffentlicher Zugriff",
-    "maxViews": "Maximale Ansichten: {{count}}",
-    "files": "Dateien ({{count}})",
-    "recipients": "Empfänger ({{count}})",
+    "maxViews": "Maximale Ansichten:",
+    "files": "Dateien",
+    "recipients": "Empfänger",
     "notAvailable": "N/V",
     "invalidDate": "Ungültiges Datum",
     "loadError": "Fehler beim Laden der Freigabedetails"
