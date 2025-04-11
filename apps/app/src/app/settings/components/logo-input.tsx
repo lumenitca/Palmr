@@ -1,12 +1,13 @@
 "use client";
 
-import { useAppInfo } from "@/contexts/app-info-context";
-import { removeLogo, uploadLogo } from "@/http/endpoints";
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { IconCloudUpload, IconTrash } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { useAppInfo } from "@/contexts/app-info-context";
+import { removeLogo, uploadLogo } from "@/http/endpoints";
 
 interface LogoInputProps {
   value?: string;
@@ -15,7 +16,7 @@ interface LogoInputProps {
 }
 
 export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
-  const  t = useTranslations();
+  const t = useTranslations();
   const [isUploading, setIsUploading] = useState(false);
   const [currentLogo, setCurrentLogo] = useState(value);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -80,19 +81,9 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
       {currentLogo ? (
         <div className="flex flex-col items-center gap-4">
           <div className="relative max-w-[200px] max-h-[200px] flex">
-            <img
-              alt={t("logo.labels.appLogo")}
-              className="rounded-lg"
-              src={currentLogo}
-              
-              sizes="200px"
-            />
+            <img alt={t("logo.labels.appLogo")} className="rounded-lg" src={currentLogo} sizes="200px" />
           </div>
-          <Button
-            variant="destructive"
-            disabled={isDisabled}
-            onClick={handleRemoveLogo}
-          >
+          <Button variant="destructive" disabled={isDisabled} onClick={handleRemoveLogo}>
             {!isUploading && <IconTrash className="mr-2 h-4 w-4" />}
             {t("logo.buttons.remove")}
           </Button>

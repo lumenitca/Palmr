@@ -1,5 +1,4 @@
-import { ValidGroup } from "../types";
-import { SettingsFormProps } from "../types";
+import { SettingsFormProps, ValidGroup } from "../types";
 import { SettingsGroup } from "./settings-group";
 
 const GROUP_ORDER: ValidGroup[] = ["general", "email", "security", "storage"];

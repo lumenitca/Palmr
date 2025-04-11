@@ -1,25 +1,25 @@
-import { createTranslator } from 'next-intl';
-import { IconMail, IconSettings, IconShield, IconDatabase } from '@tabler/icons-react';
+import { IconDatabase, IconMail, IconSettings, IconShield } from "@tabler/icons-react";
+import { createTranslator } from "next-intl";
 
 export const createGroupMetadata = (t: ReturnType<typeof createTranslator>) => ({
   email: {
-    title: t('settings.groups.email.title'),
-    description: t('settings.groups.email.description'),
+    title: t("settings.groups.email.title"),
+    description: t("settings.groups.email.description"),
     icon: IconMail,
   },
   general: {
-    title: t('settings.groups.general.title'),
-    description: t('settings.groups.general.description'),
+    title: t("settings.groups.general.title"),
+    description: t("settings.groups.general.description"),
     icon: IconSettings,
   },
   security: {
-    title: t('settings.groups.security.title'),
-    description: t('settings.groups.security.description'),
+    title: t("settings.groups.security.title"),
+    description: t("settings.groups.security.description"),
     icon: IconShield,
   },
   storage: {
-    title: t('settings.groups.storage.title'),
-    description: t('settings.groups.storage.description'),
+    title: t("settings.groups.storage.title"),
+    description: t("settings.groups.storage.description"),
     icon: IconDatabase,
   },
 });

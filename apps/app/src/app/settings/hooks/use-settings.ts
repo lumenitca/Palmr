@@ -1,28 +1,25 @@
 "use client";
 
-import { ConfigType, GroupFormData } from "../types";
-import { Config } from "../types";
-import { useShareContext } from "@/contexts/share-context";
-import { useAppInfo } from "@/contexts/app-info-context";
-import { getAllConfigs, bulkUpdateConfigs } from "@/http/endpoints";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-
 import { toast } from "sonner";
 import { z } from "zod";
-import { useTranslations } from "next-intl";
+
+import { useAppInfo } from "@/contexts/app-info-context";
+import { useShareContext } from "@/contexts/share-context";
+import { bulkUpdateConfigs, getAllConfigs } from "@/http/endpoints";
+import { Config, ConfigType, GroupFormData } from "../types";
 
 const createSchemas = () => ({
   settingsSchema: z.object({
-    configs: z.record(
-      z.union([z.string(), z.number()]).transform((val) => String(val))
-    ),
+    configs: z.record(z.union([z.string(), z.number()]).transform((val) => String(val))),
   }),
 });
 
 export function useSettings() {
-  const t  = useTranslations();
+  const t = useTranslations();
   const { settingsSchema } = createSchemas();
   const [isLoading, setIsLoading] = useState(true);
   const [configs, setConfigs] = useState<Record<string, string>>({});

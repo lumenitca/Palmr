@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ProtectedRoute } from "@/components/auth/protected-route";
 import { LoadingScreen } from "@/components/layout/loading-screen";
@@ -16,7 +16,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute requireAdmin>
       <div className="w-full h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-8">

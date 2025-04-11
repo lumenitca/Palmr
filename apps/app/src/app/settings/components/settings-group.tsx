@@ -1,12 +1,13 @@
-import { createGroupMetadata, createFieldDescriptions } from "../constants";
-import { SettingsGroupProps } from "../types";
-import { SettingsInput } from "./settings-input";
+import React from "react";
+import { IconChevronDown, IconChevronUp, IconDeviceFloppy } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useTranslations } from "next-intl";
-import React from "react";
-import { IconChevronDown, IconChevronUp, IconDeviceFloppy } from "@tabler/icons-react";
+import { createFieldDescriptions, createGroupMetadata } from "../constants";
+import { SettingsGroupProps } from "../types";
+import { SettingsInput } from "./settings-input";
 
 export function SettingsGroup({ group, configs, form, isCollapsed, onToggleCollapse, onSubmit }: SettingsGroupProps) {
   const t = useTranslations();
@@ -21,7 +22,10 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <Card className="p-6 gap-0">
-        <CardHeader className="flex flex-row items-center justify-between cursor-pointer p-0" onClick={onToggleCollapse}>
+        <CardHeader
+          className="flex flex-row items-center justify-between cursor-pointer p-0"
+          onClick={onToggleCollapse}
+        >
           <div className="flex flex-row items-center gap-8">
             {metadata.icon && React.createElement(metadata.icon, { className: "text-xl text-muted-foreground" })}
             <div className="flex flex-col gap-1">
@@ -33,7 +37,11 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
               </p>
             </div>
           </div>
-          {isCollapsed ? <IconChevronDown className="text-muted-foreground" /> : <IconChevronUp className="text-muted-foreground" />}
+          {isCollapsed ? (
+            <IconChevronDown className="text-muted-foreground" />
+          ) : (
+            <IconChevronUp className="text-muted-foreground" />
+          )}
         </CardHeader>
         <CardContent className={`${isCollapsed ? "hidden" : "block"} px-0`}>
           <Separator className="my-6" />

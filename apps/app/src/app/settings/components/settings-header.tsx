@@ -1,15 +1,15 @@
-import { 
-  Breadcrumb, 
-  BreadcrumbItem, 
+import Link from "next/link";
+import { IconLayoutDashboard, IconSettings } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbSeparator 
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import { useTranslations } from "next-intl";
-import { IconSettings } from "@tabler/icons-react";
-import { IconLayoutDashboard } from "@tabler/icons-react";
-import Link from "next/link";
 
 export function SettingsHeader() {
   const t = useTranslations();

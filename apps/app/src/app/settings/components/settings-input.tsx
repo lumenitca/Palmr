@@ -1,10 +1,10 @@
 import { useTranslations } from "next-intl";
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
+
+import { Input } from "@/components/ui/input";
 import { createFieldTitles } from "../constants";
 import { Config } from "../types";
 import { LogoInput } from "./logo-input";
-import { Input } from "@/components/ui/input";
-import { UseFormRegister, UseFormWatch } from "react-hook-form";
-
 
 export interface ConfigInputProps {
   config: Config;
