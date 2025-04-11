@@ -9,10 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const translate = await getTranslations();
 
   return {
-    title: translate("files.pageTitle"),
+    title: translate("settings.pageTitle"),
   };
 }
 
-export default function FilesLayout({ children }: LayoutProps) {
+export default function SettingsLayout({ children }: LayoutProps) {
   return <>{children}</>;
 }
