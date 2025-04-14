@@ -77,7 +77,7 @@ export function Navbar() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link href="/admin" className="flex items-center gap-2 cursor-pointer">
+                      <Link href="/users-management" className="flex items-center gap-2 cursor-pointer">
                         <IconUsers className="h-4 w-4" />
                         {t("navbar.usersManagement")}
                       </Link>

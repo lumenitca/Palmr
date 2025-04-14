@@ -68,7 +68,7 @@ export function PasswordForm({
 
           <div className="flex justify-end">
             <Button className="mt-4 font-semibold" variant="default" disabled={isSubmitting} type="submit">
-              {!isSubmitting && <IconLock className="mr-2 h-4 w-4" />}
+              {!isSubmitting && <IconLock className="h-4 w-4" />}
               {t("profile.password.updateButton")}
             </Button>
           </div>

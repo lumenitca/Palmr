@@ -48,7 +48,7 @@ export function ProfilePicture({ userData, onImageChange, onImageRemove }: Profi
                 : ""}
             </AvatarFallback>
           </Avatar>
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger asChild>
               <Button
                 size="icon"
@@ -61,12 +61,12 @@ export function ProfilePicture({ userData, onImageChange, onImageRemove }: Profi
             <DropdownMenuContent>
               {!!userData?.image ? (
                 <DropdownMenuItem className="text-destructive" onClick={onImageRemove}>
-                  <IconTrash className="mr-2 h-4 w-4" />
+                  <IconTrash className="h-4 w-4" />
                   {t("profile.picture.removePhoto")}
                 </DropdownMenuItem>
               ) : (
                 <DropdownMenuItem onClick={handleAvatarClick}>
-                  <IconCamera className="mr-2 h-4 w-4" />
+                  <IconCamera className="h-4 w-4" />
                   {t("profile.picture.uploadPhoto")}
                 </DropdownMenuItem>
               )}
