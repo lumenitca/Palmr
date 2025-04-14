@@ -1,6 +1,7 @@
-import { UserFormData } from "../hooks/use-user-management";
-import type { ListUsers200Item } from "@/http/models";
 import { UseFormReturn } from "react-hook-form";
+
+import type { ListUsers200Item } from "@/http/models";
+import { UserFormData } from "../hooks/use-user-management";
 
 export interface UserActionsDropdownProps {
   user: ListUsers200Item;

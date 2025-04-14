@@ -1,12 +1,8 @@
-import { UserStatusModalProps } from "../types";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { UserStatusModalProps } from "../types";
 
 export function UserStatusModal({ isOpen, onClose, user, onConfirm }: UserStatusModalProps) {
   const t = useTranslations();
@@ -14,9 +10,7 @@ export function UserStatusModal({ isOpen, onClose, user, onConfirm }: UserStatus
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        <DialogHeader className="flex flex-col gap-1">
-          {t("users.status.title")}
-        </DialogHeader>
+        <DialogHeader className="flex flex-col gap-1">{t("users.status.title")}</DialogHeader>
         <div className="py-4">
           {user && (
             <p>
@@ -32,12 +26,8 @@ export function UserStatusModal({ isOpen, onClose, user, onConfirm }: UserStatus
           <Button variant="outline" onClick={onClose}>
             {t("common.cancel")}
           </Button>
-          <Button
-            variant={user?.isActive ? "destructive" : "default"}
-            onClick={onConfirm}
-          >
-            {user?.isActive ? t("users.status.deactivate") : t("users.status.activate")}{" "}
-            {t("users.status.user")}
+          <Button variant={user?.isActive ? "destructive" : "default"} onClick={onConfirm}>
+            {user?.isActive ? t("users.status.deactivate") : t("users.status.activate")} {t("users.status.user")}
           </Button>
         </DialogFooter>
       </DialogContent>

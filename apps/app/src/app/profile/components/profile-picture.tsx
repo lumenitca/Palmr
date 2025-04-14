@@ -48,7 +48,7 @@ export function ProfilePicture({ userData, onImageChange, onImageRemove }: Profi
                 : ""}
             </AvatarFallback>
           </Avatar>
-          <DropdownMenu >
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 size="icon"

@@ -1,7 +1,7 @@
-import { UsersHeaderProps } from "../types";
 import Link from "next/link";
-import { IconLayoutDashboard, IconUsers, IconUserPlus } from "@tabler/icons-react";
+import { IconLayoutDashboard, IconUserPlus, IconUsers } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { UsersHeaderProps } from "../types";
 
 export function UsersHeader({ onCreateUser }: UsersHeaderProps) {
   const t = useTranslations();
@@ -22,10 +23,7 @@ export function UsersHeader({ onCreateUser }: UsersHeaderProps) {
           <IconUsers className="text-2xl" />
           <h1 className="text-2xl font-bold">{t("users.header.title")}</h1>
         </div>
-        <Button
-          className="font-semibold"
-          onClick={onCreateUser}
-        >
+        <Button className="font-semibold" onClick={onCreateUser}>
           <IconUserPlus size={18} className="mr-2" />
           {t("users.header.addUser")}
         </Button>

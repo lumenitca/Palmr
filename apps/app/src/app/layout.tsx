@@ -5,6 +5,8 @@ import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 
+import { Toaster } from "sonner";
+
 import { useAppInfo } from "@/contexts/app-info-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ShareProvider } from "@/contexts/share-context";
@@ -43,7 +45,10 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
-              <ShareProvider>{children}</ShareProvider>
+              <ShareProvider>
+                {children}
+                <Toaster />
+              </ShareProvider>
             </AuthProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

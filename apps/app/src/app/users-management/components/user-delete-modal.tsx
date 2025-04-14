@@ -1,12 +1,8 @@
-import { UserDeleteModalProps } from "../types";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { UserDeleteModalProps } from "../types";
 
 export function UserDeleteModal({ isOpen, onClose, user, onConfirm }: UserDeleteModalProps) {
   const t = useTranslations();
@@ -14,9 +10,7 @@ export function UserDeleteModal({ isOpen, onClose, user, onConfirm }: UserDelete
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        <DialogHeader className="flex flex-col gap-1">
-          {t("users.delete.title")}
-        </DialogHeader>
+        <DialogHeader className="flex flex-col gap-1">{t("users.delete.title")}</DialogHeader>
         <div className="py-4">
           {user && (
             <p>

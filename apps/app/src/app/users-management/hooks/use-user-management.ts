@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useAuth } from "@/contexts/auth-context";
-import { useDisclosure } from "@/hooks/use-disclosure";
-import { listUsers, registerUser, updateUser, deleteUser, activateUser, deactivateUser } from "@/http/endpoints";
-import type { ListUsers200Item } from "@/http/models";
-
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+
+import { useAuth } from "@/contexts/auth-context";
+import { useDisclosure } from "@/hooks/use-disclosure";
+import { activateUser, deactivateUser, deleteUser, listUsers, registerUser, updateUser } from "@/http/endpoints";
+import type { ListUsers200Item } from "@/http/models";
 
 const createSchemas = (t: (key: string) => string) => ({
   userSchema: z.object({
@@ -33,7 +33,7 @@ export type UserFormData = z.infer<ReturnType<typeof createSchemas>["userSchema"
 
 export function useUserManagement() {
   const t = useTranslations();
-  
+
   const { userSchema } = createSchemas(t);
   const [users, setUsers] = useState<ListUsers200Item[]>([]);
   const [isLoading, setIsLoading] = useState(true);
