@@ -7,6 +7,7 @@ import "./globals.css";
 
 import { Toaster } from "sonner";
 
+import { Favicon } from "@/components/layout/favicon";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ShareProvider } from "@/contexts/share-context";
@@ -41,6 +42,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <Favicon />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

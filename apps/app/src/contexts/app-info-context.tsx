@@ -10,14 +10,6 @@ interface AppInfoStore {
   refreshAppInfo: () => Promise<void>;
 }
 
-const updateFavicon = (logo: string) => {
-  const link = document.querySelector<HTMLLinkElement>("link[rel*='icon']") || document.createElement("link");
-  link.type = "image/x-icon";
-  link.rel = "shortcut icon";
-  link.href = logo || "/favicon.ico";
-  document.head.appendChild(link);
-};
-
 const updateTitle = (name: string) => {
   document.title = name;
 };
@@ -31,7 +23,6 @@ export const useAppInfo = create<AppInfoStore>((set) => {
           appLogo: response.data.appLogo,
         });
         updateTitle(response.data.appName);
-        updateFavicon(response.data.appLogo);
       })
       .catch((error) => {
         console.error("Failed to fetch app info:", error);
@@ -47,7 +38,6 @@ export const useAppInfo = create<AppInfoStore>((set) => {
     },
     setAppLogo: (logo: string) => {
       set({ appLogo: logo });
-      updateFavicon(logo);
     },
     refreshAppInfo: async () => {
       try {
@@ -57,7 +47,6 @@ export const useAppInfo = create<AppInfoStore>((set) => {
           appLogo: response.data.appLogo,
         });
         updateTitle(response.data.appName);
-        updateFavicon(response.data.appLogo);
       } catch (error) {
         console.error("Failed to fetch app info:", error);
       }
