@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { IconLock, IconLockOpen, IconMail } from "@tabler/icons-react";
 import { format } from "date-fns";

@@ -35,13 +35,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
+  const isRTL = locale === "ar-SA";
 
   if (typeof window !== "undefined") {
     useAppInfo.getState().refreshAppInfo();
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} dir={isRTL ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
         <Favicon />
       </head>

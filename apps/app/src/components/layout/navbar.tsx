@@ -40,7 +40,7 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
-              {appLogo && <img alt={t("navbar.logoAlt")} className="h-8 w-8 object-contain" src={appLogo} />}
+              {appLogo && <img alt={t("navbar.logoAlt")} className="h-8 w-8 object-contain rounded" src={appLogo} />}
               <p className="font-bold text-2xl">{appName}</p>
             </Link>
           </div>

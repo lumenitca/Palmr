@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { IconCalendar, IconEye, IconLock, IconShare } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";

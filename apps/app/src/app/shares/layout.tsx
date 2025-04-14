@@ -16,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const appName = appNameConfig?.value || "Palmr";
 
   return {
-    title: `${t("files.pageTitle")} | ${appName}`,
+    title: `${t("shares.pageTitle")} | ${appName}`,
   };
 }
 
-export default function FilesLayout({ children }: LayoutProps) {
+export default function UsersManagementLayout({ children }: LayoutProps) {
   return <>{children}</>;
 }

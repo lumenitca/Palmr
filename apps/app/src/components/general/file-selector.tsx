@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { IconArrowLeft, IconArrowRight, IconFile } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";

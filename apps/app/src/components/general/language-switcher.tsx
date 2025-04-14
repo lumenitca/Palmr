@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IconLanguage } from "@tabler/icons-react";
 import { useLocale } from "next-intl";
 import { setCookie } from "nookies";
@@ -32,11 +32,18 @@ const languages = {
 const COOKIE_LANG_KEY = "NEXT_LOCALE";
 const COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
 
+const RTL_LANGUAGES = ["ar-SA"];
+
 export function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
 
   const changeLanguage = (fullLocale: string) => {
+    // Update document direction based on language
+    const isRTL = RTL_LANGUAGES.includes(fullLocale);
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+
     setCookie(null, COOKIE_LANG_KEY, fullLocale, {
       maxAge: COOKIE_MAX_AGE,
       path: "/",
