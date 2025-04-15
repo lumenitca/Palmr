@@ -8,6 +8,14 @@ import { useTranslations } from "next-intl";
 import { useAuth } from "@/contexts/auth-context";
 import { getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
 
 export function useLogin() {
   const router = useRouter();
