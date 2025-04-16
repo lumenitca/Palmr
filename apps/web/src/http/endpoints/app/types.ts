@@ -1,14 +1,15 @@
+import type { AxiosResponse } from "axios";
+
 import type {
-  GetAppInfo200,
-  UploadLogo200,
-  UploadLogoBody,
-  RemoveLogo200,
   CheckHealth200,
-  GetDiskSpace200,
   CheckUploadAllowed200,
   CheckUploadAllowedParams,
+  GetAppInfo200,
+  GetDiskSpace200,
+  RemoveLogo200,
+  UploadLogo200,
+  UploadLogoBody,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type GetAppInfoResult = AxiosResponse<GetAppInfo200>;
 export type UploadLogoResult = AxiosResponse<UploadLogo200>;

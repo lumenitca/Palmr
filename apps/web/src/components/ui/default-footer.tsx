@@ -1,15 +1,16 @@
-import { Link } from "@heroui/link";
-import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+
 import { version } from "../../../package.json";
 
 export function DefaultFooter() {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <footer className="w-full flex items-center justify-center py-3 h-16">
       <div className="flex flex-col items-center">
         <Link
-          isExternal
+          target="_blank"
           className="flex items-center gap-1 text-current"
           href="https://kyantech.com.br"
           title={t("footer.kyanHomepage")}

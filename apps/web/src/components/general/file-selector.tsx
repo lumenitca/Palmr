@@ -1,9 +1,13 @@
-import { addFiles, listFiles, removeFiles } from "@/http/endpoints";
-import { Button } from "@heroui/button";
+"use client";
+
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FaArrowLeft, FaArrowRight, FaFile } from "react-icons/fa";
+import { IconArrowLeft, IconArrowRight, IconFile } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { addFiles, listFiles, removeFiles } from "@/http/endpoints";
 
 interface FileSelectorProps {
   shareId: string;
@@ -12,7 +16,7 @@ interface FileSelectorProps {
 }
 
 export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [availableFiles, setAvailableFiles] = useState<any[]>([]);
   const [shareFiles, setShareFiles] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -94,8 +98,8 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
             <h3 className="font-medium">
               {t("fileSelector.availableFiles", { count: filteredAvailableFiles.length })}
             </h3>
-            <input
-              className="mt-2 w-full px-3 py-2 rounded-lg"
+            <Input
+              className="mt-2"
               placeholder={t("fileSelector.searchPlaceholder")}
               type="search"
               value={availableFilter}
@@ -116,12 +120,12 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
                     onClick={() => moveToShare(file.id)}
                   >
                     <div className="flex items-center gap-2">
-                      <FaFile className="text-gray-400" />
+                      <IconFile className="text-gray-400" size={20} />
                       <span className="truncate max-w-[150px]" title={file.name}>
                         {file.name}
                       </span>
                     </div>
-                    <FaArrowRight className="text-gray-400" />
+                    <IconArrowRight className="text-gray-400" size={20} />
                   </div>
                 ))}
               </div>
@@ -132,8 +136,8 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
         <div className="flex-1 border rounded-lg">
           <div className="p-4 border-b">
             <h3 className="font-medium">{t("fileSelector.shareFiles", { count: filteredShareFiles.length })}</h3>
-            <input
-              className="mt-2 w-full px-3 py-2 rounded-lg"
+            <Input
+              className="mt-2"
               placeholder={t("fileSelector.searchPlaceholder")}
               type="search"
               value={shareFilter}
@@ -154,12 +158,12 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
                     onClick={() => removeFromShare(file.id)}
                   >
                     <div className="flex items-center gap-2">
-                      <FaFile className="text-gray-400" />
+                      <IconFile className="text-gray-400" size={20} />
                       <span className="truncate max-w-[150px]" title={file.name}>
                         {file.name}
                       </span>
                     </div>
-                    <FaArrowLeft className="text-gray-400" />
+                    <IconArrowLeft className="text-gray-400" size={20} />
                   </div>
                 ))}
               </div>
@@ -169,8 +173,15 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
       </div>
 
       <div className="flex justify-end">
-        <Button color="primary" isLoading={isLoading} onPress={handleSave}>
-          {t("fileSelector.saveChanges")}
+        <Button variant="default" disabled={isLoading} onClick={handleSave}>
+          {isLoading ? (
+            <div className="flex items-center gap-2">
+              <div className="animate-spin">⠋</div>
+              {t("fileSelector.saveChanges")}
+            </div>
+          ) : (
+            t("fileSelector.saveChanges")
+          )}
         </Button>
       </div>
     </div>

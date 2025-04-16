@@ -1,13 +1,24 @@
-import { FileSelector } from "../general/file-selector";
-import { RecipientSelector } from "../general/recipient-selector";
-import { updateSharePassword } from "@/http/endpoints";
-import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@heroui/modal";
-import { Switch } from "@heroui/switch";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { FileSelector } from "@/components/general/file-selector";
+import { RecipientSelector } from "@/components/general/recipient-selector";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { updateSharePassword } from "@/http/endpoints";
 
 export interface ShareActionsModalsProps {
   shareToDelete: any;
@@ -39,7 +50,7 @@ export function ShareActionsModals({
   onManageFiles,
   onSuccess,
 }: ShareActionsModalsProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [isLoading, setIsLoading] = useState(false);
   const [editForm, setEditForm] = useState({
     name: "",
@@ -100,67 +111,73 @@ export function ShareActionsModals({
 
   return (
     <>
-      <Modal isOpen={!!shareToDelete} onClose={onCloseDelete}>
-        <ModalContent>
-          <ModalHeader>{t("shareActions.deleteTitle")}</ModalHeader>
-          <ModalBody>{t("shareActions.deleteConfirmation")}</ModalBody>
-          <ModalFooter>
-            <Button variant="light" onPress={onCloseDelete}>
+      <Dialog open={!!shareToDelete} onOpenChange={() => onCloseDelete()}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("shareActions.deleteTitle")}</DialogTitle>
+            <DialogDescription>{t("shareActions.deleteConfirmation")}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={onCloseDelete}>
               {t("common.cancel")}
             </Button>
-            <Button color="danger" isLoading={isLoading} onPress={handleDelete}>
+            <Button variant="destructive" disabled={isLoading} onClick={handleDelete}>
               {t("common.delete")}
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      <Modal isOpen={!!shareToEdit} onClose={onCloseEdit}>
-        <ModalContent>
-          <ModalHeader>{t("shareActions.editTitle")}</ModalHeader>
-          <ModalBody>
-            <div className="flex flex-col gap-4">
+      <Dialog open={!!shareToEdit} onOpenChange={() => onCloseEdit()}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("shareActions.editTitle")}</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-4">
+            <div className="grid w-full items-center gap-1.5">
+              <Label>{t("shareActions.nameLabel")}</Label>
+              <Input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} />
+            </div>
+            <div className="grid w-full items-center gap-1.5">
+              <Label>{t("shareActions.expirationLabel")}</Label>
               <Input
-                label={t("shareActions.nameLabel")}
-                value={editForm.name}
-                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-              />
-              <Input
-                label={t("shareActions.expirationLabel")}
                 placeholder={t("shareActions.expirationPlaceholder")}
                 type="datetime-local"
                 value={editForm.expiresAt}
                 onChange={(e) => setEditForm({ ...editForm, expiresAt: e.target.value })}
               />
+            </div>
+            <div className="grid w-full items-center gap-1.5">
+              <Label>{t("shareActions.maxViewsLabel")}</Label>
               <Input
-                label={t("shareActions.maxViewsLabel")}
                 min="1"
                 placeholder={t("shareActions.maxViewsPlaceholder")}
                 type="number"
                 value={editForm.maxViews}
                 onChange={(e) => setEditForm({ ...editForm, maxViews: e.target.value })}
               />
-              <div className="flex items-center gap-2">
-                <Switch
-                  isSelected={editForm.isPasswordProtected}
-                  onValueChange={(checked) =>
-                    setEditForm({
-                      ...editForm,
-                      isPasswordProtected: checked,
-                      password: "",
-                    })
-                  }
-                >
-                  {t("shareActions.passwordProtection")}
-                </Switch>
-              </div>
-              {editForm.isPasswordProtected && (
+            </div>
+            <div className="flex items-center space-x-2">
+              <Switch
+                checked={editForm.isPasswordProtected}
+                onCheckedChange={(checked) =>
+                  setEditForm({
+                    ...editForm,
+                    isPasswordProtected: checked,
+                    password: "",
+                  })
+                }
+              />
+              <Label>{t("shareActions.passwordProtection")}</Label>
+            </div>
+            {editForm.isPasswordProtected && (
+              <div className="grid w-full items-center gap-1.5">
+                <Label>
+                  {shareToEdit?.security?.hasPassword
+                    ? t("shareActions.newPasswordLabel")
+                    : t("shareActions.passwordLabel")}
+                </Label>
                 <Input
-                  label={
-                    shareToEdit?.security?.hasPassword
-                      ? t("shareActions.newPasswordLabel")
-                      : t("shareActions.passwordLabel")
-                  }
                   placeholder={
                     shareToEdit?.security?.hasPassword
                       ? t("shareActions.newPasswordPlaceholder")
@@ -170,49 +187,49 @@ export function ShareActionsModals({
                   value={editForm.password}
                   onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
                 />
-              )}
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button variant="light" onPress={onCloseEdit}>
+              </div>
+            )}
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={onCloseEdit}>
               {t("common.cancel")}
             </Button>
-            <Button color="primary" isLoading={isLoading} onPress={handleEdit}>
+            <Button disabled={isLoading} onClick={handleEdit}>
               {t("common.save")}
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      <Modal isOpen={!!shareToManageFiles} size="2xl" onClose={onCloseManageFiles}>
-        <ModalContent>
-          <ModalHeader>{t("shareActions.manageFilesTitle")}</ModalHeader>
-          <ModalBody>
-            <FileSelector
-              selectedFiles={shareToManageFiles?.files?.map((file: { id: string }) => file.id) || []}
-              shareId={shareToManageFiles?.id}
-              onSave={async (files) => {
-                await onManageFiles(shareToManageFiles?.id, files);
-                onSuccess();
-              }}
-            />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <Dialog open={!!shareToManageFiles} onOpenChange={() => onCloseManageFiles()}>
+        <DialogContent className="sm:max-w-[425px] md:max-w-[700px]">
+          <DialogHeader>
+            <DialogTitle>{t("shareActions.manageFilesTitle")}</DialogTitle>
+          </DialogHeader>
+          <FileSelector
+            selectedFiles={shareToManageFiles?.files?.map((file: { id: string }) => file.id) || []}
+            shareId={shareToManageFiles?.id}
+            onSave={async (files) => {
+              await onManageFiles(shareToManageFiles?.id, files);
+              onSuccess();
+            }}
+          />
+        </DialogContent>
+      </Dialog>
 
-      <Modal isOpen={!!shareToManageRecipients} size="2xl" onClose={onCloseManageRecipients}>
-        <ModalContent>
-          <ModalHeader>{t("shareActions.manageRecipientsTitle")}</ModalHeader>
-          <ModalBody>
-            <RecipientSelector
-              selectedRecipients={shareToManageRecipients?.recipients || []}
-              shareAlias={shareToManageRecipients?.alias?.alias}
-              shareId={shareToManageRecipients?.id}
-              onSuccess={onSuccess}
-            />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <Dialog open={!!shareToManageRecipients} onOpenChange={() => onCloseManageRecipients()}>
+        <DialogContent className="sm:max-w-[425px] md:max-w-[700px]">
+          <DialogHeader>
+            <DialogTitle>{t("shareActions.manageRecipientsTitle")}</DialogTitle>
+          </DialogHeader>
+          <RecipientSelector
+            selectedRecipients={shareToManageRecipients?.recipients || []}
+            shareAlias={shareToManageRecipients?.alias?.alias}
+            shareId={shareToManageRecipients?.id}
+            onSuccess={onSuccess}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

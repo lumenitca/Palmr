@@ -1,30 +1,31 @@
+import type { AxiosResponse } from "axios";
+
 import type {
-  CreateShare201,
-  CreateShareBody,
-  UpdateShare200,
-  UpdateShareBody,
-  ListUserShares200,
-  GetShare200,
-  GetShareParams,
-  DeleteShare200,
-  UpdateSharePassword200,
-  UpdateSharePasswordBody,
   AddFiles200,
   AddFilesBody,
-  RemoveFiles200,
-  RemoveFilesBody,
   AddRecipients200,
   AddRecipientsBody,
-  RemoveRecipients200,
-  RemoveRecipientsBody,
+  CreateShare201,
   CreateShareAlias200,
   CreateShareAliasBody,
+  CreateShareBody,
+  DeleteShare200,
+  GetShare200,
   GetShareByAlias200,
   GetShareByAliasParams,
+  GetShareParams,
+  ListUserShares200,
   NotifyRecipients200,
   NotifyRecipientsBody,
+  RemoveFiles200,
+  RemoveFilesBody,
+  RemoveRecipients200,
+  RemoveRecipientsBody,
+  UpdateShare200,
+  UpdateShareBody,
+  UpdateSharePassword200,
+  UpdateSharePasswordBody,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type CreateShareResult = AxiosResponse<CreateShare201>;
 export type UpdateShareResult = AxiosResponse<UpdateShare200>;

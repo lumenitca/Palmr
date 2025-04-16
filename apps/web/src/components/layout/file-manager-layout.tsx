@@ -1,10 +1,18 @@
-import { Navbar } from "@/components/layout/navbar";
-import { DefaultFooter } from "@/components/ui/default-footer";
-import { Breadcrumbs, BreadcrumbItem } from "@heroui/breadcrumbs";
-import { Divider } from "@heroui/divider";
 import { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
-import { TbLayoutDashboardFilled } from "react-icons/tb";
+import Link from "next/link";
+import { IconLayoutDashboard } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import { Navbar } from "@/components/layout/navbar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { DefaultFooter } from "@/components/ui/default-footer";
+import { Separator } from "@/components/ui/separator";
 
 interface FileManagerLayoutProps {
   children: ReactNode;
@@ -21,7 +29,7 @@ export function FileManagerLayout({
   breadcrumbLabel,
   showBreadcrumb = true,
 }: FileManagerLayoutProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className="w-full min-h-screen flex flex-col">
@@ -33,17 +41,26 @@ export function FileManagerLayout({
               {icon}
               <h1 className="text-2xl font-bold">{title}</h1>
             </div>
-            <Divider />
+            <Separator />
             {showBreadcrumb && breadcrumbLabel && (
-              <Breadcrumbs>
-                <BreadcrumbItem href="/dashboard">
-                  <TbLayoutDashboardFilled className="text-sm mr-0.5" />
-                  {t("navigation.dashboard")}
-                </BreadcrumbItem>
-                <BreadcrumbItem>
-                  {icon} {breadcrumbLabel}
-                </BreadcrumbItem>
-              </Breadcrumbs>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink asChild>
+                      <Link href="/dashboard" className="flex items-center">
+                        <IconLayoutDashboard size={20} className="mr-2" />
+                        {t("navigation.dashboard")}
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <span className="flex items-center gap-2">
+                      {icon} {breadcrumbLabel}
+                    </span>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
             )}
           </div>
 

@@ -1,6 +1,7 @@
-import { getDownloadUrl, updateFile, deleteFile } from "@/http/endpoints";
 import { useState } from "react";
 import { toast } from "sonner";
+
+import { deleteFile, getDownloadUrl, updateFile } from "@/http/endpoints";
 
 interface FileToRename {
   id: string;
