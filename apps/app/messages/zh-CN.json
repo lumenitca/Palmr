@@ -545,6 +545,12 @@
     "used": "已使用：",
     "available": "可用："
   },
+  "theme": {
+    "toggle": "切换主题",
+    "light": "明亮",
+    "dark": "暗黑",
+    "system": "系统"
+  },
   "uploadFile": {
     "title": "上传文件",
     "selectFile": "点击选择文件",

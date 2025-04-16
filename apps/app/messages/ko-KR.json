@@ -545,6 +545,12 @@
     "used": "사용됨",
     "available": "사용 가능"
   },
+  "theme": {
+    "toggle": "테마 전환",
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템"
+  },
   "uploadFile": {
     "title": "파일 업로드",
     "selectFile": "파일 선택을 위해 클릭하세요",

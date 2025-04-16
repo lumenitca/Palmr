@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { objectName: string } }) {
-  const { objectName } = params;
+  // Await params before destructuring
+  const { objectName } = await params;
   const cookieHeader = req.headers.get("cookie");
 
   const url = `${process.env.API_BASE_URL}/files/${encodeURIComponent(objectName)}/download`;

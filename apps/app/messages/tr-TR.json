@@ -545,6 +545,12 @@
     "used": "kullanıldı",
     "available": "kullanılabilir"
   },
+  "theme": {
+    "toggle": "Temayı değiştir",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem"
+  },
   "uploadFile": {
     "title": "Dosya Yükle",
     "selectFile": "Dosya seçmek için tıklayın",

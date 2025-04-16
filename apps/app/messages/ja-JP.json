@@ -545,6 +545,12 @@
     "used": "使用済み",
     "available": "利用可能"
   },
+  "theme": {
+    "toggle": "テーマを切り替える",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
   "uploadFile": {
     "title": "ファイルをアップロード",
     "selectFile": "ファイルを選択するにはクリックしてください",

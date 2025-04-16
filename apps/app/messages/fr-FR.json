@@ -544,6 +544,12 @@
     "used": "utilisé",
     "available": "disponible"
   },
+  "theme": {
+    "toggle": "Changer le thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
   "uploadFile": {
     "title": "Envoyer un Fichier",
     "selectFile": "Cliquez pour sélectionner un fichier",

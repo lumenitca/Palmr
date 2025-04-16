@@ -545,6 +545,12 @@
     "used": "المستخدمة",
     "available": "المتاحة"
   },
+  "theme": {
+    "toggle": "تبديل السمة",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام"
+  },
   "uploadFile": {
     "title": "رفع الملف",
     "selectFile": "اضغط لاختيار ملف",

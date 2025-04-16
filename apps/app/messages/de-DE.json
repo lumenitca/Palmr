@@ -545,6 +545,12 @@
     "used": "genutzt",
     "available": "verfügbar"
   },
+  "theme": {
+    "toggle": "Design umschalten",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
   "uploadFile": {
     "title": "Datei hochladen",
     "selectFile": "Klicken Sie, um eine Datei auszuwählen",

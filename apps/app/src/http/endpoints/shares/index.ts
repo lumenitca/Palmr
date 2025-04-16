@@ -1,5 +1,6 @@
 import type { AxiosRequestConfig } from "axios";
 
+import apiInstance from "@/config/api";
 import type {
   AddFilesBody,
   AddFilesResult,
@@ -26,7 +27,6 @@ import type {
   UpdateSharePasswordResult,
   UpdateShareResult,
 } from "./types";
-import apiInstance from "@/config/api";
 
 /**
  * Create a new share
