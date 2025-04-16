@@ -40,7 +40,6 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const changeLanguage = (fullLocale: string) => {
-    // Update document direction based on language
     const isRTL = RTL_LANGUAGES.includes(fullLocale);
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
 

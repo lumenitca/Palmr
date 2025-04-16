@@ -34,7 +34,6 @@ export function GenerateShareLinkModal({
   const [generatedLink, setGeneratedLink] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
-  // Update the useEffect
   useEffect(() => {
     if (shareId && share?.alias?.alias) {
       setIsEdit(true);

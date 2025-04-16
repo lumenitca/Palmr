@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig } from "axios";
 
-import axiosInstance from "@/config/axios";
+import apiInstance from "@/config/api";
 import type {
   CheckHealthResult,
   CheckUploadAllowedParams,
@@ -17,7 +17,7 @@ import type {
  * @summary Get application base information
  */
 export const getAppInfo = <TData = GetAppInfoResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/app/info`, options);
+  return apiInstance.get(`/api/app/info`, options);
 };
 
 /**
@@ -34,7 +34,7 @@ export const uploadLogo = <TData = UploadLogoResult>(
     formData.append("file", uploadLogoBody.file as Blob);
   }
 
-  return axiosInstance.post(`/app/logo`, formData, {
+  return apiInstance.post(`/api/app/upload-logo`, formData, {
     ...options,
     headers: {
       ...options?.headers,
@@ -48,7 +48,7 @@ export const uploadLogo = <TData = UploadLogoResult>(
  * @summary Remove app logo
  */
 export const removeLogo = <TData = RemoveLogoResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.delete(`/app/logo`, options);
+  return apiInstance.delete(`/api/app/remove-logo`, options);
 };
 
 /**
@@ -56,7 +56,7 @@ export const removeLogo = <TData = RemoveLogoResult>(options?: AxiosRequestConfi
  * @summary Check API Health
  */
 export const checkHealth = <TData = CheckHealthResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/health`, options);
+  return apiInstance.get(`/api/app/health`, options);
 };
 
 /**
@@ -64,7 +64,7 @@ export const checkHealth = <TData = CheckHealthResult>(options?: AxiosRequestCon
  * @summary Get server disk space information
  */
 export const getDiskSpace = <TData = GetDiskSpaceResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/storage/disk-space`, options);
+  return apiInstance.get(`/api/app/disk-space`, options);
 };
 
 /**
@@ -75,7 +75,7 @@ export const checkUploadAllowed = <TData = CheckUploadAllowedResult>(
   params: CheckUploadAllowedParams,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.get(`/storage/check-upload`, {
+  return apiInstance.get(`/api/app/check-upload`, {
     ...options,
     params: { ...params, ...options?.params },
   });

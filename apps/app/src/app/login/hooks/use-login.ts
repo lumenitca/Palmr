@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useTranslations } from "next-intl";
+import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
 import { getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
-import { z } from "zod";
 
 const loginSchema = z.object({
   email: z.string(),

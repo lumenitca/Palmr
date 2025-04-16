@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig } from "axios";
 
-import axiosInstance from "@/config/axios";
+import apiInstance from "@/config/api";
 import type {
   GetCurrentUserResult,
   LoginBody,
@@ -13,27 +13,27 @@ import type {
 } from "./types";
 
 export const login = <TData = LoginResult>(loginBody: LoginBody, options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.post(`/auth/login`, loginBody, options);
+  return apiInstance.post(`/api/auth/login`, loginBody, options);
 };
 
 export const logout = <TData = LogoutResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.post(`/auth/logout`, undefined, options);
+  return apiInstance.post(`/api/auth/logout`, undefined, options);
 };
 
 export const requestPasswordReset = <TData = RequestPasswordResetResult>(
   requestPasswordResetBody: RequestPasswordResetBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.post(`/auth/forgot-password`, requestPasswordResetBody, options);
+  return apiInstance.post(`/api/auth/forgot-password`, requestPasswordResetBody, options);
 };
 
 export const resetPassword = <TData = ResetPasswordResult>(
   resetPasswordBody: ResetPasswordBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.post(`/auth/reset-password`, resetPasswordBody, options);
+  return apiInstance.post(`/api/auth/reset-password`, resetPasswordBody, options);
 };
 
 export const getCurrentUser = <TData = GetCurrentUserResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/auth/me`, options);
+  return apiInstance.get(`/api/auth/me`, options);
 };

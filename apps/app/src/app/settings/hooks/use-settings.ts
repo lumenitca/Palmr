@@ -61,21 +61,17 @@ export function useSettings() {
           type: (config.type as ConfigType) || "text",
         });
 
-        // Sort configs by key to maintain consistent order
         acc[group].sort((a, b) => {
-          // Para o grupo general, coloca appLogo primeiro
           if (group === "general") {
             if (a.key === "appLogo") return -1;
             if (b.key === "appLogo") return 1;
           }
 
-          // Para o grupo email, coloca smtpEnabled primeiro
           if (group === "email") {
             if (a.key === "smtpEnabled") return -1;
             if (b.key === "smtpEnabled") return 1;
           }
 
-          // Ordenação padrão alfabética para os demais casos
           return a.key.localeCompare(b.key);
         });
 
