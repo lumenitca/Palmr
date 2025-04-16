@@ -1,6 +1,6 @@
 services:
   palmr-api:
-    image: kyantech/palmr-api:latest
+    image: kyantech/palmr-api:latest # Make sure to use the correct version (latest) of the image
     container_name: palmr-api
     depends_on:
       postgres:
@@ -9,16 +9,16 @@ services:
         condition: "service_healthy"
     environment:
       - PORT=3333
-      - DATABASE_URL=postgresql://postgres:postgresRootPassword@postgres:5432/palmr_db?schema=public
-      - MINIO_ENDPOINT=minio
-      - MINIO_PORT=9000
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRES_PASSWORD env var
+      - MINIO_ENDPOINT=minio # This can change if your MinIO is at a different address
+      - MINIO_PORT=9000 # Default MinIO port (Change if yours is not the default)
       - MINIO_USE_SSL=false
-      - MINIO_ROOT_USER=minio_root_user
-      - MINIO_ROOT_PASSWORD=minioRootPassword
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minio_root_user} # MinIO credentials can be configured through MINIO_ROOT_USER env vars
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioRootPassword} # MinIO credentials can be configured through MINIO_ROOT_PASSWORD env vars
       - MINIO_REGION=sa-east-1
       - MINIO_BUCKET_NAME=files
-      - FRONTEND_URL=http://localhost:4173
-      - BASE_URL=http://localhost:3333
+      - FRONTEND_URL=http://localhost:3000 # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running
+      - BASE_URL=http://localhost:3333 
     ports:
       - "3333:3333"
     restart: unless-stopped
@@ -30,27 +30,31 @@ services:
       start_period: 30s
 
   palmr-app:
-    image: kyantech/palmr-app:latest
+    image: kyantech/palmr-app:v2.0.0-beta # Make sure to use the correct version (latest) of the image
     container_name: palmr-web
-    ports:
-      - "4173:4173"
     depends_on:
       palmr-api:
         condition: "service_healthy"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - API_BASE_URL=http://palmr-api:3333 # Here we use docker's internal network to reference the backend service (can be changed if needed)
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4173"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   minio:
-    image: minio/minio:RELEASE.2025-03-12T18-04-18Z
+    image: minio/minio:RELEASE.2025-03-12T18-04-18Z # Use only version RELEASE.2025-03-12T18-04-18Z to avoid compatibility issues with the backend
     container_name: minio
     environment:
-      - MINIO_ROOT_USER=minio_root_user
-      - MINIO_ROOT_PASSWORD=minioRootPassword
+      # MinIO credentials - same as above, configurable through environment variables
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minio_root_user}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioRootPassword}
       - MINIO_SITE_REGION=sa-east-1
     command: server /data --console-address ":9001"
     volumes:
@@ -66,7 +70,7 @@ services:
       retries: 5
 
   minio-init:
-    image: minio/mc:RELEASE.2025-03-12T17-29-24Z
+    image: minio/mc:RELEASE.2025-03-12T17-29-24Z # Use only version RELEASE.2025-03-12T17-29-24Z to avoid compatibility issues with the backend and MinIO
     container_name: minio-init
     depends_on:
       minio:
@@ -75,18 +79,20 @@ services:
     entrypoint: >
       sh -c "
         sleep 5 &&
-        mc alias set myminio http://minio:9000 minio_root_user minioRootPassword &&
+        mc alias set myminio http://minio:9000 ${MINIO_ROOT_USER:-minio_root_user} ${MINIO_ROOT_PASSWORD:-minioRootPassword} &&
         mc mb myminio/files --ignore-existing &&
         mc anonymous set download myminio/files
       "
 
   postgres:
-    image: bitnami/postgresql:17.2.0
+    image: bitnami/postgresql:17.2.0 # You can use any postgres version you prefer, but remember that some versions might not be compatible
     container_name: palmr-postgres
     environment:
-      - POSTGRESQL_USERNAME=postgres
-      - POSTGRESQL_PASSWORD=postgresRootPassword
-      - POSTGRESQL_DATABASE=palmr_db
+      # PostgreSQL credentials configurable through environment variables
+      # POSTGRES_USER, POSTGRES_PASSWORD, and POSTGRES_DB can be set to override defaults
+      - POSTGRESQL_USERNAME=${POSTGRES_USER:-postgres}
+      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD:-postgresRootPassword}
+      - POSTGRESQL_DATABASE=${POSTGRES_DB:-palmr_db}
     volumes:
       - postgres_data:/bitnami/postgresql
     ports:

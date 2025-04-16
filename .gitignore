@@ -27,3 +27,6 @@ apps/web/*.sw?
 apps/server/node_modules
 apps/server/.env
 apps/server/dist/*
+
+#DEFAULT
+.env
