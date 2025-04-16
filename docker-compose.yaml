@@ -8,7 +8,7 @@ services:
       minio:
         condition: "service_healthy"
     environment:
-      - PORT=3333
+      - PORT=3333 # Port for the backend service
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRES_PASSWORD env var
       - MINIO_ENDPOINT=minio # This can change if your MinIO is at a different address
       - MINIO_PORT=9000 # Default MinIO port (Change if yours is not the default)
@@ -20,7 +20,7 @@ services:
       - FRONTEND_URL=http://localhost:3000 # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running
       - BASE_URL=http://localhost:3333 
     ports:
-      - "3333:3333"
+      - "3333:3333" # Backend port mapping
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3333/health"]
@@ -30,7 +30,7 @@ services:
       start_period: 30s
 
   palmr-app:
-    image: kyantech/palmr-app:v2.0.0-beta # Make sure to use the correct version (latest) of the image
+    image: kyantech/palmr-app:latest # Make sure to use the correct version (latest) of the image
     container_name: palmr-web
     depends_on:
       palmr-api:
