@@ -10,7 +10,7 @@ import { useAuth } from "@/contexts/auth-context";
 import { getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
 
-const loginSchema = z.object({
+export const loginSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
@@ -39,6 +39,7 @@ export function useLogin() {
         setIsAuthenticated(true);
         router.push("/dashboard");
       } catch (err) {
+        console.error(err);
         setUser(null);
         setIsAdmin(false);
         setIsAuthenticated(false);

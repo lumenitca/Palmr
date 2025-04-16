@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable jsx-a11y/media-has-caption */
 import { useEffect, useState } from "react";
 import { IconDownload } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";

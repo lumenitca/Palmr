@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { IconLanguage } from "@tabler/icons-react";
 import { useLocale } from "next-intl";
 import { setCookie } from "nookies";
@@ -37,7 +37,6 @@ const RTL_LANGUAGES = ["ar-SA"];
 export function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
 
   const changeLanguage = (fullLocale: string) => {
     const isRTL = RTL_LANGUAGES.includes(fullLocale);

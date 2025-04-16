@@ -1,4 +1,4 @@
-import { IconDownload, IconFolder } from "@tabler/icons-react";
+import { IconDownload } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
