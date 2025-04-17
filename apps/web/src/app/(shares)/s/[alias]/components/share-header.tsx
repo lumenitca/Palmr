@@ -12,7 +12,7 @@ export function ShareHeader() {
     <header className="w-full px-6 border-b border-default-200/50 bg-background/70 backdrop-blur-sm">
       <div className="mx-auto max-w-5xl sm:p-0 h-16 flex items-center justify-between">
         <Link className="flex items-center gap-2" href="/">
-          {appLogo && <Image alt="App Logo" src={appLogo} width={32} height={32} className="object-contain rounded" />}
+          {appLogo && <img alt="App Logo" className="h-8 w-8 object-contain rounded" src={appLogo} />}
           <p className="font-bold text-2xl text-foreground">{appName}</p>
         </Link>
         <div className="flex items-center gap-2">

@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image"; // Add this import
+import { useEffect, useState } from "react"; // Add this import
 import Link from "next/link";
 import { IconHeart, IconMenu2 } from "@tabler/icons-react";
 
@@ -27,9 +26,7 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2">
-              {appLogo && (
-                <Image alt="App Logo" src={appLogo} width={32} height={32} className="object-contain rounded" />
-              )}
+              {appLogo && <img alt="App Logo" className="h-8 w-8 object-contain rounded" src={appLogo} />}
               <p className="font-bold text-2xl">{appName}</p>
             </Link>
             <nav className="hidden lg:flex ml-2 gap-4">

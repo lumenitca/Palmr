@@ -30,7 +30,7 @@ services:
       start_period: 30s
 
   palmr-app:
-    image: kyantech/palmr-app:latest # Make sure to use the correct version (latest) of the image
+    image: kyantech/palmr-app:v2.0.0-beta # Make sure to use the correct version (latest) of the image
     container_name: palmr-web
     depends_on:
       palmr-api:
