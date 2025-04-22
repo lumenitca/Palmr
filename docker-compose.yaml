@@ -1,6 +1,6 @@
 services:
   palmr-api:
-    image: kyantech/palmr-api:latest # Make sure to use the correct version (latest) of the image
+    image: kyantech/palmr-api:v2.0.0-beta # Make sure to use the correct version (latest) of the image
     container_name: palmr-api
     depends_on:
       postgres:
@@ -8,22 +8,22 @@ services:
       minio:
         condition: "service_healthy"
     environment:
-      - PORT=3333 # Port for the backend service
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRES_PASSWORD env var
+      - PORT=${API_INTERNAL_PORT:-3333} # Port for the backend service
+      - DATABASE_URL=postgresql://postgres:${POSTGRESQL_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRESQL_PASSWORD env var
       - MINIO_ENDPOINT=minio # This can change if your MinIO is at a different address
-      - MINIO_PORT=9000 # Default MinIO port (Change if yours is not the default)
-      - MINIO_USE_SSL=false
+      - MINIO_PORT=${MINIO_INTERNAL_API_PORT:-6421} # Default MinIO port (Change if yours is not the default)
+      - MINIO_USE_SSL=false # MinIO uses SSL by default, but you can change it to true if needed
       - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minio_root_user} # MinIO credentials can be configured through MINIO_ROOT_USER env vars
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioRootPassword} # MinIO credentials can be configured through MINIO_ROOT_PASSWORD env vars
-      - MINIO_REGION=sa-east-1
-      - MINIO_BUCKET_NAME=files
-      - FRONTEND_URL=http://localhost:3000 # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running
-      - BASE_URL=http://localhost:3333 
+      - MINIO_REGION=sa-east-1 # MinIO region - This is needed for MinIO to work properly
+      - MINIO_BUCKET_NAME=files # MinIO bucket name - This is needed for MinIO to work properly, dont change it if you don't know what you are doing
+      - FRONTEND_URL=${APP_URL:-http://${SERVER_IP:-localhost}:${APP_EXTERNAL_PORT:-5487}} # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running, its prepared for localhost, but you can change it to your frontend URL if needed
+      - SERVER_IP=${SERVER_IP:-localhost} # Server IP - Make sure to use the correct server IP if you running on a cloud provider or a virtual machine. This prepared for localhost, but you can change it to your server IP if needed
     ports:
-      - "3333:3333" # Backend port mapping
+      - "${API_EXTERNAL_PORT:-3333}:${API_INTERNAL_PORT:-3333}" # Backend port mapping 
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3333/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:${API_INTERNAL_PORT:-3333}/health"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -36,14 +36,14 @@ services:
       palmr-api:
         condition: "service_healthy"
     ports:
-      - "3000:3000"
+      - "${APP_EXTERNAL_PORT:-5487}:5487" # Frontend port mapping
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - API_BASE_URL=http://palmr-api:3333 # Here we use docker's internal network to reference the backend service (can be changed if needed)
+      - API_BASE_URL=http://palmr-api:${API_INTERNAL_PORT:-3333} # Here we use docker's internal network to reference the backend service (can be changed if needed)
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      test: ["CMD", "curl", "-f", "http://localhost:5487"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -56,15 +56,15 @@ services:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minio_root_user}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioRootPassword}
       - MINIO_SITE_REGION=sa-east-1
-    command: server /data --console-address ":9001"
+    command: server /data --address ":${MINIO_INTERNAL_API_PORT:-6421}" --console-address ":${MINIO_INTERNAL_CONSOLE_PORT:-6422}"
     volumes:
       - minio_data:/data
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "${MINIO_EXTERNAL_API_PORT:-6421}:${MINIO_INTERNAL_API_PORT:-6421}"
+      - "${MINIO_EXTERNAL_CONSOLE_PORT:-6422}:${MINIO_INTERNAL_CONSOLE_PORT:-6422}"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      test: ["CMD", "curl", "-f", "http://localhost:${MINIO_INTERNAL_API_PORT:-6421}/minio/health/ready"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -76,10 +76,11 @@ services:
       minio:
         condition: "service_healthy"
     restart: "no"
+    # The entrypoint script will create a bucket called "files" and set it to be publicly readable using the MinIO client (mc).
     entrypoint: >
       sh -c "
         sleep 5 &&
-        mc alias set myminio http://minio:9000 ${MINIO_ROOT_USER:-minio_root_user} ${MINIO_ROOT_PASSWORD:-minioRootPassword} &&
+        mc alias set myminio http://minio:${MINIO_INTERNAL_API_PORT:-6421} ${MINIO_ROOT_USER:-minio_root_user} ${MINIO_ROOT_PASSWORD:-minioRootPassword} &&
         mc mb myminio/files --ignore-existing &&
         mc anonymous set download myminio/files
       "
@@ -89,10 +90,10 @@ services:
     container_name: palmr-postgres
     environment:
       # PostgreSQL credentials configurable through environment variables
-      # POSTGRES_USER, POSTGRES_PASSWORD, and POSTGRES_DB can be set to override defaults
-      - POSTGRESQL_USERNAME=${POSTGRES_USER:-postgres}
-      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD:-postgresRootPassword}
-      - POSTGRESQL_DATABASE=${POSTGRES_DB:-palmr_db}
+      # POSTGRESQL_USERNAME, POSTGRESQL_PASSWORD, and POSTGRES_DB can be set to override defaults
+      - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME:-postgres}
+      - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD:-postgresRootPassword}
+      - POSTGRESQL_DATABASE=${POSTGRES_DATABASE:-palmr_db}
     volumes:
       - postgres_data:/bitnami/postgresql
     ports:

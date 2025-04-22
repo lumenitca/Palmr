@@ -1,13 +1,15 @@
-import { source } from '@/lib/source';
+import { source } from "@/lib/source";
 import {
   DocsPage,
   DocsBody,
   DocsDescription,
   DocsTitle,
-} from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { getMDXComponents } from '@/mdx-components';
+} from "fumadocs-ui/page";
+import { notFound } from "next/navigation";
+import { createRelativeLink } from "fumadocs-ui/mdx";
+import { getMDXComponents } from "@/mdx-components";
+import { Footer } from "../components/footer";
+import { Sponsor } from "../components/sponsor";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -19,14 +21,21 @@ export default async function Page(props: {
   const MDXContent = page.data.body;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      full={page.data.full}
+      footer={{ enabled: true, component: <Footer /> }}
+      tableOfContent={{ 
+        style: "clerk", 
+        footer: <Sponsor/>
+      }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
-      <div className='border w-full'></div>
+      <div className="border w-full"></div>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
         <MDXContent
           components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
           })}
         />
@@ -47,7 +56,7 @@ export async function generateMetadata(props: {
   if (!page) notFound();
 
   return {
-    title: page.data.title + ' | 🌴 Palmr. Docs',
+    title: page.data.title + " | 🌴 Palmr. Docs",
     description: page.data.description,
   };
 }

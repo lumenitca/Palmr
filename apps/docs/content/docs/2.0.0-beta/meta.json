@@ -1,7 +1,15 @@
 {
-	"title": "v2.0.0-beta",
-	"description": "v2.0.0-beta Documentation",
-	"root": true,
-	"icon": "Building2",
-	"pages": ["---Introduction---", "index", "---How to use Palmr.---", "...", "---Reference---"]
+  "title": "v2.0.0-beta",
+  "description": "v2.0.0-beta Documentation",
+  "root": true,
+  "icon": "Building2",
+  "pages": [
+    "---Introduction---",
+    "index",
+    "architecture",
+	"github-architecture",
+	"installation",
+    "---How to use Palmr.---",
+    "..."
+  ]
 }
