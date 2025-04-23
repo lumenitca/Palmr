@@ -1,6 +1,20 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
-@import 'fumadocs-ui/css/preset.css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
 /* @import 'fumadocs-ui/css/black.css'; */
 
 @source '../../node_modules/fumadocs-ui/dist/**/*.js';
+
+code {
+  color: #eb5757;
+}
+
+h4 {
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  font-size: 1.1rem;
+}
+
+.prose h3 {
+    font-size: 1.25rem;
+}

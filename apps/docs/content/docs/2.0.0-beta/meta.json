@@ -7,9 +7,14 @@
     "---Introduction---",
     "index",
     "architecture",
-	"github-architecture",
-	"installation",
+    "github-architecture",
+    "installation",
+    "manual-installation",
+    "api",
     "---How to use Palmr.---",
+    "first-login",
+    "manage-users",
+    "uploading-files",
     "..."
   ]
 }
