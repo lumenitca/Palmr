@@ -5,7 +5,7 @@ import { Particles } from "@/components/magicui/particles";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <HomeLayout {...baseOptions}>
+    <HomeLayout {...baseOptions} >
       <Particles className="absolute w-full" />
       {children}
     </HomeLayout>

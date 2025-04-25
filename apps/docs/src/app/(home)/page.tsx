@@ -4,6 +4,7 @@ import {
   UploadIcon,
   Share2Icon,
   GithubIcon,
+  BookOpenText,
 } from "lucide-react";
 import {
   BatteryChargingIcon,
@@ -26,37 +27,35 @@ import { RippleButton } from "@/components/magicui/ripple-button";
 import { WordRotate } from "@/components/magicui/word-rotate";
 
 const images = [
-  "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
-  "https://assets.aceternity.com/animated-modal.png",
-  "https://assets.aceternity.com/animated-testimonials.webp",
-  "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
-  "https://assets.aceternity.com/github-globe.png",
-  "https://assets.aceternity.com/glare-card.png",
-  "https://assets.aceternity.com/layout-grid.png",
-  "https://assets.aceternity.com/flip-text.png",
-  "https://assets.aceternity.com/hero-highlight.png",
-  "https://assets.aceternity.com/carousel.webp",
-  "https://assets.aceternity.com/placeholders-and-vanish-input.png",
-  "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
-  "https://assets.aceternity.com/signup-form.png",
-  "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
-  "https://assets.aceternity.com/spotlight-new.webp",
-  "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
-  "https://assets.aceternity.com/tabs.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
-  "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
-  "https://assets.aceternity.com/glowing-effect.webp",
-  "https://assets.aceternity.com/hover-border-gradient.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
-  "https://assets.aceternity.com/macbook-scroll.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
-  "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
-  "https://assets.aceternity.com/multi-step-loader.png",
-  "https://assets.aceternity.com/vortex.png",
-  "https://assets.aceternity.com/wobble-card.png",
-  "https://assets.aceternity.com/world-map.webp",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_wt_kqtzxi.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./login_xtlnif.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./poase_wt_plhgwc.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_wt_fnj3rz.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./settigngs_open_hjkomr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./Screenshot_j0csjm.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_cndhwr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_wt_fnj3rz.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./poase_wt_plhgwc.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_wt_kqtzxi.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_cndhwr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./login_xtlnif.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./poase_wt_plhgwc.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./settigngs_open_hjkomr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./Screenshot_j0csjm.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_cndhwr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./login_xtlnif.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_wt_kqtzxi.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_wt_fnj3rz.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_wt_kqtzxi.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./login_xtlnif.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./poase_wt_plhgwc.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./settigngs_open_hjkomr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./Screenshot_j0csjm.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546004/Palmr./dash_cndhwr.png",
+  "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
 ];
 
 const docsLink = "/docs/2.0.0-beta";
@@ -97,7 +96,10 @@ function Hero() {
       </div>
       <div className="inline-flex items-center gap-6 max-md:mx-auto mb-4">
         <PulsatingButton>
-          <Link href={docsLink}>Get Started</Link>
+          <div className="flex gap-2 items-center">
+            <BookOpenText size={18} />
+            <Link href={docsLink}>Documentation</Link>
+          </div>
         </PulsatingButton>
 
         <RippleButton>
@@ -303,9 +305,12 @@ function End() {
             Take full control of your file sharing infrastructure.
           </ListItem>
         </ul>
-        <div className="flex flex-wrap gap-2 border-t pt-14 pb-0 justify-end">
+        <div className="flex flex-wrap gap-2 pt-14 pb-0 justify-end">
           <RippleButton>
-            <Link href={docsLink}>Documentation</Link>
+            <div className="flex gap-2 items-center">
+              <BookOpenText size={18} />
+              <Link href={docsLink}>Documentation</Link>
+            </div>
           </RippleButton>
           <RippleButton>
             <a
