@@ -9,6 +9,11 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "🌴 Palmr. | Official Website",
+  description: "Palmr. is a fast, simple and powerful document sharing platform.",
+};
+
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
