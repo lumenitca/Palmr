@@ -7,7 +7,7 @@
 **Palmr.** is a **flexible** and **open-source** alternative to file transfer services like **WeTransfer**, **SendGB**, **Send Anywhere**, and **Files.fm**.
 
 
-🔗 **For detailed documentation visit:** [Palmr. - Documentation](https://palmr-docs.kyantech.com.br)
+🔗 **For detailed documentation visit:** [Palmr. - Documentation](https://palmr.kyantech.com.br)
 
 ## 📌 Why Choose Palmr.?
 
@@ -20,7 +20,7 @@
 ### **Palmr.** is built with a focus on **performance**, **scalability**, and **security**.
 
 <div align="center">
-  <img src="https://i.ibb.co/3Y8bhm7v/Captura-de-Tela-2025-04-03-s-10-56-12.png" style="width: 100%; border-radius: 15px;" />
+  <img src="https://i.ibb.co/21D1w1NC/Captura-de-Tela-2025-04-24-a-s-23-24-26.png" style="width: 100%; border-radius: 15px;" />
 </div>
 
 
@@ -30,12 +30,12 @@
 - **MinIO (Object Storage)** – AWS S3-compatible storage for high availability.
 
 ### **Frontend**
-- **React + TypeScript + Vite** – Modern, interactive, and fast web interface.
+- **NextJS 15 + TypeScript + Shadcn/ui** – Modern and fast web interface.
 
 
 ## 🛠️ How It Works
 
-1. **Web Interface** → Built with React, TypeScript, and Vite for a seamless user experience.
+1. **Web Interface** → Built with Next, React and TypeScript for a seamless user experience.
 2. **Backend API** → Fastify handles requests and interacts with storage.
 3. **Database** → PostgreSQL stores metadata and transactional data.
 4. **Storage** → MinIO ensures reliable file storage and retrieval.
@@ -43,7 +43,7 @@
 
 ## 👨‍💻 Core Maintainers
 
-| **Daniel Luiz Alves** |
+| [**Daniel Luiz Alves**](https://github.com/danielalves96) |
 |------------------|
 | <img src="https://github.com/danielalves96.png" width="150px" alt="Daniel Luiz Alves" /> |
 
