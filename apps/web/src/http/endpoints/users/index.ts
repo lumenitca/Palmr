@@ -1,21 +1,22 @@
+import type { AxiosRequestConfig } from "axios";
+
+import apiInstance from "@/config/api";
 import type {
-  RegisterUserResult,
-  ListUsersResult,
-  UpdateUserResult,
-  GetUserByIdResult,
-  DeleteUserResult,
   ActivateUserResult,
   DeactivateUserResult,
-  UpdateUserImageResult,
-  UploadAvatarResult,
-  RemoveAvatarResult,
+  DeleteUserResult,
+  GetUserByIdResult,
+  ListUsersResult,
   RegisterUserBody,
+  RegisterUserResult,
+  RemoveAvatarResult,
   UpdateUserBody,
   UpdateUserImageBody,
+  UpdateUserImageResult,
+  UpdateUserResult,
   UploadAvatarBody,
+  UploadAvatarResult,
 } from "./types";
-import axiosInstance from "@/config/axios";
-import type { AxiosRequestConfig } from "axios";
 
 /**
  * Register a new user (admin only)
@@ -25,7 +26,7 @@ export const registerUser = <TData = RegisterUserResult>(
   registerUserBody: RegisterUserBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.post(`/auth/register`, registerUserBody, options);
+  return apiInstance.post(`/api/users/register`, registerUserBody, options);
 };
 
 /**
@@ -33,7 +34,7 @@ export const registerUser = <TData = RegisterUserResult>(
  * @summary List All Users
  */
 export const listUsers = <TData = ListUsersResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/users`, options);
+  return apiInstance.get(`/api/users/list`, options);
 };
 
 /**
@@ -44,7 +45,7 @@ export const updateUser = <TData = UpdateUserResult>(
   updateUserBody: UpdateUserBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.put(`/users`, updateUserBody, options);
+  return apiInstance.put(`/api/users/update`, updateUserBody, options);
 };
 
 /**
@@ -52,7 +53,7 @@ export const updateUser = <TData = UpdateUserResult>(
  * @summary Get User by ID
  */
 export const getUserById = <TData = GetUserByIdResult>(id: string, options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/users/${id}`, options);
+  return apiInstance.get(`/api/users/details/${id}`, options);
 };
 
 /**
@@ -60,7 +61,7 @@ export const getUserById = <TData = GetUserByIdResult>(id: string, options?: Axi
  * @summary Delete User
  */
 export const deleteUser = <TData = DeleteUserResult>(id: string, options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.delete(`/users/${id}`, options);
+  return apiInstance.delete(`/api/users/delete/${id}`, options);
 };
 
 /**
@@ -68,7 +69,7 @@ export const deleteUser = <TData = DeleteUserResult>(id: string, options?: Axios
  * @summary Activate User
  */
 export const activateUser = <TData = ActivateUserResult>(id: string, options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.patch(`/users/${id}/activate`, undefined, options);
+  return apiInstance.patch(`/api/users/activate/${id}`, undefined, options);
 };
 
 /**
@@ -79,7 +80,7 @@ export const deactivateUser = <TData = DeactivateUserResult>(
   id: string,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.patch(`/users/${id}/deactivate`, undefined, options);
+  return apiInstance.patch(`/api/users/deactivate/${id}`, undefined, options);
 };
 
 /**
@@ -91,7 +92,7 @@ export const updateUserImage = <TData = UpdateUserImageResult>(
   updateUserImageBody: UpdateUserImageBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.patch(`/users/${id}/image`, updateUserImageBody, options);
+  return apiInstance.patch(`/api/users/update-image/${id}`, updateUserImageBody, options);
 };
 
 /**
@@ -108,7 +109,7 @@ export const uploadAvatar = <TData = UploadAvatarResult>(
     formData.append("file", uploadAvatarBody.file as Blob);
   }
 
-  return axiosInstance.post(`/users/avatar`, formData, {
+  return apiInstance.post(`/api/users/avatar/upload`, formData, {
     ...options,
     headers: {
       ...options?.headers,
@@ -122,5 +123,5 @@ export const uploadAvatar = <TData = UploadAvatarResult>(
  * @summary Remove user avatar
  */
 export const removeAvatar = <TData = RemoveAvatarResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.delete(`/users/avatar`, options);
+  return apiInstance.delete(`/api/users/avatar/remove`, options);
 };

@@ -1,14 +1,13 @@
-import { GridPattern } from "@/components/ui/grid-pattern";
-import { BackgroundLights } from "@/pages/home/components/background-lights";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
+
+import { BackgroundLights } from "@/components/ui/background-lights";
 
 export function LoadingScreen() {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <div className="fixed inset-0 bg-background">
-      <GridPattern />
       <BackgroundLights />
       <div className="relative flex flex-col items-center justify-center h-full">
         <motion.div

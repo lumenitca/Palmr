@@ -1,0 +1,644 @@
+{
+  "common": {
+    "loading": "読み込み中です。しばらくお待ちください...",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "close": "閉じる",
+    "download": "ダウンロード",
+    "unexpectedError": "予期しないエラーが発生しました。もう一度お試しください。",
+    "yes": "はい",
+    "no": "いいえ",
+    "dashboard": "ダッシュボード"
+  },
+  "createShare": {
+    "title": "共有を作成",
+    "nameLabel": "共有名",
+    "expirationLabel": "有効期限",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "最大ビュー数",
+    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "passwordProtection": "パスワード保護",
+    "passwordLabel": "パスワード",
+    "create": "共有を作成",
+    "success": "共有が正常に作成されました",
+    "error": "共有の作成に失敗しました"
+  },
+  "dashboard": {
+    "loadError": "ダッシュボードデータの読み込みに失敗しました",
+    "linkCopied": "リンクがクリップボードにコピーされました",
+    "pageTitle": "ダッシュボード",
+    "breadcrumb": "ダッシュボード"
+  },
+  "emptyState": {
+    "noFiles": "まだファイルがアップロードされていません",
+    "uploadFile": "ファイルをアップロード"
+  },
+  "errors": {
+    "invalidCredentials": "無効なメールアドレスまたはパスワードです",
+    "userNotFound": "ユーザーが見つかりません",
+    "accountLocked": "アカウントがロックされています。後でもう一度お試しください",
+    "unexpectedError": "予期しないエラーが発生しました。もう一度お試しください"
+  },
+  "fileActions": {
+    "editFile": "ファイルを編集",
+    "nameLabel": "名前",
+    "namePlaceholder": "新しい名前を入力してください",
+    "extension": "拡張子",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "ファイルの説明を入力してください",
+    "deleteFile": "ファイルを削除",
+    "deleteConfirmation": "を削除してもよろしいですか？",
+    "deleteWarning": "この操作は元に戻せません。"
+  },
+  "fileManager": {
+    "downloadError": "ファイルのダウンロードに失敗しました",
+    "updateSuccess": "ファイルが正常に更新されました",
+    "updateError": "ファイルの更新に失敗しました",
+    "deleteSuccess": "ファイルが正常に削除されました",
+    "deleteError": "ファイルの削除に失敗しました"
+  },
+  "filePreview": {
+    "loading": "プレビューを読み込み中...",
+    "notAvailable": "プレビューは利用できません",
+    "downloadToView": "内容を見るためにファイルをダウンロードしてください",
+    "audioNotSupported": "お使いのブラウザはオーディオ要素をサポートしていません",
+    "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません",
+    "loadError": "プレビューの読み込みに失敗しました",
+    "downloadError": "ファイルのダウンロードに失敗しました"
+  },
+  "fileSelector": {
+    "availableFiles": "利用可能なファイル ({{count}})",
+    "shareFiles": "ファイルを共有 ({{count}})",
+    "searchPlaceholder": "ファイルを検索...",
+    "noMatchingFiles": "一致するファイルがありません",
+    "noAvailableFiles": "利用可能なファイルがありません",
+    "noFilesInShare": "共有ファイルがありません",
+    "saveChanges": "変更を保存"
+  },
+  "files": {
+    "title": "すべてのファイル",
+    "uploadFile": "ファイルをアップロード",
+    "loadError": "ファイルの読み込みに失敗しました",
+    "pageTitle": "マイファイル",
+    "breadcrumb": "マイファイル"
+  },
+  "filesTable": {
+    "ariaLabel": "ファイルテーブル",
+    "columns": {
+      "name": "名前",
+      "description": "説明",
+      "size": "サイズ",
+      "createdAt": "作成日",
+      "updatedAt": "更新日",
+      "actions": "操作"
+    },
+    "actions": {
+      "menu": "ファイル操作メニュー",
+      "preview": "プレビュー",
+      "edit": "編集",
+      "download": "ダウンロード",
+      "delete": "削除"
+    }
+  },
+  "footer": {
+    "poweredBy": "提供:",
+    "kyanHomepage": "Kyantech ホームページ"
+  },
+  "forgotPassword": {
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "メールアドレスを入力してください",
+    "sending": "送信中...",
+    "submit": "パスワードリセットの指示を送信",
+    "backToLogin": "ログインに戻る",
+    "title": "パスワードをお忘れですか？",
+    "description": "メールアドレスを入力すると、パスワードリセットの指示を送信します。",
+    "resetInstructions": "パスワードリセットの指示がメールに送信されました",
+    "pageTitle": "パスワードをお忘れですか？"
+  },
+  "generateShareLink": {
+    "generateTitle": "共有リンクを生成",
+    "updateTitle": "共有リンクを更新",
+    "generateDescription": "ファイルを共有するためのリンクを生成します",
+    "updateDescription": "この共有リンクのエイリアスを更新します",
+    "aliasPlaceholder": "エイリアスを入力してください",
+    "linkReady": "共有リンクの準備ができました:",
+    "generateButton": "リンクを生成",
+    "updateButton": "リンクを更新",
+    "copyButton": "リンクをコピー",
+    "success": "リンクが正常に生成されました",
+    "error": "リンクの生成に失敗しました",
+    "copied": "リンクがクリップボードにコピーされました"
+  },
+  "home": {
+    "description": "WeTransferのオープンソース代替です。トラッキングや制限なしに安全にファイルを共有します。",
+    "documentation": "ドキュメント",
+    "starOnGithub": "GitHubでスターを付ける",
+    "privacyMessage": "プライバシーを重視して作られています。アップロード前のファイルは、共有リンクを持つ人だけがアクセスできます。常に無料でオープンソースです。",
+    "header": {
+      "fileSharing": "ファイル共有",
+      "tagline": "シンプルで無料"
+    },
+    "pageTitle": "ホーム"
+  },
+  "login": {
+    "welcome": "ようこそへ",
+    "signInToContinue": "続行するにはサインインしてください",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "メールアドレスを入力してください",
+    "passwordLabel": "パスワード",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "signIn": "サインイン",
+    "signingIn": "サインイン中...",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "pageTitle": "ログイン"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "アプリケーションロゴ"
+    },
+    "buttons": {
+      "upload": "ロゴをアップロード",
+      "remove": "ロゴを削除"
+    },
+    "messages": {
+      "uploadSuccess": "ロゴが正常にアップロードされました",
+      "removeSuccess": "ロゴが正常に削除されました"
+    },
+    "errors": {
+      "uploadFailed": "ロゴのアップロードに失敗しました",
+      "removeFailed": "ロゴの削除に失敗しました"
+    }
+  },
+  "navbar": {
+    "logoAlt": "アプリケーションロゴ",
+    "profileMenu": "プロフィールメニュー",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "usersManagement": "ユーザー管理",
+    "logout": "ログアウト"
+  },
+  "navigation": {
+    "dashboard": "ダッシュボード"
+  },
+  "profile": {
+    "password": {
+      "title": "パスワードを変更",
+      "newPassword": "新しいパスワード",
+      "confirmPassword": "新しいパスワードの確認",
+      "updateButton": "パスワードを更新"
+    },
+    "form": {
+      "title": "プロフィール情報",
+      "firstName": "名",
+      "lastName": "姓",
+      "username": "ユーザー名",
+      "email": "メール",
+      "updateButton": "プロフィールを更新"
+    },
+    "header": {
+      "title": "プロフィール",
+      "subtitle": "個人情報とパスワードを管理"
+    },
+    "picture": {
+      "title": "プロフィール写真",
+      "description": "写真アイコンをクリックしてプロフィール写真を変更",
+      "uploadPhoto": "写真をアップロード",
+      "removePhoto": "写真を削除"
+    },
+    "errors": {
+      "loadFailed": "ユーザーデータの読み込みに失敗しました",
+      "updateFailed": "プロフィールの更新に失敗しました",
+      "passwordFailed": "パスワードの更新に失敗しました",
+      "imageFailed": "プロフィール画像の更新に失敗しました",
+      "imageRemoveFailed": "プロフィール画像の削除に失敗しました"
+    },
+    "messages": {
+      "noChanges": "保存する変更はありません",
+      "updateSuccess": "プロフィールが正常に更新されました",
+      "fillPasswords": "両方のパスワードフィールドに入力してください",
+      "passwordSuccess": "パスワードが正常に更新されました",
+      "imageSuccess": "プロフィール画像が正常に更新されました",
+      "imageRemoved": "プロフィール画像が正常に削除されました"
+    },
+    "pageTitle": "プロフィール"
+  },
+  "quickAccess": {
+    "files": {
+      "title": "マイファイル",
+      "description": "アップロードされたファイルにアクセスし、管理します"
+    },
+    "shares": {
+      "title": "マイ共有",
+      "description": "共有されたファイルを表示および管理します"
+    }
+  },
+  "recentFiles": {
+    "title": "最近のアップロード",
+    "viewAll": "すべて表示",
+    "uploadFile": "ファイルをアップロード",
+    "noFiles": "まだファイルがアップロードされていません"
+  },
+  "recentShares": {
+    "title": "最近の共有",
+    "viewAll": "すべて表示",
+    "createShare": "共有を作成",
+    "noShares": "まだ共有が作成されていません",
+    "createFirst": "最初の共有を作成してください"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "受信者のメールを入力してください",
+    "add": "追加",
+    "recipients": "受信者 ({{count}})",
+    "notifyAll": "全員に通知",
+    "noRecipients": "まだ受信者が追加されていません",
+    "addSuccess": "受信者が正常に追加されました",
+    "addError": "受信者の追加に失敗しました",
+    "removeSuccess": "受信者が正常に削除されました",
+    "removeError": "受信者の削除に失敗しました",
+    "sendingNotifications": "通知を送信中...",
+    "notifySuccess": "受信者に正常に通知しました",
+    "notifyError": "受信者への通知に失敗しました"
+  },
+  "resetPassword": {
+    "pageTitle": "パスワードリセット",
+    "header": {
+      "title": "パスワードリセット",
+      "description": "以下に新しいパスワードを入力してください"
+    },
+    "form": {
+      "newPassword": "新しいパスワード",
+      "newPasswordPlaceholder": "新しいパスワードを入力してください",
+      "confirmPassword": "新しいパスワードの確認",
+      "confirmPasswordPlaceholder": "新しいパスワードを再入力してください",
+      "resetting": "パスワードをリセット中...",
+      "submit": "パスワードをリセット",
+      "backToLogin": "ログインに戻る"
+    },
+    "messages": {
+      "success": "パスワードが正常にリセットされました"
+    },
+    "errors": {
+      "serverError": "パスワードのリセットに失敗しました。もう一度お試しください。",
+      "invalidToken": "無効なリセットトークン、またはトークンが存在しません"
+    }
+  },
+  "searchBar": {
+    "placeholder": "ファイルを検索...",
+    "results": "全{{total}}件中{{filtered}}件が見つかりました"
+  },
+  "settings": {
+    "groups": {
+      "defaultDescription": "構成オプション",
+      "general": {
+        "title": "一般",
+        "description": "基本的なアプリケーション設定"
+      },
+      "email": {
+        "title": "メール",
+        "description": "メールサーバーの設定"
+      },
+      "security": {
+        "title": "セキュリティ",
+        "description": "セキュリティおよび認証設定"
+      },
+      "storage": {
+        "title": "ストレージ",
+        "description": "ファイルストレージの設定"
+      }
+    },
+    "fields": {
+      "noDescription": "利用可能な説明はありません",
+      "appLogo": {
+        "title": "アプリケーションロゴ",
+        "description": "アプリケーションのロゴ画像"
+      },
+      "appName": {
+        "title": "アプリケーション名",
+        "description": "ユーザーに表示されるアプリケーション名"
+      },
+      "appDescription": {
+        "title": "アプリケーションの説明",
+        "description": "アプリケーションの簡単な説明"
+      },
+      "showHomePage": {
+        "title": "ホームページを表示",
+        "description": "インストール後にホームページを表示"
+      },
+      "smtpEnabled": {
+        "title": "SMTP有効",
+        "description": "SMTPメール機能を有効または無効にする"
+      },
+      "smtpHost": {
+        "title": "SMTPサーバー",
+        "description": "SMTPサーバーのアドレス"
+      },
+      "smtpPort": {
+        "title": "SMTPポート",
+        "description": "SMTPサーバーのポート"
+      },
+      "smtpUser": {
+        "title": "SMTPユーザー",
+        "description": "SMTP認証用のユーザー名"
+      },
+      "smtpPass": {
+        "title": "SMTPパスワード",
+        "description": "SMTP認証用のパスワード"
+      },
+      "smtpFromName": {
+        "title": "送信者名",
+        "description": "送信されるメールの表示名"
+      },
+      "smtpFromEmail": {
+        "title": "送信者メール",
+        "description": "送信者のメールアドレス"
+      },
+      "maxLoginAttempts": {
+        "title": "最大ログイン試行回数",
+        "description": "ブロックする前の最大ログイン試行回数"
+      },
+      "loginBlockDuration": {
+        "title": "ログインブロック期間",
+        "description": "試行回数超過後のブロック期間（秒単位）"
+      },
+      "passwordMinLength": {
+        "title": "パスワードの最小長",
+        "description": "パスワードに必要な最小文字数"
+      },
+      "passwordResetTokenExpiration": {
+        "title": "リセットトークンの有効期限",
+        "description": "パスワードリセットトークンの有効期間（秒単位）"
+      },
+      "maxFileSize": {
+        "title": "最大ファイルサイズ",
+        "description": "アップロード可能な最大ファイルサイズ（バイト単位）"
+      },
+      "maxTotalStoragePerUser": {
+        "title": "ユーザーごとの最大ストレージ",
+        "description": "ユーザーごとの総ストレージ制限（バイト単位）"
+      }
+    },
+    "buttons": {
+      "save": "{{group}}を保存"
+    },
+    "errors": {
+      "loadFailed": "設定の読み込みに失敗しました",
+      "updateFailed": "設定の更新に失敗しました"
+    },
+    "messages": {
+      "noChanges": "保存する変更はありません",
+      "updateSuccess": "{{group}}の設定が正常に更新されました"
+    },
+    "title": "設定",
+    "breadcrumb": "設定",
+    "pageTitle": "設定"
+  },
+  "share": {
+    "errors": {
+      "invalidPassword": "無効なパスワードです。もう一度お試しください。",
+      "loadFailed": "共有の読み込みに失敗しました",
+      "downloadFailed": "ファイルのダウンロードに失敗しました"
+    },
+    "messages": {
+      "downloadStarted": "ダウンロードが開始されました"
+    },
+    "password": {
+      "title": "パスワード保護された共有",
+      "protected": "この共有はパスワードで保護されています",
+      "incorrect": "パスワードが正しくありません。もう一度お試しください。",
+      "label": "パスワード",
+      "placeholder": "共有のパスワードを入力してください",
+      "submit": "送信"
+    },
+    "details": {
+      "untitled": "無題",
+      "created": "作成日: {{date}}",
+      "expires": "有効期限: {{date}}"
+    },
+    "notFound": {
+      "title": "共有が見つかりません",
+      "description": "この共有は削除されたか、期限が切れている可能性があります。"
+    },
+    "pageTitle": "共有"
+  },
+  "shareActions": {
+    "deleteTitle": "共有を削除",
+    "deleteConfirmation": "この共有を削除してもよろしいですか？この操作は元に戻せません。",
+    "editTitle": "共有を編集",
+    "nameLabel": "共有名",
+    "expirationLabel": "有効期限",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "最大ビュー数",
+    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "passwordProtection": "パスワード保護",
+    "passwordLabel": "パスワード",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "newPasswordLabel": "新しいパスワード（現在のパスワードを保持する場合は空白のまま）",
+    "newPasswordPlaceholder": "新しいパスワードを入力してください",
+    "manageFilesTitle": "ファイルの管理",
+    "manageRecipientsTitle": "受信者の管理",
+    "editSuccess": "共有が正常に更新されました",
+    "editError": "共有の更新に失敗しました"
+  },
+  "shareDetails": {
+    "title": "共有の詳細",
+    "subtitle": "この共有の詳細情報",
+    "basicInfo": "基本情報",
+    "name": "名前",
+    "untitled": "無題",
+    "views": "ビュー数",
+    "dates": "日付",
+    "created": "作成日",
+    "expires": "有効期限",
+    "never": "なし",
+    "security": "セキュリティ",
+    "passwordProtected": "パスワード保護",
+    "publicAccess": "公開アクセス",
+    "maxViews": "最大ビュー数:",
+    "files": "ファイル",
+    "recipients": "受信者",
+    "notAvailable": "該当なし",
+    "invalidDate": "無効な日付です",
+    "loadError": "共有の詳細の読み込みに失敗しました"
+  },
+  "shareManager": {
+    "deleteSuccess": "共有が正常に削除されました",
+    "deleteError": "共有の削除に失敗しました",
+    "updateSuccess": "共有が正常に更新されました",
+    "updateError": "共有の更新に失敗しました",
+    "filesUpdateSuccess": "ファイルが正常に更新されました",
+    "filesUpdateError": "ファイルの更新に失敗しました",
+    "recipientsUpdateSuccess": "受信者が正常に更新されました",
+    "recipientsUpdateError": "受信者の更新に失敗しました",
+    "linkGenerateSuccess": "共有リンクが正常に生成されました",
+    "linkGenerateError": "共有リンクの生成に失敗しました",
+    "notifyLoading": "通知を送信中...",
+    "notifySuccess": "受信者に正常に通知しました",
+    "notifyError": "受信者への通知に失敗しました"
+  },
+  "shares": {
+    "errors": {
+      "loadFailed": "共有の読み込みに失敗しました",
+      "notifyFailed": "受信者への通知に失敗しました",
+      "smtpConfigFailed": "SMTP設定の読み込みに失敗しました"
+    },
+    "messages": {
+      "linkCopied": "リンクがクリップボードにコピーされました",
+      "recipientsNotified": "受信者に正常に通知されました"
+    },
+    "empty": {
+      "message": "まだ共有が作成されていません",
+      "createButton": "共有を作成"
+    },
+    "header": {
+      "title": "マイ共有",
+      "myShares": "マイ共有"
+    },
+    "search": {
+      "title": "すべての共有",
+      "createButton": "共有を作成",
+      "placeholder": "共有を検索...",
+      "results": "全{{total}}件中{{filtered}}件が見つかりました"
+    },
+    "pageTitle": "共有"
+  },
+  "sharesTable": {
+    "ariaLabel": "共有テーブル",
+    "never": "なし",
+    "columns": {
+      "name": "名前",
+      "createdAt": "作成日",
+      "expiresAt": "有効期限",
+      "status": "ステータス",
+      "security": "セキュリティ",
+      "files": "ファイル",
+      "recipients": "受信者",
+      "actions": "操作"
+    },
+    "status": {
+      "neverExpires": "無期限",
+      "active": "アクティブ",
+      "expired": "期限切れ"
+    },
+    "security": {
+      "protected": "保護済み",
+      "public": "公開"
+    },
+    "filesCount": "ファイル",
+    "recipientsCount": "受信者",
+    "actions": {
+      "menu": "共有操作メニュー",
+      "edit": "編集",
+      "manageFiles": "ファイル管理",
+      "manageRecipients": "受信者管理",
+      "viewDetails": "詳細を表示",
+      "generateLink": "リンクを生成",
+      "editLink": "リンクを編集",
+      "copyLink": "リンクをコピー",
+      "notifyRecipients": "受信者に通知",
+      "delete": "削除"
+    }
+  },
+  "storageUsage": {
+    "title": "ストレージ使用量",
+    "ariaLabel": "ストレージ使用状況のプログレスバー",
+    "used": "使用済み",
+    "available": "利用可能"
+  },
+  "theme": {
+    "toggle": "テーマを切り替える",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
+  "uploadFile": {
+    "title": "ファイルをアップロード",
+    "selectFile": "ファイルを選択するにはクリックしてください",
+    "preview": "プレビュー",
+    "uploadProgress": "アップロードの進行状況",
+    "upload": "アップロード",
+    "success": "ファイルが正常にアップロードされました",
+    "error": "ファイルのアップロードに失敗しました"
+  },
+  "users": {
+    "modes": {
+      "create": "作成",
+      "edit": "編集"
+    },
+    "errors": {
+      "loadFailed": "ユーザーの読み込みに失敗しました",
+      "submitFailed": "ユーザーの{{mode}}に失敗しました",
+      "deleteFailed": "ユーザーの削除に失敗しました",
+      "statusUpdateFailed": "ユーザー状態の更新に失敗しました"
+    },
+    "messages": {
+      "createSuccess": "ユーザーが正常に作成されました",
+      "updateSuccess": "ユーザーが正常に更新されました",
+      "deleteSuccess": "ユーザーが正常に削除されました",
+      "activateSuccess": "ユーザーが正常にアクティブ化されました",
+      "deactivateSuccess": "ユーザーが正常に非アクティブ化されました"
+    },
+    "actions": {
+      "edit": "編集",
+      "activate": "アクティブ化",
+      "deactivate": "非アクティブ化",
+      "delete": "削除"
+    },
+    "delete": {
+      "title": "ユーザー削除の確認",
+      "confirmation": "{{firstName}} {{lastName}} を削除してもよろしいですか？この操作は元に戻せません。",
+      "confirm": "ユーザーを削除"
+    },
+    "form": {
+      "titleCreate": "新しいユーザーを追加",
+      "titleEdit": "ユーザーを編集",
+      "firstName": "名",
+      "lastName": "姓",
+      "username": "ユーザー名",
+      "email": "メール",
+      "password": "パスワード",
+      "newPassword": "新しいパスワード（任意）",
+      "passwordPlaceholder": "現在のパスワードを保持する場合は空白のままにする",
+      "role": "役割",
+      "roleUser": "ユーザー",
+      "roleAdmin": "管理者",
+      "create": "作成",
+      "save": "保存"
+    },
+    "status": {
+      "title": "状態変更の確認",
+      "confirmation": "{{firstName}} {{lastName}} を{{action}}してもよろしいですか？",
+      "activate": "アクティブ化",
+      "deactivate": "非アクティブ化",
+      "user": "ユーザー"
+    },
+    "header": {
+      "title": "ユーザー管理",
+      "addUser": "ユーザーを追加",
+      "management": "ユーザー管理"
+    },
+    "table": {
+      "user": "ユーザー",
+      "email": "メール",
+      "status": "状態",
+      "role": "役割",
+      "actions": "操作",
+      "active": "アクティブ",
+      "inactive": "非アクティブ",
+      "admin": "管理者",
+      "userr": "ユーザー"
+    }
+  },
+  "validation": {
+    "invalidEmail": "無効なメールアドレスです",
+    "passwordMinLength": "パスワードは最低6文字必要です",
+    "firstNameRequired": "名は必須です",
+    "lastNameRequired": "姓は必須です",
+    "usernameLength": "ユーザー名は最低3文字必要です",
+    "usernameSpaces": "ユーザー名にスペースは使用できません",
+    "passwordLength": "パスワードは最低8文字必要です",
+    "passwordsMatch": "パスワードが一致しません",
+    "emailRequired": "メールアドレスは必須です",
+    "passwordRequired": "パスワードは必須です"
+  }
+}

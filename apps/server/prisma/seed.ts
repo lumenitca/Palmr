@@ -1,5 +1,4 @@
 import { prisma } from "../src/shared/prisma";
-import {env} from "../src/env"
 import bcrypt from "bcryptjs";
 import crypto from "node:crypto";
 

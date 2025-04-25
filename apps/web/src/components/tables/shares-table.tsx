@@ -1,23 +1,29 @@
-import { useShareContext } from "../../contexts/ShareContext";
-import { Button } from "@heroui/button";
-import { Chip } from "@heroui/chip";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/table";
-import { format } from "date-fns";
-import { useTranslation } from "react-i18next";
 import {
-  FaEdit,
-  FaTrash,
-  FaUsers,
-  FaFolder,
-  FaEllipsisV,
-  FaLock,
-  FaUnlock,
-  FaEye,
-  FaCopy,
-  FaLink,
-  FaEnvelope,
-} from "react-icons/fa";
+  IconCopy,
+  IconDotsVertical,
+  IconEdit,
+  IconEye,
+  IconFolder,
+  IconLink,
+  IconLock,
+  IconLockOpen,
+  IconMail,
+  IconTrash,
+  IconUsers,
+} from "@tabler/icons-react";
+import { format } from "date-fns";
+import { useTranslations } from "next-intl";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useShareContext } from "../../contexts/share-context";
 
 export interface SharesTableProps {
   shares: any[];
@@ -42,108 +48,138 @@ export function SharesTable({
   onCopyLink,
   onNotifyRecipients,
 }: SharesTableProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { smtpEnabled } = useShareContext();
 
   return (
-    <Table aria-label={t("sharesTable.ariaLabel")}>
-      <TableHeader>
-        <TableColumn>{t("sharesTable.columns.name")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.createdAt")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.expiresAt")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.status")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.security")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.files")}</TableColumn>
-        <TableColumn>{t("sharesTable.columns.recipients")}</TableColumn>
-        <TableColumn className="w-[70px]">{t("sharesTable.columns.actions")}</TableColumn>
-      </TableHeader>
-      <TableBody>
-        {shares.map((share) => (
-          <TableRow key={share.id}>
-            <TableCell>{share.name}</TableCell>
-            <TableCell>{format(new Date(share.createdAt), "MM/dd/yyyy HH:mm")}</TableCell>
-            <TableCell>
-              {share.expiration ? format(new Date(share.expiration), "MM/dd/yyyy HH:mm") : t("sharesTable.never")}
-            </TableCell>
-            <TableCell>
-              <Chip
-                color={!share.expiration ? "success" : new Date(share.expiration) > new Date() ? "success" : "danger"}
-                variant="flat"
-              >
-                {!share.expiration
-                  ? t("sharesTable.status.neverExpires")
-                  : new Date(share.expiration) > new Date()
-                    ? t("sharesTable.status.active")
-                    : t("sharesTable.status.expired")}
-              </Chip>
-            </TableCell>
-            <TableCell>
-              <div className="flex items-center gap-2">
-                {share.security.hasPassword ? (
-                  <Chip color="warning" startContent={<FaLock className="ml-1.5 text-sm" />} variant="flat">
-                    {t("sharesTable.security.protected")}
-                  </Chip>
-                ) : (
-                  <Chip color="success" startContent={<FaUnlock className="ml-1.5 text-sm" />} variant="flat">
-                    {t("sharesTable.security.public")}
-                  </Chip>
-                )}
-              </div>
-            </TableCell>
-            <TableCell>{t("sharesTable.filesCount", { count: share.files?.length || 0 })}</TableCell>
-            <TableCell>{t("sharesTable.recipientsCount", { count: share.recipients?.length || 0 })}</TableCell>
-            <TableCell className="text-right">
-              <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                  <Button isIconOnly aria-label={t("sharesTable.actions.menu")} variant="light">
-                    <FaEllipsisV />
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu>
-                  <DropdownItem key="edit" startContent={<FaEdit />} onPress={() => onEdit(share)}>
-                    {t("sharesTable.actions.edit")}
-                  </DropdownItem>
-                  <DropdownItem key="files" startContent={<FaFolder />} onPress={() => onManageFiles(share)}>
-                    {t("sharesTable.actions.manageFiles")}
-                  </DropdownItem>
-                  <DropdownItem key="recipients" startContent={<FaUsers />} onPress={() => onManageRecipients(share)}>
-                    {t("sharesTable.actions.manageRecipients")}
-                  </DropdownItem>
-                  <DropdownItem
-                    key="view"
-                    startContent={<FaEye className="text-sm" />}
-                    onPress={() => onViewDetails(share)}
-                  >
-                    {t("sharesTable.actions.viewDetails")}
-                  </DropdownItem>
-                  <DropdownItem key="generateLink" startContent={<FaLink />} onPress={() => onGenerateLink(share)}>
-                    {share.alias ? t("sharesTable.actions.editLink") : t("sharesTable.actions.generateLink")}
-                  </DropdownItem>
-                  {share.alias && (
-                    <DropdownItem key="copyLink" startContent={<FaCopy />} onPress={() => onCopyLink(share)}>
-                      {t("sharesTable.actions.copyLink")}
-                    </DropdownItem>
-                  )}
-                  {share.recipients?.length > 0 && share.alias && smtpEnabled === "true" && (
-                    <DropdownItem key="notify" startContent={<FaEnvelope />} onPress={() => onNotifyRecipients(share)}>
-                      {t("sharesTable.actions.notifyRecipients")}
-                    </DropdownItem>
-                  )}
-                  <DropdownItem
-                    key="delete"
-                    className="text-danger"
-                    color="danger"
-                    startContent={<FaTrash />}
-                    onPress={() => onDelete(share)}
-                  >
-                    {t("sharesTable.actions.delete")}
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </TableCell>
+    <div className="rounded-lg shadow-sm overflow-hidden border">
+      <Table>
+        <TableHeader>
+          <TableRow className="border-b-0">
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.name")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.createdAt")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.expiresAt")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.status")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.security")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.files")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.recipients")}
+            </TableHead>
+            <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.actions")}
+            </TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {shares.map((share) => (
+            <TableRow key={share.id} className="hover:bg-muted/50 transition-colors border-0">
+              <TableCell className="h-12 px-4 border-0">{share.name}</TableCell>
+              <TableCell className="h-12 px-4">{format(new Date(share.createdAt), "MM/dd/yyyy HH:mm")}</TableCell>
+              <TableCell className="h-12 px-4">
+                {share.expiration ? format(new Date(share.expiration), "MM/dd/yyyy HH:mm") : t("sharesTable.never")}
+              </TableCell>
+              <TableCell className="h-12 px-4">
+                <Badge
+                  variant="secondary"
+                  className={
+                    !share.expiration || new Date(share.expiration) > new Date()
+                      ? "bg-green-500/20 hover:bg-green-500/30 text-green-500"
+                      : "bg-red-500/20 hover:bg-red-500/30 text-red-500"
+                  }
+                >
+                  {!share.expiration
+                    ? t("sharesTable.status.neverExpires")
+                    : new Date(share.expiration) > new Date()
+                      ? t("sharesTable.status.active")
+                      : t("sharesTable.status.expired")}
+                </Badge>
+              </TableCell>
+              <TableCell className="h-12 px-4">
+                <Badge
+                  variant="secondary"
+                  className={`flex items-center gap-1 ${
+                    share.security.hasPassword
+                      ? "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500"
+                      : "bg-green-500/20 hover:bg-green-500/30 text-green-500"
+                  }`}
+                >
+                  {share.security.hasPassword ? <IconLock className="h-4 w-4" /> : <IconLockOpen className="h-4 w-4" />}
+                  {share.security.hasPassword ? t("sharesTable.security.protected") : t("sharesTable.security.public")}
+                </Badge>
+              </TableCell>
+              <TableCell className="h-12 px-4">
+                {share.files?.length || 0} {t("sharesTable.filesCount")}
+              </TableCell>
+              <TableCell className="h-12 px-4">
+                {share.recipients?.length || 0} {t("sharesTable.recipientsCount")}
+              </TableCell>
+              <TableCell className="h-12 px-4 text-right">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-muted cursor-pointer">
+                      <IconDotsVertical className="h-4 w-4" />
+                      <span className="sr-only">{t("sharesTable.actions.menu")}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-[200px]">
+                    <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onEdit(share)}>
+                      <IconEdit className="mr-2 h-4 w-4" />
+                      {t("sharesTable.actions.edit")}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onManageFiles(share)}>
+                      <IconFolder className="mr-2 h-4 w-4" />
+                      {t("sharesTable.actions.manageFiles")}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onManageRecipients(share)}>
+                      <IconUsers className="mr-2 h-4 w-4" />
+                      {t("sharesTable.actions.manageRecipients")}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onViewDetails(share)}>
+                      <IconEye className="mr-2 h-4 w-4" />
+                      {t("sharesTable.actions.viewDetails")}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onGenerateLink(share)}>
+                      <IconLink className="mr-2 h-4 w-4" />
+                      {share.alias ? t("sharesTable.actions.editLink") : t("sharesTable.actions.generateLink")}
+                    </DropdownMenuItem>
+                    {share.alias && (
+                      <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onCopyLink(share)}>
+                        <IconCopy className="mr-2 h-4 w-4" />
+                        {t("sharesTable.actions.copyLink")}
+                      </DropdownMenuItem>
+                    )}
+                    {share.recipients?.length > 0 && share.alias && smtpEnabled === "true" && (
+                      <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onNotifyRecipients(share)}>
+                        <IconMail className="mr-2 h-4 w-4" />
+                        {t("sharesTable.actions.notifyRecipients")}
+                      </DropdownMenuItem>
+                    )}
+                    <DropdownMenuItem
+                      onClick={() => onDelete(share)}
+                      className="cursor-pointer py-2 text-destructive focus:text-destructive"
+                    >
+                      <IconTrash className="mr-2 h-4 w-4" />
+                      {t("sharesTable.actions.delete")}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

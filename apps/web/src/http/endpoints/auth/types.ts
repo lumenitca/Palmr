@@ -1,4 +1,7 @@
+import type { AxiosResponse } from "axios";
+
 import type {
+  GetCurrentUser200,
   Login200,
   LoginBody,
   Logout200,
@@ -6,9 +9,7 @@ import type {
   RequestPasswordResetBody,
   ResetPassword200,
   ResetPasswordBody,
-  GetCurrentUser200,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type LoginResult = AxiosResponse<Login200>;
 export type LogoutResult = AxiosResponse<Logout200>;

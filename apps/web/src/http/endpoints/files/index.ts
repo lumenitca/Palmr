@@ -1,16 +1,17 @@
-import type {
-  GetPresignedUrlResult,
-  RegisterFileResult,
-  ListFilesResult,
-  GetDownloadUrlResult,
-  DeleteFileResult,
-  UpdateFileResult,
-  GetPresignedUrlParams,
-  RegisterFileBody,
-  UpdateFileBody,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import apiInstance from "@/config/api";
+import type {
+  DeleteFileResult,
+  GetDownloadUrlResult,
+  GetPresignedUrlParams,
+  GetPresignedUrlResult,
+  ListFilesResult,
+  RegisterFileBody,
+  RegisterFileResult,
+  UpdateFileBody,
+  UpdateFileResult,
+} from "./types";
 
 /**
  * Generates a pre-signed URL for direct upload to MinIO
@@ -20,7 +21,7 @@ export const getPresignedUrl = <TData = GetPresignedUrlResult>(
   params: GetPresignedUrlParams,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.get(`/files/presigned-url`, {
+  return apiInstance.get(`/api/files/generate-presigned-url`, {
     ...options,
     params: { ...params, ...options?.params },
   });
@@ -34,7 +35,7 @@ export const registerFile = <TData = RegisterFileResult>(
   registerFileBody: RegisterFileBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.post(`/files`, registerFileBody, options);
+  return apiInstance.post(`/api/files/register`, registerFileBody, options);
 };
 
 /**
@@ -42,7 +43,7 @@ export const registerFile = <TData = RegisterFileResult>(
  * @summary List Files
  */
 export const listFiles = <TData = ListFilesResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/files`, options);
+  return apiInstance.get(`/api/files/list`, options);
 };
 
 /**
@@ -53,7 +54,7 @@ export const getDownloadUrl = <TData = GetDownloadUrlResult>(
   objectName: string,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.get(`/files/${objectName}/download`, options);
+  return apiInstance.get(`/api/files/${objectName}/download`, options);
 };
 
 /**
@@ -61,7 +62,7 @@ export const getDownloadUrl = <TData = GetDownloadUrlResult>(
  * @summary Delete File
  */
 export const deleteFile = <TData = DeleteFileResult>(id: string, options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.delete(`/files/${id}`, options);
+  return apiInstance.delete(`/api/files/delete/${id}`, options);
 };
 
 /**
@@ -73,5 +74,5 @@ export const updateFile = <TData = UpdateFileResult>(
   updateFileBody: UpdateFileBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.patch(`/files/${id}`, updateFileBody, options);
+  return apiInstance.patch(`/api/files/update/${id}`, updateFileBody, options);
 };

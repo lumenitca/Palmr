@@ -1,7 +1,8 @@
-import { getAppInfo } from "@/http/endpoints";
-import { createContext, useContext, useEffect, useState } from "react";
+import { create } from "zustand";
 
-interface AppInfoContextType {
+import { getAppInfo } from "@/http/endpoints";
+
+interface AppInfoStore {
   appName: string;
   appLogo: string;
   setAppName: (name: string) => void;
@@ -9,62 +10,46 @@ interface AppInfoContextType {
   refreshAppInfo: () => Promise<void>;
 }
 
-const AppInfoContext = createContext<AppInfoContextType>({
-  appName: "",
-  appLogo: "",
-  setAppName: () => {},
-  setAppLogo: () => {},
-  refreshAppInfo: async () => {},
+const updateTitle = (name: string) => {
+  document.title = name;
+};
+
+export const useAppInfo = create<AppInfoStore>((set) => {
+  if (typeof window !== "undefined") {
+    getAppInfo()
+      .then((response) => {
+        set({
+          appName: response.data.appName,
+          appLogo: response.data.appLogo,
+        });
+        updateTitle(response.data.appName);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch app info:", error);
+      });
+  }
+
+  return {
+    appName: "",
+    appLogo: "",
+    setAppName: (name: string) => {
+      set({ appName: name });
+      updateTitle(name);
+    },
+    setAppLogo: (logo: string) => {
+      set({ appLogo: logo });
+    },
+    refreshAppInfo: async () => {
+      try {
+        const response = await getAppInfo();
+        set({
+          appName: response.data.appName,
+          appLogo: response.data.appLogo,
+        });
+        updateTitle(response.data.appName);
+      } catch (error) {
+        console.error("Failed to fetch app info:", error);
+      }
+    },
+  };
 });
-
-export function AppInfoProvider({ children }: { children: React.ReactNode }) {
-  const [appName, setAppName] = useState("");
-  const [appLogo, setAppLogo] = useState("");
-
-  const updateFavicon = (logo: string) => {
-    const link = document.querySelector<HTMLLinkElement>("link[rel*='icon']") || document.createElement("link");
-
-    link.type = "image/x-icon";
-    link.rel = "shortcut icon";
-    link.href = logo || "/favicon.ico";
-    document.head.appendChild(link);
-  };
-
-  const updateTitle = (name: string) => {
-    document.title = name;
-  };
-
-  const refreshAppInfo = async () => {
-    try {
-      const response = await getAppInfo();
-
-      setAppName(response.data.appName);
-      setAppLogo(response.data.appLogo);
-
-      updateTitle(response.data.appName);
-      updateFavicon(response.data.appLogo);
-    } catch (error) {
-      console.error("Failed to fetch app info:", error);
-    }
-  };
-
-  useEffect(() => {
-    updateTitle(appName);
-  }, [appName]);
-
-  useEffect(() => {
-    updateFavicon(appLogo);
-  }, [appLogo]);
-
-  useEffect(() => {
-    refreshAppInfo();
-  }, []);
-
-  return (
-    <AppInfoContext.Provider value={{ appName, appLogo, setAppName, setAppLogo, refreshAppInfo }}>
-      {children}
-    </AppInfoContext.Provider>
-  );
-}
-
-export const useAppInfo = () => useContext(AppInfoContext);

@@ -1,8 +1,18 @@
-import { Button } from "@heroui/button";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/dropdown";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { IconLanguage } from "@tabler/icons-react";
+import { useLocale } from "next-intl";
+import { setCookie } from "nookies";
 import ReactCountryFlag from "react-country-flag";
-import { useTranslation } from "react-i18next";
-import { FaGlobe } from "react-icons/fa";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const languages = {
   "en-US": "English",
@@ -19,36 +29,61 @@ const languages = {
   "ko-KR": "한국어 (Korean)",
 };
 
-export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+const COOKIE_LANG_KEY = "NEXT_LOCALE";
+const COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+const RTL_LANGUAGES = ["ar-SA"];
+
+export function LanguageSwitcher() {
+  const locale = useLocale();
+  const router = useRouter();
+
+  const changeLanguage = (fullLocale: string) => {
+    const isRTL = RTL_LANGUAGES.includes(fullLocale);
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+
+    setCookie(null, COOKIE_LANG_KEY, fullLocale, {
+      maxAge: COOKIE_MAX_AGE,
+      path: "/",
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    router.refresh();
   };
 
   return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button isIconOnly className="text-default-500" size="sm" variant="light">
-          <FaGlobe size={15} />
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" className="h-9 w-9 p-0">
+          <IconLanguage className="h-5 w-5" />
+          <span className="sr-only">Change language</span>
         </Button>
-      </DropdownTrigger>
-      <DropdownMenu selectedKeys={[i18n.language]} selectionMode="single">
-        {Object.entries(languages).map(([code, name]) => (
-          <DropdownItem key={code} onClick={() => changeLanguage(code)}>
-            <ReactCountryFlag
-              svg
-              countryCode={code.split("-")[1]}
-              style={{
-                marginRight: "8px",
-                width: "1em",
-                height: "1em",
-              }}
-            />
-            {name}
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </Dropdown>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {Object.entries(languages).map(([code, name]) => {
+          const isCurrentLocale = locale === code.split("-")[0];
+
+          return (
+            <DropdownMenuItem
+              key={code}
+              onClick={() => changeLanguage(code)}
+              className={isCurrentLocale ? "bg-accent" : ""}
+            >
+              <ReactCountryFlag
+                svg
+                countryCode={code.split("-")[1]}
+                style={{
+                  marginRight: "8px",
+                  width: "1em",
+                  height: "1em",
+                }}
+              />
+              {name}
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

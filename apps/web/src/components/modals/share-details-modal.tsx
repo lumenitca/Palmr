@@ -1,14 +1,24 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { IconLock, IconLockOpen, IconMail } from "@tabler/icons-react";
+import { format } from "date-fns";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Loader } from "@/components/ui/loader";
 import { getShare } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";
-import { Button } from "@heroui/button";
-import { Chip } from "@heroui/chip";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@heroui/modal";
-import { Spinner } from "@heroui/spinner";
-import { format } from "date-fns";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { FaLock, FaUnlock, FaEnvelope } from "react-icons/fa";
-import { toast } from "sonner";
 
 interface ShareDetailsModalProps {
   shareId: string | null;
@@ -35,7 +45,7 @@ interface ShareRecipient {
 }
 
 export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [share, setShare] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -75,23 +85,22 @@ export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) 
   if (!share) return null;
 
   return (
-    <Modal isOpen={!!shareId} size="2xl" onClose={onClose}>
-      <ModalContent className="p-1">
-        <ModalHeader className="flex flex-col gap-1">
-          <h2 className="text-xl font-semibold">{t("shareDetails.title")}</h2>
-          <p className="text-sm text-default-500">{t("shareDetails.subtitle")}</p>
-        </ModalHeader>
-        <ModalBody>
+    <Dialog open={!!shareId} onOpenChange={() => onClose()}>
+      <DialogContent className="sm:max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle>{t("shareDetails.title")}</DialogTitle>
+          <DialogDescription>{t("shareDetails.subtitle")}</DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
           {isLoading ? (
             <div className="flex justify-center py-8">
-              <Spinner />
+              <Loader size="lg" />
             </div>
           ) : (
             <div className="flex flex-col gap-6">
               <div className="grid grid-cols-2 gap-6">
-                {/* Left Column */}
                 <div className="space-y-4">
-                  <div className="rounded-lg border border-default-200 bg-default-50 p-4">
+                  <div className="rounded-lg border p-4">
                     <h3 className="font-medium">{t("shareDetails.basicInfo")}</h3>
                     <div className="mt-3 space-y-3">
                       <div>
@@ -106,9 +115,8 @@ export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) 
                   </div>
                 </div>
 
-                {/* Right Column */}
                 <div className="space-y-4">
-                  <div className="rounded-lg border border-default-200 bg-default-50 p-4">
+                  <div className="rounded-lg border p-4">
                     <h3 className="font-medium">{t("shareDetails.dates")}</h3>
                     <div className="mt-3 space-y-3">
                       <div>
@@ -126,70 +134,65 @@ export function ShareDetailsModal({ shareId, onClose }: ShareDetailsModalProps) 
                 </div>
               </div>
 
-              {/* Full Width Sections */}
-              <div className="rounded-lg border border-default-200 bg-default-50 p-4">
+              <div className="rounded-lg border p-4">
                 <h3 className="font-medium">{t("shareDetails.security")}</h3>
                 <div className="mt-3 flex gap-2">
                   {share.security?.hasPassword ? (
-                    <Chip color="warning" startContent={<FaLock className="ml-1.5 mr-1 text-sm" />} variant="flat">
+                    <Badge variant="secondary">
+                      <IconLock className="h-4 w-4" />
                       {t("shareDetails.passwordProtected")}
-                    </Chip>
+                    </Badge>
                   ) : (
-                    <Chip color="success" startContent={<FaUnlock className="ml-1.5 mr-1 text-sm" />} variant="flat">
+                    <Badge variant="secondary">
+                      <IconLockOpen className="h-4 w-4" />
                       {t("shareDetails.publicAccess")}
-                    </Chip>
+                    </Badge>
                   )}
                   {share.security?.maxViews && (
-                    <Chip color="primary" variant="flat">
-                      {t("shareDetails.maxViews", { count: share.security.maxViews })}
-                    </Chip>
+                    <Badge variant="secondary">
+                      {t("shareDetails.maxViews")} {share.security.maxViews}
+                    </Badge>
                   )}
                 </div>
               </div>
-              <div className="rounded-lg border border-default-200 bg-default-50 p-4">
-                <h3 className="font-medium">{t("shareDetails.files", { count: share.files?.length || 0 })}</h3>
+
+              <div className="rounded-lg border p-4">
+                <h3 className="font-medium">
+                  {t("shareDetails.files")} ({share.files?.length || 0})
+                </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {share.files?.map((file: ShareFile) => {
                     const { icon: FileIcon, color } = getFileIcon(file.name);
-
                     return (
-                      <Chip
-                        key={file.id}
-                        startContent={<FileIcon className={`ml-1.5 text-sm ${color}`} />}
-                        variant="flat"
-                      >
-                        {file.name}
-                      </Chip>
+                      <Badge key={file.id} variant="secondary">
+                        <FileIcon className={`h-4 w-4 ${color}`} />
+                        {file.name.length > 20 ? file.name.substring(0, 20) + "..." : file.name}
+                      </Badge>
                     );
                   })}
                 </div>
               </div>
 
-              <div className="rounded-lg border border-default-200 bg-default-50 p-4">
+              <div className="rounded-lg border p-4">
                 <h3 className="font-medium">
-                  {t("shareDetails.recipients", { count: share.recipients?.length || 0 })}
+                  {t("shareDetails.recipients")} ({share.recipients?.length || 0})
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {share.recipients?.map((recipient: ShareRecipient) => (
-                    <Chip
-                      key={recipient.id}
-                      startContent={<FaEnvelope className={"ml-2 mr-1 text-sm"} />}
-                      variant="flat"
-                    >
+                    <Badge key={recipient.id} variant="secondary">
+                      <IconMail className="h-4 w-4" />
                       {recipient.email}
-                    </Chip>
+                    </Badge>
                   ))}
                 </div>
               </div>
             </div>
           )}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onPress={onClose}>
-            {t("common.close")}
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </div>
+        <DialogFooter>
+          <Button onClick={onClose}>{t("common.close")}</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
