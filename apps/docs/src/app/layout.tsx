@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <Banner variant="rainbow" id="banner-v-2" changeLayout={false}>
+        <Banner variant="rainbow" id="banner-v-2">
           <Link href="/docs/2.0.0-beta">Palmr. v2.0.0-beta has released!</Link>
         </Banner>
         <RootProvider
