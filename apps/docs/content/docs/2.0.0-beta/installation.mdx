@@ -219,6 +219,13 @@ We mainly need to pay attention to the following points:
 - For all environment variables that are `PASSWORD`, it's highly recommended to generate secure passwords and replace them as env vars.
 - Lastly, make sure no docker service will conflict with any existing ones in your environment. If there is a conflict, simply change the execution ports via environment var or in the docker compose.
 
+To generate a .env file with just the `server_ip` configuration, you can run this command:
+
+```bash
+curl -fsSL https://gist.githubusercontent.com/danielalves96/5a68913d70e5e31b68b7331dc17dfa9c/raw | bash
+```
+> execute this command in your server terminal, at same path of docker-compose.yaml.
+
 Basically, by paying attention to these points, you can quickly execute the project with the same command we used for localhost:
 
 ```bash
