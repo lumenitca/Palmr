@@ -1,7 +1,7 @@
 # 🌴 Palmr. - Open-Source File Transfer
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/dc2a105a-e66b-4db5-b56c-87d872a1edf8" alt="Palmr Logo" style="width: 100%;">
+  <img src="https://res.cloudinary.com/technical-intelligence/image/upload/v1745548261/Palmr./banner_roxtph.png" alt="Palmr Logo" style="width: 100%;">
 </p>
 
 **Palmr.** is a **flexible** and **open-source** alternative to file transfer services like **WeTransfer**, **SendGB**, **Send Anywhere**, and **Files.fm**.
@@ -20,7 +20,7 @@
 ### **Palmr.** is built with a focus on **performance**, **scalability**, and **security**.
 
 <div align="center">
-  <img src="https://i.ibb.co/21D1w1NC/Captura-de-Tela-2025-04-24-a-s-23-24-26.png" style="width: 100%; border-radius: 15px;" />
+  <img src="https://res.cloudinary.com/technical-intelligence/image/upload/v1745548231/Palmr./Captura_de_Tela_2025-04-24_a%CC%80s_23.24.26_kr4hsl.png" style="width: 100%; border-radius: 15px;" />
 </div>
 
 
