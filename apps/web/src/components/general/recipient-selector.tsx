@@ -1,11 +1,14 @@
-import { useShareContext } from "@/contexts/ShareContext";
-import { addRecipients, removeRecipients, notifyRecipients } from "@/http/endpoints";
-import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { FaPlus, FaTrash, FaEnvelope, FaBell } from "react-icons/fa";
+"use client";
+
+import { useEffect, useState } from "react";
+import { IconBell, IconMail, IconPlus, IconTrash } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useShareContext } from "@/contexts/share-context";
+import { addRecipients, notifyRecipients, removeRecipients } from "@/http/endpoints";
 
 interface Recipient {
   id: string;
@@ -22,7 +25,7 @@ interface RecipientSelectorProps {
 }
 
 export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onSuccess }: RecipientSelectorProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const { smtpEnabled } = useShareContext();
   const [recipients, setRecipients] = useState<string[]>(selectedRecipients?.map((recipient) => recipient.email) || []);
   const [newRecipient, setNewRecipient] = useState("");
@@ -78,14 +81,18 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
   return (
     <div className="flex flex-col gap-4 mb-4">
       <div className="flex gap-2">
-        <Input
-          placeholder={t("recipientSelector.emailPlaceholder")}
-          startContent={<FaEnvelope className="text-gray-400" />}
-          value={newRecipient}
-          onChange={(e) => setNewRecipient(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleAddRecipient()}
-        />
-        <Button color="primary" startContent={<FaPlus />} onPress={handleAddRecipient}>
+        <div className="relative flex-1">
+          <IconMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 h-4 w-4" />
+          <Input
+            className="pl-9"
+            placeholder={t("recipientSelector.emailPlaceholder")}
+            value={newRecipient}
+            onChange={(e) => setNewRecipient(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleAddRecipient()}
+          />
+        </div>
+        <Button onClick={handleAddRecipient}>
+          <IconPlus className="h-4 w-4" />
           {t("recipientSelector.add")}
         </Button>
       </div>
@@ -94,7 +101,8 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-medium">{t("recipientSelector.recipients", { count: recipients.length })}</h3>
           {recipients.length > 0 && shareAlias && smtpEnabled === "true" && (
-            <Button color="primary" size="sm" startContent={<FaBell />} variant="flat" onPress={handleNotifyRecipients}>
+            <Button variant="outline" size="sm" onClick={handleNotifyRecipients}>
+              <IconBell className="h-4 w-4" />
               {t("recipientSelector.notifyAll")}
             </Button>
           )}
@@ -107,20 +115,19 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
               recipients.map((email, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-foreground-100 rounded-lg hover:bg-foreground-200"
+                  className="flex items-center justify-between p-3 bg-secondary rounded-lg hover:bg-secondary/80"
                 >
                   <div className="flex items-center gap-2">
-                    <FaEnvelope className="text-gray-400" />
+                    <IconMail className="text-gray-500 h-4 w-4" />
                     <span>{email}</span>
                   </div>
                   <Button
-                    isIconOnly
-                    color="danger"
+                    variant="ghost"
                     size="sm"
-                    variant="light"
-                    onPress={() => handleRemoveRecipient(email)}
+                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                    onClick={() => handleRemoveRecipient(email)}
                   >
-                    <FaTrash />
+                    <IconTrash className="h-4 w-4" />
                   </Button>
                 </div>
               ))

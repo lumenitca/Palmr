@@ -28,5 +28,5 @@ apps/server/node_modules
 apps/server/.env
 apps/server/dist/*
 
-#COMPOSE
-docker-compose.yaml
+#DEFAULT
+.env

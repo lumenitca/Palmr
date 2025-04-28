@@ -1,13 +1,16 @@
-/* eslint-disable jsx-a11y/media-has-caption */
+"use client";
+
+import { useEffect, useState } from "react";
+import { IconDownload } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { getDownloadUrl } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";
-import { Button } from "@heroui/button";
-import { Image } from "@heroui/image";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/modal";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { FaDownload } from "react-icons/fa";
-import { toast } from "sonner";
 
 interface FilePreviewModalProps {
   isOpen: boolean;
@@ -20,7 +23,7 @@ interface FilePreviewModalProps {
 }
 
 export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProps) {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -99,8 +102,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     if (isLoading) {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500" />
-          <p className="text-gray-500">{t("filePreview.loading")}</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+          <p className="text-muted-foreground">{t("filePreview.loading")}</p>
         </div>
       );
     }
@@ -108,9 +111,9 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     if (!previewUrl) {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
-          <FileIcon className={`text-6xl ${color}`} />
-          <p className="text-gray-500">{t("filePreview.notAvailable")}</p>
-          <p className="text-sm text-gray-400">{t("filePreview.downloadToView")}</p>
+          <FileIcon className={`h-12 w-12 ${color}`} />
+          <p className="text-muted-foreground">{t("filePreview.notAvailable")}</p>
+          <p className="text-sm text-muted-foreground">{t("filePreview.downloadToView")}</p>
         </div>
       );
     }
@@ -118,26 +121,15 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     switch (fileType) {
       case "pdf":
         return (
-          <div className="w-full h-[70vh] max-h-[600px] overflow-hidden">
-            <iframe key={file.objectName} className="w-full h-full" src={previewUrl} title={file.name} />
-          </div>
+          <ScrollArea className="w-full">
+            <iframe className="w-full h-full min-h-[600px]" src={previewUrl} title={file.name} />
+          </ScrollArea>
         );
       case "image":
         return (
-          <div className="flex items-center justify-center max-h-[70vh]">
-            <Image
-              key={file.objectName}
-              alt={file.name}
-              classNames={{
-                wrapper: "max-w-full max-h-[600px]",
-                img: "object-contain",
-              }}
-              height={600}
-              loading="lazy"
-              radius="lg"
-              src={previewUrl}
-            />
-          </div>
+          <AspectRatio ratio={16 / 9} className="bg-muted">
+            <img src={previewUrl} alt={file.name} className="object-contain w-full h-full rounded-md" />
+          </AspectRatio>
         );
       case "audio":
         return (
@@ -170,24 +162,28 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   };
 
   return (
-    <Modal isOpen={isOpen} size="3xl" onClose={onClose}>
-      <ModalContent>
-        <ModalHeader className="flex justify-between items-center">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-4xl">
+        <DialogHeader>
           <div className="flex items-center gap-2">
-            {getFileIcon(file.name).icon({ className: "text-xl" })}
+            {(() => {
+              const FileIcon = getFileIcon(file.name).icon;
+              return <FileIcon size={24} />;
+            })()}
             <span>{file.name}</span>
           </div>
-        </ModalHeader>
-        <ModalBody>{renderPreview()}</ModalBody>
-        <ModalFooter>
-          <Button variant="light" onPress={onClose}>
+        </DialogHeader>
+        <div className="py-4">{renderPreview()}</div>
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose}>
             {t("common.close")}
           </Button>
-          <Button color="primary" startContent={<FaDownload />} onPress={handleDownload}>
+          <Button onClick={handleDownload}>
+            <IconDownload className="h-4 w-4" />
             {t("common.download")}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -1,6 +1,9 @@
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
+
 import { getCurrentUser } from "@/http/endpoints";
 import type { GetCurrentUser200User } from "@/http/models";
-import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthUser = Omit<GetCurrentUser200User, "isAdmin">;
 
@@ -39,6 +42,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const checkAuth = async () => {
       try {
         const response = await getCurrentUser();
+        if (!response?.data?.user) {
+          throw new Error("No user data");
+        }
+
         const { isAdmin, ...userData } = response.data.user;
 
         setUser(userData);
@@ -46,7 +53,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsAuthenticated(true);
       } catch (err) {
         console.error(err);
-        logout();
+        setUser(null);
+        setIsAdmin(false);
+        setIsAuthenticated(false);
       }
     };
 

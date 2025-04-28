@@ -1,11 +1,12 @@
+import type { AxiosResponse } from "axios";
+
 import type {
-  UpdateConfig200,
-  UpdateConfigBody,
-  GetAllConfigs200,
   BulkUpdateConfigs200,
   BulkUpdateConfigsBodyItem,
+  GetAllConfigs200,
+  UpdateConfig200,
+  UpdateConfigBody,
 } from "../../models";
-import type { AxiosResponse } from "axios";
 
 export type UpdateConfigResult = AxiosResponse<UpdateConfig200>;
 export type GetAllConfigsResult = AxiosResponse<GetAllConfigs200>;

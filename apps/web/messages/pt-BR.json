@@ -1,0 +1,644 @@
+{
+  "common": {
+    "loading": "Carregando, aguarde...",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "close": "Fechar",
+    "download": "Baixar",
+    "unexpectedError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
+    "yes": "Sim",
+    "no": "Não",
+    "dashboard": "Painel"
+  },
+  "createShare": {
+    "title": "Criar Compartilhamento",
+    "nameLabel": "Nome do Compartilhamento",
+    "expirationLabel": "Data de Expiração",
+    "expirationPlaceholder": "DD/MM/AAAA HH:MM",
+    "maxViewsLabel": "Máximo de Visualizações",
+    "maxViewsPlaceholder": "Deixe vazio para ilimitado",
+    "passwordProtection": "Protegido por Senha",
+    "passwordLabel": "Senha",
+    "create": "Criar Compartilhamento",
+    "success": "Compartilhamento criado com sucesso",
+    "error": "Falha ao criar compartilhamento"
+  },
+  "dashboard": {
+    "loadError": "Falha ao carregar dados do painel",
+    "linkCopied": "Link copiado para a área de transferência",
+    "pageTitle": "Painel",
+    "breadcrumb": "Painel"
+  },
+  "emptyState": {
+    "noFiles": "Nenhum arquivo enviado ainda",
+    "uploadFile": "Enviar Arquivo"
+  },
+  "errors": {
+    "invalidCredentials": "E-mail ou senha inválidos",
+    "userNotFound": "Usuário não encontrado",
+    "accountLocked": "Conta bloqueada. Tente novamente mais tarde",
+    "unexpectedError": "Ocorreu um erro inesperado. Por favor, tente novamente"
+  },
+  "fileActions": {
+    "editFile": "Editar Arquivo",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Digite o novo nome",
+    "extension": "Extensão",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Digite a descrição do arquivo",
+    "deleteFile": "Excluir Arquivo",
+    "deleteConfirmation": "Tem certeza que deseja excluir ?",
+    "deleteWarning": "Esta ação não pode ser desfeita."
+  },
+  "fileManager": {
+    "downloadError": "Falha ao baixar arquivo",
+    "updateSuccess": "Arquivo atualizado com sucesso",
+    "updateError": "Falha ao atualizar arquivo",
+    "deleteSuccess": "Arquivo excluído com sucesso",
+    "deleteError": "Falha ao excluir arquivo"
+  },
+  "filePreview": {
+    "loading": "Carregando visualização...",
+    "notAvailable": "Visualização não disponível",
+    "downloadToView": "Faça o download para visualizar o conteúdo",
+    "audioNotSupported": "Seu navegador não suporta o elemento de áudio",
+    "videoNotSupported": "Seu navegador não suporta o elemento de vídeo",
+    "loadError": "Falha ao carregar a visualização",
+    "downloadError": "Falha ao baixar o arquivo"
+  },
+  "fileSelector": {
+    "availableFiles": "Arquivos Disponíveis ({{count}})",
+    "shareFiles": "Arquivos Compartilhados ({{count}})",
+    "searchPlaceholder": "Buscar arquivos...",
+    "noMatchingFiles": "Nenhum arquivo encontrado",
+    "noAvailableFiles": "Nenhum arquivo disponível",
+    "noFilesInShare": "Nenhum arquivo compartilhado",
+    "saveChanges": "Salvar Alterações"
+  },
+  "files": {
+    "title": "Todos os Arquivos",
+    "uploadFile": "Enviar Arquivo",
+    "loadError": "Falha ao carregar arquivos",
+    "pageTitle": "Meus Arquivos",
+    "breadcrumb": "Meus Arquivos"
+  },
+  "filesTable": {
+    "ariaLabel": "Tabela de arquivos",
+    "columns": {
+      "name": "NOME",
+      "description": "DESCRIÇÃO",
+      "size": "TAMANHO",
+      "createdAt": "CRIADO EM",
+      "updatedAt": "ATUALIZADO EM",
+      "actions": "AÇÕES"
+    },
+    "actions": {
+      "menu": "Menu de ações do arquivo",
+      "preview": "Visualizar",
+      "edit": "Editar",
+      "download": "Baixar",
+      "delete": "Excluir"
+    }
+  },
+  "footer": {
+    "poweredBy": "Desenvolvido por",
+    "kyanHomepage": "Página inicial da Kyantech"
+  },
+  "forgotPassword": {
+    "emailLabel": "Endereço de Email",
+    "emailPlaceholder": "Digite seu email",
+    "sending": "Enviando...",
+    "submit": "Enviar Instruções de Redefinição",
+    "backToLogin": "Voltar ao Login",
+    "title": "Esqueceu a Senha",
+    "description": "Digite seu endereço de email e enviaremos instruções para redefinir sua senha.",
+    "resetInstructions": "Instruções de redefinição enviadas para seu email",
+    "pageTitle": "Esqueceu a Senha"
+  },
+  "generateShareLink": {
+    "generateTitle": "Gerar Link de Compartilhamento",
+    "updateTitle": "Atualizar Link de Compartilhamento",
+    "generateDescription": "Gere um link para compartilhar seus arquivos",
+    "updateDescription": "Atualize o alias deste link de compartilhamento",
+    "aliasPlaceholder": "Digite o alias",
+    "linkReady": "Seu link de compartilhamento está pronto:",
+    "generateButton": "Gerar Link",
+    "updateButton": "Atualizar Link",
+    "copyButton": "Copiar Link",
+    "success": "Link gerado com sucesso",
+    "error": "Erro ao gerar link",
+    "copied": "Link copiado para a área de transferência"
+  },
+  "home": {
+    "description": "A alternativa open-source ao WeTransfer. Compartilhe arquivos com segurança, sem rastreamento ou limitações.",
+    "documentation": "Documentação",
+    "starOnGithub": "Estrela no GitHub",
+    "privacyMessage": "Construído com privacidade em mente. Seus arquivos antes do upload são acessíveis apenas por aqueles com o link de compartilhamento. Para sempre gratuito e open source.",
+    "header": {
+      "fileSharing": "Compartilhamento de arquivos",
+      "tagline": "simples e gratuito"
+    },
+    "pageTitle": "Início"
+  },
+  "login": {
+    "welcome": "Bem-vindo ao",
+    "signInToContinue": "Entre para continuar",
+    "emailLabel": "Endereço de E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Digite sua senha",
+    "signIn": "Entrar",
+    "signingIn": "Entrando...",
+    "forgotPassword": "Esqueceu a senha?",
+    "pageTitle": "Entrar"
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "Logo do Aplicativo"
+    },
+    "buttons": {
+      "upload": "Enviar Logo",
+      "remove": "Remover Logo"
+    },
+    "messages": {
+      "uploadSuccess": "Logo enviado com sucesso",
+      "removeSuccess": "Logo removido com sucesso"
+    },
+    "errors": {
+      "uploadFailed": "Falha ao enviar logo",
+      "removeFailed": "Falha ao remover logo"
+    }
+  },
+  "navbar": {
+    "logoAlt": "Logo do Aplicativo",
+    "profileMenu": "Menu do Perfil",
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "usersManagement": "Gerenciar Usuários",
+    "logout": "Sair"
+  },
+  "navigation": {
+    "dashboard": "Painel"
+  },
+  "profile": {
+    "password": {
+      "title": "Alterar Senha",
+      "newPassword": "Nova Senha",
+      "confirmPassword": "Confirmar Nova Senha",
+      "updateButton": "Atualizar Senha"
+    },
+    "form": {
+      "title": "Informações do Perfil",
+      "firstName": "Nome",
+      "lastName": "Sobrenome",
+      "username": "Nome de Usuário",
+      "email": "Email",
+      "updateButton": "Atualizar Perfil"
+    },
+    "header": {
+      "title": "Perfil",
+      "subtitle": "Gerencie suas informações pessoais e senha"
+    },
+    "picture": {
+      "title": "Foto do Perfil",
+      "description": "Clique no ícone da câmera para alterar sua foto de perfil",
+      "uploadPhoto": "Enviar Foto",
+      "removePhoto": "Remover Foto"
+    },
+    "errors": {
+      "loadFailed": "Falha ao carregar dados do usuário",
+      "updateFailed": "Falha ao atualizar perfil",
+      "passwordFailed": "Falha ao atualizar senha",
+      "imageFailed": "Falha ao atualizar imagem",
+      "imageRemoveFailed": "Falha ao remover imagem"
+    },
+    "messages": {
+      "noChanges": "Nenhuma alteração para salvar",
+      "updateSuccess": "Perfil atualizado com sucesso",
+      "fillPasswords": "Por favor, preencha ambos os campos de senha",
+      "passwordSuccess": "Senha atualizada com sucesso",
+      "imageSuccess": "Imagem de perfil atualizada com sucesso",
+      "imageRemoved": "Imagem de perfil removida com sucesso"
+    },
+    "pageTitle": "Perfil"
+  },
+  "quickAccess": {
+    "files": {
+      "title": "Meus Arquivos",
+      "description": "Acesse e gerencie seus arquivos enviados"
+    },
+    "shares": {
+      "title": "Meus Compartilhamentos",
+      "description": "Visualize e gerencie seus arquivos compartilhados"
+    }
+  },
+  "recentFiles": {
+    "title": "Uploads Recentes",
+    "viewAll": "Ver Todos",
+    "uploadFile": "Enviar Arquivo",
+    "noFiles": "Nenhum arquivo enviado ainda"
+  },
+  "recentShares": {
+    "title": "Compartilhamentos Recentes",
+    "viewAll": "Ver Todos",
+    "createShare": "Criar Compartilhamento",
+    "noShares": "Nenhum compartilhamento criado ainda",
+    "createFirst": "Criar seu primeiro compartilhamento"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Digite o e-mail do destinatário",
+    "add": "Adicionar",
+    "recipients": "Destinatários ({{count}})",
+    "notifyAll": "Notificar Todos",
+    "noRecipients": "Nenhum destinatário adicionado",
+    "addSuccess": "Destinatário adicionado com sucesso",
+    "addError": "Falha ao adicionar destinatário",
+    "removeSuccess": "Destinatário removido com sucesso",
+    "removeError": "Falha ao remover destinatário",
+    "sendingNotifications": "Enviando notificações...",
+    "notifySuccess": "Destinatários notificados com sucesso",
+    "notifyError": "Falha ao notificar destinatários"
+  },
+  "resetPassword": {
+    "pageTitle": "Redefinir Senha",
+    "header": {
+      "title": "Redefinir Senha",
+      "description": "Digite sua nova senha abaixo"
+    },
+    "form": {
+      "newPassword": "Nova Senha",
+      "newPasswordPlaceholder": "Digite sua nova senha",
+      "confirmPassword": "Confirmar Nova Senha",
+      "confirmPasswordPlaceholder": "Confirme sua nova senha",
+      "resetting": "Redefinindo Senha...",
+      "submit": "Redefinir Senha",
+      "backToLogin": "Voltar ao Login"
+    },
+    "messages": {
+      "success": "Senha redefinida com sucesso"
+    },
+    "errors": {
+      "serverError": "Falha ao redefinir senha. Tente novamente.",
+      "invalidToken": "Token de redefinição inválido ou ausente"
+    }
+  },
+  "searchBar": {
+    "placeholder": "Buscar arquivos...",
+    "results": "Encontrados {{filtered}} de {{total}} arquivos"
+  },
+  "settings": {
+    "groups": {
+      "defaultDescription": "Opções de configuração",
+      "general": {
+        "title": "Geral",
+        "description": "Configurações básicas da aplicação"
+      },
+      "email": {
+        "title": "Email",
+        "description": "Configuração do servidor de email"
+      },
+      "security": {
+        "title": "Segurança",
+        "description": "Configurações de segurança e autenticação"
+      },
+      "storage": {
+        "title": "Armazenamento",
+        "description": "Configuração de armazenamento de arquivos"
+      }
+    },
+    "fields": {
+      "noDescription": "Sem descrição disponível",
+      "appLogo": {
+        "title": "Logo do Aplicativo",
+        "description": "Imagem do logo do aplicativo"
+      },
+      "appName": {
+        "title": "Nome do Aplicativo",
+        "description": "Nome do aplicativo exibido para os usuários"
+      },
+      "appDescription": {
+        "title": "Descrição do Aplicativo",
+        "description": "Descrição breve do aplicativo"
+      },
+      "showHomePage": {
+        "title": "Exibir Página Inicial",
+        "description": "Exibe a página inicial após a instalação"
+      },
+      "smtpEnabled": {
+        "title": "SMTP Habilitado",
+        "description": "Ativa ou desativa a funcionalidade de e-mail via SMTP"
+      },
+      "smtpHost": {
+        "title": "Servidor SMTP",
+        "description": "Endereço do servidor SMTP"
+      },
+      "smtpPort": {
+        "title": "Porta SMTP",
+        "description": "Porta do servidor SMTP"
+      },
+      "smtpUser": {
+        "title": "Usuário SMTP",
+        "description": "Nome de usuário para autenticação SMTP"
+      },
+      "smtpPass": {
+        "title": "Senha SMTP",
+        "description": "Senha para autenticação SMTP"
+      },
+      "smtpFromName": {
+        "title": "Nome do Remetente",
+        "description": "Nome exibido para os e-mails enviados"
+      },
+      "smtpFromEmail": {
+        "title": "E-mail do Remetente",
+        "description": "Endereço de e-mail do remetente"
+      },
+      "maxLoginAttempts": {
+        "title": "Número Máximo de Tentativas de Login",
+        "description": "Número máximo de tentativas de login antes de bloquear"
+      },
+      "loginBlockDuration": {
+        "title": "Duração do Bloqueio",
+        "description": "Duração (em segundos) do bloqueio após exceder o número de tentativas"
+      },
+      "passwordMinLength": {
+        "title": "Comprimento Mínimo da Senha",
+        "description": "Número mínimo de caracteres para senhas"
+      },
+      "passwordResetTokenExpiration": {
+        "title": "Expiração do Token de Redefinição",
+        "description": "Tempo de validade (em segundos) para o token de redefinição de senha"
+      },
+      "maxFileSize": {
+        "title": "Tamanho Máximo do Arquivo",
+        "description": "Tamanho máximo permitido para uploads (em bytes)"
+      },
+      "maxTotalStoragePerUser": {
+        "title": "Armazenamento Máximo por Usuário",
+        "description": "Limite total de armazenamento por usuário (em bytes)"
+      }
+    },
+    "buttons": {
+      "save": "Salvar {{group}}"
+    },
+    "errors": {
+      "loadFailed": "Falha ao carregar configurações",
+      "updateFailed": "Falha ao atualizar configurações"
+    },
+    "messages": {
+      "noChanges": "Nenhuma alteração para salvar",
+      "updateSuccess": "Configurações de {{group}} atualizadas com sucesso"
+    },
+    "title": "Configurações",
+    "breadcrumb": "Configurações",
+    "pageTitle": "Configurações"
+  },
+  "share": {
+    "errors": {
+      "invalidPassword": "Senha inválida. Por favor, tente novamente.",
+      "loadFailed": "Falha ao carregar compartilhamento",
+      "downloadFailed": "Falha ao baixar arquivo"
+    },
+    "messages": {
+      "downloadStarted": "Download iniciado",
+      "password": {
+        "title": "Compartilhamento Protegido por Senha",
+        "protected": "Este compartilhamento está protegido por senha",
+        "incorrect": "Senha incorreta. Por favor, tente novamente.",
+        "label": "Senha",
+        "placeholder": "Digite a senha do compartilhamento",
+        "submit": "Enviar"
+      },
+      "details": {
+        "untitled": "Compartilhamento sem título",
+        "created": "Criado em: {{date}}",
+        "expires": "Expira em: {{date}}"
+      },
+      "notFound": {
+        "title": "Compartilhamento não Encontrado",
+        "description": "Este compartilhamento pode ter sido excluído ou expirado."
+      }
+    },
+    "pageTitle": "Compartilhamento"
+  },
+  "shareActions": {
+    "deleteTitle": "Excluir Compartilhamento",
+    "deleteConfirmation": "Tem certeza que deseja excluir este compartilhamento? Esta ação não pode ser desfeita.",
+    "editTitle": "Editar Compartilhamento",
+    "nameLabel": "Nome do Compartilhamento",
+    "expirationLabel": "Data de Expiração",
+    "expirationPlaceholder": "DD/MM/AAAA HH:MM",
+    "maxViewsLabel": "Máximo de Visualizações",
+    "maxViewsPlaceholder": "Deixe vazio para ilimitado",
+    "passwordProtection": "Protegido por Senha",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Digite a senha",
+    "newPasswordLabel": "Nova Senha (deixe vazio para manter a atual)",
+    "newPasswordPlaceholder": "Digite a nova senha",
+    "manageFilesTitle": "Gerenciar Arquivos",
+    "manageRecipientsTitle": "Gerenciar Destinatários",
+    "editSuccess": "Compartilhamento atualizado com sucesso",
+    "editError": "Falha ao atualizar compartilhamento"
+  },
+  "shareDetails": {
+    "title": "Detalhes do Compartilhamento",
+    "subtitle": "Informações detalhadas sobre este compartilhamento",
+    "basicInfo": "Informações Básicas",
+    "name": "Nome",
+    "untitled": "Compartilhamento sem título",
+    "views": "Visualizações",
+    "dates": "Datas",
+    "created": "Criado em: {{date}}",
+    "expires": "Expira em: {{date}}",
+    "never": "Nunca",
+    "security": "Segurança",
+    "passwordProtected": "Protegido por Senha",
+    "publicAccess": "Acesso Público",
+    "maxViews": "Máximo de Visualizações:",
+    "files": "Arquivos",
+    "recipients": "Destinatários",
+    "notAvailable": "N/A",
+    "invalidDate": "Data inválida",
+    "loadError": "Falha ao carregar detalhes do compartilhamento"
+  },
+  "shareManager": {
+    "deleteSuccess": "Compartilhamento excluído com sucesso",
+    "deleteError": "Falha ao excluir compartilhamento",
+    "updateSuccess": "Compartilhamento atualizado com sucesso",
+    "updateError": "Falha ao atualizar compartilhamento",
+    "filesUpdateSuccess": "Arquivos atualizados com sucesso",
+    "filesUpdateError": "Falha ao atualizar arquivos",
+    "recipientsUpdateSuccess": "Destinatários atualizados com sucesso",
+    "recipientsUpdateError": "Falha ao atualizar destinatários",
+    "linkGenerateSuccess": "Link de compartilhamento gerado com sucesso",
+    "linkGenerateError": "Falha ao gerar link de compartilhamento",
+    "notifyLoading": "Enviando notificações...",
+    "notifySuccess": "Destinatários notificados com sucesso",
+    "notifyError": "Falha ao notificar destinatários"
+  },
+  "shares": {
+    "errors": {
+      "loadFailed": "Falha ao carregar compartilhamentos",
+      "notifyFailed": "Falha ao notificar destinatários",
+      "smtpConfigFailed": "Falha ao carregar configuração SMTP"
+    },
+    "messages": {
+      "linkCopied": "Link copiado para a área de transferência",
+      "recipientsNotified": "Destinatários notificados com sucesso"
+    },
+    "empty": {
+      "message": "Nenhum compartilhamento criado ainda",
+      "createButton": "Criar Compartilhamento"
+    },
+    "header": {
+      "title": "Meus Compartilhamentos",
+      "myShares": "Meus Compartilhamentos"
+    },
+    "search": {
+      "title": "Todos os Compartilhamentos",
+      "createButton": "Criar Compartilhamento",
+      "placeholder": "Buscar compartilhamentos...",
+      "results": "Encontrados {{filtered}} de {{total}} compartilhamentos"
+    },
+    "pageTitle": "Compartilhamentos"
+  },
+  "sharesTable": {
+    "ariaLabel": "Tabela de compartilhamentos",
+    "never": "Nunca",
+    "columns": {
+      "name": "NOME",
+      "createdAt": "CRIADO EM",
+      "expiresAt": "EXPIRA EM",
+      "status": "STATUS",
+      "security": "SEGURANÇA",
+      "files": "ARQUIVOS",
+      "recipients": "DESTINATÁRIOS",
+      "actions": "AÇÕES"
+    },
+    "status": {
+      "neverExpires": "Nunca Expira",
+      "active": "Ativo",
+      "expired": "Expirado"
+    },
+    "security": {
+      "protected": "Protegido",
+      "public": "Público"
+    },
+    "filesCount": "arquivos",
+    "recipientsCount": "destinatários",
+    "actions": {
+      "menu": "Menu de ações do compartilhamento",
+      "edit": "Editar",
+      "manageFiles": "Gerenciar Arquivos",
+      "manageRecipients": "Gerenciar Destinatários",
+      "viewDetails": "Ver Detalhes",
+      "generateLink": "Gerar Link",
+      "editLink": "Editar Link",
+      "copyLink": "Copiar Link",
+      "notifyRecipients": "Notificar Destinatários",
+      "delete": "Excluir"
+    }
+  },
+  "storageUsage": {
+    "title": "Uso de Armazenamento",
+    "ariaLabel": "Barra de progresso do uso de armazenamento",
+    "used": "usado",
+    "available": "disponível"
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
+  },
+  "uploadFile": {
+    "title": "Enviar Arquivo",
+    "selectFile": "Clique para selecionar um arquivo",
+    "preview": "Pré-visualização",
+    "uploadProgress": "Progresso do upload",
+    "upload": "Enviar",
+    "success": "Arquivo enviado com sucesso",
+    "error": "Falha ao enviar arquivo"
+  },
+  "users": {
+    "modes": {
+      "create": "criar",
+      "edit": "editar"
+    },
+    "errors": {
+      "loadFailed": "Falha ao carregar usuários",
+      "submitFailed": "Falha ao {{mode}} usuário",
+      "deleteFailed": "Falha ao excluir usuário",
+      "statusUpdateFailed": "Falha ao atualizar status do usuário"
+    },
+    "messages": {
+      "createSuccess": "Usuário criado com sucesso",
+      "updateSuccess": "Usuário atualizado com sucesso",
+      "deleteSuccess": "Usuário excluído com sucesso",
+      "activateSuccess": "Usuário ativado com sucesso",
+      "deactivateSuccess": "Usuário desativado com sucesso"
+    },
+    "actions": {
+      "edit": "Editar",
+      "activate": "Ativar",
+      "deactivate": "Desativar",
+      "delete": "Excluir"
+    },
+    "delete": {
+      "title": "Confirmar Exclusão de Usuário",
+      "confirmation": "Tem certeza que deseja excluir o usuário {{firstName}} {{lastName}}? Esta ação não pode ser desfeita.",
+      "confirm": "Excluir Usuário"
+    },
+    "form": {
+      "titleCreate": "Adicionar Novo Usuário",
+      "titleEdit": "Editar Usuário",
+      "firstName": "Nome",
+      "lastName": "Sobrenome",
+      "username": "Nome de Usuário",
+      "email": "Email",
+      "password": "Senha",
+      "newPassword": "Nova Senha (opcional)",
+      "passwordPlaceholder": "Deixe em branco para manter a senha atual",
+      "role": "Função",
+      "roleUser": "Usuário",
+      "roleAdmin": "Administrador",
+      "create": "Criar",
+      "save": "Salvar"
+    },
+    "status": {
+      "title": "Confirmar Alteração de Status",
+      "confirmation": "Tem certeza que deseja {{action}} o usuário {{firstName}} {{lastName}}?",
+      "activate": "ativar",
+      "deactivate": "desativar",
+      "user": "Usuário"
+    },
+    "header": {
+      "title": "Gerenciamento de Usuários",
+      "addUser": "Adicionar Usuário",
+      "management": "Gerenciamento de Usuários"
+    },
+    "table": {
+      "user": "USUÁRIO",
+      "email": "EMAIL",
+      "status": "STATUS",
+      "role": "FUNÇÃO",
+      "actions": "AÇÕES",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "admin": "Admin",
+      "userr": "Usuário"
+    }
+  },
+  "validation": {
+    "invalidEmail": "Endereço de email inválido",
+    "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+    "firstNameRequired": "Nome é obrigatório",
+    "lastNameRequired": "Sobrenome é obrigatório",
+    "usernameLength": "Nome de usuário deve ter pelo menos 3 caracteres",
+    "usernameSpaces": "Nome de usuário não pode conter espaços",
+    "passwordLength": "A senha deve ter pelo menos 8 caracteres",
+    "passwordsMatch": "As senhas não coincidem",
+    "emailRequired": "Email é obrigatório",
+    "passwordRequired": "Senha é obrigatória"
+  }
+}

@@ -1,11 +1,15 @@
-import type { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
-import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@heroui/modal";
-import { nanoid } from "nanoid";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+"use client";
+
+import { useEffect, useState } from "react";
+import { IconCopy } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import type { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
+import { customNanoid } from "@/lib/utils";
 
 interface GenerateShareLinkModalProps {
   shareId: string | null;
@@ -15,6 +19,8 @@ interface GenerateShareLinkModalProps {
   onGenerate: (shareId: string, alias: string) => Promise<void>;
 }
 
+const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
+
 export function GenerateShareLinkModal({
   shareId,
   share,
@@ -22,8 +28,8 @@ export function GenerateShareLinkModal({
   onSuccess,
   onGenerate,
 }: GenerateShareLinkModalProps) {
-  const { t } = useTranslation();
-  const [alias, setAlias] = useState(() => nanoid(10));
+  const t = useTranslations();
+  const [alias, setAlias] = useState(() => generateCustomId());
   const [isLoading, setIsLoading] = useState(false);
   const [generatedLink, setGeneratedLink] = useState("");
   const [isEdit, setIsEdit] = useState(false);
@@ -34,7 +40,7 @@ export function GenerateShareLinkModal({
       setAlias(share.alias.alias);
     } else {
       setIsEdit(false);
-      setAlias(nanoid(10));
+      setAlias(generateCustomId());
     }
     setGeneratedLink("");
   }, [shareId, share]);
@@ -64,40 +70,43 @@ export function GenerateShareLinkModal({
   };
 
   return (
-    <Modal isOpen={!!shareId} onClose={onClose}>
-      <ModalContent>
-        <ModalHeader>{isEdit ? t("generateShareLink.updateTitle") : t("generateShareLink.generateTitle")}</ModalHeader>
-        <ModalBody>
+    <Dialog open={!!shareId} onOpenChange={() => onClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            {isEdit ? t("generateShareLink.updateTitle") : t("generateShareLink.generateTitle")}
+          </DialogTitle>
+        </DialogHeader>
+        {!generatedLink ? (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              {isEdit ? t("generateShareLink.updateDescription") : t("generateShareLink.generateDescription")}
+            </p>
+            <Input
+              placeholder={t("generateShareLink.aliasPlaceholder")}
+              value={alias}
+              onChange={(e) => setAlias(e.target.value)}
+            />
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">{t("generateShareLink.linkReady")}</p>
+            <Input readOnly value={generatedLink} />
+          </div>
+        )}
+        <DialogFooter>
           {!generatedLink ? (
-            <div className="space-y-4">
-              <p className="text-sm text-gray-500">
-                {isEdit ? t("generateShareLink.updateDescription") : t("generateShareLink.generateDescription")}
-              </p>
-              <Input
-                placeholder={t("generateShareLink.aliasPlaceholder")}
-                value={alias}
-                onChange={(e) => setAlias(e.target.value)}
-              />
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <p className="text-sm text-gray-500">{t("generateShareLink.linkReady")}</p>
-              <Input readOnly value={generatedLink} />
-            </div>
-          )}
-        </ModalBody>
-        <ModalFooter>
-          {!generatedLink ? (
-            <Button color="primary" disabled={!alias || isLoading} onPress={handleGenerate}>
+            <Button disabled={!alias || isLoading} onClick={handleGenerate}>
               {isEdit ? t("generateShareLink.updateButton") : t("generateShareLink.generateButton")}
             </Button>
           ) : (
-            <Button color="primary" onPress={handleCopyLink}>
+            <Button onClick={handleCopyLink}>
+              <IconCopy className="h-4 w-4" />
               {t("generateShareLink.copyButton")}
             </Button>
           )}
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

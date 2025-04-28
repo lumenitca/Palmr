@@ -1,12 +1,13 @@
-import type {
-  UpdateConfigResult,
-  GetAllConfigsResult,
-  BulkUpdateConfigsResult,
-  UpdateConfigBody,
-  BulkUpdateConfigsBodyItem,
-} from "./types";
-import axiosInstance from "@/config/axios";
 import type { AxiosRequestConfig } from "axios";
+
+import apiInstance from "@/config/api";
+import type {
+  BulkUpdateConfigsBodyItem,
+  BulkUpdateConfigsResult,
+  GetAllConfigsResult,
+  UpdateConfigBody,
+  UpdateConfigResult,
+} from "./types";
 
 /**
  * Update a configuration value (admin only)
@@ -17,7 +18,7 @@ export const updateConfig = <TData = UpdateConfigResult>(
   updateConfigBody: UpdateConfigBody,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.patch(`/app/configs/${key}`, updateConfigBody, options);
+  return apiInstance.patch(`/api/config/update/${key}`, updateConfigBody, options);
 };
 
 /**
@@ -25,7 +26,7 @@ export const updateConfig = <TData = UpdateConfigResult>(
  * @summary List all configurations
  */
 export const getAllConfigs = <TData = GetAllConfigsResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return axiosInstance.get(`/app/configs`, options);
+  return apiInstance.get(`/api/config/list`, options);
 };
 
 /**
@@ -36,5 +37,5 @@ export const bulkUpdateConfigs = <TData = BulkUpdateConfigsResult>(
   bulkUpdateConfigsBodyItem: BulkUpdateConfigsBodyItem[],
   options?: AxiosRequestConfig
 ): Promise<TData> => {
-  return axiosInstance.patch(`/app/configs`, bulkUpdateConfigsBodyItem, options);
+  return apiInstance.patch(`api/config/update/bulk`, bulkUpdateConfigsBodyItem, options);
 };

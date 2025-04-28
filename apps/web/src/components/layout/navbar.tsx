@@ -1,104 +1,101 @@
-import { LanguageSwitcher } from "../general/language-switcher";
-import { ThemeSwitch } from "@/components/general/theme-switch";
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { IconLogout, IconSettings, IconUser, IconUsers } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import { LanguageSwitcher } from "@/components/general/language-switcher";
+import { ModeToggle } from "@/components/general/mode-toggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { useAuth } from "@/contexts/auth-context";
 import { logout as logoutAPI } from "@/http/endpoints";
-import { Avatar } from "@heroui/avatar";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/dropdown";
-import { Link } from "@heroui/link";
-import { Navbar as HeroUINavbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/navbar";
-import { useTranslation } from "react-i18next";
-import { FaCog, FaSignOutAlt, FaUser, FaUsersCog } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
-  const { t } = useTranslation();
+  const t = useTranslations();
+  const router = useRouter();
   const { user, isAdmin, logout } = useAuth();
   const { appName, appLogo } = useAppInfo();
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await logoutAPI();
       logout();
-      navigate("/login");
+      router.push("/login");
     } catch (err) {
       console.error("Error logging out:", err);
     }
   };
 
   return (
-    <HeroUINavbar
-      className="bg-background/70 backdrop-blur-sm border-b border-default-200/50"
-      maxWidth="xl"
-      position="sticky"
-    >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-3 max-w-fit">
-          <Link className="flex justify-start items-center gap-2" color="foreground" href="/dashboard">
-            {appLogo && <img alt={t("navbar.logoAlt")} className="h-8 w-8 object-contain" src={appLogo} />}
-            <p className="font-bold text-2xl">{appName}</p>
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
+    <header className="sticky top-0 z-40 w-full border-b border-border/50 bg-background/70 backdrop-blur-sm px-6">
+      <div className="container flex h-16 max-w-screen-xl items-center mx-auto lg:px-6">
+        <div className="flex flex-1 items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard" className="flex items-center gap-2 cursor-pointer">
+              {appLogo && <img alt={t("navbar.logoAlt")} className="h-8 w-8 object-contain rounded" src={appLogo} />}
+              <p className="font-bold text-2xl">{appName}</p>
+            </Link>
+          </div>
 
-      <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
-        <NavbarItem className="flex gap-1">
-          <LanguageSwitcher />
-          <ThemeSwitch />
-
-          <Dropdown className="flex" placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                className="cursor-pointer"
-                classNames={{
-                  img: "opacity-100",
-                }}
-                radius="sm"
-                size="sm"
-                src={user?.image as string}
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label={t("navbar.profileMenu")} variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold text-sm">
-                  {user?.firstName} {user?.lastName}
-                </p>
-                <p className="font-semibold text-xs">{user?.email}</p>
-              </DropdownItem>
-              <DropdownItem key="userprofile">
-                <Link className="text-foreground text-sm flex items-center gap-2" href="/profile">
-                  <FaUser />
-                  {t("navbar.profile")}
-                </Link>
-              </DropdownItem>
-              {isAdmin ? (
-                <DropdownItem key="settings">
-                  <Link className="text-foreground text-sm flex items-center gap-2" href="/settings">
-                    <FaCog />
-                    {t("navbar.settings")}
+          <div className="flex items-center gap-2 cursor-pointer">
+            <LanguageSwitcher />
+            <ModeToggle />
+            <DropdownMenu>
+              <DropdownMenuTrigger className="rounded-full">
+                <Avatar className="cursor-pointer h-10 w-10 rounded-full">
+                  <AvatarImage src={user?.image as string | undefined} />
+                  <AvatarFallback>{user?.firstName?.[0]}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <div className="flex flex-col px-2 py-1.5 gap-0.5">
+                  <p className="font-semibold text-sm">
+                    {user?.firstName} {user?.lastName}
+                  </p>
+                  <p className="font-semibold text-xs text-muted-foreground">{user?.email}</p>
+                </div>
+                <DropdownMenuItem asChild>
+                  <Link href="/profile" className="flex items-center gap-2 cursor-pointer">
+                    <IconUser className="h-4 w-4" />
+                    {t("navbar.profile")}
                   </Link>
-                </DropdownItem>
-              ) : null}
-              {isAdmin ? (
-                <DropdownItem key="analytics">
-                  <Link className="text-foreground text-sm flex items-center gap-2" href="/admin">
-                    <FaUsersCog />
-                    {t("navbar.usersManagement")}
-                  </Link>
-                </DropdownItem>
-              ) : null}
-              <DropdownItem key="logout" color="danger">
-                <button className="text-foreground text-sm flex items-center gap-2 w-full" onClick={handleLogout}>
-                  <FaSignOutAlt />
+                </DropdownMenuItem>
+                {isAdmin && (
+                  <>
+                    <DropdownMenuItem asChild>
+                      <Link href="/settings" className="flex items-center gap-2 cursor-pointer">
+                        <IconSettings className="h-4 w-4" />
+                        {t("navbar.settings")}
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/users-management" className="flex items-center gap-2 cursor-pointer">
+                        <IconUsers className="h-4 w-4" />
+                        {t("navbar.usersManagement")}
+                      </Link>
+                    </DropdownMenuItem>
+                  </>
+                )}
+                <DropdownMenuItem
+                  className="text-destructive focus:text-destructive cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  <IconLogout className="h-4 w-4 mr-2 text-destructive" />
                   {t("navbar.logout")}
-                </button>
-              </DropdownItem>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
             </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
-      </NavbarContent>
-    </HeroUINavbar>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 }
