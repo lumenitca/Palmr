@@ -29,11 +29,16 @@ export class UserService {
       throw new Error("User with this username already exists");
     }
 
+    const usersCount = await prisma.user.count();
+    const isAdmin = usersCount === 0;
+
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = await this.userRepository.createUser({
       ...data,
       password: hashedPassword,
+      isAdmin,
     });
+
     return UserResponseSchema.parse(user);
   }
 
