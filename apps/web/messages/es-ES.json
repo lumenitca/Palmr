@@ -578,7 +578,10 @@
     "uploadProgress": "Progreso de la subida",
     "upload": "Subir",
     "success": "Archivo subido exitosamente",
-    "error": "Error al subir el archivo"
+    "error": "Error al subir el archivo",
+    "fileSizeExceeded": "El tamaño del archivo excede el límite de {{maxsizemb}}MB.",
+    "insufficientStorage": "Espacio de almacenamiento insuficiente. Tiene {{availablespace}}MB disponibles.",
+    "unauthorized": "No autorizado: se requiere un token válido para acceder a este recurso."
   },
   "users": {
     "modes": {

@@ -578,7 +578,10 @@
     "uploadProgress": "アップロードの進行状況",
     "upload": "アップロード",
     "success": "ファイルが正常にアップロードされました",
-    "error": "ファイルのアップロードに失敗しました"
+    "error": "ファイルのアップロードに失敗しました",
+    "fileSizeExceeded": "ファイルサイズが制限値 {{maxsizemb}}MB を超えています。",
+    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {{availablespace}}MB です。",
+    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。"
   },
   "users": {
     "modes": {

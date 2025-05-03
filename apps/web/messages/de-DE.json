@@ -578,7 +578,10 @@
     "uploadProgress": "Upload-Fortschritt",
     "upload": "Hochladen",
     "success": "Datei erfolgreich hochgeladen",
-    "error": "Fehler beim Hochladen der Datei"
+    "error": "Fehler beim Hochladen der Datei",
+    "fileSizeExceeded": "Dateigröße überschreitet das limit von {maxsizemb}MB.",
+    "insufficientStorage": "Nicht genügend Speicherplatz. Es sind {availablespace}MB verfügbar.",
+    "unauthorized": "Nicht autorisiert: Ein gültiger Token ist erforderlich, um auf diese Ressource zuzugreifen."
   },
   "users": {
     "modes": {

@@ -578,7 +578,10 @@
     "uploadProgress": "Upload progress",
     "upload": "Upload",
     "success": "File uploaded successfully",
-    "error": "Failed to upload file"
+    "error": "Failed to upload file",
+    "fileSizeExceeded": "File size exceeds the limit of {maxsizemb}MB.",
+    "insufficientStorage": "Insufficient storage space. You have {availablespace}MB available.",
+    "unauthorized": "Unauthorized: a valid token is required to access this resource."
   },
   "users": {
     "modes": {
