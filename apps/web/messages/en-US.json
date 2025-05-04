@@ -266,7 +266,9 @@
       "lastNameRequired": "Last name is required",
       "usernameMinLength": "Username must be at least 3 characters",
       "invalidEmail": "Invalid email",
-      "passwordMinLength": "Password must be at least 6 characters"
+      "passwordMinLength": "Password must be at least 8 characters",
+      "success": "Administrator user created successfully!",
+      "error": "Error creating administrator user"
     },
     "labels": {
       "firstName": "First Name",

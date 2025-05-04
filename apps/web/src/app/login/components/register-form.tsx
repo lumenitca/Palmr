@@ -27,7 +27,7 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
     lastName: z.string().min(1, t("register.validation.lastNameRequired")),
     username: z.string().min(3, t("register.validation.usernameMinLength")),
     email: z.string().email(t("register.validation.invalidEmail")),
-    password: z.string().min(6, t("register.validation.passwordMinLength")),
+    password: z.string().min(8, t("register.validation.passwordMinLength")),
   });
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -52,10 +52,10 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
       });
 
       await refreshAppInfo();
-      toast.success("Usuário administrador criado com sucesso!");
+      toast.success(t("register.validation.success"));
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao criar usuário administrador");
+      toast.error(t("register.validation.error"));
     }
   };
 

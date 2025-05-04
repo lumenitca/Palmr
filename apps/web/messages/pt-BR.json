@@ -266,7 +266,9 @@
       "lastNameRequired": "Sobrenome é obrigatório",
       "usernameMinLength": "Nome de usuário deve ter no mínimo 3 caracteres",
       "invalidEmail": "Email inválido",
-      "passwordMinLength": "Senha deve ter no mínimo 6 caracteres"
+      "passwordMinLength": "Senha deve ter no mínimo 8 caracteres",
+      "success": "Usuário do administrador criado com sucesso!",
+      "error": "Erro a criação de usuário do administrador"
     },
     "labels": {
       "firstName": "Nome",
