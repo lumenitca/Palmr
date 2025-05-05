@@ -266,7 +266,9 @@
       "lastNameRequired": "Le nom est requis",
       "usernameMinLength": "Le nom d'utilisateur doit contenir au moins 3 caractères",
       "invalidEmail": "Email invalide",
-      "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères"
+      "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+      "success": "L'utilisateur de l'administrateur a créé avec succès!",
+      "error": "Erreur créant l'utilisateur de l'administrateur"
     },
     "labels": {
       "firstName": "Prénom",

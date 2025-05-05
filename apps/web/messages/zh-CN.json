@@ -266,7 +266,9 @@
       "lastNameRequired": "姓氏为必填项",
       "usernameMinLength": "用户名至少需要3个字符",
       "invalidEmail": "无效的电子邮件",
-      "passwordMinLength": "密码至少需要6个字符"
+      "passwordMinLength": "密码至少需要8个字符",
+      "success": "管理员用户成功创建了！",
+      "error": "错误创建管理员用户"
     },
     "labels": {
       "firstName": "名字",
