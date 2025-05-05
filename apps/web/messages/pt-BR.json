@@ -580,7 +580,10 @@
     "uploadProgress": "Progresso do upload",
     "upload": "Enviar",
     "success": "Arquivo enviado com sucesso",
-    "error": "Falha ao enviar arquivo"
+    "error": "Falha ao enviar arquivo",
+    "fileSizeExceeded": "O tamanho do arquivo excede o limite de {{maxsizemb}}MB.",
+    "insufficientStorage": "Espaço de armazenamento insuficiente. Você tem {{availablespace}}MB disponíveis.",
+    "unauthorized": "Não autorizado: um token válido é necessário para acessar este recurso."
   },
   "users": {
     "modes": {

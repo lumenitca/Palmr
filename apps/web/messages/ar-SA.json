@@ -580,7 +580,10 @@
     "uploadProgress": "تقدم الرفع",
     "upload": "رفع",
     "success": "تم رفع الملف بنجاح",
-    "error": "فشل في رفع الملف"
+    "error": "فشل في رفع الملف",
+    "fileSizeExceeded": "حجم الملف يتجاوز الحد المسموح به وهو {{maxsizemb}} ميجابايت.",
+    "insufficientStorage": "مساحة التخزين غير كافية. لديك {{availablespace}} ميجابايت متاحة.",
+    "unauthorized": "غير مصرح به: مطلوب رمز مميز صالح للوصول إلى هذا المورد."
   },
   "users": {
     "modes": {

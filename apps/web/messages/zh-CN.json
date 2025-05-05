@@ -580,7 +580,10 @@
     "uploadProgress": "上传进度",
     "upload": "上传",
     "success": "文件上传成功",
-    "error": "文件上传失败"
+    "error": "文件上传失败",
+    "fileSizeExceeded": "文件大小超出 {{maxsizemb}}MB 的限制。",
+    "insufficientStorage": "存储空间不足。您有 {{availablespace}}MB 可用空间。",
+    "unauthorized": "未授权：访问此资源需要有效的令牌。"
   },
   "users": {
     "modes": {

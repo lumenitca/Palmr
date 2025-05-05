@@ -580,7 +580,10 @@
     "uploadProgress": "Yükleme İlerlemesi",
     "upload": "Yükle",
     "success": "Dosya başarıyla yüklendi",
-    "error": "Dosya yüklenemedi"
+    "error": "Dosya yüklenemedi",
+    "fileSizeExceeded": "Dosya boyutu {{maxsizemb}}MB sınırını aşıyor.",
+    "insufficientStorage": "Yetersiz depolama alanı. {{availablespace}}MB kullanılabilir alanınız var.",
+    "unauthorized": "Yetkisiz: Bu kaynağa erişmek için geçerli bir token gereklidir."
   },
   "users": {
     "modes": {

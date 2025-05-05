@@ -9,8 +9,9 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
-import { getPresignedUrl, registerFile } from "@/http/endpoints";
+import { getPresignedUrl, registerFile, checkFile } from "@/http/endpoints";
 import { generateSafeFileName } from "@/utils/file-utils";
+import getErrorData from "@/utils/getErrorData";
 
 interface UploadFileModalProps {
   isOpen: boolean;
@@ -62,12 +63,31 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     if (!selectedFile) return;
 
     try {
-      setIsUploading(true);
-      setUploadProgress(0);
-
       const fileName = selectedFile.name;
       const extension = fileName.split(".").pop() || "";
       const safeObjectName = generateSafeFileName(fileName);
+      try {
+        await checkFile({
+          name: fileName,
+          objectName: "checkFile",
+          size: selectedFile.size,
+          extension: extension,
+        });
+      } catch (error) {
+        console.error("File check failed:", error);
+        const errorData = getErrorData(error);
+        if (errorData.code === "fileSizeExceeded") {
+          toast.error(t(`uploadFile.${errorData.code}`, { maxsizemb: t(`${errorData.details}`) }));
+        } else if (errorData.code === "insufficientStorage") {
+          toast.error(t(`uploadFile.${errorData.code}`, { availablespace: t(`${errorData.details}`) }));
+        }else {
+          toast.error(t(`uploadFile.${errorData.code}`));
+        }
+        return;
+      }
+
+      setIsUploading(true);
+      setUploadProgress(0);
 
       const presignedResponse = await getPresignedUrl({
         filename: safeObjectName.replace(`.${extension}`, ""),

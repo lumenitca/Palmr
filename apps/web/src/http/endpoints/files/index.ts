@@ -9,6 +9,8 @@ import type {
   ListFilesResult,
   RegisterFileBody,
   RegisterFileResult,
+  CheckFileBody,
+  CheckFileResult,
   UpdateFileBody,
   UpdateFileResult,
 } from "./types";
@@ -26,6 +28,19 @@ export const getPresignedUrl = <TData = GetPresignedUrlResult>(
     params: { ...params, ...options?.params },
   });
 };
+
+
+/**
+ * Checks if the file meets constraints like MAX_FILESIZE
+ * @summary Check file for constraints
+ */
+export const checkFile = <TData = CheckFileResult>(
+  CheckFileBody: CheckFileBody,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return apiInstance.post(`/api/files/check`, CheckFileBody, options);
+};
+
 
 /**
  * Registers file metadata in the database

@@ -579,7 +579,10 @@
     "uploadProgress": "Progression de l'envoi",
     "upload": "Envoyer",
     "success": "Fichier envoyé avec succès",
-    "error": "Échec de l'envoi du fichier"
+    "error": "Échec de l'envoi du fichier",
+    "fileSizeExceeded": "La taille du fichier dépasse la limite de {{maxsizemb}} Mo.",
+    "insufficientStorage": "Espace de stockage insuffisant. Vous disposez de {{availablespace}} Mo.",
+    "unauthorized": "Non autorisé : un jeton valide est requis pour accéder à cette ressource."
   },
   "users": {
     "modes": {
