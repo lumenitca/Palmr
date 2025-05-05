@@ -1,4 +1,4 @@
-import { prisma } from "shared/prisma";
+import { prisma } from "../../shared/prisma";
 import { createPasswordSchema } from "../auth/dto";
 import { UserController } from "./controller";
 import { UpdateUserSchema, UserResponseSchema } from "./dto";
@@ -13,7 +13,7 @@ export async function userRoutes(app: FastifyInstance) {
     try {
       const usersCount = await prisma.user.count();
 
-      if (usersCount > 0 ) {
+      if (usersCount > 0) {
         await request.jwtVerify();
         if (!request.user.isAdmin) {
           return reply
