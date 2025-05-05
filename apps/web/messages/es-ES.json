@@ -266,7 +266,9 @@
       "lastNameRequired": "El apellido es obligatorio",
       "usernameMinLength": "El nombre de usuario debe tener al menos 3 caracteres",
       "invalidEmail": "Correo electrónico inválido",
-      "passwordMinLength": "La contraseña debe tener al menos 6 caracteres"
+      "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+      "success": "¡El usuario del administrador creado con éxito!",
+      "error": "Error a crear usuario administrador"
     },
     "labels": {
       "firstName": "Nombre",
@@ -578,7 +580,10 @@
     "uploadProgress": "Progreso de la subida",
     "upload": "Subir",
     "success": "Archivo subido exitosamente",
-    "error": "Error al subir el archivo"
+    "error": "Error al subir el archivo",
+    "fileSizeExceeded": "El tamaño del archivo excede el límite de {{maxsizemb}}MB.",
+    "insufficientStorage": "Espacio de almacenamiento insuficiente. Tiene {{availablespace}}MB disponibles.",
+    "unauthorized": "No autorizado: se requiere un token válido para acceder a este recurso."
   },
   "users": {
     "modes": {

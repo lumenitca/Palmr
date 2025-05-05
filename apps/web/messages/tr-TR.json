@@ -266,7 +266,9 @@
       "lastNameRequired": "Soyad gereklidir",
       "usernameMinLength": "Kullanıcı adı en az 3 karakter olmalıdır",
       "invalidEmail": "Geçersiz e-posta",
-      "passwordMinLength": "Şifre en az 6 karakter olmalıdır"
+      "passwordMinLength": "Şifre en az 8 karakter olmalıdır",
+      "success": "Yönetici kullanıcısı başarıyla yarattı!",
+      "error": "Yönetici kullanıcısı oluşturma hatası"
     },
     "labels": {
       "firstName": "Ad",
@@ -578,7 +580,10 @@
     "uploadProgress": "Yükleme İlerlemesi",
     "upload": "Yükle",
     "success": "Dosya başarıyla yüklendi",
-    "error": "Dosya yüklenemedi"
+    "error": "Dosya yüklenemedi",
+    "fileSizeExceeded": "Dosya boyutu {{maxsizemb}}MB sınırını aşıyor.",
+    "insufficientStorage": "Yetersiz depolama alanı. {{availablespace}}MB kullanılabilir alanınız var.",
+    "unauthorized": "Yetkisiz: Bu kaynağa erişmek için geçerli bir token gereklidir."
   },
   "users": {
     "modes": {

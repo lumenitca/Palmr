@@ -266,7 +266,9 @@
       "lastNameRequired": "姓は必須です",
       "usernameMinLength": "ユーザー名は3文字以上である必要があります",
       "invalidEmail": "無効なメールアドレスです",
-      "passwordMinLength": "パスワードは6文字以上である必要があります"
+      "passwordMinLength": "パスワードは8文字以上である必要があります",
+      "success": "管理者ユーザーは正常に作成されました！",
+      "error": "管理者ユーザーの作成エラー"
     },
     "labels": {
       "firstName": "名",
@@ -578,7 +580,10 @@
     "uploadProgress": "アップロードの進行状況",
     "upload": "アップロード",
     "success": "ファイルが正常にアップロードされました",
-    "error": "ファイルのアップロードに失敗しました"
+    "error": "ファイルのアップロードに失敗しました",
+    "fileSizeExceeded": "ファイルサイズが制限値 {{maxsizemb}}MB を超えています。",
+    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {{availablespace}}MB です。",
+    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。"
   },
   "users": {
     "modes": {

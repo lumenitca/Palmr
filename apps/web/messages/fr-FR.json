@@ -266,7 +266,9 @@
       "lastNameRequired": "Le nom est requis",
       "usernameMinLength": "Le nom d'utilisateur doit contenir au moins 3 caractères",
       "invalidEmail": "Email invalide",
-      "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères"
+      "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+      "success": "L'utilisateur de l'administrateur a créé avec succès!",
+      "error": "Erreur créant l'utilisateur de l'administrateur"
     },
     "labels": {
       "firstName": "Prénom",
@@ -577,7 +579,10 @@
     "uploadProgress": "Progression de l'envoi",
     "upload": "Envoyer",
     "success": "Fichier envoyé avec succès",
-    "error": "Échec de l'envoi du fichier"
+    "error": "Échec de l'envoi du fichier",
+    "fileSizeExceeded": "La taille du fichier dépasse la limite de {{maxsizemb}} Mo.",
+    "insufficientStorage": "Espace de stockage insuffisant. Vous disposez de {{availablespace}} Mo.",
+    "unauthorized": "Non autorisé : un jeton valide est requis pour accéder à cette ressource."
   },
   "users": {
     "modes": {

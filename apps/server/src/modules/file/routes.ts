@@ -1,5 +1,5 @@
 import { FileController } from "./controller";
-import { RegisterFileSchema, UpdateFileSchema } from "./dto";
+import { CheckFileSchema, RegisterFileSchema, UpdateFileSchema } from "./dto";
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
 
@@ -72,6 +72,33 @@ export async function fileRoutes(app: FastifyInstance) {
       },
     },
     fileController.registerFile.bind(fileController)
+  );
+  app.post(
+    "/files/check",
+    {
+      schema: {
+        tags: ["File"],
+        operationId: "checkFile",
+        summary: "Check File validity",
+        description: "Checks if the file meets all requirements",
+        body: CheckFileSchema,
+        response: {
+          201: z.object({
+            message: z.string().describe("The file check success message"),
+          }),
+          400: z.object({
+            error: z.string().describe("Error message"),
+            code: z.string().optional().describe("Error code"),
+            details: z.string().optional().describe("Error details"),
+          }),
+          401: z.object({
+            error: z.string().describe("Error message"),
+            code: z.string().optional().describe("Error code"),
+          }),
+        },
+      },
+    },
+    fileController.checkFile.bind(fileController)
   );
 
   app.get(

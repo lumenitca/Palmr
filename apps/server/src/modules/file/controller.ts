@@ -1,6 +1,6 @@
 import { prisma } from "../../shared/prisma";
 import { ConfigService } from "../config/service";
-import { RegisterFileSchema, RegisterFileInput, UpdateFileSchema } from "./dto";
+import { RegisterFileSchema, RegisterFileInput, UpdateFileSchema, CheckFileInput, CheckFileSchema } from "./dto";
 import { FileService } from "./service";
 import { FastifyReply, FastifyRequest } from "fastify";
 
@@ -99,6 +99,56 @@ export class FileController {
       });
     } catch (error: any) {
       console.error("Error in registerFile:", error);
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async checkFile(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      await request.jwtVerify();
+      const userId = (request as any).user?.userId;
+      if (!userId) {
+        return reply.status(401).send({
+          error: "Unauthorized: a valid token is required to access this resource.",
+          code: "unauthorized"
+        });
+      }
+
+      const input: CheckFileInput = CheckFileSchema.parse(request.body);
+
+      const maxFileSize = BigInt(await this.configService.getValue("maxFileSize"));
+      if (BigInt(input.size) > maxFileSize) {
+        const maxSizeMB = Number(maxFileSize) / (1024 * 1024);
+        return reply.status(400).send({
+          code: "fileSizeExceeded",
+          error: `File size exceeds the maximum allowed size of ${maxSizeMB}MB`,
+          details: maxSizeMB.toString(),
+        });
+      }
+
+      const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+
+      const userFiles = await prisma.file.findMany({
+        where: { userId },
+        select: { size: true },
+      });
+
+      const currentStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
+
+      if (currentStorage + BigInt(input.size) > maxTotalStorage) {
+        const availableSpace = Number(maxTotalStorage - currentStorage) / (1024 * 1024);
+        return reply.status(400).send({
+          error: `Insufficient storage space. You have ${availableSpace.toFixed(2)}MB available`,
+          code: "insufficientStorage",
+          details: availableSpace.toFixed(2),
+        });
+      }
+
+      return reply.status(201).send({
+        message: "File checks succeeded.",
+      });
+    } catch (error: any) {
+      console.error("Error in checkFile:", error);
       return reply.status(400).send({ error: error.message });
     }
   }
