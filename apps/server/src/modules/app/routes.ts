@@ -1,4 +1,4 @@
-import { prisma } from "shared/prisma";
+import { prisma } from "../../shared/prisma";
 import { AppController } from "./controller";
 import { ConfigResponseSchema, BulkUpdateConfigSchema } from "./dto";
 import { FastifyInstance } from "fastify";
