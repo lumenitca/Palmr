@@ -169,9 +169,9 @@ export class FileController {
       if (!fileRecord) {
         return reply.status(404).send({ error: "File not found." });
       }
-
+      const fileName = fileRecord.name;
       const expires = 3600;
-      const url = await this.fileService.getPresignedGetUrl(objectName, expires);
+      const url = await this.fileService.getPresignedGetUrl(objectName, expires, fileName);
       return reply.send({ url, expiresIn: expires });
     } catch (error) {
       console.error("Error in getDownloadUrl:", error);

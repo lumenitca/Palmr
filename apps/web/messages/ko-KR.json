@@ -81,7 +81,13 @@
     "uploadFile": "파일 업로드",
     "loadError": "파일을 불러오는데 실패했습니다",
     "pageTitle": "내 파일",
-    "breadcrumb": "내 파일"
+    "breadcrumb": "내 파일",
+    "downloadStart": "다운로드가 시작되었습니다",
+    "downloadError": "파일 다운로드에 실패했습니다",
+    "updateSuccess": "파일이 성공적으로 업데이트되었습니다",
+    "updateError": "파일 업데이트에 실패했습니다",
+    "deleteSuccess": "파일이 성공적으로 삭제되었습니다",
+    "deleteError": "파일 삭제에 실패했습니다"
   },
   "filesTable": {
     "ariaLabel": "파일 테이블",

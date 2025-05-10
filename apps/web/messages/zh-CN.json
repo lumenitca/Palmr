@@ -81,7 +81,13 @@
     "uploadFile": "上传文件",
     "loadError": "加载文件失败",
     "pageTitle": "我的文件",
-    "breadcrumb": "我的文件"
+    "breadcrumb": "我的文件",
+    "downloadStart": "下载已开始",
+    "downloadError": "下载文件失败",
+    "updateSuccess": "文件更新成功",
+    "updateError": "文件更新失败",
+    "deleteSuccess": "文件删除成功",
+    "deleteError": "文件删除失败"
   },
   "filesTable": {
     "ariaLabel": "文件表格",

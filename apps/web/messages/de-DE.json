@@ -81,7 +81,13 @@
     "uploadFile": "Datei hochladen",
     "loadError": "Fehler beim Laden der Dateien",
     "pageTitle": "Meine Dateien",
-    "breadcrumb": "Meine Dateien"
+    "breadcrumb": "Meine Dateien",
+    "downloadStart": "Download gestartet",
+    "downloadError": "Fehler beim Herunterladen der Datei",
+    "updateSuccess": "Datei erfolgreich aktualisiert",
+    "updateError": "Fehler beim Aktualisieren der Datei",
+    "deleteSuccess": "Datei erfolgreich gelöscht",
+    "deleteError": "Fehler beim Löschen der Datei"
   },
   "filesTable": {
     "ariaLabel": "Dateitabelle",

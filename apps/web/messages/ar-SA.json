@@ -81,7 +81,13 @@
     "uploadFile": "رفع ملف",
     "loadError": "فشل في تحميل الملفات",
     "pageTitle": "ملفاتي",
-    "breadcrumb": "ملفاتي"
+    "breadcrumb": "ملفاتي",
+    "downloadStart": "بدأ التنزيل",
+    "downloadError": "فشل في تنزيل الملف",
+    "updateSuccess": "تم تحديث الملف بنجاح",
+    "updateError": "فشل في تحديث الملف",
+    "deleteSuccess": "تم حذف الملف بنجاح",
+    "deleteError": "فشل في حذف الملف"
   },
   "filesTable": {
     "ariaLabel": "جدول الملفات",
