@@ -81,7 +81,13 @@
     "uploadFile": "Subir archivo",
     "loadError": "Error al cargar los archivos",
     "pageTitle": "Mis archivos",
-    "breadcrumb": "Mis archivos"
+    "breadcrumb": "Mis archivos",
+    "downloadStart": "Descarga iniciada",
+    "downloadError": "Error al descargar el archivo",
+    "updateSuccess": "Archivo actualizado exitosamente",
+    "updateError": "Error al actualizar el archivo",
+    "deleteSuccess": "Archivo eliminado exitosamente",
+    "deleteError": "Error al eliminar el archivo"
   },
   "filesTable": {
     "ariaLabel": "Tabla de archivos",

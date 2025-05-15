@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 import { deleteFile, getDownloadUrl, updateFile } from "@/http/endpoints";
 
@@ -32,6 +33,7 @@ export interface FileManagerHook {
 }
 
 export function useFileManager(onRefresh: () => Promise<void>) {
+  const t = useTranslations();
   const [previewFile, setPreviewFile] = useState<PreviewFile | null>(null);
   const [fileToRename, setFileToRename] = useState<FileToRename | null>(null);
   const [fileToDelete, setFileToDelete] = useState<FileToDelete | null>(null);
@@ -41,23 +43,17 @@ export function useFileManager(onRefresh: () => Promise<void>) {
       const encodedObjectName = encodeURIComponent(objectName);
       const response = await getDownloadUrl(encodedObjectName);
       const downloadUrl = response.data.url;
-
-      const fileResponse = await fetch(downloadUrl);
-      const blob = await fileResponse.blob();
-      const url = window.URL.createObjectURL(blob);
-
+      console.log(fileName)
       const link = document.createElement("a");
-
-      link.href = url;
+      link.href = downloadUrl;
       link.download = fileName;
       document.body.appendChild(link);
       link.click();
-
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      toast.success(t("files.downloadStart"));
     } catch (error) {
       console.error(error);
-      toast.error("Failed to download file");
+      toast.success(t("files.downloadError"));
     }
   };
 
@@ -68,11 +64,11 @@ export function useFileManager(onRefresh: () => Promise<void>) {
         description: description || null,
       });
       await onRefresh();
-      toast.success("File updated successfully");
+      toast.success(t("files.updateSuccess"));
       setFileToRename(null);
     } catch (error) {
       console.error("Failed to update file:", error);
-      toast.error("Failed to update file");
+      toast.success(t("files.updateError"));
     }
   };
 
@@ -80,11 +76,11 @@ export function useFileManager(onRefresh: () => Promise<void>) {
     try {
       await deleteFile(fileId);
       await onRefresh();
-      toast.success("File deleted successfully");
+      toast.success(t("files.deleteSuccess"));
       setFileToDelete(null);
     } catch (error) {
       console.error("Failed to delete file:", error);
-      toast.error("Failed to delete file");
+      toast.success(t("files.deleteError"));
     }
   };
 

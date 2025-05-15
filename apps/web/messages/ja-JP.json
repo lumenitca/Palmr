@@ -81,7 +81,13 @@
     "uploadFile": "ファイルをアップロード",
     "loadError": "ファイルの読み込みに失敗しました",
     "pageTitle": "マイファイル",
-    "breadcrumb": "マイファイル"
+    "breadcrumb": "マイファイル",
+    "downloadStart": "ダウンロードが開始されました",
+    "downloadError": "ファイルのダウンロードに失敗しました",
+    "updateSuccess": "ファイルが正常に更新されました",
+    "updateError": "ファイルの更新に失敗しました",
+    "deleteSuccess": "ファイルが正常に削除されました",
+    "deleteError": "ファイルの削除に失敗しました"
   },
   "filesTable": {
     "ariaLabel": "ファイルテーブル",

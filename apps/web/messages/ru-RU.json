@@ -81,7 +81,13 @@
     "uploadFile": "Загрузить файл",
     "loadError": "Ошибка загрузки файлов",
     "pageTitle": "Мои файлы",
-    "breadcrumb": "Мои файлы"
+    "breadcrumb": "Мои файлы",
+    "downloadStart": "Скачивание начато",
+    "downloadError": "Ошибка при скачивании файла",
+    "updateSuccess": "Файл успешно обновлен",
+    "updateError": "Ошибка при обновлении файла",
+    "deleteSuccess": "Файл успешно удален",
+    "deleteError": "Ошибка при удалении файла"
   },
   "filesTable": {
     "ariaLabel": "Таблица файлов",
