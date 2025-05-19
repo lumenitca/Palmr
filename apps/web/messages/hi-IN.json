@@ -81,7 +81,13 @@
     "uploadFile": "फाइल अपलोड करें",
     "loadError": "फाइलें लोड करने में त्रुटि",
     "pageTitle": "मेरी फाइलें",
-    "breadcrumb": "मेरी फाइलें"
+    "breadcrumb": "मेरी फाइलें",
+    "downloadStart": "डाउनलोड शुरू हुआ",
+    "downloadError": "फाइल डाउनलोड करने में त्रुटि",
+    "updateSuccess": "फाइल सफलतापूर्वक अपडेट हुई",
+    "updateError": "फाइल अपडेट करने में त्रुटि",
+    "deleteSuccess": "फाइल सफलतापूर्वक हटाई गई",
+    "deleteError": "फाइल हटाने में त्रुटि"
   },
   "filesTable": {
     "ariaLabel": "फाइल टेबल",

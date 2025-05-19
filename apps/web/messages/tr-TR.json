@@ -81,7 +81,13 @@
     "uploadFile": "Dosya Yükle",
     "loadError": "Dosyalar yüklenemedi",
     "pageTitle": "Benim Dosyalarım",
-    "breadcrumb": "Benim Dosyalarım"
+    "breadcrumb": "Benim Dosyalarım",
+    "downloadStart": "İndirme başladı",
+    "downloadError": "Dosya indirilemedi",
+    "updateSuccess": "Dosya başarıyla güncellendi",
+    "updateError": "Dosya güncellenemedi",
+    "deleteSuccess": "Dosya başarıyla silindi",
+    "deleteError": "Dosya silinemedi"
   },
   "filesTable": {
     "ariaLabel": "Dosya Tablosu",

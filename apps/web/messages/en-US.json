@@ -81,7 +81,13 @@
     "uploadFile": "Upload File",
     "loadError": "Failed to load files",
     "pageTitle": "My Files",
-    "breadcrumb": "My Files"
+    "breadcrumb": "My Files",
+    "downloadStart": "Download started",
+    "downloadError": "Failed to download file",
+    "updateSuccess": "File updated successfully",
+    "updateError": "Failed to update file",
+    "deleteSuccess": "File deleted successfully",
+    "deleteError": "Failed to delete file"
   },
   "filesTable": {
     "ariaLabel": "Files table",

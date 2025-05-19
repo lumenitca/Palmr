@@ -57,12 +57,17 @@ export function usePublicShare() {
       const encodedObjectName = encodeURIComponent(objectName);
       const response = await getDownloadUrl(encodedObjectName);
       const downloadUrl = response.data.url;
-
-      await downloadFile(downloadUrl, fileName);
-      toast.success(t("share.messages.downloadStarted"));
+      console.log(fileName)
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      toast.success(t("files.downloadStart"));
     } catch (error) {
-      toast.error(t("share.errors.downloadFailed"));
       console.error(error);
+      toast.success(t("files.downloadError"));
     }
   };
 
