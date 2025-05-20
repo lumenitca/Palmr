@@ -39,8 +39,8 @@ services:
         condition: "service_healthy"
     environment:
       - PORT=${API_INTERNAL_PORT:-3333} # Port for the backend service
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRES_PASSWORD env var
-      - MINIO_ENDPOINT=minio # This can change if your MinIO is at a different address
+      - DATABASE_URL=postgresql://postgres:${POSTGRESQL_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRESQL_PASSWORD env var
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT:-minio} # This can change if your MinIO is at a different address
       - MINIO_PORT=${MINIO_INTERNAL_API_PORT:-6421} # Default MinIO port (Change if yours is not the default)
       - MINIO_USE_SSL=false # MinIO uses SSL by default, but you can change it to true if needed
       - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minio_root_user} # MinIO credentials can be configured through MINIO_ROOT_USER env vars
@@ -54,7 +54,7 @@ services:
       - "${API_EXTERNAL_PORT:-3333}:${API_INTERNAL_PORT:-3333}" # Backend port mapping 
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${API_INTERNAL_PORT:-3333}/health"]
+      test: ["CMD", "wget", "--no-verbose", "http://palmr-api:${API_INTERNAL_PORT:-3333}/health"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -121,10 +121,10 @@ services:
     container_name: palmr-postgres
     environment:
       # PostgreSQL credentials configurable through environment variables
-      # POSTGRES_USER, POSTGRES_PASSWORD, and POSTGRES_DB can be set to override defaults
-      - POSTGRESQL_USERNAME=${POSTGRES_USER:-postgres}
-      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD:-postgresRootPassword}
-      - POSTGRESQL_DATABASE=${POSTGRES_DB:-palmr_db}
+      # POSTGRESQL_USERNAME, POSTGRESQL_PASSWORD, and POSTGRES_DB can be set to override defaults
+      - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME:-postgres}
+      - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD:-postgresRootPassword}
+      - POSTGRESQL_DATABASE=${POSTGRES_DATABASE:-palmr_db}
     volumes:
       - postgres_data:/bitnami/postgresql
     ports:
