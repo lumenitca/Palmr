@@ -1,13 +1,14 @@
 services:
-  palmr-api:
-    image: kyantech/palmr-api:latest # Make sure to use the correct version (latest) of the image
-    container_name: palmr-api
+  palmr:
+    image: kyantech/palmr:latest # Make sure to use the correct version (latest) of the image
+    container_name: palmr
     depends_on:
       postgres:
         condition: "service_healthy"
       minio:
         condition: "service_healthy"
     environment:
+      # Server environment variables
       - PORT=${API_INTERNAL_PORT:-3333} # Port for the backend service
       - DATABASE_URL=postgresql://postgres:${POSTGRESQL_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRESQL_PASSWORD env var
       - MINIO_ENDPOINT=${MINIO_ENDPOINT:-minio} # This can change if your MinIO is at a different address
@@ -20,34 +21,21 @@ services:
       - FRONTEND_URL=${APP_URL:-http://${SERVER_IP:-localhost}:${APP_EXTERNAL_PORT:-5487}} # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running, its prepared for localhost, but you can change it to your frontend URL if needed
       - SERVER_IP=${SERVER_IP:-localhost} # Server IP - Make sure to use the correct server IP if you running on a cloud provider or a virtual machine. This prepared for localhost, but you can change it to your server IP if needed
       - MAX_FILESIZE=${MAX_FILESIZE:-1073741824} # Max Filesize for upload - Declared in Bytes. Default is 1GiB
-    ports:
-      - "${API_EXTERNAL_PORT:-3333}:${API_INTERNAL_PORT:-3333}" # Backend port mapping 
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "http://palmr-api:${API_INTERNAL_PORT:-3333}/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-
-  palmr-app:
-    image: kyantech/palmr-app:latest # Make sure to use the correct version (latest) of the image
-    container_name: palmr-web
-    depends_on:
-      palmr-api:
-        condition: "service_healthy"
-    ports:
-      - "${APP_EXTERNAL_PORT:-5487}:5487" # Frontend port mapping
-    environment:
+      
+      # Web environment variables
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - API_BASE_URL=http://palmr-api:${API_INTERNAL_PORT:-3333} # Here we use docker's internal network to reference the backend service (can be changed if needed)
+      - API_BASE_URL=http://palmr:${API_INTERNAL_PORT:-3333} # Using Docker service name for internal communication
+    ports:
+      - "${API_EXTERNAL_PORT:-3333}:3333"  # Server port
+      - "${APP_EXTERNAL_PORT:-5487}:5487"  # Web port
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5487"]
+      test: ["CMD", "wget", "--no-verbose", "http://palmr:${API_INTERNAL_PORT:-3333}/health", "&&", "wget", "--no-verbose", "http://palmr:${APP_INTERNAL_PORT:-5487}"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 60s
 
   minio:
     image: minio/minio:RELEASE.2025-03-12T18-04-18Z # Use only version RELEASE.2025-03-12T18-04-18Z to avoid compatibility issues with the backend
@@ -108,4 +96,4 @@ services:
 
 volumes:
   minio_data:
-  postgres_data:
+  postgres_data: 
