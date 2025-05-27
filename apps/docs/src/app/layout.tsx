@@ -11,14 +11,15 @@ const inter = Inter({
 
 export const metadata = {
   title: "🌴 Palmr. | Official Website",
-  description: "Palmr. is a fast, simple and powerful document sharing platform.",
+  description:
+    "Palmr. is a fast, simple and powerful document sharing platform.",
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <Banner variant="rainbow" id="banner-v-2">
+        <Banner variant="rainbow" id="banner-v-3">
           <Link href="/docs/2.0.0-beta">Palmr. v2.0.0-beta has released!</Link>
         </Banner>
         <RootProvider

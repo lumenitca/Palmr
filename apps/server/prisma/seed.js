@@ -1,6 +1,8 @@
-import { prisma } from "../src/shared/prisma";
-import crypto from "node:crypto";
-import { env } from '../src/env';
+/* eslint-disable no-undef */
+const { PrismaClient } = require('@prisma/client');
+const crypto = require('crypto');
+
+const prisma = new PrismaClient();
 
 const defaultConfigs = [
   // General Configurations
@@ -37,7 +39,7 @@ const defaultConfigs = [
   // Storage Configurations
   {
     key: "maxFileSize",
-    value: env.MAX_FILESIZE, // default 1GiB in bytes - 1073741824
+    value: process.env.MAX_FILESIZE || "1073741824", // default 1GiB in bytes
     type: "bigint",
     group: "storage",
   },
@@ -124,28 +126,37 @@ const defaultConfigs = [
 ];
 
 async function main() {
-  console.log("Seeding app configurations...");
+  console.log("🌱 Starting app configurations seed...");
+  console.log("🛡️  Protected mode: Only creates missing configurations");
+
+  let createdCount = 0;
+  let skippedCount = 0;
 
   for (const config of defaultConfigs) {
-    if (config.key === "jwtSecret") {
-      const existingSecret = await prisma.appConfig.findUnique({
-        where: { key: "jwtSecret" },
-      });
+    // Check if configuration already exists
+    const existingConfig = await prisma.appConfig.findUnique({
+      where: { key: config.key },
+    });
 
-      if (existingSecret) {
-        console.log("JWT secret already exists, skipping...");
-        continue;
-      }
+    if (existingConfig) {
+      console.log(`⏭️  Configuration '${config.key}' already exists, skipping...`);
+      skippedCount++;
+      continue;
     }
 
-    await prisma.appConfig.upsert({
-      where: { key: config.key },
-      update: config,
-      create: config,
+    // Only create if it doesn't exist
+    await prisma.appConfig.create({
+      data: config,
     });
+
+    console.log(`✅ Created configuration: ${config.key}`);
+    createdCount++;
   }
 
-  console.log("App configurations seeded successfully!");
+  console.log("\n📊 Seed Summary:");
+  console.log(`   ✅ Created: ${createdCount} configurations`);
+  console.log(`   ⏭️  Skipped: ${skippedCount} configurations`);
+  console.log("🎉 App configurations seeded successfully!");
 }
 
 main()
@@ -155,4 +166,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  });
+  }); 

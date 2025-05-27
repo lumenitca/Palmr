@@ -29,15 +29,16 @@ Below is the complete content of our `docker-compose.yaml` that can be copied di
 
 ```yaml
 services:
-  palmr-api:
-    image: kyantech/palmr-api:latest # Make sure to use the correct version (latest) of the image
-    container_name: palmr-api
+  palmr:
+    image: kyantech/palmr:latest # Make sure to use the correct version (latest) of the image
+    container_name: palmr
     depends_on:
       postgres:
         condition: "service_healthy"
       minio:
         condition: "service_healthy"
     environment:
+      # Server environment variables
       - PORT=${API_INTERNAL_PORT:-3333} # Port for the backend service
       - DATABASE_URL=postgresql://postgres:${POSTGRESQL_PASSWORD:-postgresRootPassword}@postgres:5432/palmr_db?schema=public # Database URL with configurable password through POSTGRESQL_PASSWORD env var
       - MINIO_ENDPOINT=${MINIO_ENDPOINT:-minio} # This can change if your MinIO is at a different address
@@ -50,34 +51,21 @@ services:
       - FRONTEND_URL=${APP_URL:-http://${SERVER_IP:-localhost}:${APP_EXTERNAL_PORT:-5487}} # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running, its prepared for localhost, but you can change it to your frontend URL if needed
       - SERVER_IP=${SERVER_IP:-localhost} # Server IP - Make sure to use the correct server IP if you running on a cloud provider or a virtual machine. This prepared for localhost, but you can change it to your server IP if needed
       - MAX_FILESIZE=${MAX_FILESIZE:-1073741824} # Max Filesize for upload - Declared in Bytes. Default is 1GiB
-    ports:
-      - "${API_EXTERNAL_PORT:-3333}:${API_INTERNAL_PORT:-3333}" # Backend port mapping 
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "http://palmr-api:${API_INTERNAL_PORT:-3333}/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-
-  palmr-app:
-    image: kyantech/palmr-app:latest # Make sure to use the correct version (latest) of the image
-    container_name: palmr-web
-    depends_on:
-      palmr-api:
-        condition: "service_healthy"
-    ports:
-      - "${APP_EXTERNAL_PORT:-5487}:5487" # Frontend port mapping
-    environment:
+      
+      # Web environment variables
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-      - API_BASE_URL=http://palmr-api:${API_INTERNAL_PORT:-3333} # Here we use docker's internal network to reference the backend service (can be changed if needed)
+      - API_BASE_URL=http://palmr:${API_INTERNAL_PORT:-3333} # Using Docker service name for internal communication
+    ports:
+      - "${API_EXTERNAL_PORT:-3333}:3333"  # Server port
+      - "${APP_EXTERNAL_PORT:-5487}:5487"  # Web port
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5487"]
+      test: ["CMD", "wget", "--no-verbose", "http://palmr:${API_INTERNAL_PORT:-3333}/health", "&&", "wget", "--no-verbose", "http://palmr:${APP_INTERNAL_PORT:-5487}"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 60s
 
   minio:
     image: minio/minio:RELEASE.2025-03-12T18-04-18Z # Use only version RELEASE.2025-03-12T18-04-18Z to avoid compatibility issues with the backend
@@ -138,7 +126,7 @@ services:
 
 volumes:
   minio_data:
-  postgres_data:
+  postgres_data: 
 
 ```
 
@@ -148,12 +136,11 @@ Notice that the `docker-compose.yaml` has several comments that help you configu
 
 ### ⚙️ Services Overview
 
-Palmr. consists of five main services, each with specific responsibilities. Below, we present a detailed view of each component:
+Palmr. consists of four main services, each with specific responsibilities. Below, we present a detailed view of each component:
 
 | **Service** | **Image** | **Exposed Ports** | **Main Features** |
 | --- | --- | --- | --- |
-| palmr-api (Backend) | [kyantech/palmr-api:latest](https://hub.docker.com/repository/docker/kyantech/palmr-api/tags/latest/sha256-84245d3d0012aa65c588caba56322363729c4b68c3722a08dcda912904de9d1d) | **3333** | • Main API service<br/>• Depends on services: postgres and minio<br/>• Has healthcheck to ensure availability |
-| palmr-app (Frontend) | [kyantech/palmr-app:latest](https://hub.docker.com/repository/docker/kyantech/palmr-app/tags/latest/sha256-33f568673ae8cc8529532146b6afc1acafa203387ced6c7bb3451a7ab4198a2f) | **5487** | • Web application interface<br/>• Depends on palmr-api service<br/>• Configured for production environment |
+| palmr | [kyantech/palmr:latest](https://hub.docker.com/repository/docker/kyantech/palmr/general) | **3333** (API)<br/>**5487** (Web) | • Combined backend API and frontend service<br/>• Depends on services: postgres and minio<br/>• Has healthcheck to ensure availability |
 | minio (Storage) | [minio/minio:RELEASE.2025-03-12T18-04-18Z](https://hub.docker.com/layers/minio/minio/RELEASE.2025-03-12T18-04-18Z/images/sha256-85f3e4cd1ca92a2711553ab79f222bcd8b75aa2c77a1a0b0ccf80d38e8ab2fe5) | **6421**(API)<br/>**6422**(Console) | • File storage service<br/>• Persistent volume for data |
 | minio-init (Config) | [minio/mc:RELEASE.2025-03-12T17-29-24Z](https://hub.docker.com/layers/minio/mc/RELEASE.2025-03-12T17-29-24Z/images/sha256-68d8c80f43908b02daa285e55547131870a1d36b3ffe272c26d7d8f4d52d1e5c) | N/A | • Initially configures the "files" bucket<br/>• Runs only once during initialization |
 | postgres (Database) | [bitnami/postgresql:17.2.0](https://hub.docker.com/layers/bitnami/postgresql/17.2.0/images/sha256-29c614afad4f514b12b5c0f4d006f38c98fa4b18c3582732ff93b3fe9a79d875) | **5432** | • PostgreSQL database<br/>• Persistent volume for data |
@@ -197,13 +184,17 @@ The table below shows all environment variables that can be set
 
 In a localhost environment, there's no mystery. If you don't want to change any service exposure ports, you can simply run:
 
+```bash
+docker compose pull && docker compose up -d
+```
+
 This will execute all necessary services and give you access to the following URLs (if you haven't changed any ports):
 
 - **Frontend:** [http://localhost:5487](http://localhost:5487)
 - **Backend:** [http://localhost:3333](http://localhost:3333/)
 - **MinIO API:** [http://localhost:6421](http://localhost:6421)
 - **MinIO Console:** [http://localhost:6422](http://localhost:6422)
-- **Postgres Database:** [http://localhost:5423](http://localhost:5423/) (Connection only)
+- **Postgres Database:** [http://localhost:5432](http://localhost:5432/) (Connection only)
 
 > *If you have changed any port, simply access the URL with the port you configured.*
 > 
@@ -247,7 +238,7 @@ If you haven't changed the execution ports, you'll have access on your server at
 - **Backend:** `[server_ip]:3333`
 - **MinIO API:** `[server_ip]:6421`
 - **MinIO Console:** `[server_ip]:6422`
-- **Postgres Database:** `[server_ip]:5423` (Connection only)
+- **Postgres Database:** `[server_ip]:5432` (Connection only)
 
 > *If you've changed any port, simply access the URL with the port you configured.*
 > 
