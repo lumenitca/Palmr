@@ -4,7 +4,19 @@ import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from "@aws-sd
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 export class S3StorageProvider implements StorageProvider {
+  constructor() {
+    if (!s3Client) {
+      throw new Error(
+        "S3 client is not configured. Make sure ENABLE_S3=true and all S3 environment variables are set."
+      );
+    }
+  }
+
   async getPresignedPutUrl(objectName: string, expires: number): Promise<string> {
+    if (!s3Client) {
+      throw new Error("S3 client is not available");
+    }
+
     const command = new PutObjectCommand({
       Bucket: bucketName,
       Key: objectName,
@@ -14,6 +26,10 @@ export class S3StorageProvider implements StorageProvider {
   }
 
   async getPresignedGetUrl(objectName: string, expires: number, fileName?: string): Promise<string> {
+    if (!s3Client) {
+      throw new Error("S3 client is not available");
+    }
+
     let rcdFileName: string;
 
     if (fileName && fileName.trim() !== "") {
@@ -36,6 +52,10 @@ export class S3StorageProvider implements StorageProvider {
   }
 
   async deleteObject(objectName: string): Promise<void> {
+    if (!s3Client) {
+      throw new Error("S3 client is not available");
+    }
+
     const command = new DeleteObjectCommand({
       Bucket: bucketName,
       Key: objectName,

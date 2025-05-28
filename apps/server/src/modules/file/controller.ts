@@ -110,7 +110,7 @@ export class FileController {
       if (!userId) {
         return reply.status(401).send({
           error: "Unauthorized: a valid token is required to access this resource.",
-          code: "unauthorized"
+          code: "unauthorized",
         });
       }
 

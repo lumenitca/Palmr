@@ -1,4 +1,5 @@
 import { registerSwagger } from "./config/swagger.config";
+import { envTimeoutOverrides } from "./config/timeout.config";
 import { prisma } from "./shared/prisma";
 import fastifyCookie from "@fastify/cookie";
 import { fastifyCors } from "@fastify/cors";
@@ -21,6 +22,13 @@ export async function buildApp() {
         removeAdditional: false,
       },
     },
+    logger: {
+      level: "info",
+    },
+    bodyLimit: 1024 * 1024 * 1024 * 1024 * 1024, // 1PB limit for body parsing (matches multipart limit)
+    connectionTimeout: 0, // Disable connection timeout
+    keepAliveTimeout: envTimeoutOverrides.keepAliveTimeout, // 20 hours (configurable via env)
+    requestTimeout: envTimeoutOverrides.requestTimeout, // Disabled (configurable via env)
   }).withTypeProvider<ZodTypeProvider>();
 
   app.setValidatorCompiler(validatorCompiler);
