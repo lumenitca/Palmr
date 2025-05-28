@@ -1,0 +1,115 @@
+---
+title: 📦 S3 Providers
+---
+
+S3 Providers Configuration Guide
+
+This application now supports any S3-compatible provider. Below are the configurations for the main providers:
+
+##  Environment Variables
+
+The following environment variables must be configured:
+
+- `S3_ENDPOINT`: S3 provider endpoint 
+- `S3_PORT`: Port (optional, default based on protocol)
+- `S3_USE_SSL`: "true" or "false"
+- `S3_ACCESS_KEY`: Access key
+- `S3_SECRET_KEY`: Secret key
+- `S3_REGION`: Region
+- `S3_BUCKET_NAME`: Bucket name
+- `S3_FORCE_PATH_STYLE`: "true" or "false" (optional, default "false")
+
+## Provider Configurations
+> This is only examples of how to configure the environment variables, use your own real values for each provider.
+
+### 1. MinIO (Local/Self-hosted)
+```bash
+S3_ENDPOINT=localhost
+S3_PORT=9000
+S3_USE_SSL=false
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=us-east-1
+S3_BUCKET_NAME=your-bucket-name
+S3_FORCE_PATH_STYLE=true
+```
+
+### 2. Amazon S3
+```bash
+S3_ENDPOINT=s3.amazonaws.com
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=us-east-1
+S3_BUCKET_NAME=your-bucket-name
+S3_FORCE_PATH_STYLE=false
+```
+
+### 3. Google Cloud Storage
+```bash
+S3_ENDPOINT=storage.googleapis.com
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=us-central1
+S3_BUCKET_NAME=your-bucket-name
+S3_FORCE_PATH_STYLE=false
+```
+
+### 4. Azure Blob Storage (with S3 API)
+```bash
+S3_ENDPOINT=your-account.blob.core.windows.net
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=eastus
+S3_BUCKET_NAME=your-container-name
+S3_FORCE_PATH_STYLE=false
+```
+
+### 5. Backblaze B2
+```bash
+S3_ENDPOINT=s3.us-west-002.backblazeb2.com
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-key-id
+S3_SECRET_KEY=your-application-key
+S3_REGION=us-west-002
+S3_BUCKET_NAME=your-bucket-name
+S3_FORCE_PATH_STYLE=false
+```
+
+### 6. DigitalOcean Spaces
+```bash
+S3_ENDPOINT=nyc3.digitaloceanspaces.com
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=nyc3
+S3_BUCKET_NAME=your-space-name
+S3_FORCE_PATH_STYLE=false
+```
+
+### 7. Wasabi
+```bash
+S3_ENDPOINT=s3.wasabisys.com
+S3_USE_SSL=true
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_REGION=us-east-1
+S3_BUCKET_NAME=your-bucket-name
+S3_FORCE_PATH_STYLE=false
+```
+
+## Important Notes
+
+1. **S3_FORCE_PATH_STYLE**: Should be `true` for MinIO and some other self-hosted providers. For cloud providers like AWS S3, it should be `false`.
+
+2. **Endpoint**: For AWS S3, you can use `s3.amazonaws.com` or the region-specific endpoint like `s3.us-east-1.amazonaws.com`.
+
+3. **Region**: Make sure to use the correct region for each provider.
+
+4. **Credentials**: Credentials vary by provider:
+   - AWS S3: Access Key ID and Secret Access Key
+   - Google Cloud: HMAC keys
+   - Azure: Access keys (when using S3 API)
+   - Backblaze: Key ID and Application Key

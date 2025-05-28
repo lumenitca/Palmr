@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
-import { getPresignedUrl, registerFile, checkFile } from "@/http/endpoints";
+import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
 import { generateSafeFileName } from "@/utils/file-utils";
 import getErrorData from "@/utils/getErrorData";
 
@@ -66,6 +66,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       const fileName = selectedFile.name;
       const extension = fileName.split(".").pop() || "";
       const safeObjectName = generateSafeFileName(fileName);
+
       try {
         await checkFile({
           name: fileName,
@@ -80,7 +81,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
           toast.error(t(`uploadFile.${errorData.code}`, { maxsizemb: t(`${errorData.details}`) }));
         } else if (errorData.code === "insufficientStorage") {
           toast.error(t(`uploadFile.${errorData.code}`, { availablespace: t(`${errorData.details}`) }));
-        }else {
+        } else {
           toast.error(t(`uploadFile.${errorData.code}`));
         }
         return;
@@ -102,7 +103,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         },
         onUploadProgress: (progressEvent) => {
           const progress = (progressEvent.loaded / (progressEvent.total || selectedFile.size)) * 100;
-
           setUploadProgress(Math.round(progress));
         },
       });
@@ -119,7 +119,13 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       handleClose();
     } catch (error) {
       console.error("Upload failed:", error);
-      toast.error(t("uploadFile.error"));
+      const errorData = getErrorData(error);
+
+      if (errorData.code && errorData.code !== "error") {
+        toast.error(t(`uploadFile.${errorData.code}`));
+      } else {
+        toast.error(t("uploadFile.error"));
+      }
     } finally {
       setIsUploading(false);
     }
@@ -129,6 +135,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     setSelectedFile(null);
     setUploadProgress(0);
     setIsUploading(false);
+    setPreviewUrl(null);
     onClose();
   };
 
@@ -164,19 +171,25 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                   getFileIcon(selectedFile.type)
                 )}
                 <div className="flex items-center gap-2">
-                  {/* <IconFile size={24} className="text-gray-500" /> */}
                   <span className="font-medium">
                     {selectedFile.name.length > 40 ? selectedFile.name.substring(0, 40) + "..." : selectedFile.name} (
-                    {selectedFile.size / 1000} KB)
+                    {(selectedFile.size / 1024).toFixed(1)} KB)
                   </span>
                 </div>
               </div>
-              {isUploading && <Progress value={uploadProgress} className="w-full" />}
+              {isUploading && (
+                <div className="space-y-2">
+                  <Progress value={uploadProgress} className="w-full" />
+                  <p className="text-sm text-gray-500 text-center">
+                    {t("uploadFile.uploading")} {uploadProgress}% //!TODO Add translations
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={handleClose}>
+          <Button variant="outline" onClick={handleClose} disabled={isUploading}>
             {t("common.cancel")}
           </Button>
           <Button variant="default" disabled={!selectedFile || isUploading} onClick={handleUpload}>
