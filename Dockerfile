@@ -77,7 +77,9 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 palmr
 
 # Create application directories and set permissions
-RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache
+# Include storage directories for filesystem mode
+RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache \
+  /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
 RUN chown -R palmr:nodejs /app /home/palmr
 
 # === Copy Server Files ===
@@ -88,6 +90,9 @@ COPY --from=server-builder --chown=palmr:nodejs /app/server/dist ./dist
 COPY --from=server-builder --chown=palmr:nodejs /app/server/node_modules ./node_modules
 COPY --from=server-builder --chown=palmr:nodejs /app/server/prisma ./prisma
 COPY --from=server-builder --chown=palmr:nodejs /app/server/package.json ./
+
+# Ensure storage directories have correct permissions
+RUN chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks
 
 # === Copy Web Files ===
 WORKDIR /app/web
@@ -124,7 +129,7 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/server.err.log
 stdout_logfile=/var/log/supervisor/server.out.log
-environment=PORT=3333,HOME="/home/palmr"
+environment=PORT=3333,HOME="/home/palmr",ENABLE_S3="false",ENCRYPTION_KEY="default-key-change-in-production"
 
 [program:web]
 command=node server.js
@@ -142,12 +147,20 @@ COPY <<EOF /app/start.sh
 #!/bin/sh
 
 echo "Starting Palmr Application..."
+echo "Storage Mode: \${ENABLE_S3:-false}"
+
+# Ensure storage directories exist with correct permissions
+mkdir -p /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
+chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks
 
 # Start supervisor
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 EOF
 
 RUN chmod +x /app/start.sh
+
+# Create volume mount points for persistent storage (filesystem mode)
+VOLUME ["/app/server/uploads", "/app/server/temp-chunks"]
 
 # Expose ports
 EXPOSE 3333 5487
