@@ -70,15 +70,15 @@ async function startServer() {
   app.register(healthRoutes);
 
   await app.listen({
-    port: Number(env.PORT),
+    port: 3333,
     host: "0.0.0.0",
   });
 
-  console.log(`🌴 Palmr server running on port ${env.PORT} 🌴`);
+  console.log(`🌴 Palmr server running on port 3333 🌴`);
   console.log(`📦 Storage mode: ${env.ENABLE_S3 === "true" ? "S3" : "Local Filesystem (Encrypted)"}`);
 
   console.log("\n📚 API Documentation:");
-  console.log(`   - API Reference: http://localhost:${env.PORT}/docs\n`);
+  console.log(`   - API Reference: http://localhost:3333/docs\n`);
 }
 
 startServer().catch((err) => {

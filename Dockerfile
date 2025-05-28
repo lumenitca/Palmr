@@ -130,9 +130,10 @@ autorestart=true
 stderr_logfile=/var/log/supervisor/server.err.log
 stdout_logfile=/var/log/supervisor/server.out.log
 environment=PORT=3333,HOME="/home/palmr",ENABLE_S3="false",ENCRYPTION_KEY="default-key-change-in-production"
+priority=100
 
 [program:web]
-command=node server.js
+command=/bin/sh -c 'echo "Waiting for API to be ready..."; while ! netstat -tln | grep ":3333 "; do echo "API not ready, waiting..."; sleep 2; done; echo "API is ready! Starting frontend..."; exec node server.js'
 directory=/app/web
 user=palmr
 autostart=true
@@ -140,6 +141,8 @@ autorestart=true
 stderr_logfile=/var/log/supervisor/web.err.log
 stdout_logfile=/var/log/supervisor/web.out.log
 environment=PORT=5487,HOSTNAME="0.0.0.0",HOME="/home/palmr"
+priority=200
+startsecs=10
 EOF
 
 # Create main startup script

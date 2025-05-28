@@ -7,9 +7,11 @@ export HOME=/home/palmr
 export NPM_CONFIG_CACHE=/home/palmr/.npm
 export PNPM_HOME=/home/palmr/.pnpm
 
-# Wait for PostgreSQL
-echo "Waiting for PostgreSQL..."
-while ! nc -z postgres 5432; do
+# Wait for PostgreSQL - use environment variable or default to postgres
+DB_HOST=${DB_HOST:-postgres}
+DB_PORT=${DB_PORT:-5432}
+echo "Waiting for PostgreSQL at $DB_HOST:$DB_PORT..."
+while ! nc -z $DB_HOST $DB_PORT; do
   sleep 1
 done
 echo "PostgreSQL is up!"

@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { IconCloudUpload, IconFileText, IconFileTypePdf, IconFileTypography, IconPhoto } from "@tabler/icons-react";
+import {
+  IconCloudUpload,
+  IconFileText,
+  IconFileTypePdf,
+  IconFileTypography,
+  IconLoader,
+  IconPhoto,
+} from "@tabler/icons-react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -181,7 +188,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                 <div className="space-y-2">
                   <Progress value={uploadProgress} className="w-full" />
                   <p className="text-sm text-gray-500 text-center">
-                    {t("uploadFile.uploading")} {uploadProgress}% //!TODO Add translations
+                    {t("uploadFile.uploadProgress")}: {uploadProgress}%
                   </p>
                 </div>
               )}
@@ -193,7 +200,11 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
             {t("common.cancel")}
           </Button>
           <Button variant="default" disabled={!selectedFile || isUploading} onClick={handleUpload}>
-            {isUploading && <IconCloudUpload className="mr-2 h-4 w-4 animate-spin" />}
+            {isUploading ? (
+              <IconLoader className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <IconCloudUpload className="mr-2 h-4 w-4" />
+            )}
             {t("uploadFile.upload")}
           </Button>
         </DialogFooter>
