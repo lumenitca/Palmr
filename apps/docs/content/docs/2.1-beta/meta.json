@@ -6,8 +6,8 @@
   "pages": [
     "---Introduction---",
     "index",
+    "quick-start",
     "installation",
-    "manual-installation",
     "api",
     "---How to use Palmr.---",
     "manage-users",
