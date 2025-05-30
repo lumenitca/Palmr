@@ -5,6 +5,9 @@ import {
   Share2Icon,
   GithubIcon,
   BookOpenText,
+  CloudIcon,
+  LockIcon,
+  DatabaseIcon,
 } from "lucide-react";
 import {
   BatteryChargingIcon,
@@ -83,10 +86,10 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative z-[2] flex flex-col border-x border-t  px-6 pt-12 pb-10 md:px-12 md:pt-16 max-md:text-center">
-      <h1 className="mb-8 text-5xl font-bold">
-        🌴 Palmr.{" "}
-        <span className="text-[10px] font-light text-muted-foreground/50 font-mono">
-          v2.0.0-beta
+      <h1 className="mb-8 text-6xl font-bold">
+        Palmr.{" "}
+        <span className="text-[13px] font-light text-muted-foreground/50 font-mono">
+          v2.1-beta
         </span>
       </h1>
       <h1 className="hidden text-4xl font-medium max-w-[600px] md:block mb-4">
@@ -236,7 +239,7 @@ function Highlights() {
     {
       icon: RocketIcon,
       title: "Modern Stack",
-      text: "Powered by Next.js, Fastify, MinIO, Postgres and the latest tech.",
+      text: "Powered by Next.js, Fastify, Postgres and the latest tech.",
     },
     {
       icon: SearchIcon,
@@ -252,6 +255,21 @@ function Highlights() {
       icon: PersonStandingIcon,
       title: "Customizable",
       text: "Full control over all the system and configurations.",
+    },
+    {
+      icon: CloudIcon,
+      title: "Storage Flexibility",
+      text: "Compatible with any S3-compatible API or local filesystem storage.",
+    },
+    {
+      icon: LockIcon,
+      title: "Security",
+      text: "Files are encrypted and protected by tokens when using filesystem storage.",
+    },
+    {
+      icon: DatabaseIcon,
+      title: "PostgreSQL",
+      text: "Enterprise-grade database for reliable and efficient data persistence.",
     },
   ];
 
@@ -297,7 +315,7 @@ function End() {
     <section className="flex w-full flex-1">
       <div className="w-full flex flex-col gap-8 overflow-hidden border px-8 py-14">
         <h2 className="text-3xl font-extrabold font-mono uppercase ">
-          Start Using Now. 🌴
+          Start Using Now.
         </h2>
         <ul className="mt-2 flex flex-col gap-6">
           <ListItem icon={TimerIcon} title="Fast Setup">

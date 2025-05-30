@@ -4,13 +4,14 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import Link from "fumadocs-core/link";
+import { LATEST_VERSION, LATEST_VERSION_PATH } from "@/config/constants";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
 export const metadata = {
-  title: "🌴 Palmr. | Official Website",
+  title: "Palmr. | Official Website",
   description:
     "Palmr. is a fast, simple and powerful document sharing platform.",
 };
@@ -19,21 +20,27 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <Banner variant="rainbow" id="banner-v-3">
-          <Link href="/docs/2.0.0-beta">Palmr. v2.0.0-beta has released!</Link>
+        <Banner variant="rainbow" id="banner-21-beta">
+          <Link href={LATEST_VERSION_PATH}>
+            Palmr. {LATEST_VERSION} has released!
+          </Link>
         </Banner>
         <RootProvider
           search={{
             options: {
-              defaultTag: "2.0.0-beta",
+              defaultTag: "2.1-beta",
               tags: [
                 {
                   name: "v1.1.7 Beta",
                   value: "1.1.7-beta",
                 },
                 {
-                  name: "v2.0.0 Beta ✨",
+                  name: "v2.0.0 Beta",
                   value: "2.0.0-beta",
+                },
+                {
+                  name: "v2.1 Beta ✨",
+                  value: "2.1-beta",
                   props: {
                     style: {
                       border: "1px solid rgba(0,165,80,0.2)",
