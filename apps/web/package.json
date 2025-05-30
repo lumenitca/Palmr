@@ -1,7 +1,18 @@
 {
-  "name": "palmr-app-v2",
-  "version": "2.0.0",
+  "name": "palmr-frontend",
+  "version": "2.1-beta",
+  "description": "Frontend for Palmr",
   "private": true,
+  "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
+  "keywords": [
+    "palmr",
+    "frontend",
+    "nextjs",
+    "react",
+    "typescript"
+  ],
+  "license": "BSD-2-Clause",
+  "packageManager": "pnpm@10.6.0",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

@@ -1,7 +1,19 @@
 {
   "name": "palmr-api",
-  "version": "1.1.6",
-  "description": "",
+  "version": "2.1-beta",
+  "description": "API for Palmr",
+  "private": true,
+  "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
+  "keywords": [
+    "palmr",
+    "api",
+    "backend",
+    "server",
+    "nodejs",
+    "typescript"
+  ],
+  "license": "BSD-2-Clause",
+  "packageManager": "pnpm@10.6.0",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
@@ -16,9 +28,6 @@
   "prisma": {
     "seed": "node prisma/seed.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.817.0",
     "@aws-sdk/s3-request-presigner": "^3.817.0",
