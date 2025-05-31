@@ -46,7 +46,7 @@ export function LanguageSwitcher() {
       maxAge: COOKIE_MAX_AGE,
       path: "/",
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
     });
 
     router.refresh();
