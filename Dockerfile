@@ -1,8 +1,7 @@
 FROM node:18-alpine AS base
 
-# Install system dependencies
+# Install system dependencies (removed netcat-openbsd since we no longer need to wait for PostgreSQL)
 RUN apk add --no-cache \
-  netcat-openbsd \
   gcompat \
   supervisor \
   curl
@@ -77,9 +76,10 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 palmr
 
 # Create application directories and set permissions
-# Include storage directories for filesystem mode
+# Include storage directories for filesystem mode and SQLite database directory
 RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache \
-  /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
+  /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo \
+  /app/server/prisma
 RUN chown -R palmr:nodejs /app /home/palmr
 
 # === Copy Server Files ===
@@ -92,7 +92,7 @@ COPY --from=server-builder --chown=palmr:nodejs /app/server/prisma ./prisma
 COPY --from=server-builder --chown=palmr:nodejs /app/server/package.json ./
 
 # Ensure storage directories have correct permissions
-RUN chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks
+RUN chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma
 
 # === Copy Web Files ===
 WORKDIR /app/web
@@ -113,7 +113,7 @@ COPY infra/server-start.sh /app/server-start.sh
 RUN chmod +x /app/server-start.sh
 RUN chown palmr:nodejs /app/server-start.sh
 
-# Copy supervisor configuration
+# Copy supervisor configuration (simplified without PostgreSQL dependency)
 COPY <<EOF /etc/supervisor/conf.d/supervisord.conf
 [supervisord]
 nodaemon=true
@@ -151,10 +151,11 @@ COPY <<EOF /app/start.sh
 
 echo "Starting Palmr Application..."
 echo "Storage Mode: \${ENABLE_S3:-false}"
+echo "Database: SQLite"
 
 # Ensure storage directories exist with correct permissions
-mkdir -p /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
-chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks
+mkdir -p /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo /app/server/prisma
+chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma
 
 # Start supervisor
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
@@ -162,8 +163,8 @@ EOF
 
 RUN chmod +x /app/start.sh
 
-# Create volume mount points for persistent storage (filesystem mode)
-VOLUME ["/app/server/uploads", "/app/server/temp-chunks"]
+# Create volume mount points for persistent storage (filesystem mode and SQLite database)
+VOLUME ["/app/server/uploads", "/app/server/temp-chunks", "/app/server/prisma"]
 
 # Expose ports
 EXPOSE 3333 5487

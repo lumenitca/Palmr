@@ -2,16 +2,12 @@ services:
   palmr:
     image: kyantech/palmr:latest # Make sure to use the correct version (latest) of the image
     container_name: palmr-application
-    depends_on:
-      postgres:
-        condition: "service_healthy"
     environment:
       # Storage Configuration
       - ENABLE_S3=false # Set to 'false' to use local filesystem storage instead of S3/MinIO or true to use S3/MinIO in this case we are using filesystem storage
       - ENCRYPTION_KEY=${ENCRYPTION_KEY:-change-this-key-in-production-min-32-chars} # Required for filesystem encryption (min 32 chars)
 
       # Server environment variables
-      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgresRootPassword}@postgres:${DB_EXTERNAL_PORT:-5432}/${POSTGRES_DB:-palmr_db}?schema=public # Database URL with configurable credentials through env vars
       - FRONTEND_URL=http://palmr:${APP_EXTERNAL_PORT:-5487} # Frontend URL - Make sure to use the correct frontend URL, depends on where the frontend is running, its prepared for localhost, but you can change it to your frontend URL if needed
       - API_BASE_URL=http://palmr:${API_EXTERNAL_PORT:-3333} # Using Docker service name for internal communication
       - MAX_FILESIZE=${MAX_FILESIZE:-1073741824} # Max Filesize for upload - Declared in Bytes. Default is 1GB. can be changed by admin in the frontend.
@@ -21,54 +17,21 @@ services:
     volumes:
       - palmr_uploads:/app/server/uploads # Uploads folder for the application
       - palmr_temp_chunks:/app/server/temp-chunks # Temp chunks folder for the application
-    networks:
-      - palmr-network # Network for the application to communicate with the database
+      - palmr_database:/app/server/prisma # SQLite database folder
     restart: unless-stopped
     healthcheck:
       test: [
           "CMD",
           "sh",
           "-c",
-          "wget --no-verbose --tries=1 --spider http://palmr:${API_EXTERNAL_PORT:-3333}/health && wget --no-verbose --tries=1 --spider http://palmr:5487",
+          "wget --no-verbose --tries=1 --spider http://palmr:${API_EXTERNAL_PORT:-3333}/health && wget --no-verbose --tries=1 --spider http://palmr:${APP_EXTERNAL_PORT:-5487}",
         ] # Healthcheck for the application
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 120s
-
-  postgres:
-    image: postgres:16-alpine # You can use any postgres version you prefer, but remember that some versions might not be compatible
-    container_name: palmr-database
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER:-postgres} # PostgreSQL username (default: postgres) can be overridden by env var
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgresRootPassword} # PostgreSQL password (default: postgresRootPassword) can be overridden by env var
-      - POSTGRES_DB=${POSTGRES_DB:-palmr_db} # PostgreSQL database name (default: palmr_db) can be overridden by env var
-    volumes:
-      - postgres_data:/var/lib/postgresql/data # PostgreSQL data volume for the application
-    ports:
-      - "${DB_EXTERNAL_PORT:-5432}:5432" # PostgreSQL port (default: 5432) can be overridden by env var
-    networks:
-      - palmr-network # Network for the application to communicate with the database
-    restart: unless-stopped
-    healthcheck:
-      test: [
-          "CMD",
-          "pg_isready",
-          "-U",
-          "${POSTGRES_USER:-postgres}",
-          "-d",
-          "${POSTGRES_DB:-palmr_db}",
-        ] # Healthcheck for the database
-      interval: 5s
-      timeout: 3s
-      retries: 6
-      start_period: 30s
+      start_period: 60s # Reduced start period since we don't need to wait for PostgreSQL
 
 volumes:
-  postgres_data:
   palmr_uploads:
   palmr_temp_chunks:
-
-networks:
-  palmr-network:
-    driver: bridge
+  palmr_database: # Volume for SQLite database persistence
