@@ -17,8 +17,8 @@ export class AuthController {
       reply.setCookie("token", token, {
         httpOnly: true,
         path: "/",
-        secure: process.env.NODE_ENV === "production", 
-        sameSite: "strict", 
+        secure: false,
+        sameSite: "strict",
       });
 
       return reply.send({ user });
@@ -34,8 +34,8 @@ export class AuthController {
 
   async requestPasswordReset(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const { email } = RequestPasswordResetSchema.parse(request.body);
-      await this.authService.requestPasswordReset(email);
+      const { email, origin } = RequestPasswordResetSchema.parse(request.body);
+      await this.authService.requestPasswordReset(email, origin);
       return reply.send({
         message: "If an account exists with this email, a password reset link will be sent.",
       });

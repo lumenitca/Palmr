@@ -88,7 +88,7 @@ export class AuthService {
     if (user.loginAttempts) {
       const maxAttempts = Number(await this.configService.getValue("maxLoginAttempts"));
       const blockDurationSeconds = Number(await this.configService.getValue("loginBlockDuration"));
-      const blockDuration = blockDurationSeconds * 1000; 
+      const blockDuration = blockDurationSeconds * 1000;
 
       if (
         user.loginAttempts.attempts >= maxAttempts &&
@@ -137,7 +137,7 @@ export class AuthService {
     return user;
   }
 
-  async requestPasswordReset(email: string) {
+  async requestPasswordReset(email: string, origin: string) {
     const user = await this.userRepository.findUserByEmail(email);
     if (!user) {
       return;
@@ -155,7 +155,7 @@ export class AuthService {
     });
 
     try {
-      await this.emailService.sendPasswordResetEmail(email, token);
+      await this.emailService.sendPasswordResetEmail(email, token, origin);
     } catch (error) {
       console.error("Failed to send password reset email:", error);
       throw new Error("Failed to send password reset email");

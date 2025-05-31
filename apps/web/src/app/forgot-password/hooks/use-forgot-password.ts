@@ -28,7 +28,10 @@ export function useForgotPassword() {
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
     try {
-      await requestPasswordReset(data);
+      await requestPasswordReset({
+        email: data.email,
+        origin: window.location.origin,
+      });
       toast.success(t("forgotPassword.resetInstructions"));
       router.push("/login");
     } catch (err) {

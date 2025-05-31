@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  FRONTEND_URL: z.string().url().min(1),
   ENABLE_S3: z.union([z.literal("true"), z.literal("false")]).default("false"),
   ENCRYPTION_KEY: z.string().optional().default("palmr-default-encryption-key-2025"),
   S3_ENDPOINT: z.string().optional(),
