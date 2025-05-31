@@ -428,24 +428,24 @@
       "downloadFailed": "Falha ao baixar arquivo"
     },
     "messages": {
-      "downloadStarted": "Download iniciado",
-      "password": {
-        "title": "Compartilhamento Protegido por Senha",
-        "protected": "Este compartilhamento está protegido por senha",
-        "incorrect": "Senha incorreta. Por favor, tente novamente.",
-        "label": "Senha",
-        "placeholder": "Digite a senha do compartilhamento",
-        "submit": "Enviar"
-      },
-      "details": {
-        "untitled": "Compartilhamento sem título",
-        "created": "Criado em: {date}",
-        "expires": "Expira em: {date}"
-      },
-      "notFound": {
-        "title": "Compartilhamento não Encontrado",
-        "description": "Este compartilhamento pode ter sido excluído ou expirado."
-      }
+      "downloadStarted": "Download iniciado"
+    },
+    "password": {
+      "title": "Compartilhamento Protegido por Senha",
+      "protected": "Este compartilhamento está protegido por senha",
+      "incorrect": "Senha incorreta. Por favor, tente novamente.",
+      "label": "Senha",
+      "placeholder": "Digite a senha do compartilhamento",
+      "submit": "Enviar"
+    },
+    "details": {
+      "untitled": "Compartilhamento sem título",
+      "created": "Criado em: {date}",
+      "expires": "Expira em: {date}"
+    },
+    "notFound": {
+      "title": "Compartilhamento não Encontrado",
+      "description": "Este compartilhamento pode ter sido excluído ou expirado."
     },
     "pageTitle": "Compartilhamento"
   },

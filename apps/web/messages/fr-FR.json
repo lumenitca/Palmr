@@ -357,6 +357,7 @@
         "description": "Afficher la page d'accueil après l'installation"
       },
       "smtpEnabled": {
+        "title": "SMTP Activé",
         "description": "Activer les notifications par email"
       },
       "smtpHost": {
