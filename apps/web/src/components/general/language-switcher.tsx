@@ -20,6 +20,8 @@ const languages = {
   "fr-FR": "Français",
   "es-ES": "Español",
   "de-DE": "Deutsch",
+  "it-IT": "Italiano",
+  "nl-NL": "Nederlands",
   "tr-TR": "Türkçe (Turkish)",
   "ru-RU": "Русский (Russian)",
   "hi-IN": "हिन्दी (Hindi)",
