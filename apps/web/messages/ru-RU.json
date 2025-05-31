@@ -68,8 +68,8 @@
     "downloadError": "Ошибка скачивания файла"
   },
   "fileSelector": {
-    "availableFiles": "Доступные файлы ({{count}})",
-    "shareFiles": "Поделиться файлами ({{count}})",
+    "availableFiles": "Доступные файлы ({count})",
+    "shareFiles": "Поделиться файлами ({count})",
     "searchPlaceholder": "Поиск файлов...",
     "noMatchingFiles": "Нет файлов, соответствующих запросу",
     "noAvailableFiles": "Нет доступных файлов",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Введите электронную почту получателя",
     "add": "Добавить",
-    "recipients": "Получатели ({{count}})",
+    "recipients": "Получатели ({count})",
     "notifyAll": "Уведомить всех",
     "noRecipients": "Пока нет добавленных получателей",
     "addSuccess": "Получатель успешно добавлен",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Поиск файлов...",
-    "results": "Найдено {{filtered}} из {{total}} файлов"
+    "results": "Найдено {filtered} из {total} файлов"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "Сохранить {{group}}"
+      "save": "Сохранить {group}"
     },
     "errors": {
       "loadFailed": "Ошибка загрузки настроек",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "Изменений для сохранения нет",
-      "updateSuccess": "Настройки {{group}} успешно обновлены"
+      "updateSuccess": "Настройки {group} успешно обновлены"
     },
     "title": "Настройки",
     "breadcrumb": "Настройки",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "Без названия",
-      "created": "Создано: {{date}}",
-      "expires": "Истекает: {{date}}"
+      "created": "Создано: {date}",
+      "expires": "Истекает: {date}"
     },
     "notFound": {
       "title": "Общий доступ не найден",
@@ -526,7 +526,7 @@
       "title": "Все общие доступы",
       "createButton": "Создать общий доступ",
       "placeholder": "Поиск общих доступов...",
-      "results": "Найдено {{filtered}} из {{total}} общих доступов"
+      "results": "Найдено {filtered} из {total} общих доступов"
     },
     "pageTitle": "Общие доступы"
   },
@@ -587,8 +587,8 @@
     "upload": "Загрузить",
     "success": "Файл успешно загружен",
     "error": "Не удалось загрузить файл",
-    "fileSizeExceeded": "Размер файла превышает лимит в {{maxsizemb}}МБ.",
-    "insufficientStorage": "Недостаточно места для хранения. У вас доступно {{availablespace}}МБ.",
+    "fileSizeExceeded": "Размер файла превышает лимит в {maxsizemb}МБ.",
+    "insufficientStorage": "Недостаточно места для хранения. У вас доступно {availablespace}МБ.",
     "unauthorized": "Не авторизовано: для доступа к этому ресурсу требуется действительный токен."
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "Ошибка загрузки пользователей",
-      "submitFailed": "Ошибка при {{mode}} пользователя",
+      "submitFailed": "Ошибка при {mode} пользователя",
       "deleteFailed": "Ошибка при удалении пользователя",
       "statusUpdateFailed": "Ошибка обновления статуса пользователя"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "Подтверждение удаления пользователя",
-      "confirmation": "Вы уверены, что хотите удалить пользователя {{firstName}} {{lastName}}? Это действие нельзя отменить.",
+      "confirmation": "Вы уверены, что хотите удалить пользователя {firstName} {lastName}? Это действие нельзя отменить.",
       "confirm": "Удалить пользователя"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "Подтверждение изменения статуса",
-      "confirmation": "Вы уверены, что хотите {{action}} пользователя {{firstName}} {{lastName}}?",
+      "confirmation": "Вы уверены, что хотите {action} пользователя {firstName} {lastName}?",
       "activate": "активировать",
       "deactivate": "деактивировать",
       "user": "Пользователь"

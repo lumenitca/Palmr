@@ -68,8 +68,8 @@
     "downloadError": "फाइल डाउनलोड करने में विफल"
   },
   "fileSelector": {
-    "availableFiles": "उपलब्ध फाइलें ({{count}})",
-    "shareFiles": "फाइलें साझा करें ({{count}})",
+    "availableFiles": "उपलब्ध फाइलें ({count})",
+    "shareFiles": "फाइलें साझा करें ({count})",
     "searchPlaceholder": "फाइलें खोजें...",
     "noMatchingFiles": "कोई मेल खाने वाली फाइलें नहीं",
     "noAvailableFiles": "कोई फाइल उपलब्ध नहीं",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "प्राप्तकर्ता का ईमेल दर्ज करें",
     "add": "जोड़ें",
-    "recipients": "प्राप्तकर्ता ({{count}})",
+    "recipients": "प्राप्तकर्ता ({count})",
     "notifyAll": "सभी को सूचित करें",
     "noRecipients": "अभी तक कोई प्राप्तकर्ता नहीं जोड़ा गया",
     "addSuccess": "प्राप्तकर्ता सफलतापूर्वक जोड़ा गया",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "फाइलें खोजें...",
-    "results": "{{total}} में से {{filtered}} फाइलें मिलीं"
+    "results": "{total} में से {filtered} फाइलें मिलीं"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "{{group}} सहेजें"
+      "save": "{group} सहेजें"
     },
     "errors": {
       "loadFailed": "सेटिंग्स लोड करने में विफल",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "सहेजने के लिए कोई परिवर्तन नहीं",
-      "updateSuccess": "{{group}} सेटिंग्स सफलतापूर्वक अपडेट हुईं"
+      "updateSuccess": "{group} सेटिंग्स सफलतापूर्वक अपडेट हुईं"
     },
     "title": "सेटिंग्स",
     "breadcrumb": "सेटिंग्स",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "बिना शीर्षक के",
-      "created": "बनाया गया: {{date}}",
-      "expires": "समाप्त होता है: {{date}}"
+      "created": "बनाया गया: {date}",
+      "expires": "समाप्त होता है: {date}"
     },
     "notFound": {
       "title": "साझाकरण नहीं मिला",
@@ -526,7 +526,7 @@
       "title": "सभी साझाकरण",
       "createButton": "साझाकरण बनाएं",
       "placeholder": "साझाकरण खोजें...",
-      "results": "{{total}} में से {{filtered}} साझाकरण मिले"
+      "results": "{total} में से {filtered} साझाकरण मिले"
     },
     "pageTitle": "साझाकरण"
   },
@@ -587,8 +587,8 @@
     "upload": "अपलोड करें",
     "success": "फाइल सफलतापूर्वक अपलोड हुई",
     "error": "फाइल अपलोड करने में विफल",
-    "fileSizeExceeded": "फ़ाइल का आकार {{maxsizemb}}MB की सीमा से अधिक है।",
-    "insufficientStorage": "अपर्याप्त संग्रहण स्थान। आपके पास {{availablespace}}MB उपलब्ध है।",
+    "fileSizeExceeded": "फ़ाइल का आकार {maxsizemb}MB की सीमा से अधिक है।",
+    "insufficientStorage": "अपर्याप्त संग्रहण स्थान। आपके पास {availablespace}MB उपलब्ध है।",
     "unauthorized": "अनधिकृत: इस संसाधन तक पहुँचने के लिए एक मान्य टोकन आवश्यक है।"
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "उपयोगकर्ता लोड करने में विफल",
-      "submitFailed": "{{mode}} करने में विफल",
+      "submitFailed": "{mode} करने में विफल",
       "deleteFailed": "उपयोगकर्ता हटाने में विफल",
       "statusUpdateFailed": "उपयोगकर्ता की स्थिति अपडेट करने में विफल"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "उपयोगकर्ता हटाने की पुष्टि करें",
-      "confirmation": "क्या आप वाकई {{firstName}} {{lastName}} को हटाना चाहते हैं? यह क्रिया अपरिवर्तनीय है।",
+      "confirmation": "क्या आप वाकई {firstName} {lastName} को हटाना चाहते हैं? यह क्रिया अपरिवर्तनीय है।",
       "confirm": "उपयोगकर्ता हटाएं"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "स्थिति परिवर्तन की पुष्टि करें",
-      "confirmation": "क्या आप वाकई {{firstName}} {{lastName}} को {{action}} करना चाहते हैं?",
+      "confirmation": "क्या आप वाकई {firstName} {lastName} को {action} करना चाहते हैं?",
       "activate": "सक्रिय करें",
       "deactivate": "निष्क्रिय करें",
       "user": "उपयोगकर्ता"

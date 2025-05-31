@@ -68,8 +68,8 @@
     "downloadError": "ファイルのダウンロードに失敗しました"
   },
   "fileSelector": {
-    "availableFiles": "利用可能なファイル ({{count}})",
-    "shareFiles": "ファイルを共有 ({{count}})",
+    "availableFiles": "利用可能なファイル ({count})",
+    "shareFiles": "ファイルを共有 ({count})",
     "searchPlaceholder": "ファイルを検索...",
     "noMatchingFiles": "一致するファイルがありません",
     "noAvailableFiles": "利用可能なファイルがありません",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "受信者のメールを入力してください",
     "add": "追加",
-    "recipients": "受信者 ({{count}})",
+    "recipients": "受信者 ({count})",
     "notifyAll": "全員に通知",
     "noRecipients": "まだ受信者が追加されていません",
     "addSuccess": "受信者が正常に追加されました",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "ファイルを検索...",
-    "results": "全{{total}}件中{{filtered}}件が見つかりました"
+    "results": "全{total}件中{filtered}件が見つかりました"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "{{group}}を保存"
+      "save": "{group}を保存"
     },
     "errors": {
       "loadFailed": "設定の読み込みに失敗しました",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "保存する変更はありません",
-      "updateSuccess": "{{group}}の設定が正常に更新されました"
+      "updateSuccess": "{group}の設定が正常に更新されました"
     },
     "title": "設定",
     "breadcrumb": "設定",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "無題",
-      "created": "作成日: {{date}}",
-      "expires": "有効期限: {{date}}"
+      "created": "作成日: {date}",
+      "expires": "有効期限: {date}"
     },
     "notFound": {
       "title": "共有が見つかりません",
@@ -526,7 +526,7 @@
       "title": "すべての共有",
       "createButton": "共有を作成",
       "placeholder": "共有を検索...",
-      "results": "全{{total}}件中{{filtered}}件が見つかりました"
+      "results": "全{total}件中{filtered}件が見つかりました"
     },
     "pageTitle": "共有"
   },
@@ -587,8 +587,8 @@
     "upload": "アップロード",
     "success": "ファイルが正常にアップロードされました",
     "error": "ファイルのアップロードに失敗しました",
-    "fileSizeExceeded": "ファイルサイズが制限値 {{maxsizemb}}MB を超えています。",
-    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {{availablespace}}MB です。",
+    "fileSizeExceeded": "ファイルサイズが制限値 {maxsizemb}MB を超えています。",
+    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {availablespace}MB です。",
     "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。"
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "ユーザーの読み込みに失敗しました",
-      "submitFailed": "ユーザーの{{mode}}に失敗しました",
+      "submitFailed": "ユーザーの{mode}に失敗しました",
       "deleteFailed": "ユーザーの削除に失敗しました",
       "statusUpdateFailed": "ユーザー状態の更新に失敗しました"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "ユーザー削除の確認",
-      "confirmation": "{{firstName}} {{lastName}} を削除してもよろしいですか？この操作は元に戻せません。",
+      "confirmation": "{firstName} {lastName} を削除してもよろしいですか？この操作は元に戻せません。",
       "confirm": "ユーザーを削除"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "状態変更の確認",
-      "confirmation": "{{firstName}} {{lastName}} を{{action}}してもよろしいですか？",
+      "confirmation": "{firstName} {lastName} を{action}してもよろしいですか？",
       "activate": "アクティブ化",
       "deactivate": "非アクティブ化",
       "user": "ユーザー"

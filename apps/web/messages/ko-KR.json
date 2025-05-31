@@ -68,8 +68,8 @@
     "downloadError": "파일 다운로드에 실패했습니다"
   },
   "fileSelector": {
-    "availableFiles": "사용 가능한 파일 ({{count}})",
-    "shareFiles": "파일 공유 ({{count}})",
+    "availableFiles": "사용 가능한 파일 ({count})",
+    "shareFiles": "파일 공유 ({count})",
     "searchPlaceholder": "파일 검색...",
     "noMatchingFiles": "일치하는 파일이 없습니다",
     "noAvailableFiles": "사용 가능한 파일이 없습니다",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "수신자 이메일을 입력하세요",
     "add": "추가",
-    "recipients": "수신자 ({{count}})",
+    "recipients": "수신자 ({count})",
     "notifyAll": "모두에게 알림",
     "noRecipients": "아직 수신자가 추가되지 않았습니다",
     "addSuccess": "수신자가 성공적으로 추가되었습니다",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "파일 검색...",
-    "results": "전체 {{total}}개 중 {{filtered}}개 파일을 찾았습니다"
+    "results": "전체 {total}개 중 {filtered}개 파일을 찾았습니다"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "{{group}} 저장"
+      "save": "{group} 저장"
     },
     "errors": {
       "loadFailed": "설정을 불러오는데 실패했습니다",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "저장할 변경 사항이 없습니다",
-      "updateSuccess": "{{group}} 설정이 성공적으로 업데이트되었습니다"
+      "updateSuccess": "{group} 설정이 성공적으로 업데이트되었습니다"
     },
     "title": "설정",
     "breadcrumb": "설정",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "제목 없음",
-      "created": "생성됨: {{date}}",
-      "expires": "만료됨: {{date}}"
+      "created": "생성됨: {date}",
+      "expires": "만료됨: {date}"
     },
     "notFound": {
       "title": "공유를 찾을 수 없습니다",
@@ -526,7 +526,7 @@
       "title": "전체 공유",
       "createButton": "공유 생성",
       "placeholder": "공유 검색...",
-      "results": "전체 {{total}}개 중 {{filtered}}개가 검색되었습니다"
+      "results": "전체 {total}개 중 {filtered}개가 검색되었습니다"
     },
     "pageTitle": "공유"
   },
@@ -587,8 +587,8 @@
     "upload": "업로드",
     "success": "파일이 성공적으로 업로드되었습니다",
     "error": "파일 업로드에 실패했습니다",
-    "fileSizeExceeded": "파일 크기가 {{maxsizemb}}MB 제한을 초과합니다.",
-    "insufficientStorage": "저장 공간이 부족합니다. {{availablespace}}MB의 사용 가능한 공간이 있습니다.",
+    "fileSizeExceeded": "파일 크기가 {maxsizemb}MB 제한을 초과합니다.",
+    "insufficientStorage": "저장 공간이 부족합니다. {availablespace}MB의 사용 가능한 공간이 있습니다.",
     "unauthorized": "권한 없음: 이 리소스에 액세스하려면 유효한 토큰이 필요합니다."
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "사용자 목록을 불러오는데 실패했습니다",
-      "submitFailed": "사용자 {{mode}}에 실패했습니다",
+      "submitFailed": "사용자 {mode}에 실패했습니다",
       "deleteFailed": "사용자 삭제에 실패했습니다",
       "statusUpdateFailed": "사용자 상태 업데이트에 실패했습니다"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "사용자 삭제 확인",
-      "confirmation": "{{firstName}} {{lastName}} 사용자를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+      "confirmation": "{firstName} {lastName} 사용자를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
       "confirm": "사용자 삭제"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "상태 변경 확인",
-      "confirmation": "{{firstName}} {{lastName}} 사용자를 {{action}}하시겠습니까?",
+      "confirmation": "{firstName} {lastName} 사용자를 {action}하시겠습니까?",
       "activate": "활성화",
       "deactivate": "비활성화",
       "user": "사용자"

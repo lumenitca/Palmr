@@ -68,8 +68,8 @@
     "downloadError": "Dosya indirilemedi"
   },
   "fileSelector": {
-    "availableFiles": "Kullanılabilir Dosyalar ({{count}})",
-    "shareFiles": "Dosyaları Paylaş ({{count}})",
+    "availableFiles": "Kullanılabilir Dosyalar ({count})",
+    "shareFiles": "Dosyaları Paylaş ({count})",
     "searchPlaceholder": "Dosya ara...",
     "noMatchingFiles": "Eşleşen dosya bulunamadı",
     "noAvailableFiles": "Kullanılabilir dosya yok",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Alıcının e-postasını girin",
     "add": "Ekle",
-    "recipients": "Alıcılar ({{count}})",
+    "recipients": "Alıcılar ({count})",
     "notifyAll": "Hepsini Bildir",
     "noRecipients": "Henüz alıcı eklenmedi",
     "addSuccess": "Alıcı başarıyla eklendi",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Dosya ara...",
-    "results": "Toplam {{total}} dosya içinde {{filtered}} dosya bulundu"
+    "results": "Toplam {total} dosya içinde {filtered} dosya bulundu"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "{{group}} Kaydet"
+      "save": "{group} Kaydet"
     },
     "errors": {
       "loadFailed": "Ayarlar yüklenemedi",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "Kaydedilecek değişiklik yok",
-      "updateSuccess": "{{group}} ayarları başarıyla güncellendi"
+      "updateSuccess": "{group} ayarları başarıyla güncellendi"
     },
     "title": "Ayarlar",
     "breadcrumb": "Ayarlar",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "Adsız",
-      "created": "Oluşturulma: {{date}}",
-      "expires": "Son Kullanma: {{date}}"
+      "created": "Oluşturulma: {date}",
+      "expires": "Son Kullanma: {date}"
     },
     "notFound": {
       "title": "Paylaşım Bulunamadı",
@@ -526,7 +526,7 @@
       "title": "Tüm Paylaşımlar",
       "createButton": "Paylaşım Oluştur",
       "placeholder": "Paylaşım ara...",
-      "results": "Toplam {{total}} paylaşım arasında {{filtered}} paylaşım bulundu"
+      "results": "Toplam {total} paylaşım arasında {filtered} paylaşım bulundu"
     },
     "pageTitle": "Paylaşımlar"
   },
@@ -587,8 +587,8 @@
     "upload": "Yükle",
     "success": "Dosya başarıyla yüklendi",
     "error": "Dosya yüklenemedi",
-    "fileSizeExceeded": "Dosya boyutu {{maxsizemb}}MB sınırını aşıyor.",
-    "insufficientStorage": "Yetersiz depolama alanı. {{availablespace}}MB kullanılabilir alanınız var.",
+    "fileSizeExceeded": "Dosya boyutu {maxsizemb}MB sınırını aşıyor.",
+    "insufficientStorage": "Yetersiz depolama alanı. {availablespace}MB kullanılabilir alanınız var.",
     "unauthorized": "Yetkisiz: Bu kaynağa erişmek için geçerli bir token gereklidir."
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "Kullanıcılar yüklenemedi",
-      "submitFailed": "Kullanıcı {{mode}} edilemedi",
+      "submitFailed": "Kullanıcı {mode} edilemedi",
       "deleteFailed": "Kullanıcı silinemedi",
       "statusUpdateFailed": "Kullanıcı durumu güncellenemedi"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "Kullanıcı Silmeyi Onayla",
-      "confirmation": "{{firstName}} {{lastName}} adlı kullanıcıyı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+      "confirmation": "{firstName} {lastName} adlı kullanıcıyı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
       "confirm": "Kullanıcıyı Sil"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "Durum Değişikliğini Onayla",
-      "confirmation": "{{firstName}} {{lastName}} adlı kullanıcıyı {{action}} etmek istediğinize emin misiniz?",
+      "confirmation": "{firstName} {lastName} adlı kullanıcıyı {action} etmek istediğinize emin misiniz?",
       "activate": "Etkinleştir",
       "deactivate": "Devre Dışı Bırak",
       "user": "Kullanıcı"

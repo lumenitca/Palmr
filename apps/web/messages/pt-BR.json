@@ -68,8 +68,8 @@
     "downloadError": "Falha ao baixar o arquivo"
   },
   "fileSelector": {
-    "availableFiles": "Arquivos Disponíveis ({{count}})",
-    "shareFiles": "Arquivos Compartilhados ({{count}})",
+    "availableFiles": "Arquivos Disponíveis ({count})",
+    "shareFiles": "Arquivos Compartilhados ({count})",
     "searchPlaceholder": "Buscar arquivos...",
     "noMatchingFiles": "Nenhum arquivo encontrado",
     "noAvailableFiles": "Nenhum arquivo disponível",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Digite o e-mail do destinatário",
     "add": "Adicionar",
-    "recipients": "Destinatários ({{count}})",
+    "recipients": "Destinatários ({count})",
     "notifyAll": "Notificar Todos",
     "noRecipients": "Nenhum destinatário adicionado",
     "addSuccess": "Destinatário adicionado com sucesso",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Buscar arquivos...",
-    "results": "Encontrados {{filtered}} de {{total}} arquivos"
+    "results": "Encontrados {filtered} de {total} arquivos"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "Salvar {{group}}"
+      "save": "Salvar {group}"
     },
     "errors": {
       "loadFailed": "Falha ao carregar configurações",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "Nenhuma alteração para salvar",
-      "updateSuccess": "Configurações de {{group}} atualizadas com sucesso"
+      "updateSuccess": "Configurações de {group} atualizadas com sucesso"
     },
     "title": "Configurações",
     "breadcrumb": "Configurações",
@@ -439,8 +439,8 @@
       },
       "details": {
         "untitled": "Compartilhamento sem título",
-        "created": "Criado em: {{date}}",
-        "expires": "Expira em: {{date}}"
+        "created": "Criado em: {date}",
+        "expires": "Expira em: {date}"
       },
       "notFound": {
         "title": "Compartilhamento não Encontrado",
@@ -476,8 +476,8 @@
     "untitled": "Compartilhamento sem título",
     "views": "Visualizações",
     "dates": "Datas",
-    "created": "Criado em: {{date}}",
-    "expires": "Expira em: {{date}}",
+    "created": "Criado em: {date}",
+    "expires": "Expira em: {date}",
     "never": "Nunca",
     "security": "Segurança",
     "passwordProtected": "Protegido por Senha",
@@ -526,7 +526,7 @@
       "title": "Todos os Compartilhamentos",
       "createButton": "Criar Compartilhamento",
       "placeholder": "Buscar compartilhamentos...",
-      "results": "Encontrados {{filtered}} de {{total}} compartilhamentos"
+      "results": "Encontrados {filtered} de {total} compartilhamentos"
     },
     "pageTitle": "Compartilhamentos"
   },
@@ -587,8 +587,8 @@
     "upload": "Enviar",
     "success": "Arquivo enviado com sucesso",
     "error": "Falha ao enviar arquivo",
-    "fileSizeExceeded": "O tamanho do arquivo excede o limite de {{maxsizemb}}MB.",
-    "insufficientStorage": "Espaço de armazenamento insuficiente. Você tem {{availablespace}}MB disponíveis.",
+    "fileSizeExceeded": "O tamanho do arquivo excede o limite de {maxsizemb}MB.",
+    "insufficientStorage": "Espaço de armazenamento insuficiente. Você tem {availablespace}MB disponíveis.",
     "unauthorized": "Não autorizado: um token válido é necessário para acessar este recurso."
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "Falha ao carregar usuários",
-      "submitFailed": "Falha ao {{mode}} usuário",
+      "submitFailed": "Falha ao {mode} usuário",
       "deleteFailed": "Falha ao excluir usuário",
       "statusUpdateFailed": "Falha ao atualizar status do usuário"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "Confirmar Exclusão de Usuário",
-      "confirmation": "Tem certeza que deseja excluir o usuário {{firstName}} {{lastName}}? Esta ação não pode ser desfeita.",
+      "confirmation": "Tem certeza que deseja excluir o usuário {firstName} {lastName}? Esta ação não pode ser desfeita.",
       "confirm": "Excluir Usuário"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "Confirmar Alteração de Status",
-      "confirmation": "Tem certeza que deseja {{action}} o usuário {{firstName}} {{lastName}}?",
+      "confirmation": "Tem certeza que deseja {action} o usuário {firstName} {lastName}?",
       "activate": "ativar",
       "deactivate": "desativar",
       "user": "Usuário"

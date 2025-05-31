@@ -68,8 +68,8 @@
     "downloadError": "Fehler beim Herunterladen der Datei"
   },
   "fileSelector": {
-    "availableFiles": "Verfügbare Dateien ({{count}})",
-    "shareFiles": "Dateien teilen ({{count}})",
+    "availableFiles": "Verfügbare Dateien ({count})",
+    "shareFiles": "Dateien teilen ({count})",
     "searchPlaceholder": "Dateien suchen...",
     "noMatchingFiles": "Keine übereinstimmenden Dateien",
     "noAvailableFiles": "Keine Dateien verfügbar",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Empfänger-E-Mail eingeben",
     "add": "Hinzufügen",
-    "recipients": "Empfänger ({{count}})",
+    "recipients": "Empfänger ({count})",
     "notifyAll": "Alle benachrichtigen",
     "noRecipients": "Noch keine Empfänger hinzugefügt",
     "addSuccess": "Empfänger erfolgreich hinzugefügt",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Dateien suchen...",
-    "results": "Gefunden {{filtered}} von {{total}} Dateien"
+    "results": "Gefunden {filtered} von {total} Dateien"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "{{group}} speichern"
+      "save": "{group} speichern"
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Einstellungen",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "Keine Änderungen zum Speichern",
-      "updateSuccess": "{{group}}-Einstellungen erfolgreich aktualisiert"
+      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert"
     },
     "title": "Einstellungen",
     "breadcrumb": "Einstellungen",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "Unbenannte Freigabe",
-      "created": "Erstellt: {{date}}",
-      "expires": "Läuft ab: {{date}}"
+      "created": "Erstellt: {date}",
+      "expires": "Läuft ab: {date}"
     },
     "notFound": {
       "title": "Freigabe nicht gefunden",
@@ -526,7 +526,7 @@
       "title": "Alle Freigaben",
       "createButton": "Freigabe erstellen",
       "placeholder": "Freigaben suchen...",
-      "results": "Gefunden {{filtered}} von {{total}} Freigaben"
+      "results": "Gefunden {filtered} von {total} Freigaben"
     },
     "pageTitle": "Freigaben"
   },
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Benutzer",
-      "submitFailed": "Fehler beim {{mode}} des Benutzers",
+      "submitFailed": "Fehler beim {mode} des Benutzers",
       "deleteFailed": "Fehler beim Löschen des Benutzers",
       "statusUpdateFailed": "Fehler beim Aktualisieren des Benutzerstatus"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "Löschen des Benutzers bestätigen",
-      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {{firstName}} {{lastName}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {firstName} {lastName} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
       "confirm": "Benutzer löschen"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "Statusänderung bestätigen",
-      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {{firstName}} {{lastName}} {{action}} möchten?",
+      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {firstName} {lastName} {action} möchten?",
       "activate": "aktivieren",
       "deactivate": "deaktivieren",
       "user": "Benutzer"

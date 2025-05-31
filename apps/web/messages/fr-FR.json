@@ -68,8 +68,8 @@
     "downloadError": "Échec du téléchargement du fichier"
   },
   "fileSelector": {
-    "availableFiles": "Fichiers Disponibles ({{count}})",
-    "shareFiles": "Fichiers Partagés ({{count}})",
+    "availableFiles": "Fichiers Disponibles ({count})",
+    "shareFiles": "Fichiers Partagés ({count})",
     "searchPlaceholder": "Rechercher des fichiers...",
     "noMatchingFiles": "Aucun fichier correspondant",
     "noAvailableFiles": "Aucun fichier disponible",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Entrez l'e-mail du destinataire",
     "add": "Ajouter",
-    "recipients": "Destinataires ({{count}})",
+    "recipients": "Destinataires ({count})",
     "notifyAll": "Notifier Tous",
     "noRecipients": "Aucun destinataire ajouté",
     "addSuccess": "Destinataire ajouté avec succès",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Rechercher des fichiers...",
-    "results": "Trouvé {{filtered}} sur {{total}} fichiers"
+    "results": "Trouvé {filtered} sur {total} fichiers"
   },
   "settings": {
     "title": "Paramètres",
@@ -409,7 +409,7 @@
       }
     },
     "buttons": {
-      "save": "Enregistrer {{group}}"
+      "save": "Enregistrer {group}"
     },
     "errors": {
       "loadFailed": "Échec du chargement des paramètres",
@@ -417,7 +417,7 @@
     },
     "messages": {
       "noChanges": "Aucun changement à enregistrer",
-      "updateSuccess": "Paramètres {{group}} mis à jour avec succès"
+      "updateSuccess": "Paramètres {group} mis à jour avec succès"
     }
   },
   "share": {
@@ -439,8 +439,8 @@
     },
     "details": {
       "untitled": "Partage sans titre",
-      "created": "Créé le: {{date}}",
-      "expires": "Expire le: {{date}}"
+      "created": "Créé le: {date}",
+      "expires": "Expire le: {date}"
     },
     "notFound": {
       "title": "Partage Non Trouvé",
@@ -475,8 +475,8 @@
     "untitled": "Partage sans titre",
     "views": "Vues",
     "dates": "Dates",
-    "created": "Créé le: {{date}}",
-    "expires": "Expire le: {{date}}",
+    "created": "Créé le: {date}",
+    "expires": "Expire le: {date}",
     "never": "Jamais",
     "security": "Sécurité",
     "passwordProtected": "Protégé par Mot de Passe",
@@ -525,7 +525,7 @@
       "title": "Tous les Partages",
       "createButton": "Créer un Partage",
       "placeholder": "Rechercher des partages...",
-      "results": "Trouvé {{filtered}} sur {{total}} partages"
+      "results": "Trouvé {filtered} sur {total} partages"
     },
     "pageTitle": "Partages"
   },
@@ -586,8 +586,8 @@
     "upload": "Envoyer",
     "success": "Fichier envoyé avec succès",
     "error": "Échec de l'envoi du fichier",
-    "fileSizeExceeded": "La taille du fichier dépasse la limite de {{maxsizemb}} Mo.",
-    "insufficientStorage": "Espace de stockage insuffisant. Vous disposez de {{availablespace}} Mo.",
+    "fileSizeExceeded": "La taille du fichier dépasse la limite de {maxsizemb} Mo.",
+    "insufficientStorage": "Espace de stockage insuffisant. Vous disposez de {availablespace} Mo.",
     "unauthorized": "Non autorisé : un jeton valide est requis pour accéder à cette ressource."
   },
   "users": {
@@ -597,7 +597,7 @@
     },
     "errors": {
       "loadFailed": "Échec du chargement des utilisateurs",
-      "submitFailed": "Échec de {{mode}} l'utilisateur",
+      "submitFailed": "Échec de {mode} l'utilisateur",
       "deleteFailed": "Échec de la suppression de l'utilisateur",
       "statusUpdateFailed": "Échec de la mise à jour du statut de l'utilisateur"
     },
@@ -616,7 +616,7 @@
     },
     "delete": {
       "title": "Confirmer la Suppression de l'Utilisateur",
-      "confirmation": "Êtes-vous sûr de vouloir supprimer l'utilisateur {{firstName}} {{lastName}} ? Cette action ne peut pas être annulée.",
+      "confirmation": "Êtes-vous sûr de vouloir supprimer l'utilisateur {firstName} {lastName} ? Cette action ne peut pas être annulée.",
       "confirm": "Supprimer l'Utilisateur"
     },
     "form": {
@@ -637,7 +637,7 @@
     },
     "status": {
       "title": "Confirmer le Changement de Statut",
-      "confirmation": "Êtes-vous sûr de vouloir {{action}} l'utilisateur {{firstName}} {{lastName}} ?",
+      "confirmation": "Êtes-vous sûr de vouloir {action} l'utilisateur {firstName} {lastName} ?",
       "activate": "activer",
       "deactivate": "désactiver",
       "user": "Utilisateur"

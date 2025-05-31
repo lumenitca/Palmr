@@ -48,7 +48,7 @@
     "descriptionLabel": "描述",
     "descriptionPlaceholder": "请输入文件描述",
     "deleteFile": "删除文件",
-    "deleteConfirmation": "您确定要删除“{{fileName}}”吗？",
+    "deleteConfirmation": "您确定要删除“{fileName}”吗？",
     "deleteWarning": "此操作不可撤销。"
   },
   "fileManager": {
@@ -68,8 +68,8 @@
     "downloadError": "下载文件失败"
   },
   "fileSelector": {
-    "availableFiles": "可用文件 ({{count}})",
-    "shareFiles": "共享文件 ({{count}})",
+    "availableFiles": "可用文件 ({count})",
+    "shareFiles": "共享文件 ({count})",
     "searchPlaceholder": "搜索文件...",
     "noMatchingFiles": "没有匹配的文件",
     "noAvailableFiles": "没有可用的文件",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "请输入收件人电子邮件",
     "add": "添加",
-    "recipients": "收件人 ({{count}})",
+    "recipients": "收件人 ({count})",
     "notifyAll": "通知所有人",
     "noRecipients": "还没有添加收件人",
     "addSuccess": "收件人添加成功",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "搜索文件...",
-    "results": "共{{total}}个文件，找到{{filtered}}个"
+    "results": "共{total}个文件，找到{filtered}个"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "保存 {{group}}"
+      "save": "保存 {group}"
     },
     "errors": {
       "loadFailed": "加载设置失败",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "没有需要保存的更改",
-      "updateSuccess": "{{group}}设置更新成功"
+      "updateSuccess": "{group}设置更新成功"
     },
     "title": "设置",
     "breadcrumb": "设置",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "未命名",
-      "created": "创建于：{{date}}",
-      "expires": "过期于：{{date}}"
+      "created": "创建于：{date}",
+      "expires": "过期于：{date}"
     },
     "notFound": {
       "title": "未找到共享",
@@ -526,7 +526,7 @@
       "title": "所有共享",
       "createButton": "创建共享",
       "placeholder": "搜索共享...",
-      "results": "在总共{{total}}个共享中找到了{{filtered}}个"
+      "results": "在总共{total}个共享中找到了{filtered}个"
     },
     "pageTitle": "共享"
   },
@@ -587,8 +587,8 @@
     "upload": "上传",
     "success": "文件上传成功",
     "error": "文件上传失败",
-    "fileSizeExceeded": "文件大小超出 {{maxsizemb}}MB 的限制。",
-    "insufficientStorage": "存储空间不足。您有 {{availablespace}}MB 可用空间。",
+    "fileSizeExceeded": "文件大小超出 {maxsizemb}MB 的限制。",
+    "insufficientStorage": "存储空间不足。您有 {availablespace}MB 可用空间。",
     "unauthorized": "未授权：访问此资源需要有效的令牌。"
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "加载用户失败",
-      "submitFailed": "用户{{mode}}失败",
+      "submitFailed": "用户{mode}失败",
       "deleteFailed": "删除用户失败",
       "statusUpdateFailed": "更新用户状态失败"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "确认删除用户",
-      "confirmation": "您确定要删除{{firstName}} {{lastName}}吗？此操作不可撤销。",
+      "confirmation": "您确定要删除{firstName} {lastName}吗？此操作不可撤销。",
       "confirm": "删除用户"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "确认状态更改",
-      "confirmation": "您确定要{{action}}{{firstName}} {{lastName}}吗？",
+      "confirmation": "您确定要{action}{firstName} {lastName}吗？",
       "activate": "激活",
       "deactivate": "停用",
       "user": "用户"

@@ -68,8 +68,8 @@
     "downloadError": "Error al descargar el archivo"
   },
   "fileSelector": {
-    "availableFiles": "Archivos disponibles ({{count}})",
-    "shareFiles": "Compartir archivos ({{count}})",
+    "availableFiles": "Archivos disponibles ({count})",
+    "shareFiles": "Compartir archivos ({count})",
     "searchPlaceholder": "Buscar archivos...",
     "noMatchingFiles": "No hay archivos que coincidan",
     "noAvailableFiles": "No hay archivos disponibles",
@@ -255,7 +255,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Introduce el correo del destinatario",
     "add": "Agregar",
-    "recipients": "Destinatarios ({{count}})",
+    "recipients": "Destinatarios ({count})",
     "notifyAll": "Notificar a todos",
     "noRecipients": "Aún no se han agregado destinatarios",
     "addSuccess": "Destinatario agregado exitosamente",
@@ -313,7 +313,7 @@
   },
   "searchBar": {
     "placeholder": "Buscar archivos...",
-    "results": "Se encontraron {{filtered}} de {{total}} archivos"
+    "results": "Se encontraron {filtered} de {total} archivos"
   },
   "settings": {
     "groups": {
@@ -407,7 +407,7 @@
       }
     },
     "buttons": {
-      "save": "Guardar {{group}}"
+      "save": "Guardar {group}"
     },
     "errors": {
       "loadFailed": "Error al cargar la configuración",
@@ -415,7 +415,7 @@
     },
     "messages": {
       "noChanges": "No hay cambios para guardar",
-      "updateSuccess": "Configuración de {{group}} actualizada exitosamente"
+      "updateSuccess": "Configuración de {group} actualizada exitosamente"
     },
     "title": "Configuración",
     "breadcrumb": "Configuración",
@@ -440,8 +440,8 @@
     },
     "details": {
       "untitled": "Compartición sin título",
-      "created": "Creada: {{date}}",
-      "expires": "Expira: {{date}}"
+      "created": "Creada: {date}",
+      "expires": "Expira: {date}"
     },
     "notFound": {
       "title": "Compartición no encontrada",
@@ -526,7 +526,7 @@
       "title": "Todas las comparticiones",
       "createButton": "Crear compartición",
       "placeholder": "Buscar comparticiones...",
-      "results": "Se encontraron {{filtered}} de {{total}} comparticiones"
+      "results": "Se encontraron {filtered} de {total} comparticiones"
     },
     "pageTitle": "Comparticiones"
   },
@@ -587,8 +587,8 @@
     "upload": "Subir",
     "success": "Archivo subido exitosamente",
     "error": "Error al subir el archivo",
-    "fileSizeExceeded": "El tamaño del archivo excede el límite de {{maxsizemb}}MB.",
-    "insufficientStorage": "Espacio de almacenamiento insuficiente. Tiene {{availablespace}}MB disponibles.",
+    "fileSizeExceeded": "El tamaño del archivo excede el límite de {maxsizemb}MB.",
+    "insufficientStorage": "Espacio de almacenamiento insuficiente. Tiene {availablespace}MB disponibles.",
     "unauthorized": "No autorizado: se requiere un token válido para acceder a este recurso."
   },
   "users": {
@@ -598,7 +598,7 @@
     },
     "errors": {
       "loadFailed": "Error al cargar los usuarios",
-      "submitFailed": "Error al {{mode}} el usuario",
+      "submitFailed": "Error al {mode} el usuario",
       "deleteFailed": "Error al eliminar el usuario",
       "statusUpdateFailed": "Error al actualizar el estado del usuario"
     },
@@ -617,7 +617,7 @@
     },
     "delete": {
       "title": "Confirmar eliminación del usuario",
-      "confirmation": "¿Estás seguro de que deseas eliminar al usuario {{firstName}} {{lastName}}? Esta acción no se puede deshacer.",
+      "confirmation": "¿Estás seguro de que deseas eliminar al usuario {firstName} {lastName}? Esta acción no se puede deshacer.",
       "confirm": "Eliminar usuario"
     },
     "form": {
@@ -638,7 +638,7 @@
     },
     "status": {
       "title": "Confirmar cambio de estado",
-      "confirmation": "¿Estás seguro de que deseas {{action}} al usuario {{firstName}} {{lastName}}?",
+      "confirmation": "¿Estás seguro de que deseas {action} al usuario {firstName} {lastName}?",
       "activate": "activar",
       "deactivate": "desactivar",
       "user": "Usuario"
