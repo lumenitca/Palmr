@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "Maximum Bestandsgrootte",
-        "description": "Maximum toegestane bestandsgrootte voor uploads (in bytes)"
+        "description": "Maximum toegestane bestandsgrootte voor uploads"
       },
       "maxTotalStoragePerUser": {
         "title": "Maximum Opslag Per Gebruiker",
-        "description": "Totale opslaglimiet per gebruiker (in bytes)"
+        "description": "Totale opslaglimiet per gebruiker"
       }
     },
     "buttons": {

@@ -24,6 +24,7 @@ export interface SettingsGroupProps {
 export interface ConfigInputProps {
   config: Config;
   register: UseFormReturn<any>["register"];
+  setValue: UseFormReturn<any>["setValue"];
   error?: any;
   smtpEnabled?: string;
 }

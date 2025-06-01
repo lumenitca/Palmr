@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "Dimensione Massima File",
-        "description": "Dimensione massima consentita per i caricamenti (in byte)"
+        "description": "Dimensione massima consentita per i caricamenti"
       },
       "maxTotalStoragePerUser": {
         "title": "Archiviazione Massima per Utente",
-        "description": "Limite totale di archiviazione per utente (in byte)"
+        "description": "Limite totale di archiviazione per utente"
       }
     },
     "buttons": {

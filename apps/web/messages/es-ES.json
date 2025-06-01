@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "Tamaño máximo de archivo",
-        "description": "Tamaño máximo permitido para subir archivos (en bytes)"
+        "description": "Tamaño máximo permitido para subir archivos"
       },
       "maxTotalStoragePerUser": {
         "title": "Almacenamiento máximo por usuario",
-        "description": "Límite total de almacenamiento por usuario (en bytes)"
+        "description": "Límite total de almacenamiento por usuario"
       }
     },
     "buttons": {

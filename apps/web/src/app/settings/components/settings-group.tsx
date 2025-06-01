@@ -52,6 +52,7 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
                   config={config}
                   error={form.formState.errors.configs?.[config.key]}
                   register={form.register}
+                  setValue={form.setValue}
                   smtpEnabled={form.watch("configs.smtpEnabled")}
                   watch={form.watch}
                 />

@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "Maximale Dateigröße",
-        "description": "Maximal erlaubte Dateigröße für Uploads (in Bytes)"
+        "description": "Maximal erlaubte Dateigröße für Uploads"
       },
       "maxTotalStoragePerUser": {
         "title": "Maximaler Speicher pro Benutzer",
-        "description": "Gesamtspeicherlimit pro Benutzer (in Bytes)"
+        "description": "Gesamtspeicherlimit pro Benutzer"
       }
     },
     "buttons": {

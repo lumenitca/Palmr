@@ -11,7 +11,6 @@ const envSchema = z.object({
   S3_REGION: z.string().optional(),
   S3_BUCKET_NAME: z.string().optional(),
   S3_FORCE_PATH_STYLE: z.union([z.literal("true"), z.literal("false")]).default("false"),
-  MAX_FILESIZE: z.string().min(1),
 });
 
 export const env = envSchema.parse(process.env);

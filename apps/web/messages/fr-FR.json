@@ -402,11 +402,11 @@
       },
       "maxFileSize": {
         "title": "Taille Maximale de Fichier",
-        "description": "Taille maximale autorisée pour les fichiers (en octets)"
+        "description": "Taille maximale autorisée pour les fichiers"
       },
       "maxTotalStoragePerUser": {
         "title": "Stockage Maximum par Utilisateur",
-        "description": "Limite totale de stockage par utilisateur (en octets)"
+        "description": "Limite totale de stockage par utilisateur"
       }
     },
     "buttons": {

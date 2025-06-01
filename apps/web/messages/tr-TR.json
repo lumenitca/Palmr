@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "Maksimum Dosya Boyutu",
-        "description": "Yüklemeye izin verilen maksimum dosya boyutu (bayt cinsinden)"
+        "description": "Yüklemeye izin verilen maksimum dosya boyutu"
       },
       "maxTotalStoragePerUser": {
         "title": "Kullanıcı Başına Maksimum Depolama",
-        "description": "Kullanıcı başına toplam depolama sınırı (bayt cinsinden)"
+        "description": "Kullanıcı başına toplam depolama sınırı"
       }
     },
     "buttons": {

@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "최대 파일 크기",
-        "description": "업로드 가능한 최대 파일 크기(바이트 단위)"
+        "description": "업로드 가능한 최대 파일 크기"
       },
       "maxTotalStoragePerUser": {
         "title": "사용자당 최대 스토리지",
-        "description": "사용자당 총 스토리지 제한(바이트 단위)"
+        "description": "사용자당 총 스토리지 제한"
       }
     },
     "buttons": {

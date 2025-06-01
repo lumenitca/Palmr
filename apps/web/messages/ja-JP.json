@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "最大ファイルサイズ",
-        "description": "アップロード可能な最大ファイルサイズ（バイト単位）"
+        "description": "アップロード可能な最大ファイルサイズ"
       },
       "maxTotalStoragePerUser": {
         "title": "ユーザーごとの最大ストレージ",
-        "description": "ユーザーごとの総ストレージ制限（バイト単位）"
+        "description": "ユーザーごとの総ストレージ制限"
       }
     },
     "buttons": {

@@ -39,7 +39,7 @@ const defaultConfigs = [
   // Storage Configurations
   {
     key: "maxFileSize",
-    value: process.env.MAX_FILESIZE || "1073741824", // default 1GiB in bytes
+    value: "1073741824", // default 1GiB in bytes
     type: "bigint",
     group: "storage",
   },

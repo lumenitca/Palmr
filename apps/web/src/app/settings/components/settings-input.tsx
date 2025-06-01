@@ -1,20 +1,22 @@
 import { useTranslations } from "next-intl";
-import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
 import { createFieldTitles } from "../constants";
 import { Config } from "../types";
+import { FileSizeInput } from "./file-size-input";
 import { LogoInput } from "./logo-input";
 
 export interface ConfigInputProps {
   config: Config;
   register: UseFormRegister<any>;
   watch: UseFormWatch<any>;
+  setValue: UseFormSetValue<any>;
   error?: any;
   smtpEnabled?: string;
 }
 
-export function SettingsInput({ config, register, watch, error, smtpEnabled }: ConfigInputProps) {
+export function SettingsInput({ config, register, watch, setValue, error, smtpEnabled }: ConfigInputProps) {
   const t = useTranslations();
   const FIELD_TITLES = createFieldTitles(t);
   const isSmtpField = config.group === "email" && config.key !== "smtpEnabled";
@@ -31,10 +33,28 @@ export function SettingsInput({ config, register, watch, error, smtpEnabled }: C
           isDisabled={isDisabled}
           value={value}
           onChange={(value) => {
-            register(`configs.${config.key}`).onChange({
-              target: { value },
-            });
+            setValue(`configs.${config.key}`, value, { shouldDirty: true });
           }}
+        />
+        {error && <p className="text-danger text-xs mt-1">{error.message}</p>}
+      </div>
+    );
+  }
+
+  // Special input for file size configurations
+  if (config.key === "maxFileSize" || config.key === "maxTotalStoragePerUser") {
+    const value = watch(`configs.${config.key}`);
+
+    return (
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold">{friendlyLabel}</label>
+        <FileSizeInput
+          value={value || "0"}
+          onChange={(value) => {
+            setValue(`configs.${config.key}`, value, { shouldDirty: true });
+          }}
+          disabled={isDisabled}
+          error={error}
         />
         {error && <p className="text-danger text-xs mt-1">{error.message}</p>}
       </div>

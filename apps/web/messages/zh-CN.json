@@ -399,11 +399,11 @@
       },
       "maxFileSize": {
         "title": "最大文件大小",
-        "description": "允许上传的最大文件大小（以字节为单位）"
+        "description": "允许上传的最大文件大小"
       },
       "maxTotalStoragePerUser": {
         "title": "每个用户的最大存储量",
-        "description": "每个用户的总存储限制（以字节为单位）"
+        "description": "每个用户的总存储限制"
       }
     },
     "buttons": {
