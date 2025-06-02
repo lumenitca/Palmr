@@ -60,13 +60,17 @@
     "deleteError": "Dosya silinemedi"
   },
   "filePreview": {
-    "loading": "Önizleme yükleniyor...",
-    "notAvailable": "Önizleme mevcut değil",
-    "downloadToView": "İçeriği görüntülemek için dosyayı indirin",
-    "audioNotSupported": "Tarayıcınız ses öğesini desteklemiyor",
-    "videoNotSupported": "Tarayıcınız video öğesini desteklemiyor",
-    "loadError": "Önizleme yüklenemedi",
-    "downloadError": "Dosya indirilemedi"
+    "title": "Dosya Önizleme",
+    "loading": "Yükleniyor...",
+    "notAvailable": "Bu dosya türü için önizleme mevcut değil.",
+    "downloadToView": "Dosyayı indirmek için indirme düğmesini kullanın.",
+    "loadError": "Dosya önizlemesi yüklenirken hata oluştu.",
+    "downloadError": "Dosya indirilirken hata oluştu.",
+    "audioNotSupported": "Tarayıcınız ses öğesini desteklemiyor.",
+    "videoNotSupported": "Tarayıcınız video öğesini desteklemiyor.",
+    "pdfPreviewNotAvailable": "PDF önizlemesi mevcut değil. Alternatif görünümü deneyin veya indirin.",
+    "tryAlternativeView": "Alternatif Görünümü Dene",
+    "loadingAlternative": "Alternatif görünüm yükleniyor..."
   },
   "fileSelector": {
     "availableFiles": "Kullanılabilir Dosyalar ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "Dosya Yükle",
+    "multipleTitle": "Çoklu Dosya Yükle",
     "selectFile": "Dosya seçmek için tıklayın",
+    "selectMultipleFiles": "Bir veya birden çok dosya seçmek için tıklayın",
+    "dragAndDrop": "veya dosyaları buraya sürükleyip bırakın",
     "preview": "Önizleme",
-    "uploadProgress": "Yükleme İlerlemesi",
+    "uploadProgress": "Yükleme ilerlemesi",
     "upload": "Yükle",
+    "startUploads": "Yüklemeleri Başlat",
+    "finish": "Bitir",
     "success": "Dosya başarıyla yüklendi",
-    "error": "Dosya yüklenemedi",
+    "allSuccess": "{count, plural, =1 {Dosya başarıyla yüklendi} other {# dosya başarıyla yüklendi}}",
+    "partialSuccess": "{success} dosya başarıyla yüklendi, {error} başarısız",
+    "error": "Dosya yükleme başarısız",
     "fileSizeExceeded": "Dosya boyutu {maxsizemb}MB sınırını aşıyor.",
     "insufficientStorage": "Yetersiz depolama alanı. {availablespace}MB kullanılabilir alanınız var.",
-    "unauthorized": "Yetkisiz: Bu kaynağa erişmek için geçerli bir token gereklidir."
+    "unauthorized": "Yetkisiz: Bu kaynağa erişmek için geçerli bir token gereklidir.",
+    "confirmCancel": {
+      "title": "Yüklemeleri İptal Et",
+      "messageSingle": "Devam eden bir yükleme var.",
+      "messageMultiple": "{count} devam eden yükleme var.",
+      "warning": "Şimdi kapatırsanız, yüklemeler iptal olacak ve tüm ilerleme kaybolacak.",
+      "continue": "Yüklemeleri Sürdür",
+      "cancel": "Yüklemeleri İptal Et"
+    }
   },
   "users": {
     "modes": {

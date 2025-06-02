@@ -60,13 +60,17 @@
     "deleteError": "Fehler beim Löschen der Datei"
   },
   "filePreview": {
-    "loading": "Vorschau wird geladen...",
-    "notAvailable": "Vorschau nicht verfügbar",
-    "downloadToView": "Datei herunterladen, um den Inhalt anzuzeigen",
-    "audioNotSupported": "Ihr Browser unterstützt das Audioelement nicht",
-    "videoNotSupported": "Ihr Browser unterstützt das Videoelement nicht",
-    "loadError": "Fehler beim Laden der Vorschau",
-    "downloadError": "Fehler beim Herunterladen der Datei"
+    "title": "Datei-Vorschau",
+    "loading": "Laden...",
+    "notAvailable": "Vorschau für diesen Dateityp nicht verfügbar.",
+    "downloadToView": "Verwenden Sie die Download-Schaltfläche, um die Datei herunterzuladen.",
+    "loadError": "Fehler beim Laden der Datei-Vorschau.",
+    "downloadError": "Fehler beim Herunterladen der Datei.",
+    "audioNotSupported": "Ihr Browser unterstützt das Audio-Element nicht.",
+    "videoNotSupported": "Ihr Browser unterstützt das Video-Element nicht.",
+    "pdfPreviewNotAvailable": "PDF-Vorschau ist nicht verfügbar. Versuchen Sie die alternative Ansicht oder laden Sie herunter.",
+    "tryAlternativeView": "Alternative Ansicht Versuchen",
+    "loadingAlternative": "Lade alternative Ansicht..."
   },
   "fileSelector": {
     "availableFiles": "Verfügbare Dateien ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "Datei hochladen",
+    "multipleTitle": "Mehrere Dateien Hochladen",
     "selectFile": "Klicken Sie, um eine Datei auszuwählen",
+    "selectMultipleFiles": "Klicken Sie, um eine oder mehrere Dateien auszuwählen",
+    "dragAndDrop": "oder ziehen und legen Sie Dateien hier ab",
     "preview": "Vorschau",
     "uploadProgress": "Upload-Fortschritt",
     "upload": "Hochladen",
+    "startUploads": "Uploads Starten",
+    "finish": "Beenden",
     "success": "Datei erfolgreich hochgeladen",
+    "allSuccess": "{count, plural, =1 {Datei erfolgreich hochgeladen} other {# Dateien erfolgreich hochgeladen}}",
+    "partialSuccess": "{success} Dateien erfolgreich hochgeladen, {error} fehlgeschlagen",
     "error": "Fehler beim Hochladen der Datei",
-    "fileSizeExceeded": "Dateigröße überschreitet das limit von {maxsizemb}MB.",
-    "insufficientStorage": "Nicht genügend Speicherplatz. Es sind {availablespace}MB verfügbar.",
-    "unauthorized": "Nicht autorisiert: Ein gültiger Token ist erforderlich, um auf diese Ressource zuzugreifen."
+    "fileSizeExceeded": "Die Dateigröße überschreitet das Limit von {maxsizemb}MB.",
+    "insufficientStorage": "Unzureichender Speicherplatz. Sie haben {availablespace}MB verfügbar.",
+    "unauthorized": "Nicht autorisiert: Ein gültiger Token ist erforderlich, um auf diese Ressource zuzugreifen.",
+    "confirmCancel": {
+      "title": "Uploads Abbrechen",
+      "messageSingle": "Es läuft ein Upload.",
+      "messageMultiple": "Es laufen {count} Uploads.",
+      "warning": "Wenn Sie jetzt schließen, werden die Uploads abgebrochen und jeder Fortschritt geht verloren.",
+      "continue": "Uploads Fortsetzen",
+      "cancel": "Uploads Abbrechen"
+    }
   },
   "users": {
     "modes": {

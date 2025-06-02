@@ -60,13 +60,17 @@
     "deleteError": "Failed to delete file"
   },
   "filePreview": {
-    "loading": "Loading preview...",
-    "notAvailable": "Preview not available",
-    "downloadToView": "Download file to view contents",
-    "audioNotSupported": "Your browser does not support the audio element",
-    "videoNotSupported": "Your browser does not support the video element",
-    "loadError": "Failed to load preview",
-    "downloadError": "Failed to download file"
+    "title": "Preview File",
+    "loading": "Loading...",
+    "notAvailable": "Preview not available for this file type.",
+    "downloadToView": "Use the download button to download the file.",
+    "loadError": "Error loading file preview.",
+    "downloadError": "Error downloading file.",
+    "audioNotSupported": "Your browser does not support the audio element.",
+    "videoNotSupported": "Your browser does not support the video element.",
+    "pdfPreviewNotAvailable": "PDF preview is not available. Try alternative view or download.",
+    "tryAlternativeView": "Try Alternative View",
+    "loadingAlternative": "Loading alternative view..."
   },
   "fileSelector": {
     "availableFiles": "Available Files ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "Upload File",
+    "multipleTitle": "Upload Files",
     "selectFile": "Click to select a file",
+    "selectMultipleFiles": "Click to select one or multiple files",
+    "dragAndDrop": "or drag and drop files here",
     "preview": "Preview",
     "uploadProgress": "Upload progress",
     "upload": "Upload",
+    "startUploads": "Start Uploads",
+    "finish": "Finish",
     "success": "File uploaded successfully",
+    "allSuccess": "{count, plural, =1 {File uploaded successfully} other {# files uploaded successfully}}",
+    "partialSuccess": "{success} files uploaded successfully, {error} failed",
     "error": "Failed to upload file",
     "fileSizeExceeded": "File size exceeds the limit of {maxsizemb}MB.",
     "insufficientStorage": "Insufficient storage space. You have {availablespace}MB available.",
-    "unauthorized": "Unauthorized: a valid token is required to access this resource."
+    "unauthorized": "Unauthorized: a valid token is required to access this resource.",
+    "confirmCancel": {
+      "title": "Cancel Uploads",
+      "messageSingle": "There is one upload in progress.",
+      "messageMultiple": "There are {count} uploads in progress.",
+      "warning": "If you close now, uploads will be cancelled and any progress will be lost.",
+      "continue": "Continue Uploads",
+      "cancel": "Cancel Uploads"
+    }
   },
   "users": {
     "modes": {

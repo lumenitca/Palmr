@@ -60,13 +60,17 @@
     "deleteError": "파일 삭제에 실패했습니다"
   },
   "filePreview": {
-    "loading": "미리보기를 불러오는 중...",
-    "notAvailable": "미리보기를 사용할 수 없습니다",
-    "downloadToView": "내용을 보려면 파일을 다운로드하세요",
-    "audioNotSupported": "브라우저가 오디오 요소를 지원하지 않습니다",
-    "videoNotSupported": "브라우저가 비디오 요소를 지원하지 않습니다",
-    "loadError": "미리보기 불러오기에 실패했습니다",
-    "downloadError": "파일 다운로드에 실패했습니다"
+    "title": "파일 미리보기",
+    "loading": "로딩 중...",
+    "notAvailable": "이 파일 유형에 대한 미리보기를 사용할 수 없습니다.",
+    "downloadToView": "다운로드 버튼을 사용하여 파일을 다운로드하세요.",
+    "loadError": "파일 미리보기 로드 중 오류가 발생했습니다.",
+    "downloadError": "파일 다운로드 중 오류가 발생했습니다.",
+    "audioNotSupported": "브라우저가 오디오 요소를 지원하지 않습니다.",
+    "videoNotSupported": "브라우저가 비디오 요소를 지원하지 않습니다.",
+    "pdfPreviewNotAvailable": "PDF 미리보기를 사용할 수 없습니다. 대체 보기를 시도하거나 다운로드하세요.",
+    "tryAlternativeView": "대체 보기 시도",
+    "loadingAlternative": "대체 보기 로딩 중..."
   },
   "fileSelector": {
     "availableFiles": "사용 가능한 파일 ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "파일 업로드",
-    "selectFile": "파일 선택을 위해 클릭하세요",
+    "multipleTitle": "여러 파일 업로드",
+    "selectFile": "파일을 선택하려면 클릭하세요",
+    "selectMultipleFiles": "하나 또는 여러 파일을 선택하려면 클릭하세요",
+    "dragAndDrop": "또는 파일을 여기에 드래그 앤 드롭하세요",
     "preview": "미리보기",
-    "uploadProgress": "업로드 진행",
+    "uploadProgress": "업로드 진행률",
     "upload": "업로드",
+    "startUploads": "업로드 시작",
+    "finish": "완료",
     "success": "파일이 성공적으로 업로드되었습니다",
+    "allSuccess": "{count, plural, =1 {파일이 성공적으로 업로드되었습니다} other {# 개 파일이 성공적으로 업로드되었습니다}}",
+    "partialSuccess": "{success}개 파일이 성공적으로 업로드되었고, {error}개가 실패했습니다",
     "error": "파일 업로드에 실패했습니다",
     "fileSizeExceeded": "파일 크기가 {maxsizemb}MB 제한을 초과합니다.",
-    "insufficientStorage": "저장 공간이 부족합니다. {availablespace}MB의 사용 가능한 공간이 있습니다.",
-    "unauthorized": "권한 없음: 이 리소스에 액세스하려면 유효한 토큰이 필요합니다."
+    "insufficientStorage": "저장 공간이 부족합니다. {availablespace}MB 사용 가능합니다.",
+    "unauthorized": "권한 없음: 이 리소스에 액세스하려면 유효한 토큰이 필요합니다.",
+    "confirmCancel": {
+      "title": "업로드 취소",
+      "messageSingle": "진행 중인 업로드가 하나 있습니다.",
+      "messageMultiple": "진행 중인 업로드가 {count}개 있습니다.",
+      "warning": "지금 닫으면 업로드가 취소되고 모든 진행 상황이 손실됩니다.",
+      "continue": "업로드 계속",
+      "cancel": "업로드 취소"
+    }
   },
   "users": {
     "modes": {

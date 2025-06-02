@@ -60,13 +60,17 @@
     "deleteError": "Errore durante l'eliminazione del file"
   },
   "filePreview": {
-    "loading": "Caricamento anteprima...",
-    "notAvailable": "Anteprima non disponibile",
-    "downloadToView": "Scarica il file per visualizzare il contenuto",
-    "audioNotSupported": "Il tuo browser non supporta l'elemento audio",
-    "videoNotSupported": "Il tuo browser non supporta l'elemento video",
-    "loadError": "Errore durante il caricamento dell'anteprima",
-    "downloadError": "Errore durante il download del file"
+    "title": "Anteprima File",
+    "loading": "Caricamento...",
+    "notAvailable": "Anteprima non disponibile per questo tipo di file.",
+    "downloadToView": "Utilizzare il pulsante di download per scaricare il file.",
+    "loadError": "Errore nel caricamento dell'anteprima del file.",
+    "downloadError": "Errore nel download del file.",
+    "audioNotSupported": "Il tuo browser non supporta l'elemento audio.",
+    "videoNotSupported": "Il tuo browser non supporta l'elemento video.",
+    "pdfPreviewNotAvailable": "L'anteprima PDF non è disponibile. Prova la vista alternativa o scarica.",
+    "tryAlternativeView": "Prova Vista Alternativa",
+    "loadingAlternative": "Caricamento vista alternativa..."
   },
   "fileSelector": {
     "availableFiles": "File Disponibili ({count})",
@@ -582,16 +586,31 @@
     "system": "Sistema"
   },
   "uploadFile": {
-    "title": "Carica File",
+    "title": "Carica file",
+    "multipleTitle": "Carica Più File",
     "selectFile": "Clicca per selezionare un file",
+    "selectMultipleFiles": "Clicca per selezionare uno o più file",
+    "dragAndDrop": "o trascina e rilascia i file qui",
     "preview": "Anteprima",
     "uploadProgress": "Progresso caricamento",
     "upload": "Carica",
+    "startUploads": "Inizia Caricamenti",
+    "finish": "Termina",
     "success": "File caricato con successo",
-    "error": "Errore durante il caricamento del file",
+    "allSuccess": "{count, plural, =1 {File caricato con successo} other {# file caricati con successo}}",
+    "partialSuccess": "{success} file caricati con successo, {error} falliti",
+    "error": "Errore nel caricamento del file",
     "fileSizeExceeded": "La dimensione del file supera il limite di {maxsizemb}MB.",
     "insufficientStorage": "Spazio di archiviazione insufficiente. Hai {availablespace}MB disponibili.",
-    "unauthorized": "Non autorizzato: è richiesto un token valido per accedere a questa risorsa."
+    "unauthorized": "Non autorizzato: è richiesto un token valido per accedere a questa risorsa.",
+    "confirmCancel": {
+      "title": "Annulla Caricamenti",
+      "messageSingle": "C'è un caricamento in corso.",
+      "messageMultiple": "Ci sono {count} caricamenti in corso.",
+      "warning": "Se chiudi ora, i caricamenti saranno annullati e qualsiasi progresso sarà perso.",
+      "continue": "Continua Caricamenti",
+      "cancel": "Annulla Caricamenti"
+    }
   },
   "users": {
     "modes": {

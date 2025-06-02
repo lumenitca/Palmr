@@ -60,13 +60,17 @@
     "deleteError": "Fout bij het verwijderen van bestand"
   },
   "filePreview": {
-    "loading": "Voorvertoning laden...",
-    "notAvailable": "Voorvertoning niet beschikbaar",
-    "downloadToView": "Download bestand om inhoud te bekijken",
-    "audioNotSupported": "Je browser ondersteunt het audio-element niet",
-    "videoNotSupported": "Je browser ondersteunt het video-element niet",
-    "loadError": "Fout bij het laden van voorvertoning",
-    "downloadError": "Fout bij het downloaden van bestand"
+    "title": "Bestandsvoorbeeld",
+    "loading": "Laden...",
+    "notAvailable": "Voorbeeld niet beschikbaar voor dit bestandstype.",
+    "downloadToView": "Gebruik de downloadknop om het bestand te downloaden.",
+    "loadError": "Fout bij het laden van bestandsvoorbeeld.",
+    "downloadError": "Fout bij het downloaden van bestand.",
+    "audioNotSupported": "Uw browser ondersteunt het audio-element niet.",
+    "videoNotSupported": "Uw browser ondersteunt het video-element niet.",
+    "pdfPreviewNotAvailable": "PDF-voorbeeld is niet beschikbaar. Probeer de alternatieve weergave of download.",
+    "tryAlternativeView": "Alternatieve Weergave Proberen",
+    "loadingAlternative": "Alternatieve weergave laden..."
   },
   "fileSelector": {
     "availableFiles": "Beschikbare Bestanden ({count})",
@@ -582,16 +586,31 @@
     "system": "Systeem"
   },
   "uploadFile": {
-    "title": "Bestand Uploaden",
+    "title": "Bestand uploaden",
+    "multipleTitle": "Meerdere Bestanden Uploaden",
     "selectFile": "Klik om een bestand te selecteren",
-    "preview": "Voorvertoning",
+    "selectMultipleFiles": "Klik om een of meerdere bestanden te selecteren",
+    "dragAndDrop": "of sleep bestanden hierheen",
+    "preview": "Voorbeeld",
     "uploadProgress": "Upload voortgang",
     "upload": "Uploaden",
+    "startUploads": "Uploads Starten",
+    "finish": "Voltooien",
     "success": "Bestand succesvol geüpload",
-    "error": "Fout bij het uploaden van bestand",
+    "allSuccess": "{count, plural, =1 {Bestand succesvol geüpload} other {# bestanden succesvol geüpload}}",
+    "partialSuccess": "{success} bestanden succesvol geüpload, {error} mislukt",
+    "error": "Bestand uploaden mislukt",
     "fileSizeExceeded": "Bestandsgrootte overschrijdt de limiet van {maxsizemb}MB.",
-    "insufficientStorage": "Onvoldoende opslagruimte. Je hebt {availablespace}MB beschikbaar.",
-    "unauthorized": "Niet geautoriseerd: een geldig token is vereist voor toegang tot deze bron."
+    "insufficientStorage": "Onvoldoende opslagruimte. U heeft {availablespace}MB beschikbaar.",
+    "unauthorized": "Niet geautoriseerd: een geldig token is vereist om toegang te krijgen tot deze bron.",
+    "confirmCancel": {
+      "title": "Uploads Annuleren",
+      "messageSingle": "Er is één upload bezig.",
+      "messageMultiple": "Er zijn {count} uploads bezig.",
+      "warning": "Als u nu sluit, worden de uploads geannuleerd en gaat alle voortgang verloren.",
+      "continue": "Uploads Voortzetten",
+      "cancel": "Uploads Annuleren"
+    }
   },
   "users": {
     "modes": {

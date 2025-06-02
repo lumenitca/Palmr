@@ -60,13 +60,17 @@
     "deleteError": "ファイルの削除に失敗しました"
   },
   "filePreview": {
-    "loading": "プレビューを読み込み中...",
-    "notAvailable": "プレビューは利用できません",
-    "downloadToView": "内容を見るためにファイルをダウンロードしてください",
-    "audioNotSupported": "お使いのブラウザはオーディオ要素をサポートしていません",
-    "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません",
-    "loadError": "プレビューの読み込みに失敗しました",
-    "downloadError": "ファイルのダウンロードに失敗しました"
+    "title": "ファイルプレビュー",
+    "loading": "読み込み中...",
+    "notAvailable": "このファイルタイプのプレビューは利用できません。",
+    "downloadToView": "ダウンロードボタンを使用してファイルをダウンロードしてください。",
+    "loadError": "ファイルプレビューの読み込みエラー。",
+    "downloadError": "ファイルダウンロードエラー。",
+    "audioNotSupported": "お使いのブラウザはオーディオ要素をサポートしていません。",
+    "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません。",
+    "pdfPreviewNotAvailable": "PDFプレビューは利用できません。代替ビューを試すかダウンロードしてください。",
+    "tryAlternativeView": "代替ビューを試す",
+    "loadingAlternative": "代替ビューを読み込み中..."
   },
   "fileSelector": {
     "availableFiles": "利用可能なファイル ({count})",

@@ -60,13 +60,17 @@
     "deleteError": "Échec de la suppression du fichier"
   },
   "filePreview": {
-    "loading": "Chargement de l'aperçu...",
-    "notAvailable": "Aperçu non disponible",
-    "downloadToView": "Téléchargez le fichier pour voir le contenu",
-    "audioNotSupported": "Votre navigateur ne prend pas en charge l'élément audio",
-    "videoNotSupported": "Votre navigateur ne prend pas en charge l'élément vidéo",
-    "loadError": "Échec du chargement de l'aperçu",
-    "downloadError": "Échec du téléchargement du fichier"
+    "title": "Aperçu du Fichier",
+    "loading": "Chargement...",
+    "notAvailable": "Aperçu non disponible pour ce type de fichier.",
+    "downloadToView": "Utilisez le bouton de téléchargement pour télécharger le fichier.",
+    "loadError": "Erreur lors du chargement de l'aperçu du fichier.",
+    "downloadError": "Erreur lors du téléchargement du fichier.",
+    "audioNotSupported": "Votre navigateur ne prend pas en charge l'élément audio.",
+    "videoNotSupported": "Votre navigateur ne prend pas en charge l'élément vidéo.",
+    "pdfPreviewNotAvailable": "L'aperçu PDF n'est pas disponible. Essayez la vue alternative ou téléchargez.",
+    "tryAlternativeView": "Essayer la Vue Alternative",
+    "loadingAlternative": "Chargement de la vue alternative..."
   },
   "fileSelector": {
     "availableFiles": "Fichiers Disponibles ({count})",
@@ -582,16 +586,31 @@
     "system": "Système"
   },
   "uploadFile": {
-    "title": "Envoyer un Fichier",
+    "title": "Télécharger fichier",
+    "multipleTitle": "Télécharger Plusieurs Fichiers",
     "selectFile": "Cliquez pour sélectionner un fichier",
+    "selectMultipleFiles": "Cliquez pour sélectionner un ou plusieurs fichiers",
+    "dragAndDrop": "ou glissez et déposez des fichiers ici",
     "preview": "Aperçu",
-    "uploadProgress": "Progression de l'envoi",
-    "upload": "Envoyer",
-    "success": "Fichier envoyé avec succès",
-    "error": "Échec de l'envoi du fichier",
-    "fileSizeExceeded": "La taille du fichier dépasse la limite de {maxsizemb} Mo.",
-    "insufficientStorage": "Espace de stockage insuffisant. Vous disposez de {availablespace} Mo.",
-    "unauthorized": "Non autorisé : un jeton valide est requis pour accéder à cette ressource."
+    "uploadProgress": "Progression du téléchargement",
+    "upload": "Télécharger",
+    "startUploads": "Commencer les Téléchargements",
+    "finish": "Terminer",
+    "success": "Fichier téléchargé avec succès",
+    "allSuccess": "{count, plural, =1 {Fichier téléchargé avec succès} other {# fichiers téléchargés avec succès}}",
+    "partialSuccess": "{success} fichiers téléchargés avec succès, {error} ont échoué",
+    "error": "Échec du téléchargement du fichier",
+    "fileSizeExceeded": "La taille du fichier dépasse la limite de {maxsizemb}MB.",
+    "insufficientStorage": "Espace de stockage insuffisant. Vous avez {availablespace}MB disponibles.",
+    "unauthorized": "Non autorisé : un token valide est requis pour accéder à cette ressource.",
+    "confirmCancel": {
+      "title": "Annuler les Téléchargements",
+      "messageSingle": "Il y a un téléchargement en cours.",
+      "messageMultiple": "Il y a {count} téléchargements en cours.",
+      "warning": "Si vous fermez maintenant, les téléchargements seront annulés et tout progrès sera perdu.",
+      "continue": "Continuer les Téléchargements",
+      "cancel": "Annuler les Téléchargements"
+    }
   },
   "users": {
     "modes": {

@@ -60,13 +60,17 @@
     "deleteError": "Error al eliminar el archivo"
   },
   "filePreview": {
-    "loading": "Cargando vista previa...",
-    "notAvailable": "Vista previa no disponible",
-    "downloadToView": "Descarga el archivo para ver su contenido",
-    "audioNotSupported": "Tu navegador no soporta el elemento de audio",
-    "videoNotSupported": "Tu navegador no soporta el elemento de video",
-    "loadError": "Error al cargar la vista previa",
-    "downloadError": "Error al descargar el archivo"
+    "title": "Vista Previa del Archivo",
+    "loading": "Cargando...",
+    "notAvailable": "Vista previa no disponible para este tipo de archivo.",
+    "downloadToView": "Use el botón de descarga para descargar el archivo.",
+    "loadError": "Error al cargar la vista previa del archivo.",
+    "downloadError": "Error al descargar el archivo.",
+    "audioNotSupported": "Su navegador no soporta el elemento de audio.",
+    "videoNotSupported": "Su navegador no soporta el elemento de video.",
+    "pdfPreviewNotAvailable": "La vista previa del PDF no está disponible. Pruebe la vista alternativa o descargue.",
+    "tryAlternativeView": "Probar Vista Alternativa",
+    "loadingAlternative": "Cargando vista alternativa..."
   },
   "fileSelector": {
     "availableFiles": "Archivos disponibles ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "Subir archivo",
+    "multipleTitle": "Subir Múltiples Archivos",
     "selectFile": "Haz clic para seleccionar un archivo",
+    "selectMultipleFiles": "Haz clic para seleccionar uno o múltiples archivos",
+    "dragAndDrop": "o arrastra y suelta archivos aquí",
     "preview": "Vista previa",
     "uploadProgress": "Progreso de la subida",
     "upload": "Subir",
+    "startUploads": "Iniciar Subidas",
+    "finish": "Finalizar",
     "success": "Archivo subido exitosamente",
+    "allSuccess": "{count, plural, =1 {Archivo subido exitosamente} other {# archivos subidos exitosamente}}",
+    "partialSuccess": "{success} archivos subidos exitosamente, {error} fallaron",
     "error": "Error al subir el archivo",
     "fileSizeExceeded": "El tamaño del archivo excede el límite de {maxsizemb}MB.",
     "insufficientStorage": "Espacio de almacenamiento insuficiente. Tiene {availablespace}MB disponibles.",
-    "unauthorized": "No autorizado: se requiere un token válido para acceder a este recurso."
+    "unauthorized": "No autorizado: se requiere un token válido para acceder a este recurso.",
+    "confirmCancel": {
+      "title": "Cancelar Subidas",
+      "messageSingle": "Hay una subida en progreso.",
+      "messageMultiple": "Hay {count} subidas en progreso.",
+      "warning": "Si cierra ahora, las subidas serán canceladas y se perderá cualquier progreso.",
+      "continue": "Continuar Subidas",
+      "cancel": "Cancelar Subidas"
+    }
   },
   "users": {
     "modes": {

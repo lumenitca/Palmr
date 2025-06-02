@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getDownloadUrl } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";
@@ -26,11 +26,19 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   const t = useTranslations();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [videoBlob, setVideoBlob] = useState<string | null>(null);
+  const [pdfAsBlob, setPdfAsBlob] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [pdfLoadFailed, setPdfLoadFailed] = useState(false);
 
   useEffect(() => {
     if (isOpen && file.objectName) {
       setIsLoading(true);
       setPreviewUrl(null);
+      setVideoBlob(null);
+      setPdfAsBlob(false);
+      setDownloadUrl(null);
+      setPdfLoadFailed(false);
       loadPreview();
     }
   }, [file.objectName, isOpen]);
@@ -40,8 +48,11 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       if (previewUrl) {
         URL.revokeObjectURL(previewUrl);
       }
+      if (videoBlob) {
+        URL.revokeObjectURL(videoBlob);
+      }
     };
-  }, [previewUrl]);
+  }, [previewUrl, videoBlob]);
 
   const loadPreview = async () => {
     if (!file.objectName) return;
@@ -49,8 +60,24 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     try {
       const encodedObjectName = encodeURIComponent(file.objectName);
       const response = await getDownloadUrl(encodedObjectName);
+      const url = response.data.url;
 
-      setPreviewUrl(response.data.url);
+      // Armazenar a URL de download para reuso
+      setDownloadUrl(url);
+
+      const fileType = getFileType();
+
+      // Separar lógicas por tipo de arquivo
+      if (fileType === "video") {
+        await loadVideoPreview(url);
+      } else if (fileType === "audio") {
+        await loadAudioPreview(url);
+      } else if (fileType === "pdf") {
+        await loadPdfPreview(url);
+      } else {
+        // Imagens e outros tipos usam URL direta
+        setPreviewUrl(url);
+      }
     } catch (error) {
       console.error("Failed to load preview:", error);
       toast.error(t("filePreview.loadError"));
@@ -59,18 +86,109 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     }
   };
 
+  // Função específica para vídeos
+  const loadVideoPreview = async (url: string) => {
+    console.log("Loading video as blob for streaming support");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      setVideoBlob(blobUrl);
+      console.log("Video blob loaded successfully");
+    } catch (error) {
+      console.error("Failed to load video as blob:", error);
+      // Fallback para URL direta
+      setPreviewUrl(url);
+    }
+  };
+
+  // Função específica para áudios
+  const loadAudioPreview = async (url: string) => {
+    console.log("Loading audio as blob for streaming support");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      setPreviewUrl(blobUrl);
+      console.log("Audio blob loaded successfully");
+    } catch (error) {
+      console.error("Failed to load audio as blob:", error);
+      // Fallback para URL direta
+      setPreviewUrl(url);
+    }
+  };
+
+  // Função específica para PDFs
+  const loadPdfPreview = async (url: string) => {
+    console.log("Loading PDF as blob to avoid auto-download");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const finalBlob = new Blob([blob], { type: "application/pdf" });
+      const blobUrl = URL.createObjectURL(finalBlob);
+      setPreviewUrl(blobUrl);
+      setPdfAsBlob(true);
+      console.log("PDF blob loaded successfully");
+    } catch (error) {
+      console.error("Failed to load PDF as blob:", error);
+      // Fallback para URL direta com timeout para detecção automática
+      setPreviewUrl(url);
+      setTimeout(() => {
+        if (!pdfLoadFailed && !pdfAsBlob) {
+          console.log("PDF load timeout, trying blob method...");
+          handlePdfLoadError();
+        }
+      }, 4000);
+    }
+  };
+
+  const handlePdfLoadError = async () => {
+    if (pdfLoadFailed || pdfAsBlob) return; // Evitar loops
+
+    console.log("PDF load failed, trying blob method...");
+    setPdfLoadFailed(true);
+
+    // Usar a URL armazenada para tentar carregar como blob
+    if (downloadUrl) {
+      setTimeout(() => {
+        loadPdfPreview(downloadUrl);
+      }, 500);
+    }
+  };
+
   const handleDownload = async () => {
     try {
+      console.log("Starting download process...");
+
+      // Sempre buscar nova URL de download para evitar tokens expirados
       const encodedObjectName = encodeURIComponent(file.objectName);
       const response = await getDownloadUrl(encodedObjectName);
-      const downloadUrl = response.data.url;
+      const freshUrl = response.data.url;
 
-      const fileResponse = await fetch(downloadUrl);
+      console.log("Got fresh download URL:", freshUrl);
+
+      // Usar a URL fresca para download
+      const fileResponse = await fetch(freshUrl);
+      if (!fileResponse.ok) {
+        throw new Error(`Download failed: ${fileResponse.status} - ${fileResponse.statusText}`);
+      }
+
       const blob = await fileResponse.blob();
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
-
       link.href = url;
       link.download = file.name;
       document.body.appendChild(link);
@@ -78,9 +196,11 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      console.log("Download completed successfully");
     } catch (error) {
       toast.error(t("filePreview.downloadError"));
-      console.error(error);
+      console.error("Download error:", error);
     }
   };
 
@@ -88,9 +208,9 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     const extension = file.name.split(".").pop()?.toLowerCase();
 
     if (extension === "pdf") return "pdf";
-    if (["jpg", "jpeg", "png", "gif", "webp"].includes(extension || "")) return "image";
-    if (["mp3", "wav", "ogg", "m4a"].includes(extension || "")) return "audio";
-    if (["mp4", "webm", "ogg", "mov", "avi", "mkv"].includes(extension || "")) return "video";
+    if (["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "tiff"].includes(extension || "")) return "image";
+    if (["mp3", "wav", "ogg", "m4a", "aac", "flac"].includes(extension || "")) return "audio";
+    if (["mp4", "webm", "ogg", "mov", "avi", "mkv", "wmv", "flv", "m4v"].includes(extension || "")) return "video";
 
     return "other";
   };
@@ -108,7 +228,19 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       );
     }
 
-    if (!previewUrl) {
+    const mediaUrl = fileType === "video" ? videoBlob : previewUrl;
+
+    if (!mediaUrl && (fileType === "video" || fileType === "audio")) {
+      return (
+        <div className="flex flex-col items-center justify-center h-96 gap-4">
+          <FileIcon className={`h-12 w-12 ${color}`} />
+          <p className="text-muted-foreground">{t("filePreview.notAvailable")}</p>
+          <p className="text-sm text-muted-foreground">{t("filePreview.downloadToView")}</p>
+        </div>
+      );
+    }
+
+    if (!previewUrl && fileType !== "video") {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
           <FileIcon className={`h-12 w-12 ${color}`} />
@@ -122,40 +254,82 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       case "pdf":
         return (
           <ScrollArea className="w-full">
-            <iframe className="w-full h-full min-h-[600px]" src={previewUrl} title={file.name} />
+            <div className="w-full min-h-[600px] border rounded-lg overflow-hidden bg-card">
+              {pdfAsBlob ? (
+                // PDF carregado como blob - deve funcionar
+                <iframe
+                  src={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  className="w-full h-full min-h-[600px]"
+                  title={file.name}
+                  style={{ border: "none" }}
+                />
+              ) : pdfLoadFailed ? (
+                // Está tentando carregar como blob
+                <div className="flex items-center justify-center h-full min-h-[600px]">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+                    <p className="text-muted-foreground">{t("filePreview.loadingAlternative")}</p>
+                  </div>
+                </div>
+              ) : (
+                // Primeira tentativa com URL normal
+                <div className="w-full h-full min-h-[600px] relative">
+                  <object
+                    data={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    type="application/pdf"
+                    className="w-full h-full min-h-[600px]"
+                    onError={handlePdfLoadError}
+                  >
+                    {/* Fallback se object não funcionar */}
+                    <iframe
+                      src={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                      className="w-full h-full min-h-[600px]"
+                      title={file.name}
+                      style={{ border: "none" }}
+                      onError={handlePdfLoadError}
+                    />
+                  </object>
+                </div>
+              )}
+            </div>
           </ScrollArea>
         );
       case "image":
         return (
           <AspectRatio ratio={16 / 9} className="bg-muted">
-            <img src={previewUrl} alt={file.name} className="object-contain w-full h-full rounded-md" />
+            <img src={previewUrl!} alt={file.name} className="object-contain w-full h-full rounded-md" />
           </AspectRatio>
         );
       case "audio":
         return (
           <div className="flex flex-col items-center justify-center gap-6 py-12">
             <FileIcon className={`text-6xl ${color}`} />
-            <audio controls className="w-full max-w-md">
-              <source src={previewUrl} type={`audio/${file.name.split(".").pop()}`} />
-              {t("filePreview.audioNotSupported")}
-            </audio>
+            <div className="w-full max-w-md">
+              <audio controls className="w-full" preload="metadata">
+                <source src={mediaUrl!} />
+                {t("filePreview.audioNotSupported")}
+              </audio>
+            </div>
+            <p className="text-sm text-muted-foreground text-center">{file.name}</p>
           </div>
         );
       case "video":
         return (
-          <div className="flex flex-col items-center justify-center gap-6 py-12">
-            <video controls className="w-full max-w-4xl">
-              <source src={previewUrl} type={`video/${file.name.split(".").pop()}`} />
-              {t("filePreview.videoNotSupported")}
-            </video>
+          <div className="flex flex-col items-center justify-center gap-4 py-6">
+            <div className="w-full max-w-4xl">
+              <video controls className="w-full rounded-lg" preload="metadata" style={{ maxHeight: "70vh" }}>
+                <source src={mediaUrl!} />
+                {t("filePreview.videoNotSupported")}
+              </video>
+            </div>
           </div>
         );
       default:
         return (
           <div className="flex flex-col items-center justify-center h-96 gap-4">
             <FileIcon className={`text-6xl ${color}`} />
-            <p className="text-gray-500">{t("filePreview.notAvailable")}</p>
-            <p className="text-sm text-gray-400">{t("filePreview.downloadToView")}</p>
+            <p className="text-muted-foreground">{t("filePreview.notAvailable")}</p>
+            <p className="text-sm text-muted-foreground">{t("filePreview.downloadToView")}</p>
           </div>
         );
     }
@@ -163,17 +337,17 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-4xl">
+      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
-          <div className="flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2">
             {(() => {
               const FileIcon = getFileIcon(file.name).icon;
               return <FileIcon size={24} />;
             })()}
-            <span>{file.name}</span>
-          </div>
+            <span className="truncate">{file.name}</span>
+          </DialogTitle>
         </DialogHeader>
-        <div className="py-4">{renderPreview()}</div>
+        <div className="flex-1 overflow-auto">{renderPreview()}</div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
             {t("common.close")}

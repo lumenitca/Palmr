@@ -60,13 +60,17 @@
     "deleteError": "Falha ao excluir arquivo"
   },
   "filePreview": {
-    "loading": "Carregando visualização...",
-    "notAvailable": "Visualização não disponível",
-    "downloadToView": "Faça o download para visualizar o conteúdo",
-    "audioNotSupported": "Seu navegador não suporta o elemento de áudio",
-    "videoNotSupported": "Seu navegador não suporta o elemento de vídeo",
-    "loadError": "Falha ao carregar a visualização",
-    "downloadError": "Falha ao baixar o arquivo"
+    "title": "Visualizar Arquivo",
+    "loading": "Carregando...",
+    "notAvailable": "Preview não disponível para este tipo de arquivo.",
+    "downloadToView": "Use o botão de download para baixar o arquivo.",
+    "loadError": "Erro ao carregar preview do arquivo.",
+    "downloadError": "Erro ao baixar arquivo.",
+    "audioNotSupported": "Seu navegador não suporta o elemento de áudio.",
+    "videoNotSupported": "Seu navegador não suporta o elemento de vídeo.",
+    "pdfPreviewNotAvailable": "Preview do PDF não está disponível. Tente o modo alternativo ou faça o download.",
+    "tryAlternativeView": "Tentar Visualização Alternativa",
+    "loadingAlternative": "Carregando visualização alternativa..."
   },
   "fileSelector": {
     "availableFiles": "Arquivos Disponíveis ({count})",
@@ -603,15 +607,30 @@
   },
   "uploadFile": {
     "title": "Enviar Arquivo",
+    "multipleTitle": "Enviar Múltiplos Arquivos",
     "selectFile": "Clique para selecionar um arquivo",
+    "selectMultipleFiles": "Clique para selecionar múltiplos arquivos",
+    "dragAndDrop": "ou arraste e solte arquivos aqui",
     "preview": "Pré-visualização",
     "uploadProgress": "Progresso do upload",
     "upload": "Enviar",
+    "startUploads": "Iniciar Uploads",
+    "finish": "Concluir",
     "success": "Arquivo enviado com sucesso",
+    "allSuccess": "{count, plural, =1 {Arquivo enviado com sucesso} other {# arquivos enviados com sucesso}}",
+    "partialSuccess": "{success} arquivos enviados com sucesso, {error} falharam",
     "error": "Falha ao enviar arquivo",
     "fileSizeExceeded": "O tamanho do arquivo excede o limite de {maxsizemb}MB.",
     "insufficientStorage": "Espaço de armazenamento insuficiente. Você tem {availablespace}MB disponíveis.",
-    "unauthorized": "Não autorizado: um token válido é necessário para acessar este recurso."
+    "unauthorized": "Não autorizado: um token válido é necessário para acessar este recurso.",
+    "confirmCancel": {
+      "title": "Cancelar Uploads",
+      "messageSingle": "Há um upload em andamento.",
+      "messageMultiple": "Há {count} uploads em andamento.",
+      "warning": "Se você fechar agora, os uploads serão cancelados e qualquer progresso será perdido.",
+      "continue": "Continuar Uploads",
+      "cancel": "Cancelar Uploads"
+    }
   },
   "users": {
     "modes": {

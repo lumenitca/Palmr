@@ -60,13 +60,17 @@
     "deleteError": "文件删除失败"
   },
   "filePreview": {
-    "loading": "正在加载预览...",
-    "notAvailable": "预览不可用",
-    "downloadToView": "下载文件以查看内容",
-    "audioNotSupported": "您的浏览器不支持音频元素",
-    "videoNotSupported": "您的浏览器不支持视频元素",
-    "loadError": "加载预览失败",
-    "downloadError": "下载文件失败"
+    "title": "文件预览",
+    "loading": "加载中...",
+    "notAvailable": "此文件类型不支持预览。",
+    "downloadToView": "使用下载按钮下载文件。",
+    "loadError": "加载文件预览时出错。",
+    "downloadError": "下载文件时出错。",
+    "audioNotSupported": "您的浏览器不支持音频元素。",
+    "videoNotSupported": "您的浏览器不支持视频元素。",
+    "pdfPreviewNotAvailable": "PDF预览不可用。请尝试备用视图或下载。",
+    "tryAlternativeView": "尝试备用视图",
+    "loadingAlternative": "加载备用视图中..."
   },
   "fileSelector": {
     "availableFiles": "可用文件 ({count})",
@@ -583,15 +587,30 @@
   },
   "uploadFile": {
     "title": "上传文件",
+    "multipleTitle": "上传多个文件",
     "selectFile": "点击选择文件",
+    "selectMultipleFiles": "点击选择一个或多个文件",
+    "dragAndDrop": "或拖拽文件到这里",
     "preview": "预览",
     "uploadProgress": "上传进度",
     "upload": "上传",
+    "startUploads": "开始上传",
+    "finish": "完成",
     "success": "文件上传成功",
+    "allSuccess": "{count, plural, =1 {文件上传成功} other {# 个文件上传成功}}",
+    "partialSuccess": "{success} 个文件上传成功，{error} 个失败",
     "error": "文件上传失败",
-    "fileSizeExceeded": "文件大小超出 {maxsizemb}MB 的限制。",
+    "fileSizeExceeded": "文件大小超过 {maxsizemb}MB 限制。",
     "insufficientStorage": "存储空间不足。您有 {availablespace}MB 可用空间。",
-    "unauthorized": "未授权：访问此资源需要有效的令牌。"
+    "unauthorized": "未授权：需要有效的令牌才能访问此资源。",
+    "confirmCancel": {
+      "title": "取消上传",
+      "messageSingle": "有一个上传正在进行中。",
+      "messageMultiple": "有 {count} 个上传正在进行中。",
+      "warning": "如果您现在关闭，上传将被取消，任何进度都将丢失。",
+      "continue": "继续上传",
+      "cancel": "取消上传"
+    }
   },
   "users": {
     "modes": {
