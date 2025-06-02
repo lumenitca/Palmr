@@ -25,6 +25,18 @@ export function FileList({ files, filteredFiles, fileManager, searchQuery, onSea
               onDownload={fileManager.handleDownload}
               onPreview={fileManager.setPreviewFile}
               onRename={fileManager.setFileToRename}
+              onUpdateName={(fileId, newName) => {
+                const file = filteredFiles.find((f) => f.id === fileId);
+                if (file) {
+                  fileManager.handleRename(fileId, newName, file.description);
+                }
+              }}
+              onUpdateDescription={(fileId, newDescription) => {
+                const file = filteredFiles.find((f) => f.id === fileId);
+                if (file) {
+                  fileManager.handleRename(fileId, file.name, newDescription);
+                }
+              }}
             />
           ) : (
             <EmptyState onUpload={onUpload} />

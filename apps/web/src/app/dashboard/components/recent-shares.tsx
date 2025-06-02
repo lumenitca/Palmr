@@ -50,6 +50,7 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
               onCopyLink={onCopyLink}
               onDelete={shareManager.setShareToDelete}
               onEdit={shareManager.setShareToEdit}
+              onUpdateName={shareManager.handleUpdateName}
               onGenerateLink={shareManager.setShareToGenerateLink}
               onManageFiles={shareManager.setShareToManageFiles}
               onManageRecipients={shareManager.setShareToManageRecipients}

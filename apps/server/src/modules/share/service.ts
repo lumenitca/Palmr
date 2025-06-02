@@ -43,14 +43,14 @@ export class ShareService {
   }
 
   async createShare(data: CreateShareInput, userId: string) {
+    const { password, maxViews, ...shareData } = data;
+
     const security = await prisma.shareSecurity.create({
       data: {
-        password: data.password ? await bcrypt.hash(data.password, 10) : null,
-        maxViews: data.maxViews,
+        password: password ? await bcrypt.hash(password, 10) : null,
+        maxViews: maxViews,
       },
     });
-
-    const { password, maxViews, ...shareData } = data;
 
     const share = await this.shareRepository.createShare({
       ...shareData,
