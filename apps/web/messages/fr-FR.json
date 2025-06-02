@@ -85,11 +85,26 @@
   "fileSelector": {
     "availableFiles": "Fichiers Disponibles ({count})",
     "shareFiles": "Fichiers Partagés ({count})",
+    "shareFilesDescription": "Fichiers actuellement dans le partage",
+    "availableFilesDescription": "Sélectionnez des fichiers à ajouter au partage",
     "searchPlaceholder": "Rechercher des fichiers...",
+    "searchSelectedFiles": "Rechercher dans les fichiers sélectionnés...",
     "noMatchingFiles": "Aucun fichier correspondant",
     "noAvailableFiles": "Aucun fichier disponible",
-    "noFilesInShare": "Aucun fichier partagé",
-    "saveChanges": "Enregistrer les Modifications"
+    "noFilesInShare": "Aucun fichier dans le partage",
+    "noFilesFound": "Aucun fichier trouvé",
+    "noFilesFoundWith": "Aucun fichier trouvé avec \"{query}\"",
+    "addFilesFromList": "Ajoutez des fichiers de la liste ci-dessous",
+    "tryDifferentSearch": "Essayez d'autres termes de recherche",
+    "allFilesInShare": "Tous les fichiers sont déjà dans le partage",
+    "uploadNewFiles": "Téléchargez de nouveaux fichiers pour les ajouter",
+    "fileCount": "{count, plural, =1 {fichier} other {fichiers}}",
+    "filesSelected": "{count, plural, =0 {Aucun fichier sélectionné} =1 {1 fichier sélectionné} other {# fichiers sélectionnés}}",
+    "editFile": "Modifier le fichier",
+    "previewFile": "Aperçu du fichier",
+    "addToShare": "Ajouter au partage",
+    "removeFromShare": "Retirer du partage",
+    "saveChanges": "Sauvegarder les Modifications"
   },
   "files": {
     "title": "Tous les Fichiers",

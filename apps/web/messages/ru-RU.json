@@ -83,13 +83,28 @@
     "loadingAudio": "Загрузка аудио..."
   },
   "fileSelector": {
-    "availableFiles": "Доступные файлы ({count})",
-    "shareFiles": "Поделиться файлами ({count})",
+    "availableFiles": "Доступные Файлы ({count})",
+    "shareFiles": "Общие Файлы ({count})",
+    "shareFilesDescription": "Файлы в текущем общем доступе",
+    "availableFilesDescription": "Выберите файлы для добавления в общий доступ",
     "searchPlaceholder": "Поиск файлов...",
-    "noMatchingFiles": "Нет файлов, соответствующих запросу",
+    "searchSelectedFiles": "Поиск в выбранных файлах...",
+    "noMatchingFiles": "Нет подходящих файлов",
     "noAvailableFiles": "Нет доступных файлов",
-    "noFilesInShare": "Нет файлов для совместного использования",
-    "saveChanges": "Сохранить изменения"
+    "noFilesInShare": "Нет файлов в общем доступе",
+    "noFilesFound": "Файлы не найдены",
+    "noFilesFoundWith": "Файлы не найдены по запросу \"{query}\"",
+    "addFilesFromList": "Добавьте файлы из списка ниже",
+    "tryDifferentSearch": "Попробуйте другие поисковые термины",
+    "allFilesInShare": "Все файлы уже в общем доступе",
+    "uploadNewFiles": "Загрузите новые файлы для добавления",
+    "fileCount": "{count, plural, =1 {файл} =2 {файла} =3 {файла} =4 {файла} other {файлов}}",
+    "filesSelected": "{count, plural, =0 {Файлы не выбраны} =1 {Выбран 1 файл} other {Выбрано # файлов}}",
+    "editFile": "Редактировать файл",
+    "previewFile": "Предпросмотр файла",
+    "addToShare": "Добавить в общий доступ",
+    "removeFromShare": "Удалить из общего доступа",
+    "saveChanges": "Сохранить Изменения"
   },
   "files": {
     "title": "Все файлы",

@@ -83,13 +83,28 @@
     "loadingAudio": "Cargando audio..."
   },
   "fileSelector": {
-    "availableFiles": "Archivos disponibles ({count})",
-    "shareFiles": "Compartir archivos ({count})",
+    "availableFiles": "Archivos Disponibles ({count})",
+    "shareFiles": "Archivos Compartidos ({count})",
+    "shareFilesDescription": "Archivos actualmente en la compartición",
+    "availableFilesDescription": "Selecciona archivos para agregar a la compartición",
     "searchPlaceholder": "Buscar archivos...",
-    "noMatchingFiles": "No hay archivos que coincidan",
+    "searchSelectedFiles": "Buscar en archivos seleccionados...",
+    "noMatchingFiles": "No se encontraron archivos coincidentes",
     "noAvailableFiles": "No hay archivos disponibles",
-    "noFilesInShare": "No hay archivos compartidos",
-    "saveChanges": "Guardar cambios"
+    "noFilesInShare": "No hay archivos en la compartición",
+    "noFilesFound": "No se encontraron archivos",
+    "noFilesFoundWith": "No se encontraron archivos con \"{query}\"",
+    "addFilesFromList": "Agrega archivos de la lista a continuación",
+    "tryDifferentSearch": "Intenta con otros términos de búsqueda",
+    "allFilesInShare": "Todos los archivos ya están en la compartición",
+    "uploadNewFiles": "Sube nuevos archivos para agregarlos",
+    "fileCount": "{count, plural, =1 {archivo} other {archivos}}",
+    "filesSelected": "{count, plural, =0 {Ningún archivo seleccionado} =1 {1 archivo seleccionado} other {# archivos seleccionados}}",
+    "editFile": "Editar archivo",
+    "previewFile": "Vista previa del archivo",
+    "addToShare": "Agregar a compartición",
+    "removeFromShare": "Quitar de compartición",
+    "saveChanges": "Guardar Cambios"
   },
   "files": {
     "title": "Todos los Archivos",

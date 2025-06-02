@@ -130,7 +130,6 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
           <div className="text-xs text-muted-foreground">{formatFileSize(file.size)}</div>
         </div>
         <div className="flex items-center gap-2">
-          {/* Botões de ações secundárias */}
           <div className="flex gap-1">
             {onEditFile && (
               <Button
@@ -138,7 +137,7 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
                 variant="ghost"
                 className="h-7 w-7 hover:bg-muted transition-colors"
                 onClick={() => setFileToEdit(file)}
-                title="Editar arquivo"
+                title={t("fileSelector.editFile")}
               >
                 <IconEdit className="h-4 w-4" />
               </Button>
@@ -148,20 +147,19 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
               variant="ghost"
               className="h-7 w-7 hover:bg-muted transition-colors"
               onClick={() => setPreviewFile(file)}
-              title="Visualizar arquivo"
+              title={t("fileSelector.previewFile")}
             >
               <IconEye className="h-4 w-4" />
             </Button>
           </div>
 
-          {/* Botão de ação principal destacado */}
           <div className="ml-1">
             <Button
               size="icon"
               variant={isInShare ? "destructive" : "default"}
               className="h-8 w-8 transition-all"
               onClick={() => (isInShare ? removeFromShare(file.id) : addToShare(file.id))}
-              title={isInShare ? "Remover do compartilhamento" : "Adicionar ao compartilhamento"}
+              title={isInShare ? t("fileSelector.removeFromShare") : t("fileSelector.addToShare")}
             >
               {isInShare ? <IconMinus className="h-4 w-4" /> : <IconPlus className="h-4 w-4" />}
             </Button>
@@ -174,24 +172,22 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
   return (
     <>
       <div className="space-y-6">
-        {/* Current Files in Share */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-medium">{t("fileSelector.shareFiles", { count: shareFiles.length })}</h3>
-              <p className="text-sm text-muted-foreground">Arquivos atualmente no compartilhamento</p>
+              <p className="text-sm text-muted-foreground">{t("fileSelector.shareFilesDescription")}</p>
             </div>
             <Badge variant="secondary" className="bg-blue-500/20 text-blue-700">
-              {shareFiles.length} {shareFiles.length === 1 ? "arquivo" : "arquivos"}
+              {shareFiles.length} {t("fileSelector.fileCount", { count: shareFiles.length })}
             </Badge>
           </div>
 
-          {/* Search for selected files - only show if there are files */}
           {shareFiles.length > 0 && (
             <div className="relative">
               <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Buscar nos arquivos selecionados..."
+                placeholder={t("fileSelector.searchSelectedFiles")}
                 value={shareSearchFilter}
                 onChange={(e) => setShareSearchFilter(e.target.value)}
                 className="pl-10"
@@ -206,31 +202,29 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
               ))}
               {filteredShareFiles.length === 0 && shareSearchFilter && (
                 <div className="text-center py-4 text-muted-foreground">
-                  <p className="text-sm">Nenhum arquivo encontrado com "{shareSearchFilter}"</p>
+                  <p className="text-sm">{t("fileSelector.noFilesFoundWith", { query: shareSearchFilter })}</p>
                 </div>
               )}
             </div>
           ) : (
             <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
               <div className="text-4xl mb-2">📁</div>
-              <p className="font-medium">Nenhum arquivo no compartilhamento</p>
-              <p className="text-sm">Adicione arquivos da lista abaixo</p>
+              <p className="font-medium">{t("fileSelector.noFilesInShare")}</p>
+              <p className="text-sm">{t("fileSelector.addFilesFromList")}</p>
             </div>
           )}
         </div>
 
-        {/* Available Files to Add */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-medium">
                 {t("fileSelector.availableFiles", { count: filteredAvailableFiles.length })}
               </h3>
-              <p className="text-sm text-muted-foreground">Selecione arquivos para adicionar ao compartilhamento</p>
+              <p className="text-sm text-muted-foreground">{t("fileSelector.availableFilesDescription")}</p>
             </div>
           </div>
 
-          {/* Search */}
           <div className="relative">
             <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
@@ -241,7 +235,6 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
             />
           </div>
 
-          {/* Available Files Grid */}
           {filteredAvailableFiles.length > 0 ? (
             <div className="grid gap-2 max-h-60 overflow-y-auto border rounded-lg p-3 bg-muted/10">
               {filteredAvailableFiles.map((file) => (
@@ -251,28 +244,27 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
           ) : searchFilter ? (
             <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
               <div className="text-4xl mb-2">🔍</div>
-              <p className="font-medium">Nenhum arquivo encontrado</p>
-              <p className="text-sm">Tente usar outros termos de busca</p>
+              <p className="font-medium">{t("fileSelector.noFilesFound")}</p>
+              <p className="text-sm">{t("fileSelector.tryDifferentSearch")}</p>
             </div>
           ) : (
             <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
               <div className="text-4xl mb-2">📄</div>
-              <p className="font-medium">Todos os arquivos já estão no compartilhamento</p>
-              <p className="text-sm">Faça upload de novos arquivos para adicioná-los</p>
+              <p className="font-medium">{t("fileSelector.allFilesInShare")}</p>
+              <p className="text-sm">{t("fileSelector.uploadNewFiles")}</p>
             </div>
           )}
         </div>
 
-        {/* Actions */}
         <div className="flex items-center justify-between pt-4 border-t">
           <div className="text-sm text-muted-foreground">
-            {shareFiles.length} {shareFiles.length === 1 ? "arquivo" : "arquivos"} selecionado(s)
+            {t("fileSelector.filesSelected", { count: shareFiles.length })}
           </div>
           <Button onClick={handleSave} disabled={isLoading} className="gap-2">
             {isLoading ? (
               <>
                 <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
-                Salvando...
+                {t("common.saving")}
               </>
             ) : (
               <>
@@ -284,14 +276,12 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
         </div>
       </div>
 
-      {/* File Preview Dialog */}
       <FilePreviewModal
         isOpen={!!previewFile}
         onClose={() => setPreviewFile(null)}
         file={previewFile || { name: "", objectName: "" }}
       />
 
-      {/* File Edit Dialog */}
       <FileActionsModals
         fileToRename={fileToEdit}
         fileToDelete={null}
