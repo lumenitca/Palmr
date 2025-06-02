@@ -49,6 +49,7 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
               shares={shares}
               onCopyLink={onCopyLink}
               onDelete={shareManager.setShareToDelete}
+              onBulkDelete={shareManager.handleBulkDelete}
               onEdit={shareManager.setShareToEdit}
               onUpdateName={shareManager.handleUpdateName}
               onUpdateDescription={shareManager.handleUpdateDescription}
@@ -57,6 +58,7 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
               onManageRecipients={shareManager.setShareToManageRecipients}
               onNotifyRecipients={shareManager.handleNotifyRecipients}
               onViewDetails={shareManager.setShareToViewDetails}
+              setClearSelectionCallback={shareManager.setClearSelectionCallback}
             />
           ) : (
             <EmptySharesState onCreate={onOpenCreateModal} />

@@ -504,7 +504,9 @@
     "manageFilesTitle": "ファイル管理",
     "manageRecipientsTitle": "受信者管理",
     "editSuccess": "共有が正常に更新されました",
-    "editError": "共有の更新に失敗しました"
+    "editError": "共有の更新に失敗しました",
+    "bulkDeleteConfirmation": "{count, plural, =1 {1つの共有} other {#つの共有}}を削除してもよろしいですか？この操作は元に戻せません。",
+    "bulkDeleteTitle": "選択した共有を削除"
   },
   "shareDetails": {
     "title": "共有詳細",
@@ -549,7 +551,10 @@
     "linkGenerateError": "共有リンクの生成に失敗しました",
     "notifyLoading": "通知を送信中...",
     "notifySuccess": "受信者に正常に通知しました",
-    "notifyError": "受信者への通知に失敗しました"
+    "notifyError": "受信者への通知に失敗しました",
+    "bulkDeleteError": "共有の削除に失敗しました",
+    "bulkDeleteLoading": "{count, plural, =1 {1つの共有} other {#つの共有}}を削除中...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1つの共有が正常に削除されました} other {#つの共有が正常に削除されました}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
       "delete": "削除"
-    }
+    },
+    "bulkActions": {
+      "delete": "削除",
+      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}"
+    },
+    "selectAll": "すべて選択",
+    "selectShare": "共有{shareName}を選択"
   },
   "storageUsage": {
     "title": "ストレージ使用量",
@@ -765,7 +776,8 @@
     "download": "ZIPをダウンロード"
   },
   "deleteConfirmation": {
-    "filesToDelete": "削除するファイル"
+    "filesToDelete": "削除するファイル",
+    "sharesToDelete": "削除される共有"
   },
   "shareMultipleFiles": {
     "title": "複数ファイルを共有",

@@ -504,7 +504,9 @@
     "manageFilesTitle": "Administrar Archivos",
     "manageRecipientsTitle": "Administrar Destinatarios",
     "editSuccess": "Compartir actualizado exitosamente",
-    "editError": "Error al actualizar compartir"
+    "editError": "Error al actualizar compartir",
+    "bulkDeleteConfirmation": "¿Estás seguro de que quieres eliminar {count, plural, =1 {1 compartido} other {# compartidos}}? Esta acción no se puede deshacer.",
+    "bulkDeleteTitle": "Eliminar Compartidos Seleccionados"
   },
   "shareDetails": {
     "title": "Detalles del Compartir",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Error al generar el enlace de compartición",
     "notifyLoading": "Enviando notificaciones...",
     "notifySuccess": "Destinatarios notificados exitosamente",
-    "notifyError": "Error al notificar a los destinatarios"
+    "notifyError": "Error al notificar a los destinatarios",
+    "bulkDeleteError": "Error al eliminar compartidos",
+    "bulkDeleteLoading": "Eliminando {count, plural, =1 {1 compartido} other {# compartidos}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 compartido eliminado con éxito} other {# compartidos eliminados con éxito}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Copiar Enlace",
       "notifyRecipients": "Notificar Destinatarios",
       "delete": "Eliminar"
-    }
+    },
+    "bulkActions": {
+      "delete": "Eliminar",
+      "selected": "{count, plural, =1 {1 compartido seleccionado} other {# compartidos seleccionados}}"
+    },
+    "selectAll": "Seleccionar todo",
+    "selectShare": "Seleccionar compartido {shareName}"
   },
   "storageUsage": {
     "title": "Uso de almacenamiento",
@@ -765,7 +776,8 @@
     "download": "Descargar ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Archivos que serán eliminados"
+    "filesToDelete": "Archivos que serán eliminados",
+    "sharesToDelete": "Compartidos que serán eliminados"
   },
   "shareMultipleFiles": {
     "title": "Compartir Múltiples Archivos",

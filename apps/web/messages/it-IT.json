@@ -504,7 +504,9 @@
     "manageFilesTitle": "Gestisci File",
     "manageRecipientsTitle": "Gestisci Destinatari",
     "editSuccess": "Condivisione aggiornata con successo",
-    "editError": "Errore nell'aggiornamento della condivisione"
+    "editError": "Errore nell'aggiornamento della condivisione",
+    "bulkDeleteConfirmation": "Sei sicuro di voler eliminare {count, plural, =1 {1 condivisione} other {# condivisioni}}? Questa azione non può essere annullata.",
+    "bulkDeleteTitle": "Elimina Condivisioni Selezionate"
   },
   "shareDetails": {
     "title": "Dettagli Condivisione",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Errore durante la generazione del link di condivisione",
     "notifyLoading": "Invio notifiche in corso...",
     "notifySuccess": "Destinatari notificati con successo",
-    "notifyError": "Errore durante la notifica dei destinatari"
+    "notifyError": "Errore durante la notifica dei destinatari",
+    "bulkDeleteError": "Errore nell'eliminazione delle condivisioni",
+    "bulkDeleteLoading": "Eliminazione di {count, plural, =1 {1 condivisione} other {# condivisioni}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 condivisione eliminata con successo} other {# condivisioni eliminate con successo}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Copia Link",
       "notifyRecipients": "Notifica Destinatari",
       "delete": "Elimina"
-    }
+    },
+    "bulkActions": {
+      "delete": "Elimina",
+      "selected": "{count, plural, =1 {1 condivisione selezionata} other {# condivisioni selezionate}}"
+    },
+    "selectAll": "Seleziona tutto",
+    "selectShare": "Seleziona condivisione {shareName}"
   },
   "storageUsage": {
     "title": "Utilizzo Archiviazione",
@@ -765,7 +776,8 @@
     "download": "Scarica ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "File da eliminare"
+    "filesToDelete": "File da eliminare",
+    "sharesToDelete": "Condivisioni che saranno eliminate"
   },
   "shareMultipleFiles": {
     "title": "Condividi File Multipli",

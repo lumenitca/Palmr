@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { CreateShareModal } from "@/components/modals/create-share-modal";
+import { DeleteConfirmationModal } from "@/components/modals/delete-confirmation-modal";
 import { GenerateShareLinkModal } from "@/components/modals/generate-share-link-modal";
 import { ShareActionsModals } from "@/components/modals/share-actions-modals";
 import { ShareDetailsModal } from "@/components/modals/share-details-modal";
@@ -17,6 +19,7 @@ export function SharesModals({
   onCloseViewDetails,
   onCloseGenerateLink,
 }: SharesModalsProps) {
+  const t = useTranslations();
   const [shareDetailsRefresh, setShareDetailsRefresh] = useState(0);
 
   const handleShareSuccess = () => {
@@ -43,6 +46,16 @@ export function SharesModals({
         onManageRecipients={shareManager.handleManageRecipients}
         onSuccess={handleShareSuccess}
         onEditFile={fileManager.handleRename}
+      />
+
+      <DeleteConfirmationModal
+        isOpen={!!shareManager.sharesToDelete}
+        onClose={() => shareManager.setSharesToDelete(null)}
+        onConfirm={shareManager.handleDeleteBulk}
+        title={t("shareActions.bulkDeleteTitle")}
+        description={t("shareActions.bulkDeleteConfirmation", { count: shareManager.sharesToDelete?.length || 0 })}
+        files={shareManager.sharesToDelete?.map((share: any) => share.name) || []}
+        itemType="shares"
       />
 
       <ShareDetailsModal

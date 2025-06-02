@@ -504,7 +504,9 @@
     "manageFilesTitle": "Bestanden Beheren",
     "manageRecipientsTitle": "Ontvangers Beheren",
     "editSuccess": "Delen succesvol bijgewerkt",
-    "editError": "Fout bij bijwerken van delen"
+    "editError": "Fout bij bijwerken van delen",
+    "bulkDeleteConfirmation": "Weet je zeker dat je {count, plural, =1 {1 deel} other {# delen}} wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "bulkDeleteTitle": "Geselecteerde Delen Verwijderen"
   },
   "shareDetails": {
     "title": "Delen Details",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Fout bij het genereren van deel link",
     "notifyLoading": "Meldingen verzenden...",
     "notifySuccess": "Ontvangers succesvol gewaarschuwd",
-    "notifyError": "Fout bij het waarschuwen van ontvangers"
+    "notifyError": "Fout bij het waarschuwen van ontvangers",
+    "bulkDeleteError": "Delen verwijderen mislukt",
+    "bulkDeleteLoading": "{count, plural, =1 {1 deel} other {# delen}} verwijderen...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 deel succesvol verwijderd} other {# delen succesvol verwijderd}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Link Kopiëren",
       "notifyRecipients": "Ontvangers Informeren",
       "delete": "Verwijderen"
-    }
+    },
+    "bulkActions": {
+      "delete": "Verwijderen",
+      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}"
+    },
+    "selectAll": "Alles selecteren",
+    "selectShare": "Deel {shareName} selecteren"
   },
   "storageUsage": {
     "title": "Opslaggebruik",
@@ -765,7 +776,8 @@
     "download": "ZIP Downloaden"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Te verwijderen bestanden"
+    "filesToDelete": "Te verwijderen bestanden",
+    "sharesToDelete": "Delen die worden verwijderd"
   },
   "shareMultipleFiles": {
     "title": "Meerdere Bestanden Delen",

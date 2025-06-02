@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { BulkDownloadModal } from "@/components/modals/bulk-download-modal";
 import { CreateShareModal } from "@/components/modals/create-share-modal";
@@ -14,6 +15,7 @@ import { UploadFileModal } from "@/components/modals/upload-file-modal";
 import { DashboardModalsProps } from "../types";
 
 export function DashboardModals({ modals, fileManager, shareManager, onSuccess }: DashboardModalsProps) {
+  const t = useTranslations();
   const [shareDetailsRefresh, setShareDetailsRefresh] = useState(0);
 
   const handleShareSuccess = () => {
@@ -65,6 +67,16 @@ export function DashboardModals({ modals, fileManager, shareManager, onSuccess }
         title="Excluir Arquivos Selecionados"
         description={`Tem certeza que deseja excluir ${fileManager.filesToDelete?.length || 0} arquivo(s)? Esta ação não pode ser desfeita.`}
         files={fileManager.filesToDelete?.map((f) => f.name) || []}
+      />
+
+      <DeleteConfirmationModal
+        isOpen={!!shareManager.sharesToDelete}
+        onClose={() => shareManager.setSharesToDelete(null)}
+        onConfirm={shareManager.handleDeleteBulk}
+        title={t("shareActions.bulkDeleteTitle")}
+        description={t("shareActions.bulkDeleteConfirmation", { count: shareManager.sharesToDelete?.length || 0 })}
+        files={shareManager.sharesToDelete?.map((share: any) => share.name) || []}
+        itemType="shares"
       />
 
       <ShareMultipleFilesModal

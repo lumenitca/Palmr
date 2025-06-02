@@ -504,7 +504,9 @@
     "manageFilesTitle": "Gérer les Fichiers",
     "manageRecipientsTitle": "Gérer les Destinataires",
     "editSuccess": "Partage mis à jour avec succès",
-    "editError": "Échec de la mise à jour du partage"
+    "editError": "Échec de la mise à jour du partage",
+    "bulkDeleteConfirmation": "Êtes-vous sûr de vouloir supprimer {count, plural, =1 {1 partage} other {# partages}} ? Cette action ne peut pas être annulée.",
+    "bulkDeleteTitle": "Supprimer les Partages Sélectionnés"
   },
   "shareDetails": {
     "title": "Détails du Partage",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Échec de la génération du lien de partage",
     "notifyLoading": "Envoi des notifications...",
     "notifySuccess": "Destinataires notifiés avec succès",
-    "notifyError": "Échec de la notification des destinataires"
+    "notifyError": "Échec de la notification des destinataires",
+    "bulkDeleteError": "Échec de la suppression des partages",
+    "bulkDeleteLoading": "Suppression de {count, plural, =1 {1 partage} other {# partages}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 partage supprimé avec succès} other {# partages supprimés avec succès}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Copier le Lien",
       "notifyRecipients": "Notifier les Destinataires",
       "delete": "Supprimer"
-    }
+    },
+    "bulkActions": {
+      "delete": "Supprimer",
+      "selected": "{count, plural, =1 {1 partage sélectionné} other {# partages sélectionnés}}"
+    },
+    "selectAll": "Tout sélectionner",
+    "selectShare": "Sélectionner le partage {shareName}"
   },
   "storageUsage": {
     "title": "Utilisation du Stockage",
@@ -765,7 +776,8 @@
     "download": "Télécharger le ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Fichiers à supprimer"
+    "filesToDelete": "Fichiers à supprimer",
+    "sharesToDelete": "Partages qui seront supprimés"
   },
   "shareMultipleFiles": {
     "title": "Partager Plusieurs Fichiers",

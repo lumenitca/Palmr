@@ -504,7 +504,9 @@
     "manageFilesTitle": "Управление Файлами",
     "manageRecipientsTitle": "Управление Получателями",
     "editSuccess": "Общий доступ успешно обновлен",
-    "editError": "Ошибка обновления общего доступа"
+    "editError": "Ошибка обновления общего доступа",
+    "bulkDeleteConfirmation": "Вы уверены, что хотите удалить {count, plural, =1 {1 общую папку} other {# общих папок}}? Это действие нельзя отменить.",
+    "bulkDeleteTitle": "Удалить Выбранные Общие Папки"
   },
   "shareDetails": {
     "title": "Детали Общего Доступа",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Ошибка при создании ссылки для общего доступа",
     "notifyLoading": "Отправка уведомлений...",
     "notifySuccess": "Получатели успешно уведомлены",
-    "notifyError": "Ошибка при уведомлении получателей"
+    "notifyError": "Ошибка при уведомлении получателей",
+    "bulkDeleteError": "Не удалось удалить общие папки",
+    "bulkDeleteLoading": "Удаление {count, plural, =1 {1 общей папки} other {# общих папок}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 общая папка успешно удалена} other {# общих папок успешно удалены}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Скопировать Ссылку",
       "notifyRecipients": "Уведомить Получателей",
       "delete": "Удалить"
-    }
+    },
+    "bulkActions": {
+      "delete": "Удалить",
+      "selected": "{count, plural, =1 {1 общая папка выбрана} other {# общих папок выбрано}}"
+    },
+    "selectAll": "Выбрать все",
+    "selectShare": "Выбрать общую папку {shareName}"
   },
   "storageUsage": {
     "title": "Использование хранилища",
@@ -765,7 +776,8 @@
     "download": "Скачать ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Файлы для удаления"
+    "filesToDelete": "Файлы для удаления",
+    "sharesToDelete": "Общие папки, которые будут удалены"
   },
   "shareMultipleFiles": {
     "title": "Поделиться Несколькими Файлами",

@@ -504,7 +504,9 @@
     "manageFilesTitle": "Manage Files",
     "manageRecipientsTitle": "Manage Recipients",
     "editSuccess": "Share updated successfully",
-    "editError": "Failed to update share"
+    "editError": "Failed to update share",
+    "bulkDeleteConfirmation": "Are you sure you want to delete {count, plural, =1 {1 share} other {# shares}}? This action cannot be undone.",
+    "bulkDeleteTitle": "Delete Selected Shares"
   },
   "shareDetails": {
     "title": "Share Details",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Failed to generate share link",
     "notifyLoading": "Sending notifications...",
     "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
+    "notifyError": "Failed to notify recipients",
+    "bulkDeleteError": "Failed to delete shares",
+    "bulkDeleteLoading": "Deleting {count, plural, =1 {1 share} other {# shares}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 share deleted successfully} other {# shares deleted successfully}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Copy Link",
       "notifyRecipients": "Notify Recipients",
       "delete": "Delete"
-    }
+    },
+    "bulkActions": {
+      "delete": "Delete",
+      "selected": "{count, plural, =1 {1 share selected} other {# shares selected}}"
+    },
+    "selectAll": "Select all",
+    "selectShare": "Select share {shareName}"
   },
   "storageUsage": {
     "title": "Storage Usage",
@@ -765,7 +776,8 @@
     "download": "Download ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Files to be deleted"
+    "filesToDelete": "Files to be deleted",
+    "sharesToDelete": "Shares to be deleted"
   },
   "shareMultipleFiles": {
     "title": "Share Multiple Files",

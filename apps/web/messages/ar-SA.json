@@ -504,7 +504,9 @@
     "manageFilesTitle": "إدارة الملفات",
     "manageRecipientsTitle": "إدارة المستقبلين",
     "editSuccess": "تم تحديث المشاركة بنجاح",
-    "editError": "فشل في تحديث المشاركة"
+    "editError": "فشل في تحديث المشاركة",
+    "bulkDeleteConfirmation": "هل أنت متأكد من أنك تريد حذف {count, plural, =1 {مشاركة واحدة} other {# مشاركات}} محددة؟ لا يمكن التراجع عن هذا الإجراء.",
+    "bulkDeleteTitle": "حذف المشاركات المحددة"
   },
   "shareDetails": {
     "title": "تفاصيل المشاركة",
@@ -549,7 +551,10 @@
     "linkGenerateError": "فشل في إنشاء رابط المشاركة",
     "notifyLoading": "جاري إرسال الإشعارات...",
     "notifySuccess": "تم إعلام المستلمين بنجاح",
-    "notifyError": "فشل في إعلام المستلمين"
+    "notifyError": "فشل في إعلام المستلمين",
+    "bulkDeleteError": "فشل في حذف المشاركات",
+    "bulkDeleteLoading": "جارٍ حذف {count, plural, =1 {مشاركة واحدة} other {# مشاركات}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {تم حذف مشاركة واحدة بنجاح} other {تم حذف # مشاركات بنجاح}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "نسخ الرابط",
       "notifyRecipients": "إشعار المستقبلين",
       "delete": "حذف"
-    }
+    },
+    "bulkActions": {
+      "delete": "حذف",
+      "selected": "{count, plural, =1 {مشاركة واحدة محددة} other {# مشاركات محددة}}"
+    },
+    "selectAll": "تحديد الكل",
+    "selectShare": "تحديد المشاركة {shareName}"
   },
   "storageUsage": {
     "title": "استخدام التخزين",
@@ -765,7 +776,8 @@
     "download": "تحميل ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "الملفات المراد حذفها"
+    "filesToDelete": "الملفات المراد حذفها",
+    "sharesToDelete": "المشاركات التي سيتم حذفها"
   },
   "shareMultipleFiles": {
     "title": "مشاركة ملفات متعددة",

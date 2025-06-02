@@ -504,7 +504,9 @@
     "editSuccess": "共享更新成功",
     "editError": "更新共享失败",
     "descriptionPlaceholder": "输入描述（可选）",
-    "descriptionLabel": "描述"
+    "descriptionLabel": "描述",
+    "bulkDeleteConfirmation": "您确定要删除{count, plural, =1 {1个共享} other {#个共享}}吗？此操作无法撤销。",
+    "bulkDeleteTitle": "删除选中的共享"
   },
   "shareDetails": {
     "title": "共享详情",
@@ -549,7 +551,10 @@
     "linkGenerateError": "共享链接生成失败",
     "notifyLoading": "正在发送通知...",
     "notifySuccess": "通知收件人成功",
-    "notifyError": "通知收件人失败"
+    "notifyError": "通知收件人失败",
+    "bulkDeleteError": "删除共享失败",
+    "bulkDeleteLoading": "正在删除{count, plural, =1 {1个共享} other {#个共享}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1个共享删除成功} other {#个共享删除成功}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "复制链接",
       "notifyRecipients": "通知收件人",
       "delete": "删除"
-    }
+    },
+    "bulkActions": {
+      "delete": "删除",
+      "selected": "{count, plural, =1 {已选择1个共享} other {已选择#个共享}}"
+    },
+    "selectAll": "全选",
+    "selectShare": "选择共享 {shareName}"
   },
   "storageUsage": {
     "title": "存储使用情况",
@@ -765,7 +776,8 @@
     "download": "下载ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "要删除的文件"
+    "filesToDelete": "要删除的文件",
+    "sharesToDelete": "将被删除的共享"
   },
   "shareMultipleFiles": {
     "title": "分享多个文件",

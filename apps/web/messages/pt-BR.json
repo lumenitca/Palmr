@@ -510,6 +510,8 @@
   "shareActions": {
     "deleteTitle": "Excluir Compartilhamento",
     "deleteConfirmation": "Tem certeza que deseja excluir este compartilhamento? Esta ação não pode ser desfeita.",
+    "bulkDeleteTitle": "Excluir Compartilhamentos Selecionados",
+    "bulkDeleteConfirmation": "Tem certeza que deseja excluir {count, plural, =1 {1 compartilhamento} other {# compartilhamentos}} selecionado(s)? Esta ação não pode ser desfeita.",
     "editTitle": "Editar Compartilhamento",
     "nameLabel": "Nome do Compartilhamento",
     "descriptionLabel": "Descrição",
@@ -561,6 +563,9 @@
   "shareManager": {
     "deleteSuccess": "Compartilhamento excluído com sucesso",
     "deleteError": "Falha ao excluir compartilhamento",
+    "bulkDeleteLoading": "Excluindo {count, plural, =1 {1 compartilhamento} other {# compartilhamentos}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 compartilhamento excluído com sucesso} other {# compartilhamentos excluídos com sucesso}}",
+    "bulkDeleteError": "Falha ao excluir compartilhamentos",
     "updateSuccess": "Compartilhamento atualizado com sucesso",
     "updateError": "Falha ao atualizar compartilhamento",
     "filesUpdateSuccess": "Arquivos atualizados com sucesso",
@@ -602,6 +607,12 @@
   "sharesTable": {
     "ariaLabel": "Tabela de compartilhamentos",
     "never": "Nunca",
+    "selectAll": "Selecionar todos",
+    "selectShare": "Selecionar compartilhamento {shareName}",
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 compartilhamento selecionado} other {# compartilhamentos selecionados}}",
+      "delete": "Excluir"
+    },
     "columns": {
       "name": "NOME",
       "description": "DESCRIÇÃO",
@@ -765,7 +776,8 @@
     "download": "Baixar ZIP"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Arquivos que serão excluídos"
+    "filesToDelete": "Arquivos que serão excluídos",
+    "sharesToDelete": "Compartilhamentos que serão excluídos"
   },
   "shareMultipleFiles": {
     "title": "Compartilhar Múltiplos Arquivos",

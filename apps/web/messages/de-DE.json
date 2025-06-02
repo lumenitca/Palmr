@@ -504,7 +504,9 @@
     "manageFilesTitle": "Dateien Verwalten",
     "manageRecipientsTitle": "Empfänger Verwalten",
     "editSuccess": "Freigabe erfolgreich aktualisiert",
-    "editError": "Fehler beim Aktualisieren der Freigabe"
+    "editError": "Fehler beim Aktualisieren der Freigabe",
+    "bulkDeleteConfirmation": "Sind Sie sicher, dass Sie {count, plural, =1 {1 Freigabe} other {# Freigaben}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "bulkDeleteTitle": "Ausgewählte Freigaben löschen"
   },
   "shareDetails": {
     "title": "Freigabe-Details",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Fehler beim Generieren des Freigabelinks",
     "notifyLoading": "Benachrichtigungen werden gesendet...",
     "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger",
+    "bulkDeleteError": "Fehler beim Löschen der Freigaben",
+    "bulkDeleteLoading": "Lösche {count, plural, =1 {1 Freigabe} other {# Freigaben}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 Freigabe erfolgreich gelöscht} other {# Freigaben erfolgreich gelöscht}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Link Kopieren",
       "notifyRecipients": "Empfänger Benachrichtigen",
       "delete": "Löschen"
-    }
+    },
+    "bulkActions": {
+      "delete": "Löschen",
+      "selected": "{count, plural, =1 {1 Freigabe ausgewählt} other {# Freigaben ausgewählt}}"
+    },
+    "selectAll": "Alle auswählen",
+    "selectShare": "Freigabe {shareName} auswählen"
   },
   "storageUsage": {
     "title": "Speichernutzung",
@@ -765,7 +776,8 @@
     "download": "ZIP Herunterladen"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Zu löschende Dateien"
+    "filesToDelete": "Zu löschende Dateien",
+    "sharesToDelete": "Freigaben, die gelöscht werden"
   },
   "shareMultipleFiles": {
     "title": "Mehrere Dateien Teilen",

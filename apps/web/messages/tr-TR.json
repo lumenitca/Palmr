@@ -504,7 +504,9 @@
     "manageFilesTitle": "Dosyaları Yönet",
     "manageRecipientsTitle": "Alıcıları Yönet",
     "editSuccess": "Paylaşım başarıyla güncellendi",
-    "editError": "Paylaşım güncelleme başarısız"
+    "editError": "Paylaşım güncelleme başarısız",
+    "bulkDeleteConfirmation": "{count, plural, =1 {1 paylaşımı} other {# paylaşımı}} silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "bulkDeleteTitle": "Seçili Paylaşımları Sil"
   },
   "shareDetails": {
     "title": "Paylaşım Detayları",
@@ -549,7 +551,10 @@
     "linkGenerateError": "Paylaşım bağlantısı oluşturulamadı",
     "notifyLoading": "Bildirimler gönderiliyor...",
     "notifySuccess": "Alıcılara başarıyla bildirildi",
-    "notifyError": "Alıcılara bildirim gönderilemedi"
+    "notifyError": "Alıcılara bildirim gönderilemedi",
+    "bulkDeleteError": "Paylaşımları silme başarısız",
+    "bulkDeleteLoading": "{count, plural, =1 {1 paylaşım} other {# paylaşım}} siliniyor...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 paylaşım başarıyla silindi} other {# paylaşım başarıyla silindi}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "Bağlantıyı Kopyala",
       "notifyRecipients": "Alıcıları Bilgilendir",
       "delete": "Sil"
-    }
+    },
+    "bulkActions": {
+      "delete": "Sil",
+      "selected": "{count, plural, =1 {1 paylaşım seçildi} other {# paylaşım seçildi}}"
+    },
+    "selectAll": "Tümünü seç",
+    "selectShare": "Paylaşım {shareName} seç"
   },
   "storageUsage": {
     "title": "Depolama Kullanımı",
@@ -765,7 +776,8 @@
     "download": "ZIP İndir"
   },
   "deleteConfirmation": {
-    "filesToDelete": "Silinecek dosyalar"
+    "filesToDelete": "Silinecek dosyalar",
+    "sharesToDelete": "Silinecek paylaşımlar"
   },
   "shareMultipleFiles": {
     "title": "Çoklu Dosya Paylaş",

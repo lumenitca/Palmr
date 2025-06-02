@@ -504,7 +504,9 @@
     "manageFilesTitle": "फाइलें प्रबंधित करें",
     "manageRecipientsTitle": "प्राप्तकर्ता प्रबंधित करें",
     "editSuccess": "साझाकरण सफलतापूर्वक अपडेट किया गया",
-    "editError": "साझाकरण अपडेट करने में विफल"
+    "editError": "साझाकरण अपडेट करने में विफल",
+    "bulkDeleteConfirmation": "क्या आप वाकई {count, plural, =1 {1 साझाकरण} other {# साझाकरण}} हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता।",
+    "bulkDeleteTitle": "चयनित साझाकरण हटाएं"
   },
   "shareDetails": {
     "title": "साझाकरण विवरण",
@@ -549,7 +551,10 @@
     "linkGenerateError": "साझाकरण लिंक उत्पन्न करने में त्रुटि",
     "notifyLoading": "सूचनाएँ भेजी जा रही हैं...",
     "notifySuccess": "प्राप्तकर्ताओं को सफलतापूर्वक सूचित किया गया",
-    "notifyError": "प्राप्तकर्ताओं को सूचित करने में त्रुटि"
+    "notifyError": "प्राप्तकर्ताओं को सूचित करने में त्रुटि",
+    "bulkDeleteError": "साझाकरण हटाने में विफल",
+    "bulkDeleteLoading": "{count, plural, =1 {1 साझाकरण} other {# साझाकरण}} हटाया जा रहा है...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 साझाकरण सफलतापूर्वक हटाया गया} other {# साझाकरण सफलतापूर्वक हटाए गए}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "लिंक कॉपी करें",
       "notifyRecipients": "प्राप्तकर्ताओं को सूचित करें",
       "delete": "हटाएं"
-    }
+    },
+    "bulkActions": {
+      "delete": "हटाएं",
+      "selected": "{count, plural, =1 {1 साझाकरण चयनित} other {# साझाकरण चयनित}}"
+    },
+    "selectAll": "सभी चुनें",
+    "selectShare": "साझाकरण {shareName} चुनें"
   },
   "storageUsage": {
     "title": "स्टोरेज उपयोग",
@@ -765,7 +776,8 @@
     "download": "ZIP डाउनलोड करें"
   },
   "deleteConfirmation": {
-    "filesToDelete": "हटाई जाने वाली फाइलें"
+    "filesToDelete": "हटाई जाने वाली फाइलें",
+    "sharesToDelete": "साझाकरण जो हटाए जाएंगे"
   },
   "shareMultipleFiles": {
     "title": "कई फाइलें साझा करें",

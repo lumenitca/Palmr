@@ -504,7 +504,9 @@
     "manageFilesTitle": "파일 관리",
     "manageRecipientsTitle": "받는 사람 관리",
     "editSuccess": "공유가 성공적으로 업데이트되었습니다",
-    "editError": "공유 업데이트에 실패했습니다"
+    "editError": "공유 업데이트에 실패했습니다",
+    "bulkDeleteConfirmation": "{count, plural, =1 {1개의 공유} other {#개의 공유}}를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "bulkDeleteTitle": "선택한 공유 삭제"
   },
   "shareDetails": {
     "title": "공유 세부 정보",
@@ -549,7 +551,10 @@
     "linkGenerateError": "공유 링크 생성에 실패했습니다",
     "notifyLoading": "알림 전송 중...",
     "notifySuccess": "수신자에게 성공적으로 알렸습니다",
-    "notifyError": "수신자 알림 전송에 실패했습니다"
+    "notifyError": "수신자 알림 전송에 실패했습니다",
+    "bulkDeleteError": "공유 삭제 실패",
+    "bulkDeleteLoading": "{count, plural, =1 {1개의 공유} other {#개의 공유}} 삭제 중...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1개의 공유가 성공적으로 삭제되었습니다} other {#개의 공유가 성공적으로 삭제되었습니다}}"
   },
   "shares": {
     "errors": {
@@ -613,7 +618,13 @@
       "copyLink": "링크 복사",
       "notifyRecipients": "받는 사람에게 알림",
       "delete": "삭제"
-    }
+    },
+    "bulkActions": {
+      "delete": "삭제",
+      "selected": "{count, plural, =1 {1개의 공유가 선택됨} other {#개의 공유가 선택됨}}"
+    },
+    "selectAll": "모두 선택",
+    "selectShare": "공유 {shareName} 선택"
   },
   "storageUsage": {
     "title": "스토리지 사용량",
@@ -765,7 +776,8 @@
     "download": "ZIP 다운로드"
   },
   "deleteConfirmation": {
-    "filesToDelete": "삭제할 파일"
+    "filesToDelete": "삭제할 파일",
+    "sharesToDelete": "삭제될 공유"
   },
   "shareMultipleFiles": {
     "title": "여러 파일 공유",

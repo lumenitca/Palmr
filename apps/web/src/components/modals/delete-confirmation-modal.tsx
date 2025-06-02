@@ -14,6 +14,7 @@ interface DeleteConfirmationModalProps {
   title: string;
   description: string;
   files: string[];
+  itemType?: "files" | "shares";
 }
 
 export function DeleteConfirmationModal({
@@ -23,6 +24,7 @@ export function DeleteConfirmationModal({
   title,
   description,
   files,
+  itemType,
 }: DeleteConfirmationModalProps) {
   const t = useTranslations();
 
@@ -46,7 +48,10 @@ export function DeleteConfirmationModal({
 
           {files.length > 0 && (
             <div className="space-y-2">
-              <p className="text-sm font-medium">{t("deleteConfirmation.filesToDelete")}:</p>
+              <p className="text-sm font-medium">
+                {itemType === "shares" ? t("deleteConfirmation.sharesToDelete") : t("deleteConfirmation.filesToDelete")}
+                :
+              </p>
               <ScrollArea className="h-32 w-full rounded-md border p-2">
                 <div className="space-y-1">
                   {files.map((fileName, index) => (

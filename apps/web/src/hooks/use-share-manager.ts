@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
@@ -21,13 +21,17 @@ export interface ShareManagerHook {
   shareToManageRecipients: ListUserShares200SharesItem | null;
   shareToViewDetails: ListUserShares200SharesItem | null;
   shareToGenerateLink: ListUserShares200SharesItem | null;
+  sharesToDelete: ListUserShares200SharesItem[] | null;
   setShareToDelete: (share: ListUserShares200SharesItem | null) => void;
   setShareToEdit: (share: ListUserShares200SharesItem | null) => void;
   setShareToManageFiles: (share: ListUserShares200SharesItem | null) => void;
   setShareToManageRecipients: (share: ListUserShares200SharesItem | null) => void;
   setShareToViewDetails: (share: ListUserShares200SharesItem | null) => void;
   setShareToGenerateLink: (share: ListUserShares200SharesItem | null) => void;
+  setSharesToDelete: (shares: ListUserShares200SharesItem[] | null) => void;
   handleDelete: (shareId: string) => Promise<void>;
+  handleBulkDelete: (shares: ListUserShares200SharesItem[]) => void;
+  handleDeleteBulk: () => Promise<void>;
   handleEdit: (shareId: string, data: any) => Promise<void>;
   handleUpdateName: (shareId: string, newName: string) => Promise<void>;
   handleUpdateDescription: (shareId: string, newDescription: string) => Promise<void>;
@@ -35,6 +39,7 @@ export interface ShareManagerHook {
   handleManageRecipients: (shareId: string, recipients: any[]) => Promise<void>;
   handleGenerateLink: (shareId: string, alias: string) => Promise<void>;
   handleNotifyRecipients: (share: ListUserShares200SharesItem) => Promise<void>;
+  setClearSelectionCallback?: (callback: () => void) => void;
 }
 
 export function useShareManager(onSuccess: () => void) {
@@ -45,6 +50,12 @@ export function useShareManager(onSuccess: () => void) {
   const [shareToManageRecipients, setShareToManageRecipients] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToViewDetails, setShareToViewDetails] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToGenerateLink, setShareToGenerateLink] = useState<ListUserShares200SharesItem | null>(null);
+  const [sharesToDelete, setSharesToDelete] = useState<ListUserShares200SharesItem[] | null>(null);
+  const [clearSelectionCallback, setClearSelectionCallbackState] = useState<(() => void) | null>(null);
+
+  const setClearSelectionCallback = useCallback((callback: () => void) => {
+    setClearSelectionCallbackState(() => callback);
+  }, []);
 
   const handleDelete = async (shareId: string) => {
     try {
@@ -54,6 +65,33 @@ export function useShareManager(onSuccess: () => void) {
       setShareToDelete(null);
     } catch (error) {
       toast.error(t("shareManager.deleteError"));
+      console.error(error);
+    }
+  };
+
+  const handleBulkDelete = (shares: ListUserShares200SharesItem[]) => {
+    setSharesToDelete(shares);
+  };
+
+  const handleDeleteBulk = async () => {
+    if (!sharesToDelete) return;
+
+    const loadingToast = toast.loading(t("shareManager.bulkDeleteLoading", { count: sharesToDelete.length }));
+
+    try {
+      await Promise.all(sharesToDelete.map((share) => deleteShare(share.id)));
+      toast.dismiss(loadingToast);
+      toast.success(t("shareManager.bulkDeleteSuccess", { count: sharesToDelete.length }));
+      setSharesToDelete(null);
+      onSuccess();
+
+      // Clear selection after successful deletion
+      if (clearSelectionCallback) {
+        clearSelectionCallback();
+      }
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      toast.error(t("shareManager.bulkDeleteError"));
       console.error(error);
     }
   };
@@ -150,13 +188,17 @@ export function useShareManager(onSuccess: () => void) {
     shareToManageRecipients,
     shareToViewDetails,
     shareToGenerateLink,
+    sharesToDelete,
     setShareToDelete,
     setShareToEdit,
     setShareToManageFiles,
     setShareToManageRecipients,
     setShareToViewDetails,
     setShareToGenerateLink,
+    setSharesToDelete,
     handleDelete,
+    handleBulkDelete,
+    handleDeleteBulk,
     handleEdit,
     handleUpdateName,
     handleUpdateDescription,
@@ -164,5 +206,6 @@ export function useShareManager(onSuccess: () => void) {
     handleManageRecipients,
     handleGenerateLink,
     handleNotifyRecipients,
+    setClearSelectionCallback,
   };
 }
