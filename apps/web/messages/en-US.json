@@ -9,7 +9,8 @@
     "unexpectedError": "An unexpected error occurred. Please try again.",
     "yes": "Yes",
     "no": "No",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "back": "Back"
   },
   "createShare": {
     "title": "Create Share",
@@ -103,6 +104,7 @@
       "menu": "File actions menu",
       "preview": "Preview",
       "edit": "Edit",
+      "share": "Share",
       "download": "Download",
       "delete": "Delete"
     }
@@ -670,5 +672,25 @@
     "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
     "passwordRequired": "Password is required"
+  },
+  "shareFile": {
+    "title": "Share File",
+    "linkTitle": "Generate Link",
+    "nameLabel": "Share Name",
+    "namePlaceholder": "Enter share name",
+    "expirationLabel": "Expiration Date",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "Maximum Views",
+    "maxViewsPlaceholder": "Leave empty for unlimited",
+    "passwordProtection": "Password Protected",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "linkDescription": "Generate a custom link to share the file",
+    "aliasLabel": "Link Alias",
+    "aliasPlaceholder": "Enter custom alias",
+    "linkReady": "Your share link is ready:",
+    "createShare": "Create Share",
+    "generateLink": "Generate Link",
+    "copyLink": "Copy Link"
   }
 }

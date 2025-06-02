@@ -49,6 +49,7 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
             onDownload={fileManager.handleDownload}
             onPreview={fileManager.setPreviewFile}
             onRename={fileManager.setFileToRename}
+            onShare={fileManager.setFileToShare}
             onUpdateName={(fileId, newName) => {
               const file = files.find((f) => f.id === fileId);
               if (file) {

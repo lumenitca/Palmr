@@ -9,7 +9,8 @@
     "unexpectedError": "Ocorreu um erro inesperado. Por favor, tente novamente.",
     "yes": "Sim",
     "no": "Não",
-    "dashboard": "Painel"
+    "dashboard": "Painel",
+    "back": "Voltar"
   },
   "createShare": {
     "title": "Criar Compartilhamento",
@@ -103,6 +104,7 @@
       "menu": "Menu de ações do arquivo",
       "preview": "Visualizar",
       "edit": "Editar",
+      "share": "Compartilhar",
       "download": "Baixar",
       "delete": "Excluir"
     }
@@ -135,6 +137,26 @@
     "success": "Link gerado com sucesso",
     "error": "Erro ao gerar link",
     "copied": "Link copiado para a área de transferência"
+  },
+  "shareFile": {
+    "title": "Compartilhar Arquivo",
+    "linkTitle": "Gerar Link",
+    "nameLabel": "Nome do Compartilhamento",
+    "namePlaceholder": "Digite o nome do compartilhamento",
+    "expirationLabel": "Data de Expiração",
+    "expirationPlaceholder": "DD/MM/AAAA HH:MM",
+    "maxViewsLabel": "Máximo de Visualizações",
+    "maxViewsPlaceholder": "Deixe vazio para ilimitado",
+    "passwordProtection": "Protegido por Senha",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Digite a senha",
+    "linkDescription": "Gere um link personalizado para compartilhar o arquivo",
+    "aliasLabel": "Alias do Link",
+    "aliasPlaceholder": "Digite um alias personalizado",
+    "linkReady": "Seu link de compartilhamento está pronto:",
+    "createShare": "Criar Compartilhamento",
+    "generateLink": "Gerar Link",
+    "copyLink": "Copiar Link"
   },
   "home": {
     "description": "A alternativa open-source ao WeTransfer. Compartilhe arquivos com segurança, sem rastreamento ou limitações.",

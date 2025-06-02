@@ -4,6 +4,7 @@ import { FilePreviewModal } from "@/components/modals/file-preview-modal";
 import { GenerateShareLinkModal } from "@/components/modals/generate-share-link-modal";
 import { ShareActionsModals } from "@/components/modals/share-actions-modals";
 import { ShareDetailsModal } from "@/components/modals/share-details-modal";
+import { ShareFileModal } from "@/components/modals/share-file-modal";
 import { UploadFileModal } from "@/components/modals/upload-file-modal";
 import { DashboardModalsProps } from "../types";
 
@@ -16,6 +17,13 @@ export function DashboardModals({ modals, fileManager, shareManager, onSuccess }
         file={fileManager.previewFile || { name: "", objectName: "" }}
         isOpen={!!fileManager.previewFile}
         onClose={() => fileManager.setPreviewFile(null)}
+      />
+
+      <ShareFileModal
+        file={fileManager.fileToShare}
+        isOpen={!!fileManager.fileToShare}
+        onClose={() => fileManager.setFileToShare(null)}
+        onSuccess={onSuccess}
       />
 
       <FileActionsModals

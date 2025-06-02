@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "Lädt, bitte warten...",
+    "loading": "Laden, bitte warten...",
     "cancel": "Abbrechen",
     "save": "Speichern",
     "delete": "Löschen",
@@ -9,7 +9,8 @@
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "yes": "Ja",
     "no": "Nein",
-    "dashboard": "Übersicht"
+    "dashboard": "Dashboard",
+    "back": "Zurück"
   },
   "createShare": {
     "title": "Freigabe erstellen",
@@ -100,9 +101,10 @@
       "actions": "AKTIONEN"
     },
     "actions": {
-      "menu": "Dateiaktionsmenü",
+      "menu": "Datei-Aktionsmenü",
       "preview": "Vorschau",
       "edit": "Bearbeiten",
+      "share": "Teilen",
       "download": "Herunterladen",
       "delete": "Löschen"
     }
@@ -123,12 +125,12 @@
     "pageTitle": "Passwort vergessen"
   },
   "generateShareLink": {
-    "generateTitle": "Freigabelink generieren",
-    "updateTitle": "Freigabelink aktualisieren",
-    "generateDescription": "Erstellen Sie einen Link, um Ihre Dateien zu teilen",
-    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabelink",
+    "generateTitle": "Freigabe-Link generieren",
+    "updateTitle": "Freigabe-Link aktualisieren",
+    "generateDescription": "Generieren Sie einen Link zum Teilen Ihrer Dateien",
+    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabe-Link",
     "aliasPlaceholder": "Alias eingeben",
-    "linkReady": "Ihr Freigabelink ist fertig:",
+    "linkReady": "Ihr Freigabe-Link ist bereit:",
     "generateButton": "Link generieren",
     "updateButton": "Link aktualisieren",
     "copyButton": "Link kopieren",
@@ -671,5 +673,25 @@
     "passwordsMatch": "Die Passwörter stimmen nicht überein",
     "emailRequired": "E-Mail ist erforderlich",
     "passwordRequired": "Passwort ist erforderlich"
+  },
+  "shareFile": {
+    "title": "Datei teilen",
+    "linkTitle": "Link generieren",
+    "nameLabel": "Freigabe-Name",
+    "namePlaceholder": "Freigabe-Name eingeben",
+    "expirationLabel": "Ablaufdatum",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
+    "maxViewsLabel": "Maximale Aufrufe",
+    "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
+    "passwordProtection": "Passwort geschützt",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "linkDescription": "Generieren Sie einen benutzerdefinierten Link zum Teilen der Datei",
+    "aliasLabel": "Link-Alias",
+    "aliasPlaceholder": "Benutzerdefinierten Alias eingeben",
+    "linkReady": "Ihr Freigabe-Link ist bereit:",
+    "createShare": "Freigabe erstellen",
+    "generateLink": "Link generieren",
+    "copyLink": "Link kopieren"
   }
 }

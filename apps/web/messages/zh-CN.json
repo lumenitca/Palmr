@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "加载中，请稍候...",
+    "loading": "正在加载，请稍候...",
     "cancel": "取消",
     "save": "保存",
     "delete": "删除",
@@ -9,7 +9,8 @@
     "unexpectedError": "发生意外错误。请重试。",
     "yes": "是",
     "no": "否",
-    "dashboard": "仪表盘"
+    "dashboard": "仪表板",
+    "back": "返回"
   },
   "createShare": {
     "title": "创建共享",
@@ -103,6 +104,7 @@
       "menu": "文件操作菜单",
       "preview": "预览",
       "edit": "编辑",
+      "share": "分享",
       "download": "下载",
       "delete": "删除"
     }
@@ -123,17 +125,17 @@
     "pageTitle": "忘记密码？"
   },
   "generateShareLink": {
-    "generateTitle": "生成共享链接",
-    "updateTitle": "更新共享链接",
-    "generateDescription": "生成用于共享文件的链接",
-    "updateDescription": "更新此共享链接的别名",
-    "aliasPlaceholder": "请输入别名",
-    "linkReady": "您的共享链接已准备好：",
+    "generateTitle": "生成分享链接",
+    "updateTitle": "更新分享链接",
+    "generateDescription": "生成一个链接来分享您的文件",
+    "updateDescription": "更新此分享链接的别名",
+    "aliasPlaceholder": "输入别名",
+    "linkReady": "您的分享链接已准备就绪：",
     "generateButton": "生成链接",
     "updateButton": "更新链接",
     "copyButton": "复制链接",
     "success": "链接生成成功",
-    "error": "生成链接失败",
+    "error": "链接生成失败",
     "copied": "链接已复制到剪贴板"
   },
   "home": {
@@ -671,5 +673,25 @@
     "passwordsMatch": "密码不匹配",
     "emailRequired": "电子邮件为必填项",
     "passwordRequired": "密码为必填项"
+  },
+  "shareFile": {
+    "title": "分享文件",
+    "linkTitle": "生成链接",
+    "nameLabel": "分享名称",
+    "namePlaceholder": "输入分享名称",
+    "expirationLabel": "过期日期",
+    "expirationPlaceholder": "年/月/日 时:分",
+    "maxViewsLabel": "最大查看次数",
+    "maxViewsPlaceholder": "留空表示无限制",
+    "passwordProtection": "密码保护",
+    "passwordLabel": "密码",
+    "passwordPlaceholder": "输入密码",
+    "linkDescription": "生成自定义链接来分享文件",
+    "aliasLabel": "链接别名",
+    "aliasPlaceholder": "输入自定义别名",
+    "linkReady": "您的分享链接已准备就绪：",
+    "createShare": "创建分享",
+    "generateLink": "生成链接",
+    "copyLink": "复制链接"
   }
 }

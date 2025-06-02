@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "로딩 중입니다. 잠시 기다려주세요...",
+    "loading": "로딩 중입니다. 잠시만 기다려주세요...",
     "cancel": "취소",
     "save": "저장",
     "delete": "삭제",
@@ -9,7 +9,8 @@
     "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해주세요.",
     "yes": "예",
     "no": "아니오",
-    "dashboard": "대시보드"
+    "dashboard": "대시보드",
+    "back": "뒤로"
   },
   "createShare": {
     "title": "공유 생성",
@@ -103,6 +104,7 @@
       "menu": "파일 작업 메뉴",
       "preview": "미리보기",
       "edit": "편집",
+      "share": "공유",
       "download": "다운로드",
       "delete": "삭제"
     }
@@ -671,5 +673,25 @@
     "passwordsMatch": "비밀번호가 일치하지 않습니다",
     "emailRequired": "이메일은 필수입니다",
     "passwordRequired": "비밀번호는 필수입니다"
+  },
+  "shareFile": {
+    "title": "파일 공유",
+    "linkTitle": "링크 생성",
+    "nameLabel": "공유 이름",
+    "namePlaceholder": "공유 이름 입력",
+    "expirationLabel": "만료 날짜",
+    "expirationPlaceholder": "YYYY.MM.DD HH:MM",
+    "maxViewsLabel": "최대 조회수",
+    "maxViewsPlaceholder": "무제한은 비워두세요",
+    "passwordProtection": "비밀번호 보호",
+    "passwordLabel": "비밀번호",
+    "passwordPlaceholder": "비밀번호 입력",
+    "linkDescription": "파일을 공유할 맞춤 링크를 생성합니다",
+    "aliasLabel": "링크 별칭",
+    "aliasPlaceholder": "맞춤 별칭 입력",
+    "linkReady": "공유 링크가 준비되었습니다:",
+    "createShare": "공유 생성",
+    "generateLink": "링크 생성",
+    "copyLink": "링크 복사"
   }
 }

@@ -9,7 +9,8 @@
     "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
     "yes": "हाँ",
     "no": "नहीं",
-    "dashboard": "डैशबोर्ड"
+    "dashboard": "डैशबोर्ड",
+    "back": "वापस"
   },
   "createShare": {
     "title": "साझा करें बनाएं",
@@ -100,11 +101,12 @@
       "actions": "क्रियाएं"
     },
     "actions": {
-      "menu": "फाइल क्रिया मेनू",
+      "menu": "फ़ाइल एक्शन मेनू",
       "preview": "पूर्वावलोकन",
       "edit": "संपादित करें",
+      "share": "साझा करें",
       "download": "डाउनलोड करें",
-      "delete": "हटाएं"
+      "delete": "डिलीट करें"
     }
   },
   "footer": {
@@ -671,5 +673,25 @@
     "passwordsMatch": "पासवर्ड मेल नहीं खाते",
     "emailRequired": "ईमेल आवश्यक है",
     "passwordRequired": "पासवर्ड आवश्यक है"
+  },
+  "shareFile": {
+    "title": "फ़ाइल साझा करें",
+    "linkTitle": "लिंक जेनरेट करें",
+    "nameLabel": "शेयर का नाम",
+    "namePlaceholder": "शेयर का नाम दर्ज करें",
+    "expirationLabel": "समाप्ति तारीख",
+    "expirationPlaceholder": "DD/MM/YYYY HH:MM",
+    "maxViewsLabel": "अधिकतम व्यू",
+    "maxViewsPlaceholder": "असीमित के लिए खाली छोड़ें",
+    "passwordProtection": "पासवर्ड सुरक्षित",
+    "passwordLabel": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड दर्ज करें",
+    "linkDescription": "फ़ाइल साझा करने के लिए एक कस्टम लिंक जेनरेट करें",
+    "aliasLabel": "लिंक एलियास",
+    "aliasPlaceholder": "कस्टम एलियास दर्ज करें",
+    "linkReady": "आपका शेयर लिंक तैयार है:",
+    "createShare": "शेयर बनाएं",
+    "generateLink": "लिंक जेनरेट करें",
+    "copyLink": "लिंक कॉपी करें"
   }
 }

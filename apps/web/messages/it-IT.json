@@ -1,15 +1,16 @@
 {
   "common": {
-    "loading": "Caricamento in corso, attendere...",
+    "loading": "Caricamento, attendere prego...",
     "cancel": "Annulla",
     "save": "Salva",
     "delete": "Elimina",
     "close": "Chiudi",
     "download": "Scarica",
-    "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
+    "unexpectedError": "Si è verificato un errore inaspettato. Si prega di riprovare.",
     "yes": "Sì",
     "no": "No",
-    "dashboard": "Pannello di controllo"
+    "dashboard": "Dashboard",
+    "back": "Indietro"
   },
   "createShare": {
     "title": "Crea Condivisione",
@@ -103,6 +104,7 @@
       "menu": "Menu azioni file",
       "preview": "Anteprima",
       "edit": "Modifica",
+      "share": "Condividi",
       "download": "Scarica",
       "delete": "Elimina"
     }
@@ -123,17 +125,17 @@
     "pageTitle": "Parola d'accesso Dimenticata"
   },
   "generateShareLink": {
-    "generateTitle": "Genera Link di Condivisione",
-    "updateTitle": "Aggiorna Link di Condivisione",
+    "generateTitle": "Genera link di condivisione",
+    "updateTitle": "Aggiorna link di condivisione",
     "generateDescription": "Genera un link per condividere i tuoi file",
     "updateDescription": "Aggiorna l'alias per questo link di condivisione",
     "aliasPlaceholder": "Inserisci alias",
     "linkReady": "Il tuo link di condivisione è pronto:",
-    "generateButton": "Genera Link",
-    "updateButton": "Aggiorna Link",
-    "copyButton": "Copia Link",
+    "generateButton": "Genera link",
+    "updateButton": "Aggiorna link",
+    "copyButton": "Copia link",
     "success": "Link generato con successo",
-    "error": "Errore durante la generazione del link",
+    "error": "Errore nella generazione del link",
     "copied": "Link copiato negli appunti"
   },
   "home": {
@@ -670,5 +672,25 @@
     "passwordsMatch": "Le parole d'accesso devono corrispondere",
     "emailRequired": "L'indirizzo email è obbligatorio",
     "passwordRequired": "La parola d'accesso è obbligatoria"
+  },
+  "shareFile": {
+    "title": "Condividi file",
+    "linkTitle": "Genera link",
+    "nameLabel": "Nome condivisione",
+    "namePlaceholder": "Inserisci nome condivisione",
+    "expirationLabel": "Data di scadenza",
+    "expirationPlaceholder": "GG/MM/AAAA HH:MM",
+    "maxViewsLabel": "Visualizzazioni massime",
+    "maxViewsPlaceholder": "Lascia vuoto per illimitato",
+    "passwordProtection": "Protetto da password",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Inserisci password",
+    "linkDescription": "Genera un link personalizzato per condividere il file",
+    "aliasLabel": "Alias del link",
+    "aliasPlaceholder": "Inserisci alias personalizzato",
+    "linkReady": "Il tuo link di condivisione è pronto:",
+    "createShare": "Crea condivisione",
+    "generateLink": "Genera link",
+    "copyLink": "Copia link"
   }
 }

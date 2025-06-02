@@ -9,7 +9,8 @@
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
     "yes": "Evet",
     "no": "Hayır",
-    "dashboard": "Gösterge Paneli"
+    "dashboard": "Kontrol Paneli",
+    "back": "Geri"
   },
   "createShare": {
     "title": "Paylaşım Oluştur",
@@ -100,9 +101,10 @@
       "actions": "İşlemler"
     },
     "actions": {
-      "menu": "Dosya İşlem Menüsü",
+      "menu": "Dosya işlemleri menüsü",
       "preview": "Önizleme",
       "edit": "Düzenle",
+      "share": "Paylaş",
       "download": "İndir",
       "delete": "Sil"
     }
@@ -671,5 +673,25 @@
     "passwordsMatch": "Şifreler eşleşmiyor",
     "emailRequired": "E-posta gerekli",
     "passwordRequired": "Şifre gerekli"
+  },
+  "shareFile": {
+    "title": "Dosyayı paylaş",
+    "linkTitle": "Bağlantı oluştur",
+    "nameLabel": "Paylaşım adı",
+    "namePlaceholder": "Paylaşım adını girin",
+    "expirationLabel": "Son kullanma tarihi",
+    "expirationPlaceholder": "GG.AA.YYYY SS:DD",
+    "maxViewsLabel": "Maksimum görüntüleme",
+    "maxViewsPlaceholder": "Sınırsız için boş bırakın",
+    "passwordProtection": "Şifre korumalı",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "Şifre girin",
+    "linkDescription": "Dosyayı paylaşmak için özel bir bağlantı oluşturun",
+    "aliasLabel": "Bağlantı takma adı",
+    "aliasPlaceholder": "Özel takma ad girin",
+    "linkReady": "Paylaşım bağlantınız hazır:",
+    "createShare": "Paylaşım oluştur",
+    "generateLink": "Bağlantı oluştur",
+    "copyLink": "Bağlantıyı kopyala"
   }
 }

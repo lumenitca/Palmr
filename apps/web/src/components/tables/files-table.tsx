@@ -1,5 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { IconCheck, IconDotsVertical, IconDownload, IconEdit, IconEye, IconTrash, IconX } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconDotsVertical,
+  IconDownload,
+  IconEdit,
+  IconEye,
+  IconShare,
+  IconTrash,
+  IconX,
+} from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +40,7 @@ interface FilesTableProps {
   onUpdateName: (fileId: string, newName: string) => void;
   onUpdateDescription: (fileId: string, newDescription: string) => void;
   onDownload: (objectName: string, fileName: string) => void;
+  onShare: (file: File) => void;
   onDelete: (file: File) => void;
 }
 
@@ -41,6 +51,7 @@ export function FilesTable({
   onUpdateName,
   onUpdateDescription,
   onDownload,
+  onShare,
   onDelete,
 }: FilesTableProps) {
   const t = useTranslations();
@@ -343,6 +354,10 @@ export function FilesTable({
                       >
                         <IconDownload className="mr-2 h-4 w-4" />
                         {t("filesTable.actions.download")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onShare(file)}>
+                        <IconShare className="mr-2 h-4 w-4" />
+                        {t("filesTable.actions.share")}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => onDelete(file)}

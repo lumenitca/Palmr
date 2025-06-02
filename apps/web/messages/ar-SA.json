@@ -5,11 +5,12 @@
     "save": "حفظ",
     "delete": "حذف",
     "close": "إغلاق",
-    "download": "تنزيل",
+    "download": "تحميل",
     "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
     "yes": "نعم",
     "no": "لا",
-    "dashboard": "لوحة التحكم"
+    "dashboard": "لوحة القيادة",
+    "back": "رجوع"
   },
   "createShare": {
     "title": "إنشاء مشاركة",
@@ -103,7 +104,8 @@
       "menu": "قائمة إجراءات الملف",
       "preview": "المعاينة",
       "edit": "تعديل",
-      "download": "تنزيل",
+      "share": "مشاركة",
+      "download": "تحميل",
       "delete": "حذف"
     }
   },
@@ -125,9 +127,9 @@
   "generateShareLink": {
     "generateTitle": "إنشاء رابط المشاركة",
     "updateTitle": "تحديث رابط المشاركة",
-    "generateDescription": "أنشئ رابطاً لمشاركة ملفاتك",
-    "updateDescription": "قم بتحديث اللقب لهذا الرابط",
-    "aliasPlaceholder": "أدخل لقبًا",
+    "generateDescription": "إنشاء رابط لمشاركة ملفاتك",
+    "updateDescription": "تحديث الاسم المستعار لرابط المشاركة هذا",
+    "aliasPlaceholder": "أدخل الاسم المستعار",
     "linkReady": "رابط المشاركة جاهز:",
     "generateButton": "إنشاء الرابط",
     "updateButton": "تحديث الرابط",
@@ -671,5 +673,25 @@
     "passwordsMatch": "كلمتا المرور غير متطابقتين",
     "emailRequired": "البريد الإلكتروني مطلوب",
     "passwordRequired": "كلمة المرور مطلوبة"
+  },
+  "shareFile": {
+    "title": "مشاركة الملف",
+    "linkTitle": "إنشاء الرابط",
+    "nameLabel": "اسم المشاركة",
+    "namePlaceholder": "أدخل اسم المشاركة",
+    "expirationLabel": "تاريخ انتهاء الصلاحية",
+    "expirationPlaceholder": "يوم/شهر/سنة ساعة:دقيقة",
+    "maxViewsLabel": "الحد الأقصى للمشاهدات",
+    "maxViewsPlaceholder": "اتركه فارغاً للمشاهدات اللامحدودة",
+    "passwordProtection": "محمي بكلمة مرور",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "linkDescription": "إنشاء رابط مخصص لمشاركة الملف",
+    "aliasLabel": "اسم مستعار للرابط",
+    "aliasPlaceholder": "أدخل اسماً مستعاراً مخصصاً",
+    "linkReady": "رابط المشاركة جاهز:",
+    "createShare": "إنشاء مشاركة",
+    "generateLink": "إنشاء الرابط",
+    "copyLink": "نسخ الرابط"
   }
 }

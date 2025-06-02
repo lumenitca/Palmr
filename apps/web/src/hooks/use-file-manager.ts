@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { deleteFile, getDownloadUrl, updateFile } from "@/http/endpoints";
 
@@ -20,13 +20,25 @@ interface PreviewFile {
   objectName: string;
 }
 
+interface FileToShare {
+  id: string;
+  name: string;
+  description?: string;
+  size: number;
+  objectName: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface FileManagerHook {
   previewFile: PreviewFile | null;
   fileToDelete: any;
   fileToRename: any;
+  fileToShare: FileToShare | null;
   setFileToDelete: (file: any) => void;
   setFileToRename: (file: any) => void;
   setPreviewFile: (file: PreviewFile | null) => void;
+  setFileToShare: (file: FileToShare | null) => void;
   handleDelete: (fileId: string) => Promise<void>;
   handleDownload: (objectName: string, fileName: string) => Promise<void>;
   handleRename: (fileId: string, newName: string, description?: string) => Promise<void>;
@@ -37,13 +49,14 @@ export function useFileManager(onRefresh: () => Promise<void>) {
   const [previewFile, setPreviewFile] = useState<PreviewFile | null>(null);
   const [fileToRename, setFileToRename] = useState<FileToRename | null>(null);
   const [fileToDelete, setFileToDelete] = useState<FileToDelete | null>(null);
+  const [fileToShare, setFileToShare] = useState<FileToShare | null>(null);
 
   const handleDownload = async (objectName: string, fileName: string) => {
     try {
       const encodedObjectName = encodeURIComponent(objectName);
       const response = await getDownloadUrl(encodedObjectName);
       const downloadUrl = response.data.url;
-      console.log(fileName)
+      console.log(fileName);
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.download = fileName;
@@ -91,6 +104,8 @@ export function useFileManager(onRefresh: () => Promise<void>) {
     setFileToRename,
     fileToDelete,
     setFileToDelete,
+    fileToShare,
+    setFileToShare,
     handleDownload,
     handleRename,
     handleDelete,

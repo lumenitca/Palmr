@@ -1,15 +1,16 @@
 {
   "common": {
-    "loading": "Cargando, por favor espera...",
+    "loading": "Cargando, por favor espere...",
     "cancel": "Cancelar",
     "save": "Guardar",
     "delete": "Eliminar",
     "close": "Cerrar",
     "download": "Descargar",
-    "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo.",
+    "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
     "yes": "Sí",
     "no": "No",
-    "dashboard": "Panel de control"
+    "dashboard": "Panel",
+    "back": "Volver"
   },
   "createShare": {
     "title": "Crear compartición",
@@ -103,6 +104,7 @@
       "menu": "Menú de acciones del archivo",
       "preview": "Vista previa",
       "edit": "Editar",
+      "share": "Compartir",
       "download": "Descargar",
       "delete": "Eliminar"
     }
@@ -123,17 +125,17 @@
     "pageTitle": "Recuperar contraseña"
   },
   "generateShareLink": {
-    "generateTitle": "Generar enlace de compartición",
-    "updateTitle": "Actualizar enlace de compartición",
-    "generateDescription": "Genera un enlace para compartir tus archivos",
-    "updateDescription": "Actualiza el alias para este enlace de compartición",
-    "aliasPlaceholder": "Introduce un alias",
-    "linkReady": "Tu enlace de compartición está listo:",
+    "generateTitle": "Generar enlace de compartir",
+    "updateTitle": "Actualizar enlace de compartir",
+    "generateDescription": "Generar un enlace para compartir tus archivos",
+    "updateDescription": "Actualizar el alias de este enlace de compartir",
+    "aliasPlaceholder": "Ingrese alias",
+    "linkReady": "Tu enlace de compartir está listo:",
     "generateButton": "Generar enlace",
     "updateButton": "Actualizar enlace",
     "copyButton": "Copiar enlace",
     "success": "Enlace generado exitosamente",
-    "error": "Error al generar el enlace",
+    "error": "Error al generar enlace",
     "copied": "Enlace copiado al portapapeles"
   },
   "home": {
@@ -671,5 +673,25 @@
     "passwordsMatch": "Las contraseñas no coinciden",
     "emailRequired": "Se requiere el correo electrónico",
     "passwordRequired": "Se requiere la contraseña"
+  },
+  "shareFile": {
+    "title": "Compartir archivo",
+    "linkTitle": "Generar enlace",
+    "nameLabel": "Nombre del compartir",
+    "namePlaceholder": "Ingrese nombre del compartir",
+    "expirationLabel": "Fecha de expiración",
+    "expirationPlaceholder": "DD/MM/AAAA HH:MM",
+    "maxViewsLabel": "Máximo de visualizaciones",
+    "maxViewsPlaceholder": "Deje vacío para ilimitado",
+    "passwordProtection": "Protegido con contraseña",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Ingrese contraseña",
+    "linkDescription": "Genere un enlace personalizado para compartir el archivo",
+    "aliasLabel": "Alias del enlace",
+    "aliasPlaceholder": "Ingrese alias personalizado",
+    "linkReady": "Su enlace de compartir está listo:",
+    "createShare": "Crear compartir",
+    "generateLink": "Generar enlace",
+    "copyLink": "Copiar enlace"
   }
 }

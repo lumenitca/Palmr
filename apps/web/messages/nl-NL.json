@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "Laden, even wachten...",
+    "loading": "Laden, even geduld...",
     "cancel": "Annuleren",
     "save": "Opslaan",
     "delete": "Verwijderen",
@@ -9,7 +9,8 @@
     "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
     "yes": "Ja",
     "no": "Nee",
-    "dashboard": "Controlepaneel"
+    "dashboard": "Dashboard",
+    "back": "Terug"
   },
   "createShare": {
     "title": "Delen Maken",
@@ -100,9 +101,10 @@
       "actions": "ACTIES"
     },
     "actions": {
-      "menu": "Bestandsacties menu",
-      "preview": "Voorvertoning",
+      "menu": "Bestand acties menu",
+      "preview": "Voorbeeld",
       "edit": "Bewerken",
+      "share": "Delen",
       "download": "Downloaden",
       "delete": "Verwijderen"
     }
@@ -123,15 +125,15 @@
     "pageTitle": "Wachtwoord Vergeten"
   },
   "generateShareLink": {
-    "generateTitle": "Deel Link Genereren",
-    "updateTitle": "Deel Link Bijwerken",
-    "generateDescription": "Genereer een link om je bestanden te delen",
-    "updateDescription": "Werk de alias bij voor deze deel link",
+    "generateTitle": "Deel-link genereren",
+    "updateTitle": "Deel-link bijwerken",
+    "generateDescription": "Genereer een link om uw bestanden te delen",
+    "updateDescription": "Werk de alias voor deze deel-link bij",
     "aliasPlaceholder": "Voer alias in",
-    "linkReady": "Je deel link is klaar:",
-    "generateButton": "Link Genereren",
-    "updateButton": "Link Bijwerken",
-    "copyButton": "Link Kopiëren",
+    "linkReady": "Uw deel-link is klaar:",
+    "generateButton": "Link genereren",
+    "updateButton": "Link bijwerken",
+    "copyButton": "Link kopiëren",
     "success": "Link succesvol gegenereerd",
     "error": "Fout bij het genereren van link",
     "copied": "Link gekopieerd naar klembord"
@@ -670,5 +672,25 @@
     "passwordsMatch": "Wachtwoorden moeten overeenkomen",
     "emailRequired": "E-mail is verplicht",
     "passwordRequired": "Wachtwoord is verplicht"
+  },
+  "shareFile": {
+    "title": "Bestand delen",
+    "linkTitle": "Link genereren",
+    "nameLabel": "Deel naam",
+    "namePlaceholder": "Voer deel naam in",
+    "expirationLabel": "Vervaldatum",
+    "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
+    "maxViewsLabel": "Maximum weergaven",
+    "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
+    "passwordProtection": "Wachtwoord beschermd",
+    "passwordLabel": "Wachtwoord",
+    "passwordPlaceholder": "Voer wachtwoord in",
+    "linkDescription": "Genereer een aangepaste link om het bestand te delen",
+    "aliasLabel": "Link alias",
+    "aliasPlaceholder": "Voer aangepaste alias in",
+    "linkReady": "Uw deel-link is klaar:",
+    "createShare": "Deel maken",
+    "generateLink": "Link genereren",
+    "copyLink": "Link kopiëren"
   }
 }

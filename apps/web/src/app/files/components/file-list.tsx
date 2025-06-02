@@ -25,6 +25,7 @@ export function FileList({ files, filteredFiles, fileManager, searchQuery, onSea
               onDownload={fileManager.handleDownload}
               onPreview={fileManager.setPreviewFile}
               onRename={fileManager.setFileToRename}
+              onShare={fileManager.setFileToShare}
               onUpdateName={(fileId, newName) => {
                 const file = filteredFiles.find((f) => f.id === fileId);
                 if (file) {

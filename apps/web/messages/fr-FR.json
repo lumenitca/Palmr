@@ -9,7 +9,8 @@
     "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer.",
     "yes": "Oui",
     "no": "Non",
-    "dashboard": "Tableau de Bord"
+    "dashboard": "Tableau de bord",
+    "back": "Retour"
   },
   "createShare": {
     "title": "Créer un Partage",
@@ -100,9 +101,10 @@
       "actions": "ACTIONS"
     },
     "actions": {
-      "menu": "Menu d'actions du fichier",
+      "menu": "Menu d'actions de fichier",
       "preview": "Aperçu",
       "edit": "Modifier",
+      "share": "Partager",
       "download": "Télécharger",
       "delete": "Supprimer"
     }
@@ -123,15 +125,15 @@
     "pageTitle": "Mot de Passe Oublié"
   },
   "generateShareLink": {
-    "generateTitle": "Générer un Lien de Partage",
-    "updateTitle": "Mettre à Jour le Lien de Partage",
-    "generateDescription": "Générez un lien pour partager vos fichiers",
-    "updateDescription": "Mettez à jour l'alias de ce lien de partage",
+    "generateTitle": "Générer un lien de partage",
+    "updateTitle": "Mettre à jour le lien de partage",
+    "generateDescription": "Générer un lien pour partager vos fichiers",
+    "updateDescription": "Mettre à jour l'alias de ce lien de partage",
     "aliasPlaceholder": "Entrez l'alias",
     "linkReady": "Votre lien de partage est prêt :",
-    "generateButton": "Générer le Lien",
-    "updateButton": "Mettre à Jour le Lien",
-    "copyButton": "Copier le Lien",
+    "generateButton": "Générer le lien",
+    "updateButton": "Mettre à jour le lien",
+    "copyButton": "Copier le lien",
     "success": "Lien généré avec succès",
     "error": "Échec de la génération du lien",
     "copied": "Lien copié dans le presse-papiers"
@@ -671,5 +673,25 @@
     "passwordsMatch": "Les mots de passe ne correspondent pas",
     "emailRequired": "L'email est requis",
     "passwordRequired": "Le mot de passe est requis"
+  },
+  "shareFile": {
+    "title": "Partager le fichier",
+    "linkTitle": "Générer le lien",
+    "nameLabel": "Nom du partage",
+    "namePlaceholder": "Entrez le nom du partage",
+    "expirationLabel": "Date d'expiration",
+    "expirationPlaceholder": "DD/MM/AAAA HH:MM",
+    "maxViewsLabel": "Nombre maximum de vues",
+    "maxViewsPlaceholder": "Laissez vide pour illimité",
+    "passwordProtection": "Protégé par mot de passe",
+    "passwordLabel": "Mot de passe",
+    "passwordPlaceholder": "Entrez le mot de passe",
+    "linkDescription": "Générez un lien personnalisé pour partager le fichier",
+    "aliasLabel": "Alias du lien",
+    "aliasPlaceholder": "Entrez un alias personnalisé",
+    "linkReady": "Votre lien de partage est prêt :",
+    "createShare": "Créer le partage",
+    "generateLink": "Générer le lien",
+    "copyLink": "Copier le lien"
   }
 }
