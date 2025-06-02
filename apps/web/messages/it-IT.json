@@ -31,7 +31,11 @@
     "loadError": "Errore durante il caricamento dei dati del pannello di controllo",
     "linkCopied": "Link copiato negli appunti",
     "pageTitle": "Pannello di controllo",
-    "breadcrumb": "Pannello di controllo"
+    "breadcrumb": "Pannello di controllo",
+    "recentFiles": {
+      "description": "I tuoi file caricati più di recente",
+      "title": "File Recenti"
+    }
   },
   "emptyState": {
     "noFiles": "Nessun file caricato ancora",
@@ -72,7 +76,8 @@
     "videoNotSupported": "Il tuo browser non supporta l'elemento video.",
     "pdfPreviewNotAvailable": "L'anteprima PDF non è disponibile. Prova la vista alternativa o scarica.",
     "tryAlternativeView": "Prova Vista Alternativa",
-    "loadingAlternative": "Caricamento vista alternativa..."
+    "loadingAlternative": "Caricamento vista alternativa...",
+    "loadingAudio": "Caricamento audio..."
   },
   "fileSelector": {
     "availableFiles": "File Disponibili ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "Errore nella creazione del file ZIP",
     "bulkDownloadFileError": "Errore nel download del file {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {1 file eliminato con successo} other {# file eliminati con successo}}",
-    "bulkDeleteError": "Errore nell'eliminazione dei file selezionati"
+    "bulkDeleteError": "Errore nell'eliminazione dei file selezionati",
+    "viewMode": {
+      "table": "Tabella",
+      "grid": "Griglia"
+    },
+    "totalFiles": "{count, plural, =0 {Nessun file} =1 {1 file} other {# file}}"
   },
   "filesTable": {
     "ariaLabel": "Tabella dei file",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Archiviazione Massima per Utente",
         "description": "Limite totale di archiviazione per utente"
+      },
+      "firstUserAccess": {
+        "description": "Impostazioni per il primo accesso di nuovi utenti",
+        "title": "Primo Accesso Utente"
       }
     },
     "buttons": {
@@ -718,7 +732,8 @@
     "passwordLength": "La parola d'accesso deve essere di almeno 8 caratteri",
     "passwordsMatch": "Le parole d'accesso devono corrispondere",
     "emailRequired": "L'indirizzo email è obbligatorio",
-    "passwordRequired": "La parola d'accesso è obbligatoria"
+    "passwordRequired": "La parola d'accesso è obbligatoria",
+    "passwordMinLength": "La password deve contenere almeno 6 caratteri"
   },
   "shareFile": {
     "title": "Condividi File",

@@ -31,7 +31,11 @@
     "loadError": "대시보드 데이터를 불러오는데 실패했습니다",
     "linkCopied": "링크가 클립보드에 복사되었습니다",
     "pageTitle": "대시보드",
-    "breadcrumb": "대시보드"
+    "breadcrumb": "대시보드",
+    "recentFiles": {
+      "description": "가장 최근에 업로드한 파일",
+      "title": "최근 파일"
+    }
   },
   "emptyState": {
     "noFiles": "아직 파일이 업로드되지 않았습니다",
@@ -72,7 +76,8 @@
     "videoNotSupported": "브라우저가 비디오 요소를 지원하지 않습니다.",
     "pdfPreviewNotAvailable": "PDF 미리보기를 사용할 수 없습니다. 대체 보기를 시도하거나 다운로드하세요.",
     "tryAlternativeView": "대체 보기 시도",
-    "loadingAlternative": "대체 보기 로딩 중..."
+    "loadingAlternative": "대체 보기 로딩 중...",
+    "loadingAudio": "오디오 로딩 중..."
   },
   "fileSelector": {
     "availableFiles": "사용 가능한 파일 ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "ZIP 파일 생성 오류",
     "bulkDownloadFileError": "파일 {fileName} 다운로드 오류",
     "bulkDeleteSuccess": "{count, plural, =1 {1개 파일이 성공적으로 삭제되었습니다} other {#개 파일이 성공적으로 삭제되었습니다}}",
-    "bulkDeleteError": "선택된 파일 삭제 오류"
+    "bulkDeleteError": "선택된 파일 삭제 오류",
+    "viewMode": {
+      "table": "테이블",
+      "grid": "그리드"
+    },
+    "totalFiles": "{count, plural, =0 {파일 없음} =1 {1개 파일} other {#개 파일}}"
   },
   "filesTable": {
     "ariaLabel": "파일 테이블",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "사용자당 최대 스토리지",
         "description": "사용자당 총 스토리지 제한"
+      },
+      "firstUserAccess": {
+        "description": "새 사용자의 첫 번째 액세스 설정",
+        "title": "첫 번째 사용자 액세스"
       }
     },
     "buttons": {

@@ -31,7 +31,11 @@
     "loadError": "Falha ao carregar dados do painel",
     "linkCopied": "Link copiado para a área de transferência",
     "pageTitle": "Painel",
-    "breadcrumb": "Painel"
+    "breadcrumb": "Painel",
+    "recentFiles": {
+      "title": "Arquivos recentes",
+      "description": "Seus arquivos enviados mais recentemente"
+    }
   },
   "emptyState": {
     "noFiles": "Nenhum arquivo enviado ainda",
@@ -72,7 +76,8 @@
     "videoNotSupported": "Seu navegador não suporta o elemento de vídeo.",
     "pdfPreviewNotAvailable": "Preview do PDF não está disponível. Tente o modo alternativo ou faça o download.",
     "tryAlternativeView": "Tentar Visualização Alternativa",
-    "loadingAlternative": "Carregando visualização alternativa..."
+    "loadingAlternative": "Carregando visualização alternativa...",
+    "loadingAudio": "Carregando áudio..."
   },
   "fileSelector": {
     "availableFiles": "Arquivos Disponíveis ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "Erro ao criar arquivo ZIP",
     "bulkDownloadFileError": "Erro ao baixar arquivo {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {1 arquivo excluído com sucesso} other {# arquivos excluídos com sucesso}}",
-    "bulkDeleteError": "Erro ao excluir arquivos selecionados"
+    "bulkDeleteError": "Erro ao excluir arquivos selecionados",
+    "totalFiles": "{count, plural, =0 {Nenhum arquivo} =1 {1 arquivo} other {# arquivos}}",
+    "viewMode": {
+      "table": "Tabela",
+      "grid": "Grade"
+    }
   },
   "filesTable": {
     "ariaLabel": "Tabela de arquivos",
@@ -381,6 +391,10 @@
     },
     "fields": {
       "noDescription": "Sem descrição disponível",
+      "firstUserAccess": {
+        "title": "Primeiro acesso do usuário",
+        "description": "Configurações para o primeiro acesso de novos usuários"
+      },
       "appLogo": {
         "title": "Logo do Aplicativo",
         "description": "Imagem do logo do aplicativo"
@@ -710,8 +724,8 @@
     "status": {
       "title": "Confirmar Alteração de Status",
       "confirmation": "Tem certeza que deseja {action} o usuário {firstName} {lastName}?",
-      "activate": "ativar",
-      "deactivate": "desativar",
+      "activate": "Ativar",
+      "deactivate": "Desativar",
       "user": "Usuário"
     },
     "header": {

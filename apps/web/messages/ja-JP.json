@@ -31,7 +31,11 @@
     "loadError": "ダッシュボードデータの読み込みに失敗しました",
     "linkCopied": "リンクがクリップボードにコピーされました",
     "pageTitle": "ダッシュボード",
-    "breadcrumb": "ダッシュボード"
+    "breadcrumb": "ダッシュボード",
+    "recentFiles": {
+      "title": "最近のファイル",
+      "description": "最近アップロードされたファイル"
+    }
   },
   "emptyState": {
     "noFiles": "まだファイルがアップロードされていません",
@@ -72,7 +76,8 @@
     "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません。",
     "pdfPreviewNotAvailable": "PDFプレビューは利用できません。代替ビューを試すかダウンロードしてください。",
     "tryAlternativeView": "代替ビューを試す",
-    "loadingAlternative": "代替ビューを読み込み中..."
+    "loadingAlternative": "代替ビューを読み込み中...",
+    "loadingAudio": "オーディオを読み込み中..."
   },
   "fileSelector": {
     "availableFiles": "利用可能なファイル ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "ZIPファイルの作成エラー",
     "bulkDownloadFileError": "ファイル {fileName} のダウンロードエラー",
     "bulkDeleteSuccess": "{count, plural, =1 {1つのファイルが正常に削除されました} other {#つのファイルが正常に削除されました}}",
-    "bulkDeleteError": "選択されたファイルの削除エラー"
+    "bulkDeleteError": "選択されたファイルの削除エラー",
+    "viewMode": {
+      "table": "テーブル",
+      "grid": "グリッド"
+    },
+    "totalFiles": "{count, plural, =0 {ファイルなし} =1 {1ファイル} other {#ファイル}}"
   },
   "filesTable": {
     "ariaLabel": "ファイルテーブル",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "ユーザーごとの最大ストレージ",
         "description": "ユーザーごとの総ストレージ制限"
+      },
+      "firstUserAccess": {
+        "description": "新規ユーザーの初回アクセス設定",
+        "title": "初回ユーザーアクセス"
       }
     },
     "buttons": {
@@ -623,7 +637,22 @@
     "error": "ファイルのアップロードに失敗しました",
     "fileSizeExceeded": "ファイルサイズが制限値 {maxsizemb}MB を超えています。",
     "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {availablespace}MB です。",
-    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。"
+    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。",
+    "selectMultipleFiles": "複数のファイルを選択するにはクリック",
+    "finish": "Concluir",
+    "confirmCancel": {
+      "warning": "Se você fechar agora, os uploads serão cancelados e qualquer progresso será perdido.",
+      "continue": "Continuar Uploads",
+      "title": "Cancelar Uploads",
+      "messageMultiple": "Há {count} uploads em andamento.",
+      "messageSingle": "Há um upload em andamento.",
+      "cancel": "Cancelar Uploads"
+    },
+    "multipleTitle": "Enviar Múltiplos Arquivos",
+    "startUploads": "Iniciar Uploads",
+    "allSuccess": "{count, plural, =1 {ファイルがアップロードされました} other {#個のファイルがアップロードされました}}",
+    "partialSuccess": "{success}個のファイルがアップロードされ、{error}個が失敗しました",
+    "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ"
   },
   "users": {
     "modes": {

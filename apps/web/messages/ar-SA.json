@@ -31,7 +31,11 @@
     "loadError": "فشل في تحميل بيانات لوحة التحكم",
     "linkCopied": "تم نسخ الرابط إلى الحافظة",
     "pageTitle": "لوحة التحكم",
-    "breadcrumb": "لوحة التحكم"
+    "breadcrumb": "لوحة التحكم",
+    "recentFiles": {
+      "description": "ملفاتك المرفوعة مؤخراً",
+      "title": "الملفات الحديثة"
+    }
   },
   "emptyState": {
     "noFiles": "لم يتم رفع أي ملفات بعد",
@@ -72,7 +76,8 @@
     "videoNotSupported": "متصفحك لا يدعم عنصر الفيديو.",
     "pdfPreviewNotAvailable": "معاينة PDF غير متاحة. جرب العرض البديل أو قم بالتنزيل.",
     "tryAlternativeView": "جرب العرض البديل",
-    "loadingAlternative": "جاري تحميل العرض البديل..."
+    "loadingAlternative": "جاري تحميل العرض البديل...",
+    "loadingAudio": "جاري تحميل الصوت..."
   },
   "fileSelector": {
     "availableFiles": "الملفات المتاحة ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "خطأ في إنشاء ملف ZIP",
     "bulkDownloadFileError": "خطأ في تحميل الملف {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {تم حذف ملف واحد بنجاح} other {تم حذف # ملفات بنجاح}}",
-    "bulkDeleteError": "خطأ في حذف الملفات المحددة"
+    "bulkDeleteError": "خطأ في حذف الملفات المحددة",
+    "viewMode": {
+      "table": "جدول",
+      "grid": "شبكة"
+    },
+    "totalFiles": "{count, plural, =0 {لا توجد ملفات} =1 {ملف واحد} other {# ملفات}}"
   },
   "filesTable": {
     "ariaLabel": "جدول الملفات",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "أقصى تخزين لكل مستخدم",
         "description": "الحد الإجمالي للتخزين لكل مستخدم "
+      },
+      "firstUserAccess": {
+        "description": "إعدادات الوصول الأول للمستخدمين الجدد",
+        "title": "الوصول الأول للمستخدم"
       }
     },
     "buttons": {

@@ -23,13 +23,19 @@
     "passwordLabel": "Пароль",
     "create": "Создать общий доступ",
     "success": "Общий доступ успешно создан",
-    "error": "Не удалось создать общий доступ"
+    "error": "Не удалось создать общий доступ",
+    "descriptionLabel": "Описание",
+    "descriptionPlaceholder": "Введите описание (опционально)"
   },
   "dashboard": {
     "loadError": "Ошибка загрузки данных панели управления",
     "linkCopied": "Ссылка скопирована в буфер обмена",
     "pageTitle": "Панель управления",
-    "breadcrumb": "Панель управления"
+    "breadcrumb": "Панель управления",
+    "recentFiles": {
+      "title": "Недавние файлы",
+      "description": "Ваши недавно загруженные файлы"
+    }
   },
   "emptyState": {
     "noFiles": "Файлы еще не загружены",
@@ -70,7 +76,8 @@
     "videoNotSupported": "Ваш браузер не поддерживает видео элемент.",
     "pdfPreviewNotAvailable": "Предварительный просмотр PDF недоступен. Попробуйте альтернативный вид или скачайте.",
     "tryAlternativeView": "Попробовать альтернативный вид",
-    "loadingAlternative": "Загрузка альтернативного вида..."
+    "loadingAlternative": "Загрузка альтернативного вида...",
+    "loadingAudio": "Загрузка аудио..."
   },
   "fileSelector": {
     "availableFiles": "Доступные файлы ({count})",
@@ -92,10 +99,22 @@
     "updateSuccess": "Файл успешно обновлен",
     "updateError": "Ошибка при обновлении файла",
     "deleteSuccess": "Файл успешно удален",
-    "deleteError": "Ошибка при удалении файла"
+    "deleteError": "Ошибка при удалении файла",
+    "bulkDownloadSuccess": "Скачивание файлов успешно начато",
+    "bulkDownloadError": "Ошибка при создании ZIP файла",
+    "bulkDownloadFileError": "Ошибка при скачивании файла {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 файл успешно удален} other {# файлов успешно удалено}}",
+    "bulkDeleteError": "Ошибка при удалении выбранных файлов",
+    "totalFiles": "{count, plural, =0 {Нет файлов} =1 {1 файл} other {# файлов}}",
+    "viewMode": {
+      "table": "Таблица",
+      "grid": "Сетка"
+    }
   },
   "filesTable": {
     "ariaLabel": "Таблица файлов",
+    "selectAll": "Выбрать все",
+    "selectFile": "Выбрать файл {fileName}",
     "columns": {
       "name": "ИМЯ",
       "description": "ОПИСАНИЕ",
@@ -111,6 +130,13 @@
       "share": "Поделиться",
       "download": "Скачать",
       "delete": "Удалить"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 файл выбран} other {# файлов выбрано}}",
+      "actions": "Действия",
+      "download": "Скачать Выбранные",
+      "share": "Поделиться Выбранными",
+      "delete": "Удалить Выбранные"
     }
   },
   "footer": {
@@ -410,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Максимальное хранилище для пользователя",
         "description": "Общий лимит хранилища для каждого пользователя"
+      },
+      "firstUserAccess": {
+        "title": "Первый доступ пользователя",
+        "description": "Время первого доступа пользователя"
       }
     },
     "buttons": {
@@ -599,15 +629,30 @@
   },
   "uploadFile": {
     "title": "Загрузить файл",
+    "multipleTitle": "Загрузить Несколько Файлов",
     "selectFile": "Нажмите, чтобы выбрать файл",
+    "selectMultipleFiles": "Нажмите, чтобы выбрать один или несколько файлов",
+    "dragAndDrop": "или перетащите файлы сюда",
     "preview": "Предпросмотр",
     "uploadProgress": "Прогресс загрузки",
     "upload": "Загрузить",
+    "startUploads": "Начать Загрузку",
+    "finish": "Завершить",
     "success": "Файл успешно загружен",
+    "allSuccess": "{count, plural, =1 {Файл успешно загружен} other {# файлов успешно загружено}}",
+    "partialSuccess": "{success} файлов успешно загружено, {error} неудачно",
     "error": "Не удалось загрузить файл",
     "fileSizeExceeded": "Размер файла превышает лимит в {maxsizemb}МБ.",
     "insufficientStorage": "Недостаточно места для хранения. У вас доступно {availablespace}МБ.",
-    "unauthorized": "Не авторизовано: для доступа к этому ресурсу требуется действительный токен."
+    "unauthorized": "Не авторизовано: для доступа к этому ресурсу требуется действительный токен.",
+    "confirmCancel": {
+      "title": "Отменить Загрузку",
+      "messageSingle": "В процессе одна загрузка.",
+      "messageMultiple": "В процессе {count} загрузок.",
+      "warning": "Если вы закроете сейчас, загрузки будут отменены и весь прогресс будет потерян.",
+      "continue": "Продолжить Загрузку",
+      "cancel": "Отменить Загрузку"
+    }
   },
   "users": {
     "modes": {
@@ -711,5 +756,27 @@
     "createShare": "Создать Общий Доступ",
     "generateLink": "Сгенерировать Ссылку",
     "copyLink": "Скопировать Ссылку"
+  },
+  "bulkDownload": {
+    "title": "Массовая Загрузка",
+    "zipNameLabel": "Имя ZIP-файла",
+    "zipNamePlaceholder": "Введите имя файла",
+    "description": "{count, plural, =1 {1 файл будет сжат} other {# файлов будет сжато}}",
+    "download": "Скачать ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Файлы для удаления"
+  },
+  "shareMultipleFiles": {
+    "title": "Поделиться Несколькими Файлами",
+    "shareNameLabel": "Название Общего Доступа",
+    "shareNamePlaceholder": "Введите название общего доступа",
+    "descriptionLabel": "Описание",
+    "descriptionPlaceholder": "Введите описание (опционально)",
+    "filesToShare": "Файлы для отправки",
+    "files": "файлов",
+    "totalSize": "Общий размер",
+    "creating": "Создание...",
+    "create": "Создать Общий Доступ"
   }
 }

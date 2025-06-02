@@ -2,10 +2,10 @@ import { useRouter } from "next/navigation";
 import { IconCloudUpload, IconFolderOpen } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
-import { FilesTable } from "@/components/tables/files-table";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { RecentFilesProps } from "../types";
+import { DashboardFilesView } from "./dashboard-files-view";
 import { EmptyFilesState } from "./empty-file-state";
 
 export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFilesProps) {
@@ -14,12 +14,12 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
 
   return (
     <Card>
-      <CardContent>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
+      <CardHeader>
+        <div className="flex justify-between items-center">
+          <CardTitle className="text-xl font-semibold flex items-center gap-2">
             <IconCloudUpload className="text-xl text-gray-500" />
             {t("recentFiles.title")}
-          </h2>
+          </CardTitle>
           {files.length >= 5 ? (
             <Button
               className="font-semibold text-sm cursor-pointer"
@@ -30,20 +30,22 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
               <IconFolderOpen className="h-4 w-4" />
               {t("recentFiles.viewAll")}
             </Button>
-          ) : files.length === 0 ? null : (
+          ) : (
             <Button
               className="font-semibold text-sm cursor-pointer"
               variant="outline"
               size="default"
-              onClick={onOpenUploadModal}
+              onClick={() => router.push("/files")}
             >
               <IconCloudUpload className="h-4 w-4" />
-              {t("recentFiles.uploadFile")}
+              {t("recentFiles.upload")}
             </Button>
           )}
         </div>
+      </CardHeader>
+      <CardContent>
         {files.length > 0 ? (
-          <FilesTable
+          <DashboardFilesView
             files={files}
             onDelete={fileManager.setFileToDelete}
             onDownload={fileManager.handleDownload}

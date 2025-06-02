@@ -31,7 +31,11 @@
     "loadError": "Error al cargar los datos del tablero",
     "linkCopied": "Enlace copiado al portapapeles",
     "pageTitle": "Panel de control",
-    "breadcrumb": "Panel de control"
+    "breadcrumb": "Panel de control",
+    "recentFiles": {
+      "description": "Tus archivos subidos más recientemente",
+      "title": "Archivos Recientes"
+    }
   },
   "emptyState": {
     "noFiles": "Aún no se han subido archivos",
@@ -72,7 +76,8 @@
     "videoNotSupported": "Su navegador no soporta el elemento de video.",
     "pdfPreviewNotAvailable": "La vista previa del PDF no está disponible. Pruebe la vista alternativa o descargue.",
     "tryAlternativeView": "Probar Vista Alternativa",
-    "loadingAlternative": "Cargando vista alternativa..."
+    "loadingAlternative": "Cargando vista alternativa...",
+    "loadingAudio": "Cargando audio..."
   },
   "fileSelector": {
     "availableFiles": "Archivos disponibles ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "Error al crear archivo ZIP",
     "bulkDownloadFileError": "Error al descargar archivo {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {1 archivo eliminado exitosamente} other {# archivos eliminados exitosamente}}",
-    "bulkDeleteError": "Error al eliminar archivos seleccionados"
+    "bulkDeleteError": "Error al eliminar archivos seleccionados",
+    "viewMode": {
+      "table": "Tabla",
+      "grid": "Cuadrícula"
+    },
+    "totalFiles": "{count, plural, =0 {Sin archivos} =1 {1 archivo} other {# archivos}}"
   },
   "filesTable": {
     "ariaLabel": "Tabla de archivos",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Almacenamiento máximo por usuario",
         "description": "Límite total de almacenamiento por usuario"
+      },
+      "firstUserAccess": {
+        "description": "Configuraciones para el primer acceso de nuevos usuarios",
+        "title": "Primer Acceso de Usuario"
       }
     },
     "buttons": {

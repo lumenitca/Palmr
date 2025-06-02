@@ -28,15 +28,15 @@ export function UserActionsDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem onClick={() => onEdit(user)}>
-          <IconEdit className="mr-2 h-4 w-4" />
+          <IconEdit className="h-4 w-4" />
           {t("users.actions.edit")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => onToggleStatus(user)}>
-          {user.isActive ? <IconBan className="mr-2 h-4 w-4" /> : <IconCheck className="mr-2 h-4 w-4" />}
+          {user.isActive ? <IconBan className="h-4 w-4" /> : <IconCheck className="h-4 w-4" />}
           {user.isActive ? t("users.actions.deactivate") : t("users.actions.activate")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => onDelete(user)} className="text-destructive">
-          <IconTrash className="mr-2 h-4 w-4" />
+          <IconTrash className="h-4 w-4" />
           {t("users.actions.delete")}
         </DropdownMenuItem>
       </DropdownMenuContent>

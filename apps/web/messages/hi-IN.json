@@ -31,7 +31,11 @@
     "loadError": "डैशबोर्ड डेटा लोड करने में त्रुटि",
     "linkCopied": "लिंक क्लिपबोर्ड में कॉपी हुआ",
     "pageTitle": "डैशबोर्ड",
-    "breadcrumb": "डैशबोर्ड"
+    "breadcrumb": "डैशबोर्ड",
+    "recentFiles": {
+      "description": "आपकी हाल ही में अपलोड की गई फ़ाइलें",
+      "title": "हाल की फ़ाइलें"
+    }
   },
   "emptyState": {
     "noFiles": "अभी तक कोई फाइल अपलोड नहीं हुई",
@@ -72,7 +76,8 @@
     "videoNotSupported": "आपका ब्राउज़र वीडियो एलिमेंट का समर्थन नहीं करता।",
     "pdfPreviewNotAvailable": "PDF पूर्वावलोकन उपलब्ध नहीं है। वैकल्पिक दृश्य आज़माएं या डाउनलोड करें।",
     "tryAlternativeView": "वैकल्पिक दृश्य आज़माएं",
-    "loadingAlternative": "वैकल्पिक दृश्य लोड हो रहा है..."
+    "loadingAlternative": "वैकल्पिक दृश्य लोड हो रहा है...",
+    "loadingAudio": "ऑडियो लोड हो रहा है..."
   },
   "fileSelector": {
     "availableFiles": "उपलब्ध फाइलें ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "ZIP फाइल बनाने में त्रुटि",
     "bulkDownloadFileError": "फाइल {fileName} डाउनलोड करने में त्रुटि",
     "bulkDeleteSuccess": "{count, plural, =1 {1 फाइल सफलतापूर्वक हटाई गई} other {# फाइलें सफलतापूर्वक हटाई गईं}}",
-    "bulkDeleteError": "चयनित फाइलों को हटाने में त्रुटि"
+    "bulkDeleteError": "चयनित फाइलों को हटाने में त्रुटि",
+    "viewMode": {
+      "table": "तालिका",
+      "grid": "ग्रिड"
+    },
+    "totalFiles": "{count, plural, =0 {कोई फ़ाइल नहीं} =1 {1 फ़ाइल} other {# फ़ाइलें}}"
   },
   "filesTable": {
     "ariaLabel": "फाइल तालिका",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "प्रति उपयोगकर्ता अधिकतम स्टोरेज",
         "description": "प्रति उपयोगकर्ता कुल स्टोरेज सीमा"
+      },
+      "firstUserAccess": {
+        "description": "नए उपयोगकर्ताओं की पहली पहुंच के लिए सेटिंग्स",
+        "title": "पहली उपयोगकर्ता पहुंच"
       }
     },
     "buttons": {

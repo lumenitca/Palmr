@@ -256,13 +256,13 @@ export function FilesTable({
               <DropdownMenuContent align="end" className="w-[200px]">
                 {onBulkDownload && (
                   <DropdownMenuItem className="cursor-pointer py-2" onClick={() => handleBulkAction("download")}>
-                    <IconDownload className="mr-2 h-4 w-4" />
+                    <IconDownload className="h-4 w-4" />
                     {t("filesTable.bulkActions.download")}
                   </DropdownMenuItem>
                 )}
                 {onBulkShare && (
                   <DropdownMenuItem className="cursor-pointer py-2" onClick={() => handleBulkAction("share")}>
-                    <IconShare className="mr-2 h-4 w-4" />
+                    <IconShare className="h-4 w-4" />
                     {t("filesTable.bulkActions.share")}
                   </DropdownMenuItem>
                 )}
@@ -271,7 +271,7 @@ export function FilesTable({
                     onClick={() => handleBulkAction("delete")}
                     className="cursor-pointer py-2 text-destructive focus:text-destructive"
                   >
-                    <IconTrash className="mr-2 h-4 w-4" />
+                    <IconTrash className="h-4 w-4" />
                     {t("filesTable.bulkActions.delete")}
                   </DropdownMenuItem>
                 )}
@@ -482,29 +482,29 @@ export function FilesTable({
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-[200px]">
                         <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onPreview(file)}>
-                          <IconEye className="mr-2 h-4 w-4" />
+                          <IconEye className="h-4 w-4" />
                           {t("filesTable.actions.preview")}
                         </DropdownMenuItem>
                         <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onRename(file)}>
-                          <IconEdit className="mr-2 h-4 w-4" />
+                          <IconEdit className="h-4 w-4" />
                           {t("filesTable.actions.edit")}
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="cursor-pointer py-2"
                           onClick={() => onDownload(file.objectName, file.name)}
                         >
-                          <IconDownload className="mr-2 h-4 w-4" />
+                          <IconDownload className="h-4 w-4" />
                           {t("filesTable.actions.download")}
                         </DropdownMenuItem>
                         <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onShare(file)}>
-                          <IconShare className="mr-2 h-4 w-4" />
+                          <IconShare className="h-4 w-4" />
                           {t("filesTable.actions.share")}
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() => onDelete(file)}
                           className="cursor-pointer py-2 text-destructive focus:text-destructive"
                         >
-                          <IconTrash className="mr-2 h-4 w-4" />
+                          <IconTrash className="h-4 w-4" />
                           {t("filesTable.actions.delete")}
                         </DropdownMenuItem>
                       </DropdownMenuContent>

@@ -1,3 +1,5 @@
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { IconUser } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -10,7 +12,12 @@ export function UserStatusModal({ isOpen, onClose, user, onConfirm }: UserStatus
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        <DialogHeader className="flex flex-col gap-1">{t("users.status.title")}</DialogHeader>
+        <DialogHeader className="flex flex-col gap-1">
+          <DialogTitle className="flex items-center gap-2 font-semibold">
+            <IconUser size={24} className="mr-1" />
+            {t("users.status.title")}
+          </DialogTitle>
+        </DialogHeader>
         <div className="py-4">
           {user && (
             <p>

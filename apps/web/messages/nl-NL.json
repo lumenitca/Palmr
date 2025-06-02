@@ -31,7 +31,11 @@
     "loadError": "Fout bij het laden van controlepaneel gegevens",
     "linkCopied": "Link gekopieerd naar klembord",
     "pageTitle": "Controlepaneel",
-    "breadcrumb": "Controlepaneel"
+    "breadcrumb": "Controlepaneel",
+    "recentFiles": {
+      "description": "Uw meest recent geüploade bestanden",
+      "title": "Recente Bestanden"
+    }
   },
   "emptyState": {
     "noFiles": "Nog geen bestanden geüpload",
@@ -72,7 +76,8 @@
     "videoNotSupported": "Uw browser ondersteunt het video-element niet.",
     "pdfPreviewNotAvailable": "PDF-voorbeeld is niet beschikbaar. Probeer de alternatieve weergave of download.",
     "tryAlternativeView": "Alternatieve Weergave Proberen",
-    "loadingAlternative": "Alternatieve weergave laden..."
+    "loadingAlternative": "Alternatieve weergave laden...",
+    "loadingAudio": "Audio laden..."
   },
   "fileSelector": {
     "availableFiles": "Beschikbare Bestanden ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "Fout bij het maken van ZIP-bestand",
     "bulkDownloadFileError": "Fout bij het downloaden van bestand {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {1 bestand succesvol verwijderd} other {# bestanden succesvol verwijderd}}",
-    "bulkDeleteError": "Fout bij het verwijderen van geselecteerde bestanden"
+    "bulkDeleteError": "Fout bij het verwijderen van geselecteerde bestanden",
+    "viewMode": {
+      "table": "Tabel",
+      "grid": "Raster"
+    },
+    "totalFiles": "{count, plural, =0 {Geen bestanden} =1 {1 bestand} other {# bestanden}}"
   },
   "filesTable": {
     "ariaLabel": "Bestanden tabel",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Maximum Opslag Per Gebruiker",
         "description": "Totale opslaglimiet per gebruiker"
+      },
+      "firstUserAccess": {
+        "description": "Instellingen voor eerste toegang van nieuwe gebruikers",
+        "title": "Eerste Gebruikerstoegang"
       }
     },
     "buttons": {
@@ -718,7 +732,8 @@
     "passwordLength": "Wachtwoord moet minimaal 8 tekens zijn",
     "passwordsMatch": "Wachtwoorden moeten overeenkomen",
     "emailRequired": "E-mail is verplicht",
-    "passwordRequired": "Wachtwoord is verplicht"
+    "passwordRequired": "Wachtwoord is verplicht",
+    "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten"
   },
   "shareFile": {
     "title": "Bestand Delen",

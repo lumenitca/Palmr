@@ -31,7 +31,11 @@
     "loadError": "Fehler beim Laden der Dashboard-Daten",
     "linkCopied": "Link in die Zwischenablage kopiert",
     "pageTitle": "Übersicht",
-    "breadcrumb": "Übersicht"
+    "breadcrumb": "Übersicht",
+    "recentFiles": {
+      "description": "Ihre zuletzt hochgeladenen Dateien",
+      "title": "Kürzlich genutzte Dateien"
+    }
   },
   "emptyState": {
     "noFiles": "Noch keine Dateien hochgeladen",
@@ -72,7 +76,8 @@
     "videoNotSupported": "Ihr Browser unterstützt das Video-Element nicht.",
     "pdfPreviewNotAvailable": "PDF-Vorschau ist nicht verfügbar. Versuchen Sie die alternative Ansicht oder laden Sie herunter.",
     "tryAlternativeView": "Alternative Ansicht Versuchen",
-    "loadingAlternative": "Lade alternative Ansicht..."
+    "loadingAlternative": "Lade alternative Ansicht...",
+    "loadingAudio": "Audio wird geladen..."
   },
   "fileSelector": {
     "availableFiles": "Verfügbare Dateien ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "Fehler beim Erstellen der ZIP-Datei",
     "bulkDownloadFileError": "Fehler beim Herunterladen der Datei {fileName}",
     "bulkDeleteSuccess": "{count, plural, =1 {1 Datei erfolgreich gelöscht} other {# Dateien erfolgreich gelöscht}}",
-    "bulkDeleteError": "Fehler beim Löschen der ausgewählten Dateien"
+    "bulkDeleteError": "Fehler beim Löschen der ausgewählten Dateien",
+    "viewMode": {
+      "table": "Tabelle",
+      "grid": "Raster"
+    },
+    "totalFiles": "{count, plural, =0 {Keine Dateien} =1 {1 Datei} other {# Dateien}}"
   },
   "filesTable": {
     "ariaLabel": "Dateien-Tabelle",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Maximaler Speicher pro Benutzer",
         "description": "Gesamtspeicherlimit pro Benutzer"
+      },
+      "firstUserAccess": {
+        "description": "Einstellungen für den ersten Zugriff neuer Benutzer",
+        "title": "Erster Benutzerzugriff"
       }
     },
     "buttons": {

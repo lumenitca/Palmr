@@ -496,9 +496,9 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                 onClick={startUploads}
               >
                 {hasUploadsInProgress ? (
-                  <IconLoader className="mr-2 h-4 w-4 animate-spin" />
+                  <IconLoader className="h-4 w-4 animate-spin" />
                 ) : (
-                  <IconCloudUpload className="mr-2 h-4 w-4" />
+                  <IconCloudUpload className="h-4 w-4" />
                 )}
                 {hasPendingUploads ? t("uploadFile.startUploads") : t("uploadFile.upload")}
               </Button>

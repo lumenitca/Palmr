@@ -31,7 +31,11 @@
     "loadError": "加载仪表盘数据失败",
     "linkCopied": "链接已复制到剪贴板",
     "pageTitle": "仪表盘",
-    "breadcrumb": "仪表盘"
+    "breadcrumb": "仪表盘",
+    "recentFiles": {
+      "description": "您最近上传的文件",
+      "title": "最近文件"
+    }
   },
   "emptyState": {
     "noFiles": "尚未上传任何文件",
@@ -72,7 +76,8 @@
     "videoNotSupported": "您的浏览器不支持视频元素。",
     "pdfPreviewNotAvailable": "PDF预览不可用。请尝试备用视图或下载。",
     "tryAlternativeView": "尝试备用视图",
-    "loadingAlternative": "加载备用视图中..."
+    "loadingAlternative": "加载备用视图中...",
+    "loadingAudio": "音频加载中..."
   },
   "fileSelector": {
     "availableFiles": "可用文件 ({count})",
@@ -99,7 +104,12 @@
     "bulkDownloadError": "创建ZIP文件错误",
     "bulkDownloadFileError": "下载文件 {fileName} 错误",
     "bulkDeleteSuccess": "{count, plural, =1 {1个文件删除成功} other {#个文件删除成功}}",
-    "bulkDeleteError": "删除选中文件错误"
+    "bulkDeleteError": "删除选中文件错误",
+    "viewMode": {
+      "table": "表格",
+      "grid": "网格"
+    },
+    "totalFiles": "{count, plural, =0 {无文件} =1 {1个文件} other {#个文件}}"
   },
   "filesTable": {
     "ariaLabel": "文件表格",
@@ -426,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "每个用户的最大存储量",
         "description": "每个用户的总存储限制"
+      },
+      "firstUserAccess": {
+        "description": "新用户首次访问的设置",
+        "title": "首次用户访问"
       }
     },
     "buttons": {
@@ -488,7 +502,9 @@
     "manageFilesTitle": "管理文件",
     "manageRecipientsTitle": "管理收件人",
     "editSuccess": "共享更新成功",
-    "editError": "更新共享失败"
+    "editError": "更新共享失败",
+    "descriptionPlaceholder": "输入描述（可选）",
+    "descriptionLabel": "描述"
   },
   "shareDetails": {
     "title": "共享详情",
@@ -509,7 +525,16 @@
     "recipients": "收件人",
     "notAvailable": "不适用",
     "invalidDate": "无效的日期",
-    "loadError": "加载共享详情失败"
+    "loadError": "加载共享详情失败",
+    "editLink": "Editar Link",
+    "openLink": "Abrir em nova guia",
+    "shareLink": "Link de Compartilhamento",
+    "noDescription": "Nenhuma descrição fornecida",
+    "copyLink": "Copiar link",
+    "generateLink": "Gerar Link",
+    "noLink": "Nenhum link gerado ainda",
+    "description": "描述",
+    "linkCopied": "Link copiado para a área de transferência"
   },
   "shareManager": {
     "deleteSuccess": "共享删除成功",
@@ -563,7 +588,8 @@
       "security": "安全性",
       "files": "文件",
       "recipients": "收件人",
-      "actions": "操作"
+      "actions": "操作",
+      "description": "DESCRIÇÃO"
     },
     "status": {
       "neverExpires": "永不过期",
@@ -727,7 +753,9 @@
     "linkReady": "您的分享链接已准备就绪：",
     "createShare": "创建分享",
     "generateLink": "生成链接",
-    "copyLink": "复制链接"
+    "copyLink": "复制链接",
+    "descriptionLabel": "描述",
+    "descriptionPlaceholder": "输入描述（可选）"
   },
   "bulkDownload": {
     "title": "批量下载",

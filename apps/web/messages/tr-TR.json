@@ -23,13 +23,19 @@
     "passwordLabel": "Şifre",
     "create": "Paylaşım Oluştur",
     "success": "Paylaşım başarıyla oluşturuldu",
-    "error": "Paylaşım oluşturulamadı"
+    "error": "Paylaşım oluşturulamadı",
+    "descriptionLabel": "Açıklama",
+    "descriptionPlaceholder": "Açıklama girin (isteğe bağlı)"
   },
   "dashboard": {
     "loadError": "Gösterge paneli verileri yüklenemedi",
     "linkCopied": "Bağlantı panoya kopyalandı",
     "pageTitle": "Gösterge Paneli",
-    "breadcrumb": "Gösterge Paneli"
+    "breadcrumb": "Gösterge Paneli",
+    "recentFiles": {
+      "title": "Son Dosyalar",
+      "description": "En son yüklediğiniz dosyalar"
+    }
   },
   "emptyState": {
     "noFiles": "Henüz dosya yüklenmedi",
@@ -70,7 +76,8 @@
     "videoNotSupported": "Tarayıcınız video öğesini desteklemiyor.",
     "pdfPreviewNotAvailable": "PDF önizlemesi mevcut değil. Alternatif görünümü deneyin veya indirin.",
     "tryAlternativeView": "Alternatif Görünümü Dene",
-    "loadingAlternative": "Alternatif görünüm yükleniyor..."
+    "loadingAlternative": "Alternatif görünüm yükleniyor...",
+    "loadingAudio": "Ses yükleniyor..."
   },
   "fileSelector": {
     "availableFiles": "Kullanılabilir Dosyalar ({count})",
@@ -92,10 +99,22 @@
     "updateSuccess": "Dosya başarıyla güncellendi",
     "updateError": "Dosya güncellenemedi",
     "deleteSuccess": "Dosya başarıyla silindi",
-    "deleteError": "Dosya silinemedi"
+    "deleteError": "Dosya silinemedi",
+    "bulkDownloadSuccess": "Dosyaların indirilmesi başarıyla başlatıldı",
+    "bulkDownloadError": "ZIP dosyası oluşturulurken hata",
+    "bulkDownloadFileError": "{fileName} dosyası indirilirken hata",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 dosya başarıyla silindi} other {# dosya başarıyla silindi}}",
+    "bulkDeleteError": "Seçilen dosyalar silinirken hata",
+    "totalFiles": "{count, plural, =0 {Dosya yok} =1 {1 dosya} other {# dosya}}",
+    "viewMode": {
+      "table": "Tablo",
+      "grid": "Izgara"
+    }
   },
   "filesTable": {
     "ariaLabel": "Dosya Tablosu",
+    "selectAll": "Tümünü seç",
+    "selectFile": "{fileName} dosyasını seç",
     "columns": {
       "name": "Ad",
       "description": "Açıklama",
@@ -111,6 +130,13 @@
       "share": "Paylaş",
       "download": "İndir",
       "delete": "Sil"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 dosya seçildi} other {# dosya seçildi}}",
+      "actions": "İşlemler",
+      "download": "Seçilenleri İndir",
+      "share": "Seçilenleri Paylaş",
+      "delete": "Seçilenleri Sil"
     }
   },
   "footer": {
@@ -410,6 +436,10 @@
       "maxTotalStoragePerUser": {
         "title": "Kullanıcı Başına Maksimum Depolama",
         "description": "Kullanıcı başına toplam depolama sınırı"
+      },
+      "firstUserAccess": {
+        "title": "İlk Kullanıcı Erişimi",
+        "description": "İlk kullanıcının erişim izni"
       }
     },
     "buttons": {
@@ -726,5 +756,27 @@
     "createShare": "Paylaşım Oluştur",
     "generateLink": "Bağlantı Oluştur",
     "copyLink": "Bağlantıyı Kopyala"
+  },
+  "bulkDownload": {
+    "title": "Toplu İndirme",
+    "zipNameLabel": "ZIP dosya adı",
+    "zipNamePlaceholder": "Dosya adını girin",
+    "description": "{count, plural, =1 {1 dosya sıkıştırılacak} other {# dosya sıkıştırılacak}}",
+    "download": "ZIP İndir"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Silinecek dosyalar"
+  },
+  "shareMultipleFiles": {
+    "title": "Çoklu Dosya Paylaş",
+    "shareNameLabel": "Paylaşım Adı",
+    "shareNamePlaceholder": "Paylaşım adını girin",
+    "descriptionLabel": "Açıklama",
+    "descriptionPlaceholder": "Açıklama girin (isteğe bağlı)",
+    "filesToShare": "Paylaşılacak dosyalar",
+    "files": "dosya",
+    "totalSize": "Toplam boyut",
+    "creating": "Oluşturuluyor...",
+    "create": "Paylaşım Oluştur"
   }
 }

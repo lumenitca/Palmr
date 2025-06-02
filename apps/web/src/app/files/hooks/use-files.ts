@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
@@ -13,7 +13,11 @@ export function useFiles() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const [clearSelectionCallback, setClearSelectionCallback] = useState<(() => void) | undefined>();
+  const [clearSelectionCallback, setClearSelectionCallbackState] = useState<(() => void) | undefined>();
+
+  const setClearSelectionCallback = useCallback((callback: () => void) => {
+    setClearSelectionCallbackState(() => callback);
+  }, []);
 
   const loadFiles = async () => {
     try {

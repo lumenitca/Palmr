@@ -355,34 +355,34 @@ export function SharesTable({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[200px]">
                       <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onEdit(share)}>
-                        <IconEdit className="mr-2 h-4 w-4" />
+                        <IconEdit className="h-4 w-4" />
                         {t("sharesTable.actions.edit")}
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onManageFiles(share)}>
-                        <IconFolder className="mr-2 h-4 w-4" />
+                        <IconFolder className="h-4 w-4" />
                         {t("sharesTable.actions.manageFiles")}
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onManageRecipients(share)}>
-                        <IconUsers className="mr-2 h-4 w-4" />
+                        <IconUsers className="h-4 w-4" />
                         {t("sharesTable.actions.manageRecipients")}
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onViewDetails(share)}>
-                        <IconEye className="mr-2 h-4 w-4" />
+                        <IconEye className="h-4 w-4" />
                         {t("sharesTable.actions.viewDetails")}
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onGenerateLink(share)}>
-                        <IconLink className="mr-2 h-4 w-4" />
+                        <IconLink className="h-4 w-4" />
                         {share.alias ? t("sharesTable.actions.editLink") : t("sharesTable.actions.generateLink")}
                       </DropdownMenuItem>
                       {share.alias && (
                         <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onCopyLink(share)}>
-                          <IconCopy className="mr-2 h-4 w-4" />
+                          <IconCopy className="h-4 w-4" />
                           {t("sharesTable.actions.copyLink")}
                         </DropdownMenuItem>
                       )}
                       {share.recipients?.length > 0 && share.alias && smtpEnabled === "true" && (
                         <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onNotifyRecipients(share)}>
-                          <IconMail className="mr-2 h-4 w-4" />
+                          <IconMail className="h-4 w-4" />
                           {t("sharesTable.actions.notifyRecipients")}
                         </DropdownMenuItem>
                       )}
@@ -390,7 +390,7 @@ export function SharesTable({
                         onClick={() => onDelete(share)}
                         className="cursor-pointer py-2 text-destructive focus:text-destructive"
                       >
-                        <IconTrash className="mr-2 h-4 w-4" />
+                        <IconTrash className="h-4 w-4" />
                         {t("sharesTable.actions.delete")}
                       </DropdownMenuItem>
                     </DropdownMenuContent>

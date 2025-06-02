@@ -5,6 +5,7 @@ import { IconDownload } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
+import { CustomAudioPlayer } from "@/components/audio/custom-audio-player";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -62,12 +63,10 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       const response = await getDownloadUrl(encodedObjectName);
       const url = response.data.url;
 
-      // Armazenar a URL de download para reuso
       setDownloadUrl(url);
 
       const fileType = getFileType();
 
-      // Separar lógicas por tipo de arquivo
       if (fileType === "video") {
         await loadVideoPreview(url);
       } else if (fileType === "audio") {
@@ -75,7 +74,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       } else if (fileType === "pdf") {
         await loadPdfPreview(url);
       } else {
-        // Imagens e outros tipos usam URL direta
         setPreviewUrl(url);
       }
     } catch (error) {
@@ -86,7 +84,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     }
   };
 
-  // Função específica para vídeos
   const loadVideoPreview = async (url: string) => {
     console.log("Loading video as blob for streaming support");
     try {
@@ -101,12 +98,10 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       console.log("Video blob loaded successfully");
     } catch (error) {
       console.error("Failed to load video as blob:", error);
-      // Fallback para URL direta
       setPreviewUrl(url);
     }
   };
 
-  // Função específica para áudios
   const loadAudioPreview = async (url: string) => {
     console.log("Loading audio as blob for streaming support");
     try {
@@ -121,12 +116,10 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       console.log("Audio blob loaded successfully");
     } catch (error) {
       console.error("Failed to load audio as blob:", error);
-      // Fallback para URL direta
       setPreviewUrl(url);
     }
   };
 
-  // Função específica para PDFs
   const loadPdfPreview = async (url: string) => {
     console.log("Loading PDF as blob to avoid auto-download");
     try {
@@ -143,7 +136,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       console.log("PDF blob loaded successfully");
     } catch (error) {
       console.error("Failed to load PDF as blob:", error);
-      // Fallback para URL direta com timeout para detecção automática
       setPreviewUrl(url);
       setTimeout(() => {
         if (!pdfLoadFailed && !pdfAsBlob) {
@@ -160,7 +152,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     console.log("PDF load failed, trying blob method...");
     setPdfLoadFailed(true);
 
-    // Usar a URL armazenada para tentar carregar como blob
     if (downloadUrl) {
       setTimeout(() => {
         loadPdfPreview(downloadUrl);
@@ -172,14 +163,12 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     try {
       console.log("Starting download process...");
 
-      // Sempre buscar nova URL de download para evitar tokens expirados
       const encodedObjectName = encodeURIComponent(file.objectName);
       const response = await getDownloadUrl(encodedObjectName);
       const freshUrl = response.data.url;
 
       console.log("Got fresh download URL:", freshUrl);
 
-      // Usar a URL fresca para download
       const fileResponse = await fetch(freshUrl);
       if (!fileResponse.ok) {
         throw new Error(`Download failed: ${fileResponse.status} - ${fileResponse.statusText}`);
@@ -256,7 +245,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
           <ScrollArea className="w-full">
             <div className="w-full min-h-[600px] border rounded-lg overflow-hidden bg-card">
               {pdfAsBlob ? (
-                // PDF carregado como blob - deve funcionar
                 <iframe
                   src={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                   className="w-full h-full min-h-[600px]"
@@ -264,7 +252,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
                   style={{ border: "none" }}
                 />
               ) : pdfLoadFailed ? (
-                // Está tentando carregar como blob
                 <div className="flex items-center justify-center h-full min-h-[600px]">
                   <div className="flex flex-col items-center gap-4">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
@@ -272,7 +259,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
                   </div>
                 </div>
               ) : (
-                // Primeira tentativa com URL normal
                 <div className="w-full h-full min-h-[600px] relative">
                   <object
                     data={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
@@ -280,7 +266,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
                     className="w-full h-full min-h-[600px]"
                     onError={handlePdfLoadError}
                   >
-                    {/* Fallback se object não funcionar */}
                     <iframe
                       src={`${previewUrl!}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                       className="w-full h-full min-h-[600px]"
@@ -302,15 +287,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
         );
       case "audio":
         return (
-          <div className="flex flex-col items-center justify-center gap-6 py-12">
-            <FileIcon className={`text-6xl ${color}`} />
-            <div className="w-full max-w-md">
-              <audio controls className="w-full" preload="metadata">
-                <source src={mediaUrl!} />
-                {t("filePreview.audioNotSupported")}
-              </audio>
-            </div>
-            <p className="text-sm text-muted-foreground text-center">{file.name}</p>
+          <div className="flex flex-col items-center justify-center gap-6 py-4">
+            <CustomAudioPlayer src={mediaUrl!} />
           </div>
         );
       case "video":
@@ -337,7 +315,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+      <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {(() => {
