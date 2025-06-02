@@ -34,6 +34,7 @@ export interface SharesTableProps {
   onDelete: (share: any) => void;
   onEdit: (share: any) => void;
   onUpdateName: (shareId: string, newName: string) => void;
+  onUpdateDescription: (shareId: string, newDescription: string) => void;
   onManageFiles: (share: any) => void;
   onManageRecipients: (share: any) => void;
   onViewDetails: (share: any) => void;
@@ -47,6 +48,7 @@ export function SharesTable({
   onDelete,
   onEdit,
   onUpdateName,
+  onUpdateDescription,
   onManageFiles,
   onManageRecipients,
   onViewDetails,
@@ -56,45 +58,54 @@ export function SharesTable({
 }: SharesTableProps) {
   const t = useTranslations();
   const { smtpEnabled } = useShareContext();
-  const [editingShareId, setEditingShareId] = useState<string | null>(null);
+  const [editingField, setEditingField] = useState<{ shareId: string; field: "name" | "description" } | null>(null);
   const [editValue, setEditValue] = useState("");
-  const [hoveredShareId, setHoveredShareId] = useState<string | null>(null);
-  const [pendingChanges, setPendingChanges] = useState<{ [shareId: string]: { name?: string } }>({});
+  const [hoveredField, setHoveredField] = useState<{ shareId: string; field: "name" | "description" } | null>(null);
+  const [pendingChanges, setPendingChanges] = useState<{ [shareId: string]: { name?: string; description?: string } }>(
+    {}
+  );
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (editingShareId && inputRef.current) {
+    if (editingField && inputRef.current) {
       inputRef.current.focus();
       inputRef.current.select();
     }
-  }, [editingShareId]);
+  }, [editingField]);
 
   // Clear pending changes when shares are updated
   useEffect(() => {
     setPendingChanges({});
   }, [shares]);
 
-  const startEdit = (shareId: string, currentName: string) => {
-    setEditingShareId(shareId);
-    setEditValue(currentName);
+  const startEdit = (shareId: string, field: "name" | "description", currentValue: string) => {
+    setEditingField({ shareId, field });
+    setEditValue(currentValue || "");
   };
 
   const saveEdit = () => {
-    if (!editingShareId) return;
+    if (!editingField) return;
+
+    const { shareId, field } = editingField;
 
     // Update local state optimistically
     setPendingChanges((prev) => ({
       ...prev,
-      [editingShareId]: { name: editValue },
+      [shareId]: { ...prev[shareId], [field]: editValue },
     }));
 
-    onUpdateName(editingShareId, editValue);
-    setEditingShareId(null);
+    if (field === "name") {
+      onUpdateName(shareId, editValue);
+    } else {
+      onUpdateDescription(shareId, editValue);
+    }
+
+    setEditingField(null);
     setEditValue("");
   };
 
   const cancelEdit = () => {
-    setEditingShareId(null);
+    setEditingField(null);
     setEditValue("");
   };
 
@@ -106,12 +117,12 @@ export function SharesTable({
     }
   };
 
-  const getDisplayName = (share: any) => {
+  const getDisplayValue = (share: any, field: "name" | "description") => {
     const pendingChange = pendingChanges[share.id];
-    if (pendingChange && pendingChange.name !== undefined) {
-      return pendingChange.name;
+    if (pendingChange && pendingChange[field] !== undefined) {
+      return pendingChange[field];
     }
-    return share.name;
+    return field === "name" ? share.name : share.description;
   };
 
   return (
@@ -121,6 +132,9 @@ export function SharesTable({
           <TableRow className="border-b-0">
             <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.name")}
+            </TableHead>
+            <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              {t("sharesTable.columns.description")}
             </TableHead>
             <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
               {t("sharesTable.columns.createdAt")}
@@ -147,65 +161,135 @@ export function SharesTable({
         </TableHeader>
         <TableBody>
           {shares.map((share) => {
-            const isEditing = editingShareId === share.id;
-            const isHovering = hoveredShareId === share.id;
-            const displayName = getDisplayName(share);
+            const isEditingName = editingField?.shareId === share.id && editingField?.field === "name";
+            const isEditingDescription = editingField?.shareId === share.id && editingField?.field === "description";
+            const isHoveringName = hoveredField?.shareId === share.id && hoveredField?.field === "name";
+            const isHoveringDescription = hoveredField?.shareId === share.id && hoveredField?.field === "description";
+            const displayName = getDisplayValue(share, "name");
+            const displayDescription = getDisplayValue(share, "description");
 
             return (
               <TableRow key={share.id} className="hover:bg-muted/50 transition-colors border-0">
                 <TableCell className="h-12 px-4 border-0">
                   <div
                     className="flex items-center gap-1 min-w-0"
-                    onMouseEnter={() => setHoveredShareId(share.id)}
-                    onMouseLeave={() => setHoveredShareId(null)}
+                    onMouseEnter={() => setHoveredField({ shareId: share.id, field: "name" })}
+                    onMouseLeave={() => setHoveredField(null)}
                   >
-                    {isEditing ? (
+                    {isEditingName ? (
                       <div className="flex items-center gap-1 flex-1">
                         <Input
                           ref={inputRef}
                           value={editValue}
                           onChange={(e) => setEditValue(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className="h-8 text-sm font-medium"
+                          className="h-8 text-sm font-medium min-w-[200px]"
                           onClick={(e) => e.stopPropagation()}
                         />
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-6 w-6 text-green-600 hover:text-green-700 flex-shrink-0"
+                          className="h-8 w-8 text-green-600 hover:text-green-700 flex-shrink-0"
                           onClick={(e) => {
                             e.stopPropagation();
                             saveEdit();
                           }}
                         >
-                          <IconCheck className="h-3 w-3" />
+                          <IconCheck className="h-4 w-4" />
                         </Button>
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-6 w-6 text-red-600 hover:text-red-700 flex-shrink-0"
+                          className="h-8 w-8 text-red-600 hover:text-red-700 flex-shrink-0"
                           onClick={(e) => {
                             e.stopPropagation();
                             cancelEdit();
                           }}
                         >
-                          <IconX className="h-3 w-3" />
+                          <IconX className="h-4 w-4" />
                         </Button>
                       </div>
                     ) : (
                       <div className="flex items-center gap-1 flex-1 min-w-0">
-                        <span className="truncate max-w-[200px] font-medium" title={displayName}>
+                        <span className="truncate max-w-[120px] font-medium" title={displayName}>
                           {displayName}
                         </span>
                         <div className="w-6 flex justify-center flex-shrink-0">
-                          {isHovering && (
+                          {isHoveringName && (
                             <Button
                               size="icon"
                               variant="ghost"
                               className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                startEdit(share.id, displayName);
+                                startEdit(share.id, "name", displayName);
+                              }}
+                            >
+                              <IconEdit className="h-3 w-3" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </TableCell>
+                <TableCell className="h-12 px-4">
+                  <div
+                    className="flex items-center gap-1 min-w-0"
+                    onMouseEnter={() => setHoveredField({ shareId: share.id, field: "description" })}
+                    onMouseLeave={() => setHoveredField(null)}
+                  >
+                    {isEditingDescription ? (
+                      <div className="flex items-center gap-1 flex-1">
+                        <Input
+                          ref={inputRef}
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                          className="h-8 text-sm min-w-[250px]"
+                          placeholder="Adicionar descrição..."
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-8 w-8 text-green-600 hover:text-green-700 flex-shrink-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            saveEdit();
+                          }}
+                        >
+                          <IconCheck className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-8 w-8 text-red-600 hover:text-red-700 flex-shrink-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            cancelEdit();
+                          }}
+                        >
+                          <IconX className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1 flex-1 min-w-0">
+                        <span
+                          className="text-muted-foreground truncate max-w-[100px]"
+                          title={displayDescription || "-"}
+                        >
+                          {displayDescription || "-"}
+                        </span>
+                        <div className="w-6 flex justify-center flex-shrink-0">
+                          {isHoveringDescription && (
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                startEdit(share.id, "description", displayDescription || "");
                               }}
                             >
                               <IconEdit className="h-3 w-3" />

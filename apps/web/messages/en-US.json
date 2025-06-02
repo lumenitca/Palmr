@@ -15,6 +15,8 @@
   "createShare": {
     "title": "Create Share",
     "nameLabel": "Share Name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "Max Views",
@@ -92,10 +94,17 @@
     "updateSuccess": "File updated successfully",
     "updateError": "Failed to update file",
     "deleteSuccess": "File deleted successfully",
-    "deleteError": "Failed to delete file"
+    "deleteError": "Failed to delete file",
+    "bulkDownloadSuccess": "Files download started successfully",
+    "bulkDownloadError": "Error creating ZIP file",
+    "bulkDownloadFileError": "Error downloading file {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
+    "bulkDeleteError": "Error deleting selected files"
   },
   "filesTable": {
     "ariaLabel": "Files table",
+    "selectAll": "Select all",
+    "selectFile": "Select file {fileName}",
     "columns": {
       "name": "NAME",
       "description": "DESCRIPTION",
@@ -111,6 +120,13 @@
       "share": "Share",
       "download": "Download",
       "delete": "Delete"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 file selected} other {# files selected}}",
+      "actions": "Actions",
+      "download": "Download Selected",
+      "share": "Share Selected",
+      "delete": "Delete Selected"
     }
   },
   "footer": {
@@ -460,6 +476,8 @@
     "deleteConfirmation": "Are you sure you want to delete this share? This action cannot be undone.",
     "editTitle": "Edit Share",
     "nameLabel": "Share Name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "Max Views",
@@ -479,7 +497,16 @@
     "subtitle": "Detailed information about this share",
     "basicInfo": "Basic Information",
     "name": "Name",
+    "description": "Description",
+    "noDescription": "No description provided",
     "untitled": "Untitled",
+    "shareLink": "Share Link",
+    "editLink": "Edit Link",
+    "generateLink": "Generate Link",
+    "noLink": "No link generated yet",
+    "copyLink": "Copy link",
+    "openLink": "Open in new tab",
+    "linkCopied": "Link copied to clipboard",
     "views": "Views",
     "dates": "Dates",
     "created": "Created",
@@ -541,6 +568,7 @@
     "never": "Never",
     "columns": {
       "name": "NAME",
+      "description": "DESCRIPTION",
       "createdAt": "CREATED AT",
       "expiresAt": "EXPIRES AT",
       "status": "STATUS",
@@ -697,6 +725,8 @@
     "linkTitle": "Generate Link",
     "nameLabel": "Share Name",
     "namePlaceholder": "Enter share name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "Maximum Views",
@@ -711,5 +741,27 @@
     "createShare": "Create Share",
     "generateLink": "Generate Link",
     "copyLink": "Copy Link"
+  },
+  "bulkDownload": {
+    "title": "Bulk Download",
+    "zipNameLabel": "ZIP file name",
+    "zipNamePlaceholder": "Enter file name",
+    "description": "{count, plural, =1 {1 file will be compressed} other {# files will be compressed}}",
+    "download": "Download ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Files to be deleted"
+  },
+  "shareMultipleFiles": {
+    "title": "Share Multiple Files",
+    "shareNameLabel": "Share Name",
+    "shareNamePlaceholder": "Enter share name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
+    "filesToShare": "Files to share",
+    "files": "files",
+    "totalSize": "Total size",
+    "creating": "Creating...",
+    "create": "Create Share"
   }
 }

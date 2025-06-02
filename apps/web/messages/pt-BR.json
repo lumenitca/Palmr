@@ -15,6 +15,8 @@
   "createShare": {
     "title": "Criar Compartilhamento",
     "nameLabel": "Nome do Compartilhamento",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Digite uma descrição (opcional)",
     "expirationLabel": "Data de Expiração",
     "expirationPlaceholder": "DD/MM/AAAA HH:MM",
     "maxViewsLabel": "Máximo de Visualizações",
@@ -92,10 +94,17 @@
     "updateSuccess": "Arquivo atualizado com sucesso",
     "updateError": "Erro ao atualizar o arquivo",
     "deleteSuccess": "Arquivo excluído com sucesso",
-    "deleteError": "Erro ao excluir o arquivo"
+    "deleteError": "Erro ao excluir o arquivo",
+    "bulkDownloadSuccess": "Download dos arquivos iniciado com sucesso",
+    "bulkDownloadError": "Erro ao criar arquivo ZIP",
+    "bulkDownloadFileError": "Erro ao baixar arquivo {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 arquivo excluído com sucesso} other {# arquivos excluídos com sucesso}}",
+    "bulkDeleteError": "Erro ao excluir arquivos selecionados"
   },
   "filesTable": {
     "ariaLabel": "Tabela de arquivos",
+    "selectAll": "Selecionar todos",
+    "selectFile": "Selecionar arquivo {fileName}",
     "columns": {
       "name": "NOME",
       "description": "DESCRIÇÃO",
@@ -111,6 +120,13 @@
       "share": "Compartilhar",
       "download": "Baixar",
       "delete": "Excluir"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 arquivo selecionado} other {# arquivos selecionados}}",
+      "actions": "Ações",
+      "download": "Baixar Selecionados",
+      "share": "Compartilhar Selecionados",
+      "delete": "Excluir Selecionados"
     }
   },
   "footer": {
@@ -147,6 +163,8 @@
     "linkTitle": "Gerar Link",
     "nameLabel": "Nome do Compartilhamento",
     "namePlaceholder": "Digite o nome do compartilhamento",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Digite uma descrição (opcional)",
     "expirationLabel": "Data de Expiração",
     "expirationPlaceholder": "DD/MM/AAAA HH:MM",
     "maxViewsLabel": "Máximo de Visualizações",
@@ -480,6 +498,8 @@
     "deleteConfirmation": "Tem certeza que deseja excluir este compartilhamento? Esta ação não pode ser desfeita.",
     "editTitle": "Editar Compartilhamento",
     "nameLabel": "Nome do Compartilhamento",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Digite uma descrição (opcional)",
     "expirationLabel": "Data de Expiração",
     "expirationPlaceholder": "DD/MM/AAAA HH:MM",
     "maxViewsLabel": "Máximo de Visualizações",
@@ -499,16 +519,25 @@
     "subtitle": "Informações detalhadas sobre este compartilhamento",
     "basicInfo": "Informações Básicas",
     "name": "Nome",
-    "untitled": "Compartilhamento sem título",
+    "description": "Descrição",
+    "noDescription": "Nenhuma descrição fornecida",
+    "untitled": "Sem título",
+    "shareLink": "Link de Compartilhamento",
+    "editLink": "Editar Link",
+    "generateLink": "Gerar Link",
+    "noLink": "Nenhum link gerado ainda",
+    "copyLink": "Copiar link",
+    "openLink": "Abrir em nova guia",
+    "linkCopied": "Link copiado para a área de transferência",
     "views": "Visualizações",
     "dates": "Datas",
-    "created": "Criado em: {date}",
-    "expires": "Expira em: {date}",
+    "created": "Criado",
+    "expires": "Expira",
     "never": "Nunca",
     "security": "Segurança",
     "passwordProtected": "Protegido por Senha",
     "publicAccess": "Acesso Público",
-    "maxViews": "Máximo de Visualizações:",
+    "maxViews": "Máx. Visualizações:",
     "files": "Arquivos",
     "recipients": "Destinatários",
     "notAvailable": "N/A",
@@ -561,6 +590,7 @@
     "never": "Nunca",
     "columns": {
       "name": "NOME",
+      "description": "DESCRIÇÃO",
       "createdAt": "CRIADO EM",
       "expiresAt": "EXPIRA EM",
       "status": "STATUS",
@@ -712,5 +742,27 @@
     "passwordsMatch": "As senhas não coincidem",
     "emailRequired": "Email é obrigatório",
     "passwordRequired": "Senha é obrigatória"
+  },
+  "bulkDownload": {
+    "title": "Download em Lote",
+    "zipNameLabel": "Nome do arquivo ZIP",
+    "zipNamePlaceholder": "Digite o nome do arquivo",
+    "description": "{count, plural, =1 {1 arquivo será compactado} other {# arquivos serão compactados}}",
+    "download": "Baixar ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Arquivos que serão excluídos"
+  },
+  "shareMultipleFiles": {
+    "title": "Compartilhar Múltiplos Arquivos",
+    "shareNameLabel": "Nome do Compartilhamento",
+    "shareNamePlaceholder": "Digite o nome do compartilhamento",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Digite uma descrição (opcional)",
+    "filesToShare": "Arquivos para compartilhar",
+    "files": "arquivos",
+    "totalSize": "Tamanho total",
+    "creating": "Criando...",
+    "create": "Criar Compartilhamento"
   }
 }

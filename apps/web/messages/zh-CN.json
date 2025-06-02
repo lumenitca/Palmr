@@ -13,17 +13,19 @@
     "back": "返回"
   },
   "createShare": {
-    "title": "创建共享",
-    "nameLabel": "共享名称",
+    "title": "创建分享",
+    "nameLabel": "分享名称",
+    "descriptionLabel": "描述",
+    "descriptionPlaceholder": "输入描述（可选）",
     "expirationLabel": "过期日期",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "最大查看次数",
-    "maxViewsPlaceholder": "留空表示无限",
+    "maxViewsPlaceholder": "留空为无限制",
     "passwordProtection": "密码保护",
     "passwordLabel": "密码",
-    "create": "创建共享",
-    "success": "共享创建成功",
-    "error": "创建共享失败"
+    "create": "创建分享",
+    "success": "分享创建成功",
+    "error": "创建分享失败"
   },
   "dashboard": {
     "loadError": "加载仪表盘数据失败",
@@ -90,12 +92,19 @@
     "downloadStart": "下载已开始",
     "downloadError": "下载文件失败",
     "updateSuccess": "文件更新成功",
-    "updateError": "文件更新失败",
+    "updateError": "更新文件失败",
     "deleteSuccess": "文件删除成功",
-    "deleteError": "文件删除失败"
+    "deleteError": "删除文件失败",
+    "bulkDownloadSuccess": "文件下载成功开始",
+    "bulkDownloadError": "创建ZIP文件错误",
+    "bulkDownloadFileError": "下载文件 {fileName} 错误",
+    "bulkDeleteSuccess": "{count, plural, =1 {1个文件删除成功} other {#个文件删除成功}}",
+    "bulkDeleteError": "删除选中文件错误"
   },
   "filesTable": {
     "ariaLabel": "文件表格",
+    "selectAll": "全选",
+    "selectFile": "选择文件 {fileName}",
     "columns": {
       "name": "名称",
       "description": "描述",
@@ -111,6 +120,13 @@
       "share": "分享",
       "download": "下载",
       "delete": "删除"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {已选择1个文件} other {已选择#个文件}}",
+      "actions": "操作",
+      "download": "下载选中项",
+      "share": "分享选中项",
+      "delete": "删除选中项"
     }
   },
   "footer": {
@@ -699,9 +715,9 @@
     "nameLabel": "分享名称",
     "namePlaceholder": "输入分享名称",
     "expirationLabel": "过期日期",
-    "expirationPlaceholder": "年/月/日 时:分",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "最大查看次数",
-    "maxViewsPlaceholder": "留空表示无限制",
+    "maxViewsPlaceholder": "留空为无限制",
     "passwordProtection": "密码保护",
     "passwordLabel": "密码",
     "passwordPlaceholder": "输入密码",
@@ -712,5 +728,27 @@
     "createShare": "创建分享",
     "generateLink": "生成链接",
     "copyLink": "复制链接"
+  },
+  "bulkDownload": {
+    "title": "批量下载",
+    "zipNameLabel": "ZIP文件名",
+    "zipNamePlaceholder": "输入文件名",
+    "description": "{count, plural, =1 {将压缩1个文件} other {将压缩#个文件}}",
+    "download": "下载ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "要删除的文件"
+  },
+  "shareMultipleFiles": {
+    "title": "分享多个文件",
+    "shareNameLabel": "分享名称",
+    "shareNamePlaceholder": "输入分享名称",
+    "descriptionLabel": "描述",
+    "descriptionPlaceholder": "输入描述（可选）",
+    "filesToShare": "要分享的文件",
+    "files": "文件",
+    "totalSize": "总大小",
+    "creating": "创建中...",
+    "create": "创建分享"
   }
 }

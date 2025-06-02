@@ -14,16 +14,18 @@
   },
   "createShare": {
     "title": "Delen Maken",
-    "nameLabel": "Naam van Delen",
+    "nameLabel": "Delen Naam",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
     "expirationLabel": "Vervaldatum",
     "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
-    "maxViewsLabel": "Maximum Weergaven",
+    "maxViewsLabel": "Maximale Weergaves",
     "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
     "passwordProtection": "Wachtwoord Beveiligd",
     "passwordLabel": "Wachtwoord",
     "create": "Delen Maken",
     "success": "Delen succesvol aangemaakt",
-    "error": "Fout bij het maken van delen"
+    "error": "Fout bij het aanmaken van delen"
   },
   "dashboard": {
     "loadError": "Fout bij het laden van controlepaneel gegevens",
@@ -92,10 +94,17 @@
     "updateSuccess": "Bestand succesvol bijgewerkt",
     "updateError": "Fout bij het bijwerken van bestand",
     "deleteSuccess": "Bestand succesvol verwijderd",
-    "deleteError": "Fout bij het verwijderen van bestand"
+    "deleteError": "Fout bij het verwijderen van bestand",
+    "bulkDownloadSuccess": "Bestanden download succesvol gestart",
+    "bulkDownloadError": "Fout bij het maken van ZIP-bestand",
+    "bulkDownloadFileError": "Fout bij het downloaden van bestand {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 bestand succesvol verwijderd} other {# bestanden succesvol verwijderd}}",
+    "bulkDeleteError": "Fout bij het verwijderen van geselecteerde bestanden"
   },
   "filesTable": {
     "ariaLabel": "Bestanden tabel",
+    "selectAll": "Alles selecteren",
+    "selectFile": "Bestand {fileName} selecteren",
     "columns": {
       "name": "NAAM",
       "description": "BESCHRIJVING",
@@ -111,6 +120,13 @@
       "share": "Delen",
       "download": "Downloaden",
       "delete": "Verwijderen"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 bestand geselecteerd} other {# bestanden geselecteerd}}",
+      "actions": "Acties",
+      "download": "Geselecteerde Downloaden",
+      "share": "Geselecteerde Delen",
+      "delete": "Geselecteerde Verwijderen"
     }
   },
   "footer": {
@@ -459,41 +475,52 @@
     "deleteTitle": "Delen Verwijderen",
     "deleteConfirmation": "Weet je zeker dat je dit delen wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
     "editTitle": "Delen Bewerken",
-    "nameLabel": "Deel Naam",
+    "nameLabel": "Delen Naam",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
     "expirationLabel": "Vervaldatum",
     "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
-    "maxViewsLabel": "Maximum Weergaven",
+    "maxViewsLabel": "Maximale Weergaven",
     "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
     "passwordProtection": "Wachtwoord Beveiligd",
     "passwordLabel": "Wachtwoord",
     "passwordPlaceholder": "Voer wachtwoord in",
-    "newPasswordLabel": "Nieuw Wachtwoord (laat leeg om huidige te behouden)",
+    "newPasswordLabel": "Nieuw Wachtwoord (laat leeg om huidig te behouden)",
     "newPasswordPlaceholder": "Voer nieuw wachtwoord in",
     "manageFilesTitle": "Bestanden Beheren",
     "manageRecipientsTitle": "Ontvangers Beheren",
     "editSuccess": "Delen succesvol bijgewerkt",
-    "editError": "Fout bij het bijwerken van delen"
+    "editError": "Fout bij bijwerken van delen"
   },
   "shareDetails": {
-    "title": "Deel Details",
+    "title": "Delen Details",
     "subtitle": "Gedetailleerde informatie over dit delen",
-    "basicInfo": "Basis Informatie",
+    "basicInfo": "Basisinformatie",
     "name": "Naam",
+    "description": "Beschrijving",
+    "noDescription": "Geen beschrijving opgegeven",
     "untitled": "Naamloos",
+    "shareLink": "Delen Link",
+    "editLink": "Link Bewerken",
+    "generateLink": "Link Genereren",
+    "noLink": "Nog geen link gegenereerd",
+    "copyLink": "Link kopiëren",
+    "openLink": "Openen in nieuw tabblad",
+    "linkCopied": "Link gekopieerd naar klembord",
     "views": "Weergaven",
-    "dates": "Datums",
+    "dates": "Data",
     "created": "Aangemaakt",
     "expires": "Verloopt",
     "never": "Nooit",
     "security": "Beveiliging",
     "passwordProtected": "Wachtwoord Beveiligd",
-    "publicAccess": "Publieke Toegang",
-    "maxViews": "Maximum Weergaven:",
+    "publicAccess": "Openbare Toegang",
+    "maxViews": "Max. Weergaven:",
     "files": "Bestanden",
     "recipients": "Ontvangers",
-    "notAvailable": "N.v.t.",
+    "notAvailable": "N/B",
     "invalidDate": "Ongeldige datum",
-    "loadError": "Fout bij het laden van deel details"
+    "loadError": "Fout bij laden van delen details"
   },
   "shareManager": {
     "deleteSuccess": "Delen succesvol verwijderd",
@@ -537,10 +564,11 @@
     "pageTitle": "Delingen"
   },
   "sharesTable": {
-    "ariaLabel": "Delingen tabel",
+    "ariaLabel": "Delen tabel",
     "never": "Nooit",
     "columns": {
       "name": "NAAM",
+      "description": "BESCHRIJVING",
       "createdAt": "AANGEMAAKT OP",
       "expiresAt": "VERLOOPT OP",
       "status": "STATUS",
@@ -556,12 +584,12 @@
     },
     "security": {
       "protected": "Beveiligd",
-      "public": "Publiek"
+      "public": "Openbaar"
     },
     "filesCount": "bestanden",
     "recipientsCount": "ontvangers",
     "actions": {
-      "menu": "Deel acties menu",
+      "menu": "Delen acties menu",
       "edit": "Bewerken",
       "manageFiles": "Bestanden Beheren",
       "manageRecipients": "Ontvangers Beheren",
@@ -569,7 +597,7 @@
       "generateLink": "Link Genereren",
       "editLink": "Link Bewerken",
       "copyLink": "Link Kopiëren",
-      "notifyRecipients": "Ontvangers Waarschuwen",
+      "notifyRecipients": "Ontvangers Informeren",
       "delete": "Verwijderen"
     }
   },
@@ -693,23 +721,47 @@
     "passwordRequired": "Wachtwoord is verplicht"
   },
   "shareFile": {
-    "title": "Bestand delen",
-    "linkTitle": "Link genereren",
-    "nameLabel": "Deel naam",
-    "namePlaceholder": "Voer deel naam in",
+    "title": "Bestand Delen",
+    "linkTitle": "Link Genereren",
+    "nameLabel": "Delen Naam",
+    "namePlaceholder": "Voer delen naam in",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
     "expirationLabel": "Vervaldatum",
     "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
-    "maxViewsLabel": "Maximum weergaven",
+    "maxViewsLabel": "Maximale Weergaven",
     "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
-    "passwordProtection": "Wachtwoord beschermd",
+    "passwordProtection": "Wachtwoord Beveiligd",
     "passwordLabel": "Wachtwoord",
     "passwordPlaceholder": "Voer wachtwoord in",
     "linkDescription": "Genereer een aangepaste link om het bestand te delen",
-    "aliasLabel": "Link alias",
+    "aliasLabel": "Link Alias",
     "aliasPlaceholder": "Voer aangepaste alias in",
-    "linkReady": "Uw deel-link is klaar:",
-    "createShare": "Deel maken",
-    "generateLink": "Link genereren",
-    "copyLink": "Link kopiëren"
+    "linkReady": "Jouw delen link is klaar:",
+    "createShare": "Delen Aanmaken",
+    "generateLink": "Link Genereren",
+    "copyLink": "Link Kopiëren"
+  },
+  "bulkDownload": {
+    "title": "Bulk Download",
+    "zipNameLabel": "ZIP bestandsnaam",
+    "zipNamePlaceholder": "Voer bestandsnaam in",
+    "description": "{count, plural, =1 {1 bestand wordt gecomprimeerd} other {# bestanden worden gecomprimeerd}}",
+    "download": "ZIP Downloaden"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Te verwijderen bestanden"
+  },
+  "shareMultipleFiles": {
+    "title": "Meerdere Bestanden Delen",
+    "shareNameLabel": "Delen Naam",
+    "shareNamePlaceholder": "Voer delen naam in",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
+    "filesToShare": "Bestanden om te delen",
+    "files": "bestanden",
+    "totalSize": "Totale grootte",
+    "creating": "Aanmaken...",
+    "create": "Delen Maken"
   }
 }

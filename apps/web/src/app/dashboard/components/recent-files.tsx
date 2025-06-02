@@ -50,6 +50,10 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
             onPreview={fileManager.setPreviewFile}
             onRename={fileManager.setFileToRename}
             onShare={fileManager.setFileToShare}
+            onBulkDelete={fileManager.handleBulkDelete}
+            onBulkShare={fileManager.handleBulkShare}
+            onBulkDownload={fileManager.handleBulkDownload}
+            setClearSelectionCallback={fileManager.setClearSelectionCallback}
             onUpdateName={(fileId, newName) => {
               const file = files.find((f) => f.id === fileId);
               if (file) {

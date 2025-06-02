@@ -1,6 +1,8 @@
-import { IconDownload } from "@tabler/icons-react";
+import { useState } from "react";
+import { IconDownload, IconEye } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
+import { FilePreviewModal } from "@/components/modals/file-preview-modal";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getFileIcon } from "@/utils/file-icons";
@@ -9,6 +11,8 @@ import { ShareFilesTableProps } from "../types";
 
 export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
   const t = useTranslations();
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<{ name: string; objectName: string; type?: string } | null>(null);
 
   const formatDateTime = (dateString: string) => {
     const date = new Date(dateString);
@@ -20,6 +24,16 @@ export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
       minute: "2-digit",
       hour12: false,
     }).format(date);
+  };
+
+  const handlePreview = (file: { name: string; objectName: string }) => {
+    setSelectedFile(file);
+    setIsPreviewOpen(true);
+  };
+
+  const handleClosePreview = () => {
+    setIsPreviewOpen(false);
+    setSelectedFile(null);
   };
 
   return (
@@ -37,7 +51,7 @@ export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
               <TableHead className="h-10 text-xs font-bold text-muted-foreground bg-muted/50 px-4">
                 {t("filesTable.columns.createdAt")}
               </TableHead>
-              <TableHead className="h-10 w-[70px] text-xs font-bold text-muted-foreground bg-muted/50 px-4">
+              <TableHead className="h-10 w-[110px] text-xs font-bold text-muted-foreground bg-muted/50 px-4">
                 {t("filesTable.columns.actions")}
               </TableHead>
             </TableRow>
@@ -57,15 +71,26 @@ export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
                   <TableCell className="h-12 px-4">{formatFileSize(Number(file.size))}</TableCell>
                   <TableCell className="h-12 px-4">{formatDateTime(file.createdAt)}</TableCell>
                   <TableCell className="h-12 px-4">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="h-8 w-8 hover:bg-muted"
-                      onClick={() => onDownload(file.objectName, file.name)}
-                    >
-                      <IconDownload className="h-4 w-4" />
-                      <span className="sr-only">{t("filesTable.actions.download")}</span>
-                    </Button>
+                    <div className="flex items-center gap-1">
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-8 w-8 hover:bg-muted"
+                        onClick={() => handlePreview({ name: file.name, objectName: file.objectName })}
+                      >
+                        <IconEye className="h-4 w-4" />
+                        <span className="sr-only">{t("filesTable.actions.preview")}</span>
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-8 w-8 hover:bg-muted"
+                        onClick={() => onDownload(file.objectName, file.name)}
+                      >
+                        <IconDownload className="h-4 w-4" />
+                        <span className="sr-only">{t("filesTable.actions.download")}</span>
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               );
@@ -73,6 +98,8 @@ export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
           </TableBody>
         </Table>
       </div>
+
+      {selectedFile && <FilePreviewModal isOpen={isPreviewOpen} onClose={handleClosePreview} file={selectedFile} />}
     </div>
   );
 }

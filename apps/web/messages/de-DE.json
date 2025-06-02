@@ -13,15 +13,17 @@
     "back": "Zurück"
   },
   "createShare": {
-    "title": "Freigabe erstellen",
-    "nameLabel": "Freigabename",
+    "title": "Freigabe Erstellen",
+    "nameLabel": "Freigabe-Name",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
     "expirationLabel": "Ablaufdatum",
-    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
     "maxViewsLabel": "Maximale Ansichten",
     "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwortgeschützt",
+    "passwordProtection": "Passwort-geschützt",
     "passwordLabel": "Passwort",
-    "create": "Freigabe erstellen",
+    "create": "Freigabe Erstellen",
     "success": "Freigabe erfolgreich erstellt",
     "error": "Fehler beim Erstellen der Freigabe"
   },
@@ -83,7 +85,7 @@
   },
   "files": {
     "title": "Alle Dateien",
-    "uploadFile": "Datei hochladen",
+    "uploadFile": "Datei Hochladen",
     "loadError": "Fehler beim Laden der Dateien",
     "pageTitle": "Meine Dateien",
     "breadcrumb": "Meine Dateien",
@@ -92,10 +94,17 @@
     "updateSuccess": "Datei erfolgreich aktualisiert",
     "updateError": "Fehler beim Aktualisieren der Datei",
     "deleteSuccess": "Datei erfolgreich gelöscht",
-    "deleteError": "Fehler beim Löschen der Datei"
+    "deleteError": "Fehler beim Löschen der Datei",
+    "bulkDownloadSuccess": "Datei-Download erfolgreich gestartet",
+    "bulkDownloadError": "Fehler beim Erstellen der ZIP-Datei",
+    "bulkDownloadFileError": "Fehler beim Herunterladen der Datei {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 Datei erfolgreich gelöscht} other {# Dateien erfolgreich gelöscht}}",
+    "bulkDeleteError": "Fehler beim Löschen der ausgewählten Dateien"
   },
   "filesTable": {
-    "ariaLabel": "Dateitabelle",
+    "ariaLabel": "Dateien-Tabelle",
+    "selectAll": "Alle auswählen",
+    "selectFile": "Datei {fileName} auswählen",
     "columns": {
       "name": "NAME",
       "description": "BESCHREIBUNG",
@@ -111,6 +120,13 @@
       "share": "Teilen",
       "download": "Herunterladen",
       "delete": "Löschen"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 Datei ausgewählt} other {# Dateien ausgewählt}}",
+      "actions": "Aktionen",
+      "download": "Ausgewählte Herunterladen",
+      "share": "Ausgewählte Teilen",
+      "delete": "Ausgewählte Löschen"
     }
   },
   "footer": {
@@ -456,44 +472,55 @@
     "pageTitle": "Freigabe"
   },
   "shareActions": {
-    "deleteTitle": "Freigabe löschen",
+    "deleteTitle": "Freigabe Löschen",
     "deleteConfirmation": "Sind Sie sicher, dass Sie diese Freigabe löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
-    "editTitle": "Freigabe bearbeiten",
-    "nameLabel": "Freigabename",
+    "editTitle": "Freigabe Bearbeiten",
+    "nameLabel": "Freigabe-Name",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
     "expirationLabel": "Ablaufdatum",
-    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
     "maxViewsLabel": "Maximale Ansichten",
     "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwortgeschützt",
+    "passwordProtection": "Passwort-geschützt",
     "passwordLabel": "Passwort",
     "passwordPlaceholder": "Passwort eingeben",
     "newPasswordLabel": "Neues Passwort (leer lassen, um das aktuelle zu behalten)",
     "newPasswordPlaceholder": "Neues Passwort eingeben",
-    "manageFilesTitle": "Dateien verwalten",
-    "manageRecipientsTitle": "Empfänger verwalten",
+    "manageFilesTitle": "Dateien Verwalten",
+    "manageRecipientsTitle": "Empfänger Verwalten",
     "editSuccess": "Freigabe erfolgreich aktualisiert",
     "editError": "Fehler beim Aktualisieren der Freigabe"
   },
   "shareDetails": {
-    "title": "Freigabedetails",
-    "subtitle": "Detaillierte Informationen zu dieser Freigabe",
+    "title": "Freigabe-Details",
+    "subtitle": "Detaillierte Informationen über diese Freigabe",
     "basicInfo": "Grundinformationen",
     "name": "Name",
-    "untitled": "Ohne Titel",
-    "views": "Aufrufe",
+    "description": "Beschreibung",
+    "noDescription": "Keine Beschreibung angegeben",
+    "untitled": "Unbenannt",
+    "shareLink": "Freigabe-Link",
+    "editLink": "Link Bearbeiten",
+    "generateLink": "Link Generieren",
+    "noLink": "Noch kein Link generiert",
+    "copyLink": "Link kopieren",
+    "openLink": "In neuem Tab öffnen",
+    "linkCopied": "Link in Zwischenablage kopiert",
+    "views": "Ansichten",
     "dates": "Daten",
     "created": "Erstellt",
     "expires": "Läuft ab",
-    "never": "Nie",
+    "never": "Niemals",
     "security": "Sicherheit",
-    "passwordProtected": "Passwortgeschützt",
-    "publicAccess": "Öffentlicher Zugriff",
-    "maxViews": "Maximale Ansichten:",
+    "passwordProtected": "Passwort-geschützt",
+    "publicAccess": "Öffentlicher Zugang",
+    "maxViews": "Max. Ansichten:",
     "files": "Dateien",
     "recipients": "Empfänger",
     "notAvailable": "N/V",
     "invalidDate": "Ungültiges Datum",
-    "loadError": "Fehler beim Laden der Freigabedetails"
+    "loadError": "Fehler beim Laden der Freigabe-Details"
   },
   "shareManager": {
     "deleteSuccess": "Freigabe erfolgreich gelöscht",
@@ -537,12 +564,13 @@
     "pageTitle": "Freigaben"
   },
   "sharesTable": {
-    "ariaLabel": "Freigabetabelle",
-    "never": "Nie",
+    "ariaLabel": "Freigaben-Tabelle",
+    "never": "Niemals",
     "columns": {
       "name": "NAME",
+      "description": "BESCHREIBUNG",
       "createdAt": "ERSTELLT AM",
-      "expiresAt": "LÄUFT AB",
+      "expiresAt": "LÄUFT AB AM",
       "status": "STATUS",
       "security": "SICHERHEIT",
       "files": "DATEIEN",
@@ -550,7 +578,7 @@
       "actions": "AKTIONEN"
     },
     "status": {
-      "neverExpires": "Läuft nie ab",
+      "neverExpires": "Läuft Nie Ab",
       "active": "Aktiv",
       "expired": "Abgelaufen"
     },
@@ -561,15 +589,15 @@
     "filesCount": "Dateien",
     "recipientsCount": "Empfänger",
     "actions": {
-      "menu": "Freigabeaktionsmenü",
+      "menu": "Freigabe-Aktionen-Menü",
       "edit": "Bearbeiten",
-      "manageFiles": "Dateien verwalten",
-      "manageRecipients": "Empfänger verwalten",
-      "viewDetails": "Details anzeigen",
-      "generateLink": "Link generieren",
-      "editLink": "Link bearbeiten",
-      "copyLink": "Link kopieren",
-      "notifyRecipients": "Empfänger benachrichtigen",
+      "manageFiles": "Dateien Verwalten",
+      "manageRecipients": "Empfänger Verwalten",
+      "viewDetails": "Details Anzeigen",
+      "generateLink": "Link Generieren",
+      "editLink": "Link Bearbeiten",
+      "copyLink": "Link Kopieren",
+      "notifyRecipients": "Empfänger Benachrichtigen",
       "delete": "Löschen"
     }
   },
@@ -694,23 +722,47 @@
     "passwordRequired": "Passwort ist erforderlich"
   },
   "shareFile": {
-    "title": "Datei teilen",
-    "linkTitle": "Link generieren",
+    "title": "Datei Freigeben",
+    "linkTitle": "Link Generieren",
     "nameLabel": "Freigabe-Name",
-    "namePlaceholder": "Freigabe-Name eingeben",
+    "namePlaceholder": "Freigabe-Namen eingeben",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
     "expirationLabel": "Ablaufdatum",
     "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
-    "maxViewsLabel": "Maximale Aufrufe",
+    "maxViewsLabel": "Maximale Ansichten",
     "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwort geschützt",
+    "passwordProtection": "Passwort-geschützt",
     "passwordLabel": "Passwort",
     "passwordPlaceholder": "Passwort eingeben",
-    "linkDescription": "Generieren Sie einen benutzerdefinierten Link zum Teilen der Datei",
+    "linkDescription": "Einen benutzerdefinierten Link zum Teilen der Datei generieren",
     "aliasLabel": "Link-Alias",
     "aliasPlaceholder": "Benutzerdefinierten Alias eingeben",
     "linkReady": "Ihr Freigabe-Link ist bereit:",
-    "createShare": "Freigabe erstellen",
-    "generateLink": "Link generieren",
-    "copyLink": "Link kopieren"
+    "createShare": "Freigabe Erstellen",
+    "generateLink": "Link Generieren",
+    "copyLink": "Link Kopieren"
+  },
+  "bulkDownload": {
+    "title": "Massen-Download",
+    "zipNameLabel": "ZIP-Dateiname",
+    "zipNamePlaceholder": "Dateiname eingeben",
+    "description": "{count, plural, =1 {1 Datei wird komprimiert} other {# Dateien werden komprimiert}}",
+    "download": "ZIP Herunterladen"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Zu löschende Dateien"
+  },
+  "shareMultipleFiles": {
+    "title": "Mehrere Dateien Teilen",
+    "shareNameLabel": "Freigabe-Name",
+    "shareNamePlaceholder": "Freigabe-Name eingeben",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
+    "filesToShare": "Zu teilende Dateien",
+    "files": "Dateien",
+    "totalSize": "Gesamtgröße",
+    "creating": "Erstellen...",
+    "create": "Freigabe Erstellen"
   }
 }

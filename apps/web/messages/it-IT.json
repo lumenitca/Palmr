@@ -15,15 +15,17 @@
   "createShare": {
     "title": "Crea Condivisione",
     "nameLabel": "Nome Condivisione",
+    "descriptionLabel": "Descrizione",
+    "descriptionPlaceholder": "Inserisci una descrizione (opzionale)",
     "expirationLabel": "Data di Scadenza",
     "expirationPlaceholder": "GG/MM/AAAA HH:MM",
     "maxViewsLabel": "Visualizzazioni Massime",
-    "maxViewsPlaceholder": "Lascia vuoto per illimitate",
-    "passwordProtection": "Protetto da Parola d'accesso",
-    "passwordLabel": "Parola d'accesso",
+    "maxViewsPlaceholder": "Lascia vuoto per illimitato",
+    "passwordProtection": "Protetto da Password",
+    "passwordLabel": "Password",
     "create": "Crea Condivisione",
     "success": "Condivisione creata con successo",
-    "error": "Errore durante la creazione della condivisione"
+    "error": "Errore nella creazione della condivisione"
   },
   "dashboard": {
     "loadError": "Errore durante il caricamento dei dati del pannello di controllo",
@@ -84,18 +86,25 @@
   "files": {
     "title": "Tutti i File",
     "uploadFile": "Carica File",
-    "loadError": "Errore durante il caricamento dei file",
+    "loadError": "Errore nel caricamento dei file",
     "pageTitle": "I Miei File",
     "breadcrumb": "I Miei File",
-    "downloadStart": "Download iniziato",
-    "downloadError": "Errore durante il download del file",
+    "downloadStart": "Download avviato",
+    "downloadError": "Errore nel download del file",
     "updateSuccess": "File aggiornato con successo",
-    "updateError": "Errore durante l'aggiornamento del file",
+    "updateError": "Errore nell'aggiornamento del file",
     "deleteSuccess": "File eliminato con successo",
-    "deleteError": "Errore durante l'eliminazione del file"
+    "deleteError": "Errore nell'eliminazione del file",
+    "bulkDownloadSuccess": "Download dei file avviato con successo",
+    "bulkDownloadError": "Errore nella creazione del file ZIP",
+    "bulkDownloadFileError": "Errore nel download del file {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 file eliminato con successo} other {# file eliminati con successo}}",
+    "bulkDeleteError": "Errore nell'eliminazione dei file selezionati"
   },
   "filesTable": {
     "ariaLabel": "Tabella dei file",
+    "selectAll": "Seleziona tutto",
+    "selectFile": "Seleziona file {fileName}",
     "columns": {
       "name": "NOME",
       "description": "DESCRIZIONE",
@@ -111,6 +120,13 @@
       "share": "Condividi",
       "download": "Scarica",
       "delete": "Elimina"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 file selezionato} other {# file selezionati}}",
+      "actions": "Azioni",
+      "download": "Scarica Selezionati",
+      "share": "Condividi Selezionati",
+      "delete": "Elimina Selezionati"
     }
   },
   "footer": {
@@ -460,40 +476,51 @@
     "deleteConfirmation": "Sei sicuro di voler eliminare questa condivisione? Questa azione non può essere annullata.",
     "editTitle": "Modifica Condivisione",
     "nameLabel": "Nome Condivisione",
+    "descriptionLabel": "Descrizione",
+    "descriptionPlaceholder": "Inserisci una descrizione (opzionale)",
     "expirationLabel": "Data di Scadenza",
     "expirationPlaceholder": "GG/MM/AAAA HH:MM",
     "maxViewsLabel": "Visualizzazioni Massime",
-    "maxViewsPlaceholder": "Lascia vuoto per illimitate",
-    "passwordProtection": "Protetto da Parola d'accesso",
-    "passwordLabel": "Parola d'accesso",
-    "passwordPlaceholder": "Inserisci parola d'accesso",
-    "newPasswordLabel": "Nuova Parola d'accesso (lascia vuoto per mantenere quella attuale)",
-    "newPasswordPlaceholder": "Inserisci nuova parola d'accesso",
+    "maxViewsPlaceholder": "Lasciare vuoto per illimitato",
+    "passwordProtection": "Protetto da Password",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Inserisci password",
+    "newPasswordLabel": "Nuova Password (lasciare vuoto per mantenere quella attuale)",
+    "newPasswordPlaceholder": "Inserisci nuova password",
     "manageFilesTitle": "Gestisci File",
     "manageRecipientsTitle": "Gestisci Destinatari",
     "editSuccess": "Condivisione aggiornata con successo",
-    "editError": "Errore durante l'aggiornamento della condivisione"
+    "editError": "Errore nell'aggiornamento della condivisione"
   },
   "shareDetails": {
     "title": "Dettagli Condivisione",
     "subtitle": "Informazioni dettagliate su questa condivisione",
     "basicInfo": "Informazioni Base",
     "name": "Nome",
+    "description": "Descrizione",
+    "noDescription": "Nessuna descrizione fornita",
     "untitled": "Senza titolo",
+    "shareLink": "Link di Condivisione",
+    "editLink": "Modifica Link",
+    "generateLink": "Genera Link",
+    "noLink": "Nessun link generato ancora",
+    "copyLink": "Copia link",
+    "openLink": "Apri in nuova scheda",
+    "linkCopied": "Link copiato negli appunti",
     "views": "Visualizzazioni",
     "dates": "Date",
-    "created": "Creata",
+    "created": "Creato",
     "expires": "Scade",
     "never": "Mai",
     "security": "Sicurezza",
-    "passwordProtected": "Protetta da Parola d'accesso",
+    "passwordProtected": "Protetto da Password",
     "publicAccess": "Accesso Pubblico",
-    "maxViews": "Visualizzazioni Massime:",
+    "maxViews": "Visualizzazioni Max:",
     "files": "File",
     "recipients": "Destinatari",
     "notAvailable": "N/D",
     "invalidDate": "Data non valida",
-    "loadError": "Errore durante il caricamento dei dettagli della condivisione"
+    "loadError": "Errore nel caricamento dei dettagli della condivisione"
   },
   "shareManager": {
     "deleteSuccess": "Condivisione eliminata con successo",
@@ -541,7 +568,8 @@
     "never": "Mai",
     "columns": {
       "name": "NOME",
-      "createdAt": "CREATA IL",
+      "description": "DESCRIZIONE",
+      "createdAt": "CREATO IL",
       "expiresAt": "SCADE IL",
       "status": "STATO",
       "security": "SICUREZZA",
@@ -551,12 +579,12 @@
     },
     "status": {
       "neverExpires": "Non Scade Mai",
-      "active": "Attiva",
-      "expired": "Scaduta"
+      "active": "Attivo",
+      "expired": "Scaduto"
     },
     "security": {
-      "protected": "Protetta",
-      "public": "Pubblica"
+      "protected": "Protetto",
+      "public": "Pubblico"
     },
     "filesCount": "file",
     "recipientsCount": "destinatari",
@@ -693,23 +721,47 @@
     "passwordRequired": "La parola d'accesso è obbligatoria"
   },
   "shareFile": {
-    "title": "Condividi file",
-    "linkTitle": "Genera link",
-    "nameLabel": "Nome condivisione",
+    "title": "Condividi File",
+    "linkTitle": "Genera Link",
+    "nameLabel": "Nome Condivisione",
     "namePlaceholder": "Inserisci nome condivisione",
-    "expirationLabel": "Data di scadenza",
+    "descriptionLabel": "Descrizione",
+    "descriptionPlaceholder": "Inserisci una descrizione (opzionale)",
+    "expirationLabel": "Data di Scadenza",
     "expirationPlaceholder": "GG/MM/AAAA HH:MM",
-    "maxViewsLabel": "Visualizzazioni massime",
-    "maxViewsPlaceholder": "Lascia vuoto per illimitato",
-    "passwordProtection": "Protetto da password",
+    "maxViewsLabel": "Visualizzazioni Massime",
+    "maxViewsPlaceholder": "Lasciare vuoto per illimitato",
+    "passwordProtection": "Protetto da Password",
     "passwordLabel": "Password",
     "passwordPlaceholder": "Inserisci password",
     "linkDescription": "Genera un link personalizzato per condividere il file",
-    "aliasLabel": "Alias del link",
+    "aliasLabel": "Alias Link",
     "aliasPlaceholder": "Inserisci alias personalizzato",
     "linkReady": "Il tuo link di condivisione è pronto:",
-    "createShare": "Crea condivisione",
-    "generateLink": "Genera link",
-    "copyLink": "Copia link"
+    "createShare": "Crea Condivisione",
+    "generateLink": "Genera Link",
+    "copyLink": "Copia Link"
+  },
+  "bulkDownload": {
+    "title": "Download di Massa",
+    "zipNameLabel": "Nome file ZIP",
+    "zipNamePlaceholder": "Inserisci nome file",
+    "description": "{count, plural, =1 {1 file sarà compresso} other {# file saranno compressi}}",
+    "download": "Scarica ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "File da eliminare"
+  },
+  "shareMultipleFiles": {
+    "title": "Condividi File Multipli",
+    "shareNameLabel": "Nome Condivisione",
+    "shareNamePlaceholder": "Inserisci nome condivisione",
+    "descriptionLabel": "Descrizione",
+    "descriptionPlaceholder": "Inserisci una descrizione (opzionale)",
+    "filesToShare": "File da condividere",
+    "files": "file",
+    "totalSize": "Dimensione totale",
+    "creating": "Creazione...",
+    "create": "Crea Condivisione"
   }
 }

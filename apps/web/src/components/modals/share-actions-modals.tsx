@@ -33,6 +33,7 @@ export interface ShareActionsModalsProps {
   onEdit: (shareId: string, data: any) => Promise<void>;
   onManageFiles: (shareId: string, files: string[]) => Promise<void>;
   onManageRecipients: (shareId: string, recipients: string[]) => Promise<void>;
+  onEditFile?: (fileId: string, newName: string, description?: string) => Promise<void>;
   onSuccess: () => void;
 }
 
@@ -48,12 +49,14 @@ export function ShareActionsModals({
   onDelete,
   onEdit,
   onManageFiles,
+  onEditFile,
   onSuccess,
 }: ShareActionsModalsProps) {
   const t = useTranslations();
   const [isLoading, setIsLoading] = useState(false);
   const [editForm, setEditForm] = useState({
     name: "",
+    description: "",
     expiresAt: "",
     isPasswordProtected: false,
     password: "",
@@ -64,6 +67,7 @@ export function ShareActionsModals({
     if (shareToEdit) {
       setEditForm({
         name: shareToEdit.name || "",
+        description: shareToEdit.description || "",
         expiresAt: shareToEdit.expiration ? new Date(shareToEdit.expiration).toISOString().slice(0, 16) : "",
         isPasswordProtected: Boolean(shareToEdit.security?.hasPassword),
         password: "",
@@ -86,6 +90,7 @@ export function ShareActionsModals({
     try {
       const updateData = {
         name: editForm.name,
+        description: editForm.description,
         expiration: editForm.expiresAt ? new Date(editForm.expiresAt).toISOString() : undefined,
         maxViews: editForm.maxViews ? parseInt(editForm.maxViews) : null,
       };
@@ -137,6 +142,14 @@ export function ShareActionsModals({
             <div className="grid w-full items-center gap-1.5">
               <Label>{t("shareActions.nameLabel")}</Label>
               <Input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} />
+            </div>
+            <div className="grid w-full items-center gap-1.5">
+              <Label>{t("shareActions.descriptionLabel")}</Label>
+              <Input
+                value={editForm.description}
+                onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                placeholder={t("shareActions.descriptionPlaceholder")}
+              />
             </div>
             <div className="grid w-full items-center gap-1.5">
               <Label>{t("shareActions.expirationLabel")}</Label>
@@ -202,18 +215,21 @@ export function ShareActionsModals({
       </Dialog>
 
       <Dialog open={!!shareToManageFiles} onOpenChange={() => onCloseManageFiles()}>
-        <DialogContent className="sm:max-w-[425px] md:max-w-[700px]">
+        <DialogContent className="sm:max-w-[450px] md:max-w-[550px] lg:max-w-[650px] max-h-[80vh] overflow-hidden">
           <DialogHeader>
             <DialogTitle>{t("shareActions.manageFilesTitle")}</DialogTitle>
           </DialogHeader>
-          <FileSelector
-            selectedFiles={shareToManageFiles?.files?.map((file: { id: string }) => file.id) || []}
-            shareId={shareToManageFiles?.id}
-            onSave={async (files) => {
-              await onManageFiles(shareToManageFiles?.id, files);
-              onSuccess();
-            }}
-          />
+          <div className="overflow-y-auto max-h-[calc(80vh-120px)]">
+            <FileSelector
+              selectedFiles={shareToManageFiles?.files?.map((file: { id: string }) => file.id) || []}
+              shareId={shareToManageFiles?.id}
+              onSave={async (files) => {
+                await onManageFiles(shareToManageFiles?.id, files);
+                onSuccess();
+              }}
+              onEditFile={onEditFile}
+            />
+          </div>
         </DialogContent>
       </Dialog>
 

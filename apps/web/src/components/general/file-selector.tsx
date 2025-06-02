@@ -1,27 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IconArrowLeft, IconArrowRight, IconFile } from "@tabler/icons-react";
+import { IconCheck, IconEdit, IconEye, IconMinus, IconPlus, IconSearch } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
+import { FileActionsModals } from "@/components/modals/file-actions-modals";
+import { FilePreviewModal } from "@/components/modals/file-preview-modal";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { addFiles, listFiles, removeFiles } from "@/http/endpoints";
+import { getFileIcon } from "@/utils/file-icons";
 
 interface FileSelectorProps {
   shareId: string;
   selectedFiles: string[];
   onSave: (files: string[]) => Promise<void>;
+  onEditFile?: (fileId: string, newName: string, description?: string) => Promise<void>;
 }
 
-export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorProps) {
+export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: FileSelectorProps) {
   const t = useTranslations();
   const [availableFiles, setAvailableFiles] = useState<any[]>([]);
   const [shareFiles, setShareFiles] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [availableFilter, setAvailableFilter] = useState("");
-  const [shareFilter, setShareFilter] = useState("");
+  const [searchFilter, setSearchFilter] = useState("");
+  const [shareSearchFilter, setShareSearchFilter] = useState("");
+  const [previewFile, setPreviewFile] = useState<any>(null);
+  const [fileToEdit, setFileToEdit] = useState<any>(null);
 
   useEffect(() => {
     loadFiles();
@@ -40,9 +47,8 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
     }
   };
 
-  const moveToShare = (fileId: string) => {
+  const addToShare = (fileId: string) => {
     const file = availableFiles.find((f) => f.id === fileId);
-
     if (file) {
       setShareFiles([...shareFiles, file]);
       setAvailableFiles(availableFiles.filter((f) => f.id !== fileId));
@@ -51,7 +57,6 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
 
   const removeFromShare = (fileId: string) => {
     const file = shareFiles.find((f) => f.id === fileId);
-
     if (file) {
       setAvailableFiles([...availableFiles, file]);
       setShareFiles(shareFiles.filter((f) => f.id !== fileId));
@@ -63,7 +68,6 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
       setIsLoading(true);
 
       const filesToAdd = shareFiles.filter((file) => !selectedFiles.includes(file.id)).map((file) => file.id);
-
       const filesToRemove = selectedFiles.filter((fileId) => !shareFiles.find((f) => f.id === fileId));
 
       if (filesToAdd.length > 0) {
@@ -75,7 +79,6 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
       }
 
       await onSave(shareFiles.map((f) => f.id));
-      toast.success("Files updated successfully");
     } catch (error) {
       console.error(error);
       toast.error("Failed to update files");
@@ -84,106 +87,219 @@ export function FileSelector({ shareId, selectedFiles, onSave }: FileSelectorPro
     }
   };
 
+  const handleEditFile = async (fileId: string, newName: string, description?: string) => {
+    if (onEditFile) {
+      await onEditFile(fileId, newName, description);
+      setFileToEdit(null);
+      // Recarregar arquivos para mostrar as mudanças
+      await loadFiles();
+    }
+  };
+
   const filteredAvailableFiles = availableFiles.filter((file) =>
-    file.name.toLowerCase().includes(availableFilter.toLowerCase())
+    file.name.toLowerCase().includes(searchFilter.toLowerCase())
   );
 
-  const filteredShareFiles = shareFiles.filter((file) => file.name.toLowerCase().includes(shareFilter.toLowerCase()));
+  const filteredShareFiles = shareFiles.filter((file) =>
+    file.name.toLowerCase().includes(shareSearchFilter.toLowerCase())
+  );
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 B";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+  };
+
+  const FileCard = ({ file, isInShare }: { file: any; isInShare: boolean }) => {
+    const { icon: FileIcon, color } = getFileIcon(file.name);
+
+    return (
+      <div className="flex items-center gap-3 p-3 bg-background rounded-lg border group hover:border-muted-foreground/20 transition-colors">
+        <FileIcon className={`h-5 w-5 ${color} flex-shrink-0`} />
+        <div className="flex-1 min-w-0">
+          <div className="font-medium text-sm truncate max-w-[260px]" title={file.name}>
+            {file.name}
+          </div>
+          {file.description && (
+            <div className="text-xs text-muted-foreground truncate max-w-[260px]" title={file.description}>
+              {file.description}
+            </div>
+          )}
+          <div className="text-xs text-muted-foreground">{formatFileSize(file.size)}</div>
+        </div>
+        <div className="flex items-center gap-2">
+          {/* Botões de ações secundárias */}
+          <div className="flex gap-1">
+            {onEditFile && (
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-7 w-7 hover:bg-muted transition-colors"
+                onClick={() => setFileToEdit(file)}
+                title="Editar arquivo"
+              >
+                <IconEdit className="h-4 w-4" />
+              </Button>
+            )}
+            <Button
+              size="icon"
+              variant="ghost"
+              className="h-7 w-7 hover:bg-muted transition-colors"
+              onClick={() => setPreviewFile(file)}
+              title="Visualizar arquivo"
+            >
+              <IconEye className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Botão de ação principal destacado */}
+          <div className="ml-1">
+            <Button
+              size="icon"
+              variant={isInShare ? "destructive" : "default"}
+              className="h-8 w-8 transition-all"
+              onClick={() => (isInShare ? removeFromShare(file.id) : addToShare(file.id))}
+              title={isInShare ? "Remover do compartilhamento" : "Adicionar ao compartilhamento"}
+            >
+              {isInShare ? <IconMinus className="h-4 w-4" /> : <IconPlus className="h-4 w-4" />}
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex gap-4 h-[500px]">
-        <div className="flex-1 border rounded-lg">
-          <div className="p-4 border-b">
-            <h3 className="font-medium">
-              {t("fileSelector.availableFiles", { count: filteredAvailableFiles.length })}
-            </h3>
-            <Input
-              className="mt-2"
-              placeholder={t("fileSelector.searchPlaceholder")}
-              type="search"
-              value={availableFilter}
-              onChange={(e) => setAvailableFilter(e.target.value)}
-            />
+    <>
+      <div className="space-y-6">
+        {/* Current Files in Share */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-medium">{t("fileSelector.shareFiles", { count: shareFiles.length })}</h3>
+              <p className="text-sm text-muted-foreground">Arquivos atualmente no compartilhamento</p>
+            </div>
+            <Badge variant="secondary" className="bg-blue-500/20 text-blue-700">
+              {shareFiles.length} {shareFiles.length === 1 ? "arquivo" : "arquivos"}
+            </Badge>
           </div>
-          <div className="p-4 h-[calc(100%-115px)] overflow-y-auto">
-            {filteredAvailableFiles.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                {availableFilter ? t("fileSelector.noMatchingFiles") : t("fileSelector.noAvailableFiles")}
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {filteredAvailableFiles.map((file) => (
-                  <div
-                    key={file.id}
-                    className="flex items-center justify-between p-3 rounded-lg border border-transparent hover:border-primary-500 cursor-pointer"
-                    onClick={() => moveToShare(file.id)}
-                  >
-                    <div className="flex items-center gap-2">
-                      <IconFile className="text-gray-400" size={20} />
-                      <span className="truncate max-w-[150px]" title={file.name}>
-                        {file.name}
-                      </span>
-                    </div>
-                    <IconArrowRight className="text-gray-400" size={20} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
 
-        <div className="flex-1 border rounded-lg">
-          <div className="p-4 border-b">
-            <h3 className="font-medium">{t("fileSelector.shareFiles", { count: filteredShareFiles.length })}</h3>
-            <Input
-              className="mt-2"
-              placeholder={t("fileSelector.searchPlaceholder")}
-              type="search"
-              value={shareFilter}
-              onChange={(e) => setShareFilter(e.target.value)}
-            />
-          </div>
-          <div className="p-4 h-[calc(100%-115px)] overflow-y-auto">
-            {filteredShareFiles.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                {shareFilter ? t("fileSelector.noMatchingFiles") : t("fileSelector.noFilesInShare")}
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {filteredShareFiles.map((file) => (
-                  <div
-                    key={file.id}
-                    className="flex items-center justify-between p-3 rounded-lg border border-transparent hover:border-primary-500 cursor-pointer"
-                    onClick={() => removeFromShare(file.id)}
-                  >
-                    <div className="flex items-center gap-2">
-                      <IconFile className="text-gray-400" size={20} />
-                      <span className="truncate max-w-[150px]" title={file.name}>
-                        {file.name}
-                      </span>
-                    </div>
-                    <IconArrowLeft className="text-gray-400" size={20} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+          {/* Search for selected files - only show if there are files */}
+          {shareFiles.length > 0 && (
+            <div className="relative">
+              <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Buscar nos arquivos selecionados..."
+                value={shareSearchFilter}
+                onChange={(e) => setShareSearchFilter(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          )}
 
-      <div className="flex justify-end">
-        <Button variant="default" disabled={isLoading} onClick={handleSave}>
-          {isLoading ? (
-            <div className="flex items-center gap-2">
-              <div className="animate-spin">⠋</div>
-              {t("fileSelector.saveChanges")}
+          {shareFiles.length > 0 ? (
+            <div className="grid gap-2 max-h-40 overflow-y-auto border rounded-lg p-3 bg-muted/30">
+              {filteredShareFiles.map((file) => (
+                <FileCard key={file.id} file={file} isInShare={true} />
+              ))}
+              {filteredShareFiles.length === 0 && shareSearchFilter && (
+                <div className="text-center py-4 text-muted-foreground">
+                  <p className="text-sm">Nenhum arquivo encontrado com "{shareSearchFilter}"</p>
+                </div>
+              )}
             </div>
           ) : (
-            t("fileSelector.saveChanges")
+            <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
+              <div className="text-4xl mb-2">📁</div>
+              <p className="font-medium">Nenhum arquivo no compartilhamento</p>
+              <p className="text-sm">Adicione arquivos da lista abaixo</p>
+            </div>
           )}
-        </Button>
+        </div>
+
+        {/* Available Files to Add */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-medium">
+                {t("fileSelector.availableFiles", { count: filteredAvailableFiles.length })}
+              </h3>
+              <p className="text-sm text-muted-foreground">Selecione arquivos para adicionar ao compartilhamento</p>
+            </div>
+          </div>
+
+          {/* Search */}
+          <div className="relative">
+            <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder={t("fileSelector.searchPlaceholder")}
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+
+          {/* Available Files Grid */}
+          {filteredAvailableFiles.length > 0 ? (
+            <div className="grid gap-2 max-h-60 overflow-y-auto border rounded-lg p-3 bg-muted/10">
+              {filteredAvailableFiles.map((file) => (
+                <FileCard key={file.id} file={file} isInShare={false} />
+              ))}
+            </div>
+          ) : searchFilter ? (
+            <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
+              <div className="text-4xl mb-2">🔍</div>
+              <p className="font-medium">Nenhum arquivo encontrado</p>
+              <p className="text-sm">Tente usar outros termos de busca</p>
+            </div>
+          ) : (
+            <div className="text-center py-8 text-muted-foreground border rounded-lg bg-muted/20">
+              <div className="text-4xl mb-2">📄</div>
+              <p className="font-medium">Todos os arquivos já estão no compartilhamento</p>
+              <p className="text-sm">Faça upload de novos arquivos para adicioná-los</p>
+            </div>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center justify-between pt-4 border-t">
+          <div className="text-sm text-muted-foreground">
+            {shareFiles.length} {shareFiles.length === 1 ? "arquivo" : "arquivos"} selecionado(s)
+          </div>
+          <Button onClick={handleSave} disabled={isLoading} className="gap-2">
+            {isLoading ? (
+              <>
+                <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
+                Salvando...
+              </>
+            ) : (
+              <>
+                <IconCheck className="h-4 w-4" />
+                {t("fileSelector.saveChanges")}
+              </>
+            )}
+          </Button>
+        </div>
       </div>
-    </div>
+
+      {/* File Preview Dialog */}
+      <FilePreviewModal
+        isOpen={!!previewFile}
+        onClose={() => setPreviewFile(null)}
+        file={previewFile || { name: "", objectName: "" }}
+      />
+
+      {/* File Edit Dialog */}
+      <FileActionsModals
+        fileToRename={fileToEdit}
+        fileToDelete={null}
+        onRename={handleEditFile}
+        onDelete={async () => {}}
+        onCloseRename={() => setFileToEdit(null)}
+        onCloseDelete={() => {}}
+      />
+    </>
   );
 }

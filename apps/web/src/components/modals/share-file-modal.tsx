@@ -38,6 +38,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
   const [shareId, setShareId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
+    description: "",
     password: "",
     expiresAt: "",
     isPasswordProtected: false,
@@ -51,6 +52,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
     if (isOpen && file) {
       setFormData({
         name: `${file.name.split(".")[0]}`,
+        description: "",
         password: "",
         expiresAt: "",
         isPasswordProtected: false,
@@ -72,6 +74,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
       // Criar o compartilhamento
       const shareResponse = await createShare({
         name: formData.name,
+        description: formData.description || undefined,
         password: formData.isPasswordProtected ? formData.password : undefined,
         expiration: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : undefined,
         maxViews: formData.maxViews ? parseInt(formData.maxViews) : undefined,
@@ -95,6 +98,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
 
     setFormData({
       name: "",
+      description: "",
       password: "",
       expiresAt: "",
       isPasswordProtected: false,
@@ -132,6 +136,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
       setGeneratedLink("");
       setFormData({
         name: "",
+        description: "",
         password: "",
         expiresAt: "",
         isPasswordProtected: false,
@@ -172,6 +177,15 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder={t("shareFile.namePlaceholder")}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>{t("shareFile.descriptionLabel")}</Label>
+              <Input
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                placeholder={t("shareFile.descriptionPlaceholder")}
               />
             </div>
 

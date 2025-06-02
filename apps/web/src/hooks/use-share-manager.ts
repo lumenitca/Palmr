@@ -30,6 +30,7 @@ export interface ShareManagerHook {
   handleDelete: (shareId: string) => Promise<void>;
   handleEdit: (shareId: string, data: any) => Promise<void>;
   handleUpdateName: (shareId: string, newName: string) => Promise<void>;
+  handleUpdateDescription: (shareId: string, newDescription: string) => Promise<void>;
   handleManageFiles: (shareId: string, files: any[]) => Promise<void>;
   handleManageRecipients: (shareId: string, recipients: any[]) => Promise<void>;
   handleGenerateLink: (shareId: string, alias: string) => Promise<void>;
@@ -72,6 +73,17 @@ export function useShareManager(onSuccess: () => void) {
   const handleUpdateName = async (shareId: string, newName: string) => {
     try {
       await updateShare({ id: shareId, name: newName });
+      await onSuccess();
+      toast.success(t("shareManager.updateSuccess"));
+    } catch (error) {
+      toast.error(t("shareManager.updateError"));
+      console.error(error);
+    }
+  };
+
+  const handleUpdateDescription = async (shareId: string, newDescription: string) => {
+    try {
+      await updateShare({ id: shareId, description: newDescription });
       await onSuccess();
       toast.success(t("shareManager.updateSuccess"));
     } catch (error) {
@@ -147,6 +159,7 @@ export function useShareManager(onSuccess: () => void) {
     handleDelete,
     handleEdit,
     handleUpdateName,
+    handleUpdateDescription,
     handleManageFiles,
     handleManageRecipients,
     handleGenerateLink,

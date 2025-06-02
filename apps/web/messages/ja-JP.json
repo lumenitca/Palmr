@@ -15,10 +15,12 @@
   "createShare": {
     "title": "共有を作成",
     "nameLabel": "共有名",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
     "expirationLabel": "有効期限",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "最大ビュー数",
-    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空のままにしてください",
     "passwordProtection": "パスワード保護",
     "passwordLabel": "パスワード",
     "create": "共有を作成",
@@ -87,22 +89,29 @@
     "loadError": "ファイルの読み込みに失敗しました",
     "pageTitle": "マイファイル",
     "breadcrumb": "マイファイル",
-    "downloadStart": "ダウンロードが開始されました",
+    "downloadStart": "ダウンロードを開始しました",
     "downloadError": "ファイルのダウンロードに失敗しました",
     "updateSuccess": "ファイルが正常に更新されました",
     "updateError": "ファイルの更新に失敗しました",
     "deleteSuccess": "ファイルが正常に削除されました",
-    "deleteError": "ファイルの削除に失敗しました"
+    "deleteError": "ファイルの削除に失敗しました",
+    "bulkDownloadSuccess": "ファイルのダウンロードが正常に開始されました",
+    "bulkDownloadError": "ZIPファイルの作成エラー",
+    "bulkDownloadFileError": "ファイル {fileName} のダウンロードエラー",
+    "bulkDeleteSuccess": "{count, plural, =1 {1つのファイルが正常に削除されました} other {#つのファイルが正常に削除されました}}",
+    "bulkDeleteError": "選択されたファイルの削除エラー"
   },
   "filesTable": {
     "ariaLabel": "ファイルテーブル",
+    "selectAll": "すべて選択",
+    "selectFile": "ファイル {fileName} を選択",
     "columns": {
       "name": "名前",
       "description": "説明",
       "size": "サイズ",
-      "createdAt": "作成日",
-      "updatedAt": "更新日",
-      "actions": "操作"
+      "createdAt": "作成日時",
+      "updatedAt": "更新日時",
+      "actions": "アクション"
     },
     "actions": {
       "menu": "ファイルアクションメニュー",
@@ -111,6 +120,13 @@
       "share": "共有",
       "download": "ダウンロード",
       "delete": "削除"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1つのファイルが選択されています} other {#つのファイルが選択されています}}",
+      "actions": "アクション",
+      "download": "選択済みをダウンロード",
+      "share": "選択済みを共有",
+      "delete": "選択済みを削除"
     }
   },
   "footer": {
@@ -457,43 +473,54 @@
   },
   "shareActions": {
     "deleteTitle": "共有を削除",
-    "deleteConfirmation": "この共有を削除してもよろしいですか？この操作は元に戻せません。",
+    "deleteConfirmation": "この共有を削除しますか？この操作は元に戻すことができません。",
     "editTitle": "共有を編集",
     "nameLabel": "共有名",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
     "expirationLabel": "有効期限",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "最大ビュー数",
-    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "expirationPlaceholder": "YYYY/MM/DD HH:MM",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空白にしてください",
     "passwordProtection": "パスワード保護",
     "passwordLabel": "パスワード",
     "passwordPlaceholder": "パスワードを入力してください",
-    "newPasswordLabel": "新しいパスワード（現在のパスワードを保持する場合は空白のまま）",
+    "newPasswordLabel": "新しいパスワード（現在のパスワードを保持する場合は空白）",
     "newPasswordPlaceholder": "新しいパスワードを入力してください",
-    "manageFilesTitle": "ファイルの管理",
-    "manageRecipientsTitle": "受信者の管理",
+    "manageFilesTitle": "ファイル管理",
+    "manageRecipientsTitle": "受信者管理",
     "editSuccess": "共有が正常に更新されました",
     "editError": "共有の更新に失敗しました"
   },
   "shareDetails": {
-    "title": "共有の詳細",
-    "subtitle": "この共有の詳細情報",
+    "title": "共有詳細",
+    "subtitle": "この共有に関する詳細情報",
     "basicInfo": "基本情報",
     "name": "名前",
+    "description": "説明",
+    "noDescription": "説明が提供されていません",
     "untitled": "無題",
-    "views": "ビュー数",
+    "shareLink": "共有リンク",
+    "editLink": "リンクを編集",
+    "generateLink": "リンクを生成",
+    "noLink": "まだリンクが生成されていません",
+    "copyLink": "リンクをコピー",
+    "openLink": "新しいタブで開く",
+    "linkCopied": "リンクがクリップボードにコピーされました",
+    "views": "表示回数",
     "dates": "日付",
     "created": "作成日",
     "expires": "有効期限",
     "never": "なし",
     "security": "セキュリティ",
     "passwordProtected": "パスワード保護",
-    "publicAccess": "公開アクセス",
-    "maxViews": "最大ビュー数:",
+    "publicAccess": "パブリックアクセス",
+    "maxViews": "最大表示回数:",
     "files": "ファイル",
     "recipients": "受信者",
-    "notAvailable": "該当なし",
-    "invalidDate": "無効な日付です",
-    "loadError": "共有の詳細の読み込みに失敗しました"
+    "notAvailable": "N/A",
+    "invalidDate": "無効な日付",
+    "loadError": "共有詳細の読み込みに失敗しました"
   },
   "shareManager": {
     "deleteSuccess": "共有が正常に削除されました",
@@ -541,16 +568,17 @@
     "never": "なし",
     "columns": {
       "name": "名前",
+      "description": "説明",
       "createdAt": "作成日",
       "expiresAt": "有効期限",
       "status": "ステータス",
       "security": "セキュリティ",
       "files": "ファイル",
       "recipients": "受信者",
-      "actions": "操作"
+      "actions": "アクション"
     },
     "status": {
-      "neverExpires": "無期限",
+      "neverExpires": "期限なし",
       "active": "アクティブ",
       "expired": "期限切れ"
     },
@@ -561,14 +589,14 @@
     "filesCount": "ファイル",
     "recipientsCount": "受信者",
     "actions": {
-      "menu": "共有操作メニュー",
+      "menu": "共有アクションメニュー",
       "edit": "編集",
       "manageFiles": "ファイル管理",
       "manageRecipients": "受信者管理",
-      "viewDetails": "詳細を表示",
-      "generateLink": "リンクを生成",
-      "editLink": "リンクを編集",
-      "copyLink": "リンクをコピー",
+      "viewDetails": "詳細表示",
+      "generateLink": "リンク生成",
+      "editLink": "リンク編集",
+      "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
       "delete": "削除"
     }
@@ -679,23 +707,47 @@
     "passwordRequired": "パスワードは必須です"
   },
   "shareFile": {
-    "title": "ファイルを共有",
-    "linkTitle": "リンクを生成",
+    "title": "ファイル共有",
+    "linkTitle": "リンク生成",
     "nameLabel": "共有名",
-    "namePlaceholder": "共有名を入力",
+    "namePlaceholder": "共有名を入力してください",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
     "expirationLabel": "有効期限",
     "expirationPlaceholder": "YYYY/MM/DD HH:MM",
-    "maxViewsLabel": "最大閲覧回数",
-    "maxViewsPlaceholder": "無制限の場合は空欄",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空白にしてください",
     "passwordProtection": "パスワード保護",
     "passwordLabel": "パスワード",
-    "passwordPlaceholder": "パスワードを入力",
-    "linkDescription": "ファイルを共有するためのカスタムリンクを生成します",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "linkDescription": "ファイルを共有するためのカスタムリンクを生成する",
     "aliasLabel": "リンクエイリアス",
-    "aliasPlaceholder": "カスタムエイリアスを入力",
+    "aliasPlaceholder": "カスタムエイリアスを入力してください",
     "linkReady": "共有リンクの準備ができました：",
     "createShare": "共有を作成",
-    "generateLink": "リンクを生成",
-    "copyLink": "リンクをコピー"
+    "generateLink": "リンク生成",
+    "copyLink": "リンクコピー"
+  },
+  "bulkDownload": {
+    "title": "一括ダウンロード",
+    "zipNameLabel": "ZIPファイル名",
+    "zipNamePlaceholder": "ファイル名を入力してください",
+    "description": "{count, plural, =1 {1つのファイルが圧縮されます} other {#つのファイルが圧縮されます}}",
+    "download": "ZIPをダウンロード"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "削除するファイル"
+  },
+  "shareMultipleFiles": {
+    "title": "複数ファイルを共有",
+    "shareNameLabel": "共有名",
+    "shareNamePlaceholder": "共有名を入力してください",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
+    "filesToShare": "共有するファイル",
+    "files": "ファイル",
+    "totalSize": "合計サイズ",
+    "creating": "作成中...",
+    "create": "共有を作成"
   }
 }
