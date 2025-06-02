@@ -31,9 +31,10 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   const [pdfAsBlob, setPdfAsBlob] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [pdfLoadFailed, setPdfLoadFailed] = useState(false);
+  const [isLoadingPreview, setIsLoadingPreview] = useState(false);
 
   useEffect(() => {
-    if (isOpen && file.objectName) {
+    if (isOpen && file.objectName && !isLoadingPreview) {
       setIsLoading(true);
       setPreviewUrl(null);
       setVideoBlob(null);
@@ -46,18 +47,32 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
   useEffect(() => {
     return () => {
-      if (previewUrl) {
+      if (previewUrl && previewUrl.startsWith("blob:")) {
         URL.revokeObjectURL(previewUrl);
       }
-      if (videoBlob) {
+      if (videoBlob && videoBlob.startsWith("blob:")) {
         URL.revokeObjectURL(videoBlob);
       }
     };
   }, [previewUrl, videoBlob]);
 
-  const loadPreview = async () => {
-    if (!file.objectName) return;
+  useEffect(() => {
+    if (!isOpen) {
+      if (previewUrl && previewUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(previewUrl);
+        setPreviewUrl(null);
+      }
+      if (videoBlob && videoBlob.startsWith("blob:")) {
+        URL.revokeObjectURL(videoBlob);
+        setVideoBlob(null);
+      }
+    }
+  }, [isOpen]);
 
+  const loadPreview = async () => {
+    if (!file.objectName || isLoadingPreview) return;
+
+    setIsLoadingPreview(true);
     try {
       const encodedObjectName = encodeURIComponent(file.objectName);
       const response = await getDownloadUrl(encodedObjectName);
@@ -81,11 +96,11 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       toast.error(t("filePreview.loadError"));
     } finally {
       setIsLoading(false);
+      setIsLoadingPreview(false);
     }
   };
 
   const loadVideoPreview = async (url: string) => {
-    console.log("Loading video as blob for streaming support");
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -95,7 +110,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
       setVideoBlob(blobUrl);
-      console.log("Video blob loaded successfully");
     } catch (error) {
       console.error("Failed to load video as blob:", error);
       setPreviewUrl(url);
@@ -103,7 +117,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   };
 
   const loadAudioPreview = async (url: string) => {
-    console.log("Loading audio as blob for streaming support");
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -113,7 +126,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
       setPreviewUrl(blobUrl);
-      console.log("Audio blob loaded successfully");
     } catch (error) {
       console.error("Failed to load audio as blob:", error);
       setPreviewUrl(url);
@@ -121,7 +133,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   };
 
   const loadPdfPreview = async (url: string) => {
-    console.log("Loading PDF as blob to avoid auto-download");
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -133,13 +144,11 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       const blobUrl = URL.createObjectURL(finalBlob);
       setPreviewUrl(blobUrl);
       setPdfAsBlob(true);
-      console.log("PDF blob loaded successfully");
     } catch (error) {
       console.error("Failed to load PDF as blob:", error);
       setPreviewUrl(url);
       setTimeout(() => {
         if (!pdfLoadFailed && !pdfAsBlob) {
-          console.log("PDF load timeout, trying blob method...");
           handlePdfLoadError();
         }
       }, 4000);
@@ -147,9 +156,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   };
 
   const handlePdfLoadError = async () => {
-    if (pdfLoadFailed || pdfAsBlob) return; // Evitar loops
+    if (pdfLoadFailed || pdfAsBlob) return;
 
-    console.log("PDF load failed, trying blob method...");
     setPdfLoadFailed(true);
 
     if (downloadUrl) {
@@ -161,15 +169,15 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
   const handleDownload = async () => {
     try {
-      console.log("Starting download process...");
+      let downloadUrlToUse = downloadUrl;
 
-      const encodedObjectName = encodeURIComponent(file.objectName);
-      const response = await getDownloadUrl(encodedObjectName);
-      const freshUrl = response.data.url;
+      if (!downloadUrlToUse) {
+        const encodedObjectName = encodeURIComponent(file.objectName);
+        const response = await getDownloadUrl(encodedObjectName);
+        downloadUrlToUse = response.data.url;
+      }
 
-      console.log("Got fresh download URL:", freshUrl);
-
-      const fileResponse = await fetch(freshUrl);
+      const fileResponse = await fetch(downloadUrlToUse);
       if (!fileResponse.ok) {
         throw new Error(`Download failed: ${fileResponse.status} - ${fileResponse.statusText}`);
       }
@@ -185,8 +193,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
 
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-
-      console.log("Download completed successfully");
     } catch (error) {
       toast.error(t("filePreview.downloadError"));
       console.error("Download error:", error);

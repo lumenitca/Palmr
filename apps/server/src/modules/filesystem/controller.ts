@@ -8,6 +8,50 @@ import { pipeline } from "stream/promises";
 export class FilesystemController {
   private fileService = new FileService();
 
+  /**
+   * Safely encode filename for Content-Disposition header
+   */
+  private encodeFilenameForHeader(filename: string): string {
+    if (!filename || filename.trim() === "") {
+      return 'attachment; filename="download"';
+    }
+
+    let sanitized = filename
+      .replace(/"/g, "'")
+      .replace(/[\r\n\t\v\f]/g, "")
+      .replace(/[\\|/]/g, "-")
+      .replace(/[<>:|*?]/g, "");
+
+    sanitized = sanitized
+      .split("")
+      .filter((char) => {
+        const code = char.charCodeAt(0);
+        return code >= 32 && !(code >= 127 && code <= 159);
+      })
+      .join("")
+      .trim();
+
+    if (!sanitized) {
+      return 'attachment; filename="download"';
+    }
+
+    const asciiSafe = sanitized
+      .split("")
+      .filter((char) => {
+        const code = char.charCodeAt(0);
+        return code >= 32 && code <= 126;
+      })
+      .join("");
+
+    if (asciiSafe && asciiSafe.trim()) {
+      const encoded = encodeURIComponent(sanitized);
+      return `attachment; filename="${asciiSafe}"; filename*=UTF-8''${encoded}`;
+    } else {
+      const encoded = encodeURIComponent(sanitized);
+      return `attachment; filename*=UTF-8''${encoded}`;
+    }
+  }
+
   async upload(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { token } = request.params as { token: string };
@@ -100,6 +144,7 @@ export class FilesystemController {
       const provider = FilesystemStorageProvider.getInstance();
 
       const tokenData = provider.validateDownloadToken(token);
+
       if (!tokenData) {
         return reply.status(400).send({ error: "Invalid or expired download token" });
       }
@@ -109,7 +154,7 @@ export class FilesystemController {
       const isLargeFile = stats.size > 50 * 1024 * 1024;
 
       const fileName = tokenData.fileName || "download";
-      reply.header("Content-Disposition", `attachment; filename="${fileName}"`);
+      reply.header("Content-Disposition", this.encodeFilenameForHeader(fileName));
       reply.header("Content-Type", "application/octet-stream");
       reply.header("Content-Length", stats.size);
 

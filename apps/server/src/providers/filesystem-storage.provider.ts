@@ -261,10 +261,18 @@ export class FilesystemStorageProvider implements StorageProvider {
 
   validateDownloadToken(token: string): { objectName: string; fileName?: string } | null {
     const data = this.downloadTokens.get(token);
-    if (!data || Date.now() > data.expiresAt) {
-      if (data) this.downloadTokens.delete(token);
+
+    if (!data) {
       return null;
     }
+
+    const now = Date.now();
+
+    if (now > data.expiresAt) {
+      this.downloadTokens.delete(token);
+      return null;
+    }
+
     return { objectName: data.objectName, fileName: data.fileName };
   }
 
