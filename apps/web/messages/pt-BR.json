@@ -10,7 +10,10 @@
     "yes": "Sim",
     "no": "Não",
     "dashboard": "Painel",
-    "back": "Voltar"
+    "back": "Voltar",
+    "updating": "Atualizando...",
+    "saving": "Salvando...",
+    "update": "Atualizar"
   },
   "createShare": {
     "title": "Criar Compartilhamento",
@@ -253,7 +256,7 @@
       "firstName": "Nome",
       "lastName": "Sobrenome",
       "username": "Nome de Usuário",
-      "email": "Email",
+      "email": "E-mail",
       "updateButton": "Atualizar Perfil"
     },
     "header": {
@@ -297,7 +300,8 @@
     "title": "Uploads Recentes",
     "viewAll": "Ver Todos",
     "uploadFile": "Enviar Arquivo",
-    "noFiles": "Nenhum arquivo enviado ainda"
+    "noFiles": "Nenhum arquivo enviado ainda",
+    "upload": "Carregar"
   },
   "recentShares": {
     "title": "Compartilhamentos Recentes",
@@ -318,7 +322,25 @@
     "removeError": "Falha ao remover destinatário",
     "sendingNotifications": "Enviando notificações...",
     "notifySuccess": "Destinatários notificados com sucesso",
-    "notifyError": "Falha ao notificar destinatários"
+    "notifyError": "Falha ao notificar destinatários",
+    "selectAll": "Selecionar todos",
+    "selectedCount": "{count} selecionados",
+    "selectRecipient": "Selecionar {email}",
+    "notifySelected": "Notificar Selecionados",
+    "removeSelected": "Remover Selecionados",
+    "notifySingle": "Notificar este destinatário",
+    "removeSingle": "Remover este destinatário",
+    "bulkRemoveSuccess": "{count} destinatários removidos com sucesso",
+    "bulkRemoveError": "Falha ao remover destinatários selecionados",
+    "bulkNotifySuccess": "Notificações enviadas para {count} destinatários",
+    "bulkNotifyError": "Falha ao notificar destinatários selecionados",
+    "singleNotifySuccess": "Notificação enviada para {email}",
+    "singleNotifyError": "Falha ao notificar destinatário",
+    "modalDescription": "Adicione e gerencie destinatários para este compartilhamento. Você pode notificar todos ou destinatários específicos quando o SMTP estiver configurado.",
+    "addRecipient": "Adicionar Destinatário",
+    "invalidEmail": "Por favor, digite um endereço de e-mail válido",
+    "duplicateEmail": "Este destinatário já foi adicionado",
+    "noRecipientsDescription": "Adicione destinatários para compartilhar este conteúdo via e-mail"
   },
   "register": {
     "validation": {
@@ -334,7 +356,7 @@
       "firstName": "Nome",
       "lastName": "Sobrenome",
       "username": "Nome de Usuário",
-      "email": "Email",
+      "email": "E-mail",
       "password": "Senha"
     },
     "buttons": {
@@ -377,7 +399,7 @@
         "description": "Configurações básicas da aplicação"
       },
       "email": {
-        "title": "Email",
+        "title": "E-mail",
         "description": "Configuração do servidor de email"
       },
       "security": {
@@ -556,9 +578,11 @@
     "maxViews": "Máx. Visualizações:",
     "files": "Arquivos",
     "recipients": "Destinatários",
-    "notAvailable": "N/A",
+    "notAvailable": "N/D",
     "invalidDate": "Data inválida",
-    "loadError": "Falha ao carregar detalhes do compartilhamento"
+    "loadError": "Falha ao carregar detalhes do compartilhamento",
+    "editSecurity": "Editar Segurança",
+    "editExpiration": "Editar Expiração"
   },
   "shareManager": {
     "deleteSuccess": "Compartilhamento excluído com sucesso",
@@ -576,7 +600,11 @@
     "linkGenerateError": "Falha ao gerar link de compartilhamento",
     "notifyLoading": "Enviando notificações...",
     "notifySuccess": "Destinatários notificados com sucesso",
-    "notifyError": "Falha ao notificar destinatários"
+    "notifyError": "Falha ao notificar destinatários",
+    "securityUpdateError": "Falha ao atualizar configurações de segurança",
+    "expirationUpdateError": "Falha ao atualizar configurações de expiração",
+    "securityUpdateSuccess": "Configurações de segurança atualizadas com sucesso",
+    "expirationUpdateSuccess": "Configurações de expiração atualizadas com sucesso"
   },
   "shares": {
     "errors": {
@@ -722,7 +750,7 @@
       "firstName": "Nome",
       "lastName": "Sobrenome",
       "username": "Nome de Usuário",
-      "email": "Email",
+      "email": "E-mail",
       "password": "Senha",
       "newPassword": "Nova Senha (opcional)",
       "passwordPlaceholder": "Deixe em branco para manter a senha atual",
@@ -752,7 +780,7 @@
       "actions": "AÇÕES",
       "active": "Ativo",
       "inactive": "Inativo",
-      "admin": "Admin",
+      "admin": "Administrador",
       "userr": "Usuário"
     }
   },
@@ -790,5 +818,63 @@
     "totalSize": "Tamanho total",
     "creating": "Criando...",
     "create": "Criar Compartilhamento"
+  },
+  "shareSecurity": {
+    "subtitle": "Configurar proteção por senha e opções de segurança para este compartilhamento",
+    "info": {
+      "title": "Como funciona:",
+      "withoutPassword": "Qualquer pessoa com o link pode acessar este compartilhamento sem senha.",
+      "withPassword": "Os usuários precisarão digitar a senha para acessar este compartilhamento."
+    },
+    "existingPasswordMessage": "Este compartilhamento já tem uma senha. Se você quiser atualizá-la, digite a nova senha no campo abaixo e salve.",
+    "passwordProtection": "Proteção por Senha",
+    "newPassword": "Nova Senha",
+    "error": {
+      "updateFailed": "Falha ao atualizar configurações de segurança"
+    },
+    "passwordRequirements": {
+      "title": "Requisitos da senha:",
+      "minLength": "Pelo menos 2 caracteres"
+    },
+    "success": {
+      "passwordUpdated": "Senha atualizada com sucesso",
+      "passwordRemoved": "Proteção por senha removida com sucesso",
+      "passwordSet": "Proteção por senha habilitada com sucesso"
+    },
+    "password": "Senha",
+    "validation": {
+      "passwordRequired": "Senha é obrigatória",
+      "passwordTooShort": "A senha deve ter pelo menos 2 caracteres"
+    },
+    "currentStatus": "Status Atual",
+    "passwordPlaceholder": "Digite uma senha segura",
+    "title": "Configurações de Segurança do Compartilhamento"
+  },
+  "shareExpiration": {
+    "neverExpires": "Nunca Expira",
+    "success": {
+      "expirationUpdated": "Data de expiração atualizada com sucesso",
+      "expirationRemoved": "Expiração removida com sucesso - o compartilhamento agora é permanente",
+      "expirationSet": "Data de expiração definida com sucesso"
+    },
+    "info": {
+      "canBeChanged": "Você pode alterar ou remover a data de expiração a qualquer momento",
+      "willBeInaccessible": "O compartilhamento ficará inacessível após esta data",
+      "noExpiration": "Este compartilhamento nunca expirará e permanecerá acessível indefinidamente.",
+      "title": "Sobre expiração:"
+    },
+    "enableExpiration": "Habilitar Expiração",
+    "title": "Configurações de Expiração do Compartilhamento",
+    "subtitle": "Configurar quando este compartilhamento expirará",
+    "validation": {
+      "dateMustBeFuture": "A data de expiração deve estar no futuro",
+      "dateRequired": "Selecione uma data de expiração"
+    },
+    "currentStatus": "Status Atual",
+    "error": {
+      "updateFailed": "Falha ao atualizar configurações de expiração"
+    },
+    "expires": "Expira:",
+    "expirationDate": "Data de Expiração"
   }
 }

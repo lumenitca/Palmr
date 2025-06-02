@@ -12,6 +12,8 @@ export function SharesTableContainer({ shares, onCopyLink, onCreateShare, shareM
       onEdit={shareManager.setShareToEdit}
       onUpdateName={shareManager.handleUpdateName}
       onUpdateDescription={shareManager.handleUpdateDescription}
+      onUpdateSecurity={shareManager.setShareToManageSecurity}
+      onUpdateExpiration={shareManager.setShareToManageExpiration}
       onGenerateLink={shareManager.setShareToGenerateLink}
       onManageFiles={shareManager.setShareToManageFiles}
       onManageRecipients={shareManager.setShareToManageRecipients}

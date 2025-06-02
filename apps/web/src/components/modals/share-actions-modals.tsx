@@ -234,16 +234,21 @@ export function ShareActionsModals({
       </Dialog>
 
       <Dialog open={!!shareToManageRecipients} onOpenChange={() => onCloseManageRecipients()}>
-        <DialogContent className="sm:max-w-[425px] md:max-w-[700px]">
-          <DialogHeader>
-            <DialogTitle>{t("shareActions.manageRecipientsTitle")}</DialogTitle>
+        <DialogContent className="sm:max-w-[500px] md:max-w-[650px] max-h-[85vh] overflow-hidden">
+          <DialogHeader className="space-y-3">
+            <DialogTitle className="text-xl font-semibold">{t("shareActions.manageRecipientsTitle")}</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              {t("recipientSelector.modalDescription")}
+            </DialogDescription>
           </DialogHeader>
-          <RecipientSelector
-            selectedRecipients={shareToManageRecipients?.recipients || []}
-            shareAlias={shareToManageRecipients?.alias?.alias}
-            shareId={shareToManageRecipients?.id}
-            onSuccess={onSuccess}
-          />
+          <div className="overflow-y-auto max-h-[calc(85vh-140px)] py-2">
+            <RecipientSelector
+              selectedRecipients={shareToManageRecipients?.recipients || []}
+              shareAlias={shareToManageRecipients?.alias?.alias}
+              shareId={shareToManageRecipients?.id}
+              onSuccess={onSuccess}
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </>

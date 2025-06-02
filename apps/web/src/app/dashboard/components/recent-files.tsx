@@ -20,7 +20,8 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
             <IconCloudUpload className="text-xl text-gray-500" />
             {t("recentFiles.title")}
           </CardTitle>
-          {files.length >= 5 ? (
+
+          <div className="flex items-center gap-2">
             <Button
               className="font-semibold text-sm cursor-pointer"
               variant="outline"
@@ -30,7 +31,7 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
               <IconFolderOpen className="h-4 w-4" />
               {t("recentFiles.viewAll")}
             </Button>
-          ) : (
+
             <Button
               className="font-semibold text-sm cursor-pointer"
               variant="outline"
@@ -40,7 +41,7 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
               <IconCloudUpload className="h-4 w-4" />
               {t("recentFiles.upload")}
             </Button>
-          )}
+          </div>
         </div>
       </CardHeader>
       <CardContent>

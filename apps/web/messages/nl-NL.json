@@ -10,7 +10,10 @@
     "yes": "Ja",
     "no": "Nee",
     "dashboard": "Dashboard",
-    "back": "Terug"
+    "back": "Terug",
+    "updating": "Bijwerken...",
+    "saving": "Opslaan...",
+    "update": "Bijwerken"
   },
   "createShare": {
     "title": "Delen Maken",
@@ -275,7 +278,8 @@
     "title": "Recente Uploads",
     "viewAll": "Alles Bekijken",
     "uploadFile": "Bestand Uploaden",
-    "noFiles": "Nog geen bestanden geüpload"
+    "noFiles": "Nog geen bestanden geüpload",
+    "upload": "Uploaden"
   },
   "recentShares": {
     "title": "Recente Delingen",
@@ -296,7 +300,25 @@
     "removeError": "Fout bij het verwijderen van ontvanger",
     "sendingNotifications": "Meldingen verzenden...",
     "notifySuccess": "Ontvangers succesvol gewaarschuwd",
-    "notifyError": "Fout bij het waarschuwen van ontvangers"
+    "notifyError": "Fout bij het waarschuwen van ontvangers",
+    "bulkNotifySuccess": "Notificaties verzonden naar {count} ontvangers",
+    "selectAll": "Alles selecteren",
+    "singleNotifySuccess": "Notificatie verzonden naar {email}",
+    "removeSingle": "Deze ontvanger verwijderen",
+    "selectRecipient": "{email} selecteren",
+    "bulkRemoveSuccess": "{count} ontvangers succesvol verwijderd",
+    "notifySingle": "Deze ontvanger waarschuwen",
+    "notifySelected": "Geselecteerde waarschuwen",
+    "invalidEmail": "Voer een geldig e-mailadres in",
+    "noRecipientsDescription": "Voeg ontvangers toe om deze inhoud via e-mail te delen",
+    "singleNotifyError": "Fout bij het waarschuwen van ontvanger",
+    "bulkRemoveError": "Fout bij het verwijderen van geselecteerde ontvangers",
+    "modalDescription": "Voeg ontvangers toe en beheer ze voor dit delen. Je kunt alle of specifieke ontvangers waarschuwen wanneer SMTP is geconfigureerd.",
+    "duplicateEmail": "Deze ontvanger is al toegevoegd",
+    "removeSelected": "Geselecteerde verwijderen",
+    "selectedCount": "{count} geselecteerd",
+    "addRecipient": "Ontvanger Toevoegen",
+    "bulkNotifyError": "Fout bij het waarschuwen van geselecteerde ontvangers"
   },
   "register": {
     "validation": {
@@ -536,7 +558,9 @@
     "recipients": "Ontvangers",
     "notAvailable": "N/B",
     "invalidDate": "Ongeldige datum",
-    "loadError": "Fout bij laden van delen details"
+    "loadError": "Fout bij laden van delen details",
+    "editSecurity": "Beveiliging Bewerken",
+    "editExpiration": "Vervaldatum Bewerken"
   },
   "shareManager": {
     "deleteSuccess": "Delen succesvol verwijderd",
@@ -554,7 +578,11 @@
     "notifyError": "Fout bij het waarschuwen van ontvangers",
     "bulkDeleteError": "Delen verwijderen mislukt",
     "bulkDeleteLoading": "{count, plural, =1 {1 deel} other {# delen}} verwijderen...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 deel succesvol verwijderd} other {# delen succesvol verwijderd}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 deel succesvol verwijderd} other {# delen succesvol verwijderd}}",
+    "securityUpdateError": "Fout bij het bijwerken van beveiligingsinstellingen",
+    "expirationUpdateError": "Fout bij het bijwerken van verloop instellingen",
+    "securityUpdateSuccess": "Beveiligingsinstellingen succesvol bijgewerkt",
+    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "Totale grootte",
     "creating": "Aanmaken...",
     "create": "Delen Maken"
+  },
+  "shareSecurity": {
+    "subtitle": "Configureer wachtwoordbeveiliging en beveiligingsopties voor dit delen",
+    "info": {
+      "title": "Hoe het werkt:",
+      "withoutPassword": "Iedereen met de link kan dit delen benaderen zonder wachtwoord.",
+      "withPassword": "Gebruikers moeten het wachtwoord invoeren om dit delen te benaderen."
+    },
+    "existingPasswordMessage": "Dit delen heeft al een wachtwoord. Als je het wilt bijwerken, voer dan het nieuwe wachtwoord in het onderstaande veld in en sla op.",
+    "passwordProtection": "Wachtwoordbeveiliging",
+    "error": {
+      "updateFailed": "Fout bij het bijwerken van beveiligingsinstellingen"
+    },
+    "passwordRequirements": {
+      "title": "Wachtwoordvereisten:",
+      "minLength": "Minimaal 2 tekens"
+    },
+    "newPassword": "Nieuw Wachtwoord",
+    "success": {
+      "passwordUpdated": "Wachtwoord succesvol bijgewerkt",
+      "passwordRemoved": "Wachtwoordbeveiliging succesvol verwijderd",
+      "passwordSet": "Wachtwoordbeveiliging succesvol ingeschakeld"
+    },
+    "password": "Wachtwoord",
+    "validation": {
+      "passwordRequired": "Wachtwoord is vereist",
+      "passwordTooShort": "Wachtwoord moet minimaal 2 tekens bevatten"
+    },
+    "currentStatus": "Huidige Status",
+    "passwordPlaceholder": "Voer een veilig wachtwoord in",
+    "title": "Delen Beveiligingsinstellingen"
+  },
+  "shareExpiration": {
+    "neverExpires": "Verloopt Nooit",
+    "success": {
+      "expirationUpdated": "Vervaldatum succesvol bijgewerkt",
+      "expirationRemoved": "Verloop succesvol verwijderd - delen is nu permanent",
+      "expirationSet": "Vervaldatum succesvol ingesteld"
+    },
+    "info": {
+      "canBeChanged": "Je kunt de vervaldatum op elk moment wijzigen of verwijderen",
+      "willBeInaccessible": "Het delen wordt na deze datum ontoegankelijk",
+      "noExpiration": "Dit delen verloopt nooit en blijft voor onbepaalde tijd toegankelijk.",
+      "title": "Over verloop:"
+    },
+    "enableExpiration": "Vervaldatum Inschakelen",
+    "title": "Delen Verloop Instellingen",
+    "subtitle": "Configureer wanneer dit delen verloopt",
+    "validation": {
+      "dateMustBeFuture": "Vervaldatum moet in de toekomst liggen",
+      "dateRequired": "Selecteer een vervaldatum"
+    },
+    "currentStatus": "Huidige Status",
+    "error": {
+      "updateFailed": "Fout bij het bijwerken van verloop instellingen"
+    },
+    "expires": "Verloopt:",
+    "expirationDate": "Vervaldatum"
   }
 }

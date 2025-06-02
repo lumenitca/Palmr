@@ -37,6 +37,8 @@ export interface SharesTableProps {
   onEdit: (share: any) => void;
   onUpdateName: (shareId: string, newName: string) => void;
   onUpdateDescription: (shareId: string, newDescription: string) => void;
+  onUpdateSecurity?: (share: any) => void;
+  onUpdateExpiration?: (share: any) => void;
   onManageFiles: (share: any) => void;
   onManageRecipients: (share: any) => void;
   onViewDetails: (share: any) => void;
@@ -53,6 +55,8 @@ export function SharesTable({
   onEdit,
   onUpdateName,
   onUpdateDescription,
+  onUpdateSecurity,
+  onUpdateExpiration,
   onManageFiles,
   onManageRecipients,
   onViewDetails,
@@ -66,7 +70,10 @@ export function SharesTable({
   const { smtpEnabled } = useShareContext();
   const [editingField, setEditingField] = useState<{ shareId: string; field: "name" | "description" } | null>(null);
   const [editValue, setEditValue] = useState("");
-  const [hoveredField, setHoveredField] = useState<{ shareId: string; field: "name" | "description" } | null>(null);
+  const [hoveredField, setHoveredField] = useState<{
+    shareId: string;
+    field: "name" | "description" | "security" | "expiration" | "files" | "recipients";
+  } | null>(null);
   const [pendingChanges, setPendingChanges] = useState<{ [shareId: string]: { name?: string; description?: string } }>(
     {}
   );
@@ -246,6 +253,10 @@ export function SharesTable({
               const isEditingDescription = editingField?.shareId === share.id && editingField?.field === "description";
               const isHoveringName = hoveredField?.shareId === share.id && hoveredField?.field === "name";
               const isHoveringDescription = hoveredField?.shareId === share.id && hoveredField?.field === "description";
+              const isHoveringSecurity = hoveredField?.shareId === share.id && hoveredField?.field === "security";
+              const isHoveringExpiration = hoveredField?.shareId === share.id && hoveredField?.field === "expiration";
+              const isHoveringFiles = hoveredField?.shareId === share.id && hoveredField?.field === "files";
+              const isHoveringRecipients = hoveredField?.shareId === share.id && hoveredField?.field === "recipients";
               const isSelected = selectedShares.has(share.id);
               const displayName = getDisplayValue(share, "name");
               const displayDescription = getDisplayValue(share, "description");
@@ -391,7 +402,32 @@ export function SharesTable({
                   </TableCell>
                   <TableCell className="h-12 px-4">{format(new Date(share.createdAt), "MM/dd/yyyy HH:mm")}</TableCell>
                   <TableCell className="h-12 px-4">
-                    {share.expiration ? format(new Date(share.expiration), "MM/dd/yyyy HH:mm") : t("sharesTable.never")}
+                    <div
+                      className="flex items-center gap-1 min-w-0"
+                      onMouseEnter={() => setHoveredField({ shareId: share.id, field: "expiration" })}
+                      onMouseLeave={() => setHoveredField(null)}
+                    >
+                      <span className="text-sm">
+                        {share.expiration
+                          ? format(new Date(share.expiration), "MM/dd/yyyy HH:mm")
+                          : t("sharesTable.never")}
+                      </span>
+                      <div className="w-6 flex justify-center flex-shrink-0">
+                        {isHoveringExpiration && onUpdateExpiration && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onUpdateExpiration(share);
+                            }}
+                          >
+                            <IconEdit className="h-3 w-3" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="h-12 px-4">
                     <Badge
@@ -410,29 +446,96 @@ export function SharesTable({
                     </Badge>
                   </TableCell>
                   <TableCell className="h-12 px-4">
-                    <Badge
-                      variant="secondary"
-                      className={`flex items-center gap-1 ${
-                        share.security.hasPassword
-                          ? "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500"
-                          : "bg-green-500/20 hover:bg-green-500/30 text-green-500"
-                      }`}
+                    <div
+                      className="flex items-center gap-1 min-w-0"
+                      onMouseEnter={() => setHoveredField({ shareId: share.id, field: "security" })}
+                      onMouseLeave={() => setHoveredField(null)}
                     >
-                      {share.security.hasPassword ? (
-                        <IconLock className="h-4 w-4" />
-                      ) : (
-                        <IconLockOpen className="h-4 w-4" />
-                      )}
-                      {share.security.hasPassword
-                        ? t("sharesTable.security.protected")
-                        : t("sharesTable.security.public")}
-                    </Badge>
+                      <Badge
+                        variant="secondary"
+                        className={`flex items-center gap-1 ${
+                          share.security.hasPassword
+                            ? "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500"
+                            : "bg-green-500/20 hover:bg-green-500/30 text-green-500"
+                        }`}
+                      >
+                        {share.security.hasPassword ? (
+                          <IconLock className="h-4 w-4" />
+                        ) : (
+                          <IconLockOpen className="h-4 w-4" />
+                        )}
+                        {share.security.hasPassword
+                          ? t("sharesTable.security.protected")
+                          : t("sharesTable.security.public")}
+                      </Badge>
+                      <div className="w-6 flex justify-center flex-shrink-0">
+                        {isHoveringSecurity && onUpdateSecurity && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onUpdateSecurity(share);
+                            }}
+                          >
+                            <IconEdit className="h-3 w-3" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="h-12 px-4">
-                    {share.files?.length || 0} {t("sharesTable.filesCount")}
+                    <div
+                      className="flex items-center gap-1 min-w-0"
+                      onMouseEnter={() => setHoveredField({ shareId: share.id, field: "files" })}
+                      onMouseLeave={() => setHoveredField(null)}
+                    >
+                      <span className="text-sm">
+                        {share.files?.length || 0} {t("sharesTable.filesCount")}
+                      </span>
+                      <div className="w-6 flex justify-center flex-shrink-0">
+                        {isHoveringFiles && onManageFiles && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onManageFiles(share);
+                            }}
+                          >
+                            <IconEdit className="h-3 w-3" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="h-12 px-4">
-                    {share.recipients?.length || 0} {t("sharesTable.recipientsCount")}
+                    <div
+                      className="flex items-center gap-1 min-w-0"
+                      onMouseEnter={() => setHoveredField({ shareId: share.id, field: "recipients" })}
+                      onMouseLeave={() => setHoveredField(null)}
+                    >
+                      <span className="text-sm">
+                        {share.recipients?.length || 0} {t("sharesTable.recipientsCount")}
+                      </span>
+                      <div className="w-6 flex justify-center flex-shrink-0">
+                        {isHoveringRecipients && onManageRecipients && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onManageRecipients(share);
+                            }}
+                          >
+                            <IconEdit className="h-3 w-3" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="h-12 px-4 text-right">
                     <DropdownMenu>

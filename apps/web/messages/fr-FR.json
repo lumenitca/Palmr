@@ -10,7 +10,10 @@
     "yes": "Oui",
     "no": "Non",
     "dashboard": "Tableau de bord",
-    "back": "Retour"
+    "back": "Retour",
+    "updating": "Mise à jour...",
+    "saving": "Enregistrement...",
+    "update": "Mettre à jour"
   },
   "createShare": {
     "title": "Créer un Partage",
@@ -231,7 +234,7 @@
       "firstName": "Prénom",
       "lastName": "Nom",
       "username": "Nom d'Utilisateur",
-      "email": "Email",
+      "email": "E-mail",
       "updateButton": "Mettre à Jour le Profil"
     },
     "header": {
@@ -275,7 +278,8 @@
     "title": "Téléchargements Récents",
     "viewAll": "Voir Tout",
     "uploadFile": "Envoyer un Fichier",
-    "noFiles": "Aucun fichier téléchargé pour le moment"
+    "noFiles": "Aucun fichier téléchargé pour le moment",
+    "upload": "Télécharger"
   },
   "recentShares": {
     "title": "Partages Récents",
@@ -296,7 +300,25 @@
     "removeError": "Échec de la suppression du destinataire",
     "sendingNotifications": "Envoi des notifications...",
     "notifySuccess": "Destinataires notifiés avec succès",
-    "notifyError": "Échec de la notification des destinataires"
+    "notifyError": "Échec de la notification des destinataires",
+    "bulkNotifySuccess": "Notifications envoyées à {count} destinataires",
+    "selectAll": "Tout sélectionner",
+    "singleNotifySuccess": "Notification envoyée à {email}",
+    "removeSingle": "Supprimer ce destinataire",
+    "selectRecipient": "Sélectionner {email}",
+    "bulkRemoveSuccess": "{count} destinataires supprimés avec succès",
+    "notifySingle": "Notifier ce destinataire",
+    "notifySelected": "Notifier les Sélectionnés",
+    "invalidEmail": "Veuillez entrer une adresse email valide",
+    "noRecipientsDescription": "Ajouter des destinataires pour partager ce contenu par email",
+    "singleNotifyError": "Échec de notification du destinataire",
+    "bulkRemoveError": "Échec de suppression des destinataires sélectionnés",
+    "modalDescription": "Ajouter et gérer les destinataires pour ce partage. Vous pouvez notifier tous ou des destinataires spécifiques lorsque SMTP est configuré.",
+    "duplicateEmail": "Ce destinataire a déjà été ajouté",
+    "removeSelected": "Supprimer les Sélectionnés",
+    "selectedCount": "{count} sélectionnés",
+    "addRecipient": "Ajouter Destinataire",
+    "bulkNotifyError": "Échec de notification des destinataires sélectionnés"
   },
   "register": {
     "validation": {
@@ -312,7 +334,7 @@
       "firstName": "Prénom",
       "lastName": "Nom",
       "username": "Nom d'utilisateur",
-      "email": "Email",
+      "email": "E-mail",
       "password": "Mot de passe"
     },
     "buttons": {
@@ -358,7 +380,7 @@
         "description": "Paramètres de base de l'application"
       },
       "email": {
-        "title": "Email",
+        "title": "E-mail",
         "description": "Configuration du serveur de messagerie"
       },
       "security": {
@@ -534,9 +556,11 @@
     "maxViews": "Vues Max.:",
     "files": "Fichiers",
     "recipients": "Destinataires",
-    "notAvailable": "N/A",
+    "notAvailable": "N/D",
     "invalidDate": "Date invalide",
-    "loadError": "Échec du chargement des détails du partage"
+    "loadError": "Échec du chargement des détails du partage",
+    "editSecurity": "Modifier la Sécurité",
+    "editExpiration": "Modifier l'Expiration"
   },
   "shareManager": {
     "deleteSuccess": "Partage supprimé avec succès",
@@ -554,7 +578,11 @@
     "notifyError": "Échec de la notification des destinataires",
     "bulkDeleteError": "Échec de la suppression des partages",
     "bulkDeleteLoading": "Suppression de {count, plural, =1 {1 partage} other {# partages}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 partage supprimé avec succès} other {# partages supprimés avec succès}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 partage supprimé avec succès} other {# partages supprimés avec succès}}",
+    "securityUpdateError": "Échec de mise à jour des paramètres de sécurité",
+    "expirationUpdateError": "Échec de mise à jour des paramètres d'expiration",
+    "securityUpdateSuccess": "Paramètres de sécurité mis à jour avec succès",
+    "expirationUpdateSuccess": "Paramètres d'expiration mis à jour avec succès"
   },
   "shares": {
     "errors": {
@@ -700,7 +728,7 @@
       "firstName": "Prénom",
       "lastName": "Nom",
       "username": "Nom d'Utilisateur",
-      "email": "Email",
+      "email": "E-mail",
       "password": "Mot de Passe",
       "newPassword": "Nouveau Mot de Passe (optionnel)",
       "passwordPlaceholder": "Laisser vide pour garder le mot de passe actuel",
@@ -730,7 +758,7 @@
       "actions": "ACTIONS",
       "active": "Actif",
       "inactive": "Inactif",
-      "admin": "Admin",
+      "admin": "Administrateur",
       "userr": "Utilisateur"
     }
   },
@@ -790,5 +818,63 @@
     "totalSize": "Taille totale",
     "creating": "Création...",
     "create": "Créer un Partage"
+  },
+  "shareSecurity": {
+    "subtitle": "Configurer la protection par mot de passe et les options de sécurité pour ce partage",
+    "info": {
+      "title": "Comment ça marche:",
+      "withoutPassword": "Toute personne ayant le lien peut accéder à ce partage sans mot de passe.",
+      "withPassword": "Les utilisateurs devront entrer le mot de passe pour accéder à ce partage."
+    },
+    "existingPasswordMessage": "Ce partage a déjà un mot de passe. Si vous voulez le mettre à jour, entrez le nouveau mot de passe dans le champ ci-dessous et enregistrez.",
+    "passwordProtection": "Protection par Mot de Passe",
+    "error": {
+      "updateFailed": "Échec de mise à jour des paramètres de sécurité"
+    },
+    "passwordRequirements": {
+      "title": "Exigences du mot de passe:",
+      "minLength": "Au moins 2 caractères"
+    },
+    "newPassword": "Nouveau Mot de Passe",
+    "success": {
+      "passwordUpdated": "Mot de passe mis à jour avec succès",
+      "passwordRemoved": "Protection par mot de passe supprimée avec succès",
+      "passwordSet": "Protection par mot de passe activée avec succès"
+    },
+    "password": "Mot de Passe",
+    "validation": {
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 2 caractères"
+    },
+    "currentStatus": "Statut Actuel",
+    "passwordPlaceholder": "Entrez un mot de passe sécurisé",
+    "title": "Paramètres de Sécurité du Partage"
+  },
+  "shareExpiration": {
+    "neverExpires": "N'expire Jamais",
+    "success": {
+      "expirationUpdated": "Date d'expiration mise à jour avec succès",
+      "expirationRemoved": "Expiration supprimée avec succès - le partage est maintenant permanent",
+      "expirationSet": "Date d'expiration définie avec succès"
+    },
+    "info": {
+      "canBeChanged": "Vous pouvez changer ou supprimer la date d'expiration à tout moment",
+      "willBeInaccessible": "Le partage deviendra inaccessible après cette date",
+      "noExpiration": "Ce partage n'expirera jamais et restera accessible indéfiniment.",
+      "title": "À propos de l'expiration:"
+    },
+    "enableExpiration": "Activer l'Expiration",
+    "title": "Paramètres d'Expiration du Partage",
+    "subtitle": "Configurer quand ce partage expirera",
+    "validation": {
+      "dateMustBeFuture": "La date d'expiration doit être dans le futur",
+      "dateRequired": "Veuillez sélectionner une date d'expiration"
+    },
+    "currentStatus": "Statut Actuel",
+    "error": {
+      "updateFailed": "Échec de mise à jour des paramètres d'expiration"
+    },
+    "expires": "Expire:",
+    "expirationDate": "Date d'Expiration"
   }
 }

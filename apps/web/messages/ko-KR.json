@@ -10,7 +10,10 @@
     "yes": "예",
     "no": "아니오",
     "dashboard": "대시보드",
-    "back": "뒤로"
+    "back": "뒤로",
+    "updating": "업데이트 중...",
+    "saving": "저장 중...",
+    "update": "업데이트"
   },
   "createShare": {
     "title": "공유 생성",
@@ -275,7 +278,8 @@
     "title": "최근 업로드",
     "viewAll": "전체 보기",
     "uploadFile": "파일 업로드",
-    "noFiles": "아직 파일이 업로드되지 않았습니다"
+    "noFiles": "아직 파일이 업로드되지 않았습니다",
+    "upload": "업로드"
   },
   "recentShares": {
     "title": "최근 공유",
@@ -296,7 +300,25 @@
     "removeError": "수신자 제거에 실패했습니다",
     "sendingNotifications": "알림 전송 중...",
     "notifySuccess": "수신자에게 성공적으로 알렸습니다",
-    "notifyError": "수신자 알림 전송에 실패했습니다"
+    "notifyError": "수신자 알림 전송에 실패했습니다",
+    "bulkNotifySuccess": "{count}명의 수신자에게 알림을 전송했습니다",
+    "selectAll": "모두 선택",
+    "singleNotifySuccess": "{email}에게 알림을 전송했습니다",
+    "removeSingle": "이 수신자 제거",
+    "selectRecipient": "{email} 선택",
+    "bulkRemoveSuccess": "{count}명의 수신자가 성공적으로 제거되었습니다",
+    "notifySingle": "이 수신자에게 알림",
+    "notifySelected": "선택된 항목에 알림",
+    "invalidEmail": "유효한 이메일 주소를 입력해주세요",
+    "noRecipientsDescription": "이메일을 통해 이 콘텐츠를 공유하려면 수신자를 추가하세요",
+    "singleNotifyError": "수신자 알림 전송에 실패했습니다",
+    "bulkRemoveError": "선택된 수신자 제거에 실패했습니다",
+    "modalDescription": "이 공유의 수신자를 추가하고 관리합니다. SMTP가 설정되어 있을 때 모든 수신자 또는 특정 수신자에게 알림을 보낼 수 있습니다.",
+    "duplicateEmail": "이 수신자는 이미 추가되었습니다",
+    "removeSelected": "선택된 항목 제거",
+    "selectedCount": "{count}개 선택됨",
+    "addRecipient": "수신자 추가",
+    "bulkNotifyError": "선택된 수신자들에게 알림 전송에 실패했습니다"
   },
   "register": {
     "validation": {
@@ -534,9 +556,11 @@
     "maxViews": "최대 조회수:",
     "files": "파일",
     "recipients": "받는 사람",
-    "notAvailable": "N/A",
+    "notAvailable": "해당없음",
     "invalidDate": "잘못된 날짜",
-    "loadError": "공유 세부 정보 로드에 실패했습니다"
+    "loadError": "공유 세부 정보 로드에 실패했습니다",
+    "editSecurity": "보안 편집",
+    "editExpiration": "만료 편집"
   },
   "shareManager": {
     "deleteSuccess": "공유가 성공적으로 삭제되었습니다",
@@ -554,7 +578,11 @@
     "notifyError": "수신자 알림 전송에 실패했습니다",
     "bulkDeleteError": "공유 삭제 실패",
     "bulkDeleteLoading": "{count, plural, =1 {1개의 공유} other {#개의 공유}} 삭제 중...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1개의 공유가 성공적으로 삭제되었습니다} other {#개의 공유가 성공적으로 삭제되었습니다}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1개의 공유가 성공적으로 삭제되었습니다} other {#개의 공유가 성공적으로 삭제되었습니다}}",
+    "securityUpdateError": "보안 설정 업데이트에 실패했습니다",
+    "expirationUpdateError": "만료 설정 업데이트에 실패했습니다",
+    "securityUpdateSuccess": "보안 설정이 성공적으로 업데이트되었습니다",
+    "expirationUpdateSuccess": "만료 설정이 성공적으로 업데이트되었습니다"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "전체 크기",
     "creating": "생성 중...",
     "create": "공유 생성"
+  },
+  "shareSecurity": {
+    "subtitle": "이 공유의 비밀번호 보호 및 보안 옵션을 구성하세요",
+    "info": {
+      "title": "작동 방식:",
+      "withoutPassword": "링크를 가진 누구나 비밀번호 없이 이 공유에 액세스할 수 있습니다.",
+      "withPassword": "사용자는 이 공유에 액세스하려면 비밀번호를 입력해야 합니다."
+    },
+    "existingPasswordMessage": "이 공유에는 이미 비밀번호가 설정되어 있습니다. 업데이트하려면 아래 필드에 새 비밀번호를 입력하고 저장하세요.",
+    "passwordProtection": "비밀번호 보호",
+    "error": {
+      "updateFailed": "보안 설정 업데이트에 실패했습니다"
+    },
+    "passwordRequirements": {
+      "title": "비밀번호 요구사항:",
+      "minLength": "최소 2자 이상"
+    },
+    "newPassword": "새 비밀번호",
+    "success": {
+      "passwordUpdated": "비밀번호가 성공적으로 업데이트되었습니다",
+      "passwordRemoved": "비밀번호 보호가 성공적으로 제거되었습니다",
+      "passwordSet": "비밀번호 보호가 성공적으로 활성화되었습니다"
+    },
+    "password": "비밀번호",
+    "validation": {
+      "passwordRequired": "비밀번호가 필요합니다",
+      "passwordTooShort": "비밀번호는 최소 2자 이상이어야 합니다"
+    },
+    "currentStatus": "현재 상태",
+    "passwordPlaceholder": "안전한 비밀번호를 입력하세요",
+    "title": "공유 보안 설정"
+  },
+  "shareExpiration": {
+    "neverExpires": "만료되지 않음",
+    "success": {
+      "expirationUpdated": "만료 날짜가 성공적으로 업데이트되었습니다",
+      "expirationRemoved": "만료가 성공적으로 제거되었습니다 - 공유가 이제 영구적입니다",
+      "expirationSet": "만료 날짜가 성공적으로 설정되었습니다"
+    },
+    "info": {
+      "canBeChanged": "언제든지 만료 날짜를 변경하거나 제거할 수 있습니다",
+      "willBeInaccessible": "이 날짜 이후에는 공유에 액세스할 수 없게 됩니다",
+      "noExpiration": "이 공유는 만료되지 않으며 무기한 액세스 가능합니다.",
+      "title": "만료에 대해:"
+    },
+    "enableExpiration": "만료 활성화",
+    "title": "공유 만료 설정",
+    "subtitle": "이 공유가 언제 만료될지 구성하세요",
+    "validation": {
+      "dateMustBeFuture": "만료 날짜는 미래여야 합니다",
+      "dateRequired": "만료 날짜를 선택해주세요"
+    },
+    "currentStatus": "현재 상태",
+    "error": {
+      "updateFailed": "만료 설정 업데이트에 실패했습니다"
+    },
+    "expires": "만료:",
+    "expirationDate": "만료 날짜"
   }
 }

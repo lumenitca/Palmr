@@ -10,7 +10,10 @@
     "yes": "はい",
     "no": "いいえ",
     "dashboard": "ダッシュボード",
-    "back": "戻る"
+    "back": "戻る",
+    "updating": "更新中...",
+    "saving": "保存中...",
+    "update": "更新"
   },
   "createShare": {
     "title": "共有を作成",
@@ -275,7 +278,8 @@
     "title": "最近のアップロード",
     "viewAll": "すべて表示",
     "uploadFile": "ファイルをアップロード",
-    "noFiles": "まだファイルがアップロードされていません"
+    "noFiles": "まだファイルがアップロードされていません",
+    "upload": "アップロード"
   },
   "recentShares": {
     "title": "最近の共有",
@@ -296,7 +300,25 @@
     "removeError": "受信者の削除に失敗しました",
     "sendingNotifications": "通知を送信中...",
     "notifySuccess": "受信者に正常に通知しました",
-    "notifyError": "受信者への通知に失敗しました"
+    "notifyError": "受信者への通知に失敗しました",
+    "bulkNotifySuccess": "{count}人の受信者に通知を送信しました",
+    "selectAll": "すべて選択",
+    "singleNotifySuccess": "{email}に通知を送信しました",
+    "removeSingle": "この受信者を削除",
+    "selectRecipient": "{email}を選択",
+    "bulkRemoveSuccess": "{count}人の受信者が正常に削除されました",
+    "notifySingle": "この受信者に通知",
+    "notifySelected": "選択済みに通知",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "noRecipientsDescription": "メールでこのコンテンツを共有するために受信者を追加してください",
+    "singleNotifyError": "受信者への通知に失敗しました",
+    "bulkRemoveError": "選択された受信者の削除に失敗しました",
+    "modalDescription": "この共有の受信者を追加・管理します。SMTPが設定されている場合、すべての受信者または特定の受信者に通知できます。",
+    "duplicateEmail": "この受信者は既に追加されています",
+    "removeSelected": "選択済みを削除",
+    "selectedCount": "{count}件選択済み",
+    "addRecipient": "受信者を追加",
+    "bulkNotifyError": "選択された受信者への通知に失敗しました"
   },
   "register": {
     "validation": {
@@ -534,9 +556,11 @@
     "maxViews": "最大表示回数:",
     "files": "ファイル",
     "recipients": "受信者",
-    "notAvailable": "N/A",
+    "notAvailable": "該当なし",
     "invalidDate": "無効な日付",
-    "loadError": "共有詳細の読み込みに失敗しました"
+    "loadError": "共有詳細の読み込みに失敗しました",
+    "editSecurity": "セキュリティを編集",
+    "editExpiration": "期限を編集"
   },
   "shareManager": {
     "deleteSuccess": "共有が正常に削除されました",
@@ -554,7 +578,11 @@
     "notifyError": "受信者への通知に失敗しました",
     "bulkDeleteError": "共有の削除に失敗しました",
     "bulkDeleteLoading": "{count, plural, =1 {1つの共有} other {#つの共有}}を削除中...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1つの共有が正常に削除されました} other {#つの共有が正常に削除されました}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1つの共有が正常に削除されました} other {#つの共有が正常に削除されました}}",
+    "securityUpdateError": "セキュリティ設定の更新に失敗しました",
+    "expirationUpdateError": "有効期限設定の更新に失敗しました",
+    "securityUpdateSuccess": "セキュリティ設定が正常に更新されました",
+    "expirationUpdateSuccess": "有効期限設定が正常に更新されました"
   },
   "shares": {
     "errors": {
@@ -650,17 +678,17 @@
     "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {availablespace}MB です。",
     "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。",
     "selectMultipleFiles": "複数のファイルを選択するにはクリック",
-    "finish": "Concluir",
+    "finish": "完了",
     "confirmCancel": {
-      "warning": "Se você fechar agora, os uploads serão cancelados e qualquer progresso será perdido.",
-      "continue": "Continuar Uploads",
-      "title": "Cancelar Uploads",
-      "messageMultiple": "Há {count} uploads em andamento.",
-      "messageSingle": "Há um upload em andamento.",
-      "cancel": "Cancelar Uploads"
+      "warning": "今閉じるとアップロードがキャンセルされ、進行状況が失われます。",
+      "continue": "アップロードを続行",
+      "title": "アップロードをキャンセル",
+      "messageMultiple": "{count}件のアップロードが進行中です。",
+      "messageSingle": "1件のアップロードが進行中です。",
+      "cancel": "アップロードをキャンセル"
     },
-    "multipleTitle": "Enviar Múltiplos Arquivos",
-    "startUploads": "Iniciar Uploads",
+    "multipleTitle": "複数ファイルをアップロード",
+    "startUploads": "アップロードを開始",
     "allSuccess": "{count, plural, =1 {ファイルがアップロードされました} other {#個のファイルがアップロードされました}}",
     "partialSuccess": "{success}個のファイルがアップロードされ、{error}個が失敗しました",
     "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ"
@@ -790,5 +818,63 @@
     "totalSize": "合計サイズ",
     "creating": "作成中...",
     "create": "共有を作成"
+  },
+  "shareSecurity": {
+    "subtitle": "この共有のパスワード保護とセキュリティオプションを設定",
+    "info": {
+      "title": "仕組み:",
+      "withoutPassword": "リンクを持つ誰でもパスワードなしでこの共有にアクセスできます。",
+      "withPassword": "ユーザーはこの共有にアクセスするためにパスワードを入力する必要があります。"
+    },
+    "existingPasswordMessage": "この共有には既にパスワードが設定されています。更新したい場合は、下のフィールドに新しいパスワードを入力して保存してください。",
+    "passwordProtection": "パスワード保護",
+    "error": {
+      "updateFailed": "セキュリティ設定の更新に失敗しました"
+    },
+    "passwordRequirements": {
+      "title": "パスワード要件:",
+      "minLength": "2文字以上"
+    },
+    "newPassword": "新しいパスワード",
+    "success": {
+      "passwordUpdated": "パスワードが正常に更新されました",
+      "passwordRemoved": "パスワード保護が正常に削除されました",
+      "passwordSet": "パスワード保護が正常に有効化されました"
+    },
+    "password": "パスワード",
+    "validation": {
+      "passwordRequired": "パスワードが必要です",
+      "passwordTooShort": "パスワードは2文字以上である必要があります"
+    },
+    "currentStatus": "現在のステータス",
+    "passwordPlaceholder": "安全なパスワードを入力してください",
+    "title": "共有セキュリティ設定"
+  },
+  "shareExpiration": {
+    "neverExpires": "期限なし",
+    "success": {
+      "expirationUpdated": "有効期限が正常に更新されました",
+      "expirationRemoved": "有効期限が正常に削除されました - 共有は永続的になりました",
+      "expirationSet": "有効期限が正常に設定されました"
+    },
+    "info": {
+      "canBeChanged": "有効期限はいつでも変更または削除できます",
+      "willBeInaccessible": "この日時以降、共有にアクセスできなくなります",
+      "noExpiration": "この共有は期限がなく、無期限でアクセス可能です。",
+      "title": "有効期限について:"
+    },
+    "enableExpiration": "有効期限を有効にする",
+    "title": "共有有効期限設定",
+    "subtitle": "この共有の期限を設定",
+    "validation": {
+      "dateMustBeFuture": "有効期限は未来の日時である必要があります",
+      "dateRequired": "有効期限を選択してください"
+    },
+    "currentStatus": "現在のステータス",
+    "error": {
+      "updateFailed": "有効期限設定の更新に失敗しました"
+    },
+    "expires": "期限:",
+    "expirationDate": "有効期限"
   }
 }

@@ -30,6 +30,8 @@ import { Loader } from "@/components/ui/loader";
 import { getShare } from "@/http/endpoints";
 import { getFileIcon } from "@/utils/file-icons";
 import { GenerateShareLinkModal } from "./generate-share-link-modal";
+import { ShareExpirationModal } from "./share-expiration-modal";
+import { ShareSecurityModal } from "./share-security-modal";
 
 interface ShareDetailsModalProps {
   shareId: string | null;
@@ -38,6 +40,8 @@ interface ShareDetailsModalProps {
   onUpdateDescription?: (shareId: string, newDescription: string) => Promise<void>;
   onGenerateLink?: (shareId: string, alias: string) => Promise<void>;
   onManageFiles?: (share: any) => void;
+  onUpdateSecurity?: (shareId: string) => Promise<void>;
+  onUpdateExpiration?: (shareId: string) => Promise<void>;
   refreshTrigger?: number;
   onSuccess?: () => void;
 }
@@ -68,6 +72,8 @@ export function ShareDetailsModal({
   onUpdateDescription,
   onGenerateLink,
   onManageFiles,
+  onUpdateSecurity,
+  onUpdateExpiration,
   refreshTrigger,
   onSuccess,
 }: ShareDetailsModalProps) {
@@ -78,6 +84,8 @@ export function ShareDetailsModal({
   const [editValue, setEditValue] = useState("");
   const [pendingChanges, setPendingChanges] = useState<{ name?: string; description?: string }>({});
   const [showLinkModal, setShowLinkModal] = useState(false);
+  const [showSecurityModal, setShowSecurityModal] = useState(false);
+  const [showExpirationModal, setShowExpirationModal] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -93,12 +101,10 @@ export function ShareDetailsModal({
     }
   }, [editingField]);
 
-  // Clear pending changes when share is updated
   useEffect(() => {
     setPendingChanges({});
   }, [share]);
 
-  // Refresh data when external update happens
   useEffect(() => {
     if (refreshTrigger) {
       loadShareDetails();
@@ -140,7 +146,6 @@ export function ShareDetailsModal({
 
     const { field } = editingField;
 
-    // Update local state optimistically
     setPendingChanges((prev) => ({
       ...prev,
       [field]: editValue,
@@ -153,14 +158,13 @@ export function ShareDetailsModal({
         await onUpdateDescription(shareId, editValue);
       }
 
-      // Reload share details to get updated data
       await loadShareDetails();
       if (onSuccess) {
         onSuccess();
       }
     } catch (error) {
       console.error("Failed to update:", error);
-      // Revert optimistic update on error
+
       setPendingChanges((prev) => {
         const newState = { ...prev };
         delete newState[field];
@@ -216,6 +220,22 @@ export function ShareDetailsModal({
     }
   };
 
+  const handleSecurityUpdated = async () => {
+    setShowSecurityModal(false);
+    await loadShareDetails();
+    if (onSuccess) {
+      onSuccess();
+    }
+  };
+
+  const handleExpirationUpdated = async () => {
+    setShowExpirationModal(false);
+    await loadShareDetails();
+    if (onSuccess) {
+      onSuccess();
+    }
+  };
+
   if (!share) return null;
 
   const shareLink = share?.alias?.alias ? `${window.location.origin}/s/${share.alias.alias}` : null;
@@ -239,7 +259,6 @@ export function ShareDetailsModal({
               </div>
             ) : (
               <div className="space-y-4">
-                {/* Key metrics */}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="text-center p-2 bg-muted/30 rounded-lg">
                     <p className="text-lg font-semibold text-green-600">{share.viewCount || 0}</p>
@@ -255,13 +274,11 @@ export function ShareDetailsModal({
                   </div>
                 </div>
 
-                {/* Basic Information */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 border-b pb-2">
                     <h3 className="text-base font-medium text-foreground">{t("shareDetails.basicInfo")}</h3>
                   </div>
 
-                  {/* Name */}
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <label className="text-sm font-medium text-muted-foreground">{t("shareDetails.name")}</label>
@@ -308,7 +325,6 @@ export function ShareDetailsModal({
                     )}
                   </div>
 
-                  {/* Description */}
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <label className="text-sm font-medium text-muted-foreground">
@@ -359,10 +375,20 @@ export function ShareDetailsModal({
                   </div>
                 </div>
 
-                {/* Share Link Section */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 border-b pb-2">
                     <h3 className="text-base font-medium text-foreground">{t("shareDetails.shareLink")}</h3>
+                    {onGenerateLink && (
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                        onClick={() => setShowLinkModal(true)}
+                        title={shareLink ? t("shareDetails.editLink") : t("shareDetails.generateLink")}
+                      >
+                        <IconEdit className="h-3 w-3" />
+                      </Button>
+                    )}
                   </div>
                   {shareLink ? (
                     <div className="flex gap-2">
@@ -385,37 +411,30 @@ export function ShareDetailsModal({
                       >
                         <IconExternalLink className="h-3.5 w-3.5" />
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() => setShowLinkModal(true)}
-                        title={t("shareDetails.editLink")}
-                      >
-                        <IconEdit className="h-3.5 w-3.5" />
-                      </Button>
                     </div>
                   ) : (
                     <div className="flex items-center justify-between p-2 bg-muted/20 rounded-lg">
                       <p className="text-sm text-muted-foreground">{t("shareDetails.noLink")}</p>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setShowLinkModal(true)}
-                        className="gap-1 h-7 text-xs"
-                      >
-                        <IconEdit className="h-3 w-3" />
-                        {t("shareDetails.generateLink")}
-                      </Button>
                     </div>
                   )}
                 </div>
 
-                {/* Dates and Security in Grid */}
                 <div className="grid grid-cols-2 gap-4">
-                  {/* Dates */}
                   <div className="space-y-3">
-                    <h3 className="text-base font-medium text-foreground border-b pb-2">{t("shareDetails.dates")}</h3>
+                    <div className="flex items-center gap-2 border-b pb-2">
+                      <h3 className="text-base font-medium text-foreground">{t("shareDetails.dates")}</h3>
+                      {onUpdateExpiration && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                          onClick={() => setShowExpirationModal(true)}
+                          title={t("shareDetails.editExpiration")}
+                        >
+                          <IconEdit className="h-3 w-3" />
+                        </Button>
+                      )}
+                    </div>
                     <div className="space-y-2">
                       <div>
                         <div className="text-xs font-medium text-muted-foreground">{t("shareDetails.created")}</div>
@@ -430,11 +449,21 @@ export function ShareDetailsModal({
                     </div>
                   </div>
 
-                  {/* Security */}
                   <div className="space-y-3">
-                    <h3 className="text-base font-medium text-foreground border-b pb-2">
-                      {t("shareDetails.security")}
-                    </h3>
+                    <div className="flex items-center gap-2 border-b pb-2">
+                      <h3 className="text-base font-medium text-foreground">{t("shareDetails.security")}</h3>
+                      {onUpdateSecurity && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                          onClick={() => setShowSecurityModal(true)}
+                          title={t("shareDetails.editSecurity")}
+                        >
+                          <IconEdit className="h-3 w-3" />
+                        </Button>
+                      )}
+                    </div>
                     <div className="flex flex-col gap-2">
                       {share.security?.hasPassword ? (
                         <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-700 border-yellow-200 w-fit">
@@ -456,7 +485,6 @@ export function ShareDetailsModal({
                   </div>
                 </div>
 
-                {/* Files */}
                 {share.files && share.files.length > 0 && (
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 border-b pb-2">
@@ -504,7 +532,6 @@ export function ShareDetailsModal({
                   </div>
                 )}
 
-                {/* Recipients */}
                 {share.recipients && share.recipients.length > 0 && (
                   <div className="space-y-3">
                     <h3 className="text-base font-medium text-foreground border-b pb-2">
@@ -539,6 +566,22 @@ export function ShareDetailsModal({
           onClose={() => setShowLinkModal(false)}
           onGenerate={onGenerateLink}
           onSuccess={handleLinkGenerated}
+        />
+      )}
+      {showSecurityModal && (
+        <ShareSecurityModal
+          shareId={shareId}
+          share={share}
+          onClose={() => setShowSecurityModal(false)}
+          onSuccess={handleSecurityUpdated}
+        />
+      )}
+      {showExpirationModal && (
+        <ShareExpirationModal
+          shareId={shareId}
+          share={share}
+          onClose={() => setShowExpirationModal(false)}
+          onSuccess={handleExpirationUpdated}
         />
       )}
     </>

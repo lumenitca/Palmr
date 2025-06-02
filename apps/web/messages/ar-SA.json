@@ -10,7 +10,10 @@
     "yes": "نعم",
     "no": "لا",
     "dashboard": "لوحة القيادة",
-    "back": "رجوع"
+    "back": "رجوع",
+    "updating": "جاري التحديث...",
+    "saving": "جاري الحفظ...",
+    "update": "تحديث"
   },
   "createShare": {
     "title": "إنشاء مشاركة",
@@ -18,7 +21,7 @@
     "descriptionLabel": "الوصف",
     "descriptionPlaceholder": "أدخل وصفًا (اختياري)",
     "expirationLabel": "تاريخ الانتهاء",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "expirationPlaceholder": "شهر/يوم/سنة ساعة:دقيقة",
     "maxViewsLabel": "الحد الأقصى للمشاهدات",
     "maxViewsPlaceholder": "اتركه فارغًا للحصول على عدد غير محدود",
     "passwordProtection": "محمي بكلمة مرور",
@@ -275,7 +278,8 @@
     "title": "الرفع الأخير",
     "viewAll": "عرض الكل",
     "uploadFile": "رفع ملف",
-    "noFiles": "لم يتم رفع أي ملفات بعد"
+    "noFiles": "لم يتم رفع أي ملفات بعد",
+    "upload": "رفع"
   },
   "recentShares": {
     "title": "المشاركات الأخيرة",
@@ -296,7 +300,25 @@
     "removeError": "فشل في إزالة المستلم",
     "sendingNotifications": "جاري إرسال الإشعارات...",
     "notifySuccess": "تم إعلام المستلمين بنجاح",
-    "notifyError": "فشل في إعلام المستلمين"
+    "notifyError": "فشل في إعلام المستلمين",
+    "bulkNotifySuccess": "تم إرسال إشعارات إلى {count} مستلم",
+    "selectAll": "تحديد الكل",
+    "singleNotifySuccess": "تم إرسال إشعار إلى {email}",
+    "removeSingle": "إزالة هذا المستلم",
+    "selectRecipient": "تحديد {email}",
+    "bulkRemoveSuccess": "تم إزالة {count} مستلم بنجاح",
+    "notifySingle": "إشعار هذا المستلم",
+    "notifySelected": "إشعار المحددين",
+    "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "noRecipientsDescription": "إضافة مستلمين لمشاركة هذا المحتوى عبر البريد الإلكتروني",
+    "singleNotifyError": "فشل في إشعار المستلم",
+    "bulkRemoveError": "فشل في إزالة المستلمين المحددين",
+    "modalDescription": "إضافة وإدارة المستلمين لهذه المشاركة. يمكنك إشعار جميع أو مستلمين محددين عند تكوين SMTP.",
+    "duplicateEmail": "تم إضافة هذا المستلم بالفعل",
+    "removeSelected": "إزالة المحددين",
+    "selectedCount": "{count} محدد",
+    "addRecipient": "إضافة مستلم",
+    "bulkNotifyError": "فشل في إشعار المستلمين المحددين"
   },
   "register": {
     "validation": {
@@ -536,7 +558,9 @@
     "recipients": "المستقبلون",
     "notAvailable": "غير متاح",
     "invalidDate": "تاريخ غير صحيح",
-    "loadError": "فشل في تحميل تفاصيل المشاركة"
+    "loadError": "فشل في تحميل تفاصيل المشاركة",
+    "editSecurity": "تحرير الأمان",
+    "editExpiration": "تحرير انتهاء الصلاحية"
   },
   "shareManager": {
     "deleteSuccess": "تم حذف المشاركة بنجاح",
@@ -554,7 +578,11 @@
     "notifyError": "فشل في إعلام المستلمين",
     "bulkDeleteError": "فشل في حذف المشاركات",
     "bulkDeleteLoading": "جارٍ حذف {count, plural, =1 {مشاركة واحدة} other {# مشاركات}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {تم حذف مشاركة واحدة بنجاح} other {تم حذف # مشاركات بنجاح}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {تم حذف مشاركة واحدة بنجاح} other {تم حذف # مشاركات بنجاح}}",
+    "securityUpdateError": "فشل في تحديث إعدادات الأمان",
+    "expirationUpdateError": "فشل في تحديث إعدادات انتهاء الصلاحية",
+    "securityUpdateSuccess": "تم تحديث إعدادات الأمان بنجاح",
+    "expirationUpdateSuccess": "تم تحديث إعدادات انتهاء الصلاحية بنجاح"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "الحجم الإجمالي",
     "creating": "جاري الإنشاء...",
     "create": "إنشاء مشاركة"
+  },
+  "shareSecurity": {
+    "subtitle": "تكوين حماية كلمة المرور وخيارات الأمان لهذه المشاركة",
+    "info": {
+      "title": "كيف يعمل:",
+      "withoutPassword": "يمكن لأي شخص لديه الرابط الوصول إلى هذه المشاركة بدون كلمة مرور.",
+      "withPassword": "سيحتاج المستخدمون إلى إدخال كلمة المرور للوصول إلى هذه المشاركة."
+    },
+    "existingPasswordMessage": "هذه المشاركة لديها بالفعل كلمة مرور. إذا كنت تريد تحديثها، أدخل كلمة المرور الجديدة في الحقل أدناه واحفظ.",
+    "passwordProtection": "حماية كلمة المرور",
+    "error": {
+      "updateFailed": "فشل في تحديث إعدادات الأمان"
+    },
+    "passwordRequirements": {
+      "title": "متطلبات كلمة المرور:",
+      "minLength": "على الأقل حرفان"
+    },
+    "newPassword": "كلمة مرور جديدة",
+    "success": {
+      "passwordUpdated": "تم تحديث كلمة المرور بنجاح",
+      "passwordRemoved": "تم إزالة حماية كلمة المرور بنجاح",
+      "passwordSet": "تم تمكين حماية كلمة المرور بنجاح"
+    },
+    "password": "كلمة المرور",
+    "validation": {
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordTooShort": "يجب أن تكون كلمة المرور حرفين على الأقل"
+    },
+    "currentStatus": "الحالة الحالية",
+    "passwordPlaceholder": "أدخل كلمة مرور آمنة",
+    "title": "إعدادات أمان المشاركة"
+  },
+  "shareExpiration": {
+    "neverExpires": "لا تنتهي صلاحيته أبداً",
+    "success": {
+      "expirationUpdated": "تم تحديث تاريخ انتهاء الصلاحية بنجاح",
+      "expirationRemoved": "تم إزالة انتهاء الصلاحية بنجاح - المشاركة الآن دائمة",
+      "expirationSet": "تم تعيين تاريخ انتهاء الصلاحية بنجاح"
+    },
+    "info": {
+      "canBeChanged": "يمكنك تغيير أو إزالة تاريخ انتهاء الصلاحية في أي وقت",
+      "willBeInaccessible": "ستصبح المشاركة غير قابلة للوصول بعد هذا التاريخ",
+      "noExpiration": "هذه المشاركة لن تنتهي صلاحيتها أبداً وستبقى قابلة للوصول إلى أجل غير مسمى.",
+      "title": "حول انتهاء الصلاحية:"
+    },
+    "enableExpiration": "تمكين انتهاء الصلاحية",
+    "title": "إعدادات انتهاء صلاحية المشاركة",
+    "subtitle": "تكوين متى ستنتهي صلاحية هذه المشاركة",
+    "validation": {
+      "dateMustBeFuture": "يجب أن يكون تاريخ انتهاء الصلاحية في المستقبل",
+      "dateRequired": "يرجى تحديد تاريخ انتهاء صلاحية"
+    },
+    "currentStatus": "الحالة الحالية",
+    "error": {
+      "updateFailed": "فشل في تحديث إعدادات انتهاء الصلاحية"
+    },
+    "expires": "تنتهي صلاحيته:",
+    "expirationDate": "تاريخ انتهاء الصلاحية"
   }
 }

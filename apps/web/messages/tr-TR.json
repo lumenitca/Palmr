@@ -10,7 +10,10 @@
     "yes": "Evet",
     "no": "Hayır",
     "dashboard": "Kontrol Paneli",
-    "back": "Geri"
+    "back": "Geri",
+    "updating": "Güncelleniyor...",
+    "saving": "Kaydediliyor...",
+    "update": "Güncelle"
   },
   "createShare": {
     "title": "Paylaşım Oluştur",
@@ -275,7 +278,8 @@
     "title": "Son Yüklemeler",
     "viewAll": "Tümünü Görüntüle",
     "uploadFile": "Dosya Yükle",
-    "noFiles": "Henüz dosya yüklenmedi"
+    "noFiles": "Henüz dosya yüklenmedi",
+    "upload": "Yükle"
   },
   "recentShares": {
     "title": "Son Paylaşımlar",
@@ -296,7 +300,25 @@
     "removeError": "Alıcı kaldırılamadı",
     "sendingNotifications": "Bildirimler gönderiliyor...",
     "notifySuccess": "Alıcılar başarıyla bildirildi",
-    "notifyError": "Alıcılara bildirim gönderilemedi"
+    "notifyError": "Alıcılara bildirim gönderilemedi",
+    "bulkNotifySuccess": "Bildirimleri {count} alıcıya gönderildi",
+    "selectAll": "Tümünü seç",
+    "singleNotifySuccess": "Bildirim {email} adresine gönderildi",
+    "removeSingle": "Bu alıcıyı kaldır",
+    "selectRecipient": "{email} seç",
+    "bulkRemoveSuccess": "{count} alıcı başarıyla kaldırıldı",
+    "notifySingle": "Bu alıcıyı bilgilendir",
+    "notifySelected": "Seçilenleri Bilgilendir",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+    "noRecipientsDescription": "Bu içeriği e-posta ile paylaşmak için alıcılar ekleyin",
+    "singleNotifyError": "Alıcıya bildirim gönderme başarısız",
+    "bulkRemoveError": "Seçilen alıcıları kaldırma başarısız",
+    "modalDescription": "Bu paylaşım için alıcıları ekleyin ve yönetin. SMTP yapılandırıldığında tüm veya belirli alıcılara bildirim gönderebilirsiniz.",
+    "duplicateEmail": "Bu alıcı zaten eklenmiş",
+    "removeSelected": "Seçilenleri Kaldır",
+    "selectedCount": "{count} seçildi",
+    "addRecipient": "Alıcı Ekle",
+    "bulkNotifyError": "Seçilen alıcılara bildirim gönderme başarısız"
   },
   "register": {
     "validation": {
@@ -536,7 +558,9 @@
     "recipients": "Alıcılar",
     "notAvailable": "M/D",
     "invalidDate": "Geçersiz tarih",
-    "loadError": "Paylaşım detaylarını yükleme başarısız"
+    "loadError": "Paylaşım detaylarını yükleme başarısız",
+    "editSecurity": "Güvenlik Düzenle",
+    "editExpiration": "Son Kullanma Düzenle"
   },
   "shareManager": {
     "deleteSuccess": "Paylaşım başarıyla silindi",
@@ -554,7 +578,11 @@
     "notifyError": "Alıcılara bildirim gönderilemedi",
     "bulkDeleteError": "Paylaşımları silme başarısız",
     "bulkDeleteLoading": "{count, plural, =1 {1 paylaşım} other {# paylaşım}} siliniyor...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 paylaşım başarıyla silindi} other {# paylaşım başarıyla silindi}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 paylaşım başarıyla silindi} other {# paylaşım başarıyla silindi}}",
+    "securityUpdateError": "Güvenlik ayarlarını güncelleme başarısız",
+    "expirationUpdateError": "Son kullanma ayarlarını güncelleme başarısız",
+    "securityUpdateSuccess": "Güvenlik ayarları başarıyla güncellendi",
+    "expirationUpdateSuccess": "Son kullanma ayarları başarıyla güncellendi"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "Toplam boyut",
     "creating": "Oluşturuluyor...",
     "create": "Paylaşım Oluştur"
+  },
+  "shareSecurity": {
+    "subtitle": "Bu paylaşım için şifre koruması ve güvenlik seçeneklerini yapılandırın",
+    "info": {
+      "title": "Nasıl çalışır:",
+      "withoutPassword": "Bağlantıya sahip herkes bu paylaşıma şifre olmadan erişebilir.",
+      "withPassword": "Kullanıcıların bu paylaşıma erişmek için şifre girmeleri gerekecek."
+    },
+    "existingPasswordMessage": "Bu paylaşımın zaten bir şifresi var. Güncellemek istiyorsanız, aşağıdaki alana yeni şifreyi girin ve kaydedin.",
+    "passwordProtection": "Şifre Koruması",
+    "error": {
+      "updateFailed": "Güvenlik ayarlarını güncelleme başarısız"
+    },
+    "passwordRequirements": {
+      "title": "Şifre gereksinimleri:",
+      "minLength": "En az 2 karakter"
+    },
+    "newPassword": "Yeni Şifre",
+    "success": {
+      "passwordUpdated": "Şifre başarıyla güncellendi",
+      "passwordRemoved": "Şifre koruması başarıyla kaldırıldı",
+      "passwordSet": "Şifre koruması başarıyla etkinleştirildi"
+    },
+    "password": "Şifre",
+    "validation": {
+      "passwordRequired": "Şifre gereklidir",
+      "passwordTooShort": "Şifre en az 2 karakter olmalıdır"
+    },
+    "currentStatus": "Mevcut Durum",
+    "passwordPlaceholder": "Güvenli bir şifre girin",
+    "title": "Paylaşım Güvenlik Ayarları"
+  },
+  "shareExpiration": {
+    "neverExpires": "Asla Sona Ermez",
+    "success": {
+      "expirationUpdated": "Son kullanma tarihi başarıyla güncellendi",
+      "expirationRemoved": "Son kullanma başarıyla kaldırıldı - paylaşım artık kalıcı",
+      "expirationSet": "Son kullanma tarihi başarıyla ayarlandı"
+    },
+    "info": {
+      "canBeChanged": "Son kullanma tarihini istediğiniz zaman değiştirebilir veya kaldırabilirsiniz",
+      "willBeInaccessible": "Paylaşım bu tarihten sonra erişilemez hale gelecek",
+      "noExpiration": "Bu paylaşım asla sona ermeyecek ve süresiz olarak erişilebilir kalacak.",
+      "title": "Son kullanma hakkında:"
+    },
+    "enableExpiration": "Son Kullanmayı Etkinleştir",
+    "title": "Paylaşım Son Kullanma Ayarları",
+    "subtitle": "Bu paylaşımın ne zaman sona ereceğini yapılandırın",
+    "validation": {
+      "dateMustBeFuture": "Son kullanma tarihi gelecekte olmalıdır",
+      "dateRequired": "Lütfen bir son kullanma tarihi seçin"
+    },
+    "currentStatus": "Mevcut Durum",
+    "error": {
+      "updateFailed": "Son kullanma ayarlarını güncelleme başarısız"
+    },
+    "expires": "Sona erer:",
+    "expirationDate": "Son Kullanma Tarihi"
   }
 }

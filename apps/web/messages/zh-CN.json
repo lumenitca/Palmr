@@ -10,7 +10,10 @@
     "yes": "是",
     "no": "否",
     "dashboard": "仪表板",
-    "back": "返回"
+    "back": "返回",
+    "updating": "更新中...",
+    "saving": "保存中...",
+    "update": "更新"
   },
   "createShare": {
     "title": "创建分享",
@@ -55,7 +58,7 @@
     "descriptionLabel": "描述",
     "descriptionPlaceholder": "请输入文件描述",
     "deleteFile": "删除文件",
-    "deleteConfirmation": "您确定要删除“{fileName}”吗？",
+    "deleteConfirmation": "您确定要删除{fileName}吗？",
     "deleteWarning": "此操作不可撤销。"
   },
   "fileManager": {
@@ -275,7 +278,8 @@
     "title": "最近上传",
     "viewAll": "查看全部",
     "uploadFile": "上传文件",
-    "noFiles": "尚未上传文件"
+    "noFiles": "尚未上传文件",
+    "upload": "上传"
   },
   "recentShares": {
     "title": "最近共享",
@@ -296,7 +300,25 @@
     "removeError": "删除收件人失败",
     "sendingNotifications": "正在发送通知...",
     "notifySuccess": "收件人通知成功",
-    "notifyError": "通知收件人失败"
+    "notifyError": "通知收件人失败",
+    "bulkNotifySuccess": "已向{count}位收件人发送通知",
+    "selectAll": "全选",
+    "singleNotifySuccess": "已向{email}发送通知",
+    "removeSingle": "移除此收件人",
+    "selectRecipient": "选择{email}",
+    "bulkRemoveSuccess": "成功移除{count}位收件人",
+    "notifySingle": "通知此收件人",
+    "notifySelected": "通知选中项",
+    "invalidEmail": "请输入有效的电子邮件地址",
+    "noRecipientsDescription": "添加收件人以通过电子邮件分享此内容",
+    "singleNotifyError": "通知收件人失败",
+    "bulkRemoveError": "移除选中的收件人失败",
+    "modalDescription": "为此分享添加和管理收件人。当配置了SMTP时，您可以通知所有或特定收件人。",
+    "duplicateEmail": "此收件人已经添加过了",
+    "removeSelected": "移除选中项",
+    "selectedCount": "已选择{count}个",
+    "addRecipient": "添加收件人",
+    "bulkNotifyError": "通知选中收件人失败"
   },
   "register": {
     "validation": {
@@ -528,15 +550,17 @@
     "notAvailable": "不适用",
     "invalidDate": "无效的日期",
     "loadError": "加载共享详情失败",
-    "editLink": "Editar Link",
-    "openLink": "Abrir em nova guia",
-    "shareLink": "Link de Compartilhamento",
-    "noDescription": "Nenhuma descrição fornecida",
-    "copyLink": "Copiar link",
-    "generateLink": "Gerar Link",
-    "noLink": "Nenhum link gerado ainda",
+    "editLink": "编辑链接",
+    "openLink": "在新标签页中打开",
+    "shareLink": "分享链接",
+    "noDescription": "未提供描述",
+    "copyLink": "复制链接",
+    "generateLink": "生成链接",
+    "noLink": "尚未生成链接",
     "description": "描述",
-    "linkCopied": "Link copiado para a área de transferência"
+    "linkCopied": "链接已复制到剪贴板",
+    "editSecurity": "编辑安全",
+    "editExpiration": "编辑过期"
   },
   "shareManager": {
     "deleteSuccess": "共享删除成功",
@@ -554,7 +578,11 @@
     "notifyError": "通知收件人失败",
     "bulkDeleteError": "删除共享失败",
     "bulkDeleteLoading": "正在删除{count, plural, =1 {1个共享} other {#个共享}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1个共享删除成功} other {#个共享删除成功}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1个共享删除成功} other {#个共享删除成功}}",
+    "securityUpdateError": "更新安全设置失败",
+    "expirationUpdateError": "更新过期设置失败",
+    "securityUpdateSuccess": "安全设置更新成功",
+    "expirationUpdateSuccess": "过期设置更新成功"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "总大小",
     "creating": "创建中...",
     "create": "创建分享"
+  },
+  "shareSecurity": {
+    "subtitle": "为此分享配置密码保护和安全选项",
+    "info": {
+      "title": "工作原理：",
+      "withoutPassword": "任何拥有链接的人都可以在没有密码的情况下访问此分享。",
+      "withPassword": "用户需要输入密码才能访问此分享。"
+    },
+    "existingPasswordMessage": "此分享已有密码。如果您想更新它，请在下面的字段中输入新密码并保存。",
+    "passwordProtection": "密码保护",
+    "error": {
+      "updateFailed": "更新安全设置失败"
+    },
+    "passwordRequirements": {
+      "title": "密码要求：",
+      "minLength": "至少2个字符"
+    },
+    "newPassword": "新密码",
+    "success": {
+      "passwordUpdated": "密码更新成功",
+      "passwordRemoved": "密码保护移除成功",
+      "passwordSet": "密码保护启用成功"
+    },
+    "password": "密码",
+    "validation": {
+      "passwordRequired": "密码是必需的",
+      "passwordTooShort": "密码必须至少包含2个字符"
+    },
+    "currentStatus": "当前状态",
+    "passwordPlaceholder": "输入安全密码",
+    "title": "分享安全设置"
+  },
+  "shareExpiration": {
+    "neverExpires": "永不过期",
+    "success": {
+      "expirationUpdated": "过期日期更新成功",
+      "expirationRemoved": "过期已移除成功 - 分享现在是永久的",
+      "expirationSet": "过期日期设置成功"
+    },
+    "info": {
+      "canBeChanged": "您可以随时更改或移除过期日期",
+      "willBeInaccessible": "分享在此日期后将无法访问",
+      "noExpiration": "此分享永不过期，将始终可访问。",
+      "title": "关于过期："
+    },
+    "enableExpiration": "启用过期",
+    "title": "分享过期设置",
+    "subtitle": "配置此分享何时过期",
+    "validation": {
+      "dateMustBeFuture": "过期日期必须在将来",
+      "dateRequired": "请选择过期日期"
+    },
+    "currentStatus": "当前状态",
+    "error": {
+      "updateFailed": "更新过期设置失败"
+    },
+    "expires": "过期:",
+    "expirationDate": "过期日期"
   }
 }

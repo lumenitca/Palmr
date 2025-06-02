@@ -11,6 +11,7 @@ import {
   deleteShare,
   notifyRecipients,
   updateShare,
+  updateSharePassword,
 } from "@/http/endpoints";
 import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
 
@@ -19,6 +20,8 @@ export interface ShareManagerHook {
   shareToEdit: ListUserShares200SharesItem | null;
   shareToManageFiles: ListUserShares200SharesItem | null;
   shareToManageRecipients: ListUserShares200SharesItem | null;
+  shareToManageSecurity: ListUserShares200SharesItem | null;
+  shareToManageExpiration: ListUserShares200SharesItem | null;
   shareToViewDetails: ListUserShares200SharesItem | null;
   shareToGenerateLink: ListUserShares200SharesItem | null;
   sharesToDelete: ListUserShares200SharesItem[] | null;
@@ -26,6 +29,8 @@ export interface ShareManagerHook {
   setShareToEdit: (share: ListUserShares200SharesItem | null) => void;
   setShareToManageFiles: (share: ListUserShares200SharesItem | null) => void;
   setShareToManageRecipients: (share: ListUserShares200SharesItem | null) => void;
+  setShareToManageSecurity: (share: ListUserShares200SharesItem | null) => void;
+  setShareToManageExpiration: (share: ListUserShares200SharesItem | null) => void;
   setShareToViewDetails: (share: ListUserShares200SharesItem | null) => void;
   setShareToGenerateLink: (share: ListUserShares200SharesItem | null) => void;
   setSharesToDelete: (shares: ListUserShares200SharesItem[] | null) => void;
@@ -35,6 +40,8 @@ export interface ShareManagerHook {
   handleEdit: (shareId: string, data: any) => Promise<void>;
   handleUpdateName: (shareId: string, newName: string) => Promise<void>;
   handleUpdateDescription: (shareId: string, newDescription: string) => Promise<void>;
+  handleUpdateSecurity: (shareId: string) => Promise<void>;
+  handleUpdateExpiration: (shareId: string) => Promise<void>;
   handleManageFiles: (shareId: string, files: any[]) => Promise<void>;
   handleManageRecipients: (shareId: string, recipients: any[]) => Promise<void>;
   handleGenerateLink: (shareId: string, alias: string) => Promise<void>;
@@ -48,6 +55,8 @@ export function useShareManager(onSuccess: () => void) {
   const [shareToEdit, setShareToEdit] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToManageFiles, setShareToManageFiles] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToManageRecipients, setShareToManageRecipients] = useState<ListUserShares200SharesItem | null>(null);
+  const [shareToManageSecurity, setShareToManageSecurity] = useState<ListUserShares200SharesItem | null>(null);
+  const [shareToManageExpiration, setShareToManageExpiration] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToViewDetails, setShareToViewDetails] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToGenerateLink, setShareToGenerateLink] = useState<ListUserShares200SharesItem | null>(null);
   const [sharesToDelete, setSharesToDelete] = useState<ListUserShares200SharesItem[] | null>(null);
@@ -130,6 +139,26 @@ export function useShareManager(onSuccess: () => void) {
     }
   };
 
+  const handleUpdateSecurity = async (shareId: string) => {
+    try {
+      await onSuccess();
+      toast.success(t("shareManager.securityUpdateSuccess"));
+    } catch (error) {
+      toast.error(t("shareManager.securityUpdateError"));
+      console.error(error);
+    }
+  };
+
+  const handleUpdateExpiration = async (shareId: string) => {
+    try {
+      await onSuccess();
+      toast.success(t("shareManager.expirationUpdateSuccess"));
+    } catch (error) {
+      toast.error(t("shareManager.expirationUpdateError"));
+      console.error(error);
+    }
+  };
+
   const handleManageFiles = async (shareId: string, files: string[]) => {
     try {
       await addFiles(shareId, { files });
@@ -186,6 +215,8 @@ export function useShareManager(onSuccess: () => void) {
     shareToEdit,
     shareToManageFiles,
     shareToManageRecipients,
+    shareToManageSecurity,
+    shareToManageExpiration,
     shareToViewDetails,
     shareToGenerateLink,
     sharesToDelete,
@@ -193,6 +224,8 @@ export function useShareManager(onSuccess: () => void) {
     setShareToEdit,
     setShareToManageFiles,
     setShareToManageRecipients,
+    setShareToManageSecurity,
+    setShareToManageExpiration,
     setShareToViewDetails,
     setShareToGenerateLink,
     setSharesToDelete,
@@ -202,6 +235,8 @@ export function useShareManager(onSuccess: () => void) {
     handleEdit,
     handleUpdateName,
     handleUpdateDescription,
+    handleUpdateSecurity,
+    handleUpdateExpiration,
     handleManageFiles,
     handleManageRecipients,
     handleGenerateLink,

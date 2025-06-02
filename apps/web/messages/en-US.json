@@ -3,6 +3,9 @@
     "loading": "Loading, please wait...",
     "cancel": "Cancel",
     "save": "Save",
+    "saving": "Saving...",
+    "update": "Update",
+    "updating": "Updating...",
     "delete": "Delete",
     "close": "Close",
     "download": "Download",
@@ -274,6 +277,7 @@
   "recentFiles": {
     "title": "Recent Uploads",
     "viewAll": "View All",
+    "upload": "Upload",
     "uploadFile": "Upload File",
     "noFiles": "No files uploaded yet"
   },
@@ -296,7 +300,25 @@
     "removeError": "Failed to remove recipient",
     "sendingNotifications": "Sending notifications...",
     "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
+    "notifyError": "Failed to notify recipients",
+    "selectAll": "Select all",
+    "selectedCount": "{count} selected",
+    "selectRecipient": "Select {email}",
+    "notifySelected": "Notify Selected",
+    "removeSelected": "Remove Selected",
+    "notifySingle": "Notify this recipient",
+    "removeSingle": "Remove this recipient",
+    "bulkRemoveSuccess": "{count} recipients removed successfully",
+    "bulkRemoveError": "Failed to remove selected recipients",
+    "bulkNotifySuccess": "Notifications sent to {count} recipients",
+    "bulkNotifyError": "Failed to notify selected recipients",
+    "singleNotifySuccess": "Notification sent to {email}",
+    "singleNotifyError": "Failed to notify recipient",
+    "modalDescription": "Add and manage recipients for this share. You can notify all or specific recipients when SMTP is configured.",
+    "addRecipient": "Add Recipient",
+    "invalidEmail": "Please enter a valid email address",
+    "duplicateEmail": "This recipient has already been added",
+    "noRecipientsDescription": "Add recipients to share this content via email"
   },
   "register": {
     "validation": {
@@ -529,6 +551,8 @@
     "expires": "Expires",
     "never": "Never",
     "security": "Security",
+    "editSecurity": "Edit Security",
+    "editExpiration": "Edit Expiration",
     "passwordProtected": "Password Protected",
     "publicAccess": "Public Access",
     "maxViews": "Max Views:",
@@ -538,11 +562,73 @@
     "invalidDate": "Invalid date",
     "loadError": "Failed to load share details"
   },
+  "shareSecurity": {
+    "title": "Share Security Settings",
+    "subtitle": "Configure password protection and security options for this share",
+    "currentStatus": "Current Status",
+    "passwordProtection": "Password Protection",
+    "password": "Password",
+    "newPassword": "New Password",
+    "passwordPlaceholder": "Enter a secure password",
+    "existingPasswordMessage": "This share already has a password. If you want to update it, enter the new password in the field below and save.",
+    "passwordRequirements": {
+      "title": "Password requirements:",
+      "minLength": "At least 2 characters"
+    },
+    "info": {
+      "title": "How it works:",
+      "withPassword": "Users will need to enter the password to access this share.",
+      "withoutPassword": "Anyone with the link can access this share without a password."
+    },
+    "validation": {
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 2 characters"
+    },
+    "success": {
+      "passwordSet": "Password protection enabled successfully",
+      "passwordUpdated": "Password updated successfully",
+      "passwordRemoved": "Password protection removed successfully"
+    },
+    "error": {
+      "updateFailed": "Failed to update security settings"
+    }
+  },
+  "shareExpiration": {
+    "title": "Share Expiration Settings",
+    "subtitle": "Configure when this share will expire",
+    "currentStatus": "Current Status",
+    "expires": "Expires:",
+    "neverExpires": "Never Expires",
+    "enableExpiration": "Enable Expiration",
+    "expirationDate": "Expiration Date",
+    "validation": {
+      "dateRequired": "Please select an expiration date",
+      "dateMustBeFuture": "Expiration date must be in the future"
+    },
+    "success": {
+      "expirationSet": "Expiration date set successfully",
+      "expirationUpdated": "Expiration date updated successfully",
+      "expirationRemoved": "Expiration removed successfully - share is now permanent"
+    },
+    "error": {
+      "updateFailed": "Failed to update expiration settings"
+    },
+    "info": {
+      "title": "About expiration:",
+      "willBeInaccessible": "The share will become inaccessible after this date",
+      "canBeChanged": "You can change or remove the expiration date anytime",
+      "noExpiration": "This share will never expire and will remain accessible indefinitely."
+    }
+  },
   "shareManager": {
     "deleteSuccess": "Share deleted successfully",
     "deleteError": "Failed to delete share",
     "updateSuccess": "Share updated successfully",
     "updateError": "Failed to update share",
+    "securityUpdateSuccess": "Security settings updated successfully",
+    "securityUpdateError": "Failed to update security settings",
+    "expirationUpdateSuccess": "Expiration settings updated successfully",
+    "expirationUpdateError": "Failed to update expiration settings",
     "filesUpdateSuccess": "Files updated successfully",
     "filesUpdateError": "Failed to update files",
     "recipientsUpdateSuccess": "Recipients updated successfully",

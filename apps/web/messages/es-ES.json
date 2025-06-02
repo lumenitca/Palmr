@@ -10,7 +10,10 @@
     "yes": "Sí",
     "no": "No",
     "dashboard": "Panel",
-    "back": "Volver"
+    "back": "Volver",
+    "updating": "Actualizando...",
+    "saving": "Guardando...",
+    "update": "Actualizar"
   },
   "createShare": {
     "title": "Crear Compartir",
@@ -272,9 +275,10 @@
     }
   },
   "recentFiles": {
-    "title": "Subidas recientes",
-    "viewAll": "Ver todo",
-    "uploadFile": "Subir archivo",
+    "title": "Cargas Recientes",
+    "viewAll": "Ver Todo",
+    "upload": "Subir",
+    "uploadFile": "Subir Archivo",
     "noFiles": "Aún no se han subido archivos"
   },
   "recentShares": {
@@ -296,7 +300,25 @@
     "removeError": "Error al eliminar el destinatario",
     "sendingNotifications": "Enviando notificaciones...",
     "notifySuccess": "Destinatarios notificados exitosamente",
-    "notifyError": "Error al notificar a los destinatarios"
+    "notifyError": "Error al notificar a los destinatarios",
+    "bulkNotifySuccess": "Notificaciones enviadas a {count} destinatarios",
+    "selectAll": "Seleccionar todo",
+    "singleNotifySuccess": "Notificación enviada a {email}",
+    "removeSingle": "Eliminar este destinatario",
+    "selectRecipient": "Seleccionar {email}",
+    "bulkRemoveSuccess": "{count} destinatarios eliminados exitosamente",
+    "notifySingle": "Notificar este destinatario",
+    "notifySelected": "Notificar Seleccionados",
+    "invalidEmail": "Por favor ingresa una dirección de correo válida",
+    "noRecipientsDescription": "Agregar destinatarios para compartir este contenido por correo",
+    "singleNotifyError": "Error al notificar destinatario",
+    "bulkRemoveError": "Error al eliminar destinatarios seleccionados",
+    "modalDescription": "Agregar y gestionar destinatarios para este compartir. Puedes notificar a todos o destinatarios específicos cuando SMTP esté configurado.",
+    "duplicateEmail": "Este destinatario ya ha sido agregado",
+    "removeSelected": "Eliminar Seleccionados",
+    "selectedCount": "{count} seleccionados",
+    "addRecipient": "Agregar Destinatario",
+    "bulkNotifyError": "Error al notificar destinatarios seleccionados"
   },
   "register": {
     "validation": {
@@ -534,9 +556,11 @@
     "maxViews": "Vistas Máx.:",
     "files": "Archivos",
     "recipients": "Destinatarios",
-    "notAvailable": "N/A",
+    "notAvailable": "N/D",
     "invalidDate": "Fecha inválida",
-    "loadError": "Error al cargar detalles del compartir"
+    "loadError": "Error al cargar detalles del compartir",
+    "editSecurity": "Editar Seguridad",
+    "editExpiration": "Editar Expiración"
   },
   "shareManager": {
     "deleteSuccess": "Compartición eliminada exitosamente",
@@ -554,7 +578,11 @@
     "notifyError": "Error al notificar a los destinatarios",
     "bulkDeleteError": "Error al eliminar compartidos",
     "bulkDeleteLoading": "Eliminando {count, plural, =1 {1 compartido} other {# compartidos}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 compartido eliminado con éxito} other {# compartidos eliminados con éxito}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 compartido eliminado con éxito} other {# compartidos eliminados con éxito}}",
+    "securityUpdateError": "Error al actualizar configuración de seguridad",
+    "expirationUpdateError": "Error al actualizar configuración de expiración",
+    "securityUpdateSuccess": "Configuración de seguridad actualizada exitosamente",
+    "expirationUpdateSuccess": "Configuración de expiración actualizada exitosamente"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "Tamaño total",
     "creating": "Creando...",
     "create": "Crear Compartir"
+  },
+  "shareSecurity": {
+    "subtitle": "Configurar protección por contraseña y opciones de seguridad para este compartir",
+    "info": {
+      "title": "Cómo funciona:",
+      "withoutPassword": "Cualquiera con el enlace puede acceder a este compartir sin contraseña.",
+      "withPassword": "Los usuarios necesitarán ingresar la contraseña para acceder a este compartir."
+    },
+    "existingPasswordMessage": "Este compartir ya tiene una contraseña. Si quieres actualizarla, ingresa la nueva contraseña en el campo de abajo y guarda.",
+    "passwordProtection": "Protección por Contraseña",
+    "error": {
+      "updateFailed": "Error al actualizar configuración de seguridad"
+    },
+    "passwordRequirements": {
+      "title": "Requisitos de contraseña:",
+      "minLength": "Al menos 2 caracteres"
+    },
+    "newPassword": "Nueva Contraseña",
+    "success": {
+      "passwordUpdated": "Contraseña actualizada exitosamente",
+      "passwordRemoved": "Protección por contraseña eliminada exitosamente",
+      "passwordSet": "Protección por contraseña habilitada exitosamente"
+    },
+    "password": "Contraseña",
+    "validation": {
+      "passwordRequired": "La contraseña es requerida",
+      "passwordTooShort": "La contraseña debe tener al menos 2 caracteres"
+    },
+    "currentStatus": "Estado Actual",
+    "passwordPlaceholder": "Ingresa una contraseña segura",
+    "title": "Configuración de Seguridad del Compartir"
+  },
+  "shareExpiration": {
+    "neverExpires": "Nunca Expira",
+    "success": {
+      "expirationUpdated": "Fecha de expiración actualizada exitosamente",
+      "expirationRemoved": "Expiración eliminada exitosamente - el compartir es ahora permanente",
+      "expirationSet": "Fecha de expiración establecida exitosamente"
+    },
+    "info": {
+      "canBeChanged": "Puedes cambiar o eliminar la fecha de expiración en cualquier momento",
+      "willBeInaccessible": "El compartir será inaccesible después de esta fecha",
+      "noExpiration": "Este compartir nunca expirará y permanecerá accesible indefinidamente.",
+      "title": "Acerca de la expiración:"
+    },
+    "enableExpiration": "Habilitar Expiración",
+    "title": "Configuración de Expiración del Compartir",
+    "subtitle": "Configurar cuándo expirará este compartir",
+    "validation": {
+      "dateMustBeFuture": "La fecha de expiración debe estar en el futuro",
+      "dateRequired": "Por favor selecciona una fecha de expiración"
+    },
+    "currentStatus": "Estado Actual",
+    "error": {
+      "updateFailed": "Error al actualizar configuración de expiración"
+    },
+    "expires": "Expira:",
+    "expirationDate": "Fecha de Expiración"
   }
 }

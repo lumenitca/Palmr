@@ -10,7 +10,10 @@
     "yes": "Sì",
     "no": "No",
     "dashboard": "Dashboard",
-    "back": "Indietro"
+    "back": "Indietro",
+    "updating": "Aggiornamento...",
+    "saving": "Salvataggio...",
+    "update": "Aggiorna"
   },
   "createShare": {
     "title": "Crea Condivisione",
@@ -275,7 +278,8 @@
     "title": "Caricamenti Recenti",
     "viewAll": "Visualizza Tutti",
     "uploadFile": "Carica File",
-    "noFiles": "Nessun file caricato ancora"
+    "noFiles": "Nessun file caricato ancora",
+    "upload": "Carica"
   },
   "recentShares": {
     "title": "Condivisioni Recenti",
@@ -296,7 +300,25 @@
     "removeError": "Errore durante la rimozione del destinatario",
     "sendingNotifications": "Invio notifiche in corso...",
     "notifySuccess": "Destinatari notificati con successo",
-    "notifyError": "Errore durante la notifica dei destinatari"
+    "notifyError": "Errore durante la notifica dei destinatari",
+    "bulkNotifySuccess": "Notifiche inviate a {count} destinatari",
+    "selectAll": "Seleziona tutto",
+    "singleNotifySuccess": "Notifica inviata a {email}",
+    "removeSingle": "Rimuovi questo destinatario",
+    "selectRecipient": "Seleziona {email}",
+    "bulkRemoveSuccess": "{count} destinatari rimossi con successo",
+    "notifySingle": "Notifica questo destinatario",
+    "notifySelected": "Notifica Selezionati",
+    "invalidEmail": "Inserisci un indirizzo email valido",
+    "noRecipientsDescription": "Aggiungi destinatari per condividere questo contenuto via email",
+    "singleNotifyError": "Impossibile notificare il destinatario",
+    "bulkRemoveError": "Impossibile rimuovere i destinatari selezionati",
+    "modalDescription": "Aggiungi e gestisci destinatari per questa condivisione. Puoi notificare tutti o destinatari specifici quando SMTP è configurato.",
+    "duplicateEmail": "Questo destinatario è già stato aggiunto",
+    "removeSelected": "Rimuovi Selezionati",
+    "selectedCount": "{count} selezionati",
+    "addRecipient": "Aggiungi Destinatario",
+    "bulkNotifyError": "Impossibile notificare i destinatari selezionati"
   },
   "register": {
     "validation": {
@@ -536,7 +558,9 @@
     "recipients": "Destinatari",
     "notAvailable": "N/D",
     "invalidDate": "Data non valida",
-    "loadError": "Errore nel caricamento dei dettagli della condivisione"
+    "loadError": "Errore nel caricamento dei dettagli della condivisione",
+    "editSecurity": "Modifica Sicurezza",
+    "editExpiration": "Modifica Scadenza"
   },
   "shareManager": {
     "deleteSuccess": "Condivisione eliminata con successo",
@@ -554,7 +578,11 @@
     "notifyError": "Errore durante la notifica dei destinatari",
     "bulkDeleteError": "Errore nell'eliminazione delle condivisioni",
     "bulkDeleteLoading": "Eliminazione di {count, plural, =1 {1 condivisione} other {# condivisioni}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 condivisione eliminata con successo} other {# condivisioni eliminate con successo}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 condivisione eliminata con successo} other {# condivisioni eliminate con successo}}",
+    "securityUpdateError": "Impossibile aggiornare le impostazioni di sicurezza",
+    "expirationUpdateError": "Impossibile aggiornare le impostazioni di scadenza",
+    "securityUpdateSuccess": "Impostazioni di sicurezza aggiornate con successo",
+    "expirationUpdateSuccess": "Impostazioni di scadenza aggiornate con successo"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "Dimensione totale",
     "creating": "Creazione...",
     "create": "Crea Condivisione"
+  },
+  "shareSecurity": {
+    "subtitle": "Configura protezione password e opzioni di sicurezza per questa condivisione",
+    "info": {
+      "title": "Come funziona:",
+      "withoutPassword": "Chiunque abbia il link può accedere a questa condivisione senza password.",
+      "withPassword": "Gli utenti dovranno inserire la password per accedere a questa condivisione."
+    },
+    "existingPasswordMessage": "Questa condivisione ha già una password. Se vuoi aggiornarla, inserisci la nuova password nel campo sottostante e salva.",
+    "passwordProtection": "Protezione Password",
+    "error": {
+      "updateFailed": "Impossibile aggiornare le impostazioni di sicurezza"
+    },
+    "passwordRequirements": {
+      "title": "Requisiti password:",
+      "minLength": "Almeno 2 caratteri"
+    },
+    "newPassword": "Nuova Password",
+    "success": {
+      "passwordUpdated": "Password aggiornata con successo",
+      "passwordRemoved": "Protezione password rimossa con successo",
+      "passwordSet": "Protezione password abilitata con successo"
+    },
+    "password": "Password",
+    "validation": {
+      "passwordRequired": "La password è obbligatoria",
+      "passwordTooShort": "La password deve essere di almeno 2 caratteri"
+    },
+    "currentStatus": "Stato Attuale",
+    "passwordPlaceholder": "Inserisci una password sicura",
+    "title": "Impostazioni Sicurezza Condivisione"
+  },
+  "shareExpiration": {
+    "neverExpires": "Non Scade Mai",
+    "success": {
+      "expirationUpdated": "Data di scadenza aggiornata con successo",
+      "expirationRemoved": "Scadenza rimossa con successo - la condivisione è ora permanente",
+      "expirationSet": "Data di scadenza impostata con successo"
+    },
+    "info": {
+      "canBeChanged": "Puoi cambiare o rimuovere la data di scadenza in qualsiasi momento",
+      "willBeInaccessible": "La condivisione diventerà inaccessibile dopo questa data",
+      "noExpiration": "Questa condivisione non scadrà mai e rimarrà accessibile indefinitamente.",
+      "title": "Informazioni sulla scadenza:"
+    },
+    "enableExpiration": "Abilita Scadenza",
+    "title": "Impostazioni Scadenza Condivisione",
+    "subtitle": "Configura quando questa condivisione scadrà",
+    "validation": {
+      "dateMustBeFuture": "La data di scadenza deve essere nel futuro",
+      "dateRequired": "Seleziona una data di scadenza"
+    },
+    "currentStatus": "Stato Attuale",
+    "error": {
+      "updateFailed": "Impossibile aggiornare le impostazioni di scadenza"
+    },
+    "expires": "Scade:",
+    "expirationDate": "Data di Scadenza"
   }
 }

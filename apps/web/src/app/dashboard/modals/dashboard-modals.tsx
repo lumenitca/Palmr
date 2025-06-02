@@ -9,8 +9,10 @@ import { FilePreviewModal } from "@/components/modals/file-preview-modal";
 import { GenerateShareLinkModal } from "@/components/modals/generate-share-link-modal";
 import { ShareActionsModals } from "@/components/modals/share-actions-modals";
 import { ShareDetailsModal } from "@/components/modals/share-details-modal";
+import { ShareExpirationModal } from "@/components/modals/share-expiration-modal";
 import { ShareFileModal } from "@/components/modals/share-file-modal";
 import { ShareMultipleFilesModal } from "@/components/modals/share-multiple-files-modal";
+import { ShareSecurityModal } from "@/components/modals/share-security-modal";
 import { UploadFileModal } from "@/components/modals/upload-file-modal";
 import { DashboardModalsProps } from "../types";
 
@@ -113,9 +115,25 @@ export function DashboardModals({ modals, fileManager, shareManager, onSuccess }
         onClose={() => shareManager.setShareToViewDetails(null)}
         onUpdateName={shareManager.handleUpdateName}
         onUpdateDescription={shareManager.handleUpdateDescription}
+        onUpdateSecurity={shareManager.handleUpdateSecurity}
+        onUpdateExpiration={shareManager.handleUpdateExpiration}
         onGenerateLink={shareManager.handleGenerateLink}
         onManageFiles={shareManager.setShareToManageFiles}
         refreshTrigger={shareDetailsRefresh}
+        onSuccess={onSuccess}
+      />
+
+      <ShareSecurityModal
+        shareId={shareManager.shareToManageSecurity?.id || null}
+        share={shareManager.shareToManageSecurity || null}
+        onClose={() => shareManager.setShareToManageSecurity(null)}
+        onSuccess={onSuccess}
+      />
+
+      <ShareExpirationModal
+        shareId={shareManager.shareToManageExpiration?.id || null}
+        share={shareManager.shareToManageExpiration || null}
+        onClose={() => shareManager.setShareToManageExpiration(null)}
         onSuccess={onSuccess}
       />
 

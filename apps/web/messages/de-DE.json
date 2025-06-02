@@ -10,7 +10,10 @@
     "yes": "Ja",
     "no": "Nein",
     "dashboard": "Dashboard",
-    "back": "Zurück"
+    "back": "Zurück",
+    "updating": "Aktualisierung läuft...",
+    "saving": "Speichere...",
+    "update": "Aktualisieren"
   },
   "createShare": {
     "title": "Freigabe Erstellen",
@@ -140,7 +143,7 @@
     }
   },
   "footer": {
-    "poweredBy": "Powered by",
+    "poweredBy": "Angetrieben von",
     "kyanHomepage": "Kyantech Homepage"
   },
   "forgotPassword": {
@@ -275,7 +278,8 @@
     "title": "Kürzlich hochgeladen",
     "viewAll": "Alle anzeigen",
     "uploadFile": "Datei hochladen",
-    "noFiles": "Noch keine Dateien hochgeladen"
+    "noFiles": "Noch keine Dateien hochgeladen",
+    "upload": "Hochladen"
   },
   "recentShares": {
     "title": "Kürzlich geteilte",
@@ -296,7 +300,25 @@
     "removeError": "Fehler beim Entfernen des Empfängers",
     "sendingNotifications": "Benachrichtigungen werden gesendet...",
     "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger",
+    "bulkNotifySuccess": "Benachrichtigungen an {count} Empfänger gesendet",
+    "selectAll": "Alle auswählen",
+    "singleNotifySuccess": "Benachrichtigung an {email} gesendet",
+    "removeSingle": "Diesen Empfänger entfernen",
+    "selectRecipient": "{email} auswählen",
+    "bulkRemoveSuccess": "{count} Empfänger erfolgreich entfernt",
+    "notifySingle": "Diesen Empfänger benachrichtigen",
+    "notifySelected": "Ausgewählte benachrichtigen",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "noRecipientsDescription": "Empfänger hinzufügen, um diesen Inhalt per E-Mail zu teilen",
+    "singleNotifyError": "Empfänger konnte nicht benachrichtigt werden",
+    "bulkRemoveError": "Ausgewählte Empfänger konnten nicht entfernt werden",
+    "modalDescription": "Empfänger für diese Freigabe hinzufügen und verwalten. Sie können alle oder bestimmte Empfänger benachrichtigen, wenn SMTP konfiguriert ist.",
+    "duplicateEmail": "Dieser Empfänger wurde bereits hinzugefügt",
+    "removeSelected": "Ausgewählte entfernen",
+    "selectedCount": "{count} ausgewählt",
+    "addRecipient": "Empfänger hinzufügen",
+    "bulkNotifyError": "Ausgewählte Empfänger konnten nicht benachrichtigt werden"
   },
   "register": {
     "validation": {
@@ -536,7 +558,9 @@
     "recipients": "Empfänger",
     "notAvailable": "N/V",
     "invalidDate": "Ungültiges Datum",
-    "loadError": "Fehler beim Laden der Freigabe-Details"
+    "loadError": "Fehler beim Laden der Freigabe-Details",
+    "editSecurity": "Sicherheit bearbeiten",
+    "editExpiration": "Ablauf bearbeiten"
   },
   "shareManager": {
     "deleteSuccess": "Freigabe erfolgreich gelöscht",
@@ -554,7 +578,11 @@
     "notifyError": "Fehler beim Benachrichtigen der Empfänger",
     "bulkDeleteError": "Fehler beim Löschen der Freigaben",
     "bulkDeleteLoading": "Lösche {count, plural, =1 {1 Freigabe} other {# Freigaben}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 Freigabe erfolgreich gelöscht} other {# Freigaben erfolgreich gelöscht}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 Freigabe erfolgreich gelöscht} other {# Freigaben erfolgreich gelöscht}}",
+    "securityUpdateError": "Sicherheitseinstellungen konnten nicht aktualisiert werden",
+    "expirationUpdateError": "Ablaufeinstellungen konnten nicht aktualisiert werden",
+    "securityUpdateSuccess": "Sicherheitseinstellungen erfolgreich aktualisiert",
+    "expirationUpdateSuccess": "Ablaufeinstellungen erfolgreich aktualisiert"
   },
   "shares": {
     "errors": {
@@ -790,5 +818,63 @@
     "totalSize": "Gesamtgröße",
     "creating": "Erstellen...",
     "create": "Freigabe Erstellen"
+  },
+  "shareSecurity": {
+    "subtitle": "Passwortschutz und Sicherheitsoptionen für diese Freigabe konfigurieren",
+    "info": {
+      "title": "So funktioniert es:",
+      "withoutPassword": "Jeder mit dem Link kann auf diese Freigabe ohne Passwort zugreifen.",
+      "withPassword": "Benutzer müssen das Passwort eingeben, um auf diese Freigabe zuzugreifen."
+    },
+    "existingPasswordMessage": "Diese Freigabe hat bereits ein Passwort. Wenn Sie es aktualisieren möchten, geben Sie das neue Passwort in das Feld unten ein und speichern Sie.",
+    "passwordProtection": "Passwortschutz",
+    "error": {
+      "updateFailed": "Sicherheitseinstellungen konnten nicht aktualisiert werden"
+    },
+    "passwordRequirements": {
+      "title": "Passwort-Anforderungen:",
+      "minLength": "Mindestens 2 Zeichen"
+    },
+    "newPassword": "Neues Passwort",
+    "success": {
+      "passwordUpdated": "Passwort erfolgreich aktualisiert",
+      "passwordRemoved": "Passwortschutz erfolgreich entfernt",
+      "passwordSet": "Passwortschutz erfolgreich aktiviert"
+    },
+    "password": "Passwort",
+    "validation": {
+      "passwordRequired": "Passwort ist erforderlich",
+      "passwordTooShort": "Passwort muss mindestens 2 Zeichen haben"
+    },
+    "currentStatus": "Aktueller Status",
+    "passwordPlaceholder": "Sicheres Passwort eingeben",
+    "title": "Freigabe-Sicherheitseinstellungen"
+  },
+  "shareExpiration": {
+    "neverExpires": "Läuft nie ab",
+    "success": {
+      "expirationUpdated": "Ablaufdatum erfolgreich aktualisiert",
+      "expirationRemoved": "Ablauf erfolgreich entfernt - Freigabe ist jetzt dauerhaft",
+      "expirationSet": "Ablaufdatum erfolgreich festgelegt"
+    },
+    "info": {
+      "canBeChanged": "Sie können das Ablaufdatum jederzeit ändern oder entfernen",
+      "willBeInaccessible": "Die Freigabe wird nach diesem Datum unzugänglich",
+      "noExpiration": "Diese Freigabe läuft nie ab und bleibt unbegrenzt zugänglich.",
+      "title": "Über Ablauf:"
+    },
+    "enableExpiration": "Ablauf aktivieren",
+    "title": "Freigabe-Ablaufeinstellungen",
+    "subtitle": "Konfigurieren, wann diese Freigabe abläuft",
+    "validation": {
+      "dateMustBeFuture": "Ablaufdatum muss in der Zukunft liegen",
+      "dateRequired": "Bitte wählen Sie ein Ablaufdatum"
+    },
+    "currentStatus": "Aktueller Status",
+    "error": {
+      "updateFailed": "Ablaufeinstellungen konnten nicht aktualisiert werden"
+    },
+    "expires": "Läuft ab:",
+    "expirationDate": "Ablaufdatum"
   }
 }
