@@ -10,13 +10,13 @@ export async function appRoutes(app: FastifyInstance) {
   const adminPreValidation = async (request: any, reply: any) => {
     try {
       const usersCount = await prisma.user.count();
-      
+
       if (usersCount <= 1) {
         return;
       }
-      
+
       await request.jwtVerify();
-      
+
       if (!request.user.isAdmin) {
         return reply.status(403).send({
           error: "Access restricted to administrators",

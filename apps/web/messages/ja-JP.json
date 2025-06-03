@@ -207,7 +207,10 @@
     "signIn": "サインイン",
     "signingIn": "サインイン中...",
     "forgotPassword": "パスワードをお忘れですか？",
-    "pageTitle": "ログイン"
+    "pageTitle": "ログイン",
+    "or": "または",
+    "continueWithSSO": "SSOで続行",
+    "processing": "認証処理中..."
   },
   "logo": {
     "labels": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "ストレージ",
         "description": "ファイルストレージの設定"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "OpenID Connectを使用したSSO認証の設定"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "description": "新規ユーザーの初回アクセス設定",
         "title": "初回ユーザーアクセス"
+      },
+      "serverUrl": {
+        "title": "サーバーURL",
+        "description": "PalmrサーバーのベースURL（例: https://palmr.example.com）"
+      },
+      "oidcEnabled": {
+        "title": "OIDC有効",
+        "description": "OpenID Connectによる認証を有効または無効にする"
+      },
+      "oidcIssuerUrl": {
+        "title": "プロバイダーURL",
+        "description": "OpenID ConnectプロバイダーのURL（例: https://auth.example.com/auth/realms/master）"
+      },
+      "oidcClientId": {
+        "title": "クライアントID",
+        "description": "プロバイダーに登録されたOIDCクライアントの識別子"
+      },
+      "oidcClientSecret": {
+        "title": "クライアントシークレット",
+        "description": "認証用のOIDCクライアントのシークレット"
+      },
+      "oidcRedirectUri": {
+        "title": "リダイレクトURI",
+        "description": "認証後にユーザーがリダイレクトされるURI。ベースURLのみを入力してください（例: https://mysite.com）。パス /api/auth/oidc/callback は自動的に追加されます。"
+      },
+      "oidcScope": {
+        "title": "スコープ",
+        "description": "要求するOIDCスコープ（例: openid profile email）"
+      },
+      "oidcAutoRegister": {
+        "title": "自動登録",
+        "description": "初回ログイン時に存在しないユーザーを自動的に登録"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "管理者メールドメイン",
+        "description": "自動的に管理者権限が付与されるメールドメイン"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "設定",
     "breadcrumb": "設定",
-    "pageTitle": "設定"
+    "pageTitle": "設定",
+    "tooltips": {
+      "oidcScope": "スコープを入力してEnterキーを押して追加",
+      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加"
+    },
+    "redirectUri": {
+      "placeholder": "https://mysite.com",
+      "previewLabel": "保存される完全なURL:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     },
     "expires": "期限:",
     "expirationDate": "有効期限"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "アカウントが無効です。管理者にお問い合わせください。",
+      "registration_disabled": "SSOによる登録が無効になっています。",
+      "token_expired": "トークンの有効期限が切れました。もう一度お試しください。",
+      "config_error": "設定エラー。サポートにお問い合わせください。",
+      "auth_failed": "認証に失敗しました。もう一度お試しください。"
+    }
   }
 }

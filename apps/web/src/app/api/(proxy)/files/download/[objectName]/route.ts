@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { objectName: string } }) {
-  // Await params before destructuring
   const { objectName } = await params;
   const cookieHeader = req.headers.get("cookie");
 

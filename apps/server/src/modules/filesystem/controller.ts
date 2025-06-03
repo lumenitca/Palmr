@@ -98,8 +98,8 @@ export class FilesystemController {
     } catch (error) {
       try {
         await fs.promises.unlink(tempPath);
-      } catch {
-        // Ignore cleanup errors
+      } catch (error) {
+        console.error("Error deleting temp file:", error);
       }
       throw error;
     }

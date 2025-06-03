@@ -57,7 +57,6 @@ export function GenerateShareLinkModal({
       onSuccess();
       toast.success(t("generateShareLink.success"));
     } catch (error) {
-      console.error(error);
       toast.error(t("generateShareLink.error"));
     } finally {
       setIsLoading(false);

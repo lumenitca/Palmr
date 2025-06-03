@@ -39,7 +39,6 @@ export function ShareExpirationModal({ shareId, share, onClose, onSuccess }: Sha
       setHasExpiration(hasCurrentExpiration);
 
       if (hasCurrentExpiration) {
-        // Converter para formato datetime-local
         const date = new Date(share.expiration);
         setExpirationDate(date.toISOString().slice(0, 16));
       } else {
@@ -51,7 +50,6 @@ export function ShareExpirationModal({ shareId, share, onClose, onSuccess }: Sha
   const handleSave = async () => {
     if (!shareId) return;
 
-    // Validação
     if (hasExpiration) {
       if (!expirationDate.trim()) {
         toast.error(t("shareExpiration.validation.dateRequired"));
@@ -99,14 +97,12 @@ export function ShareExpirationModal({ shareId, share, onClose, onSuccess }: Sha
     if (!checked) {
       setExpirationDate("");
     } else if (!expirationDate) {
-      // Definir data padrão para 7 dias no futuro
       const defaultDate = new Date();
       defaultDate.setDate(defaultDate.getDate() + 7);
       setExpirationDate(defaultDate.toISOString().slice(0, 16));
     }
   };
 
-  // Determina o texto do botão
   const getButtonText = () => {
     if (isLoading) {
       return (
@@ -128,7 +124,6 @@ export function ShareExpirationModal({ shareId, share, onClose, onSuccess }: Sha
         </DialogHeader>
 
         <div className="py-4 space-y-6">
-          {/* Status Atual */}
           <div className="space-y-3">
             <h3 className="text-sm font-medium text-foreground">{t("shareExpiration.currentStatus")}</h3>
             <div className="flex gap-2">
@@ -146,7 +141,6 @@ export function ShareExpirationModal({ shareId, share, onClose, onSuccess }: Sha
             </div>
           </div>
 
-          {/* Configuração de Expiração */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Switch id="expiration-enabled" checked={hasExpiration} onCheckedChange={handleExpirationToggle} />

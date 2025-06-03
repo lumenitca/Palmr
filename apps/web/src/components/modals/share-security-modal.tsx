@@ -39,7 +39,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
     if (share?.security) {
       const hasCurrentPassword = share.security.hasPassword || false;
       setHasPassword(hasCurrentPassword);
-      // Campo sempre começa vazio
       setPassword("");
     }
   }, [share]);
@@ -47,7 +46,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
   const handleSave = async () => {
     if (!shareId) return;
 
-    // Validação de senha
     if (hasPassword) {
       if (!password.trim()) {
         toast.error(t("shareSecurity.validation.passwordRequired"));
@@ -97,7 +95,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
     setShowPassword(!showPassword);
   };
 
-  // Determina o texto do botão
   const getButtonText = () => {
     if (isLoading) {
       return (
@@ -119,7 +116,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
         </DialogHeader>
 
         <div className="py-4 space-y-6">
-          {/* Status Atual */}
           <div className="space-y-3">
             <h3 className="text-sm font-medium text-foreground">{t("shareSecurity.currentStatus")}</h3>
             <div className="flex gap-2">
@@ -143,7 +139,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
             </div>
           </div>
 
-          {/* Configuração de Senha */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Switch id="password-protection" checked={hasPassword} onCheckedChange={handlePasswordToggle} />
@@ -155,7 +150,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
 
             {hasPassword && (
               <div className="space-y-4 pl-6 border-l-2 border-muted">
-                {/* Mensagem explicativa quando já tem senha */}
                 {share?.security?.hasPassword && (
                   <div className="bg-muted/50 border border-border rounded-lg p-3">
                     <p className="text-sm text-muted-foreground">{t("shareSecurity.existingPasswordMessage")}</p>
@@ -201,7 +195,6 @@ export function ShareSecurityModal({ shareId, share, onClose, onSuccess }: Share
             )}
           </div>
 
-          {/* Informações Adicionais */}
           <div className="bg-muted/30 p-3 rounded-lg">
             <div className="text-sm space-y-1">
               <p className="font-medium text-muted-foreground">{t("shareSecurity.info.title")}</p>

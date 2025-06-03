@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import { getAllConfigs, listUserShares, notifyRecipients } from "@/http/endpoints";
+import { useSecureConfigValue } from "@/hooks/use-secure-configs";
+import { listUserShares, notifyRecipients } from "@/http/endpoints";
 import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
 
 export function useShares() {
@@ -14,7 +15,8 @@ export function useShares() {
   const [searchQuery, setSearchQuery] = useState("");
   const [shareToViewDetails, setShareToViewDetails] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToGenerateLink, setShareToGenerateLink] = useState<ListUserShares200SharesItem | null>(null);
-  const [smtpEnabled, setSmtpEnabled] = useState("false");
+
+  const { value: smtpEnabled } = useSecureConfigValue("smtpEnabled");
 
   const loadShares = async () => {
     try {
@@ -27,26 +29,13 @@ export function useShares() {
       setShares(sortedShares);
     } catch (error) {
       toast.error(t("shares.errors.loadFailed"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const loadConfigs = async () => {
-    try {
-      const response = await getAllConfigs();
-      const smtpConfig = response.data.configs.find((config: any) => config.key === "smtpEnabled");
-
-      setSmtpEnabled(smtpConfig?.value || "false");
-    } catch (error) {
-      console.error(t("shares.errors.smtpConfigFailed"), error);
-    }
-  };
-
   useEffect(() => {
     loadShares();
-    loadConfigs();
   }, []);
 
   const filteredShares = shares.filter(
@@ -71,7 +60,6 @@ export function useShares() {
       await notifyRecipients(share.id, { shareLink: link });
       toast.success(t("shares.messages.recipientsNotified"));
     } catch (error) {
-      console.error(error);
       toast.error(t("shares.errors.notifyFailed"));
     }
   };
@@ -83,7 +71,7 @@ export function useShares() {
     shareToViewDetails,
     shareToGenerateLink,
     filteredShares,
-    smtpEnabled,
+    smtpEnabled: smtpEnabled || "false",
     setSearchQuery,
     setShareToViewDetails,
     setShareToGenerateLink,

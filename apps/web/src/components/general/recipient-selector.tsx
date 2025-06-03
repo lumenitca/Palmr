@@ -113,7 +113,6 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
       toast.success(t("recipientSelector.bulkNotifySuccess", { count: emailsToNotify.length }));
       setSelectedForAction(new Set());
     } catch (error) {
-      console.error(error);
       toast.dismiss(loadingToast);
       toast.error(t("recipientSelector.bulkNotifyError"));
     }
@@ -130,7 +129,6 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
       toast.dismiss(loadingToast);
       toast.success(t("recipientSelector.notifySuccess"));
     } catch (error) {
-      console.error(error);
       toast.dismiss(loadingToast);
       toast.error(t("recipientSelector.notifyError"));
     }
@@ -303,7 +301,6 @@ export function RecipientSelector({ shareId, selectedRecipients, shareAlias, onS
                                 toast.dismiss(loadingToast);
                                 toast.success(t("recipientSelector.singleNotifySuccess", { email }));
                               } catch (error) {
-                                console.error(error);
                                 toast.dismiss(loadingToast);
                                 toast.error(t("recipientSelector.singleNotifyError"));
                               }

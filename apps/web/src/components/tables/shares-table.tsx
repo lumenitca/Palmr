@@ -87,17 +87,14 @@ export function SharesTable({
     }
   }, [editingField]);
 
-  // Clear pending changes when shares are updated
   useEffect(() => {
     setPendingChanges({});
   }, [shares]);
 
-  // Clear selected shares when shares array changes
   useEffect(() => {
     setSelectedShares(new Set());
   }, [shares]);
 
-  // Register clearSelection callback with parent
   useEffect(() => {
     const clearSelection = () => setSelectedShares(new Set());
     setClearSelectionCallback?.(clearSelection);
@@ -113,7 +110,6 @@ export function SharesTable({
 
     const { shareId, field } = editingField;
 
-    // Update local state optimistically
     setPendingChanges((prev) => ({
       ...prev,
       [shareId]: { ...prev[shareId], [field]: editValue },

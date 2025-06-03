@@ -54,7 +54,6 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
       });
     } catch (error) {
       toast.error(t("createShare.error"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }

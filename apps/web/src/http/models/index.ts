@@ -147,6 +147,7 @@ export * from "./notifyRecipients400";
 export * from "./notifyRecipients401";
 export * from "./notifyRecipients404";
 export * from "./notifyRecipientsBody";
+export * from "./oidcConfig200";
 export * from "./registerFile201";
 export * from "./registerFile201File";
 export * from "./registerFile400";

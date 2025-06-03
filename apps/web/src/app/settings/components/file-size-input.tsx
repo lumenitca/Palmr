@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 
 export interface FileSizeInputProps {
-  value: string; // valor em bytes
+  value: string;
   onChange: (value: string) => void;
   disabled?: boolean;
   error?: any;
@@ -20,12 +20,10 @@ const UNIT_MULTIPLIERS: Record<Unit, number> = {
 function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
   const numBytes = parseInt(bytes, 10);
 
-  // Se for 0 ou inválido, retorna 0 GB
   if (!numBytes || numBytes <= 0) {
     return { value: "0", unit: "GB" };
   }
 
-  // Verifica TB (com tolerância para valores próximos)
   if (numBytes >= UNIT_MULTIPLIERS.TB) {
     const tbValue = numBytes / UNIT_MULTIPLIERS.TB;
     if (tbValue === Math.floor(tbValue)) {
@@ -36,7 +34,6 @@ function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
     }
   }
 
-  // Verifica GB (com tolerância para valores próximos)
   if (numBytes >= UNIT_MULTIPLIERS.GB) {
     const gbValue = numBytes / UNIT_MULTIPLIERS.GB;
     if (gbValue === Math.floor(gbValue)) {
@@ -47,7 +44,6 @@ function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
     }
   }
 
-  // Verifica MB
   if (numBytes >= UNIT_MULTIPLIERS.MB) {
     const mbValue = numBytes / UNIT_MULTIPLIERS.MB;
     return {
@@ -56,7 +52,6 @@ function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
     };
   }
 
-  // Para valores menores que 1MB, converte para MB com decimais
   const mbValue = numBytes / UNIT_MULTIPLIERS.MB;
   return {
     value: mbValue.toFixed(3),
@@ -77,7 +72,6 @@ export function FileSizeInput({ value, onChange, disabled = false, error }: File
   const [displayValue, setDisplayValue] = useState("");
   const [selectedUnit, setSelectedUnit] = useState<Unit>("GB");
 
-  // Inicializar os valores quando o componente monta ou o value muda
   useEffect(() => {
     if (value && value !== "0") {
       const { value: humanValue, unit } = bytesToHumanReadable(value);
@@ -90,10 +84,8 @@ export function FileSizeInput({ value, onChange, disabled = false, error }: File
   }, [value]);
 
   const handleValueChange = (newValue: string) => {
-    // Só permitir números e ponto decimal
     const sanitizedValue = newValue.replace(/[^0-9.]/g, "");
 
-    // Prevenir múltiplos pontos decimais
     const parts = sanitizedValue.split(".");
     const finalValue = parts.length > 2 ? parts[0] + "." + parts.slice(1).join("") : sanitizedValue;
 

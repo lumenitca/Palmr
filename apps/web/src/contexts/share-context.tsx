@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getAllConfigs } from "@/http/endpoints";
+import { useSecureConfigValue } from "@/hooks/use-secure-configs";
 
 interface ShareContextType {
   smtpEnabled: string;
@@ -16,25 +16,17 @@ const ShareContext = createContext<ShareContextType>({
 
 export function ShareProvider({ children }: { children: React.ReactNode }) {
   const [smtpEnabled, setSmtpEnabled] = useState("false");
-
-  const loadConfigs = async () => {
-    try {
-      const response = await getAllConfigs();
-      const smtpConfig = response.data.configs.find((config: any) => config.key === "smtpEnabled");
-
-      setSmtpEnabled(smtpConfig?.value || "false");
-    } catch (error) {
-      console.error("Failed to load SMTP config:", error);
-    }
-  };
-
-  const refreshShareContext = async () => {
-    await loadConfigs();
-  };
+  const { value: smtpValue, reload: reloadSmtpConfig } = useSecureConfigValue("smtpEnabled");
 
   useEffect(() => {
-    loadConfigs();
-  }, []);
+    if (smtpValue !== null) {
+      setSmtpEnabled(smtpValue);
+    }
+  }, [smtpValue]);
+
+  const refreshShareContext = async () => {
+    await reloadSmtpConfig();
+  };
 
   return <ShareContext.Provider value={{ smtpEnabled, refreshShareContext }}>{children}</ShareContext.Provider>;
 }

@@ -207,7 +207,10 @@
     "signIn": "登录",
     "signingIn": "正在登录...",
     "forgotPassword": "忘记密码？",
-    "pageTitle": "登录"
+    "pageTitle": "登录",
+    "or": "或",
+    "continueWithSSO": "使用SSO继续",
+    "processing": "正在处理认证..."
   },
   "logo": {
     "labels": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "存储",
         "description": "文件存储配置"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "通过OpenID Connect配置SSO认证"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "description": "新用户首次访问的设置",
         "title": "首次用户访问"
+      },
+      "serverUrl": {
+        "title": "URL do Servidor",
+        "description": "URL base do servidor Palmr (ex: https://palmr.exemplo.com)"
+      },
+      "oidcEnabled": {
+        "title": "启用OIDC",
+        "description": "启用或禁用OpenID Connect认证"
+      },
+      "oidcIssuerUrl": {
+        "title": "提供商URL",
+        "description": "OpenID Connect提供商URL（例如：https://auth.example.com/auth/realms/master）"
+      },
+      "oidcClientId": {
+        "title": "客户端ID",
+        "description": "在提供商处注册的OIDC客户端标识符"
+      },
+      "oidcClientSecret": {
+        "title": "客户端密钥",
+        "description": "用于认证的OIDC客户端密钥"
+      },
+      "oidcRedirectUri": {
+        "title": "重定向URI",
+        "description": "认证后用户将被重定向到的URI。仅输入基本URL（例如：https://mysite.com）。路径/api/auth/oidc/callback将自动添加。"
+      },
+      "oidcScope": {
+        "title": "范围",
+        "description": "请求的OIDC范围（例如：openid profile email）"
+      },
+      "oidcAutoRegister": {
+        "title": "自动注册",
+        "description": "首次登录时自动注册不存在的用户"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "管理员电子邮件域名",
+        "description": "自动获得管理员权限的电子邮件域名"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "设置",
     "breadcrumb": "设置",
-    "pageTitle": "设置"
+    "pageTitle": "设置",
+    "tooltips": {
+      "oidcScope": "Digite um escopo e pressione Enter para adicionar",
+      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar"
+    },
+    "redirectUri": {
+      "placeholder": "https://meusite.com",
+      "previewLabel": "URL completa que será salva:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     },
     "expires": "过期:",
     "expirationDate": "过期日期"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Conta inativa. Entre em contato com o administrador.",
+      "registration_disabled": "Registro via SSO está desabilitado.",
+      "token_expired": "Token expirado. Tente novamente.",
+      "config_error": "Erro de configuração. Contate o suporte.",
+      "auth_failed": "Falha na autenticação. Tente novamente."
+    }
   }
 }

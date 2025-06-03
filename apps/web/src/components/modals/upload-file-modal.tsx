@@ -98,7 +98,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
 
   useEffect(() => {
     return () => {
-      // Cleanup preview URLs
       fileUploads.forEach((upload) => {
         if (upload.previewUrl) {
           URL.revokeObjectURL(upload.previewUrl);
@@ -137,7 +136,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
 
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleFilesSelect(event.target.files);
-    // Clear input value to allow selecting the same files again
     if (event.target) {
       event.target.value = "";
     }
@@ -199,10 +197,8 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       upload.abortController.abort();
     }
 
-    // If file was uploaded to server, try to delete it
     if (upload.objectName && upload.status === UploadStatus.UPLOADING) {
       try {
-        // Here you would call an API to delete the uploaded file from server
         // await deleteUploadedFile(upload.objectName);
       } catch (error) {
         console.error("Failed to delete uploaded file:", error);
@@ -222,7 +218,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       const extension = fileName.split(".").pop() || "";
       const safeObjectName = generateSafeFileName(fileName);
 
-      // Check file before upload
       try {
         await checkFile({
           name: fileName,
@@ -249,12 +244,10 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         return;
       }
 
-      // Set uploading status
       setFileUploads((prev) =>
         prev.map((u) => (u.id === id ? { ...u, status: UploadStatus.UPLOADING, progress: 0 } : u))
       );
 
-      // Get presigned URL
       const presignedResponse = await getPresignedUrl({
         filename: safeObjectName.replace(`.${extension}`, ""),
         extension: extension,
@@ -262,14 +255,11 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
 
       const { url, objectName } = presignedResponse.data;
 
-      // Update with object name
       setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, objectName } : u)));
 
-      // Create abort controller for this upload
       const abortController = new AbortController();
       setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
-      // Upload file
       await axios.put(url, file, {
         headers: {
           "Content-Type": file.type,
@@ -281,7 +271,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         },
       });
 
-      // Register file
       await registerFile({
         name: fileName,
         objectName: objectName,
@@ -289,7 +278,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         extension: extension,
       });
 
-      // Set success status
       setFileUploads((prev) =>
         prev.map((u) =>
           u.id === id ? { ...u, status: UploadStatus.SUCCESS, progress: 100, abortController: undefined } : u
@@ -297,7 +285,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       );
     } catch (error: any) {
       if (error.name === "AbortError" || error.code === "ERR_CANCELED") {
-        // Upload was cancelled, status already set by cancelUpload
         return;
       }
 
@@ -320,11 +307,9 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
   const startUploads = async () => {
     const pendingUploads = fileUploads.filter((u) => u.status === UploadStatus.PENDING);
 
-    // Upload all files concurrently
     const uploadPromises = pendingUploads.map((upload) => uploadFile(upload));
     await Promise.all(uploadPromises);
 
-    // Check if all uploads are complete after a short delay to ensure state updates
     setTimeout(() => {
       setFileUploads((currentUploads) => {
         const allComplete = currentUploads.every(
@@ -342,7 +327,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                 ? t("uploadFile.partialSuccess", { success: successCount, error: errorCount })
                 : t("uploadFile.allSuccess", { count: successCount })
             );
-            // Call onSuccess to refresh the file list
             onSuccess?.();
           }
         }
@@ -363,14 +347,12 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
   };
 
   const handleConfirmClose = () => {
-    // Cancel all ongoing uploads
     fileUploads.forEach((upload) => {
       if (upload.status === UploadStatus.UPLOADING && upload.abortController) {
         upload.abortController.abort();
       }
     });
 
-    // Cleanup preview URLs
     fileUploads.forEach((upload) => {
       if (upload.previewUrl) {
         URL.revokeObjectURL(upload.previewUrl);
@@ -410,7 +392,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
           <div className="flex-1 overflow-hidden flex flex-col gap-4">
             <input ref={fileInputRef} className="hidden" type="file" multiple onChange={handleFileInputChange} />
 
-            {/* Drop Zone */}
             <div
               className={`border-2 border-dashed rounded-lg p-6 cursor-pointer transition-colors ${
                 isDragOver ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"
@@ -427,7 +408,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
               </div>
             </div>
 
-            {/* Files List */}
             {fileUploads.length > 0 && (
               <div className="flex-1 overflow-y-auto space-y-2 max-h-96">
                 {fileUploads.map((upload) => (

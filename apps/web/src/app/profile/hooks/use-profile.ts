@@ -66,7 +66,6 @@ export function useProfile() {
       });
     } catch (error) {
       toast.error(t("profile.errors.loadFailed"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -90,7 +89,6 @@ export function useProfile() {
       await loadUserData();
     } catch (error) {
       toast.error(t("profile.errors.updateFailed"));
-      console.error(error);
     }
   };
 
@@ -110,7 +108,6 @@ export function useProfile() {
       passwordForm.reset();
     } catch (error) {
       toast.error(t("profile.errors.passwordFailed"));
-      console.error(error);
     }
   };
 
@@ -126,7 +123,6 @@ export function useProfile() {
       toast.success(t("profile.messages.imageSuccess"));
     } catch (error) {
       toast.error(t("profile.errors.imageFailed"));
-      console.error(error);
     }
   };
 
@@ -142,7 +138,6 @@ export function useProfile() {
       toast.success(t("profile.messages.imageRemoved"));
     } catch (error) {
       toast.error(t("profile.errors.imageRemoveFailed"));
-      console.error(error);
     }
   };
 

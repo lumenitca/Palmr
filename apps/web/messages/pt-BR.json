@@ -229,7 +229,10 @@
     "signIn": "Entrar",
     "signingIn": "Entrando...",
     "forgotPassword": "Esqueceu a senha?",
-    "pageTitle": "Entrar"
+    "pageTitle": "Entrar",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
@@ -424,12 +427,24 @@
       "storage": {
         "title": "Armazenamento",
         "description": "Configuração de armazenamento de arquivos"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configuração de autenticação SSO via OpenID Connect"
       }
+    },
+    "tooltips": {
+      "oidcScope": "Digite um escopo e pressione Enter para adicionar",
+      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar"
+    },
+    "redirectUri": {
+      "placeholder": "https://meusite.com",
+      "previewLabel": "URL completa que será salva:"
     },
     "fields": {
       "noDescription": "Sem descrição disponível",
       "firstUserAccess": {
-        "title": "Primeiro acesso do usuário",
+        "title": "Primeiro Acesso do Usuário",
         "description": "Configurações para o primeiro acesso de novos usuários"
       },
       "appLogo": {
@@ -499,6 +514,42 @@
       "maxTotalStoragePerUser": {
         "title": "Armazenamento Máximo por Usuário",
         "description": "Limite total de armazenamento por usuário"
+      },
+      "serverUrl": {
+        "title": "URL do Servidor",
+        "description": "URL base do servidor Palmr (ex: https://palmr.exemplo.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Habilitado",
+        "description": "Ativa ou desativa a autenticação via OpenID Connect"
+      },
+      "oidcIssuerUrl": {
+        "title": "URL do Provedor",
+        "description": "URL do provedor OpenID Connect (ex: https://auth.exemplo.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "Identificador do cliente OIDC registrado no provedor"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "Segredo do cliente OIDC para autenticação"
+      },
+      "oidcRedirectUri": {
+        "title": "URI de Redirecionamento",
+        "description": "URI para onde o usuário será redirecionado após autenticação. Digite apenas a URL base (ex: https://meusite.com). O path /api/auth/oidc/callback será adicionado automaticamente."
+      },
+      "oidcScope": {
+        "title": "Escopos",
+        "description": "Escopos OIDC solicitados (ex: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Registro Automático",
+        "description": "Registra automaticamente usuários que não existem no primeiro login"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Domínios de E-mail Admin",
+        "description": "Domínios de e-mail que recebem privilégios de administrador automaticamente"
       }
     },
     "buttons": {
@@ -891,5 +942,14 @@
     },
     "expires": "Expira:",
     "expirationDate": "Data de Expiração"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Conta inativa. Entre em contato com o administrador.",
+      "registration_disabled": "Registro via SSO está desabilitado.",
+      "token_expired": "Token expirado. Tente novamente.",
+      "config_error": "Erro de configuração. Contate o suporte.",
+      "auth_failed": "Falha na autenticação. Tente novamente."
+    }
   }
 }

@@ -16,7 +16,7 @@ export class AppService {
       appName,
       appDescription,
       appLogo,
-      firstUserAccess :  firstUserAccess === "true",
+      firstUserAccess: firstUserAccess === "true",
     };
   }
 

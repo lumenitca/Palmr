@@ -42,7 +42,6 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
       setShareFiles(allFiles.filter((file) => selectedFiles.includes(file.id)));
       setAvailableFiles(allFiles.filter((file) => !selectedFiles.includes(file.id)));
     } catch (error) {
-      console.error(error);
       toast.error("Failed to load files");
     }
   };
@@ -80,7 +79,6 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
 
       await onSave(shareFiles.map((f) => f.id));
     } catch (error) {
-      console.error(error);
       toast.error("Failed to update files");
     } finally {
       setIsLoading(false);
@@ -91,7 +89,6 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
     if (onEditFile) {
       await onEditFile(fileId, newName, description);
       setFileToEdit(null);
-      // Recarregar arquivos para mostrar as mudanças
       await loadFiles();
     }
   };

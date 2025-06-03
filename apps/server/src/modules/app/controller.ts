@@ -1,10 +1,10 @@
 import { LogoService } from "./logo.service";
 import { AppService } from "./service";
 import { FastifyReply, FastifyRequest } from "fastify";
-import path from 'path';
-import fs from 'fs';
+import fs from "fs";
+import path from "path";
 
-const uploadsDir = path.join(process.cwd(), 'uploads/logo');
+const uploadsDir = path.join(process.cwd(), "uploads/logo");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -63,7 +63,7 @@ export class AppController {
         return reply.status(400).send({ error: "No file uploaded" });
       }
 
-      if (!file.mimetype.startsWith('image/')) {
+      if (!file.mimetype.startsWith("image/")) {
         return reply.status(400).send({ error: "Only images are allowed" });
       }
 

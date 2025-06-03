@@ -100,7 +100,6 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
       document.body.removeChild(link);
       toast.success(t("files.downloadStart"));
     } catch (error) {
-      console.error(error);
       toast.error(t("files.downloadError"));
     }
   };
@@ -142,7 +141,6 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
 
   const handleShareBulkSuccess = () => {
     setFilesToShare(null);
-    // Clear selection after successful share
     if (clearSelectionCallback) {
       clearSelectionCallback();
     }
@@ -157,11 +155,9 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
     try {
       toast.promise(
         (async () => {
-          // Dynamically import JSZip
           const JSZip = (await import("jszip")).default;
           const zip = new JSZip();
 
-          // Download all files and add to zip
           const downloadPromises = files.map(async (file) => {
             try {
               const encodedObjectName = encodeURIComponent(file.objectName);
@@ -183,10 +179,8 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
 
           await Promise.all(downloadPromises);
 
-          // Generate ZIP blob
           const zipBlob = await zip.generateAsync({ type: "blob" });
 
-          // Download ZIP file
           const url = URL.createObjectURL(zipBlob);
           const a = document.createElement("a");
           a.href = url;
@@ -196,7 +190,6 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
 
-          // Clear selection after successful download
           if (clearSelectionCallback) {
             clearSelectionCallback();
           }
@@ -223,7 +216,6 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
       setFilesToDelete(null);
       onRefresh();
 
-      // Clear selection after successful deletion
       if (clearSelectionCallback) {
         clearSelectionCallback();
       }

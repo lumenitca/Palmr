@@ -51,7 +51,6 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   public getFilePath(objectName: string): string {
-    // Sanitize the object name to prevent directory traversal
     const sanitizedName = objectName.replace(/[^a-zA-Z0-9\-_./]/g, "_");
     return path.join(this.uploadsDir, sanitizedName);
   }

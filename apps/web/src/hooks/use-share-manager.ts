@@ -74,7 +74,6 @@ export function useShareManager(onSuccess: () => void) {
       setShareToDelete(null);
     } catch (error) {
       toast.error(t("shareManager.deleteError"));
-      console.error(error);
     }
   };
 
@@ -94,14 +93,12 @@ export function useShareManager(onSuccess: () => void) {
       setSharesToDelete(null);
       onSuccess();
 
-      // Clear selection after successful deletion
       if (clearSelectionCallback) {
         clearSelectionCallback();
       }
     } catch (error) {
       toast.dismiss(loadingToast);
       toast.error(t("shareManager.bulkDeleteError"));
-      console.error(error);
     }
   };
 
@@ -113,7 +110,6 @@ export function useShareManager(onSuccess: () => void) {
       setShareToEdit(null);
     } catch (error) {
       toast.error(t("shareManager.updateError"));
-      console.error(error);
     }
   };
 
@@ -124,7 +120,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.success(t("shareManager.updateSuccess"));
     } catch (error) {
       toast.error(t("shareManager.updateError"));
-      console.error(error);
     }
   };
 
@@ -135,7 +130,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.success(t("shareManager.updateSuccess"));
     } catch (error) {
       toast.error(t("shareManager.updateError"));
-      console.error(error);
     }
   };
 
@@ -145,7 +139,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.success(t("shareManager.securityUpdateSuccess"));
     } catch (error) {
       toast.error(t("shareManager.securityUpdateError"));
-      console.error(error);
     }
   };
 
@@ -155,7 +148,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.success(t("shareManager.expirationUpdateSuccess"));
     } catch (error) {
       toast.error(t("shareManager.expirationUpdateError"));
-      console.error(error);
     }
   };
 
@@ -167,7 +159,6 @@ export function useShareManager(onSuccess: () => void) {
       setShareToManageFiles(null);
     } catch (error) {
       toast.error(t("shareManager.filesUpdateError"));
-      console.error(error);
     }
   };
 
@@ -179,7 +170,6 @@ export function useShareManager(onSuccess: () => void) {
       setShareToManageRecipients(null);
     } catch (error) {
       toast.error(t("shareManager.recipientsUpdateError"));
-      console.error(error);
     }
   };
 
@@ -189,7 +179,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.success(t("shareManager.linkGenerateSuccess"));
       onSuccess();
     } catch (error) {
-      console.error(error);
       toast.error(t("shareManager.linkGenerateError"));
       throw error;
     }
@@ -204,7 +193,6 @@ export function useShareManager(onSuccess: () => void) {
       toast.dismiss(loadingToast);
       toast.success(t("shareManager.notifySuccess"));
     } catch (error) {
-      console.error(error);
       toast.dismiss(loadingToast);
       toast.error(t("shareManager.notifyError"));
     }

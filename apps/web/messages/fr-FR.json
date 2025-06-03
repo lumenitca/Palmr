@@ -207,7 +207,10 @@
     "signIn": "Se connecter",
     "signingIn": "Connexion en cours...",
     "forgotPassword": "Mot de passe oublié ?",
-    "pageTitle": "Connexion"
+    "pageTitle": "Connexion",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
@@ -405,6 +408,10 @@
       "storage": {
         "title": "Stockage",
         "description": "Configuration du stockage des fichiers"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configuration de l'authentification SSO via OpenID Connect"
       }
     },
     "fields": {
@@ -480,6 +487,42 @@
       "firstUserAccess": {
         "description": "Paramètres pour le premier accès des nouveaux utilisateurs",
         "title": "Premier Accès Utilisateur"
+      },
+      "serverUrl": {
+        "title": "URL du Serveur",
+        "description": "URL de base du serveur Palmr (ex: https://palmr.exemple.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Activé",
+        "description": "Activer ou désactiver l'authentification via OpenID Connect"
+      },
+      "oidcIssuerUrl": {
+        "title": "URL du Fournisseur",
+        "description": "URL du fournisseur OpenID Connect (ex: https://auth.exemple.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "ID Client",
+        "description": "Identifiant du client OIDC enregistré auprès du fournisseur"
+      },
+      "oidcClientSecret": {
+        "title": "Secret Client",
+        "description": "Secret du client OIDC pour l'authentification"
+      },
+      "oidcRedirectUri": {
+        "title": "URI de Redirection",
+        "description": "URI vers laquelle les utilisateurs seront redirigés après l'authentification. Entrez uniquement l'URL de base (ex: https://monsite.com). Le chemin /api/auth/oidc/callback sera ajouté automatiquement."
+      },
+      "oidcScope": {
+        "title": "Portées",
+        "description": "Portées OIDC demandées (ex: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Inscription Automatique",
+        "description": "Inscrit automatiquement les utilisateurs qui n'existent pas lors de la première connexion"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Domaines Email Admin",
+        "description": "Domaines email qui reçoivent automatiquement les privilèges d'administrateur"
       }
     },
     "buttons": {
@@ -492,6 +535,14 @@
     "messages": {
       "noChanges": "Aucun changement à enregistrer",
       "updateSuccess": "Paramètres {group} mis à jour avec succès"
+    },
+    "tooltips": {
+      "oidcScope": "Entrez une portée et appuyez sur Entrée pour l'ajouter",
+      "oidcAdminEmailDomains": "Entrez un domaine et appuyez sur Entrée pour l'ajouter"
+    },
+    "redirectUri": {
+      "placeholder": "https://monsite.com",
+      "previewLabel": "URL complète qui sera enregistrée :"
     }
   },
   "share": {
@@ -891,5 +942,14 @@
     },
     "expires": "Expire:",
     "expirationDate": "Date d'Expiration"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Compte inactif. Veuillez contacter l'administrateur.",
+      "registration_disabled": "L'inscription via SSO est désactivée.",
+      "token_expired": "Jeton expiré. Veuillez réessayer.",
+      "config_error": "Erreur de configuration. Veuillez contacter le support.",
+      "auth_failed": "Échec de l'authentification. Veuillez réessayer."
+    }
   }
 }

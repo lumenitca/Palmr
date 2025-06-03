@@ -207,7 +207,10 @@
     "signIn": "Oturum Aç",
     "signingIn": "Oturum açılıyor...",
     "forgotPassword": "Şifrenizi mi unuttunuz?",
-    "pageTitle": "Giriş"
+    "pageTitle": "Giriş",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "Depolama",
         "description": "Dosya depolama yapılandırması"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "OpenID Connect üzerinden SSO kimlik doğrulama yapılandırması"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "title": "İlk Kullanıcı Erişimi",
         "description": "İlk kullanıcının erişim izni"
+      },
+      "serverUrl": {
+        "title": "Sunucu URL'si",
+        "description": "Palmr sunucu temel URL'si (örn: https://palmr.ornek.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Etkin",
+        "description": "OpenID Connect üzerinden kimlik doğrulamayı etkinleştir veya devre dışı bırak"
+      },
+      "oidcIssuerUrl": {
+        "title": "Sağlayıcı URL'si",
+        "description": "OpenID Connect sağlayıcı URL'si (örn: https://auth.ornek.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "Sağlayıcıda kayıtlı OIDC istemci tanımlayıcısı"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "Kimlik doğrulama için OIDC istemci sırrı"
+      },
+      "oidcRedirectUri": {
+        "title": "Yönlendirme URI'si",
+        "description": "Kimlik doğrulama sonrası kullanıcının yönlendirileceği URI. Sadece temel URL'yi girin (örn: https://sitem.com). /api/auth/oidc/callback yolu otomatik olarak eklenecektir."
+      },
+      "oidcScope": {
+        "title": "Kapsamlar",
+        "description": "İstenen OIDC kapsamları (örn: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Otomatik Kayıt",
+        "description": "İlk girişte olmayan kullanıcıları otomatik olarak kaydet"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Yönetici E-posta Alanları",
+        "description": "Otomatik olarak yönetici ayrıcalıkları alan e-posta alanları"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "Ayarlar",
     "breadcrumb": "Ayarlar",
-    "pageTitle": "Ayarlar"
+    "pageTitle": "Ayarlar",
+    "tooltips": {
+      "oidcScope": "Bir kapsam girin ve eklemek için Enter'a basın",
+      "oidcAdminEmailDomains": "Bir alan girin ve eklemek için Enter'a basın"
+    },
+    "redirectUri": {
+      "placeholder": "https://sitem.com",
+      "previewLabel": "Kaydedilecek tam URL:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     },
     "expires": "Sona erer:",
     "expirationDate": "Son Kullanma Tarihi"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Hesap devre dışı. Lütfen yönetici ile iletişime geçin.",
+      "registration_disabled": "SSO ile kayıt devre dışı.",
+      "token_expired": "Token süresi doldu. Lütfen tekrar deneyin.",
+      "config_error": "Yapılandırma hatası. Lütfen destek ile iletişime geçin.",
+      "auth_failed": "Kimlik doğrulama başarısız. Lütfen tekrar deneyin."
+    }
   }
 }

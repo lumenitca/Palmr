@@ -58,7 +58,7 @@
     "descriptionLabel": "Description",
     "descriptionPlaceholder": "Enter file description",
     "deleteFile": "Delete File",
-    "deleteConfirmation": "Are you sure you want to delete ?",
+    "deleteConfirmation": "Are you sure you want to delete this file?",
     "deleteWarning": "This action cannot be undone."
   },
   "fileManager": {
@@ -71,32 +71,32 @@
   "filePreview": {
     "title": "Preview File",
     "loading": "Loading...",
-    "notAvailable": "Preview not available for this file type.",
-    "downloadToView": "Use the download button to download the file.",
-    "loadError": "Error loading file preview.",
-    "downloadError": "Error downloading file.",
-    "audioNotSupported": "Your browser does not support the audio element.",
-    "videoNotSupported": "Your browser does not support the video element.",
-    "pdfPreviewNotAvailable": "PDF preview is not available. Try alternative view or download.",
+    "notAvailable": "Preview not available for this file type",
+    "downloadToView": "Use the download button to view this file",
+    "loadError": "Error loading file preview",
+    "downloadError": "Error downloading file",
+    "audioNotSupported": "Your browser doesn't support audio playback",
+    "videoNotSupported": "Your browser doesn't support video playback",
+    "pdfPreviewNotAvailable": "PDF preview unavailable. Try alternative view or download",
     "tryAlternativeView": "Try Alternative View",
     "loadingAlternative": "Loading alternative view...",
     "loadingAudio": "Loading audio..."
   },
   "fileSelector": {
     "availableFiles": "Available Files ({count})",
-    "shareFiles": "Share Files ({count})",
-    "shareFilesDescription": "Files currently in the share",
-    "availableFilesDescription": "Select files to add to the share",
+    "shareFiles": "Shared Files ({count})",
+    "shareFilesDescription": "Files currently in this share",
+    "availableFilesDescription": "Select files to add to this share",
     "searchPlaceholder": "Search files...",
     "searchSelectedFiles": "Search selected files...",
-    "noMatchingFiles": "No matching files",
+    "noMatchingFiles": "No matching files found",
     "noAvailableFiles": "No files available",
-    "noFilesInShare": "No files in share",
+    "noFilesInShare": "No files in this share",
     "noFilesFound": "No files found",
-    "noFilesFoundWith": "No files found with \"{query}\"",
+    "noFilesFoundWith": "No files found matching \"{query}\"",
     "addFilesFromList": "Add files from the list below",
     "tryDifferentSearch": "Try different search terms",
-    "allFilesInShare": "All files are already in the share",
+    "allFilesInShare": "All files are already in this share",
     "uploadNewFiles": "Upload new files to add them",
     "fileCount": "{count, plural, =1 {file} other {files}}",
     "filesSelected": "{count, plural, =0 {No files selected} =1 {1 file selected} other {# files selected}}",
@@ -168,7 +168,7 @@
     "submit": "Send Reset Instructions",
     "backToLogin": "Back to Login",
     "title": "Forgot Password",
-    "description": "Enter your email address and we'll send you instructions to reset your password.",
+    "description": "Enter your email address and we'll send you instructions to reset your password",
     "resetInstructions": "Reset instructions sent to your email",
     "pageTitle": "Forgot Password"
   },
@@ -187,10 +187,10 @@
     "copied": "Link copied to clipboard"
   },
   "home": {
-    "description": "The open-source alternative to WeTransfer. Share files securely, without tracking, or limitations.",
+    "description": "The open-source alternative to WeTransfer. Share files securely, without tracking or limitations.",
     "documentation": "Documentation",
     "starOnGithub": "Star on GitHub",
-    "privacyMessage": "Built with privacy in mind. Your files before upload only accessible by those with the sharing link. Forever free and open source.",
+    "privacyMessage": "Built with privacy in mind. Your files are only accessible to those with the sharing link before upload. Forever free and open source.",
     "header": {
       "fileSharing": "File sharing",
       "tagline": "made simple and free"
@@ -207,7 +207,10 @@
     "signIn": "Sign In",
     "signingIn": "Signing in...",
     "forgotPassword": "Forgot password?",
-    "pageTitle": "Login"
+    "pageTitle": "Login",
+    "or": "or",
+    "continueWithSSO": "Continue with SSO",
+    "processing": "Processing authentication..."
   },
   "logo": {
     "labels": {
@@ -231,7 +234,7 @@
     "profileMenu": "Profile Menu",
     "profile": "Profile",
     "settings": "Settings",
-    "usersManagement": "Users Management",
+    "usersManagement": "User Management",
     "logout": "Log Out"
   },
   "navigation": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "Storage",
         "description": "File storage configuration"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configure SSO authentication via OpenID Connect"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "title": "First User Access",
         "description": "Settings for first access of new users"
+      },
+      "serverUrl": {
+        "title": "Server URL",
+        "description": "Base URL of the Palmr server (e.g.: https://palmr.example.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Enabled",
+        "description": "Enable or disable OpenID Connect authentication"
+      },
+      "oidcIssuerUrl": {
+        "title": "Provider URL",
+        "description": "OpenID Connect provider URL (e.g.: https://auth.example.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "OIDC client identifier registered with the provider"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "OIDC client secret for authentication"
+      },
+      "oidcRedirectUri": {
+        "title": "Redirect URI",
+        "description": "URI where users will be redirected after authentication. Enter only the base URL (e.g.: https://mysite.com). The path /api/auth/oidc/callback will be added automatically."
+      },
+      "oidcScope": {
+        "title": "Scopes",
+        "description": "Requested OIDC scopes (e.g.: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Auto Register",
+        "description": "Automatically register users that don't exist on first login"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Admin Email Domains",
+        "description": "Email domains that automatically receive admin privileges"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "Settings",
     "breadcrumb": "Settings",
-    "pageTitle": "Settings"
+    "pageTitle": "Settings",
+    "tooltips": {
+      "oidcScope": "Enter a scope and press Enter to add",
+      "oidcAdminEmailDomains": "Enter a domain and press Enter to add"
+    },
+    "redirectUri": {
+      "placeholder": "https://mysite.com",
+      "previewLabel": "Complete URL that will be saved:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     "totalSize": "Total size",
     "creating": "Creating...",
     "create": "Create Share"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Account inactive. Please contact the administrator.",
+      "registration_disabled": "SSO registration is disabled.",
+      "token_expired": "Token expired. Please try again.",
+      "config_error": "Configuration error. Please contact support.",
+      "auth_failed": "Authentication failed. Please try again."
+    }
   }
 }

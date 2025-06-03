@@ -4,47 +4,32 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { create } from "zustand";
 
-import { getAllConfigs } from "@/http/endpoints";
-
-interface Config {
-  key: string;
-  value: string;
-}
+import { useSecureConfigValue } from "@/hooks/use-secure-configs";
 
 interface HomeStore {
   isLoading: boolean;
-  checkHomePageAccess: () => Promise<boolean>;
+  setIsLoading: (loading: boolean) => void;
 }
 
 const useHomeStore = create<HomeStore>((set) => ({
   isLoading: true,
-  checkHomePageAccess: async () => {
-    try {
-      const response = await getAllConfigs();
-      const showHomePage =
-        response.data.configs.find((config: Config) => config.key === "showHomePage")?.value === "true";
-
-      set({ isLoading: false });
-      return showHomePage;
-    } catch (error) {
-      console.error("Failed to check homepage access:", error);
-      set({ isLoading: false });
-      return false;
-    }
-  },
+  setIsLoading: (loading: boolean) => set({ isLoading: loading }),
 }));
 
 export function useHome() {
   const router = useRouter();
-  const { isLoading, checkHomePageAccess } = useHomeStore();
+  const { isLoading, setIsLoading } = useHomeStore();
+  const { value: showHomePage, isLoading: configLoading } = useSecureConfigValue("showHomePage");
 
   useEffect(() => {
-    checkHomePageAccess().then((hasAccess) => {
-      if (!hasAccess) {
+    if (!configLoading) {
+      setIsLoading(false);
+
+      if (showHomePage !== "true") {
         router.push("/login");
       }
-    });
-  }, [router, checkHomePageAccess]);
+    }
+  }, [router, showHomePage, configLoading, setIsLoading]);
 
   return {
     isLoading,

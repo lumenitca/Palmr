@@ -207,7 +207,10 @@
     "signIn": "साइन इन करें",
     "signingIn": "साइन इन हो रहा है...",
     "forgotPassword": "पासवर्ड भूल गए?",
-    "pageTitle": "लॉगिन"
+    "pageTitle": "लॉगिन",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "स्टोरेज",
         "description": "फाइल स्टोरेज कॉन्फ़िगरेशन"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "OpenID Connect के माध्यम से SSO प्रमाणीकरण कॉन्फ़िगरेशन"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "description": "नए उपयोगकर्ताओं की पहली पहुंच के लिए सेटिंग्स",
         "title": "पहली उपयोगकर्ता पहुंच"
+      },
+      "serverUrl": {
+        "title": "सर्वर URL",
+        "description": "Palmr सर्वर का आधार URL (उदाहरण: https://palmr.example.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC सक्षम",
+        "description": "OpenID Connect के माध्यम से प्रमाणीकरण सक्षम या अक्षम करें"
+      },
+      "oidcIssuerUrl": {
+        "title": "प्रदाता URL",
+        "description": "OpenID Connect प्रदाता का URL (उदाहरण: https://auth.example.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "क्लाइंट ID",
+        "description": "प्रदाता में पंजीकृत OIDC क्लाइंट का पहचानकर्ता"
+      },
+      "oidcClientSecret": {
+        "title": "क्लाइंट सीक्रेट",
+        "description": "प्रमाणीकरण के लिए OIDC क्लाइंट का सीक्रेट"
+      },
+      "oidcRedirectUri": {
+        "title": "रीडायरेक्ट URI",
+        "description": "प्रमाणीकरण के बाद उपयोगकर्ता को रीडायरेक्ट करने के लिए URI। केवल आधार URL दर्ज करें (उदाहरण: https://mysite.com)। पथ /api/auth/oidc/callback स्वचालित रूप से जोड़ा जाएगा।"
+      },
+      "oidcScope": {
+        "title": "स्कोप",
+        "description": "अनुरोधित OIDC स्कोप (उदाहरण: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "स्वचालित पंजीकरण",
+        "description": "पहले लॉगिन पर मौजूद नहीं होने वाले उपयोगकर्ताओं को स्वचालित रूप से पंजीकृत करें"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "एडमिन ईमेल डोमेन",
+        "description": "जिन ईमेल डोमेन को स्वचालित रूप से व्यवस्थापक विशेषाधिकार प्राप्त होंगे"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "सेटिंग्स",
     "breadcrumb": "सेटिंग्स",
-    "pageTitle": "सेटिंग्स"
+    "pageTitle": "सेटिंग्स",
+    "tooltips": {
+      "oidcScope": "स्कोप जोड़ने के लिए एक स्कोप दर्ज करें और Enter दबाएं",
+      "oidcAdminEmailDomains": "डोमेन जोड़ने के लिए एक डोमेन दर्ज करें और Enter दबाएं"
+    },
+    "redirectUri": {
+      "placeholder": "https://mysite.com",
+      "previewLabel": "पूर्ण URL जो सहेजा जाएगा:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     },
     "expires": "समाप्त होता है:",
     "expirationDate": "समाप्ति तिथि"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "खाता निष्क्रिय है। कृपया व्यवस्थापक से संपर्क करें।",
+      "registration_disabled": "SSO के माध्यम से पंजीकरण अक्षम है।",
+      "token_expired": "टोकन समाप्त हो गया है। कृपया पुनः प्रयास करें।",
+      "config_error": "कॉन्फ़िगरेशन त्रुटि। कृपया सहायता से संपर्क करें।",
+      "auth_failed": "प्रमाणीकरण विफल। कृपया पुनः प्रयास करें।"
+    }
   }
 }

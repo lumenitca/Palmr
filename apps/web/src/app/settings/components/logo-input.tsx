@@ -42,7 +42,6 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
       toast.success(t("logo.messages.uploadSuccess"));
     } catch (error: any) {
       toast.error(error.response?.data?.error || t("logo.errors.uploadFailed"));
-      console.error(error);
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) {
@@ -61,7 +60,6 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
       toast.success(t("logo.messages.removeSuccess"));
     } catch (error: any) {
       toast.error(error.response?.data?.error || t("logo.errors.removeFailed"));
-      console.error(error);
     } finally {
       setIsUploading(false);
     }

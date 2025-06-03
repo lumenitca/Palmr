@@ -30,7 +30,6 @@ export function useFiles() {
       setFiles(sortedFiles);
     } catch (error) {
       toast.error(t("files.loadError"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }

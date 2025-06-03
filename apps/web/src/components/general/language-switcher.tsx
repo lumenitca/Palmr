@@ -32,7 +32,7 @@ const languages = {
 };
 
 const COOKIE_LANG_KEY = "NEXT_LOCALE";
-const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year
+const COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
 
 const RTL_LANGUAGES = ["ar-SA"];
 

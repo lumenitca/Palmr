@@ -70,8 +70,6 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
 
     try {
       setIsLoading(true);
-
-      // Criar o compartilhamento
       const shareResponse = await createShare({
         name: formData.name,
         description: formData.description || undefined,
@@ -84,14 +82,12 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
       const newShareId = shareResponse.data.share.id;
       setShareId(newShareId);
 
-      // Adicionar o arquivo ao compartilhamento
       await addFiles(newShareId, { files: [file.id] });
 
       toast.success(t("createShare.success"));
       setStep("link");
     } catch (error) {
       toast.error(t("createShare.error"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -116,7 +112,6 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
       setGeneratedLink(link);
       toast.success(t("generateShareLink.success"));
     } catch (error) {
-      console.error(error);
       toast.error(t("generateShareLink.error"));
     } finally {
       setIsLoading(false);

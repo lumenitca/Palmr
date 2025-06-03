@@ -118,7 +118,6 @@ export function ShareDetailsModal({
       const response = await getShare(shareId);
       setShare(response.data.share);
     } catch (error) {
-      console.error(error);
       toast.error(t("shareDetails.loadError"));
     } finally {
       setIsLoading(false);
@@ -130,8 +129,6 @@ export function ShareDetailsModal({
     try {
       return format(new Date(dateString), "MM/dd/yyyy HH:mm");
     } catch (error) {
-      console.error(error);
-      console.error("Invalid date:", dateString);
       return t("shareDetails.invalidDate");
     }
   };

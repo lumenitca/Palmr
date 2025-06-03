@@ -81,17 +81,14 @@ export function FilesTable({
     }
   }, [editingField]);
 
-  // Clear pending changes when files are updated
   useEffect(() => {
     setPendingChanges({});
   }, [files]);
 
-  // Clear selected files when files array changes
   useEffect(() => {
     setSelectedFiles(new Set());
   }, [files]);
 
-  // Register clearSelection callback with parent
   useEffect(() => {
     const clearSelection = () => setSelectedFiles(new Set());
     setClearSelectionCallback?.(clearSelection);
@@ -110,7 +107,6 @@ export function FilesTable({
   const startEdit = (fileId: string, field: "name" | "description", currentValue: string) => {
     setEditingField({ fileId, field });
     if (field === "name") {
-      // Only edit the name part, not the extension
       const { name } = splitFileName(currentValue);
       setEditValue(name);
     } else {
@@ -128,7 +124,6 @@ export function FilesTable({
         const { extension } = splitFileName(file.name);
         const newFullName = editValue + extension;
 
-        // Update local state optimistically
         setPendingChanges((prev) => ({
           ...prev,
           [fileId]: { ...prev[fileId], name: newFullName },
@@ -137,7 +132,6 @@ export function FilesTable({
         onUpdateName(fileId, newFullName);
       }
     } else {
-      // Update local state optimistically
       setPendingChanges((prev) => ({
         ...prev,
         [fileId]: { ...prev[fileId], description: editValue },
@@ -230,8 +224,6 @@ export function FilesTable({
         }
         break;
     }
-
-    // Don't clear selection here - let the individual handlers do it after their actions complete
   };
 
   const showBulkActions = selectedFiles.size > 0 && (onBulkDelete || onBulkShare || onBulkDownload);

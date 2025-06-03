@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -12,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { registerUser, updateConfig } from "@/http/endpoints";
 import { PasswordVisibilityToggle } from "./password-visibility-toggle";
+import { SSOButton } from "./sso-button";
 
 interface RegisterFormProps {
   isVisible: boolean;
@@ -54,12 +56,17 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
       await refreshAppInfo();
       toast.success(t("register.validation.success"));
     } catch (error) {
-      console.error(error);
       toast.error(t("register.validation.error"));
     }
   };
 
-  return (
+  const renderErrorMessage = () => (
+    <p className="text-destructive text-sm text-center bg-destructive/10 p-2 rounded-md">
+      {t("register.validation.error")}
+    </p>
+  );
+
+  const renderForm = () => (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <FormField
@@ -68,8 +75,13 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("register.labels.firstName")}</FormLabel>
-              <FormControl>
-                <Input {...field} className="bg-transparent backdrop-blur-md" />
+              <FormControl className="-mb-1">
+                <Input
+                  {...field}
+                  placeholder={t("register.labels.firstName")}
+                  disabled={form.formState.isSubmitting}
+                  className="bg-transparent backdrop-blur-md"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,8 +94,13 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("register.labels.lastName")}</FormLabel>
-              <FormControl>
-                <Input {...field} className="bg-transparent backdrop-blur-md" />
+              <FormControl className="-mb-1">
+                <Input
+                  {...field}
+                  placeholder={t("register.labels.lastName")}
+                  disabled={form.formState.isSubmitting}
+                  className="bg-transparent backdrop-blur-md"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,8 +113,13 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("register.labels.username")}</FormLabel>
-              <FormControl>
-                <Input {...field} className="bg-transparent backdrop-blur-md" />
+              <FormControl className="-mb-1">
+                <Input
+                  {...field}
+                  placeholder={t("register.labels.username")}
+                  disabled={form.formState.isSubmitting}
+                  className="bg-transparent backdrop-blur-md"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -110,8 +132,14 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("register.labels.email")}</FormLabel>
-              <FormControl>
-                <Input {...field} type="email" className="bg-transparent backdrop-blur-md" />
+              <FormControl className="-mb-1">
+                <Input
+                  {...field}
+                  type="email"
+                  placeholder={t("register.labels.email")}
+                  disabled={form.formState.isSubmitting}
+                  className="bg-transparent backdrop-blur-md"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -129,6 +157,8 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
                   <Input
                     {...field}
                     type={isVisible ? "text" : "password"}
+                    placeholder={t("register.labels.password")}
+                    disabled={form.formState.isSubmitting}
                     className="bg-transparent backdrop-blur-md pr-10"
                   />
                   <PasswordVisibilityToggle isVisible={isVisible} onToggle={onToggleVisibility} />
@@ -139,10 +169,17 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
           )}
         />
 
-        <Button className="w-full mt-4" type="submit" disabled={form.formState.isSubmitting}>
+        <Button className="w-full mt-4 cursor-pointer" variant="default" size="lg" type="submit">
           {form.formState.isSubmitting ? t("register.buttons.creating") : t("register.buttons.createAdmin")}
         </Button>
       </form>
     </Form>
+  );
+
+  return (
+    <>
+      {renderForm()}
+      <SSOButton />
+    </>
   );
 }

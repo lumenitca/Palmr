@@ -71,8 +71,6 @@ export function ShareMultipleFilesModal({ files, isOpen, onClose, onSuccess }: S
 
     try {
       setIsLoading(true);
-
-      // Criar o compartilhamento
       const shareResponse = await createShare({
         name: formData.name,
         description: formData.description || undefined,
@@ -85,14 +83,12 @@ export function ShareMultipleFilesModal({ files, isOpen, onClose, onSuccess }: S
       const newShareId = shareResponse.data.share.id;
       setShareId(newShareId);
 
-      // Adicionar todos os arquivos ao compartilhamento
       await addFiles(newShareId, { files: files.map((f) => f.id) });
 
       toast.success(t("createShare.success"));
       setStep("link");
     } catch (error) {
       toast.error(t("createShare.error"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -108,7 +104,6 @@ export function ShareMultipleFilesModal({ files, isOpen, onClose, onSuccess }: S
       setGeneratedLink(link);
       toast.success(t("generateShareLink.success"));
     } catch (error) {
-      console.error(error);
       toast.error(t("generateShareLink.error"));
     } finally {
       setIsLoading(false);

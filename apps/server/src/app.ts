@@ -25,10 +25,11 @@ export async function buildApp() {
     logger: {
       level: "info",
     },
-    bodyLimit: 1024 * 1024 * 1024 * 1024 * 1024, // 1PB limit for body parsing (matches multipart limit)
-    connectionTimeout: 0, // Disable connection timeout
-    keepAliveTimeout: envTimeoutOverrides.keepAliveTimeout, // 20 hours (configurable via env)
-    requestTimeout: envTimeoutOverrides.requestTimeout, // Disabled (configurable via env)
+    bodyLimit: 1024 * 1024 * 1024 * 1024 * 1024,
+    connectionTimeout: 0,
+    keepAliveTimeout: envTimeoutOverrides.keepAliveTimeout,
+    requestTimeout: envTimeoutOverrides.requestTimeout,
+    trustProxy: true,
   }).withTypeProvider<ZodTypeProvider>();
 
   app.setValidatorCompiler(validatorCompiler);

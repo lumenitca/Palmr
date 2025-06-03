@@ -207,7 +207,10 @@
     "signIn": "Inloggen",
     "signingIn": "Inloggen...",
     "forgotPassword": "Wachtwoord vergeten?",
-    "pageTitle": "Aanmelden"
+    "pageTitle": "Aanmelden",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
@@ -402,6 +405,10 @@
       "storage": {
         "title": "Opslag",
         "description": "Bestandsopslag configuratie"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configuração de autenticação SSO via OpenID Connect"
       }
     },
     "fields": {
@@ -477,6 +484,42 @@
       "firstUserAccess": {
         "description": "Instellingen voor eerste toegang van nieuwe gebruikers",
         "title": "Eerste Gebruikerstoegang"
+      },
+      "serverUrl": {
+        "title": "Server URL",
+        "description": "Basis URL van de Palmr server (bijv: https://palmr.voorbeeld.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Ingeschakeld",
+        "description": "Schakel authenticatie via OpenID Connect in of uit"
+      },
+      "oidcIssuerUrl": {
+        "title": "Provider URL",
+        "description": "URL van de OpenID Connect provider (bijv: https://auth.voorbeeld.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "OIDC client ID geregistreerd bij de provider"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "OIDC client secret voor authenticatie"
+      },
+      "oidcRedirectUri": {
+        "title": "Redirect URI",
+        "description": "URI waar de gebruiker naartoe wordt gestuurd na authenticatie. Voer alleen de basis URL in (bijv: https://mijnsite.com). Het pad /api/auth/oidc/callback wordt automatisch toegevoegd."
+      },
+      "oidcScope": {
+        "title": "Scopes",
+        "description": "Gevraagde OIDC scopes (bijv: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Automatische Registratie",
+        "description": "Registreer automatisch gebruikers die niet bestaan bij eerste login"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Admin E-mail Domeinen",
+        "description": "E-mail domeinen die automatisch admin rechten krijgen"
       }
     },
     "buttons": {
@@ -492,7 +535,15 @@
     },
     "title": "Instellingen",
     "breadcrumb": "Instellingen",
-    "pageTitle": "Instellingen"
+    "pageTitle": "Instellingen",
+    "tooltips": {
+      "oidcScope": "Voer een scope in en druk op Enter om toe te voegen",
+      "oidcAdminEmailDomains": "Voer een domein in en druk op Enter om toe te voegen"
+    },
+    "redirectUri": {
+      "placeholder": "https://mijnsite.com",
+      "previewLabel": "Volledige URL die wordt opgeslagen:"
+    }
   },
   "share": {
     "errors": {
@@ -891,5 +942,14 @@
     },
     "expires": "Verloopt:",
     "expirationDate": "Vervaldatum"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Account inactief. Neem contact op met de beheerder.",
+      "registration_disabled": "Registratie via SSO is uitgeschakeld.",
+      "token_expired": "Token verlopen. Probeer het opnieuw.",
+      "config_error": "Configuratiefout. Neem contact op met support.",
+      "auth_failed": "Authenticatie mislukt. Probeer het opnieuw."
+    }
   }
 }
