@@ -25,6 +25,356 @@ import { getFileIcon } from "@/utils/file-icons";
 import { ReverseShare } from "../hooks/use-reverse-shares";
 import { ReverseShareFilePreviewModal } from "./reverse-share-file-preview-modal";
 
+// Types
+interface EditingState {
+  fileId: string;
+  field: string;
+}
+
+interface HoverState {
+  fileId: string;
+  field: string;
+}
+
+// Custom Hooks
+function useFileEdit() {
+  const [editingFile, setEditingFile] = useState<EditingState | null>(null);
+  const [editValue, setEditValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (editingFile && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [editingFile]);
+
+  const startEdit = (fileId: string, field: string, currentValue: string) => {
+    setEditingFile({ fileId, field });
+    if (field === "name") {
+      const nameWithoutExtension = getFileNameWithoutExtension(currentValue);
+      setEditValue(nameWithoutExtension);
+    } else {
+      setEditValue(currentValue);
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditingFile(null);
+    setEditValue("");
+  };
+
+  return {
+    editingFile,
+    editValue,
+    setEditValue,
+    inputRef,
+    startEdit,
+    cancelEdit,
+  };
+}
+
+// Utility Functions
+const formatFileSize = (sizeString: string) => {
+  const sizeInBytes = parseInt(sizeString);
+  if (sizeInBytes === 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB"];
+  const k = 1024;
+  const i = Math.floor(Math.log(sizeInBytes) / Math.log(k));
+  return `${parseFloat((sizeInBytes / Math.pow(k, i)).toFixed(1))} ${units[i]}`;
+};
+
+const formatDate = (dateString: string) => {
+  try {
+    return format(new Date(dateString), "dd/MM/yyyy HH:mm", { locale: ptBR });
+  } catch (error) {
+    return "Data inválida";
+  }
+};
+
+const getFileExtension = (fileName: string) => {
+  const match = fileName.match(/\.[^/.]+$/);
+  return match ? match[0] : "";
+};
+
+const getFileNameWithoutExtension = (fileName: string) => {
+  return fileName.replace(/\.[^/.]+$/, "");
+};
+
+const getSenderDisplay = (file: ReverseShareFile, t: any) => {
+  if (file.uploaderName) return file.uploaderName;
+  if (file.uploaderEmail) return file.uploaderEmail;
+  return t("reverseShares.components.fileRow.anonymous");
+};
+
+const getSenderInitials = (file: ReverseShareFile) => {
+  if (file.uploaderName) {
+    return file.uploaderName
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  }
+  if (file.uploaderEmail) {
+    return file.uploaderEmail[0].toUpperCase();
+  }
+  return "?";
+};
+
+// Components
+interface EditableFieldProps {
+  file: ReverseShareFile;
+  field: "name" | "description";
+  isEditing: boolean;
+  editValue: string;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  isHovered: boolean;
+  onStartEdit: (fileId: string, field: string, currentValue: string) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  onEditValueChange: (value: string) => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+}
+
+function EditableField({
+  file,
+  field,
+  isEditing,
+  editValue,
+  inputRef,
+  isHovered,
+  onStartEdit,
+  onSaveEdit,
+  onCancelEdit,
+  onEditValueChange,
+  onKeyDown,
+}: EditableFieldProps) {
+  const t = useTranslations();
+
+  if (isEditing) {
+    return (
+      <div className="flex items-center gap-1 flex-1">
+        {field === "name" ? (
+          <div className="flex items-center">
+            <Input
+              ref={inputRef}
+              value={editValue}
+              onChange={(e) => onEditValueChange(e.target.value)}
+              onKeyDown={onKeyDown}
+              className="h-8 text-sm font-medium rounded-r-none border-r-0"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <div className="h-8 px-2 bg-muted border border-l-0 rounded-r text-sm font-medium flex items-center text-muted-foreground">
+              {getFileExtension(file.name)}
+            </div>
+          </div>
+        ) : (
+          <Input
+            ref={inputRef}
+            value={editValue}
+            onChange={(e) => onEditValueChange(e.target.value)}
+            onKeyDown={onKeyDown}
+            className="h-6 text-xs"
+            placeholder={t("reverseShares.components.fileRow.addDescription")}
+            onClick={(e) => e.stopPropagation()}
+          />
+        )}
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-5 w-5 text-green-600 hover:text-green-700 flex-shrink-0"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSaveEdit();
+          }}
+          title={t("reverseShares.components.editField.saveChanges")}
+        >
+          <IconCheck className="h-3 w-3" />
+        </Button>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-5 w-5 text-red-600 hover:text-red-700 flex-shrink-0"
+          onClick={(e) => {
+            e.stopPropagation();
+            onCancelEdit();
+          }}
+          title={t("reverseShares.components.editField.cancelEdit")}
+        >
+          <IconX className="h-3 w-3" />
+        </Button>
+      </div>
+    );
+  }
+
+  const currentValue = field === "name" ? file.name : file.description;
+  const displayValue = field === "name" ? getFileNameWithoutExtension(file.name) : currentValue;
+
+  return (
+    <div className="flex items-center gap-1 flex-1 min-w-0">
+      <div
+        className={`${field === "name" ? "font-medium" : "text-sm text-muted-foreground"} truncate max-w-[200px]`}
+        title={currentValue || ""}
+      >
+        {field === "name" ? (
+          <>
+            <span className="text-foreground">{displayValue}</span>
+            <span className="text-muted-foreground">{getFileExtension(file.name)}</span>
+          </>
+        ) : (
+          displayValue || ""
+        )}
+      </div>
+      <div className="w-6 flex justify-center flex-shrink-0">
+        <Button
+          size="icon"
+          variant="ghost"
+          className={`h-5 w-5 text-muted-foreground hover:text-foreground hidden sm:block transition-opacity ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onStartEdit(file.id, field, currentValue || "");
+          }}
+          title={t("reverseShares.components.fileActions.edit")}
+        >
+          <IconEdit className="h-3 w-3" />
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+interface FileRowProps {
+  file: ReverseShareFile;
+  editingFile: EditingState | null;
+  editValue: string;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  hoveredFile: HoverState | null;
+  onStartEdit: (fileId: string, field: string, currentValue: string) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  onEditValueChange: (value: string) => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+  onSetHoveredFile: (hover: HoverState | null) => void;
+  onPreview: (file: ReverseShareFile) => void;
+  onDownload: (file: ReverseShareFile) => void;
+  onDelete: (file: ReverseShareFile) => void;
+}
+
+function FileRow({
+  file,
+  editingFile,
+  editValue,
+  inputRef,
+  hoveredFile,
+  onStartEdit,
+  onSaveEdit,
+  onCancelEdit,
+  onEditValueChange,
+  onKeyDown,
+  onSetHoveredFile,
+  onPreview,
+  onDownload,
+  onDelete,
+}: FileRowProps) {
+  const t = useTranslations();
+  const { icon: FileIcon, color } = getFileIcon(file.name);
+
+  return (
+    <TableRow key={file.id}>
+      <TableCell>
+        <div className="flex items-center gap-3">
+          <FileIcon className={`h-8 w-8 ${color} flex-shrink-0`} />
+          <div className="min-w-0 flex-1">
+            <div
+              onMouseEnter={() => onSetHoveredFile({ fileId: file.id, field: "name" })}
+              onMouseLeave={() => onSetHoveredFile(null)}
+            >
+              <EditableField
+                file={file}
+                field="name"
+                isEditing={editingFile?.fileId === file.id && editingFile?.field === "name"}
+                editValue={editValue}
+                inputRef={inputRef}
+                isHovered={hoveredFile?.fileId === file.id && hoveredFile?.field === "name"}
+                onStartEdit={onStartEdit}
+                onSaveEdit={onSaveEdit}
+                onCancelEdit={onCancelEdit}
+                onEditValueChange={onEditValueChange}
+                onKeyDown={onKeyDown}
+              />
+            </div>
+            {file.description && (
+              <div
+                className="mt-1"
+                onMouseEnter={() => onSetHoveredFile({ fileId: file.id, field: "description" })}
+                onMouseLeave={() => onSetHoveredFile(null)}
+              >
+                <EditableField
+                  file={file}
+                  field="description"
+                  isEditing={editingFile?.fileId === file.id && editingFile?.field === "description"}
+                  editValue={editValue}
+                  inputRef={inputRef}
+                  isHovered={hoveredFile?.fileId === file.id && hoveredFile?.field === "description"}
+                  onStartEdit={onStartEdit}
+                  onSaveEdit={onSaveEdit}
+                  onCancelEdit={onCancelEdit}
+                  onEditValueChange={onEditValueChange}
+                  onKeyDown={onKeyDown}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </TableCell>
+      <TableCell className="font-mono text-sm">{formatFileSize(file.size)}</TableCell>
+      <TableCell>
+        <div className="flex items-center gap-2">
+          <Avatar className="h-6 w-6">
+            <AvatarFallback className="text-xs">{getSenderInitials(file)}</AvatarFallback>
+          </Avatar>
+          <span className="text-sm truncate" title={getSenderDisplay(file, t)}>
+            {getSenderDisplay(file, t)}
+          </span>
+        </div>
+      </TableCell>
+      <TableCell className="text-sm text-muted-foreground">{formatDate(file.createdAt)}</TableCell>
+      <TableCell className="text-right">
+        <div className="flex items-center justify-end gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onPreview(file)}
+            title={t("reverseShares.components.fileActions.preview")}
+          >
+            <IconEye className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onDownload(file)}
+            title={t("reverseShares.components.fileActions.download")}
+          >
+            <IconDownload className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onDelete(file)}
+            title={t("reverseShares.components.fileActions.delete")}
+            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+          >
+            <IconTrash className="h-4 w-4" />
+          </Button>
+        </div>
+      </TableCell>
+    </TableRow>
+  );
+}
+
 interface ReceivedFilesModalProps {
   reverseShare: ReverseShare | null;
   isOpen: boolean;
@@ -42,34 +392,9 @@ export function ReceivedFilesModal({
 }: ReceivedFilesModalProps) {
   const t = useTranslations();
   const [previewFile, setPreviewFile] = useState<ReverseShareFile | null>(null);
-  const [editingFile, setEditingFile] = useState<{ fileId: string; field: string } | null>(null);
-  const [editValue, setEditValue] = useState("");
-  const [hoveredFile, setHoveredFile] = useState<{ fileId: string; field: string } | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [hoveredFile, setHoveredFile] = useState<HoverState | null>(null);
 
-  useEffect(() => {
-    if (editingFile && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [editingFile]);
-
-  const formatFileSize = (sizeString: string) => {
-    const sizeInBytes = parseInt(sizeString);
-    if (sizeInBytes === 0) return "0 B";
-    const units = ["B", "KB", "MB", "GB"];
-    const k = 1024;
-    const i = Math.floor(Math.log(sizeInBytes) / Math.log(k));
-    return `${parseFloat((sizeInBytes / Math.pow(k, i)).toFixed(1))} ${units[i]}`;
-  };
-
-  const formatDate = (dateString: string) => {
-    try {
-      return format(new Date(dateString), "dd/MM/yyyy HH:mm", { locale: ptBR });
-    } catch (error) {
-      return "Data inválida";
-    }
-  };
+  const { editingFile, editValue, setEditValue, inputRef, startEdit, cancelEdit } = useFileEdit();
 
   const getTotalSize = () => {
     if (!reverseShare?.files) return "0 B";
@@ -110,52 +435,6 @@ export function ReceivedFilesModal({
     setPreviewFile(file);
   };
 
-  const getSenderDisplay = (file: ReverseShareFile) => {
-    if (file.uploaderName) {
-      return file.uploaderName;
-    }
-    if (file.uploaderEmail) {
-      return file.uploaderEmail;
-    }
-    return t("reverseShares.modals.receivedFiles.anonymous");
-  };
-
-  const getSenderInitials = (file: ReverseShareFile) => {
-    if (file.uploaderName) {
-      return file.uploaderName
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2);
-    }
-    if (file.uploaderEmail) {
-      return file.uploaderEmail[0].toUpperCase();
-    }
-    return "?";
-  };
-
-  const getFileExtension = (fileName: string) => {
-    const match = fileName.match(/\.[^/.]+$/);
-    return match ? match[0] : "";
-  };
-
-  const getFileNameWithoutExtension = (fileName: string) => {
-    return fileName.replace(/\.[^/.]+$/, "");
-  };
-
-  const startEdit = (fileId: string, field: string, currentValue: string) => {
-    setEditingFile({ fileId, field });
-
-    if (field === "name") {
-      // Para edição do nome, remove a extensão
-      const nameWithoutExtension = getFileNameWithoutExtension(currentValue);
-      setEditValue(nameWithoutExtension);
-    } else {
-      setEditValue(currentValue);
-    }
-  };
-
   const saveEdit = async () => {
     if (!editingFile) return;
 
@@ -170,7 +449,6 @@ export function ReceivedFilesModal({
 
       await updateReverseShareFile(editingFile.fileId, updateData);
 
-      // Usa a função específica de refresh se disponível, caso contrário usa a geral
       if (refreshReverseShare && reverseShare) {
         await refreshReverseShare(reverseShare.id);
       } else if (onRefresh) {
@@ -182,21 +460,14 @@ export function ReceivedFilesModal({
       console.error("Error updating file:", error);
       toast.error(t("reverseShares.modals.receivedFiles.editError"));
     } finally {
-      setEditingFile(null);
-      setEditValue("");
+      cancelEdit();
     }
-  };
-
-  const cancelEdit = () => {
-    setEditingFile(null);
-    setEditValue("");
   };
 
   const handleDeleteFile = async (file: ReverseShareFile) => {
     try {
       await deleteReverseShareFile(file.id);
 
-      // Usa a função específica de refresh se disponível, caso contrário usa a geral
       if (refreshReverseShare && reverseShare) {
         await refreshReverseShare(reverseShare.id);
       } else if (onRefresh) {
@@ -235,7 +506,6 @@ export function ReceivedFilesModal({
           </DialogHeader>
 
           <div className="flex flex-col gap-4 flex-1 overflow-hidden">
-            {/* Estatísticas */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Badge variant="secondary" className="text-sm">
@@ -249,7 +519,6 @@ export function ReceivedFilesModal({
 
             <Separator />
 
-            {/* Lista de arquivos */}
             {files.length === 0 ? (
               <div className="flex flex-col items-center justify-center flex-1 gap-4 py-12">
                 <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
@@ -277,201 +546,25 @@ export function ReceivedFilesModal({
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {files.map((file) => {
-                      const { icon: FileIcon, color } = getFileIcon(file.name);
-                      return (
-                        <TableRow key={file.id}>
-                          <TableCell>
-                            <div className="flex items-center gap-3">
-                              <FileIcon className={`h-8 w-8 ${color} flex-shrink-0`} />
-                              <div className="min-w-0 flex-1">
-                                <div
-                                  className="flex items-center gap-1"
-                                  onMouseEnter={() => setHoveredFile({ fileId: file.id, field: "name" })}
-                                  onMouseLeave={() => setHoveredFile(null)}
-                                >
-                                  {editingFile?.fileId === file.id && editingFile?.field === "name" ? (
-                                    <div className="flex items-center gap-1 flex-1">
-                                      <div className="flex items-center">
-                                        <Input
-                                          ref={inputRef}
-                                          value={editValue}
-                                          onChange={(e) => setEditValue(e.target.value)}
-                                          onKeyDown={handleKeyDown}
-                                          className="h-8 text-sm font-medium rounded-r-none border-r-0"
-                                          onClick={(e) => e.stopPropagation()}
-                                        />
-                                        <div className="h-8 px-2 bg-muted border border-l-0 rounded-r text-sm font-medium flex items-center text-muted-foreground">
-                                          {getFileExtension(file.name)}
-                                        </div>
-                                      </div>
-                                      <Button
-                                        size="icon"
-                                        variant="ghost"
-                                        className="h-3 w-3 text-green-600 hover:text-green-700 flex-shrink-0"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          saveEdit();
-                                        }}
-                                      >
-                                        <IconCheck className="h-3 w-3" />
-                                      </Button>
-                                      <Button
-                                        size="icon"
-                                        variant="ghost"
-                                        className="h-6 w-6 text-red-600 hover:text-red-700 flex-shrink-0"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          cancelEdit();
-                                        }}
-                                      >
-                                        <IconX className="h-3 w-3" />
-                                      </Button>
-                                    </div>
-                                  ) : (
-                                    <div className="flex items-center gap-1 flex-1 min-w-0">
-                                      <div className="font-medium truncate max-w-[200px]" title={file.name}>
-                                        <span className="text-foreground">
-                                          {getFileNameWithoutExtension(file.name)}
-                                        </span>
-                                        <span className="text-muted-foreground">{getFileExtension(file.name)}</span>
-                                      </div>
-                                      <div className="w-6 flex justify-center flex-shrink-0">
-                                        <Button
-                                          size="icon"
-                                          variant="ghost"
-                                          className={`h-6 w-6 text-muted-foreground hover:text-foreground hidden sm:block transition-opacity ${
-                                            hoveredFile?.fileId === file.id && hoveredFile?.field === "name"
-                                              ? "opacity-100"
-                                              : "opacity-0"
-                                          }`}
-                                          onClick={(e) => {
-                                            e.stopPropagation();
-                                            startEdit(file.id, "name", file.name);
-                                          }}
-                                        >
-                                          <IconEdit className="h-3 w-3" />
-                                        </Button>
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                                {file.description && (
-                                  <div
-                                    className="flex items-center gap-1 mt-1"
-                                    onMouseEnter={() => setHoveredFile({ fileId: file.id, field: "description" })}
-                                    onMouseLeave={() => setHoveredFile(null)}
-                                  >
-                                    {editingFile?.fileId === file.id && editingFile?.field === "description" ? (
-                                      <div className="flex items-center gap-1 flex-1">
-                                        <Input
-                                          ref={inputRef}
-                                          value={editValue}
-                                          onChange={(e) => setEditValue(e.target.value)}
-                                          onKeyDown={handleKeyDown}
-                                          className="h-6 text-xs"
-                                          placeholder="Add description..."
-                                          onClick={(e) => e.stopPropagation()}
-                                        />
-                                        <Button
-                                          size="icon"
-                                          variant="ghost"
-                                          className="h-5 w-5 text-green-600 hover:text-green-700 flex-shrink-0"
-                                          onClick={(e) => {
-                                            e.stopPropagation();
-                                            saveEdit();
-                                          }}
-                                        >
-                                          <IconCheck className="h-3 w-3" />
-                                        </Button>
-                                        <Button
-                                          size="icon"
-                                          variant="ghost"
-                                          className="h-5 w-5 text-red-600 hover:text-red-700 flex-shrink-0"
-                                          onClick={(e) => {
-                                            e.stopPropagation();
-                                            cancelEdit();
-                                          }}
-                                        >
-                                          <IconX className="h-3 w-3" />
-                                        </Button>
-                                      </div>
-                                    ) : (
-                                      <div className="flex items-center gap-1 flex-1 min-w-0">
-                                        <div
-                                          className="text-sm text-muted-foreground truncate max-w-[200px]"
-                                          title={file.description}
-                                        >
-                                          {file.description}
-                                        </div>
-                                        <div className="w-6 flex justify-center flex-shrink-0">
-                                          <Button
-                                            size="icon"
-                                            variant="ghost"
-                                            className={`h-5 w-5 text-muted-foreground hover:text-foreground hidden sm:block transition-opacity ${
-                                              hoveredFile?.fileId === file.id && hoveredFile?.field === "description"
-                                                ? "opacity-100"
-                                                : "opacity-0"
-                                            }`}
-                                            onClick={(e) => {
-                                              e.stopPropagation();
-                                              startEdit(file.id, "description", file.description || "");
-                                            }}
-                                          >
-                                            <IconEdit className="h-3 w-3" />
-                                          </Button>
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </TableCell>
-                          <TableCell className="font-mono text-sm">{formatFileSize(file.size)}</TableCell>
-                          <TableCell>
-                            <div className="flex items-center gap-2">
-                              <Avatar className="h-6 w-6">
-                                <AvatarFallback className="text-xs">{getSenderInitials(file)}</AvatarFallback>
-                              </Avatar>
-                              <span className="text-sm truncate" title={getSenderDisplay(file)}>
-                                {getSenderDisplay(file)}
-                              </span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="text-sm text-muted-foreground">{formatDate(file.createdAt)}</TableCell>
-                          <TableCell className="text-right">
-                            <div className="flex items-center justify-end gap-1">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handlePreview(file)}
-                                title={t("reverseShares.modals.receivedFiles.actions.preview")}
-                              >
-                                <IconEye className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleDownload(file)}
-                                title={t("reverseShares.modals.receivedFiles.actions.download")}
-                              >
-                                <IconDownload className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleDeleteFile(file)}
-                                title="Excluir arquivo"
-                                className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                              >
-                                <IconTrash className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
+                    {files.map((file) => (
+                      <FileRow
+                        key={file.id}
+                        file={file}
+                        editingFile={editingFile}
+                        editValue={editValue}
+                        inputRef={inputRef}
+                        hoveredFile={hoveredFile}
+                        onStartEdit={startEdit}
+                        onSaveEdit={saveEdit}
+                        onCancelEdit={cancelEdit}
+                        onEditValueChange={setEditValue}
+                        onKeyDown={handleKeyDown}
+                        onSetHoveredFile={setHoveredFile}
+                        onPreview={handlePreview}
+                        onDownload={handleDownload}
+                        onDelete={handleDeleteFile}
+                      />
+                    ))}
                   </TableBody>
                 </Table>
               </ScrollArea>
@@ -480,7 +573,6 @@ export function ReceivedFilesModal({
         </DialogContent>
       </Dialog>
 
-      {/* Modal de Preview */}
       {previewFile && (
         <ReverseShareFilePreviewModal
           isOpen={!!previewFile}

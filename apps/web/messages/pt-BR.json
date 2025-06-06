@@ -867,7 +867,8 @@
     "passwordsMatch": "As senhas não coincidem",
     "emailRequired": "Email é obrigatório",
     "passwordRequired": "Senha é obrigatória",
-    "required": "Este campo é obrigatório"
+    "required": "Este campo é obrigatório",
+    "nameRequired": "Nome é obrigatório"
   },
   "bulkDownload": {
     "title": "Download em Lote",
@@ -995,7 +996,11 @@
       "layoutOptions": {
         "default": "Padrão",
         "wetransfer": "WeTransfer"
-      }
+      },
+      "noFilesLimit": "Sem limite de arquivos",
+      "noSizeLimit": "Sem limite de tamanho",
+      "allFileTypes": "Todos os tipos de arquivo",
+      "fileTypesHelp": "Digite as extensões sem ponto, separadas por espaço, vírgula, traço ou pipe"
     },
     "card": {
       "untitled": "Link sem título",
@@ -1087,7 +1092,9 @@
         "downloadError": "Erro ao baixar arquivo",
         "editSuccess": "Arquivo atualizado com sucesso",
         "editError": "Erro ao atualizar arquivo",
-        "previewNotAvailable": "Visualização não disponível"
+        "previewNotAvailable": "Visualização não disponível",
+        "notAvailable": "Não disponível",
+        "invalidDate": "Data inválida"
       },
       "alias": {
         "editTitle": "Editar Alias",
@@ -1174,17 +1181,20 @@
       "maxFiles": {
         "label": "Máximo de Arquivos",
         "placeholder": "Ex: 10",
-        "description": "Opcional. Limite o número total de arquivos que podem ser enviados."
+        "description": "Opcional. Limite o número total de arquivos que podem ser enviados.",
+        "noLimit": "Sem limite de arquivos"
       },
       "maxFileSize": {
         "label": "Tamanho Máximo por Arquivo",
         "placeholder": "Ex: 100",
-        "description": "Opcional. Limite o tamanho individual de cada arquivo."
+        "description": "Opcional. Limite o tamanho individual de cada arquivo.",
+        "noLimit": "Sem limite de tamanho"
       },
       "allowedFileTypes": {
         "label": "Tipos de Arquivo Permitidos",
         "placeholder": "Ex: pdf, jpg, png, docx",
-        "description": "Opcional. Especifique as extensões permitidas separadas por vírgula."
+        "description": "Digite as extensões sem ponto, separadas por espaço, vírgula, traço ou pipe",
+        "allTypes": "Todos os tipos de arquivo"
       },
       "pageLayout": {
         "label": "Layout da Página",
@@ -1212,7 +1222,9 @@
       "updateSuccess": "Link de recebimento atualizado com sucesso!",
       "linkCopied": "Link copiado para a área de transferência!",
       "deleteSuccess": "Link de recebimento excluído com sucesso!",
-      "aliasCreated": "Alias criado com sucesso!"
+      "aliasCreated": "Alias criado com sucesso!",
+      "activateSuccess": "Link de recebimento ativado com sucesso!",
+      "deactivateSuccess": "Link de recebimento desativado com sucesso!"
     },
     "errors": {
       "loadFailed": "Falha ao carregar links de recebimento",
@@ -1309,6 +1321,24 @@
         "title": "Link expirado",
         "description": "Este link de recebimento expirou e não está mais aceitando arquivos.",
         "contactOwner": "Entre em contato com o proprietário do link se precisar enviar arquivos."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Adicionar descrição...",
+        "anonymous": "Anônimo"
+      },
+      "fileActions": {
+        "edit": "Editar",
+        "save": "Salvar",
+        "cancel": "Cancelar",
+        "preview": "Visualizar",
+        "download": "Baixar",
+        "delete": "Excluir"
+      },
+      "editField": {
+        "saveChanges": "Salvar alterações",
+        "cancelEdit": "Cancelar edição"
       }
     }
   }

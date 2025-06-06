@@ -242,10 +242,12 @@ export function useReverseShares() {
         setReverseShareToViewDetails({ ...reverseShareToViewDetails, ...updatedReverseShare } as ReverseShare);
       }
 
-      toast.success(isActive ? "Reverse share ativado" : "Reverse share desativado");
+      toast.success(
+        isActive ? t("reverseShares.messages.activateSuccess") : t("reverseShares.messages.deactivateSuccess")
+      );
       return updatedReverseShare;
     } catch (error) {
-      toast.error("Erro ao alterar status");
+      toast.error(t("reverseShares.errors.updateFailed"));
       throw error;
     }
   };

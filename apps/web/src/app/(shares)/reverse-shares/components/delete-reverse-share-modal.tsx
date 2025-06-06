@@ -54,7 +54,9 @@ export function DeleteReverseShareModal({
             <h4 className="font-medium">{reverseShare.name || t("reverseShares.card.untitled")}</h4>
             {reverseShare.description && <p className="text-sm text-muted-foreground">{reverseShare.description}</p>}
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span>{reverseShare.files?.length || 0} arquivos recebidos</span>
+              <span>
+                {reverseShare.files?.length || 0} {t("reverseShares.labels.filesReceived")}
+              </span>
               {reverseShare.alias?.alias && <span>Link: /r/{reverseShare.alias.alias}</span>}
             </div>
           </div>

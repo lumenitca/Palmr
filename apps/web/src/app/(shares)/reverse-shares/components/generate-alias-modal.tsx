@@ -31,7 +31,7 @@ interface GenerateAliasModalProps {
   onCopyLink: (reverseShare: ReverseShare) => void;
 }
 
-const generateDefaultAlias = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
+const generateDefaultAlias = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 export function GenerateAliasModal({
   reverseShare,

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   IconCalendar,
   IconChevronDown,
@@ -30,11 +29,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import type { CreateReverseShareBody } from "@/http/endpoints/reverse-shares/types";
 import { FileSizeInput } from "./file-size-input";
 import { FileTypesTagsInput } from "./file-types-tags-input";
+
+const DIALOG_CONFIG = {
+  maxWidth: "sm:max-w-[500px] md:max-w-[650px]",
+  maxHeight: "max-h-[85vh]",
+  contentMaxHeight: "max-h-[calc(85vh-140px)]",
+} as const;
+
+const ICON_SIZES = {
+  small: 14,
+  medium: 16,
+  large: 20,
+} as const;
 
 interface CreateReverseShareFormData {
   name: string;
@@ -60,6 +70,23 @@ interface CreateReverseShareModalProps {
   isCreating: boolean;
 }
 
+const DEFAULT_FORM_VALUES: CreateReverseShareFormData = {
+  name: "",
+  description: "",
+  expiration: "",
+  maxFiles: "",
+  maxFileSize: "",
+  allowedFileTypes: "",
+  password: "",
+  pageLayout: "DEFAULT",
+  isPasswordProtected: false,
+  hasExpiration: false,
+  hasFileLimits: false,
+  noFilesLimit: true,
+  noSizeLimit: true,
+  allFileTypes: true,
+};
+
 export function CreateReverseShareModal({
   isOpen,
   onClose,
@@ -69,68 +96,63 @@ export function CreateReverseShareModal({
   const t = useTranslations();
 
   const form = useForm<CreateReverseShareFormData>({
-    defaultValues: {
-      name: "",
-      description: "",
-      expiration: "",
-      maxFiles: "",
-      maxFileSize: "",
-      allowedFileTypes: "",
-      password: "",
-      pageLayout: "DEFAULT",
-      isPasswordProtected: false,
-      hasExpiration: false,
-      hasFileLimits: false,
-      noFilesLimit: true,
-      noSizeLimit: true,
-      allFileTypes: true,
-    },
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
-  const isPasswordProtected = form.watch("isPasswordProtected");
-  const hasExpiration = form.watch("hasExpiration");
-  const hasFileLimits = form.watch("hasFileLimits");
-  const noFilesLimit = form.watch("noFilesLimit");
-  const noSizeLimit = form.watch("noSizeLimit");
-  const allFileTypes = form.watch("allFileTypes");
+  const watchedValues = {
+    isPasswordProtected: form.watch("isPasswordProtected"),
+    hasExpiration: form.watch("hasExpiration"),
+    hasFileLimits: form.watch("hasFileLimits"),
+    noFilesLimit: form.watch("noFilesLimit"),
+    noSizeLimit: form.watch("noSizeLimit"),
+    allFileTypes: form.watch("allFileTypes"),
+  };
 
-  const onSubmit = async (data: CreateReverseShareFormData) => {
+  const buildPayload = (formData: CreateReverseShareFormData): CreateReverseShareBody => {
+    const payload: CreateReverseShareBody = {
+      name: formData.name,
+      pageLayout: formData.pageLayout || "DEFAULT",
+    };
+
+    if (formData.description?.trim()) {
+      payload.description = formData.description.trim();
+    }
+
+    if (formData.hasExpiration && formData.expiration) {
+      payload.expiration = new Date(formData.expiration).toISOString();
+    }
+
+    if (formData.isPasswordProtected && formData.password?.trim()) {
+      payload.password = formData.password.trim();
+    }
+
+    if (formData.hasFileLimits) {
+      const maxFiles = parseInt(formData.maxFiles || "0");
+      const maxFileSize = parseInt(formData.maxFileSize || "0");
+
+      if (maxFiles > 0) {
+        payload.maxFiles = maxFiles;
+      }
+
+      if (maxFileSize > 0) {
+        payload.maxFileSize = maxFileSize;
+      }
+    }
+
+    if (formData.allowedFileTypes?.trim()) {
+      payload.allowedFileTypes = formData.allowedFileTypes.trim();
+    }
+
+    return payload;
+  };
+
+  const handleSubmit = async (formData: CreateReverseShareFormData) => {
     try {
-      const payload: CreateReverseShareBody = {
-        name: data.name,
-        pageLayout: data.pageLayout || "DEFAULT",
-      };
-
-      // Adicionar campos opcionais apenas se tiverem valor
-      if (data.description?.trim()) {
-        payload.description = data.description.trim();
-      }
-
-      if (data.hasExpiration && data.expiration) {
-        payload.expiration = new Date(data.expiration).toISOString();
-      }
-
-      if (data.isPasswordProtected && data.password?.trim()) {
-        payload.password = data.password.trim();
-      }
-
-      if (data.hasFileLimits) {
-        if (data.maxFiles && data.maxFiles !== "0" && parseInt(data.maxFiles) > 0) {
-          payload.maxFiles = parseInt(data.maxFiles);
-        }
-        if (data.maxFileSize && data.maxFileSize !== "0" && parseInt(data.maxFileSize) > 0) {
-          payload.maxFileSize = parseInt(data.maxFileSize);
-        }
-      }
-
-      if (data.allowedFileTypes?.trim()) {
-        payload.allowedFileTypes = data.allowedFileTypes.trim();
-      }
-
+      const payload = buildPayload(formData);
       await onCreateReverseShare(payload);
       form.reset();
     } catch (error) {
-      // Erro já é tratado no hook
+      // Error handling is managed by the hook
     }
   };
 
@@ -139,26 +161,66 @@ export function CreateReverseShareModal({
     onClose();
   };
 
+  const toggleSection = (sectionKey: keyof CreateReverseShareFormData, resetFields?: string[]) => {
+    return () => {
+      const currentValue = form.getValues(sectionKey) as boolean;
+      const newValue = !currentValue;
+      form.setValue(sectionKey, newValue);
+
+      if (!newValue && resetFields) {
+        resetFields.forEach((field) => {
+          form.setValue(field as keyof CreateReverseShareFormData, "" as any);
+        });
+      }
+    };
+  };
+
+  const renderSectionToggle = (isExpanded: boolean, icon: React.ReactNode, label: string, onToggle: () => void) => (
+    <div className="flex items-center gap-1">
+      <Label className="flex items-center gap-2">
+        {icon}
+        {label}
+      </Label>
+      <Button type="button" variant="ghost" size="icon" className="h-6 w-6" onClick={onToggle}>
+        {isExpanded ? <IconChevronUp size={ICON_SIZES.small} /> : <IconChevronDown size={ICON_SIZES.small} />}
+      </Button>
+    </div>
+  );
+
+  const renderCheckboxOption = (
+    id: string,
+    checked: boolean,
+    onCheckedChange: (checked: boolean) => void,
+    label: string
+  ) => (
+    <div className="flex items-center gap-2">
+      <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} />
+      <label htmlFor={id} className="text-sm text-muted-foreground cursor-pointer">
+        {label}
+      </label>
+    </div>
+  );
+
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[500px] md:max-w-[650px] max-h-[85vh] overflow-hidden">
+      <DialogContent className={`${DIALOG_CONFIG.maxWidth} ${DIALOG_CONFIG.maxHeight} overflow-hidden`}>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <IconUpload size={20} />
+            <IconUpload size={ICON_SIZES.large} />
             {t("reverseShares.modals.create.title")}
           </DialogTitle>
           <DialogDescription>{t("reverseShares.modals.create.description")}</DialogDescription>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[calc(85vh-140px)] py-2">
+        <div className={`overflow-y-auto ${DIALOG_CONFIG.contentMaxHeight} py-2`}>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* Informações Básicas */}
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+              {/* Basic Information */}
               <div className="space-y-4">
                 <FormField
                   control={form.control}
                   name="name"
-                  rules={{ required: "Nome é obrigatório" }}
+                  rules={{ required: t("validation.nameRequired") }}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t("reverseShares.form.name.label")}</FormLabel>
@@ -191,7 +253,7 @@ export function CreateReverseShareModal({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="flex items-center gap-2">
-                        <IconSettings size={16} />
+                        <IconSettings size={ICON_SIZES.medium} />
                         {t("reverseShares.form.pageLayout.label")}
                       </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -216,25 +278,16 @@ export function CreateReverseShareModal({
 
               <Separator />
 
-              {/* Expiração */}
+              {/* Expiration Settings */}
               <div className="space-y-4">
-                <div className="flex items-center gap-1">
-                  <Label className="flex items-center gap-2">
-                    <IconCalendar size={16} />
-                    {t("reverseShares.labels.configureExpiration")}
-                  </Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => form.setValue("hasExpiration", !hasExpiration)}
-                  >
-                    {hasExpiration ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
-                  </Button>
-                </div>
+                {renderSectionToggle(
+                  watchedValues.hasExpiration,
+                  <IconCalendar size={ICON_SIZES.medium} />,
+                  t("reverseShares.labels.configureExpiration"),
+                  toggleSection("hasExpiration")
+                )}
 
-                {hasExpiration && (
+                {watchedValues.hasExpiration && (
                   <FormField
                     control={form.control}
                     name="expiration"
@@ -254,36 +307,21 @@ export function CreateReverseShareModal({
 
               <Separator />
 
-              {/* Proteção por Senha */}
+              {/* Password Protection */}
               <div className="space-y-4">
-                <div className="flex items-center gap-1">
-                  <Label className="flex items-center gap-2">
-                    <IconLock size={16} />
-                    {t("reverseShares.labels.protectWithPassword")}
-                  </Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => {
-                      const newValue = !isPasswordProtected;
-                      form.setValue("isPasswordProtected", newValue);
-                      if (!newValue) {
-                        form.setValue("password", "");
-                      }
-                    }}
-                  >
-                    {isPasswordProtected ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
-                  </Button>
-                </div>
+                {renderSectionToggle(
+                  watchedValues.isPasswordProtected,
+                  <IconLock size={ICON_SIZES.medium} />,
+                  t("reverseShares.labels.protectWithPassword"),
+                  toggleSection("isPasswordProtected", ["password"])
+                )}
 
-                {isPasswordProtected && (
+                {watchedValues.isPasswordProtected && (
                   <FormField
                     control={form.control}
                     name="password"
                     rules={{
-                      required: isPasswordProtected ? t("validation.passwordRequired") : false,
+                      required: watchedValues.isPasswordProtected ? t("validation.passwordRequired") : false,
                     }}
                     render={({ field }) => (
                       <FormItem>
@@ -305,33 +343,16 @@ export function CreateReverseShareModal({
 
               <Separator />
 
-              {/* Limites de Arquivos */}
+              {/* File Limits */}
               <div className="space-y-4">
-                <div className="flex items-center gap-1">
-                  <Label className="flex items-center gap-2">
-                    <IconFile size={16} />
-                    {t("reverseShares.labels.configureLimits")}
-                  </Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => {
-                      const newValue = !hasFileLimits;
-                      form.setValue("hasFileLimits", newValue);
-                      if (!newValue) {
-                        form.setValue("maxFiles", "0");
-                        form.setValue("maxFileSize", "0");
-                        form.setValue("allowedFileTypes", "");
-                      }
-                    }}
-                  >
-                    {hasFileLimits ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
-                  </Button>
-                </div>
+                {renderSectionToggle(
+                  watchedValues.hasFileLimits,
+                  <IconFile size={ICON_SIZES.medium} />,
+                  t("reverseShares.labels.configureLimits"),
+                  toggleSection("hasFileLimits", ["maxFiles", "maxFileSize", "allowedFileTypes"])
+                )}
 
-                {hasFileLimits && (
+                {watchedValues.hasFileLimits && (
                   <div className="space-y-4">
                     <FormField
                       control={form.control}
@@ -339,29 +360,20 @@ export function CreateReverseShareModal({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="flex items-center gap-2">
-                            <IconEye size={16} />
+                            <IconEye size={ICON_SIZES.medium} />
                             {t("reverseShares.form.maxFiles.label")}
                           </FormLabel>
                           <div className="space-y-3">
-                            <div className="flex items-center gap-2">
-                              <Checkbox
-                                id="no-files-limit-create"
-                                checked={noFilesLimit}
-                                onCheckedChange={(checked) => {
-                                  form.setValue("noFilesLimit", !!checked);
-                                  if (checked) {
-                                    field.onChange("0");
-                                  }
-                                }}
-                              />
-                              <label
-                                htmlFor="no-files-limit-create"
-                                className="text-sm text-muted-foreground cursor-pointer"
-                              >
-                                Sem limite de arquivos
-                              </label>
-                            </div>
-                            {!noFilesLimit && (
+                            {renderCheckboxOption(
+                              "no-files-limit-create",
+                              watchedValues.noFilesLimit,
+                              (checked) => {
+                                form.setValue("noFilesLimit", !!checked);
+                                if (checked) field.onChange("0");
+                              },
+                              t("reverseShares.form.maxFiles.noLimit")
+                            )}
+                            {!watchedValues.noFilesLimit && (
                               <FormControl>
                                 <Input
                                   type="number"
@@ -386,29 +398,20 @@ export function CreateReverseShareModal({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="flex items-center gap-2">
-                            <IconFiles size={16} />
+                            <IconFiles size={ICON_SIZES.medium} />
                             {t("reverseShares.form.maxFileSize.label")}
                           </FormLabel>
                           <div className="space-y-3">
-                            <div className="flex items-center gap-2">
-                              <Checkbox
-                                id="no-size-limit-create"
-                                checked={noSizeLimit}
-                                onCheckedChange={(checked) => {
-                                  form.setValue("noSizeLimit", !!checked);
-                                  if (checked) {
-                                    field.onChange("0");
-                                  }
-                                }}
-                              />
-                              <label
-                                htmlFor="no-size-limit-create"
-                                className="text-sm text-muted-foreground cursor-pointer"
-                              >
-                                Sem limite de tamanho
-                              </label>
-                            </div>
-                            {!noSizeLimit && (
+                            {renderCheckboxOption(
+                              "no-size-limit-create",
+                              watchedValues.noSizeLimit,
+                              (checked) => {
+                                form.setValue("noSizeLimit", !!checked);
+                                if (checked) field.onChange("0");
+                              },
+                              t("reverseShares.form.maxFileSize.noLimit")
+                            )}
+                            {!watchedValues.noSizeLimit && (
                               <FormControl>
                                 <FileSizeInput
                                   value={field.value || ""}
@@ -418,7 +421,9 @@ export function CreateReverseShareModal({
                               </FormControl>
                             )}
                           </div>
-                          <FormDescription>{t("reverseShares.form.maxFileSize.description")}</FormDescription>
+                          <FormDescription className="text-xs">
+                            {t("reverseShares.form.maxFileSize.description")}
+                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -431,25 +436,16 @@ export function CreateReverseShareModal({
                         <FormItem>
                           <FormLabel>{t("reverseShares.form.allowedFileTypes.label")}</FormLabel>
                           <div className="space-y-3">
-                            <div className="flex items-center gap-2">
-                              <Checkbox
-                                id="all-file-types-create"
-                                checked={allFileTypes}
-                                onCheckedChange={(checked) => {
-                                  form.setValue("allFileTypes", !!checked);
-                                  if (checked) {
-                                    field.onChange("");
-                                  }
-                                }}
-                              />
-                              <label
-                                htmlFor="all-file-types-create"
-                                className="text-sm text-muted-foreground cursor-pointer"
-                              >
-                                Todos os tipos de arquivo
-                              </label>
-                            </div>
-                            {!allFileTypes && (
+                            {renderCheckboxOption(
+                              "all-file-types-create",
+                              watchedValues.allFileTypes,
+                              (checked) => {
+                                form.setValue("allFileTypes", !!checked);
+                                if (checked) field.onChange("");
+                              },
+                              t("reverseShares.form.allowedFileTypes.allTypes")
+                            )}
+                            {!watchedValues.allFileTypes && (
                               <FormControl>
                                 <FileTypesTagsInput
                                   value={field.value ? field.value.split(",").filter(Boolean) : []}
@@ -460,7 +456,7 @@ export function CreateReverseShareModal({
                             )}
                           </div>
                           <FormDescription className="text-xs">
-                            Digite as extensões sem ponto, separadas por espaço, vírgula, traço ou pipe
+                            {t("reverseShares.form.allowedFileTypes.description")}
                           </FormDescription>
                           <FormMessage />
                         </FormItem>

@@ -31,7 +31,7 @@ interface ShareMultipleFilesModalProps {
   onSuccess: () => void;
 }
 
-const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
+const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 export function ShareMultipleFilesModal({ files, isOpen, onClose, onSuccess }: ShareMultipleFilesModalProps) {
   const t = useTranslations();

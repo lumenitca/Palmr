@@ -115,8 +115,6 @@ export function ReverseSharesModals({
         onRefresh={onRefreshData}
         refreshReverseShare={refreshReverseShare}
       />
-
-      {/* TODO: Adicionar outros modais aqui */}
     </>
   );
 }

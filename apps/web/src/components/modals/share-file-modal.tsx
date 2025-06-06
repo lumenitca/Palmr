@@ -30,7 +30,7 @@ interface ShareFileModalProps {
   onSuccess: () => void;
 }
 
-const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
+const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileModalProps) {
   const t = useTranslations();

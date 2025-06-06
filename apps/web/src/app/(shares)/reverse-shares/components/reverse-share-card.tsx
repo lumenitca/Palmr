@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  IconCalendarCheck,
-  IconCalendarDue,
   IconCheck,
-  IconClock,
   IconCopy,
   IconDotsVertical,
   IconEdit,
@@ -15,15 +12,11 @@ import {
   IconLink,
   IconLock,
   IconLockOpen,
-  IconShield,
   IconToggleLeft,
   IconToggleRight,
   IconTrash,
-  IconUsers,
   IconX,
 } from "@tabler/icons-react";
-import { format, formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -32,7 +25,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
