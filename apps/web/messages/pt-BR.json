@@ -1183,7 +1183,7 @@
       },
       "allowedFileTypes": {
         "label": "Tipos de Arquivo Permitidos",
-        "placeholder": "Ex: .pdf,.jpg,.png,.docx",
+        "placeholder": "Ex: pdf, jpg, png, docx",
         "description": "Opcional. Especifique as extensões permitidas separadas por vírgula."
       },
       "pageLayout": {
@@ -1227,6 +1227,89 @@
       "confirmButton": "Excluir Link",
       "cancelButton": "Cancelar",
       "deleting": "Excluindo..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Enviar Arquivos - Palmr",
+        "description": "Envie arquivos através do link compartilhado"
+      },
+      "layout": {
+        "defaultTitle": "Enviar Arquivos",
+        "importantInfo": "Informações importantes:",
+        "maxFiles": "Máximo de {count} arquivo(s)",
+        "maxFileSize": "Tamanho máximo por arquivo: {size}MB",
+        "allowedTypes": "Tipos permitidos: {types}",
+        "loading": "Carregando..."
+      },
+      "password": {
+        "title": "Link Protegido",
+        "description": "Este link está protegido por senha. Digite a senha para continuar.",
+        "label": "Senha",
+        "placeholder": "Digite a senha",
+        "cancel": "Cancelar",
+        "submit": "Continuar",
+        "verifying": "Verificando..."
+      },
+      "errors": {
+        "loadFailed": "Falha ao carregar informações. Tente novamente.",
+        "passwordIncorrect": "Senha incorreta. Tente novamente.",
+        "linkNotFound": "Link não encontrado ou expirado.",
+        "linkInactive": "Este link está inativo.",
+        "linkExpired": "Este link expirou.",
+        "uploadFailed": "Erro ao enviar arquivo",
+        "fileTooLarge": "Arquivo muito grande. Tamanho máximo: {maxSize}",
+        "fileTypeNotAllowed": "Tipo de arquivo não permitido. Tipos aceitos: {allowedTypes}",
+        "maxFilesExceeded": "Máximo de {maxFiles} arquivos permitidos",
+        "selectAtLeastOneFile": "Selecione pelo menos um arquivo",
+        "provideNameOrEmail": "Informe seu nome ou e-mail"
+      },
+      "fileDropzone": {
+        "dragActive": "Solte os arquivos aqui",
+        "dragInactive": "Arraste arquivos aqui ou clique para selecionar",
+        "acceptedTypes": "Tipos aceitos: {types}",
+        "maxFileSize": "Tamanho máximo: {size}",
+        "maxFiles": "Máximo de {count} arquivos",
+        "remainingFiles": "Restam {remaining} de {max} arquivos"
+      },
+      "fileList": {
+        "title": "Arquivos selecionados:",
+        "statusUploaded": "Enviado",
+        "statusError": "Erro"
+      },
+      "form": {
+        "nameLabel": "Nome",
+        "namePlaceholder": "Seu nome",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "seu@email.com",
+        "descriptionLabel": "Descrição (opcional)",
+        "descriptionPlaceholder": "Adicione uma descrição aos arquivos...",
+        "uploadButton": "Enviar {count} arquivo(s)",
+        "uploading": "Enviando..."
+      },
+      "success": {
+        "title": "Arquivos enviados com sucesso! 🎉",
+        "description": "Você pode fechar esta página.",
+        "countMessage": "{count} arquivo(s) enviado(s) com sucesso!"
+      },
+      "maxFilesReached": {
+        "title": "Limite de arquivos atingido",
+        "description": "Este link já recebeu o número máximo de {maxFiles} arquivo(s) permitido(s).",
+        "contactOwner": "Se houve algum erro ou você precisa enviar mais arquivos, entre em contato com o proprietário do link."
+      },
+      "linkInactive": {
+        "title": "Link inativo",
+        "description": "Este link de recebimento está temporariamente inativo.",
+        "contactOwner": "Entre em contato com o proprietário do link para mais informações."
+      },
+      "linkNotFound": {
+        "title": "Link não encontrado",
+        "description": "Este link pode ter sido removido ou nunca existiu."
+      },
+      "linkExpired": {
+        "title": "Link expirado",
+        "description": "Este link de recebimento expirou e não está mais aceitando arquivos.",
+        "contactOwner": "Entre em contato com o proprietário do link se precisar enviar arquivos."
+      }
     }
   }
 }

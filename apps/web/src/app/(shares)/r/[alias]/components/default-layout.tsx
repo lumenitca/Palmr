@@ -1,24 +1,122 @@
 "use client";
 
 import Link from "next/link";
+import { IconAlertTriangle, IconCheck, IconClock, IconInfoCircle } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/general/language-switcher";
 import { ModeToggle } from "@/components/general/mode-toggle";
 import { DefaultFooter } from "@/components/ui/default-footer";
 import { useAppInfo } from "@/contexts/app-info-context";
-import type { GetReverseShareForUploadResult } from "@/http/endpoints/reverse-shares/types";
+import type { DefaultLayoutProps } from "../types";
 import { FileUploadSection } from "./file-upload-section";
+import { StatusMessage } from "./shared/status-message";
 
-type ReverseShareInfo = GetReverseShareForUploadResult["data"]["reverseShare"];
-
-interface DefaultLayoutProps {
-  reverseShare: ReverseShareInfo;
-  password: string;
-  alias: string;
-}
-
-export function DefaultLayout({ reverseShare, password, alias }: DefaultLayoutProps) {
+export function DefaultLayout({
+  reverseShare,
+  password,
+  alias,
+  isMaxFilesReached,
+  hasUploadedSuccessfully,
+  onUploadSuccess,
+  isLinkInactive,
+  isLinkNotFound,
+  isLinkExpired,
+}: DefaultLayoutProps) {
   const { appName, appLogo } = useAppInfo();
+  const t = useTranslations();
+
+  const getUploadStatus = () => {
+    if (hasUploadedSuccessfully) {
+      return {
+        component: (
+          <StatusMessage
+            icon={IconCheck}
+            title={t("reverseShares.upload.success.title")}
+            description={t("reverseShares.upload.success.description")}
+            variant="success"
+          />
+        ),
+      };
+    }
+
+    if (isLinkInactive) {
+      return {
+        component: (
+          <StatusMessage
+            icon={IconAlertTriangle}
+            title={t("reverseShares.upload.linkInactive.title")}
+            description={t("reverseShares.upload.linkInactive.description")}
+            additionalText={t("reverseShares.upload.linkInactive.contactOwner")}
+            variant="error"
+          />
+        ),
+      };
+    }
+
+    if (isLinkNotFound || !reverseShare) {
+      return {
+        component: (
+          <StatusMessage
+            icon={IconAlertTriangle}
+            title={t("reverseShares.upload.linkNotFound.title")}
+            description={t("reverseShares.upload.linkNotFound.description")}
+            variant="neutral"
+          />
+        ),
+      };
+    }
+
+    if (isLinkExpired) {
+      return {
+        component: (
+          <StatusMessage
+            icon={IconClock}
+            title={t("reverseShares.upload.linkExpired.title")}
+            description={t("reverseShares.upload.linkExpired.description")}
+            additionalText={t("reverseShares.upload.linkExpired.contactOwner")}
+            variant="info"
+          />
+        ),
+      };
+    }
+
+    if (isMaxFilesReached) {
+      return {
+        component: (
+          <StatusMessage
+            icon={IconInfoCircle}
+            title={t("reverseShares.upload.maxFilesReached.title")}
+            description={t("reverseShares.upload.maxFilesReached.description", {
+              maxFiles: reverseShare?.maxFiles || 0,
+            })}
+            additionalText={t("reverseShares.upload.maxFilesReached.contactOwner")}
+            variant="warning"
+          />
+        ),
+      };
+    }
+
+    return {
+      component: (
+        <FileUploadSection
+          reverseShare={reverseShare}
+          password={password}
+          alias={alias}
+          onUploadSuccess={onUploadSuccess}
+        />
+      ),
+    };
+  };
+
+  const showUploadLimits =
+    !hasUploadedSuccessfully &&
+    !isMaxFilesReached &&
+    !isLinkInactive &&
+    !isLinkNotFound &&
+    !isLinkExpired &&
+    reverseShare &&
+    (reverseShare.maxFiles || reverseShare.maxFileSize || reverseShare.allowedFileTypes);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -42,9 +140,9 @@ export function DefaultLayout({ reverseShare, password, alias }: DefaultLayoutPr
           {/* Header da página */}
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {reverseShare.name || "Enviar Arquivos"}
+              {reverseShare?.name || t("reverseShares.upload.layout.defaultTitle")}
             </h1>
-            {reverseShare.description && (
+            {reverseShare?.description && (
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 {reverseShare.description}
               </p>
@@ -53,17 +151,23 @@ export function DefaultLayout({ reverseShare, password, alias }: DefaultLayoutPr
 
           {/* Seção de upload */}
           <div className="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 lg:p-10">
-            <FileUploadSection reverseShare={reverseShare} password={password} alias={alias} />
+            {getUploadStatus().component}
           </div>
 
-          {/* Informações adicionais (se houver limites) */}
-          {(reverseShare.maxFiles || reverseShare.maxFileSize || reverseShare.allowedFileTypes) && (
+          {/* Informações adicionais */}
+          {showUploadLimits && (
             <div className="bg-muted/30 rounded-lg p-4 space-y-2">
-              <h3 className="text-sm font-medium text-foreground">Informações importantes:</h3>
+              <h3 className="text-sm font-medium text-foreground">{t("reverseShares.upload.layout.importantInfo")}</h3>
               <div className="text-xs text-muted-foreground space-y-1">
-                {reverseShare.maxFiles && <p>• Máximo de {reverseShare.maxFiles} arquivo(s)</p>}
-                {reverseShare.maxFileSize && <p>• Tamanho máximo por arquivo: {reverseShare.maxFileSize}MB</p>}
-                {reverseShare.allowedFileTypes && <p>• Tipos permitidos: {reverseShare.allowedFileTypes}</p>}
+                {reverseShare?.maxFiles && (
+                  <p>• {t("reverseShares.upload.layout.maxFiles", { count: reverseShare.maxFiles })}</p>
+                )}
+                {reverseShare?.maxFileSize && (
+                  <p>• {t("reverseShares.upload.layout.maxFileSize", { size: reverseShare.maxFileSize })}</p>
+                )}
+                {reverseShare?.allowedFileTypes && (
+                  <p>• {t("allowedTypes", { types: reverseShare.allowedFileTypes })}</p>
+                )}
               </div>
             </div>
           )}
