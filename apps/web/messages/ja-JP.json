@@ -13,7 +13,9 @@
     "back": "戻る",
     "updating": "更新中...",
     "saving": "保存中...",
-    "update": "更新"
+    "update": "更新",
+    "click": "クリックして",
+    "creating": "作成中..."
   },
   "createShare": {
     "title": "共有を作成",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "マイ共有",
       "description": "共有されたファイルを表示および管理します"
+    },
+    "reverseShares": {
+      "title": "ファイルを受け取る",
+      "description": "他のユーザーがファイルを送信できるリンクを作成"
     }
   },
   "recentFiles": {
@@ -838,7 +844,9 @@
     "passwordLength": "パスワードは最低8文字必要です",
     "passwordsMatch": "パスワードが一致しません",
     "emailRequired": "メールアドレスは必須です",
-    "passwordRequired": "パスワードは必須です"
+    "passwordRequired": "パスワードは必須です",
+    "nameRequired": "名前は必須です",
+    "required": "このフィールドは必須です"
   },
   "shareFile": {
     "title": "ファイル共有",
@@ -950,6 +958,388 @@
       "token_expired": "トークンの有効期限が切れました。もう一度お試しください。",
       "config_error": "設定エラー。サポートにお問い合わせください。",
       "auth_failed": "認証に失敗しました。もう一度お試しください。"
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "ファイルを受け取る",
+    "search": {
+      "title": "受信リンクの管理",
+      "createButton": "リンクを作成",
+      "placeholder": "受信リンクを検索...",
+      "results": "受信リンク {total} 件中 {filtered} 件が見つかりました"
+    },
+    "labels": {
+      "files": "ファイル",
+      "size": "サイズ",
+      "status": "ステータス",
+      "access": "アクセス",
+      "description": "説明",
+      "pageLayout": "ページレイアウト",
+      "security": "セキュリティとステータス",
+      "limits": "制限",
+      "maxFiles": "最大ファイル数",
+      "maxFileSize": "最大ファイルサイズ",
+      "allowedTypes": "許可されるファイル形式",
+      "filesReceived": "受信済みファイル",
+      "fileLimit": "ファイル制限",
+      "noLimit": "制限なし",
+      "noLinkCreated": "リンクが作成されていません",
+      "publicAccess": "公開アクセス",
+      "protectedByPassword": "パスワード保護",
+      "configureProtection": "クリックして保護を設定",
+      "enterPassword": "パスワードを入力",
+      "thisLinkProtected": "このリンクはパスワードで保護されます",
+      "thisLinkPublic": "このリンクは公開されます",
+      "configureExpiration": "有効期限を設定",
+      "configureLimits": "ファイル制限を設定",
+      "protectWithPassword": "パスワードで保護",
+      "layoutOptions": {
+        "default": "デフォルト",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "ファイル数制限なし",
+      "noSizeLimit": "サイズ制限なし",
+      "allFileTypes": "すべてのファイル形式",
+      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください"
+    },
+    "card": {
+      "untitled": "無題のリンク",
+      "noDescription": "説明なし",
+      "addDescriptionPlaceholder": "説明を追加...",
+      "files": "ファイル",
+      "progress": "進捗",
+      "created": "作成日",
+      "expired": "期限切れ",
+      "expires": "有効期限",
+      "viewDetails": "詳細を表示",
+      "copyLink": "リンクをコピー",
+      "openInNewTab": "新しいタブで開く",
+      "editLink": "リンクを編集",
+      "createLink": "リンクを作成",
+      "delete": "削除",
+      "copyLinkTitle": "リンクをコピー",
+      "createLinkCTA": "受信リンクを作成"
+    },
+    "status": {
+      "active": "有効",
+      "inactive": "無効",
+      "expired": "期限切れ",
+      "protected": "保護",
+      "public": "公開"
+    },
+    "actions": {
+      "copyLink": "リンクをコピー",
+      "editAlias": "エイリアスを編集",
+      "createAlias": "エイリアスを作成",
+      "viewDetails": "詳細を表示",
+      "edit": "編集",
+      "delete": "削除",
+      "viewFiles": "受信済みファイル"
+    },
+    "empty": {
+      "title": "受信リンクが作成されていません",
+      "description": "他の人が安全かつ整理された方法でファイルを直接送信できるカスタムリンクを作成します。",
+      "createButton": "最初のリンクを作成"
+    },
+    "modals": {
+      "create": {
+        "title": "受信リンクを作成",
+        "description": "他の人からファイルを受け取るためのカスタムリンクを設定"
+      },
+      "edit": {
+        "title": "受信リンクを編集",
+        "description": "この受信リンクの設定を更新",
+        "updating": "更新中...",
+        "saveChanges": "変更を保存"
+      },
+      "details": {
+        "title": "リンクの詳細",
+        "description": "受信リンクの情報を表示・編集",
+        "pageLayout": "ページレイアウト",
+        "linkSection": "受信リンク",
+        "noLinkCreated": "リンクが作成されていません",
+        "limits": "制限",
+        "maxFiles": "最大ファイル数",
+        "maxFileSize": "最大サイズ",
+        "allowedTypes": "許可される形式",
+        "noLimit": "制限なし",
+        "security": "セキュリティ",
+        "status": "ステータス",
+        "password": "パスワード",
+        "files": "受信済みファイル",
+        "noFiles": "まだファイルを受信していません",
+        "copyLink": "リンクをコピー",
+        "openLink": "リンクを開く",
+        "editAlias": "エイリアスを編集",
+        "createAlias": "エイリアスを作成",
+        "editPassword": "パスワード保護を編集",
+        "basicInfo": "基本情報",
+        "securityAndStatus": "セキュリティとステータス",
+        "protection": "保護",
+        "protectedByPassword": "パスワード保護",
+        "publicAccess": "公開アクセス",
+        "active": "有効",
+        "inactive": "無効",
+        "deactivate": "無効化",
+        "activate": "有効化",
+        "expiration": "有効期限",
+        "dates": "日付",
+        "createdAt": "作成日時",
+        "updatedAt": "更新日時",
+        "allTypes": "すべての形式",
+        "placeholderTypes": ".pdf,.jpg,.png (カンマ区切り)",
+        "downloadSuccess": "ダウンロードを開始しました",
+        "downloadError": "ファイルのダウンロードに失敗しました",
+        "editSuccess": "ファイルを更新しました",
+        "editError": "ファイルの更新に失敗しました",
+        "previewNotAvailable": "プレビューは利用できません",
+        "notAvailable": "利用不可",
+        "invalidDate": "無効な日付"
+      },
+      "alias": {
+        "editTitle": "エイリアスを編集",
+        "createTitle": "エイリアスを作成",
+        "editDescription": "この受信リンクのエイリアスを更新",
+        "createDescription": "この受信リンクのカスタムエイリアスを作成",
+        "aliasLabel": "リンクエイリアス",
+        "aliasPlaceholder": "my-custom-link",
+        "preview": "プレビュー:",
+        "currentLink": "現在のリンク:",
+        "copyCurrentLink": "現在のリンクをコピー",
+        "randomTooltip": "ランダムなエイリアスを生成",
+        "cancel": "キャンセル",
+        "creating": "作成中...",
+        "updating": "更新中...",
+        "create": "エイリアスを作成",
+        "update": "エイリアスを更新",
+        "validation": {
+          "required": "エイリアスは必須です",
+          "minLength": "エイリアスは3文字以上必要です",
+          "maxLength": "エイリアスは50文字以内である必要があります",
+          "pattern": "エイリアスには文字、数字、ハイフン、アンダースコアのみ使用できます"
+        },
+        "help": "3-50文字。スペースは自動的にハイフンに変換されます。"
+      },
+      "password": {
+        "title": "パスワード保護を編集",
+        "description": "このリンクのパスワード保護を設定",
+        "hasPassword": "パスワード保護",
+        "password": "パスワード",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "receivedFiles": {
+        "title": "受信済みファイル",
+        "description": "このリンクで送信されたファイルを表示・管理",
+        "noFiles": "まだファイルを受信していません",
+        "noFilesDescription": "このリンクを通じて送信されたファイルがここに表示されます",
+        "fileCount": "{count, plural, =0 {ファイルなし} =1 {1ファイル} other {#ファイル}}",
+        "totalSize": "合計サイズ: {size}",
+        "columns": {
+          "file": "ファイル",
+          "size": "サイズ",
+          "sender": "送信者",
+          "date": "日付",
+          "actions": "アクション"
+        },
+        "actions": {
+          "preview": "プレビュー",
+          "download": "ダウンロード"
+        },
+        "uploadedBy": "{name}が送信",
+        "anonymous": "匿名",
+        "downloadSuccess": "ダウンロードを開始しました",
+        "downloadError": "ファイルのダウンロードに失敗しました",
+        "editSuccess": "ファイルを更新しました",
+        "editError": "ファイルの更新に失敗しました",
+        "previewNotAvailable": "プレビューは利用できません"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "リンク名",
+        "placeholder": "例: プロジェクト資料、家族写真..."
+      },
+      "description": {
+        "label": "説明",
+        "placeholder": "受け取りたいファイルの種類を説明してください...",
+        "description": "オプション。送信者が何を送るべきか理解する助けになります。"
+      },
+      "status": {
+        "label": "リンクステータス",
+        "description": "この受信リンクを有効または無効にします"
+      },
+      "expiration": {
+        "label": "有効期限",
+        "description": "オプション。この日付以降、リンクは無効になります。",
+        "configure": "有効期限を設定"
+      },
+      "fileLimits": {
+        "configure": "ファイル制限を設定"
+      },
+      "maxFiles": {
+        "label": "最大ファイル数",
+        "placeholder": "例: 10",
+        "description": "オプション。送信可能な合計ファイル数を制限します。",
+        "noLimit": "ファイル数制限なし"
+      },
+      "maxFileSize": {
+        "label": "ファイルあたりの最大サイズ",
+        "placeholder": "例: 100",
+        "description": "オプション。各ファイルのサイズを制限します。",
+        "noLimit": "サイズ制限なし"
+      },
+      "allowedFileTypes": {
+        "label": "許可されるファイル形式",
+        "placeholder": "例: pdf, jpg, png, docx",
+        "description": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください",
+        "allTypes": "すべてのファイル形式"
+      },
+      "pageLayout": {
+        "label": "ページレイアウト",
+        "placeholder": "レイアウトを選択",
+        "description": "アップロードページのユーザー向け表示方法。",
+        "options": {
+          "default": "デフォルトレイアウト",
+          "wetransfer": "WeTransferスタイル"
+        }
+      },
+      "password": {
+        "label": "保護パスワード",
+        "placeholder": "オプション。リンクを保護するパスワードを追加",
+        "description": "オプション。ユーザーはリンクにアクセスするためにこのパスワードが必要になります。",
+        "configurePassword": "パスワードを設定",
+        "protectWithPassword": "パスワードで保護",
+        "passwordHelp": "パスワードは4文字以上必要です",
+        "passwordPlaceholder": "リンクを保護するパスワードを入力"
+      },
+      "submit": "受信リンクを作成"
+    },
+    "messages": {
+      "created": "受信リンクを作成しました！",
+      "createSuccess": "受信リンクを作成しました！",
+      "updateSuccess": "受信リンクを更新しました！",
+      "linkCopied": "リンクをクリップボードにコピーしました！",
+      "deleteSuccess": "受信リンクを削除しました！",
+      "aliasCreated": "エイリアスを作成しました！",
+      "activateSuccess": "受信リンクを有効化しました！",
+      "deactivateSuccess": "受信リンクを無効化しました！"
+    },
+    "errors": {
+      "loadFailed": "受信リンクの読み込みに失敗しました",
+      "createFailed": "受信リンクの作成に失敗しました。もう一度お試しください。",
+      "updateFailed": "受信リンクの更新に失敗しました。もう一度お試しください。",
+      "deleteFailed": "受信リンクの削除に失敗しました。もう一度お試しください。",
+      "aliasCreateFailed": "エイリアスの作成に失敗しました。もう一度お試しください。"
+    },
+    "delete": {
+      "title": "受信リンクを削除",
+      "description": "この操作は取り消せません。リンクは完全に削除され、ファイルを受信できなくなります。",
+      "confirmButton": "リンクを削除",
+      "cancelButton": "キャンセル",
+      "deleting": "削除中..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "ファイルを送信 - Palmr",
+        "description": "共有リンクを通じてファイルを送信"
+      },
+      "layout": {
+        "defaultTitle": "ファイルを送信",
+        "importantInfo": "重要な情報:",
+        "maxFiles": "最大 {count} ファイル",
+        "maxFileSize": "ファイルあたりの最大サイズ: {size}MB",
+        "allowedTypes": "許可される形式: {types}",
+        "loading": "読み込み中..."
+      },
+      "password": {
+        "title": "保護されたリンク",
+        "description": "このリンクはパスワードで保護されています。続行するにはパスワードを入力してください。",
+        "label": "パスワード",
+        "placeholder": "パスワードを入力",
+        "cancel": "キャンセル",
+        "submit": "続行",
+        "verifying": "確認中..."
+      },
+      "errors": {
+        "loadFailed": "情報の読み込みに失敗しました。もう一度お試しください。",
+        "passwordIncorrect": "パスワードが正しくありません。もう一度お試しください。",
+        "linkNotFound": "リンクが見つからないか期限切れです。",
+        "linkInactive": "このリンクは無効です。",
+        "linkExpired": "このリンクは期限切れです。",
+        "uploadFailed": "ファイルのアップロードに失敗しました",
+        "fileTooLarge": "ファイルが大きすぎます。最大サイズ: {maxSize}",
+        "fileTypeNotAllowed": "このファイル形式は許可されていません。許可される形式: {allowedTypes}",
+        "maxFilesExceeded": "最大 {maxFiles} ファイルまで許可されています",
+        "selectAtLeastOneFile": "少なくとも1つのファイルを選択してください",
+        "provideNameOrEmail": "名前またはメールアドレスを入力してください"
+      },
+      "fileDropzone": {
+        "dragActive": "ここにファイルをドロップ",
+        "dragInactive": "ファイルをドラッグ＆ドロップするか、クリックして選択",
+        "acceptedTypes": "許可される形式: {types}",
+        "maxFileSize": "最大サイズ: {size}",
+        "maxFiles": "最大 {count} ファイル",
+        "remainingFiles": "残り {max} ファイル中 {remaining} ファイル"
+      },
+      "fileList": {
+        "title": "選択されたファイル:",
+        "statusUploaded": "アップロード済み",
+        "statusError": "エラー"
+      },
+      "form": {
+        "nameLabel": "名前",
+        "namePlaceholder": "あなたの名前",
+        "emailLabel": "メールアドレス",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "説明（オプション）",
+        "descriptionPlaceholder": "ファイルの説明を追加...",
+        "uploadButton": "{count} ファイルを送信",
+        "uploading": "送信中..."
+      },
+      "success": {
+        "title": "ファイルを送信しました！ 🎉",
+        "description": "このページを閉じることができます。",
+        "countMessage": "{count} ファイルを送信しました！"
+      },
+      "maxFilesReached": {
+        "title": "ファイル制限に達しました",
+        "description": "このリンクは許可された最大 {maxFiles} ファイルを受信済みです。",
+        "contactOwner": "エラーがあった場合や追加のファイルを送信する必要がある場合は、リンクの所有者に連絡してください。"
+      },
+      "linkInactive": {
+        "title": "リンクが無効です",
+        "description": "この受信リンクは一時的に無効になっています。",
+        "contactOwner": "詳細については、リンクの所有者に連絡してください。"
+      },
+      "linkNotFound": {
+        "title": "リンクが見つかりません",
+        "description": "このリンクは削除されたか、存在しない可能性があります。"
+      },
+      "linkExpired": {
+        "title": "リンクが期限切れです",
+        "description": "この受信リンクは期限切れとなり、ファイルを受け付けていません。",
+        "contactOwner": "ファイルを送信する必要がある場合は、リンクの所有者に連絡してください。"
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "説明を追加...",
+        "anonymous": "匿名"
+      },
+      "fileActions": {
+        "edit": "編集",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "preview": "プレビュー",
+        "download": "ダウンロード",
+        "delete": "削除"
+      },
+      "editField": {
+        "saveChanges": "変更を保存",
+        "cancelEdit": "編集をキャンセル"
+      }
     }
   }
 }

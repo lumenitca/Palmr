@@ -13,7 +13,9 @@
     "back": "뒤로",
     "updating": "업데이트 중...",
     "saving": "저장 중...",
-    "update": "업데이트"
+    "update": "업데이트",
+    "click": "클릭하여",
+    "creating": "생성 중..."
   },
   "createShare": {
     "title": "공유 생성",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "내 공유",
       "description": "공유된 파일을 보고 관리합니다"
+    },
+    "reverseShares": {
+      "title": "파일 받기",
+      "description": "다른 사람이 파일을 보낼 수 있는 링크를 생성하세요"
     }
   },
   "recentFiles": {
@@ -838,7 +844,9 @@
     "passwordLength": "비밀번호는 최소 8자 이상이어야 합니다",
     "passwordsMatch": "비밀번호가 일치하지 않습니다",
     "emailRequired": "이메일은 필수입니다",
-    "passwordRequired": "비밀번호는 필수입니다"
+    "passwordRequired": "비밀번호는 필수입니다",
+    "nameRequired": "이름은 필수입니다",
+    "required": "이 필드는 필수입니다"
   },
   "shareFile": {
     "title": "파일 공유",
@@ -950,6 +958,388 @@
       "token_expired": "토큰이 만료되었습니다. 다시 시도하세요.",
       "config_error": "구성 오류. 지원팀에 문의하세요.",
       "auth_failed": "인증에 실패했습니다. 다시 시도하세요."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "파일 받기",
+    "search": {
+      "title": "수신 링크 관리",
+      "createButton": "링크 생성",
+      "placeholder": "수신 링크 검색...",
+      "results": "총 {total}개 중 {filtered}개의 수신 링크 찾음"
+    },
+    "labels": {
+      "files": "파일",
+      "size": "크기",
+      "status": "상태",
+      "access": "접근",
+      "description": "설명",
+      "pageLayout": "페이지 레이아웃",
+      "security": "보안 & 상태",
+      "limits": "제한",
+      "maxFiles": "최대 파일 수",
+      "maxFileSize": "최대 크기",
+      "allowedTypes": "허용된 유형",
+      "filesReceived": "받은 파일",
+      "fileLimit": "파일 제한",
+      "noLimit": "제한 없음",
+      "noLinkCreated": "생성된 링크 없음",
+      "publicAccess": "공개 접근",
+      "protectedByPassword": "비밀번호로 보호됨",
+      "configureProtection": "보호 설정하려면 클릭",
+      "enterPassword": "비밀번호 입력",
+      "thisLinkProtected": "이 링크는 비밀번호로 보호됩니다",
+      "thisLinkPublic": "이 링크는 공개적으로 사용 가능합니다",
+      "configureExpiration": "만료 설정",
+      "configureLimits": "파일 제한 설정",
+      "protectWithPassword": "비밀번호로 보호",
+      "layoutOptions": {
+        "default": "기본",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "파일 수 제한 없음",
+      "noSizeLimit": "크기 제한 없음",
+      "allFileTypes": "모든 파일 유형",
+      "fileTypesHelp": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분"
+    },
+    "card": {
+      "untitled": "제목 없는 링크",
+      "noDescription": "설명 없음",
+      "addDescriptionPlaceholder": "설명 추가...",
+      "files": "파일",
+      "progress": "진행률",
+      "created": "생성됨",
+      "expired": "만료됨",
+      "expires": "만료",
+      "viewDetails": "상세 보기",
+      "copyLink": "링크 복사",
+      "openInNewTab": "새 탭에서 열기",
+      "editLink": "링크 편집",
+      "createLink": "링크 생성",
+      "delete": "삭제",
+      "copyLinkTitle": "링크 복사",
+      "createLinkCTA": "수신 링크 생성"
+    },
+    "status": {
+      "active": "활성",
+      "inactive": "비활성",
+      "expired": "만료됨",
+      "protected": "보호됨",
+      "public": "공개"
+    },
+    "actions": {
+      "copyLink": "링크 복사",
+      "editAlias": "별칭 편집",
+      "createAlias": "별칭 생성",
+      "viewDetails": "상세 보기",
+      "edit": "편집",
+      "delete": "삭제",
+      "viewFiles": "받은 파일"
+    },
+    "empty": {
+      "title": "생성된 수신 링크 없음",
+      "description": "다른 사람이 안전하고 체계적으로 파일을 직접 보낼 수 있는 맞춤형 링크를 만드세요.",
+      "createButton": "첫 링크 만들기"
+    },
+    "modals": {
+      "create": {
+        "title": "수신 링크 생성",
+        "description": "다른 사람으로부터 파일을 받기 위한 맞춤형 링크 설정"
+      },
+      "edit": {
+        "title": "수신 링크 편집",
+        "description": "이 수신 링크의 설정 업데이트",
+        "updating": "업데이트 중...",
+        "saveChanges": "변경사항 저장"
+      },
+      "details": {
+        "title": "링크 상세정보",
+        "description": "수신 링크 정보 보기 및 편집",
+        "pageLayout": "페이지 레이아웃",
+        "linkSection": "수신 링크",
+        "noLinkCreated": "생성된 링크 없음",
+        "limits": "제한",
+        "maxFiles": "최대 파일 수",
+        "maxFileSize": "최대 크기",
+        "allowedTypes": "허용된 유형",
+        "noLimit": "제한 없음",
+        "security": "보안",
+        "status": "상태",
+        "password": "비밀번호",
+        "files": "받은 파일",
+        "noFiles": "아직 받은 파일 없음",
+        "copyLink": "링크 복사",
+        "openLink": "링크 열기",
+        "editAlias": "별칭 편집",
+        "createAlias": "별칭 생성",
+        "editPassword": "비밀번호 보호 편집",
+        "basicInfo": "기본 정보",
+        "securityAndStatus": "보안 & 상태",
+        "protection": "보호",
+        "protectedByPassword": "비밀번호로 보호됨",
+        "publicAccess": "공개 접근",
+        "active": "활성",
+        "inactive": "비활성",
+        "deactivate": "비활성화",
+        "activate": "활성화",
+        "expiration": "만료",
+        "dates": "날짜",
+        "createdAt": "생성일",
+        "updatedAt": "업데이트일",
+        "allTypes": "모든 유형",
+        "placeholderTypes": ".pdf,.jpg,.png (쉼표로 구분)",
+        "downloadSuccess": "다운로드 시작됨",
+        "downloadError": "파일 다운로드 오류",
+        "editSuccess": "파일이 성공적으로 업데이트됨",
+        "editError": "파일 업데이트 오류",
+        "previewNotAvailable": "미리보기 불가",
+        "notAvailable": "사용 불가",
+        "invalidDate": "잘못된 날짜"
+      },
+      "alias": {
+        "editTitle": "별칭 편집",
+        "createTitle": "별칭 생성",
+        "editDescription": "이 수신 링크의 별칭 업데이트",
+        "createDescription": "이 수신 링크의 맞춤형 별칭 생성",
+        "aliasLabel": "링크 별칭",
+        "aliasPlaceholder": "내-맞춤-링크",
+        "preview": "미리보기:",
+        "currentLink": "현재 링크:",
+        "copyCurrentLink": "현재 링크 복사",
+        "randomTooltip": "무작위 별칭 생성",
+        "cancel": "취소",
+        "creating": "생성 중...",
+        "updating": "업데이트 중...",
+        "create": "별칭 생성",
+        "update": "별칭 업데이트",
+        "validation": {
+          "required": "별칭이 필요합니다",
+          "minLength": "별칭은 최소 3자 이상이어야 합니다",
+          "maxLength": "별칭은 최대 50자까지 가능합니다",
+          "pattern": "별칭은 문자, 숫자, 하이픈, 밑줄만 포함할 수 있습니다"
+        },
+        "help": "3-50자. 공백은 자동으로 하이픈으로 변환됩니다."
+      },
+      "password": {
+        "title": "비밀번호 보호 편집",
+        "description": "이 링크의 비밀번호 보호 설정",
+        "hasPassword": "비밀번호로 보호됨",
+        "password": "비밀번호",
+        "cancel": "취소",
+        "save": "저장",
+        "saving": "저장 중..."
+      },
+      "receivedFiles": {
+        "title": "받은 파일",
+        "description": "이 링크로 보내진 파일 보기 및 관리",
+        "noFiles": "아직 받은 파일 없음",
+        "noFilesDescription": "이 링크를 통해 보내진 파일이 여기에 표시됩니다",
+        "fileCount": "{count}개의 파일",
+        "totalSize": "전체 크기: {size}",
+        "columns": {
+          "file": "파일",
+          "size": "크기",
+          "sender": "보낸 사람",
+          "date": "날짜",
+          "actions": "작업"
+        },
+        "actions": {
+          "preview": "미리보기",
+          "download": "다운로드"
+        },
+        "uploadedBy": "{name}님이 업로드함",
+        "anonymous": "익명",
+        "downloadSuccess": "다운로드 시작됨",
+        "downloadError": "파일 다운로드 오류",
+        "editSuccess": "파일이 성공적으로 업데이트됨",
+        "editError": "파일 업데이트 오류",
+        "previewNotAvailable": "미리보기 불가"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "링크 이름",
+        "placeholder": "예: 프로젝트 문서, 가족 사진..."
+      },
+      "description": {
+        "label": "설명",
+        "placeholder": "어떤 파일을 받고 싶은지 설명하세요...",
+        "description": "선택사항. 사람들이 무엇을 보내야 하는지 이해하는 데 도움이 됩니다."
+      },
+      "status": {
+        "label": "링크 상태",
+        "description": "이 수신 링크를 활성화 또는 비활성화"
+      },
+      "expiration": {
+        "label": "만료 날짜",
+        "description": "선택사항. 이 날짜 이후에는 링크가 비활성화됩니다.",
+        "configure": "만료 설정"
+      },
+      "fileLimits": {
+        "configure": "파일 제한 설정"
+      },
+      "maxFiles": {
+        "label": "최대 파일 수",
+        "placeholder": "예: 10",
+        "description": "선택사항. 보낼 수 있는 총 파일 수를 제한합니다.",
+        "noLimit": "파일 수 제한 없음"
+      },
+      "maxFileSize": {
+        "label": "파일당 최대 크기",
+        "placeholder": "예: 100",
+        "description": "선택사항. 각 파일의 개별 크기를 제한합니다.",
+        "noLimit": "크기 제한 없음"
+      },
+      "allowedFileTypes": {
+        "label": "허용된 파일 유형",
+        "placeholder": "예: pdf, jpg, png, docx",
+        "description": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분",
+        "allTypes": "모든 파일 유형"
+      },
+      "pageLayout": {
+        "label": "페이지 레이아웃",
+        "placeholder": "레이아웃 선택",
+        "description": "사용자에게 보여질 업로드 페이지의 모양.",
+        "options": {
+          "default": "기본 레이아웃",
+          "wetransfer": "WeTransfer 스타일"
+        }
+      },
+      "password": {
+        "label": "보호 비밀번호",
+        "placeholder": "선택사항. 링크를 보호할 비밀번호 추가",
+        "description": "선택사항. 사용자는 링크에 접근하기 위해 이 비밀번호가 필요합니다.",
+        "configurePassword": "비밀번호 설정",
+        "protectWithPassword": "비밀번호로 보호",
+        "passwordHelp": "비밀번호는 최소 4자 이상이어야 합니다",
+        "passwordPlaceholder": "링크를 보호할 비밀번호 입력"
+      },
+      "submit": "수신 링크 생성"
+    },
+    "messages": {
+      "created": "수신 링크가 성공적으로 생성되었습니다!",
+      "createSuccess": "수신 링크가 성공적으로 생성되었습니다!",
+      "updateSuccess": "수신 링크가 성공적으로 업데이트되었습니다!",
+      "linkCopied": "링크가 클립보드에 복사되었습니다!",
+      "deleteSuccess": "수신 링크가 성공적으로 삭제되었습니다!",
+      "aliasCreated": "별칭이 성공적으로 생성되었습니다!",
+      "activateSuccess": "수신 링크가 성공적으로 활성화되었습니다!",
+      "deactivateSuccess": "수신 링크가 성공적으로 비활성화되었습니다!"
+    },
+    "errors": {
+      "loadFailed": "수신 링크 로드 실패",
+      "createFailed": "수신 링크 생성 실패. 다시 시도하세요.",
+      "updateFailed": "수신 링크 업데이트 실패. 다시 시도하세요.",
+      "deleteFailed": "수신 링크 삭제 실패. 다시 시도하세요.",
+      "aliasCreateFailed": "별칭 생성 실패. 다시 시도하세요."
+    },
+    "delete": {
+      "title": "수신 링크 삭제",
+      "description": "이 작업은 취소할 수 없습니다. 링크가 영구적으로 제거되며 더 이상 파일을 받을 수 없습니다.",
+      "confirmButton": "링크 삭제",
+      "cancelButton": "취소",
+      "deleting": "삭제 중..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "파일 보내기 - Palmr",
+        "description": "공유된 링크를 통해 파일 보내기"
+      },
+      "layout": {
+        "defaultTitle": "파일 보내기",
+        "importantInfo": "중요 정보:",
+        "maxFiles": "최대 {count}개 파일",
+        "maxFileSize": "파일당 최대 크기: {size}MB",
+        "allowedTypes": "허용된 유형: {types}",
+        "loading": "로딩 중..."
+      },
+      "password": {
+        "title": "보호된 링크",
+        "description": "이 링크는 비밀번호로 보호되어 있습니다. 계속하려면 비밀번호를 입력하세요.",
+        "label": "비밀번호",
+        "placeholder": "비밀번호 입력",
+        "cancel": "취소",
+        "submit": "계속",
+        "verifying": "확인 중..."
+      },
+      "errors": {
+        "loadFailed": "정보 로드 실패. 다시 시도하세요.",
+        "passwordIncorrect": "잘못된 비밀번호입니다. 다시 시도하세요.",
+        "linkNotFound": "링크를 찾을 수 없거나 만료되었습니다.",
+        "linkInactive": "이 링크는 비활성 상태입니다.",
+        "linkExpired": "이 링크는 만료되었습니다.",
+        "uploadFailed": "파일 업로드 오류",
+        "fileTooLarge": "파일이 너무 큽니다. 최대 크기: {maxSize}",
+        "fileTypeNotAllowed": "허용되지 않는 파일 유형입니다. 허용된 유형: {allowedTypes}",
+        "maxFilesExceeded": "최대 {maxFiles}개의 파일만 허용됩니다",
+        "selectAtLeastOneFile": "최소 한 개의 파일을 선택하세요",
+        "provideNameOrEmail": "이름 또는 이메일을 입력하세요"
+      },
+      "fileDropzone": {
+        "dragActive": "여기에 파일을 놓으세요",
+        "dragInactive": "파일을 여기에 드래그하거나 클릭하여 선택하세요",
+        "acceptedTypes": "허용된 유형: {types}",
+        "maxFileSize": "최대 크기: {size}",
+        "maxFiles": "최대 {count}개 파일",
+        "remainingFiles": "{max}개 중 {remaining}개 남음"
+      },
+      "fileList": {
+        "title": "선택된 파일:",
+        "statusUploaded": "업로드됨",
+        "statusError": "오류"
+      },
+      "form": {
+        "nameLabel": "이름",
+        "namePlaceholder": "귀하의 이름",
+        "emailLabel": "이메일",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "설명 (선택사항)",
+        "descriptionPlaceholder": "파일에 대한 설명 추가...",
+        "uploadButton": "{count}개 파일 보내기",
+        "uploading": "보내는 중..."
+      },
+      "success": {
+        "title": "파일이 성공적으로 보내졌습니다! 🎉",
+        "description": "이 페이지를 닫으셔도 됩니다.",
+        "countMessage": "{count}개의 파일이 성공적으로 보내졌습니다!"
+      },
+      "maxFilesReached": {
+        "title": "파일 제한 도달",
+        "description": "이 링크는 이미 허용된 최대 {maxFiles}개의 파일을 받았습니다.",
+        "contactOwner": "오류가 있거나 더 많은 파일을 보내야 하는 경우 링크 소유자에게 문의하세요."
+      },
+      "linkInactive": {
+        "title": "비활성 링크",
+        "description": "이 수신 링크는 일시적으로 비활성화되어 있습니다.",
+        "contactOwner": "자세한 정보는 링크 소유자에게 문의하세요."
+      },
+      "linkNotFound": {
+        "title": "링크를 찾을 수 없음",
+        "description": "이 링크가 제거되었거나 존재하지 않을 수 있습니다."
+      },
+      "linkExpired": {
+        "title": "만료된 링크",
+        "description": "이 수신 링크는 만료되어 더 이상 파일을 받지 않습니다.",
+        "contactOwner": "파일을 보내야 하는 경우 링크 소유자에게 문의하세요."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "설명 추가...",
+        "anonymous": "익명"
+      },
+      "fileActions": {
+        "edit": "편집",
+        "save": "저장",
+        "cancel": "취소",
+        "preview": "미리보기",
+        "download": "다운로드",
+        "delete": "삭제"
+      },
+      "editField": {
+        "saveChanges": "변경사항 저장",
+        "cancelEdit": "편집 취소"
+      }
     }
   }
 }

@@ -13,7 +13,9 @@
     "back": "Retour",
     "updating": "Mise à jour...",
     "saving": "Enregistrement...",
-    "update": "Mettre à jour"
+    "update": "Mettre à jour",
+    "click": "Clique para",
+    "creating": "Criando..."
   },
   "createShare": {
     "title": "Créer un Partage",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "Mes Partages",
       "description": "Visualisez et gérez vos fichiers partagés"
+    },
+    "reverseShares": {
+      "title": "Receber Arquivos",
+      "description": "Crie links para outros enviarem arquivos para você"
     }
   },
   "recentFiles": {
@@ -838,7 +844,9 @@
     "passwordLength": "Le mot de passe doit contenir au moins 8 caractères",
     "passwordsMatch": "Les mots de passe ne correspondent pas",
     "emailRequired": "L'email est requis",
-    "passwordRequired": "Le mot de passe est requis"
+    "passwordRequired": "Le mot de passe est requis",
+    "nameRequired": "Nome é obrigatório",
+    "required": "Este campo é obrigatório"
   },
   "shareFile": {
     "title": "Partager un Fichier",
@@ -950,6 +958,388 @@
       "token_expired": "Jeton expiré. Veuillez réessayer.",
       "config_error": "Erreur de configuration. Veuillez contacter le support.",
       "auth_failed": "Échec de l'authentification. Veuillez réessayer."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Recevoir des Fichiers",
+    "search": {
+      "title": "Gérer les Liens de Réception",
+      "createButton": "Créer un Lien",
+      "placeholder": "Rechercher des liens de réception...",
+      "results": "{filtered} sur {total} liens de réception trouvés"
+    },
+    "labels": {
+      "files": "fichiers",
+      "size": "taille",
+      "status": "statut",
+      "access": "accès",
+      "description": "Description",
+      "pageLayout": "Mise en Page",
+      "security": "Sécurité & Statut",
+      "limits": "Limites",
+      "maxFiles": "Maximum de Fichiers",
+      "maxFileSize": "Taille Maximale",
+      "allowedTypes": "Types Autorisés",
+      "filesReceived": "Fichiers Reçus",
+      "fileLimit": "Limite de Fichiers",
+      "noLimit": "Sans limite",
+      "noLinkCreated": "Aucun lien créé",
+      "publicAccess": "Accès Public",
+      "protectedByPassword": "Protégé par Mot de Passe",
+      "configureProtection": "Cliquez pour configurer la protection",
+      "enterPassword": "Entrez le mot de passe",
+      "thisLinkProtected": "Ce lien sera protégé par mot de passe",
+      "thisLinkPublic": "Ce lien sera disponible publiquement",
+      "configureExpiration": "Configurer l'Expiration",
+      "configureLimits": "Configurer les Limites de Fichiers",
+      "protectWithPassword": "Protéger par Mot de Passe",
+      "layoutOptions": {
+        "default": "Par Défaut",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "Sans limite de fichiers",
+      "noSizeLimit": "Sans limite de taille",
+      "allFileTypes": "Tous types de fichiers",
+      "fileTypesHelp": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale"
+    },
+    "card": {
+      "untitled": "Lien sans titre",
+      "noDescription": "Sans description",
+      "addDescriptionPlaceholder": "Ajouter une description...",
+      "files": "fichiers",
+      "progress": "Progression",
+      "created": "Créé",
+      "expired": "Expiré",
+      "expires": "Expire",
+      "viewDetails": "Voir les détails",
+      "copyLink": "Copier le Lien",
+      "openInNewTab": "Ouvrir dans un Nouvel Onglet",
+      "editLink": "Modifier le Lien",
+      "createLink": "Créer un Lien",
+      "delete": "Supprimer",
+      "copyLinkTitle": "Copier le lien",
+      "createLinkCTA": "Créer un Lien de Réception"
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif",
+      "expired": "Expiré",
+      "protected": "Protégé",
+      "public": "Public"
+    },
+    "actions": {
+      "copyLink": "Copier le Lien",
+      "editAlias": "Modifier l'Alias",
+      "createAlias": "Créer un Alias",
+      "viewDetails": "Voir les Détails",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "viewFiles": "Fichiers Reçus"
+    },
+    "empty": {
+      "title": "Aucun lien de réception créé",
+      "description": "Créez des liens personnalisés pour que d'autres personnes puissent vous envoyer des fichiers de manière sécurisée et organisée.",
+      "createButton": "Créer le Premier Lien"
+    },
+    "modals": {
+      "create": {
+        "title": "Créer un Lien de Réception",
+        "description": "Configurez un lien personnalisé pour recevoir des fichiers d'autres personnes"
+      },
+      "edit": {
+        "title": "Modifier le Lien de Réception",
+        "description": "Mettez à jour les paramètres de ce lien de réception",
+        "updating": "Mise à jour...",
+        "saveChanges": "Enregistrer les Modifications"
+      },
+      "details": {
+        "title": "Détails du Lien",
+        "description": "Visualisez et modifiez les informations de votre lien de réception",
+        "pageLayout": "Mise en Page",
+        "linkSection": "Lien de Réception",
+        "noLinkCreated": "Aucun lien créé",
+        "limits": "Limites",
+        "maxFiles": "Maximum de Fichiers",
+        "maxFileSize": "Taille Maximale",
+        "allowedTypes": "Types Autorisés",
+        "noLimit": "Sans limite",
+        "security": "Sécurité",
+        "status": "Statut",
+        "password": "Mot de Passe",
+        "files": "Fichiers Reçus",
+        "noFiles": "Aucun fichier reçu pour le moment",
+        "copyLink": "Copier le Lien",
+        "openLink": "Ouvrir le Lien",
+        "editAlias": "Modifier l'Alias",
+        "createAlias": "Créer un Alias",
+        "editPassword": "Modifier la Protection par Mot de Passe",
+        "basicInfo": "Informations de Base",
+        "securityAndStatus": "Sécurité & Statut",
+        "protection": "Protection",
+        "protectedByPassword": "Protégé par Mot de Passe",
+        "publicAccess": "Accès Public",
+        "active": "Actif",
+        "inactive": "Inactif",
+        "deactivate": "Désactiver",
+        "activate": "Activer",
+        "expiration": "Expiration",
+        "dates": "Dates",
+        "createdAt": "Créé le",
+        "updatedAt": "Mis à jour le",
+        "allTypes": "Tous les types",
+        "placeholderTypes": ".pdf,.jpg,.png (séparés par des virgules)",
+        "downloadSuccess": "Téléchargement démarré",
+        "downloadError": "Erreur lors du téléchargement",
+        "editSuccess": "Fichier mis à jour avec succès",
+        "editError": "Erreur lors de la mise à jour du fichier",
+        "previewNotAvailable": "Aperçu non disponible",
+        "notAvailable": "Non disponible",
+        "invalidDate": "Date invalide"
+      },
+      "alias": {
+        "editTitle": "Modifier l'Alias",
+        "createTitle": "Créer un Alias",
+        "editDescription": "Mettez à jour l'alias de ce lien de réception",
+        "createDescription": "Créez un alias personnalisé pour ce lien de réception",
+        "aliasLabel": "Alias du Lien",
+        "aliasPlaceholder": "mon-lien-personnalise",
+        "preview": "Aperçu :",
+        "currentLink": "Lien Actuel :",
+        "copyCurrentLink": "Copier le lien actuel",
+        "randomTooltip": "Générer un alias aléatoire",
+        "cancel": "Annuler",
+        "creating": "Création...",
+        "updating": "Mise à jour...",
+        "create": "Créer l'Alias",
+        "update": "Mettre à jour l'Alias",
+        "validation": {
+          "required": "L'alias est requis",
+          "minLength": "L'alias doit contenir au moins 3 caractères",
+          "maxLength": "L'alias doit contenir au maximum 50 caractères",
+          "pattern": "L'alias ne doit contenir que des lettres, chiffres, tirets et underscores"
+        },
+        "help": "3-50 caractères. Les espaces seront automatiquement convertis en tirets."
+      },
+      "password": {
+        "title": "Modifier la Protection par Mot de Passe",
+        "description": "Configurez la protection par mot de passe pour ce lien",
+        "hasPassword": "Protégé par Mot de Passe",
+        "password": "Mot de Passe",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Enregistrement..."
+      },
+      "receivedFiles": {
+        "title": "Fichiers Reçus",
+        "description": "Visualisez et gérez les fichiers envoyés via ce lien",
+        "noFiles": "Aucun fichier reçu pour le moment",
+        "noFilesDescription": "Les fichiers envoyés via ce lien apparaîtront ici",
+        "fileCount": "{count, plural, =0 {Aucun fichier} =1 {1 fichier} other {# fichiers}}",
+        "totalSize": "Taille totale : {size}",
+        "columns": {
+          "file": "Fichier",
+          "size": "Taille",
+          "sender": "Envoyé par",
+          "date": "Date",
+          "actions": "Actions"
+        },
+        "actions": {
+          "preview": "Aperçu",
+          "download": "Télécharger"
+        },
+        "uploadedBy": "Envoyé par {name}",
+        "anonymous": "Anonyme",
+        "downloadSuccess": "Téléchargement démarré",
+        "downloadError": "Erreur lors du téléchargement",
+        "editSuccess": "Fichier mis à jour avec succès",
+        "editError": "Erreur lors de la mise à jour du fichier",
+        "previewNotAvailable": "Aperçu non disponible"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Nom du Lien",
+        "placeholder": "Ex : Documents du Projet, Photos de Famille..."
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Décrivez le type de fichiers que vous attendez...",
+        "description": "Optionnel. Aide les personnes à comprendre quoi envoyer."
+      },
+      "status": {
+        "label": "Statut du Lien",
+        "description": "Activez ou désactivez ce lien de réception"
+      },
+      "expiration": {
+        "label": "Date d'Expiration",
+        "description": "Optionnel. Le lien sera désactivé après cette date.",
+        "configure": "Configurer l'Expiration"
+      },
+      "fileLimits": {
+        "configure": "Configurer les Limites de Fichiers"
+      },
+      "maxFiles": {
+        "label": "Maximum de Fichiers",
+        "placeholder": "Ex : 10",
+        "description": "Optionnel. Limitez le nombre total de fichiers pouvant être envoyés.",
+        "noLimit": "Sans limite de fichiers"
+      },
+      "maxFileSize": {
+        "label": "Taille Maximale par Fichier",
+        "placeholder": "Ex : 100",
+        "description": "Optionnel. Limitez la taille individuelle de chaque fichier.",
+        "noLimit": "Sans limite de taille"
+      },
+      "allowedFileTypes": {
+        "label": "Types de Fichiers Autorisés",
+        "placeholder": "Ex : pdf, jpg, png, docx",
+        "description": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale",
+        "allTypes": "Tous types de fichiers"
+      },
+      "pageLayout": {
+        "label": "Mise en Page",
+        "placeholder": "Choisissez la mise en page",
+        "description": "Comment la page d'envoi apparaîtra aux utilisateurs.",
+        "options": {
+          "default": "Mise en Page Par Défaut",
+          "wetransfer": "Style WeTransfer"
+        }
+      },
+      "password": {
+        "label": "Mot de Passe de Protection",
+        "placeholder": "Optionnel. Ajoutez un mot de passe pour protéger le lien",
+        "description": "Optionnel. Les utilisateurs devront saisir ce mot de passe pour accéder au lien.",
+        "configurePassword": "Configurer le Mot de Passe",
+        "protectWithPassword": "Protéger par Mot de Passe",
+        "passwordHelp": "Le mot de passe doit contenir au moins 4 caractères",
+        "passwordPlaceholder": "Saisissez un mot de passe pour protéger le lien"
+      },
+      "submit": "Créer le Lien de Réception"
+    },
+    "messages": {
+      "created": "Lien de réception créé avec succès !",
+      "createSuccess": "Lien de réception créé avec succès !",
+      "updateSuccess": "Lien de réception mis à jour avec succès !",
+      "linkCopied": "Lien copié dans le presse-papiers !",
+      "deleteSuccess": "Lien de réception supprimé avec succès !",
+      "aliasCreated": "Alias créé avec succès !",
+      "activateSuccess": "Lien de réception activé avec succès !",
+      "deactivateSuccess": "Lien de réception désactivé avec succès !"
+    },
+    "errors": {
+      "loadFailed": "Échec du chargement des liens de réception",
+      "createFailed": "Échec de la création du lien de réception. Veuillez réessayer.",
+      "updateFailed": "Échec de la mise à jour du lien de réception. Veuillez réessayer.",
+      "deleteFailed": "Échec de la suppression du lien de réception. Veuillez réessayer.",
+      "aliasCreateFailed": "Échec de la création de l'alias. Veuillez réessayer."
+    },
+    "delete": {
+      "title": "Supprimer le lien de réception",
+      "description": "Cette action ne peut pas être annulée. Le lien sera définitivement supprimé et ne pourra plus recevoir de fichiers.",
+      "confirmButton": "Supprimer le Lien",
+      "cancelButton": "Annuler",
+      "deleting": "Suppression..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Envoyer des Fichiers - Palmr",
+        "description": "Envoyez des fichiers via le lien partagé"
+      },
+      "layout": {
+        "defaultTitle": "Envoyer des Fichiers",
+        "importantInfo": "Informations importantes :",
+        "maxFiles": "Maximum de {count} fichier(s)",
+        "maxFileSize": "Taille maximale par fichier : {size}MB",
+        "allowedTypes": "Types autorisés : {types}",
+        "loading": "Chargement..."
+      },
+      "password": {
+        "title": "Lien Protégé",
+        "description": "Ce lien est protégé par mot de passe. Saisissez le mot de passe pour continuer.",
+        "label": "Mot de Passe",
+        "placeholder": "Saisissez le mot de passe",
+        "cancel": "Annuler",
+        "submit": "Continuer",
+        "verifying": "Vérification..."
+      },
+      "errors": {
+        "loadFailed": "Échec du chargement des informations. Veuillez réessayer.",
+        "passwordIncorrect": "Mot de passe incorrect. Veuillez réessayer.",
+        "linkNotFound": "Lien non trouvé ou expiré.",
+        "linkInactive": "Ce lien est inactif.",
+        "linkExpired": "Ce lien a expiré.",
+        "uploadFailed": "Erreur lors de l'envoi du fichier",
+        "fileTooLarge": "Fichier trop volumineux. Taille maximale : {maxSize}",
+        "fileTypeNotAllowed": "Type de fichier non autorisé. Types acceptés : {allowedTypes}",
+        "maxFilesExceeded": "Maximum de {maxFiles} fichiers autorisés",
+        "selectAtLeastOneFile": "Sélectionnez au moins un fichier",
+        "provideNameOrEmail": "Indiquez votre nom ou e-mail"
+      },
+      "fileDropzone": {
+        "dragActive": "Déposez les fichiers ici",
+        "dragInactive": "Glissez-déposez les fichiers ici ou cliquez pour sélectionner",
+        "acceptedTypes": "Types acceptés : {types}",
+        "maxFileSize": "Taille maximale : {size}",
+        "maxFiles": "Maximum de {count} fichiers",
+        "remainingFiles": "Reste {remaining} sur {max} fichiers"
+      },
+      "fileList": {
+        "title": "Fichiers sélectionnés :",
+        "statusUploaded": "Envoyé",
+        "statusError": "Erreur"
+      },
+      "form": {
+        "nameLabel": "Nom",
+        "namePlaceholder": "Votre nom",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "votre@email.com",
+        "descriptionLabel": "Description (optionnelle)",
+        "descriptionPlaceholder": "Ajoutez une description aux fichiers...",
+        "uploadButton": "Envoyer {count} fichier(s)",
+        "uploading": "Envoi en cours..."
+      },
+      "success": {
+        "title": "Fichiers envoyés avec succès ! 🎉",
+        "description": "Vous pouvez fermer cette page.",
+        "countMessage": "{count} fichier(s) envoyé(s) avec succès !"
+      },
+      "maxFilesReached": {
+        "title": "Limite de fichiers atteinte",
+        "description": "Ce lien a déjà reçu le nombre maximum de {maxFiles} fichier(s) autorisé(s).",
+        "contactOwner": "S'il y a eu une erreur ou si vous devez envoyer plus de fichiers, contactez le propriétaire du lien."
+      },
+      "linkInactive": {
+        "title": "Lien inactif",
+        "description": "Ce lien de réception est temporairement inactif.",
+        "contactOwner": "Contactez le propriétaire du lien pour plus d'informations."
+      },
+      "linkNotFound": {
+        "title": "Lien non trouvé",
+        "description": "Ce lien a peut-être été supprimé ou n'a jamais existé."
+      },
+      "linkExpired": {
+        "title": "Lien expiré",
+        "description": "Ce lien de réception a expiré et n'accepte plus de fichiers.",
+        "contactOwner": "Contactez le propriétaire du lien si vous devez envoyer des fichiers."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Ajouter une description...",
+        "anonymous": "Anonyme"
+      },
+      "fileActions": {
+        "edit": "Modifier",
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "preview": "Aperçu",
+        "download": "Télécharger",
+        "delete": "Supprimer"
+      },
+      "editField": {
+        "saveChanges": "Enregistrer les modifications",
+        "cancelEdit": "Annuler la modification"
+      }
     }
   }
 }

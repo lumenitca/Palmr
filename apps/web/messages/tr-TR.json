@@ -13,7 +13,9 @@
     "back": "Geri",
     "updating": "Güncelleniyor...",
     "saving": "Kaydediliyor...",
-    "update": "Güncelle"
+    "update": "Güncelle",
+    "click": "Tıklayın",
+    "creating": "Oluşturuluyor..."
   },
   "createShare": {
     "title": "Paylaşım Oluştur",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "Benim Paylaşımlarım",
       "description": "Paylaşılan dosyaları görüntüleyin ve yönetin"
+    },
+    "reverseShares": {
+      "title": "Dosya Al",
+      "description": "Başkalarının size dosya göndermesi için bağlantılar oluşturun"
     }
   },
   "recentFiles": {
@@ -838,7 +844,9 @@
     "passwordLength": "Şifre en az 8 karakter olmalıdır",
     "passwordsMatch": "Şifreler eşleşmiyor",
     "emailRequired": "E-posta gerekli",
-    "passwordRequired": "Şifre gerekli"
+    "passwordRequired": "Şifre gerekli",
+    "nameRequired": "İsim gereklidir",
+    "required": "Bu alan zorunludur"
   },
   "shareFile": {
     "title": "Dosya Paylaş",
@@ -950,6 +958,388 @@
       "token_expired": "Token süresi doldu. Lütfen tekrar deneyin.",
       "config_error": "Yapılandırma hatası. Lütfen destek ile iletişime geçin.",
       "auth_failed": "Kimlik doğrulama başarısız. Lütfen tekrar deneyin."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Dosya Al",
+    "search": {
+      "title": "Alma Bağlantılarını Yönet",
+      "createButton": "Bağlantı Oluştur",
+      "placeholder": "Alma bağlantılarını ara...",
+      "results": "Toplam {total} alma bağlantısından {filtered} tanesi bulundu"
+    },
+    "labels": {
+      "files": "dosyalar",
+      "size": "boyut",
+      "status": "durum",
+      "access": "erişim",
+      "description": "Açıklama",
+      "pageLayout": "Sayfa Düzeni",
+      "security": "Güvenlik & Durum",
+      "limits": "Sınırlar",
+      "maxFiles": "Maksimum Dosya",
+      "maxFileSize": "Maksimum Boyut",
+      "allowedTypes": "İzin Verilen Türler",
+      "filesReceived": "Alınan Dosyalar",
+      "fileLimit": "Dosya Sınırı",
+      "noLimit": "Sınır yok",
+      "noLinkCreated": "Bağlantı oluşturulmadı",
+      "publicAccess": "Herkese Açık Erişim",
+      "protectedByPassword": "Şifre Korumalı",
+      "configureProtection": "Korumayı yapılandırmak için tıklayın",
+      "enterPassword": "Şifre girin",
+      "thisLinkProtected": "Bu bağlantı şifre ile korunacak",
+      "thisLinkPublic": "Bu bağlantı herkese açık olacak",
+      "configureExpiration": "Son Kullanma Tarihini Yapılandır",
+      "configureLimits": "Dosya Sınırlarını Yapılandır",
+      "protectWithPassword": "Şifre ile Koru",
+      "layoutOptions": {
+        "default": "Varsayılan",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "Dosya sınırı yok",
+      "noSizeLimit": "Boyut sınırı yok",
+      "allFileTypes": "Tüm dosya türleri",
+      "fileTypesHelp": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin"
+    },
+    "card": {
+      "untitled": "Başlıksız bağlantı",
+      "noDescription": "Açıklama yok",
+      "addDescriptionPlaceholder": "Açıklama ekle...",
+      "files": "dosyalar",
+      "progress": "İlerleme",
+      "created": "Oluşturuldu",
+      "expired": "Süresi Doldu",
+      "expires": "Sona Eriyor",
+      "viewDetails": "Detayları Görüntüle",
+      "copyLink": "Bağlantıyı Kopyala",
+      "openInNewTab": "Yeni Sekmede Aç",
+      "editLink": "Bağlantıyı Düzenle",
+      "createLink": "Bağlantı Oluştur",
+      "delete": "Sil",
+      "copyLinkTitle": "Bağlantıyı kopyala",
+      "createLinkCTA": "Alma Bağlantısı Oluştur"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "expired": "Süresi Dolmuş",
+      "protected": "Korumalı",
+      "public": "Herkese Açık"
+    },
+    "actions": {
+      "copyLink": "Bağlantıyı Kopyala",
+      "editAlias": "Takma Adı Düzenle",
+      "createAlias": "Takma Ad Oluştur",
+      "viewDetails": "Detayları Görüntüle",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "viewFiles": "Alınan Dosyalar"
+    },
+    "empty": {
+      "title": "Alma bağlantısı oluşturulmadı",
+      "description": "Başkalarının size güvenli ve düzenli bir şekilde dosya göndermesi için özel bağlantılar oluşturun.",
+      "createButton": "İlk Bağlantıyı Oluştur"
+    },
+    "modals": {
+      "create": {
+        "title": "Alma Bağlantısı Oluştur",
+        "description": "Başkalarından dosya almak için özel bir bağlantı yapılandırın"
+      },
+      "edit": {
+        "title": "Alma Bağlantısını Düzenle",
+        "description": "Bu alma bağlantısının ayarlarını güncelleyin",
+        "updating": "Güncelleniyor...",
+        "saveChanges": "Değişiklikleri Kaydet"
+      },
+      "details": {
+        "title": "Bağlantı Detayları",
+        "description": "Alma bağlantınızın bilgilerini görüntüleyin ve düzenleyin",
+        "pageLayout": "Sayfa Düzeni",
+        "linkSection": "Alma Bağlantısı",
+        "noLinkCreated": "Bağlantı oluşturulmadı",
+        "limits": "Sınırlar",
+        "maxFiles": "Maksimum Dosya",
+        "maxFileSize": "Maksimum Boyut",
+        "allowedTypes": "İzin Verilen Türler",
+        "noLimit": "Sınır yok",
+        "security": "Güvenlik",
+        "status": "Durum",
+        "password": "Şifre",
+        "files": "Alınan Dosyalar",
+        "noFiles": "Henüz dosya alınmadı",
+        "copyLink": "Bağlantıyı Kopyala",
+        "openLink": "Bağlantıyı Aç",
+        "editAlias": "Takma Adı Düzenle",
+        "createAlias": "Takma Ad Oluştur",
+        "editPassword": "Şifre Korumasını Düzenle",
+        "basicInfo": "Temel Bilgiler",
+        "securityAndStatus": "Güvenlik & Durum",
+        "protection": "Koruma",
+        "protectedByPassword": "Şifre Korumalı",
+        "publicAccess": "Herkese Açık Erişim",
+        "active": "Aktif",
+        "inactive": "Pasif",
+        "deactivate": "Devre Dışı Bırak",
+        "activate": "Etkinleştir",
+        "expiration": "Son Kullanma",
+        "dates": "Tarihler",
+        "createdAt": "Oluşturulma",
+        "updatedAt": "Güncellenme",
+        "allTypes": "Tüm türler",
+        "placeholderTypes": ".pdf,.jpg,.png (virgülle ayrılmış)",
+        "downloadSuccess": "İndirme başlatıldı",
+        "downloadError": "Dosya indirilirken hata oluştu",
+        "editSuccess": "Dosya başarıyla güncellendi",
+        "editError": "Dosya güncellenirken hata oluştu",
+        "previewNotAvailable": "Önizleme mevcut değil",
+        "notAvailable": "Mevcut değil",
+        "invalidDate": "Geçersiz tarih"
+      },
+      "alias": {
+        "editTitle": "Takma Adı Düzenle",
+        "createTitle": "Takma Ad Oluştur",
+        "editDescription": "Bu alma bağlantısının takma adını güncelleyin",
+        "createDescription": "Bu alma bağlantısı için özel bir takma ad oluşturun",
+        "aliasLabel": "Bağlantı Takma Adı",
+        "aliasPlaceholder": "ozel-baglanti-adim",
+        "preview": "Önizleme:",
+        "currentLink": "Mevcut Bağlantı:",
+        "copyCurrentLink": "Mevcut bağlantıyı kopyala",
+        "randomTooltip": "Rastgele takma ad oluştur",
+        "cancel": "İptal",
+        "creating": "Oluşturuluyor...",
+        "updating": "Güncelleniyor...",
+        "create": "Takma Ad Oluştur",
+        "update": "Takma Adı Güncelle",
+        "validation": {
+          "required": "Takma ad gereklidir",
+          "minLength": "Takma ad en az 3 karakter olmalıdır",
+          "maxLength": "Takma ad en fazla 50 karakter olmalıdır",
+          "pattern": "Takma ad sadece harf, rakam, tire ve alt çizgi içerebilir"
+        },
+        "help": "3-50 karakter. Boşluklar otomatik olarak tireye dönüştürülecektir."
+      },
+      "password": {
+        "title": "Şifre Korumasını Düzenle",
+        "description": "Bu bağlantı için şifre korumasını yapılandırın",
+        "hasPassword": "Şifre Korumalı",
+        "password": "Şifre",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "saving": "Kaydediliyor..."
+      },
+      "receivedFiles": {
+        "title": "Alınan Dosyalar",
+        "description": "Bu bağlantıya gönderilen dosyaları görüntüleyin ve yönetin",
+        "noFiles": "Henüz dosya alınmadı",
+        "noFilesDescription": "Bu bağlantı üzerinden gönderilen dosyalar burada görünecek",
+        "fileCount": "{count, plural, =0 {Dosya yok} =1 {1 dosya} other {# dosya}}",
+        "totalSize": "Toplam boyut: {size}",
+        "columns": {
+          "file": "Dosya",
+          "size": "Boyut",
+          "sender": "Gönderen",
+          "date": "Tarih",
+          "actions": "İşlemler"
+        },
+        "actions": {
+          "preview": "Önizle",
+          "download": "İndir"
+        },
+        "uploadedBy": "{name} tarafından gönderildi",
+        "anonymous": "Anonim",
+        "downloadSuccess": "İndirme başlatıldı",
+        "downloadError": "Dosya indirilirken hata oluştu",
+        "editSuccess": "Dosya başarıyla güncellendi",
+        "editError": "Dosya güncellenirken hata oluştu",
+        "previewNotAvailable": "Önizleme mevcut değil"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Bağlantı Adı",
+        "placeholder": "Örn: Proje Belgeleri, Aile Fotoğrafları..."
+      },
+      "description": {
+        "label": "Açıklama",
+        "placeholder": "Ne tür dosyalar almak istediğinizi açıklayın...",
+        "description": "İsteğe bağlı. İnsanların ne göndereceğini anlamasına yardımcı olur."
+      },
+      "status": {
+        "label": "Bağlantı Durumu",
+        "description": "Bu alma bağlantısını etkinleştirin veya devre dışı bırakın"
+      },
+      "expiration": {
+        "label": "Son Kullanma Tarihi",
+        "description": "İsteğe bağlı. Bağlantı bu tarihten sonra devre dışı kalacak.",
+        "configure": "Son Kullanma Tarihini Yapılandır"
+      },
+      "fileLimits": {
+        "configure": "Dosya Sınırlarını Yapılandır"
+      },
+      "maxFiles": {
+        "label": "Maksimum Dosya",
+        "placeholder": "Örn: 10",
+        "description": "İsteğe bağlı. Gönderilebilecek toplam dosya sayısını sınırlayın.",
+        "noLimit": "Dosya sınırı yok"
+      },
+      "maxFileSize": {
+        "label": "Dosya Başına Maksimum Boyut",
+        "placeholder": "Örn: 100",
+        "description": "İsteğe bağlı. Her dosyanın bireysel boyutunu sınırlayın.",
+        "noLimit": "Boyut sınırı yok"
+      },
+      "allowedFileTypes": {
+        "label": "İzin Verilen Dosya Türleri",
+        "placeholder": "Örn: pdf, jpg, png, docx",
+        "description": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin",
+        "allTypes": "Tüm dosya türleri"
+      },
+      "pageLayout": {
+        "label": "Sayfa Düzeni",
+        "placeholder": "Düzen seçin",
+        "description": "Yükleme sayfası kullanıcılara nasıl görünecek.",
+        "options": {
+          "default": "Varsayılan Düzen",
+          "wetransfer": "WeTransfer Tarzı"
+        }
+      },
+      "password": {
+        "label": "Koruma Şifresi",
+        "placeholder": "İsteğe bağlı. Bağlantıyı korumak için şifre ekleyin",
+        "description": "İsteğe bağlı. Kullanıcıların bağlantıya erişmek için bu şifreye ihtiyacı olacak.",
+        "configurePassword": "Şifre Yapılandır",
+        "protectWithPassword": "Şifre ile Koru",
+        "passwordHelp": "Şifre en az 4 karakter olmalıdır",
+        "passwordPlaceholder": "Bağlantıyı korumak için şifre girin"
+      },
+      "submit": "Alma Bağlantısı Oluştur"
+    },
+    "messages": {
+      "created": "Alma bağlantısı başarıyla oluşturuldu!",
+      "createSuccess": "Alma bağlantısı başarıyla oluşturuldu!",
+      "updateSuccess": "Alma bağlantısı başarıyla güncellendi!",
+      "linkCopied": "Bağlantı panoya kopyalandı!",
+      "deleteSuccess": "Alma bağlantısı başarıyla silindi!",
+      "aliasCreated": "Takma ad başarıyla oluşturuldu!",
+      "activateSuccess": "Alma bağlantısı başarıyla etkinleştirildi!",
+      "deactivateSuccess": "Alma bağlantısı başarıyla devre dışı bırakıldı!"
+    },
+    "errors": {
+      "loadFailed": "Alma bağlantıları yüklenemedi",
+      "createFailed": "Alma bağlantısı oluşturulamadı. Lütfen tekrar deneyin.",
+      "updateFailed": "Alma bağlantısı güncellenemedi. Lütfen tekrar deneyin.",
+      "deleteFailed": "Alma bağlantısı silinemedi. Lütfen tekrar deneyin.",
+      "aliasCreateFailed": "Takma ad oluşturulamadı. Lütfen tekrar deneyin."
+    },
+    "delete": {
+      "title": "Alma bağlantısını sil",
+      "description": "Bu işlem geri alınamaz. Bağlantı kalıcı olarak silinecek ve artık dosya alamayacak.",
+      "confirmButton": "Bağlantıyı Sil",
+      "cancelButton": "İptal",
+      "deleting": "Siliniyor..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Dosya Gönder - Palmr",
+        "description": "Paylaşılan bağlantı üzerinden dosya gönderin"
+      },
+      "layout": {
+        "defaultTitle": "Dosya Gönder",
+        "importantInfo": "Önemli bilgiler:",
+        "maxFiles": "Maksimum {count} dosya",
+        "maxFileSize": "Dosya başına maksimum boyut: {size}MB",
+        "allowedTypes": "İzin verilen türler: {types}",
+        "loading": "Yükleniyor..."
+      },
+      "password": {
+        "title": "Korumalı Bağlantı",
+        "description": "Bu bağlantı şifre ile korunmaktadır. Devam etmek için şifreyi girin.",
+        "label": "Şifre",
+        "placeholder": "Şifreyi girin",
+        "cancel": "İptal",
+        "submit": "Devam Et",
+        "verifying": "Doğrulanıyor..."
+      },
+      "errors": {
+        "loadFailed": "Bilgiler yüklenemedi. Lütfen tekrar deneyin.",
+        "passwordIncorrect": "Yanlış şifre. Lütfen tekrar deneyin.",
+        "linkNotFound": "Bağlantı bulunamadı veya süresi doldu.",
+        "linkInactive": "Bu bağlantı pasif durumda.",
+        "linkExpired": "Bu bağlantının süresi doldu.",
+        "uploadFailed": "Dosya yüklenirken hata oluştu",
+        "fileTooLarge": "Dosya çok büyük. Maksimum boyut: {maxSize}",
+        "fileTypeNotAllowed": "Dosya türüne izin verilmiyor. İzin verilen türler: {allowedTypes}",
+        "maxFilesExceeded": "Maksimum {maxFiles} dosyaya izin veriliyor",
+        "selectAtLeastOneFile": "En az bir dosya seçin",
+        "provideNameOrEmail": "Adınızı veya e-postanızı girin"
+      },
+      "fileDropzone": {
+        "dragActive": "Dosyaları buraya bırakın",
+        "dragInactive": "Dosyaları sürükleyin veya seçmek için tıklayın",
+        "acceptedTypes": "İzin verilen türler: {types}",
+        "maxFileSize": "Maksimum boyut: {size}",
+        "maxFiles": "Maksimum {count} dosya",
+        "remainingFiles": "{max} dosyadan {remaining} tanesi kaldı"
+      },
+      "fileList": {
+        "title": "Seçilen dosyalar:",
+        "statusUploaded": "Yüklendi",
+        "statusError": "Hata"
+      },
+      "form": {
+        "nameLabel": "Ad",
+        "namePlaceholder": "Adınız",
+        "emailLabel": "E-posta",
+        "emailPlaceholder": "ornek@email.com",
+        "descriptionLabel": "Açıklama (isteğe bağlı)",
+        "descriptionPlaceholder": "Dosyalara açıklama ekleyin...",
+        "uploadButton": "{count} dosya gönder",
+        "uploading": "Gönderiliyor..."
+      },
+      "success": {
+        "title": "Dosyalar başarıyla gönderildi! 🎉",
+        "description": "Bu sayfayı kapatabilirsiniz.",
+        "countMessage": "{count} dosya başarıyla gönderildi!"
+      },
+      "maxFilesReached": {
+        "title": "Dosya sınırına ulaşıldı",
+        "description": "Bu bağlantı izin verilen maksimum {maxFiles} dosya sayısına ulaştı.",
+        "contactOwner": "Bir hata olduysa veya daha fazla dosya göndermeniz gerekiyorsa, bağlantı sahibiyle iletişime geçin."
+      },
+      "linkInactive": {
+        "title": "Bağlantı pasif",
+        "description": "Bu alma bağlantısı geçici olarak devre dışı.",
+        "contactOwner": "Daha fazla bilgi için bağlantı sahibiyle iletişime geçin."
+      },
+      "linkNotFound": {
+        "title": "Bağlantı bulunamadı",
+        "description": "Bu bağlantı silinmiş olabilir veya hiç var olmamış olabilir."
+      },
+      "linkExpired": {
+        "title": "Bağlantının süresi doldu",
+        "description": "Bu alma bağlantısının süresi doldu ve artık dosya kabul etmiyor.",
+        "contactOwner": "Dosya göndermek için bağlantı sahibiyle iletişime geçin."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Açıklama ekle...",
+        "anonymous": "Anonim"
+      },
+      "fileActions": {
+        "edit": "Düzenle",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "preview": "Önizle",
+        "download": "İndir",
+        "delete": "Sil"
+      },
+      "editField": {
+        "saveChanges": "Değişiklikleri kaydet",
+        "cancelEdit": "Düzenlemeyi iptal et"
+      }
     }
   }
 }

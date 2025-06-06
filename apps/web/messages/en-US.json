@@ -13,7 +13,9 @@
     "yes": "Yes",
     "no": "No",
     "dashboard": "Dashboard",
-    "back": "Back"
+    "back": "Back",
+    "click": "Click to",
+    "creating": "Creating..."
   },
   "createShare": {
     "title": "Create Share",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "My Shares",
       "description": "View and manage your shared files"
+    },
+    "reverseShares": {
+      "title": "Receive Files",
+      "description": "Create links for others to send files to you"
     }
   },
   "recentFiles": {
@@ -896,7 +902,9 @@
     "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
     "passwordRequired": "Password is required",
-    "passwordMinLength": "Password must be at least 6 characters"
+    "passwordMinLength": "Password must be at least 6 characters",
+    "nameRequired": "Name is required",
+    "required": "This field is required"
   },
   "shareFile": {
     "title": "Share File",
@@ -950,6 +958,388 @@
       "token_expired": "Token expired. Please try again.",
       "config_error": "Configuration error. Please contact support.",
       "auth_failed": "Authentication failed. Please try again."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Receive Files",
+    "search": {
+      "title": "Manage Receive Links",
+      "createButton": "Create Link",
+      "placeholder": "Search receive links...",
+      "results": "Found {filtered} of {total} receive links"
+    },
+    "labels": {
+      "files": "files",
+      "size": "size",
+      "status": "status",
+      "access": "access",
+      "description": "Description",
+      "pageLayout": "Page Layout",
+      "security": "Security & Status",
+      "limits": "Limits",
+      "maxFiles": "Maximum Files",
+      "maxFileSize": "Maximum Size",
+      "allowedTypes": "Allowed Types",
+      "filesReceived": "Files Received",
+      "fileLimit": "File Limit",
+      "noLimit": "No limit",
+      "noLinkCreated": "No link created",
+      "publicAccess": "Public Access",
+      "protectedByPassword": "Password Protected",
+      "configureProtection": "Click to configure protection",
+      "enterPassword": "Enter password",
+      "thisLinkProtected": "This link will be password protected",
+      "thisLinkPublic": "This link will be publicly available",
+      "configureExpiration": "Configure Expiration",
+      "configureLimits": "Configure File Limits",
+      "protectWithPassword": "Protect with Password",
+      "layoutOptions": {
+        "default": "Default",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "No file limit",
+      "noSizeLimit": "No size limit",
+      "allFileTypes": "All file types",
+      "fileTypesHelp": "Enter extensions without dots, separated by space, comma, dash or pipe"
+    },
+    "card": {
+      "untitled": "Untitled Link",
+      "noDescription": "No description",
+      "addDescriptionPlaceholder": "Add description...",
+      "files": "files",
+      "progress": "Progress",
+      "created": "Created",
+      "expired": "Expired",
+      "expires": "Expires",
+      "viewDetails": "View details",
+      "copyLink": "Copy Link",
+      "openInNewTab": "Open in New Tab",
+      "editLink": "Edit Link",
+      "createLink": "Create Link",
+      "delete": "Delete",
+      "copyLinkTitle": "Copy link",
+      "createLinkCTA": "Create Receive Link"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "expired": "Expired",
+      "protected": "Protected",
+      "public": "Public"
+    },
+    "actions": {
+      "copyLink": "Copy Link",
+      "editAlias": "Edit Alias",
+      "createAlias": "Create Alias",
+      "viewDetails": "View Details",
+      "edit": "Edit",
+      "delete": "Delete",
+      "viewFiles": "Received Files"
+    },
+    "empty": {
+      "title": "No receive links created",
+      "description": "Create custom links for others to send files directly to you securely and organized.",
+      "createButton": "Create First Link"
+    },
+    "modals": {
+      "create": {
+        "title": "Create Receive Link",
+        "description": "Configure a custom link to receive files from others"
+      },
+      "edit": {
+        "title": "Edit Receive Link",
+        "description": "Update the settings for this receive link",
+        "updating": "Updating...",
+        "saveChanges": "Save Changes"
+      },
+      "details": {
+        "title": "Link Details",
+        "description": "View and edit your receive link information",
+        "pageLayout": "Page Layout",
+        "linkSection": "Receive Link",
+        "noLinkCreated": "No link created",
+        "limits": "Limits",
+        "maxFiles": "Maximum Files",
+        "maxFileSize": "Maximum Size",
+        "allowedTypes": "Allowed Types",
+        "noLimit": "No limit",
+        "security": "Security",
+        "status": "Status",
+        "password": "Password",
+        "files": "Received Files",
+        "noFiles": "No files received yet",
+        "copyLink": "Copy Link",
+        "openLink": "Open Link",
+        "editAlias": "Edit Alias",
+        "createAlias": "Create Alias",
+        "editPassword": "Edit Password Protection",
+        "basicInfo": "Basic Information",
+        "securityAndStatus": "Security & Status",
+        "protection": "Protection",
+        "protectedByPassword": "Password Protected",
+        "publicAccess": "Public Access",
+        "active": "Active",
+        "inactive": "Inactive",
+        "deactivate": "Deactivate",
+        "activate": "Activate",
+        "expiration": "Expiration",
+        "dates": "Dates",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "allTypes": "All types",
+        "placeholderTypes": ".pdf,.jpg,.png (comma separated)",
+        "downloadSuccess": "Download started",
+        "downloadError": "Error downloading file",
+        "editSuccess": "File updated successfully",
+        "editError": "Error updating file",
+        "previewNotAvailable": "Preview not available",
+        "notAvailable": "Not available",
+        "invalidDate": "Invalid date"
+      },
+      "alias": {
+        "editTitle": "Edit Alias",
+        "createTitle": "Create Alias",
+        "editDescription": "Update the alias for this receive link",
+        "createDescription": "Create a custom alias for this receive link",
+        "aliasLabel": "Link Alias",
+        "aliasPlaceholder": "my-custom-link",
+        "preview": "Preview:",
+        "currentLink": "Current Link:",
+        "copyCurrentLink": "Copy current link",
+        "randomTooltip": "Generate random alias",
+        "cancel": "Cancel",
+        "creating": "Creating...",
+        "updating": "Updating...",
+        "create": "Create Alias",
+        "update": "Update Alias",
+        "validation": {
+          "required": "Alias is required",
+          "minLength": "Alias must be at least 3 characters",
+          "maxLength": "Alias must be at most 50 characters",
+          "pattern": "Alias must contain only letters, numbers, hyphens and underscores"
+        },
+        "help": "3-50 characters. Spaces will be automatically converted to hyphens."
+      },
+      "password": {
+        "title": "Edit Password Protection",
+        "description": "Configure password protection for this link",
+        "hasPassword": "Password Protected",
+        "password": "Password",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "receivedFiles": {
+        "title": "Received Files",
+        "description": "View and manage files sent to this link",
+        "noFiles": "No files received yet",
+        "noFilesDescription": "Files sent through this link will appear here",
+        "fileCount": "{count, plural, =0 {No files} =1 {1 file} other {# files}}",
+        "totalSize": "Total size: {size}",
+        "columns": {
+          "file": "File",
+          "size": "Size",
+          "sender": "Sent by",
+          "date": "Date",
+          "actions": "Actions"
+        },
+        "actions": {
+          "preview": "Preview",
+          "download": "Download"
+        },
+        "uploadedBy": "Uploaded by {name}",
+        "anonymous": "Anonymous",
+        "downloadSuccess": "Download started",
+        "downloadError": "Error downloading file",
+        "editSuccess": "File updated successfully",
+        "editError": "Error updating file",
+        "previewNotAvailable": "Preview not available"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Link Name",
+        "placeholder": "e.g.: Project Documents, Family Photos..."
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Describe what type of files you expect to receive...",
+        "description": "Optional. Helps people understand what to send."
+      },
+      "status": {
+        "label": "Link Status",
+        "description": "Activate or deactivate this receive link"
+      },
+      "expiration": {
+        "label": "Expiration Date",
+        "description": "Optional. The link will be deactivated after this date.",
+        "configure": "Configure Expiration"
+      },
+      "fileLimits": {
+        "configure": "Configure File Limits"
+      },
+      "maxFiles": {
+        "label": "Maximum Files",
+        "placeholder": "e.g.: 10",
+        "description": "Optional. Limit the total number of files that can be sent.",
+        "noLimit": "No file limit"
+      },
+      "maxFileSize": {
+        "label": "Maximum File Size",
+        "placeholder": "e.g.: 100",
+        "description": "Optional. Limit the individual size of each file.",
+        "noLimit": "No size limit"
+      },
+      "allowedFileTypes": {
+        "label": "Allowed File Types",
+        "placeholder": "e.g.: pdf, jpg, png, docx",
+        "description": "Enter extensions without dots, separated by space, comma, dash or pipe",
+        "allTypes": "All file types"
+      },
+      "pageLayout": {
+        "label": "Page Layout",
+        "placeholder": "Choose layout",
+        "description": "How the upload page will appear to users.",
+        "options": {
+          "default": "Default Layout",
+          "wetransfer": "WeTransfer Style"
+        }
+      },
+      "password": {
+        "label": "Protection Password",
+        "placeholder": "Optional. Add a password to protect the link",
+        "description": "Optional. Users will need this password to access the link.",
+        "configurePassword": "Configure Password",
+        "protectWithPassword": "Protect with Password",
+        "passwordHelp": "Password must be at least 4 characters",
+        "passwordPlaceholder": "Enter a password to protect the link"
+      },
+      "submit": "Create Receive Link"
+    },
+    "messages": {
+      "created": "Receive link created successfully!",
+      "createSuccess": "Receive link created successfully!",
+      "updateSuccess": "Receive link updated successfully!",
+      "linkCopied": "Link copied to clipboard!",
+      "deleteSuccess": "Receive link deleted successfully!",
+      "aliasCreated": "Alias created successfully!",
+      "activateSuccess": "Receive link activated successfully!",
+      "deactivateSuccess": "Receive link deactivated successfully!"
+    },
+    "errors": {
+      "loadFailed": "Failed to load receive links",
+      "createFailed": "Failed to create receive link. Please try again.",
+      "updateFailed": "Failed to update receive link. Please try again.",
+      "deleteFailed": "Failed to delete receive link. Please try again.",
+      "aliasCreateFailed": "Failed to create alias. Please try again."
+    },
+    "delete": {
+      "title": "Delete receive link",
+      "description": "This action cannot be undone. The link will be permanently removed and will no longer be able to receive files.",
+      "confirmButton": "Delete Link",
+      "cancelButton": "Cancel",
+      "deleting": "Deleting..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Send Files - Palmr",
+        "description": "Send files through the shared link"
+      },
+      "layout": {
+        "defaultTitle": "Send Files",
+        "importantInfo": "Important information:",
+        "maxFiles": "Maximum of {count} file(s)",
+        "maxFileSize": "Maximum file size: {size}MB",
+        "allowedTypes": "Allowed types: {types}",
+        "loading": "Loading..."
+      },
+      "password": {
+        "title": "Protected Link",
+        "description": "This link is password protected. Enter the password to continue.",
+        "label": "Password",
+        "placeholder": "Enter password",
+        "cancel": "Cancel",
+        "submit": "Continue",
+        "verifying": "Verifying..."
+      },
+      "errors": {
+        "loadFailed": "Failed to load information. Please try again.",
+        "passwordIncorrect": "Incorrect password. Please try again.",
+        "linkNotFound": "Link not found or expired.",
+        "linkInactive": "This link is inactive.",
+        "linkExpired": "This link has expired.",
+        "uploadFailed": "Error uploading file",
+        "fileTooLarge": "File too large. Maximum size: {maxSize}",
+        "fileTypeNotAllowed": "File type not allowed. Accepted types: {allowedTypes}",
+        "maxFilesExceeded": "Maximum of {maxFiles} files allowed",
+        "selectAtLeastOneFile": "Select at least one file",
+        "provideNameOrEmail": "Please provide your name or email"
+      },
+      "fileDropzone": {
+        "dragActive": "Drop files here",
+        "dragInactive": "Drag files here or click to select",
+        "acceptedTypes": "Accepted types: {types}",
+        "maxFileSize": "Maximum size: {size}",
+        "maxFiles": "Maximum of {count} files",
+        "remainingFiles": "{remaining} of {max} files remaining"
+      },
+      "fileList": {
+        "title": "Selected files:",
+        "statusUploaded": "Uploaded",
+        "statusError": "Error"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "Description (optional)",
+        "descriptionPlaceholder": "Add a description to the files...",
+        "uploadButton": "Send {count} file(s)",
+        "uploading": "Sending..."
+      },
+      "success": {
+        "title": "Files sent successfully! 🎉",
+        "description": "You can close this page.",
+        "countMessage": "{count} file(s) sent successfully!"
+      },
+      "maxFilesReached": {
+        "title": "File limit reached",
+        "description": "This link has already received the maximum number of {maxFiles} file(s) allowed.",
+        "contactOwner": "If there was an error or you need to send more files, contact the link owner."
+      },
+      "linkInactive": {
+        "title": "Link inactive",
+        "description": "This receive link is temporarily inactive.",
+        "contactOwner": "Contact the link owner for more information."
+      },
+      "linkNotFound": {
+        "title": "Link not found",
+        "description": "This link may have been removed or never existed."
+      },
+      "linkExpired": {
+        "title": "Link expired",
+        "description": "This receive link has expired and is no longer accepting files.",
+        "contactOwner": "Contact the link owner if you need to send files."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Add description...",
+        "anonymous": "Anonymous"
+      },
+      "fileActions": {
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "preview": "Preview",
+        "download": "Download",
+        "delete": "Delete"
+      },
+      "editField": {
+        "saveChanges": "Save changes",
+        "cancelEdit": "Cancel edit"
+      }
     }
   }
 }

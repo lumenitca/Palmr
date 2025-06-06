@@ -13,7 +13,9 @@
     "back": "返回",
     "updating": "更新中...",
     "saving": "保存中...",
-    "update": "更新"
+    "update": "更新",
+    "click": "点击",
+    "creating": "创建中..."
   },
   "createShare": {
     "title": "创建分享",
@@ -290,6 +292,10 @@
     "shares": {
       "title": "我的共享",
       "description": "查看和管理您共享的文件"
+    },
+    "reverseShares": {
+      "title": "接收文件",
+      "description": "创建链接让他人向您发送文件"
     }
   },
   "recentFiles": {
@@ -838,7 +844,9 @@
     "passwordLength": "密码至少需要8个字符",
     "passwordsMatch": "密码不匹配",
     "emailRequired": "电子邮件为必填项",
-    "passwordRequired": "密码为必填项"
+    "passwordRequired": "密码为必填项",
+    "nameRequired": "名称为必填项",
+    "required": "此字段为必填项"
   },
   "shareFile": {
     "title": "分享文件",
@@ -950,6 +958,388 @@
       "token_expired": "Token expirado. Tente novamente.",
       "config_error": "Erro de configuração. Contate o suporte.",
       "auth_failed": "Falha na autenticação. Tente novamente."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "接收文件",
+    "search": {
+      "title": "管理接收链接",
+      "createButton": "创建链接",
+      "placeholder": "搜索接收链接...",
+      "results": "找到 {total} 个接收链接中的 {filtered} 个"
+    },
+    "labels": {
+      "files": "文件",
+      "size": "大小",
+      "status": "状态",
+      "access": "访问权限",
+      "description": "描述",
+      "pageLayout": "页面布局",
+      "security": "安全与状态",
+      "limits": "限制",
+      "maxFiles": "最大文件数",
+      "maxFileSize": "最大文件大小",
+      "allowedTypes": "允许的类型",
+      "filesReceived": "已接收文件",
+      "fileLimit": "文件限制",
+      "noLimit": "无限制",
+      "noLinkCreated": "未创建链接",
+      "publicAccess": "公开访问",
+      "protectedByPassword": "密码保护",
+      "configureProtection": "点击配置保护",
+      "enterPassword": "输入密码",
+      "thisLinkProtected": "此链接将受密码保护",
+      "thisLinkPublic": "此链接将公开可用",
+      "configureExpiration": "配置过期时间",
+      "configureLimits": "配置文件限制",
+      "protectWithPassword": "密码保护",
+      "layoutOptions": {
+        "default": "默认",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "无文件数限制",
+      "noSizeLimit": "无大小限制",
+      "allFileTypes": "所有文件类型",
+      "fileTypesHelp": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔"
+    },
+    "card": {
+      "untitled": "无标题链接",
+      "noDescription": "无描述",
+      "addDescriptionPlaceholder": "添加描述...",
+      "files": "文件",
+      "progress": "进度",
+      "created": "已创建",
+      "expired": "已过期",
+      "expires": "过期时间",
+      "viewDetails": "查看详情",
+      "copyLink": "复制链接",
+      "openInNewTab": "在新标签页中打开",
+      "editLink": "编辑链接",
+      "createLink": "创建链接",
+      "delete": "删除",
+      "copyLinkTitle": "复制链接",
+      "createLinkCTA": "创建接收链接"
+    },
+    "status": {
+      "active": "活动",
+      "inactive": "非活动",
+      "expired": "已过期",
+      "protected": "受保护",
+      "public": "公开"
+    },
+    "actions": {
+      "copyLink": "复制链接",
+      "editAlias": "编辑别名",
+      "createAlias": "创建别名",
+      "viewDetails": "查看详情",
+      "edit": "编辑",
+      "delete": "删除",
+      "viewFiles": "已接收文件"
+    },
+    "empty": {
+      "title": "未创建接收链接",
+      "description": "创建自定义链接，让他人可以安全有序地直接向您发送文件。",
+      "createButton": "创建第一个链接"
+    },
+    "modals": {
+      "create": {
+        "title": "创建接收链接",
+        "description": "配置自定义链接以接收他人的文件"
+      },
+      "edit": {
+        "title": "编辑接收链接",
+        "description": "更新此接收链接的设置",
+        "updating": "更新中...",
+        "saveChanges": "保存更改"
+      },
+      "details": {
+        "title": "链接详情",
+        "description": "查看和编辑您的接收链接信息",
+        "pageLayout": "页面布局",
+        "linkSection": "接收链接",
+        "noLinkCreated": "未创建链接",
+        "limits": "限制",
+        "maxFiles": "最大文件数",
+        "maxFileSize": "最大文件大小",
+        "allowedTypes": "允许的类型",
+        "noLimit": "无限制",
+        "security": "安全",
+        "status": "状态",
+        "password": "密码",
+        "files": "已接收文件",
+        "noFiles": "尚未收到文件",
+        "copyLink": "复制链接",
+        "openLink": "打开链接",
+        "editAlias": "编辑别名",
+        "createAlias": "创建别名",
+        "editPassword": "编辑密码保护",
+        "basicInfo": "基本信息",
+        "securityAndStatus": "安全与状态",
+        "protection": "保护",
+        "protectedByPassword": "密码保护",
+        "publicAccess": "公开访问",
+        "active": "活动",
+        "inactive": "非活动",
+        "deactivate": "停用",
+        "activate": "启用",
+        "expiration": "过期时间",
+        "dates": "日期",
+        "createdAt": "创建于",
+        "updatedAt": "更新于",
+        "allTypes": "所有类型",
+        "placeholderTypes": ".pdf,.jpg,.png (用逗号分隔)",
+        "downloadSuccess": "开始下载",
+        "downloadError": "下载文件时出错",
+        "editSuccess": "文件更新成功",
+        "editError": "更新文件时出错",
+        "previewNotAvailable": "预览不可用",
+        "notAvailable": "不可用",
+        "invalidDate": "无效日期"
+      },
+      "alias": {
+        "editTitle": "编辑别名",
+        "createTitle": "创建别名",
+        "editDescription": "更新此接收链接的别名",
+        "createDescription": "为此接收链接创建自定义别名",
+        "aliasLabel": "链接别名",
+        "aliasPlaceholder": "my-custom-link",
+        "preview": "预览：",
+        "currentLink": "当前链接：",
+        "copyCurrentLink": "复制当前链接",
+        "randomTooltip": "生成随机别名",
+        "cancel": "取消",
+        "creating": "创建中...",
+        "updating": "更新中...",
+        "create": "创建别名",
+        "update": "更新别名",
+        "validation": {
+          "required": "别名是必需的",
+          "minLength": "别名至少需要3个字符",
+          "maxLength": "别名最多50个字符",
+          "pattern": "别名只能包含字母、数字、连字符和下划线"
+        },
+        "help": "3-50个字符。空格将自动转换为连字符。"
+      },
+      "password": {
+        "title": "编辑密码保护",
+        "description": "为此链接配置密码保护",
+        "hasPassword": "密码保护",
+        "password": "密码",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "receivedFiles": {
+        "title": "已接收文件",
+        "description": "查看和管理通过此链接发送的文件",
+        "noFiles": "尚未收到文件",
+        "noFilesDescription": "通过此链接发送的文件将显示在这里",
+        "fileCount": "{count, plural, =0 {无文件} =1 {1个文件} other {#个文件}}",
+        "totalSize": "总大小：{size}",
+        "columns": {
+          "file": "文件",
+          "size": "大小",
+          "sender": "发送者",
+          "date": "日期",
+          "actions": "操作"
+        },
+        "actions": {
+          "preview": "预览",
+          "download": "下载"
+        },
+        "uploadedBy": "由 {name} 上传",
+        "anonymous": "匿名",
+        "downloadSuccess": "开始下载",
+        "downloadError": "下载文件时出错",
+        "editSuccess": "文件更新成功",
+        "editError": "更新文件时出错",
+        "previewNotAvailable": "预览不可用"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "链接名称",
+        "placeholder": "例如：项目文档、家庭照片..."
+      },
+      "description": {
+        "label": "描述",
+        "placeholder": "描述您期望接收的文件类型...",
+        "description": "可选。帮助他人了解要发送什么。"
+      },
+      "status": {
+        "label": "链接状态",
+        "description": "启用或禁用此接收链接"
+      },
+      "expiration": {
+        "label": "过期日期",
+        "description": "可选。链接将在此日期后停用。",
+        "configure": "配置过期时间"
+      },
+      "fileLimits": {
+        "configure": "配置文件限制"
+      },
+      "maxFiles": {
+        "label": "最大文件数",
+        "placeholder": "例如：10",
+        "description": "可选。限制可以发送的文件总数。",
+        "noLimit": "无文件数限制"
+      },
+      "maxFileSize": {
+        "label": "单个文件最大大小",
+        "placeholder": "例如：100",
+        "description": "可选。限制每个文件的大小。",
+        "noLimit": "无大小限制"
+      },
+      "allowedFileTypes": {
+        "label": "允许的文件类型",
+        "placeholder": "例如：pdf, jpg, png, docx",
+        "description": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔",
+        "allTypes": "所有文件类型"
+      },
+      "pageLayout": {
+        "label": "页面布局",
+        "placeholder": "选择布局",
+        "description": "上传页面对用户的显示方式。",
+        "options": {
+          "default": "默认布局",
+          "wetransfer": "WeTransfer风格"
+        }
+      },
+      "password": {
+        "label": "保护密码",
+        "placeholder": "可选。添加密码以保护链接",
+        "description": "可选。用户需要此密码才能访问链接。",
+        "configurePassword": "配置密码",
+        "protectWithPassword": "密码保护",
+        "passwordHelp": "密码至少需要4个字符",
+        "passwordPlaceholder": "输入密码以保护链接"
+      },
+      "submit": "创建接收链接"
+    },
+    "messages": {
+      "created": "接收链接创建成功！",
+      "createSuccess": "接收链接创建成功！",
+      "updateSuccess": "接收链接更新成功！",
+      "linkCopied": "链接已复制到剪贴板！",
+      "deleteSuccess": "接收链接删除成功！",
+      "aliasCreated": "别名创建成功！",
+      "activateSuccess": "接收链接启用成功！",
+      "deactivateSuccess": "接收链接停用成功！"
+    },
+    "errors": {
+      "loadFailed": "加载接收链接失败",
+      "createFailed": "创建接收链接失败。请重试。",
+      "updateFailed": "更新接收链接失败。请重试。",
+      "deleteFailed": "删除接收链接失败。请重试。",
+      "aliasCreateFailed": "创建别名失败。请重试。"
+    },
+    "delete": {
+      "title": "删除接收链接",
+      "description": "此操作无法撤消。链接将被永久删除，无法再接收文件。",
+      "confirmButton": "删除链接",
+      "cancelButton": "取消",
+      "deleting": "删除中..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "上传文件 - Palmr",
+        "description": "通过共享链接上传文件"
+      },
+      "layout": {
+        "defaultTitle": "上传文件",
+        "importantInfo": "重要信息：",
+        "maxFiles": "最多 {count} 个文件",
+        "maxFileSize": "单个文件最大大小：{size}MB",
+        "allowedTypes": "允许的类型：{types}",
+        "loading": "加载中..."
+      },
+      "password": {
+        "title": "受保护的链接",
+        "description": "此链接受密码保护。请输入密码继续。",
+        "label": "密码",
+        "placeholder": "输入密码",
+        "cancel": "取消",
+        "submit": "继续",
+        "verifying": "验证中..."
+      },
+      "errors": {
+        "loadFailed": "加载信息失败。请重试。",
+        "passwordIncorrect": "密码错误。请重试。",
+        "linkNotFound": "链接不存在或已过期。",
+        "linkInactive": "此链接已停用。",
+        "linkExpired": "此链接已过期。",
+        "uploadFailed": "上传文件时出错",
+        "fileTooLarge": "文件太大。最大大小：{maxSize}",
+        "fileTypeNotAllowed": "不允许的文件类型。允许的类型：{allowedTypes}",
+        "maxFilesExceeded": "最多允许 {maxFiles} 个文件",
+        "selectAtLeastOneFile": "请至少选择一个文件",
+        "provideNameOrEmail": "请提供您的姓名或电子邮件"
+      },
+      "fileDropzone": {
+        "dragActive": "将文件拖放到此处",
+        "dragInactive": "将文件拖放到此处或点击选择",
+        "acceptedTypes": "允许的类型：{types}",
+        "maxFileSize": "最大大小：{size}",
+        "maxFiles": "最多 {count} 个文件",
+        "remainingFiles": "还可上传 {remaining} 个文件，共 {max} 个"
+      },
+      "fileList": {
+        "title": "已选择的文件：",
+        "statusUploaded": "已上传",
+        "statusError": "错误"
+      },
+      "form": {
+        "nameLabel": "姓名",
+        "namePlaceholder": "您的姓名",
+        "emailLabel": "电子邮件",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "描述（可选）",
+        "descriptionPlaceholder": "为文件添加描述...",
+        "uploadButton": "上传 {count} 个文件",
+        "uploading": "上传中..."
+      },
+      "success": {
+        "title": "文件上传成功！🎉",
+        "description": "您可以关闭此页面。",
+        "countMessage": "成功上传 {count} 个文件！"
+      },
+      "maxFilesReached": {
+        "title": "已达到文件限制",
+        "description": "此链接已达到允许的最大文件数 {maxFiles}。",
+        "contactOwner": "如果出现错误或需要上传更多文件，请联系链接所有者。"
+      },
+      "linkInactive": {
+        "title": "链接已停用",
+        "description": "此接收链接暂时停用。",
+        "contactOwner": "请联系链接所有者了解更多信息。"
+      },
+      "linkNotFound": {
+        "title": "链接未找到",
+        "description": "此链接可能已被删除或从未存在。"
+      },
+      "linkExpired": {
+        "title": "链接已过期",
+        "description": "此接收链接已过期，不再接受文件。",
+        "contactOwner": "如需发送文件，请联系链接所有者。"
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "添加描述...",
+        "anonymous": "匿名"
+      },
+      "fileActions": {
+        "edit": "编辑",
+        "save": "保存",
+        "cancel": "取消",
+        "preview": "预览",
+        "download": "下载",
+        "delete": "删除"
+      },
+      "editField": {
+        "saveChanges": "保存更改",
+        "cancelEdit": "取消编辑"
+      }
     }
   }
 }
