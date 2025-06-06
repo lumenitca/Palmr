@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { shareId: string } }) {
-  const body = await req.text();
+export async function POST(req: NextRequest, { params }: { params: Promise<{ shareId: string }> }) {
   const cookieHeader = req.headers.get("cookie");
+  const body = await req.text();
+  const { shareId } = await params;
 
-  const apiRes = await fetch(`${process.env.API_BASE_URL}/shares/${params.shareId}/files`, {
+  const apiRes = await fetch(`${process.env.API_BASE_URL}/shares/${shareId}/files`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

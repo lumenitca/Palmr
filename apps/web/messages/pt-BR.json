@@ -13,7 +13,9 @@
     "back": "Voltar",
     "updating": "Atualizando...",
     "saving": "Salvando...",
-    "update": "Atualizar"
+    "update": "Atualizar",
+    "creating": "Criando...",
+    "click": "Clique para"
   },
   "createShare": {
     "title": "Criar Compartilhamento",
@@ -312,6 +314,10 @@
     "shares": {
       "title": "Meus Compartilhamentos",
       "description": "Visualize e gerencie seus arquivos compartilhados"
+    },
+    "reverseShares": {
+      "title": "Receber Arquivos",
+      "description": "Crie links para outros enviarem arquivos para você"
     }
   },
   "recentFiles": {
@@ -860,7 +866,8 @@
     "passwordLength": "A senha deve ter pelo menos 8 caracteres",
     "passwordsMatch": "As senhas não coincidem",
     "emailRequired": "Email é obrigatório",
-    "passwordRequired": "Senha é obrigatória"
+    "passwordRequired": "Senha é obrigatória",
+    "required": "Este campo é obrigatório"
   },
   "bulkDownload": {
     "title": "Download em Lote",
@@ -950,6 +957,276 @@
       "token_expired": "Token expirado. Tente novamente.",
       "config_error": "Erro de configuração. Contate o suporte.",
       "auth_failed": "Falha na autenticação. Tente novamente."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Receber Arquivos",
+    "search": {
+      "title": "Gerenciar Links de Recebimento",
+      "createButton": "Criar Link",
+      "placeholder": "Buscar links de recebimento...",
+      "results": "Encontrados {filtered} de {total} links de recebimento"
+    },
+    "labels": {
+      "files": "arquivos",
+      "size": "tamanho",
+      "status": "status",
+      "access": "acesso",
+      "description": "Descrição",
+      "pageLayout": "Layout da Página",
+      "security": "Segurança & Status",
+      "limits": "Limites",
+      "maxFiles": "Máximo de Arquivos",
+      "maxFileSize": "Tamanho Máximo",
+      "allowedTypes": "Tipos Permitidos",
+      "filesReceived": "Arquivos Recebidos",
+      "fileLimit": "Limite de Arquivos",
+      "noLimit": "Sem limite",
+      "noLinkCreated": "Nenhum link criado",
+      "publicAccess": "Acesso Público",
+      "protectedByPassword": "Protegido por Senha",
+      "configureProtection": "Clique para configurar proteção",
+      "enterPassword": "Digite a senha",
+      "thisLinkProtected": "Este link estará protegido por senha",
+      "thisLinkPublic": "Este link estará disponível publicamente",
+      "configureExpiration": "Configurar Expiração",
+      "configureLimits": "Configurar Limites de Arquivos",
+      "protectWithPassword": "Proteger com Senha",
+      "layoutOptions": {
+        "default": "Padrão",
+        "wetransfer": "WeTransfer"
+      }
+    },
+    "card": {
+      "untitled": "Link sem título",
+      "noDescription": "Sem descrição",
+      "addDescriptionPlaceholder": "Adicionar descrição...",
+      "files": "arquivos",
+      "progress": "Progresso",
+      "created": "Criado",
+      "expired": "Expirado",
+      "expires": "Expira",
+      "viewDetails": "Ver detalhes",
+      "copyLink": "Copiar Link",
+      "openInNewTab": "Abrir em Nova Guia",
+      "editLink": "Editar Link",
+      "createLink": "Criar Link",
+      "delete": "Excluir",
+      "copyLinkTitle": "Copiar link",
+      "createLinkCTA": "Criar Link de Recebimento"
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "expired": "Expirado",
+      "protected": "Protegido",
+      "public": "Público"
+    },
+    "actions": {
+      "copyLink": "Copiar Link",
+      "editAlias": "Editar Alias",
+      "createAlias": "Criar Alias",
+      "viewDetails": "Ver Detalhes",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "viewFiles": "Arquivos Recebidos"
+    },
+    "empty": {
+      "title": "Nenhum link de recebimento criado",
+      "description": "Crie links personalizados para que outras pessoas possam enviar arquivos diretamente para você de forma segura e organizada.",
+      "createButton": "Criar Primeiro Link"
+    },
+    "modals": {
+      "create": {
+        "title": "Criar Link de Recebimento",
+        "description": "Configure um link personalizado para receber arquivos de outras pessoas"
+      },
+      "edit": {
+        "title": "Editar Link de Recebimento",
+        "description": "Atualize as configurações deste link de recebimento",
+        "updating": "Atualizando...",
+        "saveChanges": "Salvar Alterações"
+      },
+      "details": {
+        "title": "Detalhes do Link",
+        "description": "Visualize e edite as informações do seu link de recebimento",
+        "pageLayout": "Layout da Página",
+        "linkSection": "Link de Recebimento",
+        "noLinkCreated": "Nenhum link criado",
+        "limits": "Limites",
+        "maxFiles": "Máximo de Arquivos",
+        "maxFileSize": "Tamanho Máximo",
+        "allowedTypes": "Tipos Permitidos",
+        "noLimit": "Sem limite",
+        "security": "Segurança",
+        "status": "Status",
+        "password": "Senha",
+        "files": "Arquivos Recebidos",
+        "noFiles": "Nenhum arquivo recebido ainda",
+        "copyLink": "Copiar Link",
+        "openLink": "Abrir Link",
+        "editAlias": "Editar Alias",
+        "createAlias": "Criar Alias",
+        "editPassword": "Editar Proteção por Senha",
+        "basicInfo": "Informações Básicas",
+        "securityAndStatus": "Segurança & Status",
+        "protection": "Proteção",
+        "protectedByPassword": "Protegido por Senha",
+        "publicAccess": "Acesso Público",
+        "active": "Ativo",
+        "inactive": "Inativo",
+        "deactivate": "Desativar",
+        "activate": "Ativar",
+        "expiration": "Expiração",
+        "dates": "Datas",
+        "createdAt": "Criado em",
+        "updatedAt": "Atualizado em",
+        "allTypes": "Todos os tipos",
+        "placeholderTypes": ".pdf,.jpg,.png (separados por vírgula)",
+        "downloadSuccess": "Download iniciado",
+        "downloadError": "Erro ao baixar arquivo",
+        "editSuccess": "Arquivo atualizado com sucesso",
+        "editError": "Erro ao atualizar arquivo",
+        "previewNotAvailable": "Visualização não disponível"
+      },
+      "alias": {
+        "editTitle": "Editar Alias",
+        "createTitle": "Criar Alias",
+        "editDescription": "Atualize o alias deste link de recebimento",
+        "createDescription": "Crie um alias personalizado para este link de recebimento",
+        "aliasLabel": "Alias do Link",
+        "aliasPlaceholder": "meu-link-personalizado",
+        "preview": "Preview:",
+        "currentLink": "Link Atual:",
+        "copyCurrentLink": "Copiar link atual",
+        "randomTooltip": "Gerar alias aleatório",
+        "cancel": "Cancelar",
+        "creating": "Criando...",
+        "updating": "Atualizando...",
+        "create": "Criar Alias",
+        "update": "Atualizar Alias",
+        "validation": {
+          "required": "Alias é obrigatório",
+          "minLength": "Alias deve ter no mínimo 3 caracteres",
+          "maxLength": "Alias deve ter no máximo 50 caracteres",
+          "pattern": "Alias deve conter apenas letras, números, hífens e underscores"
+        },
+        "help": "3-50 caracteres. Espaços serão convertidos em hífens automaticamente."
+      },
+      "password": {
+        "title": "Editar Proteção por Senha",
+        "description": "Configure a proteção por senha para este link",
+        "hasPassword": "Protegido por Senha",
+        "password": "Senha",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "saving": "Salvando..."
+      },
+      "receivedFiles": {
+        "title": "Arquivos Recebidos",
+        "description": "Visualize e gerencie os arquivos enviados para este link",
+        "noFiles": "Nenhum arquivo recebido ainda",
+        "noFilesDescription": "Os arquivos enviados através deste link aparecerão aqui",
+        "fileCount": "{count, plural, =0 {Nenhum arquivo} =1 {1 arquivo} other {# arquivos}}",
+        "totalSize": "Tamanho total: {size}",
+        "columns": {
+          "file": "Arquivo",
+          "size": "Tamanho",
+          "sender": "Enviado por",
+          "date": "Data",
+          "actions": "Ações"
+        },
+        "actions": {
+          "preview": "Visualizar",
+          "download": "Baixar"
+        },
+        "uploadedBy": "Enviado por {name}",
+        "anonymous": "Anônimo",
+        "downloadSuccess": "Download iniciado",
+        "downloadError": "Erro ao baixar arquivo",
+        "editSuccess": "Arquivo atualizado com sucesso",
+        "editError": "Erro ao atualizar arquivo",
+        "previewNotAvailable": "Visualização não disponível"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Nome do Link",
+        "placeholder": "Ex: Documentos do Projeto, Fotos da Família..."
+      },
+      "description": {
+        "label": "Descrição",
+        "placeholder": "Descreva que tipo de arquivos você espera receber...",
+        "description": "Opcional. Ajuda as pessoas a entenderem o que enviar."
+      },
+      "status": {
+        "label": "Status do Link",
+        "description": "Ative ou desative este link de recebimento"
+      },
+      "expiration": {
+        "label": "Data de Expiração",
+        "description": "Opcional. O link será desativado após esta data.",
+        "configure": "Configurar Expiração"
+      },
+      "fileLimits": {
+        "configure": "Configurar Limites de Arquivos"
+      },
+      "maxFiles": {
+        "label": "Máximo de Arquivos",
+        "placeholder": "Ex: 10",
+        "description": "Opcional. Limite o número total de arquivos que podem ser enviados."
+      },
+      "maxFileSize": {
+        "label": "Tamanho Máximo por Arquivo",
+        "placeholder": "Ex: 100",
+        "description": "Opcional. Limite o tamanho individual de cada arquivo."
+      },
+      "allowedFileTypes": {
+        "label": "Tipos de Arquivo Permitidos",
+        "placeholder": "Ex: .pdf,.jpg,.png,.docx",
+        "description": "Opcional. Especifique as extensões permitidas separadas por vírgula."
+      },
+      "pageLayout": {
+        "label": "Layout da Página",
+        "placeholder": "Escolha o layout",
+        "description": "Como a página de upload aparecerá para os usuários.",
+        "options": {
+          "default": "Layout Padrão",
+          "wetransfer": "Estilo WeTransfer"
+        }
+      },
+      "password": {
+        "label": "Senha de Proteção",
+        "placeholder": "Opcional. Adicione uma senha para proteger o link",
+        "description": "Opcional. Os usuários precisarão desta senha para acessar o link.",
+        "configurePassword": "Configurar Senha",
+        "protectWithPassword": "Proteger com Senha",
+        "passwordHelp": "A senha deve ter pelo menos 4 caracteres",
+        "passwordPlaceholder": "Digite uma senha para proteger o link"
+      },
+      "submit": "Criar Link de Recebimento"
+    },
+    "messages": {
+      "created": "Link de recebimento criado com sucesso!",
+      "createSuccess": "Link de recebimento criado com sucesso!",
+      "updateSuccess": "Link de recebimento atualizado com sucesso!",
+      "linkCopied": "Link copiado para a área de transferência!",
+      "deleteSuccess": "Link de recebimento excluído com sucesso!",
+      "aliasCreated": "Alias criado com sucesso!"
+    },
+    "errors": {
+      "loadFailed": "Falha ao carregar links de recebimento",
+      "createFailed": "Falha ao criar link de recebimento. Tente novamente.",
+      "updateFailed": "Falha ao atualizar link de recebimento. Tente novamente.",
+      "deleteFailed": "Falha ao excluir link de recebimento. Tente novamente.",
+      "aliasCreateFailed": "Falha ao criar alias. Tente novamente."
+    },
+    "delete": {
+      "title": "Excluir link de recebimento",
+      "description": "Esta ação não pode ser desfeita. O link será permanentemente removido e não poderá mais receber arquivos.",
+      "confirmButton": "Excluir Link",
+      "cancelButton": "Cancelar",
+      "deleting": "Excluindo..."
     }
   }
 }

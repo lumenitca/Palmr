@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { objectName: string } }) {
-  const { objectName } = await params;
+export async function POST(req: NextRequest, { params }: { params: Promise<{ reverseShareId: string }> }) {
+  const { reverseShareId } = await params;
+  const body = await req.text();
   const cookieHeader = req.headers.get("cookie");
 
-  const url = `${process.env.API_BASE_URL}/files/${encodeURIComponent(objectName)}/download`;
-
-  const apiRes = await fetch(url, {
-    method: "GET",
+  const apiRes = await fetch(`${process.env.API_BASE_URL}/reverse-shares/${reverseShareId}/alias`, {
+    method: "POST",
     headers: {
+      "Content-Type": "application/json",
       cookie: cookieHeader || "",
     },
+    body,
     redirect: "manual",
   });
 

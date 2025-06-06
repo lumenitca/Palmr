@@ -7,6 +7,7 @@ import { fileRoutes } from "./modules/file/routes";
 import { filesystemRoutes } from "./modules/filesystem/routes";
 import { healthRoutes } from "./modules/health/routes";
 import { oidcRoutes } from "./modules/oidc/routes";
+import { reverseShareRoutes } from "./modules/reverse-share/routes";
 import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
 import { userRoutes } from "./modules/user/routes";
@@ -78,6 +79,7 @@ async function startServer() {
   }
 
   app.register(shareRoutes);
+  app.register(reverseShareRoutes);
   app.register(storageRoutes);
   app.register(appRoutes);
   app.register(healthRoutes);

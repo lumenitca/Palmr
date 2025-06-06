@@ -36,7 +36,7 @@ export function RecentFiles({ files, fileManager, onOpenUploadModal }: RecentFil
               className="font-semibold text-sm cursor-pointer"
               variant="outline"
               size="default"
-              onClick={() => router.push("/files")}
+              onClick={onOpenUploadModal}
             >
               <IconCloudUpload className="h-4 w-4" />
               {t("recentFiles.upload")}

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
-  const body = await req.text();
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const cookieHeader = req.headers.get("cookie");
+  const body = await req.text();
   const { id } = await params;
 
   const apiRes = await fetch(`${process.env.API_BASE_URL}/files/${id}`, {
@@ -32,7 +32,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   return res;
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const cookieHeader = req.headers.get("cookie");
   const { id } = await params;
 

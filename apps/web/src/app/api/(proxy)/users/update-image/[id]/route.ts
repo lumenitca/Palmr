@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const cookieHeader = req.headers.get("cookie");
-  const body = await req.text();
+  const { id } = await params;
 
-  const apiRes = await fetch(`${process.env.API_BASE_URL}/users/${params.id}/image`, {
+  const body = await req.formData();
+
+  const apiRes = await fetch(`${process.env.API_BASE_URL}/users/${id}/avatar`, {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json",
       cookie: cookieHeader || "",
     },
-    body,
+    body: body,
     redirect: "manual",
   });
 

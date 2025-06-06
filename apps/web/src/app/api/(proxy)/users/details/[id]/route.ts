@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const cookieHeader = req.headers.get("cookie");
   const searchParams = req.nextUrl.searchParams.toString();
+  const { id } = await params;
 
-  const url = `${process.env.API_BASE_URL}/users/${params.id}${searchParams ? `?${searchParams}` : ""}`;
+  const url = `${process.env.API_BASE_URL}/users/${id}${searchParams ? `?${searchParams}` : ""}`;
 
   const apiRes = await fetch(url, {
     method: "GET",

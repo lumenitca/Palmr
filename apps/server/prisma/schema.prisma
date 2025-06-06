@@ -20,8 +20,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  files  File[]
-  shares Share[]
+  files         File[]
+  shares        Share[]
+  reverseShares ReverseShare[]
 
   loginAttempts LoginAttempt?
 
@@ -157,4 +158,61 @@ model UserAuthProvider {
 
   @@unique([userId, provider])
   @@map("user_auth_providers")
+}
+
+model ReverseShare {
+  id               String     @id @default(cuid())
+  name             String?
+  description      String?
+  expiration       DateTime?
+  maxFiles         Int?
+  maxFileSize      BigInt?
+  allowedFileTypes String?
+  password         String?
+  pageLayout       PageLayout @default(DEFAULT)
+  isActive         Boolean    @default(true)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  creatorId String
+  creator   User   @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+  files ReverseShareFile[]
+  alias ReverseShareAlias?
+
+  @@map("reverse_shares")
+}
+
+model ReverseShareFile {
+  id            String   @id @default(cuid())
+  name          String
+  description   String?
+  extension     String
+  size          BigInt
+  objectName    String
+  uploaderEmail String?
+  uploaderName  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  reverseShareId String
+  reverseShare   ReverseShare @relation(fields: [reverseShareId], references: [id], onDelete: Cascade)
+
+  @@map("reverse_share_files")
+}
+
+model ReverseShareAlias {
+  id             String       @id @default(cuid())
+  alias          String       @unique
+  reverseShareId String       @unique
+  reverseShare   ReverseShare @relation(fields: [reverseShareId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@map("reverse_share_aliases")
+}
+
+enum PageLayout {
+  DEFAULT
+  WETRANSFER
 }
