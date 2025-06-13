@@ -1,8 +1,8 @@
 {
   "title": "v2.0.0-beta",
-  "description": "v2.0.0-beta Documentation",
+  "description": "(Deprecated)",
   "root": true,
-  "icon": "Building2",
+  "icon": "Trash2",
   "pages": [
     "---Introduction---",
     "index",
@@ -11,6 +11,7 @@
     "installation",
     "manual-installation",
     "api",
+    "s3-providers",
     "---How to use Palmr.---",
     "manage-users",
     "uploading-files",

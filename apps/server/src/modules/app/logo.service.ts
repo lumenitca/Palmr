@@ -1,8 +1,7 @@
-import sharp from "sharp";
 import { prisma } from "../../shared/prisma";
+import sharp from "sharp";
 
 export class LogoService {
-
   async uploadLogo(buffer: Buffer): Promise<string> {
     try {
       const metadata = await sharp(buffer).metadata();
@@ -11,20 +10,20 @@ export class LogoService {
       }
 
       const webpBuffer = await sharp(buffer)
-        .resize(100, 100, { 
+        .resize(100, 100, {
           fit: "contain",
-          background: { r: 255, g: 255, b: 255, alpha: 0 } // Fundo transparente
+          background: { r: 255, g: 255, b: 255, alpha: 0 },
         })
-        .webp({ 
+        .webp({
           quality: 60,
           effort: 6,
           nearLossless: true,
-          alphaQuality: 100, // Melhor qualidade para transparência
-          lossless: true    // Preserva melhor a transparência
+          alphaQuality: 100,
+          lossless: true,
         })
         .toBuffer();
 
-      return `data:image/webp;base64,${webpBuffer.toString('base64')}`;
+      return `data:image/webp;base64,${webpBuffer.toString("base64")}`;
     } catch (error) {
       console.error("Error processing logo:", error);
       throw error;
@@ -34,9 +33,9 @@ export class LogoService {
   async deleteLogo(): Promise<void> {
     try {
       await prisma.appConfig.update({
-        where: { key: 'appLogo' },
+        where: { key: "appLogo" },
         data: {
-          value: '',
+          value: "",
           updatedAt: new Date(),
         },
       });

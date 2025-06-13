@@ -5,6 +5,7 @@ import type {
   Login200,
   LoginBody,
   Logout200,
+  OidcConfig200,
   RequestPasswordReset200,
   RequestPasswordResetBody,
   ResetPassword200,
@@ -18,3 +19,6 @@ export type ResetPasswordResult = AxiosResponse<ResetPassword200>;
 export type GetCurrentUserResult = AxiosResponse<GetCurrentUser200>;
 
 export type { LoginBody, RequestPasswordResetBody, ResetPasswordBody };
+
+export type OIDCConfigResult = AxiosResponse<OidcConfig200>;
+export type OIDCConfigData = OidcConfig200;

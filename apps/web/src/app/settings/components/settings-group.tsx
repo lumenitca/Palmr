@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { createFieldDescriptions, createGroupMetadata } from "../constants";
 import { SettingsGroupProps } from "../types";
-import { SettingsInput } from "./settings-input";
+import { isFieldHidden, SettingsInput } from "./settings-input";
 
 export function SettingsGroup({ group, configs, form, isCollapsed, onToggleCollapse, onSubmit }: SettingsGroupProps) {
   const t = useTranslations();
@@ -46,25 +46,29 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
         <CardContent className={`${isCollapsed ? "hidden" : "block"} px-0`}>
           <Separator className="my-6" />
           <div className="flex flex-col gap-4">
-            {configs.map((config) => (
-              <div key={config.key} className="space-y-2 mb-3">
-                <SettingsInput
-                  config={config}
-                  error={form.formState.errors.configs?.[config.key]}
-                  register={form.register}
-                  smtpEnabled={form.watch("configs.smtpEnabled")}
-                  watch={form.watch}
-                />
-                <p className="text-xs text-muted-foreground ml-1">
-                  {t(`settings.fields.${config.key}.description`, {
-                    defaultValue:
-                      FIELD_DESCRIPTIONS[config.key as keyof typeof FIELD_DESCRIPTIONS] ||
-                      config.description ||
-                      t("settings.fields.noDescription"),
-                  })}
-                </p>
-              </div>
-            ))}
+            {configs
+              .filter((config) => !isFieldHidden(config.key))
+              .map((config) => (
+                <div key={config.key} className="space-y-2 mb-3">
+                  <SettingsInput
+                    config={config}
+                    error={form.formState.errors.configs?.[config.key]}
+                    register={form.register}
+                    setValue={form.setValue}
+                    smtpEnabled={form.watch("configs.smtpEnabled")}
+                    oidcEnabled={form.watch("configs.oidcEnabled")}
+                    watch={form.watch}
+                  />
+                  <p className="text-xs text-muted-foreground ml-1">
+                    {t(`settings.fields.${config.key}.description`, {
+                      defaultValue:
+                        FIELD_DESCRIPTIONS[config.key as keyof typeof FIELD_DESCRIPTIONS] ||
+                        config.description ||
+                        t("settings.fields.noDescription"),
+                    })}
+                  </p>
+                </div>
+              ))}
           </div>
           <div className="flex justify-end mt-4">
             <Button

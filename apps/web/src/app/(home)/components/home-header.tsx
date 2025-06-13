@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 import { HomeHeaderProps } from "../types";
+import { Palmtree } from "lucide-react";
 
 const fadeInUpAnimation = {
   animate: { opacity: 1, y: 0 },
@@ -27,8 +28,8 @@ export function HomeHeader({ title }: HomeHeaderProps) {
   return (
     <motion.div {...fadeInUpAnimation} className="inline-block max-w-xl text-center justify-center">
       <div className="flex flex-col gap-8">
-        <motion.span {...titleAnimation} className="text-4xl lg:text-6xl font-extrabold tracking-tight">
-          {title}
+        <motion.span {...titleAnimation} className="text-4xl lg:text-6xl font-extrabold tracking-tight flex mx-auto items-end gap-3">
+        <Palmtree className="h-18 w-18" /> {title}
         </motion.span>
         <div className="flex flex-col gap-2">
           <motion.span

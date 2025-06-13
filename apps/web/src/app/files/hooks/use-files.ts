@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
@@ -13,6 +13,11 @@ export function useFiles() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [clearSelectionCallback, setClearSelectionCallbackState] = useState<(() => void) | undefined>();
+
+  const setClearSelectionCallback = useCallback((callback: () => void) => {
+    setClearSelectionCallbackState(() => callback);
+  }, []);
 
   const loadFiles = async () => {
     try {
@@ -25,13 +30,12 @@ export function useFiles() {
       setFiles(sortedFiles);
     } catch (error) {
       toast.error(t("files.loadError"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const fileManager = useFileManager(loadFiles);
+  const fileManager = useFileManager(loadFiles, clearSelectionCallback);
   const filteredFiles = files.filter((file) => file.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   useEffect(() => {
@@ -47,7 +51,10 @@ export function useFiles() {
       onOpenUploadModal: () => setIsUploadModalOpen(true),
       onCloseUploadModal: () => setIsUploadModalOpen(false),
     },
-    fileManager,
+    fileManager: {
+      ...fileManager,
+      setClearSelectionCallback,
+    } as typeof fileManager & { setClearSelectionCallback: typeof setClearSelectionCallback },
     filteredFiles,
     handleSearch: setSearchQuery,
     loadFiles,

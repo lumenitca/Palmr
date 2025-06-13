@@ -1,7 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { IconCloudUpload, IconFileText, IconFileTypePdf, IconFileTypography, IconPhoto } from "@tabler/icons-react";
+import {
+  IconAlertTriangle,
+  IconCheck,
+  IconCloudUpload,
+  IconFileText,
+  IconFileTypePdf,
+  IconFileTypography,
+  IconLoader,
+  IconPhoto,
+  IconTrash,
+  IconX,
+} from "@tabler/icons-react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -9,7 +20,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
-import { getPresignedUrl, registerFile, checkFile } from "@/http/endpoints";
+import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
 import { generateSafeFileName } from "@/utils/file-utils";
 import getErrorData from "@/utils/getErrorData";
 
@@ -19,75 +30,223 @@ interface UploadFileModalProps {
   onSuccess?: () => void;
 }
 
+enum UploadStatus {
+  PENDING = "pending",
+  UPLOADING = "uploading",
+  SUCCESS = "success",
+  ERROR = "error",
+  CANCELLED = "cancelled",
+}
+
+interface FileUpload {
+  id: string;
+  file: File;
+  status: UploadStatus;
+  progress: number;
+  error?: string;
+  abortController?: AbortController;
+  objectName?: string;
+  previewUrl?: string;
+}
+
+interface ConfirmationModalProps {
+  isOpen: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+  uploadsInProgress: number;
+}
+
+function ConfirmationModal({ isOpen, onConfirm, onCancel, uploadsInProgress }: ConfirmationModalProps) {
+  const t = useTranslations();
+
+  return (
+    <Dialog open={isOpen} onOpenChange={() => {}}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <IconAlertTriangle size={20} className="text-amber-500" />
+            {t("uploadFile.confirmCancel.title")}
+          </DialogTitle>
+        </DialogHeader>
+        <div className="py-4">
+          <p className="text-sm text-muted-foreground mb-2">
+            {uploadsInProgress > 1
+              ? t("uploadFile.confirmCancel.messageMultiple", { count: uploadsInProgress })
+              : t("uploadFile.confirmCancel.messageSingle")}
+          </p>
+          <p className="text-sm text-amber-600 dark:text-amber-400">{t("uploadFile.confirmCancel.warning")}</p>
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={onCancel}>
+            {t("uploadFile.confirmCancel.continue")}
+          </Button>
+          <Button variant="destructive" onClick={onConfirm}>
+            {t("uploadFile.confirmCancel.cancel")}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalProps) {
   const t = useTranslations();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
+  const [fileUploads, setFileUploads] = useState<FileUpload[]>([]);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
+      fileUploads.forEach((upload) => {
+        if (upload.previewUrl) {
+          URL.revokeObjectURL(upload.previewUrl);
+        }
+      });
     };
-  }, [previewUrl]);
+  }, []);
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const generateFileId = () => {
+    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+  };
 
-    if (file) {
-      setSelectedFile(file);
+  const createFileUpload = (file: File): FileUpload => {
+    const id = generateFileId();
+    let previewUrl: string | undefined;
 
-      if (file.type.startsWith("image/")) {
-        const url = URL.createObjectURL(file);
+    if (file.type.startsWith("image/")) {
+      previewUrl = URL.createObjectURL(file);
+    }
 
-        setPreviewUrl(url);
-      } else {
-        setPreviewUrl(null);
-      }
+    return {
+      id,
+      file,
+      status: UploadStatus.PENDING,
+      progress: 0,
+      previewUrl,
+    };
+  };
+
+  const handleFilesSelect = (files: FileList | null) => {
+    if (!files) return;
+
+    const newUploads = Array.from(files).map(createFileUpload);
+    setFileUploads((prev) => [...prev, ...newUploads]);
+  };
+
+  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleFilesSelect(event.target.files);
+    if (event.target) {
+      event.target.value = "";
     }
   };
 
-  const getFileIcon = (fileType: string) => {
-    if (fileType.startsWith("image/")) return <IconPhoto size={64} className="text-blue-500" />;
-    if (fileType.includes("pdf")) return <IconFileTypePdf size={64} className="text-red-500" />;
-    if (fileType.includes("word")) return <IconFileTypography size={64} className="text-blue-700" />;
-
-    return <IconFileText size={64} className="text-gray-500" />;
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(true);
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) return;
+  const handleDragLeave = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+    handleFilesSelect(event.dataTransfer.files);
+  };
+
+  const getFileIcon = (fileType: string) => {
+    if (fileType.startsWith("image/")) return <IconPhoto size={24} className="text-blue-500" />;
+    if (fileType.includes("pdf")) return <IconFileTypePdf size={24} className="text-red-500" />;
+    if (fileType.includes("word")) return <IconFileTypography size={24} className="text-blue-700" />;
+    return <IconFileText size={24} className="text-muted-foreground" />;
+  };
+
+  const getStatusIcon = (status: UploadStatus) => {
+    switch (status) {
+      case UploadStatus.UPLOADING:
+        return <IconLoader size={16} className="animate-spin text-blue-500" />;
+      case UploadStatus.SUCCESS:
+        return <IconCheck size={16} className="text-green-500" />;
+      case UploadStatus.ERROR:
+        return <IconX size={16} className="text-red-500" />;
+      case UploadStatus.CANCELLED:
+        return <IconX size={16} className="text-muted-foreground" />;
+      default:
+        return null;
+    }
+  };
+
+  const removeFile = (fileId: string) => {
+    setFileUploads((prev) => {
+      const upload = prev.find((u) => u.id === fileId);
+      if (upload?.previewUrl) {
+        URL.revokeObjectURL(upload.previewUrl);
+      }
+      return prev.filter((u) => u.id !== fileId);
+    });
+  };
+
+  const cancelUpload = async (fileId: string) => {
+    const upload = fileUploads.find((u) => u.id === fileId);
+    if (!upload) return;
+
+    if (upload.abortController) {
+      upload.abortController.abort();
+    }
+
+    if (upload.objectName && upload.status === UploadStatus.UPLOADING) {
+      try {
+        // await deleteUploadedFile(upload.objectName);
+      } catch (error) {
+        console.error("Failed to delete uploaded file:", error);
+      }
+    }
+
+    setFileUploads((prev) =>
+      prev.map((u) => (u.id === fileId ? { ...u, status: UploadStatus.CANCELLED, abortController: undefined } : u))
+    );
+  };
+
+  const uploadFile = async (fileUpload: FileUpload) => {
+    const { file, id } = fileUpload;
 
     try {
-      const fileName = selectedFile.name;
+      const fileName = file.name;
       const extension = fileName.split(".").pop() || "";
       const safeObjectName = generateSafeFileName(fileName);
+
       try {
         await checkFile({
           name: fileName,
           objectName: "checkFile",
-          size: selectedFile.size,
+          size: file.size,
           extension: extension,
         });
       } catch (error) {
         console.error("File check failed:", error);
         const errorData = getErrorData(error);
+        let errorMessage = t("uploadFile.error");
+
         if (errorData.code === "fileSizeExceeded") {
-          toast.error(t(`uploadFile.${errorData.code}`, { maxsizemb: t(`${errorData.details}`) }));
+          errorMessage = t(`uploadFile.${errorData.code}`, { maxsizemb: t(`${errorData.details}`) });
         } else if (errorData.code === "insufficientStorage") {
-          toast.error(t(`uploadFile.${errorData.code}`, { availablespace: t(`${errorData.details}`) }));
-        }else {
-          toast.error(t(`uploadFile.${errorData.code}`));
+          errorMessage = t(`uploadFile.${errorData.code}`, { availablespace: t(`${errorData.details}`) });
+        } else if (errorData.code) {
+          errorMessage = t(`uploadFile.${errorData.code}`);
         }
+
+        setFileUploads((prev) =>
+          prev.map((u) => (u.id === id ? { ...u, status: UploadStatus.ERROR, error: errorMessage } : u))
+        );
         return;
       }
 
-      setIsUploading(true);
-      setUploadProgress(0);
+      setFileUploads((prev) =>
+        prev.map((u) => (u.id === id ? { ...u, status: UploadStatus.UPLOADING, progress: 0 } : u))
+      );
 
       const presignedResponse = await getPresignedUrl({
         filename: safeObjectName.replace(`.${extension}`, ""),
@@ -96,95 +255,249 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
 
       const { url, objectName } = presignedResponse.data;
 
-      await axios.put(url, selectedFile, {
-        headers: {
-          "Content-Type": selectedFile.type,
-        },
-        onUploadProgress: (progressEvent) => {
-          const progress = (progressEvent.loaded / (progressEvent.total || selectedFile.size)) * 100;
+      setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, objectName } : u)));
 
-          setUploadProgress(Math.round(progress));
+      const abortController = new AbortController();
+      setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
+
+      await axios.put(url, file, {
+        headers: {
+          "Content-Type": file.type,
+        },
+        signal: abortController.signal,
+        onUploadProgress: (progressEvent) => {
+          const progress = (progressEvent.loaded / (progressEvent.total || file.size)) * 100;
+          setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress: Math.round(progress) } : u)));
         },
       });
 
       await registerFile({
         name: fileName,
         objectName: objectName,
-        size: selectedFile.size,
+        size: file.size,
         extension: extension,
       });
 
-      toast.success(t("uploadFile.success"));
-      onSuccess?.();
-      handleClose();
-    } catch (error) {
+      setFileUploads((prev) =>
+        prev.map((u) =>
+          u.id === id ? { ...u, status: UploadStatus.SUCCESS, progress: 100, abortController: undefined } : u
+        )
+      );
+    } catch (error: any) {
+      if (error.name === "AbortError" || error.code === "ERR_CANCELED") {
+        return;
+      }
+
       console.error("Upload failed:", error);
-      toast.error(t("uploadFile.error"));
-    } finally {
-      setIsUploading(false);
+      const errorData = getErrorData(error);
+      let errorMessage = t("uploadFile.error");
+
+      if (errorData.code && errorData.code !== "error") {
+        errorMessage = t(`uploadFile.${errorData.code}`);
+      }
+
+      setFileUploads((prev) =>
+        prev.map((u) =>
+          u.id === id ? { ...u, status: UploadStatus.ERROR, error: errorMessage, abortController: undefined } : u
+        )
+      );
     }
   };
 
+  const startUploads = async () => {
+    const pendingUploads = fileUploads.filter((u) => u.status === UploadStatus.PENDING);
+
+    const uploadPromises = pendingUploads.map((upload) => uploadFile(upload));
+    await Promise.all(uploadPromises);
+
+    setTimeout(() => {
+      setFileUploads((currentUploads) => {
+        const allComplete = currentUploads.every(
+          (u) =>
+            u.status === UploadStatus.SUCCESS || u.status === UploadStatus.ERROR || u.status === UploadStatus.CANCELLED
+        );
+
+        if (allComplete) {
+          const successCount = currentUploads.filter((u) => u.status === UploadStatus.SUCCESS).length;
+          const errorCount = currentUploads.filter((u) => u.status === UploadStatus.ERROR).length;
+
+          if (successCount > 0) {
+            toast.success(
+              errorCount > 0
+                ? t("uploadFile.partialSuccess", { success: successCount, error: errorCount })
+                : t("uploadFile.allSuccess", { count: successCount })
+            );
+            onSuccess?.();
+          }
+        }
+
+        return currentUploads;
+      });
+    }, 100);
+  };
+
   const handleClose = () => {
-    setSelectedFile(null);
-    setUploadProgress(0);
-    setIsUploading(false);
+    const uploadsInProgress = fileUploads.filter((u) => u.status === UploadStatus.UPLOADING).length;
+
+    if (uploadsInProgress > 0) {
+      setShowConfirmation(true);
+    } else {
+      handleConfirmClose();
+    }
+  };
+
+  const handleConfirmClose = () => {
+    fileUploads.forEach((upload) => {
+      if (upload.status === UploadStatus.UPLOADING && upload.abortController) {
+        upload.abortController.abort();
+      }
+    });
+
+    fileUploads.forEach((upload) => {
+      if (upload.previewUrl) {
+        URL.revokeObjectURL(upload.previewUrl);
+      }
+    });
+
+    setFileUploads([]);
+    setShowConfirmation(false);
     onClose();
   };
 
-  return (
-    <Dialog open={isOpen} onOpenChange={() => handleClose()}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t("uploadFile.title")}</DialogTitle>
-        </DialogHeader>
-        <div className="flex flex-col items-center gap-4">
-          <input ref={fileInputRef} className="hidden" type="file" onChange={handleFileSelect} />
+  const handleContinueUploads = () => {
+    setShowConfirmation(false);
+  };
 
-          {!selectedFile ? (
+  const allUploadsComplete =
+    fileUploads.length > 0 &&
+    fileUploads.every(
+      (u) => u.status === UploadStatus.SUCCESS || u.status === UploadStatus.ERROR || u.status === UploadStatus.CANCELLED
+    );
+
+  const hasUploadsInProgress = fileUploads.some((u) => u.status === UploadStatus.UPLOADING);
+  const hasPendingUploads = fileUploads.some((u) => u.status === UploadStatus.PENDING);
+
+  return (
+    <>
+      <Dialog open={isOpen} onOpenChange={handleClose}>
+        <DialogContent
+          className="sm:max-w-2xl max-h-[80vh] overflow-hidden flex flex-col"
+          onPointerDownOutside={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+        >
+          <DialogHeader>
+            <DialogTitle>{t("uploadFile.multipleTitle")}</DialogTitle>
+          </DialogHeader>
+
+          <div className="flex-1 overflow-hidden flex flex-col gap-4">
+            <input ref={fileInputRef} className="hidden" type="file" multiple onChange={handleFileInputChange} />
+
             <div
-              className="border-2 border-dashed border-gray-300 rounded-lg p-8 cursor-pointer hover:border-primary-500 transition-colors"
+              className={`border-2 border-dashed rounded-lg p-6 cursor-pointer transition-colors ${
+                isDragOver ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"
+              }`}
               onClick={() => fileInputRef.current?.click()}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
             >
               <div className="flex flex-col items-center gap-2">
-                <IconCloudUpload size={32} className="text-gray-400" />
-                <p className="text-gray-600">{t("uploadFile.selectFile")}</p>
+                <IconCloudUpload size={32} className="text-muted-foreground" />
+                <p className="text-foreground text-center">{t("uploadFile.selectMultipleFiles")}</p>
+                <p className="text-sm text-muted-foreground">{t("uploadFile.dragAndDrop")}</p>
               </div>
             </div>
-          ) : (
-            <div className="w-full">
-              <div className="flex flex-col items-center gap-4 mb-4">
-                {previewUrl ? (
-                  <img
-                    alt={t("uploadFile.preview")}
-                    className="max-w-full h-auto max-h-48 rounded-lg object-contain"
-                    src={previewUrl}
-                  />
+
+            {fileUploads.length > 0 && (
+              <div className="flex-1 overflow-y-auto space-y-2 max-h-96">
+                {fileUploads.map((upload) => (
+                  <div key={upload.id} className="flex items-center gap-3 p-3 border rounded-lg bg-card">
+                    <div className="flex-shrink-0">
+                      {upload.previewUrl ? (
+                        <img
+                          src={upload.previewUrl}
+                          alt={upload.file.name}
+                          className="w-10 h-10 rounded object-cover"
+                        />
+                      ) : (
+                        getFileIcon(upload.file.type)
+                      )}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-medium truncate text-foreground">{upload.file.name}</p>
+                        {getStatusIcon(upload.status)}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{(upload.file.size / 1024).toFixed(1)} KB</p>
+
+                      {upload.status === UploadStatus.UPLOADING && (
+                        <div className="mt-1">
+                          <Progress value={upload.progress} className="h-1" />
+                          <p className="text-xs text-muted-foreground mt-1">{upload.progress}%</p>
+                        </div>
+                      )}
+
+                      {upload.status === UploadStatus.ERROR && upload.error && (
+                        <p className="text-xs text-destructive mt-1">{upload.error}</p>
+                      )}
+                    </div>
+
+                    <div className="flex-shrink-0">
+                      {upload.status === UploadStatus.UPLOADING ? (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => cancelUpload(upload.id)}
+                          className="h-8 w-8 p-0"
+                        >
+                          <IconX size={14} />
+                        </Button>
+                      ) : upload.status === UploadStatus.SUCCESS ? null : (
+                        <Button variant="ghost" size="sm" onClick={() => removeFile(upload.id)} className="h-8 w-8 p-0">
+                          <IconTrash size={14} />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={handleClose}>
+              {allUploadsComplete ? t("common.close") : t("common.cancel")}
+            </Button>
+            {!allUploadsComplete && (
+              <Button
+                variant="default"
+                disabled={fileUploads.length === 0 || hasUploadsInProgress}
+                onClick={startUploads}
+              >
+                {hasUploadsInProgress ? (
+                  <IconLoader className="h-4 w-4 animate-spin" />
                 ) : (
-                  getFileIcon(selectedFile.type)
+                  <IconCloudUpload className="h-4 w-4" />
                 )}
-                <div className="flex items-center gap-2">
-                  {/* <IconFile size={24} className="text-gray-500" /> */}
-                  <span className="font-medium">
-                    {selectedFile.name.length > 40 ? selectedFile.name.substring(0, 40) + "..." : selectedFile.name} (
-                    {selectedFile.size / 1000} KB)
-                  </span>
-                </div>
-              </div>
-              {isUploading && <Progress value={uploadProgress} className="w-full" />}
-            </div>
-          )}
-        </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={handleClose}>
-            {t("common.cancel")}
-          </Button>
-          <Button variant="default" disabled={!selectedFile || isUploading} onClick={handleUpload}>
-            {isUploading && <IconCloudUpload className="mr-2 h-4 w-4 animate-spin" />}
-            {t("uploadFile.upload")}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+                {hasPendingUploads ? t("uploadFile.startUploads") : t("uploadFile.upload")}
+              </Button>
+            )}
+            {allUploadsComplete && (
+              <Button variant="default" onClick={handleConfirmClose}>
+                {t("uploadFile.finish")}
+              </Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <ConfirmationModal
+        isOpen={showConfirmation}
+        onConfirm={handleConfirmClose}
+        onCancel={handleContinueUploads}
+        uploadsInProgress={fileUploads.filter((u) => u.status === UploadStatus.UPLOADING).length}
+      />
+    </>
   );
 }

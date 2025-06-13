@@ -42,7 +42,6 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
       toast.success(t("logo.messages.uploadSuccess"));
     } catch (error: any) {
       toast.error(error.response?.data?.error || t("logo.errors.uploadFailed"));
-      console.error(error);
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) {
@@ -61,7 +60,6 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
       toast.success(t("logo.messages.removeSuccess"));
     } catch (error: any) {
       toast.error(error.response?.data?.error || t("logo.errors.removeFailed"));
-      console.error(error);
     } finally {
       setIsUploading(false);
     }
@@ -84,7 +82,7 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
             <img alt={t("logo.labels.appLogo")} className="rounded-lg" src={currentLogo} sizes="200px" />
           </div>
           <Button variant="destructive" disabled={isDisabled} onClick={handleRemoveLogo}>
-            {!isUploading && <IconTrash className="mr-2 h-4 w-4" />}
+            {!isUploading && <IconTrash className="h-4 w-4" />}
             {t("logo.buttons.remove")}
           </Button>
         </div>
@@ -95,7 +93,7 @@ export function LogoInput({ value, onChange, isDisabled }: LogoInputProps) {
           disabled={isDisabled}
           onClick={() => fileInputRef.current?.click()}
         >
-          {!isUploading && <IconCloudUpload className="mr-2 h-5 w-5" />}
+          {!isUploading && <IconCloudUpload className="h-5 w-5" />}
           {t("logo.buttons.upload")}
         </Button>
       )}

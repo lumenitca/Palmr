@@ -26,7 +26,7 @@ const defaultConfigs = [
   },
   {
     key: "appLogo",
-    value: "https://i.ibb.co/V0hdRtjV/logo.png",
+    value: "https://i.ibb.co/gMpk75bZ/Group.png",
     type: "string",
     group: "general",
   },
@@ -39,7 +39,7 @@ const defaultConfigs = [
   // Storage Configurations
   {
     key: "maxFileSize",
-    value: process.env.MAX_FILESIZE || "1073741824", // default 1GiB in bytes
+    value: "1073741824", // default 1GiB in bytes
     type: "bigint",
     group: "storage",
   },
@@ -122,6 +122,61 @@ const defaultConfigs = [
     value: "3600",
     type: "number",
     group: "security",
+  },
+  // OIDC SSO Configurations
+  {
+    key: "oidcEnabled",
+    value: "false",
+    type: "boolean",
+    group: "oidc",
+  },
+  {
+    key: "oidcIssuerUrl",
+    value: "",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "oidcClientId",
+    value: "",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "oidcClientSecret",
+    value: "",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "oidcRedirectUri",
+    value: "",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "oidcScope",
+    value: "openid profile email",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "oidcAutoRegister",
+    value: "true",
+    type: "boolean",
+    group: "oidc",
+  },
+  {
+    key: "oidcAdminEmailDomains",
+    value: "",
+    type: "string",
+    group: "oidc",
+  },
+  {
+    key: "serverUrl",
+    value: "http://localhost:3333",
+    type: "string",
+    group: "general",
   }
 ];
 
@@ -133,7 +188,6 @@ async function main() {
   let skippedCount = 0;
 
   for (const config of defaultConfigs) {
-    // Check if configuration already exists
     const existingConfig = await prisma.appConfig.findUnique({
       where: { key: config.key },
     });
@@ -144,7 +198,6 @@ async function main() {
       continue;
     }
 
-    // Only create if it doesn't exist
     await prisma.appConfig.create({
       data: config,
     });

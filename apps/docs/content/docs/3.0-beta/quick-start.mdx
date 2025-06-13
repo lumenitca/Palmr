@@ -1,0 +1,164 @@
+---
+title: Quick Start (Docker)
+icon: "Rocket"
+---
+
+Hey there! Welcome to the fastest way to launch <span className="font-bold">Palmr.</span>, your very own secure <span className="font-bold italic">file sharing solution</span>. Whether you're a first-timer to <span className="font-bold italic">self-hosting</span> or a tech wizard, we've made this process incredibly straightforward. In just a few minutes, you'll have a sleek, user-friendly <span className="font-bold italic">file sharing platform</span> running on your <span className="font-bold italic">server</span> or <span className="font-bold italic">VPS</span>.
+
+This guide is all about speed and simplicity, using our built-in <span className="font-bold italic">file storage system</span> ideal for most users. While Palmr. supports advanced setups like <span className="font-bold italic">manual installation</span> or <span className="font-bold italic">Amazon S3-compatible external storage</span>, we're focusing on the easiest path with <span className="font-bold italic">Docker Compose</span>. Curious about other options? Check out the dedicated sections in our docs for those advanced configurations.
+
+Let's dive in and get Palmr. up and running!
+
+## What you'll need
+
+To get started, you only need two tools installed on your system. Don't worry, they're easy to set up:
+
+- **Docker** ([https://docs.docker.com](https://docs.docker.com/)) - This will run Palmr. in a container.
+- **Docker Compose** ([https://docs.docker.com/compose](https://docs.docker.com/compose/)) - This helps manage the setup with a simple configuration file.
+
+> **Note**: Palmr. was developed on **MacOS** and thoroughly tested on **Linux servers**, ensuring top-notch performance on these platforms. We haven't tested on **Windows** or other environments yet, so there might be some hiccups. Since we're still in **beta**, bugs can pop up anywhere. If you spot an issue, we'd love your help please report it on our GitHub [issues page](https://github.com/kyantech/Palmr/issues).
+
+## Setting up with Docker Compose
+
+Docker Compose is the simplest way to deploy Palmr. across different environments. Once you've got Docker and Docker Compose installed, you're ready to roll with our streamlined setup.
+
+In the root folder of the Palmr. project, you'll find a few compose files. For this guide, we're using `docker-compose.yaml` the only file you need to run Palmr. with file system storage. No need to build anything yourself; our pre-built images are hosted on [DockerHub](https://hub.docker.com/repositories/kyantech) and referenced in this file.
+
+You can tweak settings directly in `docker-compose.yaml` or use environment variables (more on that later). Let's take a closer look at what's inside this file.
+
+## Exploring the docker-compose.yaml file
+
+Here's the full content of our `docker-compose.yaml`. Feel free to copy it from here or grab it from our official repository ([Docker Compose](https://github.com/kyantech/Palmr/blob/main/docker-compose.yaml)).
+
+```yaml
+services:
+  palmr:
+    image: kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
+    ports:
+      - "5487:5487" # Web port
+      - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY, IF YOU DONT WANT TO EXPOSE THE API, JUST REMOVE THIS LINE )
+    volumes:
+      - palmr_data:/app/server # Volume for the application data
+    restart: unless-stopped # Restart the container unless it is stopped
+
+volumes:
+  palmr_data:
+```
+
+We've added helpful comments in the file to guide you through customization. Let's break down what you can adjust to fit your setup.
+
+---
+
+### Understanding the services
+
+Palmr. runs as a single service in this filesystem storage setup. Here's a quick overview:
+
+| **Service** | **Image**                                                                                | **Exposed Ports**                 | **Main Features**                                                                                                            |
+| ----------- | ---------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| palmr       | [kyantech/palmr:latest](https://hub.docker.com/repository/docker/kyantech/palmr/general) | **3333** (API)<br/>**5487** (Web) | • Combined backend API and frontend service<br/>• Uses local filesystem storage<br/>• Has healthcheck to ensure availability |
+
+---
+
+### Customizing with environment variables
+
+You can fine-tune Palmr. using environment variables. Here's what's available for the filesystem storage setup:
+
+| **Variable**     | **Default Value**                          | **Description**                                              |
+| ---------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| `ENABLE_S3`      | false                                      | Set to 'false' for filesystem storage or 'true' for S3/MinIO |
+| `ENCRYPTION_KEY` | change-this-key-in-production-min-32-chars | Required for filesystem encryption (minimum 32 characters)   |
+
+> **Important**: These variables can be set in a `.env` file at the project root or directly in your environment when running Docker Compose. The `ENCRYPTION_KEY` is crucial for securing your filesystem storage **always change it** to a unique, secure value in production. you can generate a secure key using the [KeyGenerator](/docs/3.0-beta/quick-start#generating-a-secure-encryption-key) tool.
+
+---
+
+### Managing persistent data
+
+To ensure your data sticks around even if the container restarts, we use a persistent volume:
+
+| **Volume**   | **Description**                       |
+| ------------ | ------------------------------------- |
+| `palmr_data` | Stores all the data of Palmr. service |
+
+---
+
+## Launching Palmr.
+
+With your `docker-compose.yaml` ready, it's time to start Palmr.! Run this command to launch everything in the background:
+
+```bash
+docker-compose up -d
+```
+
+This runs Palmr. in **detached mode**, meaning it operates silently in the background without flooding your terminal with logs.
+
+Now, open your browser and visit:
+
+```bash
+http://localhost:5487
+```
+
+If you're on a server, replace `localhost` with your server's IP:
+
+```bash
+http://[YOUR_SERVER_IP]:5487
+```
+
+For example, if your server IP is `192.168.1.10`, the URL would be `http://192.168.1.10:5487`. Remember, this is just an example use your actual server IP.
+
+> **Pro Tip**: For full functionality and security, configure your server with **HTTPS** by setting up a valid SSL certificate.
+
+---
+
+## Keeping Palmr. up to date
+
+Want the latest features and fixes? Updating Palmr. is a breeze. Run these commands to pull the newest version from DockerHub and restart the service:
+
+```bash
+docker-compose pull
+docker-compose up -d
+```
+
+That's it! You're now running the latest version of Palmr.
+
+---
+
+## Running with Docker (without Compose)
+
+Prefer to skip Docker Compose and use plain Docker? No problem! Use this command to start Palmr. directly:
+
+```bash
+docker run -d \
+  --name palmr \
+  -e ENABLE_S3=false \
+  -e ENCRYPTION_KEY=change-this-key-in-production-min-32-chars \
+  -p 5487:5487 \
+  -p 3333:3333 \
+  -v palmr_data:/app/server \
+  --restart unless-stopped \
+  kyantech/palmr:latest
+```
+
+This also runs in detached mode, so it's hands-off. Access Palmr. at the same URLs mentioned earlier.
+
+> **Critical Reminder**: Whichever method you choose, **change the `ENCRYPTION_KEY`** to a secure, unique value. This key encrypts your files on the filesystem if you lose it, your files become inaccessible.
+
+---
+
+## Generating a Secure Encryption Key
+
+Need a strong key for `ENCRYPTION_KEY`? Use our handy Password Generator Tool below to create one:
+
+<KeyGenerator />
+
+---
+
+## You're all set!
+
+Congratulations! You've just deployed your own secure file sharing solution with Palmr. in record time. We're thrilled to have you on board and hope you love using this powerful tool as much as we loved building it.
+
+Got questions or ideas? Dive into the rest of our documentation or reach out via our GitHub [issues page](https://github.com/kyantech/Palmr/issues). Happy sharing!

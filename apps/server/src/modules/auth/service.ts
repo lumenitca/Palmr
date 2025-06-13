@@ -45,6 +45,10 @@ export class AuthService {
       }
     }
 
+    if (!user.password) {
+      throw new Error("This account uses external authentication. Please use the appropriate login method.");
+    }
+
     const isValid = await bcrypt.compare(data.password, user.password);
 
     if (!isValid) {
@@ -75,69 +79,7 @@ export class AuthService {
     return UserResponseSchema.parse(user);
   }
 
-  async validateLogin(email: string, password: string) {
-    const user = await prisma.user.findUnique({
-      where: { email },
-      include: { loginAttempts: true },
-    });
-
-    if (!user) {
-      throw new Error("Invalid credentials");
-    }
-
-    if (user.loginAttempts) {
-      const maxAttempts = Number(await this.configService.getValue("maxLoginAttempts"));
-      const blockDurationSeconds = Number(await this.configService.getValue("loginBlockDuration"));
-      const blockDuration = blockDurationSeconds * 1000; 
-
-      if (
-        user.loginAttempts.attempts >= maxAttempts &&
-        Date.now() - user.loginAttempts.lastAttempt.getTime() < blockDuration
-      ) {
-        const remainingTime = Math.ceil(
-          (blockDuration - (Date.now() - user.loginAttempts.lastAttempt.getTime())) / 1000 / 60
-        );
-        throw new Error(`Too many failed attempts. Please try again in ${remainingTime} minutes.`);
-      }
-
-      if (Date.now() - user.loginAttempts.lastAttempt.getTime() >= blockDuration) {
-        await prisma.loginAttempt.delete({
-          where: { userId: user.id },
-        });
-      }
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-
-    if (!isValidPassword) {
-      await prisma.loginAttempt.upsert({
-        where: { userId: user.id },
-        create: {
-          userId: user.id,
-          attempts: 1,
-          lastAttempt: new Date(),
-        },
-        update: {
-          attempts: {
-            increment: 1,
-          },
-          lastAttempt: new Date(),
-        },
-      });
-
-      throw new Error("Invalid credentials");
-    }
-
-    if (user.loginAttempts) {
-      await prisma.loginAttempt.delete({
-        where: { userId: user.id },
-      });
-    }
-
-    return user;
-  }
-
-  async requestPasswordReset(email: string) {
+  async requestPasswordReset(email: string, origin: string) {
     const user = await this.userRepository.findUserByEmail(email);
     if (!user) {
       return;
@@ -155,7 +97,7 @@ export class AuthService {
     });
 
     try {
-      await this.emailService.sendPasswordResetEmail(email, token);
+      await this.emailService.sendPasswordResetEmail(email, token, origin);
     } catch (error) {
       console.error("Failed to send password reset email:", error);
       throw new Error("Failed to send password reset email");

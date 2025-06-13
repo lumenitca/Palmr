@@ -19,7 +19,7 @@ interface GenerateShareLinkModalProps {
   onGenerate: (shareId: string, alias: string) => Promise<void>;
 }
 
-const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyz");
+const generateCustomId = () => customNanoid(10, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
 export function GenerateShareLinkModal({
   shareId,
@@ -57,7 +57,6 @@ export function GenerateShareLinkModal({
       onSuccess();
       toast.success(t("generateShareLink.success"));
     } catch (error) {
-      console.error(error);
       toast.error(t("generateShareLink.error"));
     } finally {
       setIsLoading(false);

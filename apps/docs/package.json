@@ -1,7 +1,20 @@
 {
-  "name": "docs-v2",
-  "version": "0.0.0",
+  "name": "palmr-docs",
+  "version": "v3.0-beta",
+  "description": "Docs for Palmr",
   "private": true,
+  "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
+  "keywords": [
+    "palmr",
+    "docs",
+    "documentation",
+    "mdx",
+    "nextjs",
+    "react",
+    "typescript"
+  ],
+  "license": "BSD-2-Clause",
+  "packageManager": "pnpm@10.6.0",
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbo",

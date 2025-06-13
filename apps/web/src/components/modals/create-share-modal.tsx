@@ -22,6 +22,7 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
   const t = useTranslations();
   const [formData, setFormData] = useState({
     name: "",
+    description: "",
     password: "",
     expiresAt: "",
     isPasswordProtected: false,
@@ -34,6 +35,7 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
       setIsLoading(true);
       await createShare({
         name: formData.name,
+        description: formData.description || undefined,
         password: formData.isPasswordProtected ? formData.password : undefined,
         expiration: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : undefined,
         maxViews: formData.maxViews ? parseInt(formData.maxViews) : undefined,
@@ -44,6 +46,7 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
       onClose();
       setFormData({
         name: "",
+        description: "",
         password: "",
         expiresAt: "",
         isPasswordProtected: false,
@@ -51,7 +54,6 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
       });
     } catch (error) {
       toast.error(t("createShare.error"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -70,6 +72,15 @@ export function CreateShareModal({ isOpen, onClose, onSuccess }: CreateShareModa
           <div className="space-y-2">
             <Label>{t("createShare.nameLabel")}</Label>
             <Input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+          </div>
+
+          <div className="space-y-2">
+            <Label>{t("createShare.descriptionLabel")}</Label>
+            <Input
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              placeholder={t("createShare.descriptionPlaceholder")}
+            />
           </div>
 
           <div className="space-y-2">

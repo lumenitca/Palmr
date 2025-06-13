@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import { useFileManager } from "@/hooks/use-file-manager";
+import { useSecureConfigValue } from "@/hooks/use-secure-configs";
 import { useShareManager } from "@/hooks/use-share-manager";
-import { getAllConfigs, getDiskSpace, listFiles, listUserShares } from "@/http/endpoints";
+import { getDiskSpace, listFiles, listUserShares } from "@/http/endpoints";
 import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
 
 export function useDashboard() {
@@ -20,7 +21,8 @@ export function useDashboard() {
   const [recentFiles, setRecentFiles] = useState<any[]>([]);
   const [recentShares, setRecentShares] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [smtpEnabled, setSmtpEnabled] = useState("false");
+
+  const { value: smtpEnabled } = useSecureConfigValue("smtpEnabled");
 
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -32,12 +34,7 @@ export function useDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      const [diskSpaceRes, filesRes, sharesRes, configsRes] = await Promise.all([
-        getDiskSpace(),
-        listFiles(),
-        listUserShares(),
-        getAllConfigs(),
-      ]);
+      const [diskSpaceRes, filesRes, sharesRes] = await Promise.all([getDiskSpace(), listFiles(), listUserShares()]);
 
       setDiskSpace(diskSpaceRes.data);
 
@@ -54,13 +51,8 @@ export function useDashboard() {
       );
 
       setRecentShares(sortedShares.slice(0, 5));
-
-      const smtpConfig = configsRes.data.configs.find((config: any) => config.key === "smtpEnabled");
-
-      setSmtpEnabled(smtpConfig?.value === "true" ? "true" : "false");
     } catch (error) {
       toast.error(t("dashboard.loadError"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -98,6 +90,6 @@ export function useDashboard() {
     shareManager,
     handleCopyLink,
     loadDashboardData,
-    smtpEnabled,
+    smtpEnabled: smtpEnabled || "false",
   };
 }

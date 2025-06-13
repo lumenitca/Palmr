@@ -1,7 +1,7 @@
 import { SettingsFormProps, ValidGroup } from "../types";
 import { SettingsGroup } from "./settings-group";
 
-const GROUP_ORDER: ValidGroup[] = ["general", "email", "security", "storage"];
+const GROUP_ORDER: ValidGroup[] = ["general", "email", "oidc", "security", "storage"];
 
 export function SettingsForm({
   groupedConfigs,

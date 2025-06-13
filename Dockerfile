@@ -1,8 +1,7 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
-# Install system dependencies
+# Install system dependencies (removed netcat-openbsd since we no longer need to wait for PostgreSQL)
 RUN apk add --no-cache \
-  netcat-openbsd \
   gcompat \
   supervisor \
   curl
@@ -71,13 +70,17 @@ FROM base AS runner
 # Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV API_BASE_URL=http://127.0.0.1:3333
 
 # Create application user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 palmr
 
 # Create application directories and set permissions
-RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache
+# Include storage directories for filesystem mode and SQLite database directory
+RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache \
+  /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo \
+  /app/server/prisma
 RUN chown -R palmr:nodejs /app /home/palmr
 
 # === Copy Server Files ===
@@ -88,6 +91,15 @@ COPY --from=server-builder --chown=palmr:nodejs /app/server/dist ./dist
 COPY --from=server-builder --chown=palmr:nodejs /app/server/node_modules ./node_modules
 COPY --from=server-builder --chown=palmr:nodejs /app/server/prisma ./prisma
 COPY --from=server-builder --chown=palmr:nodejs /app/server/package.json ./
+
+# Copy password reset script and make it executable
+COPY --from=server-builder --chown=palmr:nodejs /app/server/reset-password.sh ./
+COPY --from=server-builder --chown=palmr:nodejs /app/server/src/scripts/ ./src/scripts/
+COPY --from=server-builder --chown=palmr:nodejs /app/server/PASSWORD_RESET_GUIDE.md ./
+RUN chmod +x ./reset-password.sh
+
+# Ensure storage directories have correct permissions
+RUN chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma
 
 # === Copy Web Files ===
 WORKDIR /app/web
@@ -108,7 +120,7 @@ COPY infra/server-start.sh /app/server-start.sh
 RUN chmod +x /app/server-start.sh
 RUN chown palmr:nodejs /app/server-start.sh
 
-# Copy supervisor configuration
+# Copy supervisor configuration (simplified without PostgreSQL dependency)
 COPY <<EOF /etc/supervisor/conf.d/supervisord.conf
 [supervisord]
 nodaemon=true
@@ -124,17 +136,20 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/server.err.log
 stdout_logfile=/var/log/supervisor/server.out.log
-environment=PORT=3333,HOME="/home/palmr"
+environment=PORT=3333,HOME="/home/palmr",ENABLE_S3="false",ENCRYPTION_KEY="default-key-change-in-production"
+priority=100
 
 [program:web]
-command=node server.js
+command=/bin/sh -c 'echo "Waiting for API to be ready..."; while ! curl -f http://127.0.0.1:3333/health >/dev/null 2>&1; do echo "API not ready, waiting..."; sleep 2; done; echo "API is ready! Starting frontend..."; exec node server.js'
 directory=/app/web
 user=palmr
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/web.err.log
 stdout_logfile=/var/log/supervisor/web.out.log
-environment=PORT=5487,HOSTNAME="0.0.0.0",HOME="/home/palmr"
+environment=PORT=5487,HOSTNAME="0.0.0.0",HOME="/home/palmr",API_BASE_URL="http://127.0.0.1:3333"
+priority=200
+startsecs=10
 EOF
 
 # Create main startup script
@@ -142,12 +157,21 @@ COPY <<EOF /app/start.sh
 #!/bin/sh
 
 echo "Starting Palmr Application..."
+echo "Storage Mode: \${ENABLE_S3:-false}"
+echo "Database: SQLite"
+
+# Ensure storage directories exist with correct permissions
+mkdir -p /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo /app/server/prisma
+chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma
 
 # Start supervisor
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 EOF
 
 RUN chmod +x /app/start.sh
+
+# Create volume mount points for persistent storage (filesystem mode and SQLite database)
+VOLUME ["/app/server/uploads", "/app/server/temp-chunks", "/app/server/prisma"]
 
 # Expose ports
 EXPOSE 3333 5487

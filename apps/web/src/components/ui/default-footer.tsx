@@ -18,7 +18,7 @@ export function DefaultFooter() {
           <span className="text-default-600 text-xs sm:text-sm">{t("footer.poweredBy")}</span>
           <p className="text-green-700 text-xs sm:text-sm">Kyantech Solutions</p>
         </Link>
-        <span className="text-default-500 text-[11px] mt-1">v{version}-beta</span>
+        <span className="text-default-500 text-[11px] mt-1">v{version}</span>
       </div>
     </footer>
   );

@@ -45,29 +45,26 @@ export function usePublicShare() {
     } else {
       toast.error(t("share.errors.loadFailed"));
     }
-    console.error(error);
   };
 
   const handlePasswordSubmit = async () => {
     await loadShare(password);
   };
 
-  const handleDownload = async (objectName: string, fileName: string) => {
+  const handleDownload = async (file: { id: string; name: string }) => {
     try {
-      const encodedObjectName = encodeURIComponent(objectName);
-      const response = await getDownloadUrl(encodedObjectName);
+      const response = await getDownloadUrl(file.id);
       const downloadUrl = response.data.url;
-      console.log(fileName)
+      const fileName = downloadUrl.split("/").pop() || file.name;
+
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      toast.success(t("files.downloadStart"));
     } catch (error) {
-      console.error(error);
-      toast.success(t("files.downloadError"));
+      toast.error(t("share.errors.downloadFailed"));
     }
   };
 

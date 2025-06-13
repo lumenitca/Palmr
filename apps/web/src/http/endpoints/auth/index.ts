@@ -6,6 +6,7 @@ import type {
   LoginBody,
   LoginResult,
   LogoutResult,
+  OIDCConfigResult,
   RequestPasswordResetBody,
   RequestPasswordResetResult,
   ResetPasswordBody,
@@ -36,4 +37,17 @@ export const resetPassword = <TData = ResetPasswordResult>(
 
 export const getCurrentUser = <TData = GetCurrentUserResult>(options?: AxiosRequestConfig): Promise<TData> => {
   return apiInstance.get(`/api/auth/me`, options);
+};
+
+export const getOIDCConfig = <TData = OIDCConfigResult>(options?: AxiosRequestConfig): Promise<TData> => {
+  return apiInstance.get(`/api/auth/oidc/config`, options);
+};
+
+export const initiateOIDCLogin = (state?: string, redirectUri?: string): string => {
+  const params = new URLSearchParams();
+  if (state) params.append("state", state);
+  if (redirectUri) params.append("redirect_uri", redirectUri);
+
+  const queryString = params.toString();
+  return `/api/auth/oidc/authorize${queryString ? `?${queryString}` : ""}`;
 };

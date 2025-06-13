@@ -1,0 +1,81 @@
+"use client";
+
+import { IconTrash, IconX } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+interface DeleteConfirmationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title: string;
+  description: string;
+  files: string[];
+  itemType?: "files" | "shares";
+}
+
+export function DeleteConfirmationModal({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  description,
+  files,
+  itemType,
+}: DeleteConfirmationModalProps) {
+  const t = useTranslations();
+
+  const handleConfirm = () => {
+    onConfirm();
+    onClose();
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-destructive">
+            <IconTrash size={20} />
+            {title}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">{description}</p>
+
+          {files.length > 0 && (
+            <div className="space-y-2">
+              <p className="text-sm font-medium">
+                {itemType === "shares" ? t("deleteConfirmation.sharesToDelete") : t("deleteConfirmation.filesToDelete")}
+                :
+              </p>
+              <ScrollArea className="h-32 w-full rounded-md border p-2">
+                <div className="space-y-1">
+                  {files.map((fileName, index) => (
+                    <div key={index} className="text-sm text-muted-foreground truncate">
+                      • {fileName}
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
+          )}
+        </div>
+
+        <DialogFooter className="flex gap-2">
+          <Button variant="outline" onClick={onClose}>
+            <IconX className="h-4 w-4 mr-2" />
+            {t("common.cancel")}
+          </Button>
+          <Button variant="destructive" onClick={handleConfirm}>
+            <IconTrash className="h-4 w-4 mr-2" />
+            {t("common.delete")}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}

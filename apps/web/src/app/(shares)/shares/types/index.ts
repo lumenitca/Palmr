@@ -41,6 +41,7 @@ export interface SharesModalsProps {
   shareToViewDetails: any;
   shareToGenerateLink: any;
   shareManager: any;
+  fileManager: any;
   onSuccess: () => void;
   onCloseViewDetails: () => void;
   onCloseGenerateLink: () => void;

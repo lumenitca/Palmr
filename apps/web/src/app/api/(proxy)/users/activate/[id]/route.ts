@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const cookieHeader = req.headers.get("cookie");
+  const { id } = await params;
 
-  const apiRes = await fetch(`${process.env.API_BASE_URL}/users/${params.id}/activate`, {
+  const apiRes = await fetch(`${process.env.API_BASE_URL}/users/${id}/activate`, {
     method: "PATCH",
     headers: {
       cookie: cookieHeader || "",

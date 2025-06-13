@@ -23,7 +23,7 @@ export async function fileRoutes(app: FastifyInstance) {
         tags: ["File"],
         operationId: "getPresignedUrl",
         summary: "Get Presigned URL",
-        description: "Generates a pre-signed URL for direct upload to MinIO",
+        description: "Generates a pre-signed URL for direct upload to S3-compatible storage or local filesystem",
         querystring: z.object({
           filename: z.string().min(1, "The filename is required").describe("The filename of the file"),
           extension: z.string().min(1, "The extension is required").describe("The extension of the file"),
@@ -58,7 +58,7 @@ export async function fileRoutes(app: FastifyInstance) {
               name: z.string().describe("The file name"),
               description: z.string().nullable().describe("The file description"),
               extension: z.string().describe("The file extension"),
-              size: z.string().describe("The file size"), 
+              size: z.string().describe("The file size"),
               objectName: z.string().describe("The object name of the file"),
               userId: z.string().describe("The user ID"),
               createdAt: z.date().describe("The file creation date"),
@@ -73,6 +73,7 @@ export async function fileRoutes(app: FastifyInstance) {
     },
     fileController.registerFile.bind(fileController)
   );
+
   app.post(
     "/files/check",
     {
@@ -143,7 +144,7 @@ export async function fileRoutes(app: FastifyInstance) {
                 name: z.string().describe("The file name"),
                 description: z.string().nullable().describe("The file description"),
                 extension: z.string().describe("The file extension"),
-                size: z.string().describe("The file size"), 
+                size: z.string().describe("The file size"),
                 objectName: z.string().describe("The object name of the file"),
                 userId: z.string().describe("The user ID"),
                 createdAt: z.date().describe("The file creation date"),

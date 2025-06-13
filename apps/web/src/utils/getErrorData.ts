@@ -20,20 +20,20 @@ export interface ErrorData {
  * If not found, returns a default object with code "error" and details "undefined".
  */
 const getErrorData = (error: unknown): ErrorData => {
-  // Check if it's an Axios error and has a response with data
   if (
     axios.isAxiosError(error) &&
     error.response?.data &&
-    typeof error.response.data.code === 'string' &&
-    error.response.data.code.length > 0 // Ensure it's not an empty string
+    typeof error.response.data.code === "string" &&
+    error.response.data.code.length > 0
   ) {
-    // Return the code string
     const code = error.response.data.code;
-    const details = typeof error.response.data.details === 'string' && error.response.data.details !== null ? error.response.data.details : undefined;
+    const details =
+      typeof error.response.data.details === "string" && error.response.data.details !== null
+        ? error.response.data.details
+        : undefined;
     return { code, details };
   }
 
-  // If code invalid, return "error" as code
   return { code: "error", details: "undefined" };
 };
 
