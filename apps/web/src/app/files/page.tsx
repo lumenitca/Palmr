@@ -6,14 +6,16 @@ import { useTranslations } from "next-intl";
 import { ProtectedRoute } from "@/components/auth/protected-route";
 import { FileManagerLayout } from "@/components/layout/file-manager-layout";
 import { LoadingScreen } from "@/components/layout/loading-screen";
-import { FileList } from "./components/file-list";
+import { Card, CardContent } from "@/components/ui/card";
+import { FilesViewManager } from "./components/files-view-manager";
+import { Header } from "./components/header";
 import { useFiles } from "./hooks/use-files";
 import { FilesModals } from "./modals/files-modals";
 
 export default function FilesPage() {
   const t = useTranslations();
 
-  const { isLoading, files, searchQuery, modals, fileManager, filteredFiles, handleSearch, loadFiles } = useFiles();
+  const { isLoading, searchQuery, modals, fileManager, filteredFiles, handleSearch, loadFiles } = useFiles();
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -26,14 +28,39 @@ export default function FilesPage() {
         icon={<IconFolderOpen size={20} />}
         title={t("files.pageTitle")}
       >
-        <FileList
-          fileManager={fileManager}
-          files={files}
-          filteredFiles={filteredFiles}
-          searchQuery={searchQuery}
-          onSearch={handleSearch}
-          onUpload={modals.onOpenUploadModal}
-        />
+        <Card>
+          <CardContent>
+            <div className="flex flex-col gap-6">
+              <Header onUpload={modals.onOpenUploadModal} />
+              <FilesViewManager
+                files={filteredFiles}
+                searchQuery={searchQuery}
+                onSearch={handleSearch}
+                onDelete={fileManager.setFileToDelete}
+                onDownload={fileManager.handleDownload}
+                onPreview={fileManager.setPreviewFile}
+                onRename={fileManager.setFileToRename}
+                onShare={fileManager.setFileToShare}
+                onBulkDelete={fileManager.handleBulkDelete}
+                onBulkShare={fileManager.handleBulkShare}
+                onBulkDownload={fileManager.handleBulkDownload}
+                setClearSelectionCallback={fileManager.setClearSelectionCallback}
+                onUpdateName={(fileId, newName) => {
+                  const file = filteredFiles.find((f) => f.id === fileId);
+                  if (file) {
+                    fileManager.handleRename(fileId, newName, file.description);
+                  }
+                }}
+                onUpdateDescription={(fileId, newDescription) => {
+                  const file = filteredFiles.find((f) => f.id === fileId);
+                  if (file) {
+                    fileManager.handleRename(fileId, file.name, newDescription);
+                  }
+                }}
+              />
+            </div>
+          </CardContent>
+        </Card>
 
         <FilesModals fileManager={fileManager} modals={modals} onSuccess={loadFiles} />
       </FileManagerLayout>

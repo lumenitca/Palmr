@@ -2,15 +2,16 @@ import {
   type LucideIcon,
   MousePointer,
   UploadIcon,
-  Share2Icon,
   GithubIcon,
   BookOpenText,
+  CloudIcon,
+  LockIcon,
+  DatabaseIcon,
 } from "lucide-react";
 import {
   BatteryChargingIcon,
   KeyboardIcon,
   LayoutIcon,
-  PersonStandingIcon,
   RocketIcon,
   SearchIcon,
   TimerIcon,
@@ -58,7 +59,7 @@ const images = [
   "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
 ];
 
-const docsLink = "/docs/2.0.0-beta";
+const docsLink = "/docs/3.0-beta";
 
 export default function HomePage() {
   return (
@@ -68,11 +69,8 @@ export default function HomePage() {
           <Hero />
           <LogoShowcase />
           <Feedback />
-          <Introduction />
-          <Architecture />
-          <FileSection />
-          <Highlights />
-          <End />
+          <Features />
+          <GetStarted />
         </div>
       </main>
       <FullWidthFooter />
@@ -83,10 +81,10 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative z-[2] flex flex-col border-x border-t  px-6 pt-12 pb-10 md:px-12 md:pt-16 max-md:text-center">
-      <h1 className="mb-8 text-5xl font-bold">
-        🌴 Palmr.{" "}
-        <span className="text-[10px] font-light text-muted-foreground/50 font-mono">
-          v2.0.0-beta
+      <h1 className="mb-8 text-6xl font-bold">
+        Palmr.{" "}
+        <span className="text-[13px] font-light text-muted-foreground/50 font-mono">
+          v3.0-beta
         </span>
       </h1>
       <h1 className="hidden text-4xl font-medium max-w-[600px] md:block mb-4">
@@ -152,123 +150,92 @@ function Feedback() {
   );
 }
 
-export function Introduction() {
+function Features() {
   return (
-    <section className="grid grid-cols-1 border-t border-x md:grid-cols-2">
-      <div className="flex flex-col gap-4 border-r p-8 md:p-12">
-        <div className="flex gap-4 items-center">
-          <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-3 rounded-lg">
-            <UploadIcon className="size-6 text-foreground" />
+    <>
+      {/* Core Features */}
+      <section className="grid grid-cols-1 border-t border-x md:grid-cols-2">
+        <div className="flex flex-col gap-4 border-r p-8 md:p-12">
+          <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-3 rounded-lg">
+              <UploadIcon className="size-6 text-foreground" />
+            </div>
+            <h3 className="text-2xl font-semibold">Upload & Share</h3>
           </div>
-          <h3 className="text-2xl font-semibold">Upload.</h3>
+          <p className="text-muted-foreground">
+            Send your files quickly and safely. Share easily with anyone through
+            secure links.
+          </p>
         </div>
-        <p className="text-muted-foreground">
-          Send your files quickly and safely.
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 border-r p-8 md:p-12">
-        <div className="flex gap-4 items-center">
-          <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-3 rounded-lg">
-            <Share2Icon className="size-6 text-foreground" />
+        <div className="flex flex-col gap-4 border-r p-8 md:p-12">
+          <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-3 rounded-lg">
+              <LockIcon className="size-6 text-foreground" />
+            </div>
+            <h3 className="text-2xl font-semibold">Secure & Private</h3>
           </div>
-          <h3 className="text-2xl font-semibold">Share.</h3>
+          <p className="text-muted-foreground">
+            Files are encrypted and protected. You control your data completely.
+          </p>
         </div>
-        <p className="text-muted-foreground">Easily share with anyone.</p>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-function Architecture() {
-  return (
-    <section className="flex flex-col gap-4 border-x border-t px-8 py-16 md:py-24 lg:flex-row md:px-12">
-      <div className="flex-1 shrink-0 text-start">
-        <p className="mb-4 w-fit bg-fd-primary px-2 py-1 text-md font-bold font-mono text-fd-primary-foreground">
-          Carefully Built
-        </p>
-        <h2 className="mb-4 text-xl font-semibold sm:text-2xl">
-          A complete solution for file sharing.
-        </h2>
-        <p className="mb-6 text-fd-muted-foreground">
-          From the upload to the link generation, everything is designed to be
-          fast, reliable, and privacy-friendly.
-          <br />
-          <br />
-          Every feature was crafted to deliver the best possible experience.
-        </p>
-      </div>
-    </section>
-  );
-}
+      {/* Hero Section with Animation */}
+      <section
+        className="relative overflow-hidden border-x border-t px-8 py-16 sm:py-24"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at center, var(--color-fd-secondary), var(--color-fd-background) 40%)",
+        }}
+      >
+        <div className="text-center">
+          <p className="mb-4 w-fit bg-fd-primary px-3 py-1 text-sm font-bold font-mono text-fd-primary-foreground mx-auto">
+            Open Source & Self-Hosted
+          </p>
+          <h2 className="text-center text-2xl font-semibold sm:text-3xl mb-4">
+            Complete File Sharing Solution
+          </h2>
+          <TypingAnimation className="text-center text-xl text-muted-foreground">
+            Built with Next.js, Fastify, and SQLite
+          </TypingAnimation>
+        </div>
+        <AnimatedGridPattern className="opacity-5" />
+      </section>
 
-function FileSection() {
-  return (
-    <section
-      className="relative overflow-hidden border-x border-t px-8 py-16 sm:py-24"
-      style={{
-        backgroundImage:
-          "radial-gradient(circle at center, var(--color-fd-secondary), var(--color-fd-background) 40%)",
-      }}
-    >
-      <h2 className="text-center text-2xl font-semibold sm:text-3xl">
-        File Sharing
-        <TypingAnimation className="text-center text-2xl font-semibold sm:text-3xl">
-          Free & Open Source
-        </TypingAnimation>
-      </h2>
-      <AnimatedGridPattern className="opacity-5" />
-    </section>
-  );
-}
+      {/* Technical Features Grid */}
+      <section className="grid grid-cols-1 border-r md:grid-cols-2 lg:grid-cols-3">
+        <div className="col-span-full flex items-start justify-center border-l border-t p-8 pb-2 text-center">
+          <h2 className="bg-fd-primary px-1 text-2xl font-semibold text-fd-primary-foreground">
+            Key Features
+          </h2>
+          <MousePointer className="-ml-1 mt-8" />
+        </div>
 
-function Highlights() {
-  const features = [
-    {
-      icon: TimerIcon,
-      title: "Fast & Efficient",
-      text: "Optimized upload and download speeds.",
-    },
-    {
-      icon: LayoutIcon,
-      title: "Intuitive UI",
-      text: "Clean, modern, and easy to use.",
-    },
-    {
-      icon: RocketIcon,
-      title: "Modern Stack",
-      text: "Powered by Next.js, Fastify, MinIO, Postgres and the latest tech.",
-    },
-    {
-      icon: SearchIcon,
-      title: "Smart Search",
-      text: "Find shared files quickly.",
-    },
-    {
-      icon: KeyboardIcon,
-      title: "Open API",
-      text: "REST API endpoinds available for any integrations.",
-    },
-    {
-      icon: PersonStandingIcon,
-      title: "Customizable",
-      text: "Full control over all the system and configurations.",
-    },
-  ];
-
-  return (
-    <section className="grid grid-cols-1 border-r md:grid-cols-2 lg:grid-cols-3">
-      <div className="col-span-full flex items-start justify-center border-l border-t p-8 pb-2 text-center">
-        <h2 className="bg-fd-primary px-1 text-2xl font-semibold text-fd-primary-foreground">
-          Highlights
-        </h2>
-        <MousePointer className="-ml-1 mt-8" />
-      </div>
-      {features.map(({ icon, title, text }, i) => (
-        <Highlight key={i} icon={icon} heading={title}>
-          {text}
+        <Highlight icon={TimerIcon} heading="Lightning Fast">
+          Optimized upload/download speeds with modern architecture
         </Highlight>
-      ))}
-    </section>
+
+        <Highlight icon={CloudIcon} heading="Flexible Storage">
+          Local filesystem or S3-compatible storage options
+        </Highlight>
+
+        <Highlight icon={KeyboardIcon} heading="Developer API">
+          Full REST API with webhooks for seamless integration
+        </Highlight>
+
+        <Highlight icon={SearchIcon} heading="Smart Search">
+          Find and manage your shared files effortlessly
+        </Highlight>
+
+        <Highlight icon={LayoutIcon} heading="Modern UI">
+          Clean, intuitive interface built with best practices
+        </Highlight>
+
+        <Highlight icon={DatabaseIcon} heading="SQLite Powered">
+          Lightweight, reliable database for efficient data handling
+        </Highlight>
+      </section>
+    </>
   );
 }
 
@@ -292,67 +259,83 @@ function Highlight({
   );
 }
 
-function End() {
+function GetStarted() {
   return (
     <section className="flex w-full flex-1">
       <div className="w-full flex flex-col gap-8 overflow-hidden border px-8 py-14">
-        <h2 className="text-3xl font-extrabold font-mono uppercase ">
-          Start Using Now. 🌴
-        </h2>
-        <ul className="mt-2 flex flex-col gap-6">
-          <ListItem icon={TimerIcon} title="Fast Setup">
-            Get up and running in minutes.
-          </ListItem>
-          <ListItem
-            icon={BatteryChargingIcon}
-            title="All under your own control"
-          >
-            Take full control of your file sharing infrastructure.
-          </ListItem>
-        </ul>
-        <div className="flex flex-wrap gap-2 pt-14 pb-0 justify-end">
-          <RippleButton>
-            <div className="flex gap-2 items-center">
-              <BookOpenText size={18} />
-              <Link href={docsLink}>Documentation</Link>
+        <div className="text-center mb-6">
+          <h2 className="text-4xl font-extrabold font-mono uppercase mb-3">
+            Get Started Today
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Deploy your own secure file sharing platform in minutes. Take
+            control of your data with our self-hosted solution.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-4 rounded-full">
+                <TimerIcon className="size-8 text-foreground" />
+              </div>
             </div>
-          </RippleButton>
-          <RippleButton>
-            <a
-              href="https://github.com/kyantech/Palmr"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="flex gap-2 items-center"
-            >
-              <GithubIcon size={18} />
-              GitHub
-            </a>
-          </RippleButton>
+            <h3 className="text-xl font-semibold">Quick Setup</h3>
+            <p className="text-muted-foreground">
+              Docker deployment or direct installation - get running in under 5
+              minutes
+            </p>
+          </div>
+
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-4 rounded-full">
+                <BatteryChargingIcon className="size-8 text-foreground" />
+              </div>
+            </div>
+            <h3 className="text-xl font-semibold">Full Control</h3>
+            <p className="text-muted-foreground">
+              Self-hosted means you own your data and control every aspect of
+              the platform
+            </p>
+          </div>
+
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center">
+              <div className="flex items-center gap-3 text-muted-foreground border border-foreground w-fit p-4 rounded-full">
+                <RocketIcon className="size-8 text-foreground" />
+              </div>
+            </div>
+            <h3 className="text-xl font-semibold">Production Ready</h3>
+            <p className="text-muted-foreground">
+              Latest technologies optimized for performance and security
+            </p>
+          </div>
+        </div>
+
+        <div className="border-t pt-8 mt-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <PulsatingButton>
+              <div className="flex gap-2 items-center">
+                <BookOpenText size={18} />
+                <Link href={docsLink}>Read documentation</Link>
+              </div>
+            </PulsatingButton>
+            <RippleButton>
+              <a
+                href="https://github.com/kyantech/Palmr"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="flex gap-2 items-center"
+              >
+                <GithubIcon size={18} />
+                View on GitHub
+              </a>
+            </RippleButton>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ListItem({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: LucideIcon;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <li>
-      <span className="flex items-center gap-3 font-medium">
-        <Icon className="size-8" />
-        {title}
-      </span>
-      <span className="mt-2 block text-sm text-fd-muted-foreground">
-        {children}
-      </span>
-    </li>
   );
 }
 

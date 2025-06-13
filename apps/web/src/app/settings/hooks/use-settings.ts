@@ -9,7 +9,8 @@ import { z } from "zod";
 
 import { useAppInfo } from "@/contexts/app-info-context";
 import { useShareContext } from "@/contexts/share-context";
-import { bulkUpdateConfigs, getAllConfigs } from "@/http/endpoints";
+import { useAdminConfigs } from "@/hooks/use-secure-configs";
+import { bulkUpdateConfigs } from "@/http/endpoints";
 import { Config, ConfigType, GroupFormData } from "../types";
 
 const createSchemas = () => ({
@@ -27,31 +28,39 @@ export function useSettings() {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({
     general: true,
     email: true,
+    oidc: true,
     security: true,
     storage: true,
   });
   const { refreshAppInfo } = useAppInfo();
   const { refreshShareContext } = useShareContext();
 
+  const {
+    configs: adminConfigsList,
+    isLoading: configsLoading,
+    error: configsError,
+    isUnauthorized,
+    reload: reloadConfigs,
+  } = useAdminConfigs();
+
   const groupForms = {
     general: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     email: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
+    oidc: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     security: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     storage: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
   } as const;
 
   type ValidGroup = keyof typeof groupForms;
 
-  const loadConfigs = async () => {
-    try {
-      const response = await getAllConfigs();
-      const configsData = response.data.configs.reduce((acc: Record<string, string>, config) => {
+  useEffect(() => {
+    if (!configsLoading && adminConfigsList.length > 0) {
+      const configsData = adminConfigsList.reduce((acc: Record<string, string>, config) => {
         acc[config.key] = config.value;
-
         return acc;
       }, {});
 
-      const grouped = response.data.configs.reduce((acc: Record<string, Config[]>, config) => {
+      const grouped = adminConfigsList.reduce((acc: Record<string, Config[]>, config) => {
         const group = config.group || "general";
 
         if (!acc[group]) acc[group] = [];
@@ -72,6 +81,11 @@ export function useSettings() {
             if (b.key === "smtpEnabled") return 1;
           }
 
+          if (group === "oidc") {
+            if (a.key === "oidcEnabled") return -1;
+            if (b.key === "oidcEnabled") return 1;
+          }
+
           return a.key.localeCompare(b.key);
         });
 
@@ -82,12 +96,17 @@ export function useSettings() {
       setGroupedConfigs(grouped);
 
       Object.entries(grouped).forEach(([groupName, groupConfigs]) => {
-        if (groupName === "general" || groupName === "email" || groupName === "security" || groupName === "storage") {
+        if (
+          groupName === "general" ||
+          groupName === "email" ||
+          groupName === "oidc" ||
+          groupName === "security" ||
+          groupName === "storage"
+        ) {
           const group = groupName as ValidGroup;
           const groupConfigData = groupConfigs.reduce(
             (acc, config) => {
               acc[config.key] = configsData[config.key];
-
               return acc;
             },
             {} as Record<string, string>
@@ -96,13 +115,10 @@ export function useSettings() {
           groupForms[group].reset({ configs: groupConfigData });
         }
       });
-    } catch (error) {
-      toast.error(t("settings.errors.loadFailed"));
-      console.error(error);
-    } finally {
+
       setIsLoading(false);
     }
-  };
+  }, [configsLoading, adminConfigsList]);
 
   const onGroupSubmit = async (group: ValidGroup, data: GroupFormData) => {
     try {
@@ -125,8 +141,9 @@ export function useSettings() {
       }
 
       await bulkUpdateConfigs(configsToUpdate);
-      toast.success(t("settings.messages.updateSuccess", { group: t(`settings.groups.${group}`) }));
-      await loadConfigs();
+      toast.success(t("settings.messages.updateSuccess", { group: t(`settings.groups.${group}.title`) }));
+
+      await reloadConfigs();
 
       if (group === "email") {
         await refreshShareContext();
@@ -135,7 +152,6 @@ export function useSettings() {
       await refreshAppInfo();
     } catch (error) {
       toast.error(t("settings.errors.updateFailed"));
-      console.error(error);
     }
   };
 
@@ -146,10 +162,6 @@ export function useSettings() {
     }));
   };
 
-  useEffect(() => {
-    loadConfigs();
-  }, []);
-
   return {
     isLoading,
     groupedConfigs,
@@ -157,5 +169,7 @@ export function useSettings() {
     groupForms,
     toggleCollapse,
     onGroupSubmit,
+    error: configsError,
+    isUnauthorized,
   };
 }

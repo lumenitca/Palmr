@@ -1,4 +1,3 @@
-import { env } from "../../env";
 import { ConfigService } from "../config/service";
 import nodemailer from "nodemailer";
 
@@ -22,7 +21,7 @@ export class EmailService {
     });
   }
 
-  async sendPasswordResetEmail(to: string, resetToken: string) {
+  async sendPasswordResetEmail(to: string, resetToken: string, origin: string) {
     const transporter = await this.createTransporter();
     if (!transporter) {
       throw new Error("SMTP is not enabled");
@@ -39,7 +38,7 @@ export class EmailService {
       html: `
         <h1>${appName} - Password Reset Request</h1>
         <p>Click the link below to reset your password:</p>
-        <a href="${env.FRONTEND_URL}/reset-password?token=${resetToken}">
+        <a href="${origin}/reset-password?token=${resetToken}">
           Reset Password
         </a>
         <p>This link will expire in 1 hour.</p>

@@ -3,17 +3,25 @@
     "loading": "Loading, please wait...",
     "cancel": "Cancel",
     "save": "Save",
+    "saving": "Saving...",
+    "update": "Update",
+    "updating": "Updating...",
     "delete": "Delete",
     "close": "Close",
     "download": "Download",
     "unexpectedError": "An unexpected error occurred. Please try again.",
     "yes": "Yes",
     "no": "No",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "back": "Back",
+    "click": "Click to",
+    "creating": "Creating..."
   },
   "createShare": {
     "title": "Create Share",
     "nameLabel": "Share Name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "Max Views",
@@ -28,7 +36,11 @@
     "loadError": "Failed to load dashboard data",
     "linkCopied": "Link copied to clipboard",
     "pageTitle": "Dashboard",
-    "breadcrumb": "Dashboard"
+    "breadcrumb": "Dashboard",
+    "recentFiles": {
+      "title": "Recent Files",
+      "description": "Your most recently uploaded files"
+    }
   },
   "emptyState": {
     "noFiles": "No files uploaded yet",
@@ -48,7 +60,7 @@
     "descriptionLabel": "Description",
     "descriptionPlaceholder": "Enter file description",
     "deleteFile": "Delete File",
-    "deleteConfirmation": "Are you sure you want to delete ?",
+    "deleteConfirmation": "Are you sure you want to delete this file?",
     "deleteWarning": "This action cannot be undone."
   },
   "fileManager": {
@@ -59,21 +71,41 @@
     "deleteError": "Failed to delete file"
   },
   "filePreview": {
-    "loading": "Loading preview...",
-    "notAvailable": "Preview not available",
-    "downloadToView": "Download file to view contents",
-    "audioNotSupported": "Your browser does not support the audio element",
-    "videoNotSupported": "Your browser does not support the video element",
-    "loadError": "Failed to load preview",
-    "downloadError": "Failed to download file"
+    "title": "Preview File",
+    "loading": "Loading...",
+    "notAvailable": "Preview not available for this file type",
+    "downloadToView": "Use the download button to view this file",
+    "loadError": "Error loading file preview",
+    "downloadError": "Error downloading file",
+    "audioNotSupported": "Your browser doesn't support audio playback",
+    "videoNotSupported": "Your browser doesn't support video playback",
+    "pdfPreviewNotAvailable": "PDF preview unavailable. Try alternative view or download",
+    "tryAlternativeView": "Try Alternative View",
+    "loadingAlternative": "Loading alternative view...",
+    "loadingAudio": "Loading audio..."
   },
   "fileSelector": {
     "availableFiles": "Available Files ({count})",
-    "shareFiles": "Share Files ({count})",
+    "shareFiles": "Shared Files ({count})",
+    "shareFilesDescription": "Files currently in this share",
+    "availableFilesDescription": "Select files to add to this share",
     "searchPlaceholder": "Search files...",
-    "noMatchingFiles": "No matching files",
+    "searchSelectedFiles": "Search selected files...",
+    "noMatchingFiles": "No matching files found",
     "noAvailableFiles": "No files available",
-    "noFilesInShare": "No files in share",
+    "noFilesInShare": "No files in this share",
+    "noFilesFound": "No files found",
+    "noFilesFoundWith": "No files found matching \"{query}\"",
+    "addFilesFromList": "Add files from the list below",
+    "tryDifferentSearch": "Try different search terms",
+    "allFilesInShare": "All files are already in this share",
+    "uploadNewFiles": "Upload new files to add them",
+    "fileCount": "{count, plural, =1 {file} other {files}}",
+    "filesSelected": "{count, plural, =0 {No files selected} =1 {1 file selected} other {# files selected}}",
+    "editFile": "Edit file",
+    "previewFile": "Preview file",
+    "addToShare": "Add to share",
+    "removeFromShare": "Remove from share",
     "saveChanges": "Save Changes"
   },
   "files": {
@@ -87,10 +119,22 @@
     "updateSuccess": "File updated successfully",
     "updateError": "Failed to update file",
     "deleteSuccess": "File deleted successfully",
-    "deleteError": "Failed to delete file"
+    "deleteError": "Failed to delete file",
+    "bulkDownloadSuccess": "Files download started successfully",
+    "bulkDownloadError": "Error creating ZIP file",
+    "bulkDownloadFileError": "Error downloading file {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
+    "bulkDeleteError": "Error deleting selected files",
+    "totalFiles": "{count, plural, =0 {No files} =1 {1 file} other {# files}}",
+    "viewMode": {
+      "table": "Table",
+      "grid": "Grid"
+    }
   },
   "filesTable": {
     "ariaLabel": "Files table",
+    "selectAll": "Select all",
+    "selectFile": "Select file {fileName}",
     "columns": {
       "name": "NAME",
       "description": "DESCRIPTION",
@@ -103,8 +147,16 @@
       "menu": "File actions menu",
       "preview": "Preview",
       "edit": "Edit",
+      "share": "Share",
       "download": "Download",
       "delete": "Delete"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 file selected} other {# files selected}}",
+      "actions": "Actions",
+      "download": "Download Selected",
+      "share": "Share Selected",
+      "delete": "Delete Selected"
     }
   },
   "footer": {
@@ -118,7 +170,7 @@
     "submit": "Send Reset Instructions",
     "backToLogin": "Back to Login",
     "title": "Forgot Password",
-    "description": "Enter your email address and we'll send you instructions to reset your password.",
+    "description": "Enter your email address and we'll send you instructions to reset your password",
     "resetInstructions": "Reset instructions sent to your email",
     "pageTitle": "Forgot Password"
   },
@@ -137,10 +189,10 @@
     "copied": "Link copied to clipboard"
   },
   "home": {
-    "description": "The open-source alternative to WeTransfer. Share files securely, without tracking, or limitations.",
+    "description": "The open-source alternative to WeTransfer. Share files securely, without tracking or limitations.",
     "documentation": "Documentation",
     "starOnGithub": "Star on GitHub",
-    "privacyMessage": "Built with privacy in mind. Your files before upload only accessible by those with the sharing link. Forever free and open source.",
+    "privacyMessage": "Built with privacy in mind. Your files are only accessible to those with the sharing link before upload. Forever free and open source.",
     "header": {
       "fileSharing": "File sharing",
       "tagline": "made simple and free"
@@ -157,7 +209,10 @@
     "signIn": "Sign In",
     "signingIn": "Signing in...",
     "forgotPassword": "Forgot password?",
-    "pageTitle": "Login"
+    "pageTitle": "Login",
+    "or": "or",
+    "continueWithSSO": "Continue with SSO",
+    "processing": "Processing authentication..."
   },
   "logo": {
     "labels": {
@@ -181,7 +236,7 @@
     "profileMenu": "Profile Menu",
     "profile": "Profile",
     "settings": "Settings",
-    "usersManagement": "Users Management",
+    "usersManagement": "User Management",
     "logout": "Log Out"
   },
   "navigation": {
@@ -237,11 +292,16 @@
     "shares": {
       "title": "My Shares",
       "description": "View and manage your shared files"
+    },
+    "reverseShares": {
+      "title": "Receive Files",
+      "description": "Create links for others to send files to you"
     }
   },
   "recentFiles": {
     "title": "Recent Uploads",
     "viewAll": "View All",
+    "upload": "Upload",
     "uploadFile": "Upload File",
     "noFiles": "No files uploaded yet"
   },
@@ -264,7 +324,25 @@
     "removeError": "Failed to remove recipient",
     "sendingNotifications": "Sending notifications...",
     "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
+    "notifyError": "Failed to notify recipients",
+    "selectAll": "Select all",
+    "selectedCount": "{count} selected",
+    "selectRecipient": "Select {email}",
+    "notifySelected": "Notify Selected",
+    "removeSelected": "Remove Selected",
+    "notifySingle": "Notify this recipient",
+    "removeSingle": "Remove this recipient",
+    "bulkRemoveSuccess": "{count} recipients removed successfully",
+    "bulkRemoveError": "Failed to remove selected recipients",
+    "bulkNotifySuccess": "Notifications sent to {count} recipients",
+    "bulkNotifyError": "Failed to notify selected recipients",
+    "singleNotifySuccess": "Notification sent to {email}",
+    "singleNotifyError": "Failed to notify recipient",
+    "modalDescription": "Add and manage recipients for this share. You can notify all or specific recipients when SMTP is configured.",
+    "addRecipient": "Add Recipient",
+    "invalidEmail": "Please enter a valid email address",
+    "duplicateEmail": "This recipient has already been added",
+    "noRecipientsDescription": "Add recipients to share this content via email"
   },
   "register": {
     "validation": {
@@ -333,6 +411,10 @@
       "storage": {
         "title": "Storage",
         "description": "File storage configuration"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configure SSO authentication via OpenID Connect"
       }
     },
     "fields": {
@@ -399,11 +481,51 @@
       },
       "maxFileSize": {
         "title": "Maximum File Size",
-        "description": "Maximum allowed file size for uploads (in bytes)"
+        "description": "Maximum allowed file size for uploads"
       },
       "maxTotalStoragePerUser": {
         "title": "Maximum Storage Per User",
-        "description": "Total storage limit per user (in bytes)"
+        "description": "Total storage limit per user"
+      },
+      "firstUserAccess": {
+        "title": "First User Access",
+        "description": "Settings for first access of new users"
+      },
+      "serverUrl": {
+        "title": "Server URL",
+        "description": "Base URL of the Palmr server (e.g.: https://palmr.example.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Enabled",
+        "description": "Enable or disable OpenID Connect authentication"
+      },
+      "oidcIssuerUrl": {
+        "title": "Provider URL",
+        "description": "OpenID Connect provider URL (e.g.: https://auth.example.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "OIDC client identifier registered with the provider"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "OIDC client secret for authentication"
+      },
+      "oidcRedirectUri": {
+        "title": "Redirect URI",
+        "description": "URI where users will be redirected after authentication. Enter only the base URL (e.g.: https://mysite.com). The path /api/auth/oidc/callback will be added automatically."
+      },
+      "oidcScope": {
+        "title": "Scopes",
+        "description": "Requested OIDC scopes (e.g.: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Auto Register",
+        "description": "Automatically register users that don't exist on first login"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Admin Email Domains",
+        "description": "Email domains that automatically receive admin privileges"
       }
     },
     "buttons": {
@@ -419,7 +541,15 @@
     },
     "title": "Settings",
     "breadcrumb": "Settings",
-    "pageTitle": "Settings"
+    "pageTitle": "Settings",
+    "tooltips": {
+      "oidcScope": "Enter a scope and press Enter to add",
+      "oidcAdminEmailDomains": "Enter a domain and press Enter to add"
+    },
+    "redirectUri": {
+      "placeholder": "https://mysite.com",
+      "previewLabel": "Complete URL that will be saved:"
+    }
   },
   "share": {
     "errors": {
@@ -454,6 +584,8 @@
     "deleteConfirmation": "Are you sure you want to delete this share? This action cannot be undone.",
     "editTitle": "Edit Share",
     "nameLabel": "Share Name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
     "maxViewsLabel": "Max Views",
@@ -466,20 +598,33 @@
     "manageFilesTitle": "Manage Files",
     "manageRecipientsTitle": "Manage Recipients",
     "editSuccess": "Share updated successfully",
-    "editError": "Failed to update share"
+    "editError": "Failed to update share",
+    "bulkDeleteConfirmation": "Are you sure you want to delete {count, plural, =1 {1 share} other {# shares}}? This action cannot be undone.",
+    "bulkDeleteTitle": "Delete Selected Shares"
   },
   "shareDetails": {
     "title": "Share Details",
     "subtitle": "Detailed information about this share",
     "basicInfo": "Basic Information",
     "name": "Name",
+    "description": "Description",
+    "noDescription": "No description provided",
     "untitled": "Untitled",
+    "shareLink": "Share Link",
+    "editLink": "Edit Link",
+    "generateLink": "Generate Link",
+    "noLink": "No link generated yet",
+    "copyLink": "Copy link",
+    "openLink": "Open in new tab",
+    "linkCopied": "Link copied to clipboard",
     "views": "Views",
     "dates": "Dates",
     "created": "Created",
     "expires": "Expires",
     "never": "Never",
     "security": "Security",
+    "editSecurity": "Edit Security",
+    "editExpiration": "Edit Expiration",
     "passwordProtected": "Password Protected",
     "publicAccess": "Public Access",
     "maxViews": "Max Views:",
@@ -489,11 +634,73 @@
     "invalidDate": "Invalid date",
     "loadError": "Failed to load share details"
   },
+  "shareSecurity": {
+    "title": "Share Security Settings",
+    "subtitle": "Configure password protection and security options for this share",
+    "currentStatus": "Current Status",
+    "passwordProtection": "Password Protection",
+    "password": "Password",
+    "newPassword": "New Password",
+    "passwordPlaceholder": "Enter a secure password",
+    "existingPasswordMessage": "This share already has a password. If you want to update it, enter the new password in the field below and save.",
+    "passwordRequirements": {
+      "title": "Password requirements:",
+      "minLength": "At least 2 characters"
+    },
+    "info": {
+      "title": "How it works:",
+      "withPassword": "Users will need to enter the password to access this share.",
+      "withoutPassword": "Anyone with the link can access this share without a password."
+    },
+    "validation": {
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 2 characters"
+    },
+    "success": {
+      "passwordSet": "Password protection enabled successfully",
+      "passwordUpdated": "Password updated successfully",
+      "passwordRemoved": "Password protection removed successfully"
+    },
+    "error": {
+      "updateFailed": "Failed to update security settings"
+    }
+  },
+  "shareExpiration": {
+    "title": "Share Expiration Settings",
+    "subtitle": "Configure when this share will expire",
+    "currentStatus": "Current Status",
+    "expires": "Expires:",
+    "neverExpires": "Never Expires",
+    "enableExpiration": "Enable Expiration",
+    "expirationDate": "Expiration Date",
+    "validation": {
+      "dateRequired": "Please select an expiration date",
+      "dateMustBeFuture": "Expiration date must be in the future"
+    },
+    "success": {
+      "expirationSet": "Expiration date set successfully",
+      "expirationUpdated": "Expiration date updated successfully",
+      "expirationRemoved": "Expiration removed successfully - share is now permanent"
+    },
+    "error": {
+      "updateFailed": "Failed to update expiration settings"
+    },
+    "info": {
+      "title": "About expiration:",
+      "willBeInaccessible": "The share will become inaccessible after this date",
+      "canBeChanged": "You can change or remove the expiration date anytime",
+      "noExpiration": "This share will never expire and will remain accessible indefinitely."
+    }
+  },
   "shareManager": {
     "deleteSuccess": "Share deleted successfully",
     "deleteError": "Failed to delete share",
     "updateSuccess": "Share updated successfully",
     "updateError": "Failed to update share",
+    "securityUpdateSuccess": "Security settings updated successfully",
+    "securityUpdateError": "Failed to update security settings",
+    "expirationUpdateSuccess": "Expiration settings updated successfully",
+    "expirationUpdateError": "Failed to update expiration settings",
     "filesUpdateSuccess": "Files updated successfully",
     "filesUpdateError": "Failed to update files",
     "recipientsUpdateSuccess": "Recipients updated successfully",
@@ -502,7 +709,10 @@
     "linkGenerateError": "Failed to generate share link",
     "notifyLoading": "Sending notifications...",
     "notifySuccess": "Recipients notified successfully",
-    "notifyError": "Failed to notify recipients"
+    "notifyError": "Failed to notify recipients",
+    "bulkDeleteError": "Failed to delete shares",
+    "bulkDeleteLoading": "Deleting {count, plural, =1 {1 share} other {# shares}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 share deleted successfully} other {# shares deleted successfully}}"
   },
   "shares": {
     "errors": {
@@ -535,6 +745,7 @@
     "never": "Never",
     "columns": {
       "name": "NAME",
+      "description": "DESCRIPTION",
       "createdAt": "CREATED AT",
       "expiresAt": "EXPIRES AT",
       "status": "STATUS",
@@ -565,7 +776,13 @@
       "copyLink": "Copy Link",
       "notifyRecipients": "Notify Recipients",
       "delete": "Delete"
-    }
+    },
+    "bulkActions": {
+      "delete": "Delete",
+      "selected": "{count, plural, =1 {1 share selected} other {# shares selected}}"
+    },
+    "selectAll": "Select all",
+    "selectShare": "Select share {shareName}"
   },
   "storageUsage": {
     "title": "Storage Usage",
@@ -581,15 +798,30 @@
   },
   "uploadFile": {
     "title": "Upload File",
+    "multipleTitle": "Upload Files",
     "selectFile": "Click to select a file",
+    "selectMultipleFiles": "Click to select one or multiple files",
+    "dragAndDrop": "or drag and drop files here",
     "preview": "Preview",
     "uploadProgress": "Upload progress",
     "upload": "Upload",
+    "startUploads": "Start Uploads",
+    "finish": "Finish",
     "success": "File uploaded successfully",
+    "allSuccess": "{count, plural, =1 {File uploaded successfully} other {# files uploaded successfully}}",
+    "partialSuccess": "{success} files uploaded successfully, {error} failed",
     "error": "Failed to upload file",
     "fileSizeExceeded": "File size exceeds the limit of {maxsizemb}MB.",
     "insufficientStorage": "Insufficient storage space. You have {availablespace}MB available.",
-    "unauthorized": "Unauthorized: a valid token is required to access this resource."
+    "unauthorized": "Unauthorized: a valid token is required to access this resource.",
+    "confirmCancel": {
+      "title": "Cancel Uploads",
+      "messageSingle": "There is one upload in progress.",
+      "messageMultiple": "There are {count} uploads in progress.",
+      "warning": "If you close now, uploads will be cancelled and any progress will be lost.",
+      "continue": "Continue Uploads",
+      "cancel": "Cancel Uploads"
+    }
   },
   "users": {
     "modes": {
@@ -669,6 +901,445 @@
     "passwordLength": "Password must be at least 8 characters long",
     "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
-    "passwordRequired": "Password is required"
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "nameRequired": "Name is required",
+    "required": "This field is required"
+  },
+  "shareFile": {
+    "title": "Share File",
+    "linkTitle": "Generate Link",
+    "nameLabel": "Share Name",
+    "namePlaceholder": "Enter share name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
+    "expirationLabel": "Expiration Date",
+    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
+    "maxViewsLabel": "Maximum Views",
+    "maxViewsPlaceholder": "Leave empty for unlimited",
+    "passwordProtection": "Password Protected",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "linkDescription": "Generate a custom link to share the file",
+    "aliasLabel": "Link Alias",
+    "aliasPlaceholder": "Enter custom alias",
+    "linkReady": "Your share link is ready:",
+    "createShare": "Create Share",
+    "generateLink": "Generate Link",
+    "copyLink": "Copy Link"
+  },
+  "bulkDownload": {
+    "title": "Bulk Download",
+    "zipNameLabel": "ZIP file name",
+    "zipNamePlaceholder": "Enter file name",
+    "description": "{count, plural, =1 {1 file will be compressed} other {# files will be compressed}}",
+    "download": "Download ZIP"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Files to be deleted",
+    "sharesToDelete": "Shares to be deleted"
+  },
+  "shareMultipleFiles": {
+    "title": "Share Multiple Files",
+    "shareNameLabel": "Share Name",
+    "shareNamePlaceholder": "Enter share name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Enter a description (optional)",
+    "filesToShare": "Files to share",
+    "files": "files",
+    "totalSize": "Total size",
+    "creating": "Creating...",
+    "create": "Create Share"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Account inactive. Please contact the administrator.",
+      "registration_disabled": "SSO registration is disabled.",
+      "token_expired": "Token expired. Please try again.",
+      "config_error": "Configuration error. Please contact support.",
+      "auth_failed": "Authentication failed. Please try again."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Receive Files",
+    "search": {
+      "title": "Manage Receive Links",
+      "createButton": "Create Link",
+      "placeholder": "Search receive links...",
+      "results": "Found {filtered} of {total} receive links"
+    },
+    "labels": {
+      "files": "files",
+      "size": "size",
+      "status": "status",
+      "access": "access",
+      "description": "Description",
+      "pageLayout": "Page Layout",
+      "security": "Security & Status",
+      "limits": "Limits",
+      "maxFiles": "Maximum Files",
+      "maxFileSize": "Maximum Size",
+      "allowedTypes": "Allowed Types",
+      "filesReceived": "Files Received",
+      "fileLimit": "File Limit",
+      "noLimit": "No limit",
+      "noLinkCreated": "No link created",
+      "publicAccess": "Public Access",
+      "protectedByPassword": "Password Protected",
+      "configureProtection": "Click to configure protection",
+      "enterPassword": "Enter password",
+      "thisLinkProtected": "This link will be password protected",
+      "thisLinkPublic": "This link will be publicly available",
+      "configureExpiration": "Configure Expiration",
+      "configureLimits": "Configure File Limits",
+      "protectWithPassword": "Protect with Password",
+      "layoutOptions": {
+        "default": "Default",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "No file limit",
+      "noSizeLimit": "No size limit",
+      "allFileTypes": "All file types",
+      "fileTypesHelp": "Enter extensions without dots, separated by space, comma, dash or pipe"
+    },
+    "card": {
+      "untitled": "Untitled Link",
+      "noDescription": "No description",
+      "addDescriptionPlaceholder": "Add description...",
+      "files": "files",
+      "progress": "Progress",
+      "created": "Created",
+      "expired": "Expired",
+      "expires": "Expires",
+      "viewDetails": "View details",
+      "copyLink": "Copy Link",
+      "openInNewTab": "Open in New Tab",
+      "editLink": "Edit Link",
+      "createLink": "Create Link",
+      "delete": "Delete",
+      "copyLinkTitle": "Copy link",
+      "createLinkCTA": "Create Receive Link"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "expired": "Expired",
+      "protected": "Protected",
+      "public": "Public"
+    },
+    "actions": {
+      "copyLink": "Copy Link",
+      "editAlias": "Edit Alias",
+      "createAlias": "Create Alias",
+      "viewDetails": "View Details",
+      "edit": "Edit",
+      "delete": "Delete",
+      "viewFiles": "Received Files"
+    },
+    "empty": {
+      "title": "No receive links created",
+      "description": "Create custom links for others to send files directly to you securely and organized.",
+      "createButton": "Create First Link"
+    },
+    "modals": {
+      "create": {
+        "title": "Create Receive Link",
+        "description": "Configure a custom link to receive files from others"
+      },
+      "edit": {
+        "title": "Edit Receive Link",
+        "description": "Update the settings for this receive link",
+        "updating": "Updating...",
+        "saveChanges": "Save Changes"
+      },
+      "details": {
+        "title": "Link Details",
+        "description": "View and edit your receive link information",
+        "pageLayout": "Page Layout",
+        "linkSection": "Receive Link",
+        "noLinkCreated": "No link created",
+        "limits": "Limits",
+        "maxFiles": "Maximum Files",
+        "maxFileSize": "Maximum Size",
+        "allowedTypes": "Allowed Types",
+        "noLimit": "No limit",
+        "security": "Security",
+        "status": "Status",
+        "password": "Password",
+        "files": "Received Files",
+        "noFiles": "No files received yet",
+        "copyLink": "Copy Link",
+        "openLink": "Open Link",
+        "editAlias": "Edit Alias",
+        "createAlias": "Create Alias",
+        "editPassword": "Edit Password Protection",
+        "basicInfo": "Basic Information",
+        "securityAndStatus": "Security & Status",
+        "protection": "Protection",
+        "protectedByPassword": "Password Protected",
+        "publicAccess": "Public Access",
+        "active": "Active",
+        "inactive": "Inactive",
+        "deactivate": "Deactivate",
+        "activate": "Activate",
+        "expiration": "Expiration",
+        "dates": "Dates",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "allTypes": "All types",
+        "placeholderTypes": ".pdf,.jpg,.png (comma separated)",
+        "downloadSuccess": "Download started",
+        "downloadError": "Error downloading file",
+        "editSuccess": "File updated successfully",
+        "editError": "Error updating file",
+        "previewNotAvailable": "Preview not available",
+        "notAvailable": "Not available",
+        "invalidDate": "Invalid date"
+      },
+      "alias": {
+        "editTitle": "Edit Alias",
+        "createTitle": "Create Alias",
+        "editDescription": "Update the alias for this receive link",
+        "createDescription": "Create a custom alias for this receive link",
+        "aliasLabel": "Link Alias",
+        "aliasPlaceholder": "my-custom-link",
+        "preview": "Preview:",
+        "currentLink": "Current Link:",
+        "copyCurrentLink": "Copy current link",
+        "randomTooltip": "Generate random alias",
+        "cancel": "Cancel",
+        "creating": "Creating...",
+        "updating": "Updating...",
+        "create": "Create Alias",
+        "update": "Update Alias",
+        "validation": {
+          "required": "Alias is required",
+          "minLength": "Alias must be at least 3 characters",
+          "maxLength": "Alias must be at most 50 characters",
+          "pattern": "Alias must contain only letters, numbers, hyphens and underscores"
+        },
+        "help": "3-50 characters. Spaces will be automatically converted to hyphens."
+      },
+      "password": {
+        "title": "Edit Password Protection",
+        "description": "Configure password protection for this link",
+        "hasPassword": "Password Protected",
+        "password": "Password",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "receivedFiles": {
+        "title": "Received Files",
+        "description": "View and manage files sent to this link",
+        "noFiles": "No files received yet",
+        "noFilesDescription": "Files sent through this link will appear here",
+        "fileCount": "{count, plural, =0 {No files} =1 {1 file} other {# files}}",
+        "totalSize": "Total size: {size}",
+        "columns": {
+          "file": "File",
+          "size": "Size",
+          "sender": "Sent by",
+          "date": "Date",
+          "actions": "Actions"
+        },
+        "actions": {
+          "preview": "Preview",
+          "download": "Download"
+        },
+        "uploadedBy": "Uploaded by {name}",
+        "anonymous": "Anonymous",
+        "downloadSuccess": "Download started",
+        "downloadError": "Error downloading file",
+        "editSuccess": "File updated successfully",
+        "editError": "Error updating file",
+        "previewNotAvailable": "Preview not available"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Link Name",
+        "placeholder": "e.g.: Project Documents, Family Photos..."
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Describe what type of files you expect to receive...",
+        "description": "Optional. Helps people understand what to send."
+      },
+      "status": {
+        "label": "Link Status",
+        "description": "Activate or deactivate this receive link"
+      },
+      "expiration": {
+        "label": "Expiration Date",
+        "description": "Optional. The link will be deactivated after this date.",
+        "configure": "Configure Expiration"
+      },
+      "fileLimits": {
+        "configure": "Configure File Limits"
+      },
+      "maxFiles": {
+        "label": "Maximum Files",
+        "placeholder": "e.g.: 10",
+        "description": "Optional. Limit the total number of files that can be sent.",
+        "noLimit": "No file limit"
+      },
+      "maxFileSize": {
+        "label": "Maximum File Size",
+        "placeholder": "e.g.: 100",
+        "description": "Optional. Limit the individual size of each file.",
+        "noLimit": "No size limit"
+      },
+      "allowedFileTypes": {
+        "label": "Allowed File Types",
+        "placeholder": "e.g.: pdf, jpg, png, docx",
+        "description": "Enter extensions without dots, separated by space, comma, dash or pipe",
+        "allTypes": "All file types"
+      },
+      "pageLayout": {
+        "label": "Page Layout",
+        "placeholder": "Choose layout",
+        "description": "How the upload page will appear to users.",
+        "options": {
+          "default": "Default Layout",
+          "wetransfer": "WeTransfer Style"
+        }
+      },
+      "password": {
+        "label": "Protection Password",
+        "placeholder": "Optional. Add a password to protect the link",
+        "description": "Optional. Users will need this password to access the link.",
+        "configurePassword": "Configure Password",
+        "protectWithPassword": "Protect with Password",
+        "passwordHelp": "Password must be at least 4 characters",
+        "passwordPlaceholder": "Enter a password to protect the link"
+      },
+      "submit": "Create Receive Link"
+    },
+    "messages": {
+      "created": "Receive link created successfully!",
+      "createSuccess": "Receive link created successfully!",
+      "updateSuccess": "Receive link updated successfully!",
+      "linkCopied": "Link copied to clipboard!",
+      "deleteSuccess": "Receive link deleted successfully!",
+      "aliasCreated": "Alias created successfully!",
+      "activateSuccess": "Receive link activated successfully!",
+      "deactivateSuccess": "Receive link deactivated successfully!"
+    },
+    "errors": {
+      "loadFailed": "Failed to load receive links",
+      "createFailed": "Failed to create receive link. Please try again.",
+      "updateFailed": "Failed to update receive link. Please try again.",
+      "deleteFailed": "Failed to delete receive link. Please try again.",
+      "aliasCreateFailed": "Failed to create alias. Please try again."
+    },
+    "delete": {
+      "title": "Delete receive link",
+      "description": "This action cannot be undone. The link will be permanently removed and will no longer be able to receive files.",
+      "confirmButton": "Delete Link",
+      "cancelButton": "Cancel",
+      "deleting": "Deleting..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Send Files - Palmr",
+        "description": "Send files through the shared link"
+      },
+      "layout": {
+        "defaultTitle": "Send Files",
+        "importantInfo": "Important information:",
+        "maxFiles": "Maximum of {count} file(s)",
+        "maxFileSize": "Maximum file size: {size}MB",
+        "allowedTypes": "Allowed types: {types}",
+        "loading": "Loading..."
+      },
+      "password": {
+        "title": "Protected Link",
+        "description": "This link is password protected. Enter the password to continue.",
+        "label": "Password",
+        "placeholder": "Enter password",
+        "cancel": "Cancel",
+        "submit": "Continue",
+        "verifying": "Verifying..."
+      },
+      "errors": {
+        "loadFailed": "Failed to load information. Please try again.",
+        "passwordIncorrect": "Incorrect password. Please try again.",
+        "linkNotFound": "Link not found or expired.",
+        "linkInactive": "This link is inactive.",
+        "linkExpired": "This link has expired.",
+        "uploadFailed": "Error uploading file",
+        "fileTooLarge": "File too large. Maximum size: {maxSize}",
+        "fileTypeNotAllowed": "File type not allowed. Accepted types: {allowedTypes}",
+        "maxFilesExceeded": "Maximum of {maxFiles} files allowed",
+        "selectAtLeastOneFile": "Select at least one file",
+        "provideNameOrEmail": "Please provide your name or email"
+      },
+      "fileDropzone": {
+        "dragActive": "Drop files here",
+        "dragInactive": "Drag files here or click to select",
+        "acceptedTypes": "Accepted types: {types}",
+        "maxFileSize": "Maximum size: {size}",
+        "maxFiles": "Maximum of {count} files",
+        "remainingFiles": "{remaining} of {max} files remaining"
+      },
+      "fileList": {
+        "title": "Selected files:",
+        "statusUploaded": "Uploaded",
+        "statusError": "Error"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "Description (optional)",
+        "descriptionPlaceholder": "Add a description to the files...",
+        "uploadButton": "Send {count} file(s)",
+        "uploading": "Sending..."
+      },
+      "success": {
+        "title": "Files sent successfully! 🎉",
+        "description": "You can close this page.",
+        "countMessage": "{count} file(s) sent successfully!"
+      },
+      "maxFilesReached": {
+        "title": "File limit reached",
+        "description": "This link has already received the maximum number of {maxFiles} file(s) allowed.",
+        "contactOwner": "If there was an error or you need to send more files, contact the link owner."
+      },
+      "linkInactive": {
+        "title": "Link inactive",
+        "description": "This receive link is temporarily inactive.",
+        "contactOwner": "Contact the link owner for more information."
+      },
+      "linkNotFound": {
+        "title": "Link not found",
+        "description": "This link may have been removed or never existed."
+      },
+      "linkExpired": {
+        "title": "Link expired",
+        "description": "This receive link has expired and is no longer accepting files.",
+        "contactOwner": "Contact the link owner if you need to send files."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Add description...",
+        "anonymous": "Anonymous"
+      },
+      "fileActions": {
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "preview": "Preview",
+        "download": "Download",
+        "delete": "Delete"
+      },
+      "editField": {
+        "saveChanges": "Save changes",
+        "cancelEdit": "Cancel edit"
+      }
+    }
   }
 }

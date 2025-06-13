@@ -1,6 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 
-export type ValidGroup = "security" | "email" | "general" | "storage";
+export type ValidGroup = "security" | "email" | "general" | "storage" | "oidc";
 
 export interface SettingsFormProps {
   groupedConfigs: Record<string, Config[]>;
@@ -24,6 +24,7 @@ export interface SettingsGroupProps {
 export interface ConfigInputProps {
   config: Config;
   register: UseFormReturn<any>["register"];
+  setValue: UseFormReturn<any>["setValue"];
   error?: any;
   smtpEnabled?: string;
 }

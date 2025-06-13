@@ -4,7 +4,6 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-/* @import 'fumadocs-ui/css/black.css'; */
 
 @source '../../node_modules/fumadocs-ui/dist/**/*.js';
 

@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "読み込み中です。しばらくお待ちください...",
+    "loading": "読み込み中です、お待ちください...",
     "cancel": "キャンセル",
     "save": "保存",
     "delete": "削除",
@@ -9,15 +9,23 @@
     "unexpectedError": "予期しないエラーが発生しました。もう一度お試しください。",
     "yes": "はい",
     "no": "いいえ",
-    "dashboard": "ダッシュボード"
+    "dashboard": "ダッシュボード",
+    "back": "戻る",
+    "updating": "更新中...",
+    "saving": "保存中...",
+    "update": "更新",
+    "click": "クリックして",
+    "creating": "作成中..."
   },
   "createShare": {
     "title": "共有を作成",
     "nameLabel": "共有名",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
     "expirationLabel": "有効期限",
     "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "最大ビュー数",
-    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空のままにしてください",
     "passwordProtection": "パスワード保護",
     "passwordLabel": "パスワード",
     "create": "共有を作成",
@@ -28,7 +36,11 @@
     "loadError": "ダッシュボードデータの読み込みに失敗しました",
     "linkCopied": "リンクがクリップボードにコピーされました",
     "pageTitle": "ダッシュボード",
-    "breadcrumb": "ダッシュボード"
+    "breadcrumb": "ダッシュボード",
+    "recentFiles": {
+      "title": "最近のファイル",
+      "description": "最近アップロードされたファイル"
+    }
   },
   "emptyState": {
     "noFiles": "まだファイルがアップロードされていません",
@@ -59,21 +71,41 @@
     "deleteError": "ファイルの削除に失敗しました"
   },
   "filePreview": {
-    "loading": "プレビューを読み込み中...",
-    "notAvailable": "プレビューは利用できません",
-    "downloadToView": "内容を見るためにファイルをダウンロードしてください",
-    "audioNotSupported": "お使いのブラウザはオーディオ要素をサポートしていません",
-    "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません",
-    "loadError": "プレビューの読み込みに失敗しました",
-    "downloadError": "ファイルのダウンロードに失敗しました"
+    "title": "ファイルプレビュー",
+    "loading": "読み込み中...",
+    "notAvailable": "このファイルタイプのプレビューは利用できません。",
+    "downloadToView": "ダウンロードボタンを使用してファイルをダウンロードしてください。",
+    "loadError": "ファイルプレビューの読み込みエラー。",
+    "downloadError": "ファイルダウンロードエラー。",
+    "audioNotSupported": "お使いのブラウザはオーディオ要素をサポートしていません。",
+    "videoNotSupported": "お使いのブラウザはビデオ要素をサポートしていません。",
+    "pdfPreviewNotAvailable": "PDFプレビューは利用できません。代替ビューを試すかダウンロードしてください。",
+    "tryAlternativeView": "代替ビューを試す",
+    "loadingAlternative": "代替ビューを読み込み中...",
+    "loadingAudio": "オーディオを読み込み中..."
   },
   "fileSelector": {
-    "availableFiles": "利用可能なファイル ({{count}})",
-    "shareFiles": "ファイルを共有 ({{count}})",
+    "availableFiles": "利用可能なファイル ({count})",
+    "shareFiles": "共有ファイル ({count})",
+    "shareFilesDescription": "現在共有されているファイル",
+    "availableFilesDescription": "共有に追加するファイルを選択",
     "searchPlaceholder": "ファイルを検索...",
+    "searchSelectedFiles": "選択されたファイルを検索...",
     "noMatchingFiles": "一致するファイルがありません",
     "noAvailableFiles": "利用可能なファイルがありません",
-    "noFilesInShare": "共有ファイルがありません",
+    "noFilesInShare": "共有にファイルがありません",
+    "noFilesFound": "ファイルが見つかりませんでした",
+    "noFilesFoundWith": "\"{query}\"に一致するファイルが見つかりません",
+    "addFilesFromList": "下のリストからファイルを追加",
+    "tryDifferentSearch": "別の検索用語を試してください",
+    "allFilesInShare": "すべてのファイルが既に共有されています",
+    "uploadNewFiles": "新しいファイルをアップロードして追加",
+    "fileCount": "{count}ファイル",
+    "filesSelected": "{count, plural, =0 {ファイルが選択されていません} other {#ファイルが選択されています}}",
+    "editFile": "ファイルを編集",
+    "previewFile": "ファイルをプレビュー",
+    "addToShare": "共有に追加",
+    "removeFromShare": "共有から削除",
     "saveChanges": "変更を保存"
   },
   "files": {
@@ -82,29 +114,49 @@
     "loadError": "ファイルの読み込みに失敗しました",
     "pageTitle": "マイファイル",
     "breadcrumb": "マイファイル",
-    "downloadStart": "ダウンロードが開始されました",
+    "downloadStart": "ダウンロードを開始しました",
     "downloadError": "ファイルのダウンロードに失敗しました",
     "updateSuccess": "ファイルが正常に更新されました",
     "updateError": "ファイルの更新に失敗しました",
     "deleteSuccess": "ファイルが正常に削除されました",
-    "deleteError": "ファイルの削除に失敗しました"
+    "deleteError": "ファイルの削除に失敗しました",
+    "bulkDownloadSuccess": "ファイルのダウンロードが正常に開始されました",
+    "bulkDownloadError": "ZIPファイルの作成エラー",
+    "bulkDownloadFileError": "ファイル {fileName} のダウンロードエラー",
+    "bulkDeleteSuccess": "{count, plural, =1 {1つのファイルが正常に削除されました} other {#つのファイルが正常に削除されました}}",
+    "bulkDeleteError": "選択されたファイルの削除エラー",
+    "viewMode": {
+      "table": "テーブル",
+      "grid": "グリッド"
+    },
+    "totalFiles": "{count, plural, =0 {ファイルなし} =1 {1ファイル} other {#ファイル}}"
   },
   "filesTable": {
     "ariaLabel": "ファイルテーブル",
+    "selectAll": "すべて選択",
+    "selectFile": "ファイル {fileName} を選択",
     "columns": {
       "name": "名前",
       "description": "説明",
       "size": "サイズ",
-      "createdAt": "作成日",
-      "updatedAt": "更新日",
-      "actions": "操作"
+      "createdAt": "作成日時",
+      "updatedAt": "更新日時",
+      "actions": "アクション"
     },
     "actions": {
-      "menu": "ファイル操作メニュー",
+      "menu": "ファイルアクションメニュー",
       "preview": "プレビュー",
       "edit": "編集",
+      "share": "共有",
       "download": "ダウンロード",
       "delete": "削除"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1つのファイルが選択されています} other {#つのファイルが選択されています}}",
+      "actions": "アクション",
+      "download": "選択済みをダウンロード",
+      "share": "選択済みを共有",
+      "delete": "選択済みを削除"
     }
   },
   "footer": {
@@ -127,8 +179,8 @@
     "updateTitle": "共有リンクを更新",
     "generateDescription": "ファイルを共有するためのリンクを生成します",
     "updateDescription": "この共有リンクのエイリアスを更新します",
-    "aliasPlaceholder": "エイリアスを入力してください",
-    "linkReady": "共有リンクの準備ができました:",
+    "aliasPlaceholder": "エイリアスを入力",
+    "linkReady": "共有リンクの準備ができました：",
     "generateButton": "リンクを生成",
     "updateButton": "リンクを更新",
     "copyButton": "リンクをコピー",
@@ -157,7 +209,10 @@
     "signIn": "サインイン",
     "signingIn": "サインイン中...",
     "forgotPassword": "パスワードをお忘れですか？",
-    "pageTitle": "ログイン"
+    "pageTitle": "ログイン",
+    "or": "または",
+    "continueWithSSO": "SSOで続行",
+    "processing": "認証処理中..."
   },
   "logo": {
     "labels": {
@@ -237,13 +292,18 @@
     "shares": {
       "title": "マイ共有",
       "description": "共有されたファイルを表示および管理します"
+    },
+    "reverseShares": {
+      "title": "ファイルを受け取る",
+      "description": "他のユーザーがファイルを送信できるリンクを作成"
     }
   },
   "recentFiles": {
     "title": "最近のアップロード",
     "viewAll": "すべて表示",
     "uploadFile": "ファイルをアップロード",
-    "noFiles": "まだファイルがアップロードされていません"
+    "noFiles": "まだファイルがアップロードされていません",
+    "upload": "アップロード"
   },
   "recentShares": {
     "title": "最近の共有",
@@ -255,7 +315,7 @@
   "recipientSelector": {
     "emailPlaceholder": "受信者のメールを入力してください",
     "add": "追加",
-    "recipients": "受信者 ({{count}})",
+    "recipients": "受信者 ({count})",
     "notifyAll": "全員に通知",
     "noRecipients": "まだ受信者が追加されていません",
     "addSuccess": "受信者が正常に追加されました",
@@ -264,7 +324,25 @@
     "removeError": "受信者の削除に失敗しました",
     "sendingNotifications": "通知を送信中...",
     "notifySuccess": "受信者に正常に通知しました",
-    "notifyError": "受信者への通知に失敗しました"
+    "notifyError": "受信者への通知に失敗しました",
+    "bulkNotifySuccess": "{count}人の受信者に通知を送信しました",
+    "selectAll": "すべて選択",
+    "singleNotifySuccess": "{email}に通知を送信しました",
+    "removeSingle": "この受信者を削除",
+    "selectRecipient": "{email}を選択",
+    "bulkRemoveSuccess": "{count}人の受信者が正常に削除されました",
+    "notifySingle": "この受信者に通知",
+    "notifySelected": "選択済みに通知",
+    "invalidEmail": "有効なメールアドレスを入力してください",
+    "noRecipientsDescription": "メールでこのコンテンツを共有するために受信者を追加してください",
+    "singleNotifyError": "受信者への通知に失敗しました",
+    "bulkRemoveError": "選択された受信者の削除に失敗しました",
+    "modalDescription": "この共有の受信者を追加・管理します。SMTPが設定されている場合、すべての受信者または特定の受信者に通知できます。",
+    "duplicateEmail": "この受信者は既に追加されています",
+    "removeSelected": "選択済みを削除",
+    "selectedCount": "{count}件選択済み",
+    "addRecipient": "受信者を追加",
+    "bulkNotifyError": "選択された受信者への通知に失敗しました"
   },
   "register": {
     "validation": {
@@ -313,7 +391,7 @@
   },
   "searchBar": {
     "placeholder": "ファイルを検索...",
-    "results": "全{{total}}件中{{filtered}}件が見つかりました"
+    "results": "全{total}件中{filtered}件が見つかりました"
   },
   "settings": {
     "groups": {
@@ -333,6 +411,10 @@
       "storage": {
         "title": "ストレージ",
         "description": "ファイルストレージの設定"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "OpenID Connectを使用したSSO認証の設定"
       }
     },
     "fields": {
@@ -399,15 +481,55 @@
       },
       "maxFileSize": {
         "title": "最大ファイルサイズ",
-        "description": "アップロード可能な最大ファイルサイズ（バイト単位）"
+        "description": "アップロード可能な最大ファイルサイズ"
       },
       "maxTotalStoragePerUser": {
         "title": "ユーザーごとの最大ストレージ",
-        "description": "ユーザーごとの総ストレージ制限（バイト単位）"
+        "description": "ユーザーごとの総ストレージ制限"
+      },
+      "firstUserAccess": {
+        "description": "新規ユーザーの初回アクセス設定",
+        "title": "初回ユーザーアクセス"
+      },
+      "serverUrl": {
+        "title": "サーバーURL",
+        "description": "PalmrサーバーのベースURL（例: https://palmr.example.com）"
+      },
+      "oidcEnabled": {
+        "title": "OIDC有効",
+        "description": "OpenID Connectによる認証を有効または無効にする"
+      },
+      "oidcIssuerUrl": {
+        "title": "プロバイダーURL",
+        "description": "OpenID ConnectプロバイダーのURL（例: https://auth.example.com/auth/realms/master）"
+      },
+      "oidcClientId": {
+        "title": "クライアントID",
+        "description": "プロバイダーに登録されたOIDCクライアントの識別子"
+      },
+      "oidcClientSecret": {
+        "title": "クライアントシークレット",
+        "description": "認証用のOIDCクライアントのシークレット"
+      },
+      "oidcRedirectUri": {
+        "title": "リダイレクトURI",
+        "description": "認証後にユーザーがリダイレクトされるURI。ベースURLのみを入力してください（例: https://mysite.com）。パス /api/auth/oidc/callback は自動的に追加されます。"
+      },
+      "oidcScope": {
+        "title": "スコープ",
+        "description": "要求するOIDCスコープ（例: openid profile email）"
+      },
+      "oidcAutoRegister": {
+        "title": "自動登録",
+        "description": "初回ログイン時に存在しないユーザーを自動的に登録"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "管理者メールドメイン",
+        "description": "自動的に管理者権限が付与されるメールドメイン"
       }
     },
     "buttons": {
-      "save": "{{group}}を保存"
+      "save": "{group}を保存"
     },
     "errors": {
       "loadFailed": "設定の読み込みに失敗しました",
@@ -415,11 +537,19 @@
     },
     "messages": {
       "noChanges": "保存する変更はありません",
-      "updateSuccess": "{{group}}の設定が正常に更新されました"
+      "updateSuccess": "{group}の設定が正常に更新されました"
     },
     "title": "設定",
     "breadcrumb": "設定",
-    "pageTitle": "設定"
+    "pageTitle": "設定",
+    "tooltips": {
+      "oidcScope": "スコープを入力してEnterキーを押して追加",
+      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加"
+    },
+    "redirectUri": {
+      "placeholder": "https://mysite.com",
+      "previewLabel": "保存される完全なURL:"
+    }
   },
   "share": {
     "errors": {
@@ -440,8 +570,8 @@
     },
     "details": {
       "untitled": "無題",
-      "created": "作成日: {{date}}",
-      "expires": "有効期限: {{date}}"
+      "created": "作成日: {date}",
+      "expires": "有効期限: {date}"
     },
     "notFound": {
       "title": "共有が見つかりません",
@@ -451,43 +581,58 @@
   },
   "shareActions": {
     "deleteTitle": "共有を削除",
-    "deleteConfirmation": "この共有を削除してもよろしいですか？この操作は元に戻せません。",
+    "deleteConfirmation": "この共有を削除しますか？この操作は元に戻すことができません。",
     "editTitle": "共有を編集",
     "nameLabel": "共有名",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
     "expirationLabel": "有効期限",
-    "expirationPlaceholder": "MM/DD/YYYY HH:MM",
-    "maxViewsLabel": "最大ビュー数",
-    "maxViewsPlaceholder": "無制限の場合は空白のままにする",
+    "expirationPlaceholder": "YYYY/MM/DD HH:MM",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空白にしてください",
     "passwordProtection": "パスワード保護",
     "passwordLabel": "パスワード",
     "passwordPlaceholder": "パスワードを入力してください",
-    "newPasswordLabel": "新しいパスワード（現在のパスワードを保持する場合は空白のまま）",
+    "newPasswordLabel": "新しいパスワード（現在のパスワードを保持する場合は空白）",
     "newPasswordPlaceholder": "新しいパスワードを入力してください",
-    "manageFilesTitle": "ファイルの管理",
-    "manageRecipientsTitle": "受信者の管理",
+    "manageFilesTitle": "ファイル管理",
+    "manageRecipientsTitle": "受信者管理",
     "editSuccess": "共有が正常に更新されました",
-    "editError": "共有の更新に失敗しました"
+    "editError": "共有の更新に失敗しました",
+    "bulkDeleteConfirmation": "{count, plural, =1 {1つの共有} other {#つの共有}}を削除してもよろしいですか？この操作は元に戻せません。",
+    "bulkDeleteTitle": "選択した共有を削除"
   },
   "shareDetails": {
-    "title": "共有の詳細",
-    "subtitle": "この共有の詳細情報",
+    "title": "共有詳細",
+    "subtitle": "この共有に関する詳細情報",
     "basicInfo": "基本情報",
     "name": "名前",
+    "description": "説明",
+    "noDescription": "説明が提供されていません",
     "untitled": "無題",
-    "views": "ビュー数",
+    "shareLink": "共有リンク",
+    "editLink": "リンクを編集",
+    "generateLink": "リンクを生成",
+    "noLink": "まだリンクが生成されていません",
+    "copyLink": "リンクをコピー",
+    "openLink": "新しいタブで開く",
+    "linkCopied": "リンクがクリップボードにコピーされました",
+    "views": "表示回数",
     "dates": "日付",
     "created": "作成日",
     "expires": "有効期限",
     "never": "なし",
     "security": "セキュリティ",
     "passwordProtected": "パスワード保護",
-    "publicAccess": "公開アクセス",
-    "maxViews": "最大ビュー数:",
+    "publicAccess": "パブリックアクセス",
+    "maxViews": "最大表示回数:",
     "files": "ファイル",
     "recipients": "受信者",
     "notAvailable": "該当なし",
-    "invalidDate": "無効な日付です",
-    "loadError": "共有の詳細の読み込みに失敗しました"
+    "invalidDate": "無効な日付",
+    "loadError": "共有詳細の読み込みに失敗しました",
+    "editSecurity": "セキュリティを編集",
+    "editExpiration": "期限を編集"
   },
   "shareManager": {
     "deleteSuccess": "共有が正常に削除されました",
@@ -502,7 +647,14 @@
     "linkGenerateError": "共有リンクの生成に失敗しました",
     "notifyLoading": "通知を送信中...",
     "notifySuccess": "受信者に正常に通知しました",
-    "notifyError": "受信者への通知に失敗しました"
+    "notifyError": "受信者への通知に失敗しました",
+    "bulkDeleteError": "共有の削除に失敗しました",
+    "bulkDeleteLoading": "{count, plural, =1 {1つの共有} other {#つの共有}}を削除中...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1つの共有が正常に削除されました} other {#つの共有が正常に削除されました}}",
+    "securityUpdateError": "セキュリティ設定の更新に失敗しました",
+    "expirationUpdateError": "有効期限設定の更新に失敗しました",
+    "securityUpdateSuccess": "セキュリティ設定が正常に更新されました",
+    "expirationUpdateSuccess": "有効期限設定が正常に更新されました"
   },
   "shares": {
     "errors": {
@@ -526,7 +678,7 @@
       "title": "すべての共有",
       "createButton": "共有を作成",
       "placeholder": "共有を検索...",
-      "results": "全{{total}}件中{{filtered}}件が見つかりました"
+      "results": "全{total}件中{filtered}件が見つかりました"
     },
     "pageTitle": "共有"
   },
@@ -535,16 +687,17 @@
     "never": "なし",
     "columns": {
       "name": "名前",
+      "description": "説明",
       "createdAt": "作成日",
       "expiresAt": "有効期限",
       "status": "ステータス",
       "security": "セキュリティ",
       "files": "ファイル",
       "recipients": "受信者",
-      "actions": "操作"
+      "actions": "アクション"
     },
     "status": {
-      "neverExpires": "無期限",
+      "neverExpires": "期限なし",
       "active": "アクティブ",
       "expired": "期限切れ"
     },
@@ -555,17 +708,23 @@
     "filesCount": "ファイル",
     "recipientsCount": "受信者",
     "actions": {
-      "menu": "共有操作メニュー",
+      "menu": "共有アクションメニュー",
       "edit": "編集",
       "manageFiles": "ファイル管理",
       "manageRecipients": "受信者管理",
-      "viewDetails": "詳細を表示",
-      "generateLink": "リンクを生成",
-      "editLink": "リンクを編集",
-      "copyLink": "リンクをコピー",
+      "viewDetails": "詳細表示",
+      "generateLink": "リンク生成",
+      "editLink": "リンク編集",
+      "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
       "delete": "削除"
-    }
+    },
+    "bulkActions": {
+      "delete": "削除",
+      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}"
+    },
+    "selectAll": "すべて選択",
+    "selectShare": "共有{shareName}を選択"
   },
   "storageUsage": {
     "title": "ストレージ使用量",
@@ -587,9 +746,24 @@
     "upload": "アップロード",
     "success": "ファイルが正常にアップロードされました",
     "error": "ファイルのアップロードに失敗しました",
-    "fileSizeExceeded": "ファイルサイズが制限値 {{maxsizemb}}MB を超えています。",
-    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {{availablespace}}MB です。",
-    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。"
+    "fileSizeExceeded": "ファイルサイズが制限値 {maxsizemb}MB を超えています。",
+    "insufficientStorage": "ストレージ容量が不足しています。利用可能な容量は {availablespace}MB です。",
+    "unauthorized": "権限がありません: このリソースにアクセスするには有効なトークンが必要です。",
+    "selectMultipleFiles": "複数のファイルを選択するにはクリック",
+    "finish": "完了",
+    "confirmCancel": {
+      "warning": "今閉じるとアップロードがキャンセルされ、進行状況が失われます。",
+      "continue": "アップロードを続行",
+      "title": "アップロードをキャンセル",
+      "messageMultiple": "{count}件のアップロードが進行中です。",
+      "messageSingle": "1件のアップロードが進行中です。",
+      "cancel": "アップロードをキャンセル"
+    },
+    "multipleTitle": "複数ファイルをアップロード",
+    "startUploads": "アップロードを開始",
+    "allSuccess": "{count, plural, =1 {ファイルがアップロードされました} other {#個のファイルがアップロードされました}}",
+    "partialSuccess": "{success}個のファイルがアップロードされ、{error}個が失敗しました",
+    "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ"
   },
   "users": {
     "modes": {
@@ -598,7 +772,7 @@
     },
     "errors": {
       "loadFailed": "ユーザーの読み込みに失敗しました",
-      "submitFailed": "ユーザーの{{mode}}に失敗しました",
+      "submitFailed": "ユーザーの{mode}に失敗しました",
       "deleteFailed": "ユーザーの削除に失敗しました",
       "statusUpdateFailed": "ユーザー状態の更新に失敗しました"
     },
@@ -617,7 +791,7 @@
     },
     "delete": {
       "title": "ユーザー削除の確認",
-      "confirmation": "{{firstName}} {{lastName}} を削除してもよろしいですか？この操作は元に戻せません。",
+      "confirmation": "{firstName} {lastName} を削除してもよろしいですか？この操作は元に戻せません。",
       "confirm": "ユーザーを削除"
     },
     "form": {
@@ -638,7 +812,7 @@
     },
     "status": {
       "title": "状態変更の確認",
-      "confirmation": "{{firstName}} {{lastName}} を{{action}}してもよろしいですか？",
+      "confirmation": "{firstName} {lastName} を{action}してもよろしいですか？",
       "activate": "アクティブ化",
       "deactivate": "非アクティブ化",
       "user": "ユーザー"
@@ -670,6 +844,502 @@
     "passwordLength": "パスワードは最低8文字必要です",
     "passwordsMatch": "パスワードが一致しません",
     "emailRequired": "メールアドレスは必須です",
-    "passwordRequired": "パスワードは必須です"
+    "passwordRequired": "パスワードは必須です",
+    "nameRequired": "名前は必須です",
+    "required": "このフィールドは必須です"
+  },
+  "shareFile": {
+    "title": "ファイル共有",
+    "linkTitle": "リンク生成",
+    "nameLabel": "共有名",
+    "namePlaceholder": "共有名を入力してください",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
+    "expirationLabel": "有効期限",
+    "expirationPlaceholder": "YYYY/MM/DD HH:MM",
+    "maxViewsLabel": "最大表示回数",
+    "maxViewsPlaceholder": "無制限の場合は空白にしてください",
+    "passwordProtection": "パスワード保護",
+    "passwordLabel": "パスワード",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "linkDescription": "ファイルを共有するためのカスタムリンクを生成する",
+    "aliasLabel": "リンクエイリアス",
+    "aliasPlaceholder": "カスタムエイリアスを入力してください",
+    "linkReady": "共有リンクの準備ができました：",
+    "createShare": "共有を作成",
+    "generateLink": "リンク生成",
+    "copyLink": "リンクコピー"
+  },
+  "bulkDownload": {
+    "title": "一括ダウンロード",
+    "zipNameLabel": "ZIPファイル名",
+    "zipNamePlaceholder": "ファイル名を入力してください",
+    "description": "{count, plural, =1 {1つのファイルが圧縮されます} other {#つのファイルが圧縮されます}}",
+    "download": "ZIPをダウンロード"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "削除するファイル",
+    "sharesToDelete": "削除される共有"
+  },
+  "shareMultipleFiles": {
+    "title": "複数ファイルを共有",
+    "shareNameLabel": "共有名",
+    "shareNamePlaceholder": "共有名を入力してください",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明を入力してください（任意）",
+    "filesToShare": "共有するファイル",
+    "files": "ファイル",
+    "totalSize": "合計サイズ",
+    "creating": "作成中...",
+    "create": "共有を作成"
+  },
+  "shareSecurity": {
+    "subtitle": "この共有のパスワード保護とセキュリティオプションを設定",
+    "info": {
+      "title": "仕組み:",
+      "withoutPassword": "リンクを持つ誰でもパスワードなしでこの共有にアクセスできます。",
+      "withPassword": "ユーザーはこの共有にアクセスするためにパスワードを入力する必要があります。"
+    },
+    "existingPasswordMessage": "この共有には既にパスワードが設定されています。更新したい場合は、下のフィールドに新しいパスワードを入力して保存してください。",
+    "passwordProtection": "パスワード保護",
+    "error": {
+      "updateFailed": "セキュリティ設定の更新に失敗しました"
+    },
+    "passwordRequirements": {
+      "title": "パスワード要件:",
+      "minLength": "2文字以上"
+    },
+    "newPassword": "新しいパスワード",
+    "success": {
+      "passwordUpdated": "パスワードが正常に更新されました",
+      "passwordRemoved": "パスワード保護が正常に削除されました",
+      "passwordSet": "パスワード保護が正常に有効化されました"
+    },
+    "password": "パスワード",
+    "validation": {
+      "passwordRequired": "パスワードが必要です",
+      "passwordTooShort": "パスワードは2文字以上である必要があります"
+    },
+    "currentStatus": "現在のステータス",
+    "passwordPlaceholder": "安全なパスワードを入力してください",
+    "title": "共有セキュリティ設定"
+  },
+  "shareExpiration": {
+    "neverExpires": "期限なし",
+    "success": {
+      "expirationUpdated": "有効期限が正常に更新されました",
+      "expirationRemoved": "有効期限が正常に削除されました - 共有は永続的になりました",
+      "expirationSet": "有効期限が正常に設定されました"
+    },
+    "info": {
+      "canBeChanged": "有効期限はいつでも変更または削除できます",
+      "willBeInaccessible": "この日時以降、共有にアクセスできなくなります",
+      "noExpiration": "この共有は期限がなく、無期限でアクセス可能です。",
+      "title": "有効期限について:"
+    },
+    "enableExpiration": "有効期限を有効にする",
+    "title": "共有有効期限設定",
+    "subtitle": "この共有の期限を設定",
+    "validation": {
+      "dateMustBeFuture": "有効期限は未来の日時である必要があります",
+      "dateRequired": "有効期限を選択してください"
+    },
+    "currentStatus": "現在のステータス",
+    "error": {
+      "updateFailed": "有効期限設定の更新に失敗しました"
+    },
+    "expires": "期限:",
+    "expirationDate": "有効期限"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "アカウントが無効です。管理者にお問い合わせください。",
+      "registration_disabled": "SSOによる登録が無効になっています。",
+      "token_expired": "トークンの有効期限が切れました。もう一度お試しください。",
+      "config_error": "設定エラー。サポートにお問い合わせください。",
+      "auth_failed": "認証に失敗しました。もう一度お試しください。"
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "ファイルを受け取る",
+    "search": {
+      "title": "受信リンクの管理",
+      "createButton": "リンクを作成",
+      "placeholder": "受信リンクを検索...",
+      "results": "受信リンク {total} 件中 {filtered} 件が見つかりました"
+    },
+    "labels": {
+      "files": "ファイル",
+      "size": "サイズ",
+      "status": "ステータス",
+      "access": "アクセス",
+      "description": "説明",
+      "pageLayout": "ページレイアウト",
+      "security": "セキュリティとステータス",
+      "limits": "制限",
+      "maxFiles": "最大ファイル数",
+      "maxFileSize": "最大ファイルサイズ",
+      "allowedTypes": "許可されるファイル形式",
+      "filesReceived": "受信済みファイル",
+      "fileLimit": "ファイル制限",
+      "noLimit": "制限なし",
+      "noLinkCreated": "リンクが作成されていません",
+      "publicAccess": "公開アクセス",
+      "protectedByPassword": "パスワード保護",
+      "configureProtection": "クリックして保護を設定",
+      "enterPassword": "パスワードを入力",
+      "thisLinkProtected": "このリンクはパスワードで保護されます",
+      "thisLinkPublic": "このリンクは公開されます",
+      "configureExpiration": "有効期限を設定",
+      "configureLimits": "ファイル制限を設定",
+      "protectWithPassword": "パスワードで保護",
+      "layoutOptions": {
+        "default": "デフォルト",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "ファイル数制限なし",
+      "noSizeLimit": "サイズ制限なし",
+      "allFileTypes": "すべてのファイル形式",
+      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください"
+    },
+    "card": {
+      "untitled": "無題のリンク",
+      "noDescription": "説明なし",
+      "addDescriptionPlaceholder": "説明を追加...",
+      "files": "ファイル",
+      "progress": "進捗",
+      "created": "作成日",
+      "expired": "期限切れ",
+      "expires": "有効期限",
+      "viewDetails": "詳細を表示",
+      "copyLink": "リンクをコピー",
+      "openInNewTab": "新しいタブで開く",
+      "editLink": "リンクを編集",
+      "createLink": "リンクを作成",
+      "delete": "削除",
+      "copyLinkTitle": "リンクをコピー",
+      "createLinkCTA": "受信リンクを作成"
+    },
+    "status": {
+      "active": "有効",
+      "inactive": "無効",
+      "expired": "期限切れ",
+      "protected": "保護",
+      "public": "公開"
+    },
+    "actions": {
+      "copyLink": "リンクをコピー",
+      "editAlias": "エイリアスを編集",
+      "createAlias": "エイリアスを作成",
+      "viewDetails": "詳細を表示",
+      "edit": "編集",
+      "delete": "削除",
+      "viewFiles": "受信済みファイル"
+    },
+    "empty": {
+      "title": "受信リンクが作成されていません",
+      "description": "他の人が安全かつ整理された方法でファイルを直接送信できるカスタムリンクを作成します。",
+      "createButton": "最初のリンクを作成"
+    },
+    "modals": {
+      "create": {
+        "title": "受信リンクを作成",
+        "description": "他の人からファイルを受け取るためのカスタムリンクを設定"
+      },
+      "edit": {
+        "title": "受信リンクを編集",
+        "description": "この受信リンクの設定を更新",
+        "updating": "更新中...",
+        "saveChanges": "変更を保存"
+      },
+      "details": {
+        "title": "リンクの詳細",
+        "description": "受信リンクの情報を表示・編集",
+        "pageLayout": "ページレイアウト",
+        "linkSection": "受信リンク",
+        "noLinkCreated": "リンクが作成されていません",
+        "limits": "制限",
+        "maxFiles": "最大ファイル数",
+        "maxFileSize": "最大サイズ",
+        "allowedTypes": "許可される形式",
+        "noLimit": "制限なし",
+        "security": "セキュリティ",
+        "status": "ステータス",
+        "password": "パスワード",
+        "files": "受信済みファイル",
+        "noFiles": "まだファイルを受信していません",
+        "copyLink": "リンクをコピー",
+        "openLink": "リンクを開く",
+        "editAlias": "エイリアスを編集",
+        "createAlias": "エイリアスを作成",
+        "editPassword": "パスワード保護を編集",
+        "basicInfo": "基本情報",
+        "securityAndStatus": "セキュリティとステータス",
+        "protection": "保護",
+        "protectedByPassword": "パスワード保護",
+        "publicAccess": "公開アクセス",
+        "active": "有効",
+        "inactive": "無効",
+        "deactivate": "無効化",
+        "activate": "有効化",
+        "expiration": "有効期限",
+        "dates": "日付",
+        "createdAt": "作成日時",
+        "updatedAt": "更新日時",
+        "allTypes": "すべての形式",
+        "placeholderTypes": ".pdf,.jpg,.png (カンマ区切り)",
+        "downloadSuccess": "ダウンロードを開始しました",
+        "downloadError": "ファイルのダウンロードに失敗しました",
+        "editSuccess": "ファイルを更新しました",
+        "editError": "ファイルの更新に失敗しました",
+        "previewNotAvailable": "プレビューは利用できません",
+        "notAvailable": "利用不可",
+        "invalidDate": "無効な日付"
+      },
+      "alias": {
+        "editTitle": "エイリアスを編集",
+        "createTitle": "エイリアスを作成",
+        "editDescription": "この受信リンクのエイリアスを更新",
+        "createDescription": "この受信リンクのカスタムエイリアスを作成",
+        "aliasLabel": "リンクエイリアス",
+        "aliasPlaceholder": "my-custom-link",
+        "preview": "プレビュー:",
+        "currentLink": "現在のリンク:",
+        "copyCurrentLink": "現在のリンクをコピー",
+        "randomTooltip": "ランダムなエイリアスを生成",
+        "cancel": "キャンセル",
+        "creating": "作成中...",
+        "updating": "更新中...",
+        "create": "エイリアスを作成",
+        "update": "エイリアスを更新",
+        "validation": {
+          "required": "エイリアスは必須です",
+          "minLength": "エイリアスは3文字以上必要です",
+          "maxLength": "エイリアスは50文字以内である必要があります",
+          "pattern": "エイリアスには文字、数字、ハイフン、アンダースコアのみ使用できます"
+        },
+        "help": "3-50文字。スペースは自動的にハイフンに変換されます。"
+      },
+      "password": {
+        "title": "パスワード保護を編集",
+        "description": "このリンクのパスワード保護を設定",
+        "hasPassword": "パスワード保護",
+        "password": "パスワード",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "receivedFiles": {
+        "title": "受信済みファイル",
+        "description": "このリンクで送信されたファイルを表示・管理",
+        "noFiles": "まだファイルを受信していません",
+        "noFilesDescription": "このリンクを通じて送信されたファイルがここに表示されます",
+        "fileCount": "{count, plural, =0 {ファイルなし} =1 {1ファイル} other {#ファイル}}",
+        "totalSize": "合計サイズ: {size}",
+        "columns": {
+          "file": "ファイル",
+          "size": "サイズ",
+          "sender": "送信者",
+          "date": "日付",
+          "actions": "アクション"
+        },
+        "actions": {
+          "preview": "プレビュー",
+          "download": "ダウンロード"
+        },
+        "uploadedBy": "{name}が送信",
+        "anonymous": "匿名",
+        "downloadSuccess": "ダウンロードを開始しました",
+        "downloadError": "ファイルのダウンロードに失敗しました",
+        "editSuccess": "ファイルを更新しました",
+        "editError": "ファイルの更新に失敗しました",
+        "previewNotAvailable": "プレビューは利用できません"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "リンク名",
+        "placeholder": "例: プロジェクト資料、家族写真..."
+      },
+      "description": {
+        "label": "説明",
+        "placeholder": "受け取りたいファイルの種類を説明してください...",
+        "description": "オプション。送信者が何を送るべきか理解する助けになります。"
+      },
+      "status": {
+        "label": "リンクステータス",
+        "description": "この受信リンクを有効または無効にします"
+      },
+      "expiration": {
+        "label": "有効期限",
+        "description": "オプション。この日付以降、リンクは無効になります。",
+        "configure": "有効期限を設定"
+      },
+      "fileLimits": {
+        "configure": "ファイル制限を設定"
+      },
+      "maxFiles": {
+        "label": "最大ファイル数",
+        "placeholder": "例: 10",
+        "description": "オプション。送信可能な合計ファイル数を制限します。",
+        "noLimit": "ファイル数制限なし"
+      },
+      "maxFileSize": {
+        "label": "ファイルあたりの最大サイズ",
+        "placeholder": "例: 100",
+        "description": "オプション。各ファイルのサイズを制限します。",
+        "noLimit": "サイズ制限なし"
+      },
+      "allowedFileTypes": {
+        "label": "許可されるファイル形式",
+        "placeholder": "例: pdf, jpg, png, docx",
+        "description": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください",
+        "allTypes": "すべてのファイル形式"
+      },
+      "pageLayout": {
+        "label": "ページレイアウト",
+        "placeholder": "レイアウトを選択",
+        "description": "アップロードページのユーザー向け表示方法。",
+        "options": {
+          "default": "デフォルトレイアウト",
+          "wetransfer": "WeTransferスタイル"
+        }
+      },
+      "password": {
+        "label": "保護パスワード",
+        "placeholder": "オプション。リンクを保護するパスワードを追加",
+        "description": "オプション。ユーザーはリンクにアクセスするためにこのパスワードが必要になります。",
+        "configurePassword": "パスワードを設定",
+        "protectWithPassword": "パスワードで保護",
+        "passwordHelp": "パスワードは4文字以上必要です",
+        "passwordPlaceholder": "リンクを保護するパスワードを入力"
+      },
+      "submit": "受信リンクを作成"
+    },
+    "messages": {
+      "created": "受信リンクを作成しました！",
+      "createSuccess": "受信リンクを作成しました！",
+      "updateSuccess": "受信リンクを更新しました！",
+      "linkCopied": "リンクをクリップボードにコピーしました！",
+      "deleteSuccess": "受信リンクを削除しました！",
+      "aliasCreated": "エイリアスを作成しました！",
+      "activateSuccess": "受信リンクを有効化しました！",
+      "deactivateSuccess": "受信リンクを無効化しました！"
+    },
+    "errors": {
+      "loadFailed": "受信リンクの読み込みに失敗しました",
+      "createFailed": "受信リンクの作成に失敗しました。もう一度お試しください。",
+      "updateFailed": "受信リンクの更新に失敗しました。もう一度お試しください。",
+      "deleteFailed": "受信リンクの削除に失敗しました。もう一度お試しください。",
+      "aliasCreateFailed": "エイリアスの作成に失敗しました。もう一度お試しください。"
+    },
+    "delete": {
+      "title": "受信リンクを削除",
+      "description": "この操作は取り消せません。リンクは完全に削除され、ファイルを受信できなくなります。",
+      "confirmButton": "リンクを削除",
+      "cancelButton": "キャンセル",
+      "deleting": "削除中..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "ファイルを送信 - Palmr",
+        "description": "共有リンクを通じてファイルを送信"
+      },
+      "layout": {
+        "defaultTitle": "ファイルを送信",
+        "importantInfo": "重要な情報:",
+        "maxFiles": "最大 {count} ファイル",
+        "maxFileSize": "ファイルあたりの最大サイズ: {size}MB",
+        "allowedTypes": "許可される形式: {types}",
+        "loading": "読み込み中..."
+      },
+      "password": {
+        "title": "保護されたリンク",
+        "description": "このリンクはパスワードで保護されています。続行するにはパスワードを入力してください。",
+        "label": "パスワード",
+        "placeholder": "パスワードを入力",
+        "cancel": "キャンセル",
+        "submit": "続行",
+        "verifying": "確認中..."
+      },
+      "errors": {
+        "loadFailed": "情報の読み込みに失敗しました。もう一度お試しください。",
+        "passwordIncorrect": "パスワードが正しくありません。もう一度お試しください。",
+        "linkNotFound": "リンクが見つからないか期限切れです。",
+        "linkInactive": "このリンクは無効です。",
+        "linkExpired": "このリンクは期限切れです。",
+        "uploadFailed": "ファイルのアップロードに失敗しました",
+        "fileTooLarge": "ファイルが大きすぎます。最大サイズ: {maxSize}",
+        "fileTypeNotAllowed": "このファイル形式は許可されていません。許可される形式: {allowedTypes}",
+        "maxFilesExceeded": "最大 {maxFiles} ファイルまで許可されています",
+        "selectAtLeastOneFile": "少なくとも1つのファイルを選択してください",
+        "provideNameOrEmail": "名前またはメールアドレスを入力してください"
+      },
+      "fileDropzone": {
+        "dragActive": "ここにファイルをドロップ",
+        "dragInactive": "ファイルをドラッグ＆ドロップするか、クリックして選択",
+        "acceptedTypes": "許可される形式: {types}",
+        "maxFileSize": "最大サイズ: {size}",
+        "maxFiles": "最大 {count} ファイル",
+        "remainingFiles": "残り {max} ファイル中 {remaining} ファイル"
+      },
+      "fileList": {
+        "title": "選択されたファイル:",
+        "statusUploaded": "アップロード済み",
+        "statusError": "エラー"
+      },
+      "form": {
+        "nameLabel": "名前",
+        "namePlaceholder": "あなたの名前",
+        "emailLabel": "メールアドレス",
+        "emailPlaceholder": "your@email.com",
+        "descriptionLabel": "説明（オプション）",
+        "descriptionPlaceholder": "ファイルの説明を追加...",
+        "uploadButton": "{count} ファイルを送信",
+        "uploading": "送信中..."
+      },
+      "success": {
+        "title": "ファイルを送信しました！ 🎉",
+        "description": "このページを閉じることができます。",
+        "countMessage": "{count} ファイルを送信しました！"
+      },
+      "maxFilesReached": {
+        "title": "ファイル制限に達しました",
+        "description": "このリンクは許可された最大 {maxFiles} ファイルを受信済みです。",
+        "contactOwner": "エラーがあった場合や追加のファイルを送信する必要がある場合は、リンクの所有者に連絡してください。"
+      },
+      "linkInactive": {
+        "title": "リンクが無効です",
+        "description": "この受信リンクは一時的に無効になっています。",
+        "contactOwner": "詳細については、リンクの所有者に連絡してください。"
+      },
+      "linkNotFound": {
+        "title": "リンクが見つかりません",
+        "description": "このリンクは削除されたか、存在しない可能性があります。"
+      },
+      "linkExpired": {
+        "title": "リンクが期限切れです",
+        "description": "この受信リンクは期限切れとなり、ファイルを受け付けていません。",
+        "contactOwner": "ファイルを送信する必要がある場合は、リンクの所有者に連絡してください。"
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "説明を追加...",
+        "anonymous": "匿名"
+      },
+      "fileActions": {
+        "edit": "編集",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "preview": "プレビュー",
+        "download": "ダウンロード",
+        "delete": "削除"
+      },
+      "editField": {
+        "saveChanges": "変更を保存",
+        "cancelEdit": "編集をキャンセル"
+      }
+    }
   }
 }

@@ -60,6 +60,17 @@ jspm_packages/
 Dockerfile*
 docker-compose*
 
+# Storage directories (created at runtime)
+uploads/
+temp-chunks/
+apps/server/uploads/
+apps/server/temp-chunks/
+
+# Static files
+apps/server/prisma/*.db
+apps/server/.env
+apps/web/.env
+
 # OS generated files
 .DS_Store
 .DS_Store?

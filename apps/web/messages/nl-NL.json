@@ -1,0 +1,1345 @@
+{
+  "common": {
+    "loading": "Laden, even geduld...",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "close": "Sluiten",
+    "download": "Downloaden",
+    "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "yes": "Ja",
+    "no": "Nee",
+    "dashboard": "Dashboard",
+    "back": "Terug",
+    "updating": "Bijwerken...",
+    "saving": "Opslaan...",
+    "update": "Bijwerken",
+    "click": "Klik om",
+    "creating": "Maken..."
+  },
+  "createShare": {
+    "title": "Delen Maken",
+    "nameLabel": "Delen Naam",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
+    "expirationLabel": "Vervaldatum",
+    "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
+    "maxViewsLabel": "Maximale Weergaves",
+    "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
+    "passwordProtection": "Wachtwoord Beveiligd",
+    "passwordLabel": "Wachtwoord",
+    "create": "Delen Maken",
+    "success": "Delen succesvol aangemaakt",
+    "error": "Fout bij het aanmaken van delen"
+  },
+  "dashboard": {
+    "loadError": "Fout bij het laden van controlepaneel gegevens",
+    "linkCopied": "Link gekopieerd naar klembord",
+    "pageTitle": "Controlepaneel",
+    "breadcrumb": "Controlepaneel",
+    "recentFiles": {
+      "description": "Uw meest recent geüploade bestanden",
+      "title": "Recente Bestanden"
+    }
+  },
+  "emptyState": {
+    "noFiles": "Nog geen bestanden geüpload",
+    "uploadFile": "Bestand Uploaden"
+  },
+  "errors": {
+    "invalidCredentials": "Ongeldig e-mail of wachtwoord",
+    "userNotFound": "Gebruiker niet gevonden",
+    "accountLocked": "Account vergrendeld. Probeer het later opnieuw",
+    "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw"
+  },
+  "fileActions": {
+    "editFile": "Bestand Bewerken",
+    "nameLabel": "Naam",
+    "namePlaceholder": "Voer nieuwe naam in",
+    "extension": "Extensie",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer bestandsbeschrijving in",
+    "deleteFile": "Bestand Verwijderen",
+    "deleteConfirmation": "Weet je zeker dat je  wilt verwijderen?",
+    "deleteWarning": "Deze actie kan niet ongedaan worden gemaakt."
+  },
+  "fileManager": {
+    "downloadError": "Fout bij het downloaden van bestand",
+    "updateSuccess": "Bestand succesvol bijgewerkt",
+    "updateError": "Fout bij het bijwerken van bestand",
+    "deleteSuccess": "Bestand succesvol verwijderd",
+    "deleteError": "Fout bij het verwijderen van bestand"
+  },
+  "filePreview": {
+    "title": "Bestandsvoorbeeld",
+    "loading": "Laden...",
+    "notAvailable": "Voorbeeld niet beschikbaar voor dit bestandstype.",
+    "downloadToView": "Gebruik de downloadknop om het bestand te downloaden.",
+    "loadError": "Fout bij het laden van bestandsvoorbeeld.",
+    "downloadError": "Fout bij het downloaden van bestand.",
+    "audioNotSupported": "Uw browser ondersteunt het audio-element niet.",
+    "videoNotSupported": "Uw browser ondersteunt het video-element niet.",
+    "pdfPreviewNotAvailable": "PDF-voorbeeld is niet beschikbaar. Probeer de alternatieve weergave of download.",
+    "tryAlternativeView": "Alternatieve Weergave Proberen",
+    "loadingAlternative": "Alternatieve weergave laden...",
+    "loadingAudio": "Audio laden..."
+  },
+  "fileSelector": {
+    "availableFiles": "Beschikbare Bestanden ({count})",
+    "shareFiles": "Gedeelde Bestanden ({count})",
+    "shareFilesDescription": "Bestanden momenteel in de share",
+    "availableFilesDescription": "Selecteer bestanden om toe te voegen aan de share",
+    "searchPlaceholder": "Zoek bestanden...",
+    "searchSelectedFiles": "Zoek in geselecteerde bestanden...",
+    "noMatchingFiles": "Geen overeenkomende bestanden",
+    "noAvailableFiles": "Geen bestanden beschikbaar",
+    "noFilesInShare": "Geen bestanden in share",
+    "noFilesFound": "Geen bestanden gevonden",
+    "noFilesFoundWith": "Geen bestanden gevonden met \"{query}\"",
+    "addFilesFromList": "Voeg bestanden toe uit de onderstaande lijst",
+    "tryDifferentSearch": "Probeer andere zoektermen",
+    "allFilesInShare": "Alle bestanden zijn al in de share",
+    "uploadNewFiles": "Upload nieuwe bestanden om ze toe te voegen",
+    "fileCount": "{count, plural, =1 {bestand} other {bestanden}}",
+    "filesSelected": "{count, plural, =0 {Geen bestanden geselecteerd} =1 {1 bestand geselecteerd} other {# bestanden geselecteerd}}",
+    "editFile": "Bestand bewerken",
+    "previewFile": "Bestand bekijken",
+    "addToShare": "Toevoegen aan share",
+    "removeFromShare": "Verwijderen uit share",
+    "saveChanges": "Wijzigingen Opslaan"
+  },
+  "files": {
+    "title": "Alle Bestanden",
+    "uploadFile": "Bestand Uploaden",
+    "loadError": "Fout bij het laden van bestanden",
+    "pageTitle": "Mijn Bestanden",
+    "breadcrumb": "Mijn Bestanden",
+    "downloadStart": "Download gestart",
+    "downloadError": "Fout bij het downloaden van bestand",
+    "updateSuccess": "Bestand succesvol bijgewerkt",
+    "updateError": "Fout bij het bijwerken van bestand",
+    "deleteSuccess": "Bestand succesvol verwijderd",
+    "deleteError": "Fout bij het verwijderen van bestand",
+    "bulkDownloadSuccess": "Bestanden download succesvol gestart",
+    "bulkDownloadError": "Fout bij het maken van ZIP-bestand",
+    "bulkDownloadFileError": "Fout bij het downloaden van bestand {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 bestand succesvol verwijderd} other {# bestanden succesvol verwijderd}}",
+    "bulkDeleteError": "Fout bij het verwijderen van geselecteerde bestanden",
+    "viewMode": {
+      "table": "Tabel",
+      "grid": "Raster"
+    },
+    "totalFiles": "{count, plural, =0 {Geen bestanden} =1 {1 bestand} other {# bestanden}}"
+  },
+  "filesTable": {
+    "ariaLabel": "Bestanden tabel",
+    "selectAll": "Alles selecteren",
+    "selectFile": "Bestand {fileName} selecteren",
+    "columns": {
+      "name": "NAAM",
+      "description": "BESCHRIJVING",
+      "size": "GROOTTE",
+      "createdAt": "AANGEMAAKT OP",
+      "updatedAt": "BIJGEWERKT OP",
+      "actions": "ACTIES"
+    },
+    "actions": {
+      "menu": "Bestand acties menu",
+      "preview": "Voorbeeld",
+      "edit": "Bewerken",
+      "share": "Delen",
+      "download": "Downloaden",
+      "delete": "Verwijderen"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 bestand geselecteerd} other {# bestanden geselecteerd}}",
+      "actions": "Acties",
+      "download": "Geselecteerde Downloaden",
+      "share": "Geselecteerde Delen",
+      "delete": "Geselecteerde Verwijderen"
+    }
+  },
+  "footer": {
+    "poweredBy": "Mogelijk gemaakt door",
+    "kyanHomepage": "Kyantech homepage"
+  },
+  "forgotPassword": {
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "Voer je e-mail in",
+    "sending": "Verzenden...",
+    "submit": "Reset Instructies Verzenden",
+    "backToLogin": "Terug naar Inloggen",
+    "title": "Wachtwoord Vergeten",
+    "description": "Voer je e-mailadres in en we sturen je instructies om je wachtwoord te resetten.",
+    "resetInstructions": "Reset instructies verzonden naar je e-mail",
+    "pageTitle": "Wachtwoord Vergeten"
+  },
+  "generateShareLink": {
+    "generateTitle": "Deel-link genereren",
+    "updateTitle": "Deel-link bijwerken",
+    "generateDescription": "Genereer een link om uw bestanden te delen",
+    "updateDescription": "Werk de alias voor deze deel-link bij",
+    "aliasPlaceholder": "Voer alias in",
+    "linkReady": "Uw deel-link is klaar:",
+    "generateButton": "Link genereren",
+    "updateButton": "Link bijwerken",
+    "copyButton": "Link kopiëren",
+    "success": "Link succesvol gegenereerd",
+    "error": "Fout bij het genereren van link",
+    "copied": "Link gekopieerd naar klembord"
+  },
+  "home": {
+    "description": "Het open-source alternatief voor WeTransfer. Deel bestanden veilig, zonder tracking of beperkingen.",
+    "documentation": "Documentatie",
+    "starOnGithub": "Star op GitHub",
+    "privacyMessage": "Gebouwd met privacy in gedachten. Je bestanden voor upload zijn alleen toegankelijk voor degenen met de deel link. Altijd gratis en open source.",
+    "header": {
+      "fileSharing": "Bestanden delen",
+      "tagline": "eenvoudig en gratis"
+    },
+    "pageTitle": "Startpagina"
+  },
+  "login": {
+    "welcome": "Welkom bij",
+    "signInToContinue": "Log in om door te gaan",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "Voer je e-mail in",
+    "passwordLabel": "Wachtwoord",
+    "passwordPlaceholder": "Voer je wachtwoord in",
+    "signIn": "Inloggen",
+    "signingIn": "Inloggen...",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "pageTitle": "Aanmelden",
+    "or": "ou",
+    "continueWithSSO": "Continuar com SSO",
+    "processing": "Processando autenticação..."
+  },
+  "logo": {
+    "labels": {
+      "appLogo": "Applicatie Logo"
+    },
+    "buttons": {
+      "upload": "Logo Uploaden",
+      "remove": "Logo Verwijderen"
+    },
+    "messages": {
+      "uploadSuccess": "Logo succesvol geüpload",
+      "removeSuccess": "Logo succesvol verwijderd"
+    },
+    "errors": {
+      "uploadFailed": "Fout bij het uploaden van logo",
+      "removeFailed": "Fout bij het verwijderen van logo"
+    }
+  },
+  "navbar": {
+    "logoAlt": "Applicatie Logo",
+    "profileMenu": "Profiel Menu",
+    "profile": "Profiel",
+    "settings": "Instellingen",
+    "usersManagement": "Gebruikersbeheer",
+    "logout": "Uitloggen"
+  },
+  "navigation": {
+    "dashboard": "Controlepaneel"
+  },
+  "profile": {
+    "password": {
+      "title": "Wachtwoord Wijzigen",
+      "newPassword": "Nieuw Wachtwoord",
+      "confirmPassword": "Bevestig Nieuw Wachtwoord",
+      "updateButton": "Wachtwoord Bijwerken"
+    },
+    "form": {
+      "title": "Profiel Informatie",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "username": "Gebruikersnaam",
+      "email": "E-mail",
+      "updateButton": "Profiel Bijwerken"
+    },
+    "header": {
+      "title": "Profiel",
+      "subtitle": "Beheer je persoonlijke informatie en wachtwoord"
+    },
+    "picture": {
+      "title": "Profielfoto",
+      "description": "Klik op het camera-icoon om je profielfoto te wijzigen",
+      "uploadPhoto": "Foto Uploaden",
+      "removePhoto": "Foto Verwijderen"
+    },
+    "errors": {
+      "loadFailed": "Fout bij het laden van gebruikersgegevens",
+      "updateFailed": "Fout bij het bijwerken van profiel",
+      "passwordFailed": "Fout bij het bijwerken van wachtwoord",
+      "imageFailed": "Fout bij het bijwerken van profielafbeelding",
+      "imageRemoveFailed": "Fout bij het verwijderen van profielafbeelding"
+    },
+    "messages": {
+      "noChanges": "Geen wijzigingen om op te slaan",
+      "updateSuccess": "Profiel succesvol bijgewerkt",
+      "fillPasswords": "Vul beide wachtwoordvelden in",
+      "passwordSuccess": "Wachtwoord succesvol bijgewerkt",
+      "imageSuccess": "Profielafbeelding succesvol bijgewerkt",
+      "imageRemoved": "Profielafbeelding succesvol verwijderd"
+    },
+    "pageTitle": "Profiel"
+  },
+  "quickAccess": {
+    "files": {
+      "title": "Mijn Bestanden",
+      "description": "Toegang tot en beheer van je geüploade bestanden"
+    },
+    "shares": {
+      "title": "Mijn Delingen",
+      "description": "Bekijk en beheer je gedeelde bestanden"
+    },
+    "reverseShares": {
+      "title": "Bestanden Ontvangen",
+      "description": "Maak links aan zodat anderen bestanden naar jou kunnen sturen"
+    }
+  },
+  "recentFiles": {
+    "title": "Recente Uploads",
+    "viewAll": "Alles Bekijken",
+    "uploadFile": "Bestand Uploaden",
+    "noFiles": "Nog geen bestanden geüpload",
+    "upload": "Uploaden"
+  },
+  "recentShares": {
+    "title": "Recente Delingen",
+    "viewAll": "Alles Bekijken",
+    "createShare": "Delen Maken",
+    "noShares": "Nog geen delingen aangemaakt",
+    "createFirst": "Maak je eerste delen"
+  },
+  "recipientSelector": {
+    "emailPlaceholder": "Voer ontvanger e-mail in",
+    "add": "Toevoegen",
+    "recipients": "Ontvangers ({count})",
+    "notifyAll": "Alle Waarschuwen",
+    "noRecipients": "Nog geen ontvangers toegevoegd",
+    "addSuccess": "Ontvanger succesvol toegevoegd",
+    "addError": "Fout bij het toevoegen van ontvanger",
+    "removeSuccess": "Ontvanger succesvol verwijderd",
+    "removeError": "Fout bij het verwijderen van ontvanger",
+    "sendingNotifications": "Meldingen verzenden...",
+    "notifySuccess": "Ontvangers succesvol gewaarschuwd",
+    "notifyError": "Fout bij het waarschuwen van ontvangers",
+    "bulkNotifySuccess": "Notificaties verzonden naar {count} ontvangers",
+    "selectAll": "Alles selecteren",
+    "singleNotifySuccess": "Notificatie verzonden naar {email}",
+    "removeSingle": "Deze ontvanger verwijderen",
+    "selectRecipient": "{email} selecteren",
+    "bulkRemoveSuccess": "{count} ontvangers succesvol verwijderd",
+    "notifySingle": "Deze ontvanger waarschuwen",
+    "notifySelected": "Geselecteerde waarschuwen",
+    "invalidEmail": "Voer een geldig e-mailadres in",
+    "noRecipientsDescription": "Voeg ontvangers toe om deze inhoud via e-mail te delen",
+    "singleNotifyError": "Fout bij het waarschuwen van ontvanger",
+    "bulkRemoveError": "Fout bij het verwijderen van geselecteerde ontvangers",
+    "modalDescription": "Voeg ontvangers toe en beheer ze voor dit delen. Je kunt alle of specifieke ontvangers waarschuwen wanneer SMTP is geconfigureerd.",
+    "duplicateEmail": "Deze ontvanger is al toegevoegd",
+    "removeSelected": "Geselecteerde verwijderen",
+    "selectedCount": "{count} geselecteerd",
+    "addRecipient": "Ontvanger Toevoegen",
+    "bulkNotifyError": "Fout bij het waarschuwen van geselecteerde ontvangers"
+  },
+  "register": {
+    "validation": {
+      "firstNameRequired": "Voornaam is verplicht",
+      "lastNameRequired": "Achternaam is verplicht",
+      "usernameMinLength": "Gebruikersnaam moet minimaal 3 tekens zijn",
+      "invalidEmail": "Ongeldig e-mail",
+      "passwordMinLength": "Wachtwoord moet minimaal 8 tekens zijn",
+      "success": "Administrator gebruiker succesvol aangemaakt!",
+      "error": "Fout bij het aanmaken van administrator gebruiker"
+    },
+    "labels": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "username": "Gebruikersnaam",
+      "email": "E-mail",
+      "password": "Wachtwoord"
+    },
+    "buttons": {
+      "creating": "Aanmaken...",
+      "createAdmin": "Admin Account Aanmaken"
+    }
+  },
+  "resetPassword": {
+    "pageTitle": "Wachtwoord Resetten",
+    "header": {
+      "title": "Wachtwoord Resetten",
+      "description": "Voer je nieuwe wachtwoord hieronder in"
+    },
+    "form": {
+      "newPassword": "Nieuw Wachtwoord",
+      "newPasswordPlaceholder": "Voer je nieuwe wachtwoord in",
+      "confirmPassword": "Bevestig Nieuw Wachtwoord",
+      "confirmPasswordPlaceholder": "Bevestig je nieuwe wachtwoord",
+      "resetting": "Wachtwoord Resetten...",
+      "submit": "Wachtwoord Resetten",
+      "backToLogin": "Terug naar Inloggen"
+    },
+    "messages": {
+      "success": "Wachtwoord succesvol gereset"
+    },
+    "errors": {
+      "serverError": "Fout bij het resetten van wachtwoord. Probeer het opnieuw.",
+      "invalidToken": "Ongeldig of ontbrekend reset token"
+    }
+  },
+  "searchBar": {
+    "placeholder": "Bestanden zoeken...",
+    "results": "{filtered} van {total} bestanden gevonden"
+  },
+  "settings": {
+    "groups": {
+      "defaultDescription": "Configuratieopties",
+      "general": {
+        "title": "Algemeen",
+        "description": "Basis applicatie instellingen"
+      },
+      "email": {
+        "title": "E-mail",
+        "description": "E-mailserver configuratie"
+      },
+      "security": {
+        "title": "Beveiliging",
+        "description": "Beveiliging en authenticatie instellingen"
+      },
+      "storage": {
+        "title": "Opslag",
+        "description": "Bestandsopslag configuratie"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "Configuração de autenticação SSO via OpenID Connect"
+      }
+    },
+    "fields": {
+      "noDescription": "Geen beschrijving beschikbaar",
+      "appLogo": {
+        "title": "Applicatie Logo",
+        "description": "Applicatie logo afbeelding"
+      },
+      "appName": {
+        "title": "Applicatie Naam",
+        "description": "Applicatie naam getoond aan gebruikers"
+      },
+      "appDescription": {
+        "title": "Applicatie Beschrijving",
+        "description": "Korte beschrijving van de applicatie"
+      },
+      "showHomePage": {
+        "title": "Toon Startpagina",
+        "description": "Toon Startpagina na installatie"
+      },
+      "smtpEnabled": {
+        "title": "SMTP Ingeschakeld",
+        "description": "SMTP e-mail functionaliteit in- of uitschakelen"
+      },
+      "smtpHost": {
+        "title": "SMTP Server",
+        "description": "SMTP server adres"
+      },
+      "smtpPort": {
+        "title": "SMTP Poort",
+        "description": "SMTP server poort"
+      },
+      "smtpUser": {
+        "title": "SMTP Gebruiker",
+        "description": "Gebruikersnaam voor SMTP authenticatie"
+      },
+      "smtpPass": {
+        "title": "SMTP Wachtwoord",
+        "description": "Wachtwoord voor SMTP authenticatie"
+      },
+      "smtpFromName": {
+        "title": "Afzender Naam",
+        "description": "Weergavenaam voor verzonden e-mails"
+      },
+      "smtpFromEmail": {
+        "title": "Afzender E-mail",
+        "description": "Afzender e-mailadres"
+      },
+      "maxLoginAttempts": {
+        "title": "Maximum Inlogpogingen",
+        "description": "Maximum aantal inlogpogingen voor blokkering"
+      },
+      "loginBlockDuration": {
+        "title": "Blokkeringsduur",
+        "description": "Duur (in seconden) van blokkering na overschrijding pogingen"
+      },
+      "passwordMinLength": {
+        "title": "Minimum Wachtwoord Lengte",
+        "description": "Minimum aantal tekens voor wachtwoorden"
+      },
+      "passwordResetTokenExpiration": {
+        "title": "Reset Token Verloop",
+        "description": "Geldigheidstijd (in seconden) voor wachtwoord reset token"
+      },
+      "maxFileSize": {
+        "title": "Maximum Bestandsgrootte",
+        "description": "Maximum toegestane bestandsgrootte voor uploads"
+      },
+      "maxTotalStoragePerUser": {
+        "title": "Maximum Opslag Per Gebruiker",
+        "description": "Totale opslaglimiet per gebruiker"
+      },
+      "firstUserAccess": {
+        "description": "Instellingen voor eerste toegang van nieuwe gebruikers",
+        "title": "Eerste Gebruikerstoegang"
+      },
+      "serverUrl": {
+        "title": "Server URL",
+        "description": "Basis URL van de Palmr server (bijv: https://palmr.voorbeeld.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC Ingeschakeld",
+        "description": "Schakel authenticatie via OpenID Connect in of uit"
+      },
+      "oidcIssuerUrl": {
+        "title": "Provider URL",
+        "description": "URL van de OpenID Connect provider (bijv: https://auth.voorbeeld.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client ID",
+        "description": "OIDC client ID geregistreerd bij de provider"
+      },
+      "oidcClientSecret": {
+        "title": "Client Secret",
+        "description": "OIDC client secret voor authenticatie"
+      },
+      "oidcRedirectUri": {
+        "title": "Redirect URI",
+        "description": "URI waar de gebruiker naartoe wordt gestuurd na authenticatie. Voer alleen de basis URL in (bijv: https://mijnsite.com). Het pad /api/auth/oidc/callback wordt automatisch toegevoegd."
+      },
+      "oidcScope": {
+        "title": "Scopes",
+        "description": "Gevraagde OIDC scopes (bijv: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Automatische Registratie",
+        "description": "Registreer automatisch gebruikers die niet bestaan bij eerste login"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Admin E-mail Domeinen",
+        "description": "E-mail domeinen die automatisch admin rechten krijgen"
+      }
+    },
+    "buttons": {
+      "save": "{group} Opslaan"
+    },
+    "errors": {
+      "loadFailed": "Fout bij het laden van instellingen",
+      "updateFailed": "Fout bij het bijwerken van instellingen"
+    },
+    "messages": {
+      "noChanges": "Geen wijzigingen om op te slaan",
+      "updateSuccess": "{group} instellingen succesvol bijgewerkt"
+    },
+    "title": "Instellingen",
+    "breadcrumb": "Instellingen",
+    "pageTitle": "Instellingen",
+    "tooltips": {
+      "oidcScope": "Voer een scope in en druk op Enter om toe te voegen",
+      "oidcAdminEmailDomains": "Voer een domein in en druk op Enter om toe te voegen"
+    },
+    "redirectUri": {
+      "placeholder": "https://mijnsite.com",
+      "previewLabel": "Volledige URL die wordt opgeslagen:"
+    }
+  },
+  "share": {
+    "errors": {
+      "invalidPassword": "Ongeldig wachtwoord. Probeer het opnieuw.",
+      "loadFailed": "Fout bij het laden van delen",
+      "downloadFailed": "Fout bij het downloaden van bestand"
+    },
+    "messages": {
+      "downloadStarted": "Download gestart"
+    },
+    "password": {
+      "title": "Wachtwoord Beveiligd Delen",
+      "protected": "Dit delen is wachtwoord beveiligd",
+      "incorrect": "Onjuist wachtwoord. Probeer het opnieuw.",
+      "label": "Wachtwoord",
+      "placeholder": "Voer delen wachtwoord in",
+      "submit": "Verzenden"
+    },
+    "details": {
+      "untitled": "Naamloos Delen",
+      "created": "Aangemaakt: {date}",
+      "expires": "Verloopt: {date}"
+    },
+    "notFound": {
+      "title": "Delen Niet Gevonden",
+      "description": "Dit delen is mogelijk verwijderd of verlopen."
+    },
+    "pageTitle": "Delen"
+  },
+  "shareActions": {
+    "deleteTitle": "Delen Verwijderen",
+    "deleteConfirmation": "Weet je zeker dat je dit delen wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "editTitle": "Delen Bewerken",
+    "nameLabel": "Delen Naam",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
+    "expirationLabel": "Vervaldatum",
+    "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
+    "maxViewsLabel": "Maximale Weergaven",
+    "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
+    "passwordProtection": "Wachtwoord Beveiligd",
+    "passwordLabel": "Wachtwoord",
+    "passwordPlaceholder": "Voer wachtwoord in",
+    "newPasswordLabel": "Nieuw Wachtwoord (laat leeg om huidig te behouden)",
+    "newPasswordPlaceholder": "Voer nieuw wachtwoord in",
+    "manageFilesTitle": "Bestanden Beheren",
+    "manageRecipientsTitle": "Ontvangers Beheren",
+    "editSuccess": "Delen succesvol bijgewerkt",
+    "editError": "Fout bij bijwerken van delen",
+    "bulkDeleteConfirmation": "Weet je zeker dat je {count, plural, =1 {1 deel} other {# delen}} wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "bulkDeleteTitle": "Geselecteerde Delen Verwijderen"
+  },
+  "shareDetails": {
+    "title": "Delen Details",
+    "subtitle": "Gedetailleerde informatie over dit delen",
+    "basicInfo": "Basisinformatie",
+    "name": "Naam",
+    "description": "Beschrijving",
+    "noDescription": "Geen beschrijving opgegeven",
+    "untitled": "Naamloos",
+    "shareLink": "Delen Link",
+    "editLink": "Link Bewerken",
+    "generateLink": "Link Genereren",
+    "noLink": "Nog geen link gegenereerd",
+    "copyLink": "Link kopiëren",
+    "openLink": "Openen in nieuw tabblad",
+    "linkCopied": "Link gekopieerd naar klembord",
+    "views": "Weergaven",
+    "dates": "Data",
+    "created": "Aangemaakt",
+    "expires": "Verloopt",
+    "never": "Nooit",
+    "security": "Beveiliging",
+    "passwordProtected": "Wachtwoord Beveiligd",
+    "publicAccess": "Openbare Toegang",
+    "maxViews": "Max. Weergaven:",
+    "files": "Bestanden",
+    "recipients": "Ontvangers",
+    "notAvailable": "N/B",
+    "invalidDate": "Ongeldige datum",
+    "loadError": "Fout bij laden van delen details",
+    "editSecurity": "Beveiliging Bewerken",
+    "editExpiration": "Vervaldatum Bewerken"
+  },
+  "shareManager": {
+    "deleteSuccess": "Delen succesvol verwijderd",
+    "deleteError": "Fout bij het verwijderen van delen",
+    "updateSuccess": "Delen succesvol bijgewerkt",
+    "updateError": "Fout bij het bijwerken van delen",
+    "filesUpdateSuccess": "Bestanden succesvol bijgewerkt",
+    "filesUpdateError": "Fout bij het bijwerken van bestanden",
+    "recipientsUpdateSuccess": "Ontvangers succesvol bijgewerkt",
+    "recipientsUpdateError": "Fout bij het bijwerken van ontvangers",
+    "linkGenerateSuccess": "Deel link succesvol gegenereerd",
+    "linkGenerateError": "Fout bij het genereren van deel link",
+    "notifyLoading": "Meldingen verzenden...",
+    "notifySuccess": "Ontvangers succesvol gewaarschuwd",
+    "notifyError": "Fout bij het waarschuwen van ontvangers",
+    "bulkDeleteError": "Delen verwijderen mislukt",
+    "bulkDeleteLoading": "{count, plural, =1 {1 deel} other {# delen}} verwijderen...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 deel succesvol verwijderd} other {# delen succesvol verwijderd}}",
+    "securityUpdateError": "Fout bij het bijwerken van beveiligingsinstellingen",
+    "expirationUpdateError": "Fout bij het bijwerken van verloop instellingen",
+    "securityUpdateSuccess": "Beveiligingsinstellingen succesvol bijgewerkt",
+    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt"
+  },
+  "shares": {
+    "errors": {
+      "loadFailed": "Fout bij het laden van delingen",
+      "notifyFailed": "Fout bij het waarschuwen van ontvangers",
+      "smtpConfigFailed": "Fout bij het laden van SMTP configuratie"
+    },
+    "messages": {
+      "linkCopied": "Link gekopieerd naar klembord",
+      "recipientsNotified": "Ontvangers succesvol gewaarschuwd"
+    },
+    "empty": {
+      "message": "Nog geen delingen aangemaakt",
+      "createButton": "Delen Maken"
+    },
+    "header": {
+      "title": "Mijn Delingen",
+      "myShares": "Mijn Delingen"
+    },
+    "search": {
+      "title": "Alle Delingen",
+      "createButton": "Delen Maken",
+      "placeholder": "Delingen zoeken...",
+      "results": "{filtered} van {total} delingen gevonden"
+    },
+    "pageTitle": "Delingen"
+  },
+  "sharesTable": {
+    "ariaLabel": "Delen tabel",
+    "never": "Nooit",
+    "columns": {
+      "name": "NAAM",
+      "description": "BESCHRIJVING",
+      "createdAt": "AANGEMAAKT OP",
+      "expiresAt": "VERLOOPT OP",
+      "status": "STATUS",
+      "security": "BEVEILIGING",
+      "files": "BESTANDEN",
+      "recipients": "ONTVANGERS",
+      "actions": "ACTIES"
+    },
+    "status": {
+      "neverExpires": "Verloopt Nooit",
+      "active": "Actief",
+      "expired": "Verlopen"
+    },
+    "security": {
+      "protected": "Beveiligd",
+      "public": "Openbaar"
+    },
+    "filesCount": "bestanden",
+    "recipientsCount": "ontvangers",
+    "actions": {
+      "menu": "Delen acties menu",
+      "edit": "Bewerken",
+      "manageFiles": "Bestanden Beheren",
+      "manageRecipients": "Ontvangers Beheren",
+      "viewDetails": "Details Bekijken",
+      "generateLink": "Link Genereren",
+      "editLink": "Link Bewerken",
+      "copyLink": "Link Kopiëren",
+      "notifyRecipients": "Ontvangers Informeren",
+      "delete": "Verwijderen"
+    },
+    "bulkActions": {
+      "delete": "Verwijderen",
+      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}"
+    },
+    "selectAll": "Alles selecteren",
+    "selectShare": "Deel {shareName} selecteren"
+  },
+  "storageUsage": {
+    "title": "Opslaggebruik",
+    "ariaLabel": "Opslaggebruik voortgangsbalk",
+    "used": "gebruikt",
+    "available": "beschikbaar"
+  },
+  "theme": {
+    "toggle": "Thema wisselen",
+    "light": "Licht",
+    "dark": "Donker",
+    "system": "Systeem"
+  },
+  "uploadFile": {
+    "title": "Bestand uploaden",
+    "multipleTitle": "Meerdere Bestanden Uploaden",
+    "selectFile": "Klik om een bestand te selecteren",
+    "selectMultipleFiles": "Klik om een of meerdere bestanden te selecteren",
+    "dragAndDrop": "of sleep bestanden hierheen",
+    "preview": "Voorbeeld",
+    "uploadProgress": "Upload voortgang",
+    "upload": "Uploaden",
+    "startUploads": "Uploads Starten",
+    "finish": "Voltooien",
+    "success": "Bestand succesvol geüpload",
+    "allSuccess": "{count, plural, =1 {Bestand succesvol geüpload} other {# bestanden succesvol geüpload}}",
+    "partialSuccess": "{success} bestanden succesvol geüpload, {error} mislukt",
+    "error": "Bestand uploaden mislukt",
+    "fileSizeExceeded": "Bestandsgrootte overschrijdt de limiet van {maxsizemb}MB.",
+    "insufficientStorage": "Onvoldoende opslagruimte. U heeft {availablespace}MB beschikbaar.",
+    "unauthorized": "Niet geautoriseerd: een geldig token is vereist om toegang te krijgen tot deze bron.",
+    "confirmCancel": {
+      "title": "Uploads Annuleren",
+      "messageSingle": "Er is één upload bezig.",
+      "messageMultiple": "Er zijn {count} uploads bezig.",
+      "warning": "Als u nu sluit, worden de uploads geannuleerd en gaat alle voortgang verloren.",
+      "continue": "Uploads Voortzetten",
+      "cancel": "Uploads Annuleren"
+    }
+  },
+  "users": {
+    "modes": {
+      "create": "aanmaken",
+      "edit": "bewerken"
+    },
+    "errors": {
+      "loadFailed": "Fout bij het laden van gebruikers",
+      "submitFailed": "Fout bij het {mode} van gebruiker",
+      "deleteFailed": "Fout bij het verwijderen van gebruiker",
+      "statusUpdateFailed": "Fout bij het bijwerken van gebruikersstatus"
+    },
+    "messages": {
+      "createSuccess": "Gebruiker succesvol aangemaakt",
+      "updateSuccess": "Gebruiker succesvol bijgewerkt",
+      "deleteSuccess": "Gebruiker succesvol verwijderd",
+      "activateSuccess": "Gebruiker succesvol geactiveerd",
+      "deactivateSuccess": "Gebruiker succesvol gedeactiveerd"
+    },
+    "actions": {
+      "edit": "Bewerken",
+      "activate": "Activeren",
+      "deactivate": "Deactiveren",
+      "delete": "Verwijderen"
+    },
+    "delete": {
+      "title": "Gebruiker Verwijderen Bevestigen",
+      "confirmation": "Weet je zeker dat je gebruiker {firstName} {lastName} wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "confirm": "Gebruiker Verwijderen"
+    },
+    "form": {
+      "titleCreate": "Nieuwe Gebruiker Toevoegen",
+      "titleEdit": "Gebruiker Bewerken",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "username": "Gebruikersnaam",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "newPassword": "Nieuw Wachtwoord (optioneel)",
+      "passwordPlaceholder": "Laat leeg om huidige wachtwoord te behouden",
+      "role": "Rol",
+      "roleUser": "Gebruiker",
+      "roleAdmin": "Beheerder",
+      "create": "Aanmaken",
+      "save": "Opslaan"
+    },
+    "status": {
+      "title": "Status Wijziging Bevestigen",
+      "confirmation": "Weet je zeker dat je gebruiker {firstName} {lastName} wilt {action}?",
+      "activate": "activeren",
+      "deactivate": "deactiveren",
+      "user": "Gebruiker"
+    },
+    "header": {
+      "title": "Gebruikersbeheer",
+      "addUser": "Gebruiker Toevoegen",
+      "management": "Gebruikersbeheer"
+    },
+    "table": {
+      "user": "GEBRUIKER",
+      "email": "E-MAIL",
+      "status": "STATUS",
+      "role": "ROL",
+      "actions": "ACTIES",
+      "active": "Actief",
+      "inactive": "Inactief",
+      "admin": "Beheerder",
+      "userr": "Gebruiker"
+    }
+  },
+  "validation": {
+    "firstNameRequired": "Voornaam is verplicht",
+    "lastNameRequired": "Achternaam is verplicht",
+    "usernameLength": "Gebruikersnaam moet minimaal 3 tekens zijn",
+    "usernameSpaces": "Gebruikersnaam mag geen spaties bevatten",
+    "invalidEmail": "Voer een geldig e-mailadres in",
+    "passwordLength": "Wachtwoord moet minimaal 8 tekens zijn",
+    "passwordsMatch": "Wachtwoorden moeten overeenkomen",
+    "emailRequired": "E-mail is verplicht",
+    "passwordRequired": "Wachtwoord is verplicht",
+    "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
+    "nameRequired": "Naam is verplicht",
+    "required": "Dit veld is verplicht"
+  },
+  "shareFile": {
+    "title": "Bestand Delen",
+    "linkTitle": "Link Genereren",
+    "nameLabel": "Delen Naam",
+    "namePlaceholder": "Voer delen naam in",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
+    "expirationLabel": "Vervaldatum",
+    "expirationPlaceholder": "DD/MM/JJJJ UU:MM",
+    "maxViewsLabel": "Maximale Weergaven",
+    "maxViewsPlaceholder": "Laat leeg voor onbeperkt",
+    "passwordProtection": "Wachtwoord Beveiligd",
+    "passwordLabel": "Wachtwoord",
+    "passwordPlaceholder": "Voer wachtwoord in",
+    "linkDescription": "Genereer een aangepaste link om het bestand te delen",
+    "aliasLabel": "Link Alias",
+    "aliasPlaceholder": "Voer aangepaste alias in",
+    "linkReady": "Jouw delen link is klaar:",
+    "createShare": "Delen Aanmaken",
+    "generateLink": "Link Genereren",
+    "copyLink": "Link Kopiëren"
+  },
+  "bulkDownload": {
+    "title": "Bulk Download",
+    "zipNameLabel": "ZIP bestandsnaam",
+    "zipNamePlaceholder": "Voer bestandsnaam in",
+    "description": "{count, plural, =1 {1 bestand wordt gecomprimeerd} other {# bestanden worden gecomprimeerd}}",
+    "download": "ZIP Downloaden"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Te verwijderen bestanden",
+    "sharesToDelete": "Delen die worden verwijderd"
+  },
+  "shareMultipleFiles": {
+    "title": "Meerdere Bestanden Delen",
+    "shareNameLabel": "Delen Naam",
+    "shareNamePlaceholder": "Voer delen naam in",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Voer een beschrijving in (optioneel)",
+    "filesToShare": "Bestanden om te delen",
+    "files": "bestanden",
+    "totalSize": "Totale grootte",
+    "creating": "Aanmaken...",
+    "create": "Delen Maken"
+  },
+  "shareSecurity": {
+    "subtitle": "Configureer wachtwoordbeveiliging en beveiligingsopties voor dit delen",
+    "info": {
+      "title": "Hoe het werkt:",
+      "withoutPassword": "Iedereen met de link kan dit delen benaderen zonder wachtwoord.",
+      "withPassword": "Gebruikers moeten het wachtwoord invoeren om dit delen te benaderen."
+    },
+    "existingPasswordMessage": "Dit delen heeft al een wachtwoord. Als je het wilt bijwerken, voer dan het nieuwe wachtwoord in het onderstaande veld in en sla op.",
+    "passwordProtection": "Wachtwoordbeveiliging",
+    "error": {
+      "updateFailed": "Fout bij het bijwerken van beveiligingsinstellingen"
+    },
+    "passwordRequirements": {
+      "title": "Wachtwoordvereisten:",
+      "minLength": "Minimaal 2 tekens"
+    },
+    "newPassword": "Nieuw Wachtwoord",
+    "success": {
+      "passwordUpdated": "Wachtwoord succesvol bijgewerkt",
+      "passwordRemoved": "Wachtwoordbeveiliging succesvol verwijderd",
+      "passwordSet": "Wachtwoordbeveiliging succesvol ingeschakeld"
+    },
+    "password": "Wachtwoord",
+    "validation": {
+      "passwordRequired": "Wachtwoord is vereist",
+      "passwordTooShort": "Wachtwoord moet minimaal 2 tekens bevatten"
+    },
+    "currentStatus": "Huidige Status",
+    "passwordPlaceholder": "Voer een veilig wachtwoord in",
+    "title": "Delen Beveiligingsinstellingen"
+  },
+  "shareExpiration": {
+    "neverExpires": "Verloopt Nooit",
+    "success": {
+      "expirationUpdated": "Vervaldatum succesvol bijgewerkt",
+      "expirationRemoved": "Verloop succesvol verwijderd - delen is nu permanent",
+      "expirationSet": "Vervaldatum succesvol ingesteld"
+    },
+    "info": {
+      "canBeChanged": "Je kunt de vervaldatum op elk moment wijzigen of verwijderen",
+      "willBeInaccessible": "Het delen wordt na deze datum ontoegankelijk",
+      "noExpiration": "Dit delen verloopt nooit en blijft voor onbepaalde tijd toegankelijk.",
+      "title": "Over verloop:"
+    },
+    "enableExpiration": "Vervaldatum Inschakelen",
+    "title": "Delen Verloop Instellingen",
+    "subtitle": "Configureer wanneer dit delen verloopt",
+    "validation": {
+      "dateMustBeFuture": "Vervaldatum moet in de toekomst liggen",
+      "dateRequired": "Selecteer een vervaldatum"
+    },
+    "currentStatus": "Huidige Status",
+    "error": {
+      "updateFailed": "Fout bij het bijwerken van verloop instellingen"
+    },
+    "expires": "Verloopt:",
+    "expirationDate": "Vervaldatum"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Account inactief. Neem contact op met de beheerder.",
+      "registration_disabled": "Registratie via SSO is uitgeschakeld.",
+      "token_expired": "Token verlopen. Probeer het opnieuw.",
+      "config_error": "Configuratiefout. Neem contact op met support.",
+      "auth_failed": "Authenticatie mislukt. Probeer het opnieuw."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Bestanden Ontvangen",
+    "search": {
+      "title": "Ontvangstlinks Beheren",
+      "createButton": "Link Aanmaken",
+      "placeholder": "Zoek ontvangstlinks...",
+      "results": "{filtered} van {total} ontvangstlinks gevonden"
+    },
+    "labels": {
+      "files": "bestanden",
+      "size": "grootte",
+      "status": "status",
+      "access": "toegang",
+      "description": "Beschrijving",
+      "pageLayout": "Pagina Layout",
+      "security": "Beveiliging & Status",
+      "limits": "Limieten",
+      "maxFiles": "Maximum Bestanden",
+      "maxFileSize": "Maximum Grootte",
+      "allowedTypes": "Toegestane Types",
+      "filesReceived": "Ontvangen Bestanden",
+      "fileLimit": "Bestandslimiet",
+      "noLimit": "Geen limiet",
+      "noLinkCreated": "Geen link aangemaakt",
+      "publicAccess": "Publieke Toegang",
+      "protectedByPassword": "Beschermd met Wachtwoord",
+      "configureProtection": "Klik om beveiliging in te stellen",
+      "enterPassword": "Voer wachtwoord in",
+      "thisLinkProtected": "Deze link zal met wachtwoord beveiligd zijn",
+      "thisLinkPublic": "Deze link zal publiek beschikbaar zijn",
+      "configureExpiration": "Vervaldatum Instellen",
+      "configureLimits": "Bestandslimieten Instellen",
+      "protectWithPassword": "Beveiligen met Wachtwoord",
+      "layoutOptions": {
+        "default": "Standaard",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "Geen bestandslimiet",
+      "noSizeLimit": "Geen groottelimiet",
+      "allFileTypes": "Alle bestandstypes",
+      "fileTypesHelp": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep"
+    },
+    "card": {
+      "untitled": "Link zonder titel",
+      "noDescription": "Geen beschrijving",
+      "addDescriptionPlaceholder": "Beschrijving toevoegen...",
+      "files": "bestanden",
+      "progress": "Voortgang",
+      "created": "Aangemaakt",
+      "expired": "Verlopen",
+      "expires": "Verloopt",
+      "viewDetails": "Details bekijken",
+      "copyLink": "Link Kopiëren",
+      "openInNewTab": "Openen in Nieuw Tabblad",
+      "editLink": "Link Bewerken",
+      "createLink": "Link Aanmaken",
+      "delete": "Verwijderen",
+      "copyLinkTitle": "Link kopiëren",
+      "createLinkCTA": "Ontvangstlink Aanmaken"
+    },
+    "status": {
+      "active": "Actief",
+      "inactive": "Inactief",
+      "expired": "Verlopen",
+      "protected": "Beveiligd",
+      "public": "Publiek"
+    },
+    "actions": {
+      "copyLink": "Link Kopiëren",
+      "editAlias": "Alias Bewerken",
+      "createAlias": "Alias Aanmaken",
+      "viewDetails": "Details Bekijken",
+      "edit": "Bewerken",
+      "delete": "Verwijderen",
+      "viewFiles": "Ontvangen Bestanden"
+    },
+    "empty": {
+      "title": "Geen ontvangstlinks aangemaakt",
+      "description": "Maak aangepaste links aan zodat anderen bestanden veilig en georganiseerd direct naar jou kunnen sturen.",
+      "createButton": "Eerste Link Aanmaken"
+    },
+    "modals": {
+      "create": {
+        "title": "Ontvangstlink Aanmaken",
+        "description": "Stel een aangepaste link in om bestanden van anderen te ontvangen"
+      },
+      "edit": {
+        "title": "Ontvangstlink Bewerken",
+        "description": "Werk de instellingen van deze ontvangstlink bij",
+        "updating": "Bijwerken...",
+        "saveChanges": "Wijzigingen Opslaan"
+      },
+      "details": {
+        "title": "Link Details",
+        "description": "Bekijk en bewerk de informatie van je ontvangstlink",
+        "pageLayout": "Pagina Layout",
+        "linkSection": "Ontvangstlink",
+        "noLinkCreated": "Geen link aangemaakt",
+        "limits": "Limieten",
+        "maxFiles": "Maximum Bestanden",
+        "maxFileSize": "Maximum Grootte",
+        "allowedTypes": "Toegestane Types",
+        "noLimit": "Geen limiet",
+        "security": "Beveiliging",
+        "status": "Status",
+        "password": "Wachtwoord",
+        "files": "Ontvangen Bestanden",
+        "noFiles": "Nog geen bestanden ontvangen",
+        "copyLink": "Link Kopiëren",
+        "openLink": "Link Openen",
+        "editAlias": "Alias Bewerken",
+        "createAlias": "Alias Aanmaken",
+        "editPassword": "Wachtwoordbeveiliging Bewerken",
+        "basicInfo": "Basisinformatie",
+        "securityAndStatus": "Beveiliging & Status",
+        "protection": "Beveiliging",
+        "protectedByPassword": "Beschermd met Wachtwoord",
+        "publicAccess": "Publieke Toegang",
+        "active": "Actief",
+        "inactive": "Inactief",
+        "deactivate": "Deactiveren",
+        "activate": "Activeren",
+        "expiration": "Vervaldatum",
+        "dates": "Data",
+        "createdAt": "Aangemaakt op",
+        "updatedAt": "Bijgewerkt op",
+        "allTypes": "Alle types",
+        "placeholderTypes": ".pdf,.jpg,.png (gescheiden door komma)",
+        "downloadSuccess": "Download gestart",
+        "downloadError": "Fout bij downloaden bestand",
+        "editSuccess": "Bestand succesvol bijgewerkt",
+        "editError": "Fout bij bijwerken bestand",
+        "previewNotAvailable": "Voorvertoning niet beschikbaar",
+        "notAvailable": "Niet beschikbaar",
+        "invalidDate": "Ongeldige datum"
+      },
+      "alias": {
+        "editTitle": "Alias Bewerken",
+        "createTitle": "Alias Aanmaken",
+        "editDescription": "Werk de alias van deze ontvangstlink bij",
+        "createDescription": "Maak een aangepaste alias voor deze ontvangstlink",
+        "aliasLabel": "Link Alias",
+        "aliasPlaceholder": "mijn-aangepaste-link",
+        "preview": "Voorbeeld:",
+        "currentLink": "Huidige Link:",
+        "copyCurrentLink": "Huidige link kopiëren",
+        "randomTooltip": "Willekeurige alias genereren",
+        "cancel": "Annuleren",
+        "creating": "Aanmaken...",
+        "updating": "Bijwerken...",
+        "create": "Alias Aanmaken",
+        "update": "Alias Bijwerken",
+        "validation": {
+          "required": "Alias is verplicht",
+          "minLength": "Alias moet minimaal 3 tekens bevatten",
+          "maxLength": "Alias mag maximaal 50 tekens bevatten",
+          "pattern": "Alias mag alleen letters, cijfers, streepjes en underscores bevatten"
+        },
+        "help": "3-50 tekens. Spaties worden automatisch omgezet in streepjes."
+      },
+      "password": {
+        "title": "Wachtwoordbeveiliging Bewerken",
+        "description": "Stel wachtwoordbeveiliging in voor deze link",
+        "hasPassword": "Beschermd met Wachtwoord",
+        "password": "Wachtwoord",
+        "cancel": "Annuleren",
+        "save": "Opslaan",
+        "saving": "Opslaan..."
+      },
+      "receivedFiles": {
+        "title": "Ontvangen Bestanden",
+        "description": "Bekijk en beheer bestanden die via deze link zijn verzonden",
+        "noFiles": "Nog geen bestanden ontvangen",
+        "noFilesDescription": "Bestanden die via deze link worden verzonden verschijnen hier",
+        "fileCount": "{count, plural, =0 {Geen bestanden} =1 {1 bestand} other {# bestanden}}",
+        "totalSize": "Totale grootte: {size}",
+        "columns": {
+          "file": "Bestand",
+          "size": "Grootte",
+          "sender": "Verzonden door",
+          "date": "Datum",
+          "actions": "Acties"
+        },
+        "actions": {
+          "preview": "Voorvertoning",
+          "download": "Downloaden"
+        },
+        "uploadedBy": "Verzonden door {name}",
+        "anonymous": "Anoniem",
+        "downloadSuccess": "Download gestart",
+        "downloadError": "Fout bij downloaden bestand",
+        "editSuccess": "Bestand succesvol bijgewerkt",
+        "editError": "Fout bij bijwerken bestand",
+        "previewNotAvailable": "Voorvertoning niet beschikbaar"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Link Naam",
+        "placeholder": "Bijv: Project Documenten, Familie Foto's..."
+      },
+      "description": {
+        "label": "Beschrijving",
+        "placeholder": "Beschrijf welk type bestanden je verwacht te ontvangen...",
+        "description": "Optioneel. Helpt mensen begrijpen wat ze moeten versturen."
+      },
+      "status": {
+        "label": "Link Status",
+        "description": "Activeer of deactiveer deze ontvangstlink"
+      },
+      "expiration": {
+        "label": "Vervaldatum",
+        "description": "Optioneel. De link wordt gedeactiveerd na deze datum.",
+        "configure": "Vervaldatum Instellen"
+      },
+      "fileLimits": {
+        "configure": "Bestandslimieten Instellen"
+      },
+      "maxFiles": {
+        "label": "Maximum Bestanden",
+        "placeholder": "Bijv: 10",
+        "description": "Optioneel. Beperk het totaal aantal bestanden dat kan worden verzonden.",
+        "noLimit": "Geen bestandslimiet"
+      },
+      "maxFileSize": {
+        "label": "Maximum Bestandsgrootte",
+        "placeholder": "Bijv: 100",
+        "description": "Optioneel. Beperk de individuele grootte van elk bestand.",
+        "noLimit": "Geen groottelimiet"
+      },
+      "allowedFileTypes": {
+        "label": "Toegestane Bestandstypes",
+        "placeholder": "Bijv: pdf, jpg, png, docx",
+        "description": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep",
+        "allTypes": "Alle bestandstypes"
+      },
+      "pageLayout": {
+        "label": "Pagina Layout",
+        "placeholder": "Kies layout",
+        "description": "Hoe de uploadpagina er voor gebruikers uitziet.",
+        "options": {
+          "default": "Standaard Layout",
+          "wetransfer": "WeTransfer Stijl"
+        }
+      },
+      "password": {
+        "label": "Beveiligingswachtwoord",
+        "placeholder": "Optioneel. Voeg een wachtwoord toe om de link te beveiligen",
+        "description": "Optioneel. Gebruikers hebben dit wachtwoord nodig om toegang te krijgen tot de link.",
+        "configurePassword": "Wachtwoord Instellen",
+        "protectWithPassword": "Beveiligen met Wachtwoord",
+        "passwordHelp": "Wachtwoord moet minimaal 4 tekens bevatten",
+        "passwordPlaceholder": "Voer een wachtwoord in om de link te beveiligen"
+      },
+      "submit": "Ontvangstlink Aanmaken"
+    },
+    "messages": {
+      "created": "Ontvangstlink succesvol aangemaakt!",
+      "createSuccess": "Ontvangstlink succesvol aangemaakt!",
+      "updateSuccess": "Ontvangstlink succesvol bijgewerkt!",
+      "linkCopied": "Link gekopieerd naar klembord!",
+      "deleteSuccess": "Ontvangstlink succesvol verwijderd!",
+      "aliasCreated": "Alias succesvol aangemaakt!",
+      "activateSuccess": "Ontvangstlink succesvol geactiveerd!",
+      "deactivateSuccess": "Ontvangstlink succesvol gedeactiveerd!"
+    },
+    "errors": {
+      "loadFailed": "Fout bij laden ontvangstlinks",
+      "createFailed": "Fout bij aanmaken ontvangstlink. Probeer het opnieuw.",
+      "updateFailed": "Fout bij bijwerken ontvangstlink. Probeer het opnieuw.",
+      "deleteFailed": "Fout bij verwijderen ontvangstlink. Probeer het opnieuw.",
+      "aliasCreateFailed": "Fout bij aanmaken alias. Probeer het opnieuw."
+    },
+    "delete": {
+      "title": "Ontvangstlink verwijderen",
+      "description": "Deze actie kan niet ongedaan worden gemaakt. De link wordt permanent verwijderd en kan geen bestanden meer ontvangen.",
+      "confirmButton": "Link Verwijderen",
+      "cancelButton": "Annuleren",
+      "deleting": "Verwijderen..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Bestanden Verzenden - Palmr",
+        "description": "Verzend bestanden via de gedeelde link"
+      },
+      "layout": {
+        "defaultTitle": "Bestanden Verzenden",
+        "importantInfo": "Belangrijke informatie:",
+        "maxFiles": "Maximum {count} bestand(en)",
+        "maxFileSize": "Maximum bestandsgrootte: {size}MB",
+        "allowedTypes": "Toegestane types: {types}",
+        "loading": "Laden..."
+      },
+      "password": {
+        "title": "Beveiligde Link",
+        "description": "Deze link is beveiligd met een wachtwoord. Voer het wachtwoord in om door te gaan.",
+        "label": "Wachtwoord",
+        "placeholder": "Voer wachtwoord in",
+        "cancel": "Annuleren",
+        "submit": "Doorgaan",
+        "verifying": "Verifiëren..."
+      },
+      "errors": {
+        "loadFailed": "Fout bij laden informatie. Probeer het opnieuw.",
+        "passwordIncorrect": "Onjuist wachtwoord. Probeer het opnieuw.",
+        "linkNotFound": "Link niet gevonden of verlopen.",
+        "linkInactive": "Deze link is inactief.",
+        "linkExpired": "Deze link is verlopen.",
+        "uploadFailed": "Fout bij uploaden bestand",
+        "fileTooLarge": "Bestand te groot. Maximum grootte: {maxSize}",
+        "fileTypeNotAllowed": "Bestandstype niet toegestaan. Toegestane types: {allowedTypes}",
+        "maxFilesExceeded": "Maximum van {maxFiles} bestanden toegestaan",
+        "selectAtLeastOneFile": "Selecteer ten minste één bestand",
+        "provideNameOrEmail": "Voer uw naam of e-mail in"
+      },
+      "fileDropzone": {
+        "dragActive": "Laat bestanden hier los",
+        "dragInactive": "Sleep bestanden hierheen of klik om te selecteren",
+        "acceptedTypes": "Toegestane types: {types}",
+        "maxFileSize": "Maximum grootte: {size}",
+        "maxFiles": "Maximum {count} bestanden",
+        "remainingFiles": "Nog {remaining} van {max} bestanden mogelijk"
+      },
+      "fileList": {
+        "title": "Geselecteerde bestanden:",
+        "statusUploaded": "Geüpload",
+        "statusError": "Fout"
+      },
+      "form": {
+        "nameLabel": "Naam",
+        "namePlaceholder": "Uw naam",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "uw@email.nl",
+        "descriptionLabel": "Beschrijving (optioneel)",
+        "descriptionPlaceholder": "Voeg een beschrijving toe aan de bestanden...",
+        "uploadButton": "{count} bestand(en) verzenden",
+        "uploading": "Verzenden..."
+      },
+      "success": {
+        "title": "Bestanden succesvol verzonden! 🎉",
+        "description": "U kunt deze pagina sluiten.",
+        "countMessage": "{count} bestand(en) succesvol verzonden!"
+      },
+      "maxFilesReached": {
+        "title": "Bestandslimiet bereikt",
+        "description": "Deze link heeft het maximum aantal van {maxFiles} bestand(en) bereikt.",
+        "contactOwner": "Als er een fout is opgetreden of u meer bestanden moet verzenden, neem dan contact op met de eigenaar van de link."
+      },
+      "linkInactive": {
+        "title": "Link inactief",
+        "description": "Deze ontvangstlink is tijdelijk inactief.",
+        "contactOwner": "Neem contact op met de eigenaar van de link voor meer informatie."
+      },
+      "linkNotFound": {
+        "title": "Link niet gevonden",
+        "description": "Deze link is mogelijk verwijderd of heeft nooit bestaan."
+      },
+      "linkExpired": {
+        "title": "Link verlopen",
+        "description": "Deze ontvangstlink is verlopen en accepteert geen bestanden meer.",
+        "contactOwner": "Neem contact op met de eigenaar van de link als u bestanden moet verzenden."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Beschrijving toevoegen...",
+        "anonymous": "Anoniem"
+      },
+      "fileActions": {
+        "edit": "Bewerken",
+        "save": "Opslaan",
+        "cancel": "Annuleren",
+        "preview": "Voorvertoning",
+        "download": "Downloaden",
+        "delete": "Verwijderen"
+      },
+      "editField": {
+        "saveChanges": "Wijzigingen opslaan",
+        "cancelEdit": "Bewerken annuleren"
+      }
+    }
+  }
+}

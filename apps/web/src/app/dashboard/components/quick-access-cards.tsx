@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { IconFoldersFilled, IconShare2 } from "@tabler/icons-react";
+import { IconDeviceDesktopDown, IconFoldersFilled, IconShare2 } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,10 +23,17 @@ export function QuickAccessCards() {
       path: "/shares",
       color: "bg-orange-400",
     },
+    {
+      title: t("quickAccess.reverseShares.title"),
+      icon: <IconDeviceDesktopDown size={28} />,
+      description: t("quickAccess.reverseShares.description"),
+      path: "/reverse-shares",
+      color: "bg-blue-500",
+    },
   ] as const;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {QUICK_ACCESS_ITEMS.map((card) => (
         <Card
           key={card.title}

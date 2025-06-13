@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
@@ -19,11 +20,31 @@ export type LoginFormData = z.infer<typeof loginSchema>;
 
 export function useLogin() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const t = useTranslations();
   const { isAuthenticated, setUser, setIsAdmin, setIsAuthenticated } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const errorParam = searchParams.get("error");
+
+    if (errorParam) {
+      const errorKey = `auth.errors.${errorParam}`;
+      const message = t(errorKey);
+
+      setTimeout(() => {
+        toast.error(message);
+      }, 100);
+
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("error");
+        window.history.replaceState({}, "", url.toString());
+      }, 1000);
+    }
+  }, [searchParams, t]);
 
   useEffect(() => {
     const checkAuth = async () => {

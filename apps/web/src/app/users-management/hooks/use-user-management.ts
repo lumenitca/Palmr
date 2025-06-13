@@ -58,7 +58,6 @@ export function useUserManagement() {
       setUsers(response.data);
     } catch (error) {
       toast.error(t("users.errors.loadFailed"));
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -112,7 +111,6 @@ export function useUserManagement() {
       loadUsers();
     } catch (error) {
       toast.error(t("users.errors.submitFailed", { mode: t(`users.modes.${modalMode}`) }));
-      console.error(error);
     }
   };
 
@@ -126,7 +124,6 @@ export function useUserManagement() {
       onDeleteModalClose();
     } catch (error) {
       toast.error(t("users.errors.deleteFailed"));
-      console.error(error);
     }
   };
 
@@ -145,7 +142,6 @@ export function useUserManagement() {
       onStatusModalClose();
     } catch (error) {
       toast.error(t("users.errors.statusUpdateFailed"));
-      console.error(error);
     }
   };
 

@@ -9,4 +9,6 @@
 export type RequestPasswordResetBody = {
   /** User email */
   email: string;
+  /** Hostname */
+  origin: string;
 };

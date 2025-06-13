@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "Lädt, bitte warten...",
+    "loading": "Laden, bitte warten...",
     "cancel": "Abbrechen",
     "save": "Speichern",
     "delete": "Löschen",
@@ -9,18 +9,26 @@
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "yes": "Ja",
     "no": "Nein",
-    "dashboard": "Übersicht"
+    "dashboard": "Dashboard",
+    "back": "Zurück",
+    "updating": "Aktualisierung läuft...",
+    "saving": "Speichere...",
+    "update": "Aktualisieren",
+    "click": "Klicken Sie auf",
+    "creating": "Erstellen..."
   },
   "createShare": {
-    "title": "Freigabe erstellen",
-    "nameLabel": "Freigabename",
+    "title": "Freigabe Erstellen",
+    "nameLabel": "Freigabe-Name",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
     "expirationLabel": "Ablaufdatum",
-    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
     "maxViewsLabel": "Maximale Ansichten",
     "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwortgeschützt",
+    "passwordProtection": "Passwort-geschützt",
     "passwordLabel": "Passwort",
-    "create": "Freigabe erstellen",
+    "create": "Freigabe Erstellen",
     "success": "Freigabe erfolgreich erstellt",
     "error": "Fehler beim Erstellen der Freigabe"
   },
@@ -28,7 +36,11 @@
     "loadError": "Fehler beim Laden der Dashboard-Daten",
     "linkCopied": "Link in die Zwischenablage kopiert",
     "pageTitle": "Übersicht",
-    "breadcrumb": "Übersicht"
+    "breadcrumb": "Übersicht",
+    "recentFiles": {
+      "description": "Ihre zuletzt hochgeladenen Dateien",
+      "title": "Kürzlich genutzte Dateien"
+    }
   },
   "emptyState": {
     "noFiles": "Noch keine Dateien hochgeladen",
@@ -59,26 +71,46 @@
     "deleteError": "Fehler beim Löschen der Datei"
   },
   "filePreview": {
-    "loading": "Vorschau wird geladen...",
-    "notAvailable": "Vorschau nicht verfügbar",
-    "downloadToView": "Datei herunterladen, um den Inhalt anzuzeigen",
-    "audioNotSupported": "Ihr Browser unterstützt das Audioelement nicht",
-    "videoNotSupported": "Ihr Browser unterstützt das Videoelement nicht",
-    "loadError": "Fehler beim Laden der Vorschau",
-    "downloadError": "Fehler beim Herunterladen der Datei"
+    "title": "Datei-Vorschau",
+    "loading": "Laden...",
+    "notAvailable": "Vorschau für diesen Dateityp nicht verfügbar.",
+    "downloadToView": "Verwenden Sie die Download-Schaltfläche, um die Datei herunterzuladen.",
+    "loadError": "Fehler beim Laden der Datei-Vorschau.",
+    "downloadError": "Fehler beim Herunterladen der Datei.",
+    "audioNotSupported": "Ihr Browser unterstützt das Audio-Element nicht.",
+    "videoNotSupported": "Ihr Browser unterstützt das Video-Element nicht.",
+    "pdfPreviewNotAvailable": "PDF-Vorschau ist nicht verfügbar. Versuchen Sie die alternative Ansicht oder laden Sie herunter.",
+    "tryAlternativeView": "Alternative Ansicht Versuchen",
+    "loadingAlternative": "Lade alternative Ansicht...",
+    "loadingAudio": "Audio wird geladen..."
   },
   "fileSelector": {
-    "availableFiles": "Verfügbare Dateien ({{count}})",
-    "shareFiles": "Dateien teilen ({{count}})",
+    "availableFiles": "Verfügbare Dateien ({count})",
+    "shareFiles": "Geteilte Dateien ({count})",
+    "shareFilesDescription": "Dateien derzeit in der Freigabe",
+    "availableFilesDescription": "Wählen Sie Dateien aus, um sie zur Freigabe hinzuzufügen",
     "searchPlaceholder": "Dateien suchen...",
-    "noMatchingFiles": "Keine übereinstimmenden Dateien",
+    "searchSelectedFiles": "In ausgewählten Dateien suchen...",
+    "noMatchingFiles": "Keine passenden Dateien",
     "noAvailableFiles": "Keine Dateien verfügbar",
     "noFilesInShare": "Keine Dateien in der Freigabe",
-    "saveChanges": "Änderungen speichern"
+    "noFilesFound": "Keine Dateien gefunden",
+    "noFilesFoundWith": "Keine Dateien gefunden mit \"{query}\"",
+    "addFilesFromList": "Fügen Sie Dateien aus der unten stehenden Liste hinzu",
+    "tryDifferentSearch": "Versuchen Sie andere Suchbegriffe",
+    "allFilesInShare": "Alle Dateien sind bereits in der Freigabe",
+    "uploadNewFiles": "Laden Sie neue Dateien hoch, um sie hinzuzufügen",
+    "fileCount": "{count, plural, =1 {Datei} other {Dateien}}",
+    "filesSelected": "{count, plural, =0 {Keine Dateien ausgewählt} =1 {1 Datei ausgewählt} other {# Dateien ausgewählt}}",
+    "editFile": "Datei bearbeiten",
+    "previewFile": "Datei-Vorschau",
+    "addToShare": "Zur Freigabe hinzufügen",
+    "removeFromShare": "Aus Freigabe entfernen",
+    "saveChanges": "Änderungen Speichern"
   },
   "files": {
     "title": "Alle Dateien",
-    "uploadFile": "Datei hochladen",
+    "uploadFile": "Datei Hochladen",
     "loadError": "Fehler beim Laden der Dateien",
     "pageTitle": "Meine Dateien",
     "breadcrumb": "Meine Dateien",
@@ -87,10 +119,22 @@
     "updateSuccess": "Datei erfolgreich aktualisiert",
     "updateError": "Fehler beim Aktualisieren der Datei",
     "deleteSuccess": "Datei erfolgreich gelöscht",
-    "deleteError": "Fehler beim Löschen der Datei"
+    "deleteError": "Fehler beim Löschen der Datei",
+    "bulkDownloadSuccess": "Datei-Download erfolgreich gestartet",
+    "bulkDownloadError": "Fehler beim Erstellen der ZIP-Datei",
+    "bulkDownloadFileError": "Fehler beim Herunterladen der Datei {fileName}",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 Datei erfolgreich gelöscht} other {# Dateien erfolgreich gelöscht}}",
+    "bulkDeleteError": "Fehler beim Löschen der ausgewählten Dateien",
+    "viewMode": {
+      "table": "Tabelle",
+      "grid": "Raster"
+    },
+    "totalFiles": "{count, plural, =0 {Keine Dateien} =1 {1 Datei} other {# Dateien}}"
   },
   "filesTable": {
-    "ariaLabel": "Dateitabelle",
+    "ariaLabel": "Dateien-Tabelle",
+    "selectAll": "Alle auswählen",
+    "selectFile": "Datei {fileName} auswählen",
     "columns": {
       "name": "NAME",
       "description": "BESCHREIBUNG",
@@ -100,15 +144,23 @@
       "actions": "AKTIONEN"
     },
     "actions": {
-      "menu": "Dateiaktionsmenü",
+      "menu": "Datei-Aktionsmenü",
       "preview": "Vorschau",
       "edit": "Bearbeiten",
+      "share": "Teilen",
       "download": "Herunterladen",
       "delete": "Löschen"
+    },
+    "bulkActions": {
+      "selected": "{count, plural, =1 {1 Datei ausgewählt} other {# Dateien ausgewählt}}",
+      "actions": "Aktionen",
+      "download": "Ausgewählte Herunterladen",
+      "share": "Ausgewählte Teilen",
+      "delete": "Ausgewählte Löschen"
     }
   },
   "footer": {
-    "poweredBy": "Powered by",
+    "poweredBy": "Angetrieben von",
     "kyanHomepage": "Kyantech Homepage"
   },
   "forgotPassword": {
@@ -123,12 +175,12 @@
     "pageTitle": "Passwort vergessen"
   },
   "generateShareLink": {
-    "generateTitle": "Freigabelink generieren",
-    "updateTitle": "Freigabelink aktualisieren",
-    "generateDescription": "Erstellen Sie einen Link, um Ihre Dateien zu teilen",
-    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabelink",
+    "generateTitle": "Freigabe-Link generieren",
+    "updateTitle": "Freigabe-Link aktualisieren",
+    "generateDescription": "Generieren Sie einen Link zum Teilen Ihrer Dateien",
+    "updateDescription": "Aktualisieren Sie den Alias für diesen Freigabe-Link",
     "aliasPlaceholder": "Alias eingeben",
-    "linkReady": "Ihr Freigabelink ist fertig:",
+    "linkReady": "Ihr Freigabe-Link ist bereit:",
     "generateButton": "Link generieren",
     "updateButton": "Link aktualisieren",
     "copyButton": "Link kopieren",
@@ -157,7 +209,10 @@
     "signIn": "Anmelden",
     "signingIn": "Melde an...",
     "forgotPassword": "Passwort vergessen?",
-    "pageTitle": "Anmeldung"
+    "pageTitle": "Anmeldung",
+    "or": "oder",
+    "continueWithSSO": "Mit SSO fortfahren",
+    "processing": "Authentifizierung wird verarbeitet..."
   },
   "logo": {
     "labels": {
@@ -237,13 +292,18 @@
     "shares": {
       "title": "Meine Freigaben",
       "description": "Anzeigen und Verwalten Ihrer geteilten Dateien"
+    },
+    "reverseShares": {
+      "title": "Dateien empfangen",
+      "description": "Erstellen Sie Links, damit andere Ihnen Dateien senden können"
     }
   },
   "recentFiles": {
     "title": "Kürzlich hochgeladen",
     "viewAll": "Alle anzeigen",
     "uploadFile": "Datei hochladen",
-    "noFiles": "Noch keine Dateien hochgeladen"
+    "noFiles": "Noch keine Dateien hochgeladen",
+    "upload": "Hochladen"
   },
   "recentShares": {
     "title": "Kürzlich geteilte",
@@ -255,7 +315,7 @@
   "recipientSelector": {
     "emailPlaceholder": "Empfänger-E-Mail eingeben",
     "add": "Hinzufügen",
-    "recipients": "Empfänger ({{count}})",
+    "recipients": "Empfänger ({count})",
     "notifyAll": "Alle benachrichtigen",
     "noRecipients": "Noch keine Empfänger hinzugefügt",
     "addSuccess": "Empfänger erfolgreich hinzugefügt",
@@ -264,7 +324,25 @@
     "removeError": "Fehler beim Entfernen des Empfängers",
     "sendingNotifications": "Benachrichtigungen werden gesendet...",
     "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger",
+    "bulkNotifySuccess": "Benachrichtigungen an {count} Empfänger gesendet",
+    "selectAll": "Alle auswählen",
+    "singleNotifySuccess": "Benachrichtigung an {email} gesendet",
+    "removeSingle": "Diesen Empfänger entfernen",
+    "selectRecipient": "{email} auswählen",
+    "bulkRemoveSuccess": "{count} Empfänger erfolgreich entfernt",
+    "notifySingle": "Diesen Empfänger benachrichtigen",
+    "notifySelected": "Ausgewählte benachrichtigen",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "noRecipientsDescription": "Empfänger hinzufügen, um diesen Inhalt per E-Mail zu teilen",
+    "singleNotifyError": "Empfänger konnte nicht benachrichtigt werden",
+    "bulkRemoveError": "Ausgewählte Empfänger konnten nicht entfernt werden",
+    "modalDescription": "Empfänger für diese Freigabe hinzufügen und verwalten. Sie können alle oder bestimmte Empfänger benachrichtigen, wenn SMTP konfiguriert ist.",
+    "duplicateEmail": "Dieser Empfänger wurde bereits hinzugefügt",
+    "removeSelected": "Ausgewählte entfernen",
+    "selectedCount": "{count} ausgewählt",
+    "addRecipient": "Empfänger hinzufügen",
+    "bulkNotifyError": "Ausgewählte Empfänger konnten nicht benachrichtigt werden"
   },
   "register": {
     "validation": {
@@ -313,7 +391,7 @@
   },
   "searchBar": {
     "placeholder": "Dateien suchen...",
-    "results": "Gefunden {{filtered}} von {{total}} Dateien"
+    "results": "Gefunden {filtered} von {total} Dateien"
   },
   "settings": {
     "groups": {
@@ -333,6 +411,10 @@
       "storage": {
         "title": "Speicher",
         "description": "Konfiguration des Dateispeichers"
+      },
+      "oidc": {
+        "title": "OpenID Connect (SSO)",
+        "description": "SSO-Authentifizierung über OpenID Connect konfigurieren"
       }
     },
     "fields": {
@@ -399,15 +481,55 @@
       },
       "maxFileSize": {
         "title": "Maximale Dateigröße",
-        "description": "Maximal erlaubte Dateigröße für Uploads (in Bytes)"
+        "description": "Maximal erlaubte Dateigröße für Uploads"
       },
       "maxTotalStoragePerUser": {
         "title": "Maximaler Speicher pro Benutzer",
-        "description": "Gesamtspeicherlimit pro Benutzer (in Bytes)"
+        "description": "Gesamtspeicherlimit pro Benutzer"
+      },
+      "firstUserAccess": {
+        "description": "Einstellungen für den ersten Zugriff neuer Benutzer",
+        "title": "Erster Benutzerzugriff"
+      },
+      "serverUrl": {
+        "title": "Server-URL",
+        "description": "Basis-URL des Palmr-Servers (z.B.: https://palmr.example.com)"
+      },
+      "oidcEnabled": {
+        "title": "OIDC aktiviert",
+        "description": "Authentifizierung über OpenID Connect aktivieren oder deaktivieren"
+      },
+      "oidcIssuerUrl": {
+        "title": "Anbieter-URL",
+        "description": "URL des OpenID Connect-Anbieters (z.B.: https://auth.example.com/auth/realms/master)"
+      },
+      "oidcClientId": {
+        "title": "Client-ID",
+        "description": "Identifier des beim Anbieter registrierten OIDC-Clients"
+      },
+      "oidcClientSecret": {
+        "title": "Client-Secret",
+        "description": "Secret des OIDC-Clients für die Authentifizierung"
+      },
+      "oidcRedirectUri": {
+        "title": "Weiterleitungs-URI",
+        "description": "URI, zu der der Benutzer nach der Authentifizierung weitergeleitet wird. Geben Sie nur die Basis-URL ein (z.B.: https://meineseite.com). Der Pfad /api/auth/oidc/callback wird automatisch hinzugefügt."
+      },
+      "oidcScope": {
+        "title": "Scopes",
+        "description": "Angeforderte OIDC-Scopes (z.B.: openid profile email)"
+      },
+      "oidcAutoRegister": {
+        "title": "Automatische Registrierung",
+        "description": "Registriert automatisch Benutzer, die beim ersten Login nicht existieren"
+      },
+      "oidcAdminEmailDomains": {
+        "title": "Admin-E-Mail-Domains",
+        "description": "E-Mail-Domains, die automatisch Administratorrechte erhalten"
       }
     },
     "buttons": {
-      "save": "{{group}} speichern"
+      "save": "{group} speichern"
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Einstellungen",
@@ -415,11 +537,19 @@
     },
     "messages": {
       "noChanges": "Keine Änderungen zum Speichern",
-      "updateSuccess": "{{group}}-Einstellungen erfolgreich aktualisiert"
+      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert"
     },
     "title": "Einstellungen",
     "breadcrumb": "Einstellungen",
-    "pageTitle": "Einstellungen"
+    "pageTitle": "Einstellungen",
+    "tooltips": {
+      "oidcScope": "Geben Sie einen Scope ein und drücken Sie Enter zum Hinzufügen",
+      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen"
+    },
+    "redirectUri": {
+      "placeholder": "https://meineseite.com",
+      "previewLabel": "Vollständige URL, die gespeichert wird:"
+    }
   },
   "share": {
     "errors": {
@@ -440,8 +570,8 @@
     },
     "details": {
       "untitled": "Unbenannte Freigabe",
-      "created": "Erstellt: {{date}}",
-      "expires": "Läuft ab: {{date}}"
+      "created": "Erstellt: {date}",
+      "expires": "Läuft ab: {date}"
     },
     "notFound": {
       "title": "Freigabe nicht gefunden",
@@ -450,44 +580,59 @@
     "pageTitle": "Freigabe"
   },
   "shareActions": {
-    "deleteTitle": "Freigabe löschen",
+    "deleteTitle": "Freigabe Löschen",
     "deleteConfirmation": "Sind Sie sicher, dass Sie diese Freigabe löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
-    "editTitle": "Freigabe bearbeiten",
-    "nameLabel": "Freigabename",
+    "editTitle": "Freigabe Bearbeiten",
+    "nameLabel": "Freigabe-Name",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
     "expirationLabel": "Ablaufdatum",
-    "expirationPlaceholder": "MM/TT/JJJJ SS:MM",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
     "maxViewsLabel": "Maximale Ansichten",
     "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
-    "passwordProtection": "Passwortgeschützt",
+    "passwordProtection": "Passwort-geschützt",
     "passwordLabel": "Passwort",
     "passwordPlaceholder": "Passwort eingeben",
     "newPasswordLabel": "Neues Passwort (leer lassen, um das aktuelle zu behalten)",
     "newPasswordPlaceholder": "Neues Passwort eingeben",
-    "manageFilesTitle": "Dateien verwalten",
-    "manageRecipientsTitle": "Empfänger verwalten",
+    "manageFilesTitle": "Dateien Verwalten",
+    "manageRecipientsTitle": "Empfänger Verwalten",
     "editSuccess": "Freigabe erfolgreich aktualisiert",
-    "editError": "Fehler beim Aktualisieren der Freigabe"
+    "editError": "Fehler beim Aktualisieren der Freigabe",
+    "bulkDeleteConfirmation": "Sind Sie sicher, dass Sie {count, plural, =1 {1 Freigabe} other {# Freigaben}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "bulkDeleteTitle": "Ausgewählte Freigaben löschen"
   },
   "shareDetails": {
-    "title": "Freigabedetails",
-    "subtitle": "Detaillierte Informationen zu dieser Freigabe",
+    "title": "Freigabe-Details",
+    "subtitle": "Detaillierte Informationen über diese Freigabe",
     "basicInfo": "Grundinformationen",
     "name": "Name",
-    "untitled": "Ohne Titel",
-    "views": "Aufrufe",
+    "description": "Beschreibung",
+    "noDescription": "Keine Beschreibung angegeben",
+    "untitled": "Unbenannt",
+    "shareLink": "Freigabe-Link",
+    "editLink": "Link Bearbeiten",
+    "generateLink": "Link Generieren",
+    "noLink": "Noch kein Link generiert",
+    "copyLink": "Link kopieren",
+    "openLink": "In neuem Tab öffnen",
+    "linkCopied": "Link in Zwischenablage kopiert",
+    "views": "Ansichten",
     "dates": "Daten",
     "created": "Erstellt",
     "expires": "Läuft ab",
-    "never": "Nie",
+    "never": "Niemals",
     "security": "Sicherheit",
-    "passwordProtected": "Passwortgeschützt",
-    "publicAccess": "Öffentlicher Zugriff",
-    "maxViews": "Maximale Ansichten:",
+    "passwordProtected": "Passwort-geschützt",
+    "publicAccess": "Öffentlicher Zugang",
+    "maxViews": "Max. Ansichten:",
     "files": "Dateien",
     "recipients": "Empfänger",
     "notAvailable": "N/V",
     "invalidDate": "Ungültiges Datum",
-    "loadError": "Fehler beim Laden der Freigabedetails"
+    "loadError": "Fehler beim Laden der Freigabe-Details",
+    "editSecurity": "Sicherheit bearbeiten",
+    "editExpiration": "Ablauf bearbeiten"
   },
   "shareManager": {
     "deleteSuccess": "Freigabe erfolgreich gelöscht",
@@ -502,7 +647,14 @@
     "linkGenerateError": "Fehler beim Generieren des Freigabelinks",
     "notifyLoading": "Benachrichtigungen werden gesendet...",
     "notifySuccess": "Empfänger erfolgreich benachrichtigt",
-    "notifyError": "Fehler beim Benachrichtigen der Empfänger"
+    "notifyError": "Fehler beim Benachrichtigen der Empfänger",
+    "bulkDeleteError": "Fehler beim Löschen der Freigaben",
+    "bulkDeleteLoading": "Lösche {count, plural, =1 {1 Freigabe} other {# Freigaben}}...",
+    "bulkDeleteSuccess": "{count, plural, =1 {1 Freigabe erfolgreich gelöscht} other {# Freigaben erfolgreich gelöscht}}",
+    "securityUpdateError": "Sicherheitseinstellungen konnten nicht aktualisiert werden",
+    "expirationUpdateError": "Ablaufeinstellungen konnten nicht aktualisiert werden",
+    "securityUpdateSuccess": "Sicherheitseinstellungen erfolgreich aktualisiert",
+    "expirationUpdateSuccess": "Ablaufeinstellungen erfolgreich aktualisiert"
   },
   "shares": {
     "errors": {
@@ -526,17 +678,18 @@
       "title": "Alle Freigaben",
       "createButton": "Freigabe erstellen",
       "placeholder": "Freigaben suchen...",
-      "results": "Gefunden {{filtered}} von {{total}} Freigaben"
+      "results": "Gefunden {filtered} von {total} Freigaben"
     },
     "pageTitle": "Freigaben"
   },
   "sharesTable": {
-    "ariaLabel": "Freigabetabelle",
-    "never": "Nie",
+    "ariaLabel": "Freigaben-Tabelle",
+    "never": "Niemals",
     "columns": {
       "name": "NAME",
+      "description": "BESCHREIBUNG",
       "createdAt": "ERSTELLT AM",
-      "expiresAt": "LÄUFT AB",
+      "expiresAt": "LÄUFT AB AM",
       "status": "STATUS",
       "security": "SICHERHEIT",
       "files": "DATEIEN",
@@ -544,7 +697,7 @@
       "actions": "AKTIONEN"
     },
     "status": {
-      "neverExpires": "Läuft nie ab",
+      "neverExpires": "Läuft Nie Ab",
       "active": "Aktiv",
       "expired": "Abgelaufen"
     },
@@ -555,17 +708,23 @@
     "filesCount": "Dateien",
     "recipientsCount": "Empfänger",
     "actions": {
-      "menu": "Freigabeaktionsmenü",
+      "menu": "Freigabe-Aktionen-Menü",
       "edit": "Bearbeiten",
-      "manageFiles": "Dateien verwalten",
-      "manageRecipients": "Empfänger verwalten",
-      "viewDetails": "Details anzeigen",
-      "generateLink": "Link generieren",
-      "editLink": "Link bearbeiten",
-      "copyLink": "Link kopieren",
-      "notifyRecipients": "Empfänger benachrichtigen",
+      "manageFiles": "Dateien Verwalten",
+      "manageRecipients": "Empfänger Verwalten",
+      "viewDetails": "Details Anzeigen",
+      "generateLink": "Link Generieren",
+      "editLink": "Link Bearbeiten",
+      "copyLink": "Link Kopieren",
+      "notifyRecipients": "Empfänger Benachrichtigen",
       "delete": "Löschen"
-    }
+    },
+    "bulkActions": {
+      "delete": "Löschen",
+      "selected": "{count, plural, =1 {1 Freigabe ausgewählt} other {# Freigaben ausgewählt}}"
+    },
+    "selectAll": "Alle auswählen",
+    "selectShare": "Freigabe {shareName} auswählen"
   },
   "storageUsage": {
     "title": "Speichernutzung",
@@ -581,15 +740,30 @@
   },
   "uploadFile": {
     "title": "Datei hochladen",
+    "multipleTitle": "Mehrere Dateien Hochladen",
     "selectFile": "Klicken Sie, um eine Datei auszuwählen",
+    "selectMultipleFiles": "Klicken Sie, um eine oder mehrere Dateien auszuwählen",
+    "dragAndDrop": "oder ziehen und legen Sie Dateien hier ab",
     "preview": "Vorschau",
     "uploadProgress": "Upload-Fortschritt",
     "upload": "Hochladen",
+    "startUploads": "Uploads Starten",
+    "finish": "Beenden",
     "success": "Datei erfolgreich hochgeladen",
+    "allSuccess": "{count, plural, =1 {Datei erfolgreich hochgeladen} other {# Dateien erfolgreich hochgeladen}}",
+    "partialSuccess": "{success} Dateien erfolgreich hochgeladen, {error} fehlgeschlagen",
     "error": "Fehler beim Hochladen der Datei",
-    "fileSizeExceeded": "Dateigröße überschreitet das limit von {maxsizemb}MB.",
-    "insufficientStorage": "Nicht genügend Speicherplatz. Es sind {availablespace}MB verfügbar.",
-    "unauthorized": "Nicht autorisiert: Ein gültiger Token ist erforderlich, um auf diese Ressource zuzugreifen."
+    "fileSizeExceeded": "Die Dateigröße überschreitet das Limit von {maxsizemb}MB.",
+    "insufficientStorage": "Unzureichender Speicherplatz. Sie haben {availablespace}MB verfügbar.",
+    "unauthorized": "Nicht autorisiert: Ein gültiger Token ist erforderlich, um auf diese Ressource zuzugreifen.",
+    "confirmCancel": {
+      "title": "Uploads Abbrechen",
+      "messageSingle": "Es läuft ein Upload.",
+      "messageMultiple": "Es laufen {count} Uploads.",
+      "warning": "Wenn Sie jetzt schließen, werden die Uploads abgebrochen und jeder Fortschritt geht verloren.",
+      "continue": "Uploads Fortsetzen",
+      "cancel": "Uploads Abbrechen"
+    }
   },
   "users": {
     "modes": {
@@ -598,7 +772,7 @@
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Benutzer",
-      "submitFailed": "Fehler beim {{mode}} des Benutzers",
+      "submitFailed": "Fehler beim {mode} des Benutzers",
       "deleteFailed": "Fehler beim Löschen des Benutzers",
       "statusUpdateFailed": "Fehler beim Aktualisieren des Benutzerstatus"
     },
@@ -617,7 +791,7 @@
     },
     "delete": {
       "title": "Löschen des Benutzers bestätigen",
-      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {{firstName}} {{lastName}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {firstName} {lastName} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
       "confirm": "Benutzer löschen"
     },
     "form": {
@@ -638,7 +812,7 @@
     },
     "status": {
       "title": "Statusänderung bestätigen",
-      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {{firstName}} {{lastName}} {{action}} möchten?",
+      "confirmation": "Sind Sie sicher, dass Sie den Benutzer {firstName} {lastName} {action} möchten?",
       "activate": "aktivieren",
       "deactivate": "deaktivieren",
       "user": "Benutzer"
@@ -670,6 +844,502 @@
     "passwordLength": "Das Passwort muss mindestens 8 Zeichen lang sein",
     "passwordsMatch": "Die Passwörter stimmen nicht überein",
     "emailRequired": "E-Mail ist erforderlich",
-    "passwordRequired": "Passwort ist erforderlich"
+    "passwordRequired": "Passwort ist erforderlich",
+    "nameRequired": "Name ist erforderlich",
+    "required": "Dieses Feld ist erforderlich"
+  },
+  "shareFile": {
+    "title": "Datei Freigeben",
+    "linkTitle": "Link Generieren",
+    "nameLabel": "Freigabe-Name",
+    "namePlaceholder": "Freigabe-Namen eingeben",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
+    "expirationLabel": "Ablaufdatum",
+    "expirationPlaceholder": "TT.MM.JJJJ HH:MM",
+    "maxViewsLabel": "Maximale Ansichten",
+    "maxViewsPlaceholder": "Leer lassen für unbegrenzt",
+    "passwordProtection": "Passwort-geschützt",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "linkDescription": "Einen benutzerdefinierten Link zum Teilen der Datei generieren",
+    "aliasLabel": "Link-Alias",
+    "aliasPlaceholder": "Benutzerdefinierten Alias eingeben",
+    "linkReady": "Ihr Freigabe-Link ist bereit:",
+    "createShare": "Freigabe Erstellen",
+    "generateLink": "Link Generieren",
+    "copyLink": "Link Kopieren"
+  },
+  "bulkDownload": {
+    "title": "Massen-Download",
+    "zipNameLabel": "ZIP-Dateiname",
+    "zipNamePlaceholder": "Dateiname eingeben",
+    "description": "{count, plural, =1 {1 Datei wird komprimiert} other {# Dateien werden komprimiert}}",
+    "download": "ZIP Herunterladen"
+  },
+  "deleteConfirmation": {
+    "filesToDelete": "Zu löschende Dateien",
+    "sharesToDelete": "Freigaben, die gelöscht werden"
+  },
+  "shareMultipleFiles": {
+    "title": "Mehrere Dateien Teilen",
+    "shareNameLabel": "Freigabe-Name",
+    "shareNamePlaceholder": "Freigabe-Name eingeben",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Geben Sie eine Beschreibung ein (optional)",
+    "filesToShare": "Zu teilende Dateien",
+    "files": "Dateien",
+    "totalSize": "Gesamtgröße",
+    "creating": "Erstellen...",
+    "create": "Freigabe Erstellen"
+  },
+  "shareSecurity": {
+    "subtitle": "Passwortschutz und Sicherheitsoptionen für diese Freigabe konfigurieren",
+    "info": {
+      "title": "So funktioniert es:",
+      "withoutPassword": "Jeder mit dem Link kann auf diese Freigabe ohne Passwort zugreifen.",
+      "withPassword": "Benutzer müssen das Passwort eingeben, um auf diese Freigabe zuzugreifen."
+    },
+    "existingPasswordMessage": "Diese Freigabe hat bereits ein Passwort. Wenn Sie es aktualisieren möchten, geben Sie das neue Passwort in das Feld unten ein und speichern Sie.",
+    "passwordProtection": "Passwortschutz",
+    "error": {
+      "updateFailed": "Sicherheitseinstellungen konnten nicht aktualisiert werden"
+    },
+    "passwordRequirements": {
+      "title": "Passwort-Anforderungen:",
+      "minLength": "Mindestens 2 Zeichen"
+    },
+    "newPassword": "Neues Passwort",
+    "success": {
+      "passwordUpdated": "Passwort erfolgreich aktualisiert",
+      "passwordRemoved": "Passwortschutz erfolgreich entfernt",
+      "passwordSet": "Passwortschutz erfolgreich aktiviert"
+    },
+    "password": "Passwort",
+    "validation": {
+      "passwordRequired": "Passwort ist erforderlich",
+      "passwordTooShort": "Passwort muss mindestens 2 Zeichen haben"
+    },
+    "currentStatus": "Aktueller Status",
+    "passwordPlaceholder": "Sicheres Passwort eingeben",
+    "title": "Freigabe-Sicherheitseinstellungen"
+  },
+  "shareExpiration": {
+    "neverExpires": "Läuft nie ab",
+    "success": {
+      "expirationUpdated": "Ablaufdatum erfolgreich aktualisiert",
+      "expirationRemoved": "Ablauf erfolgreich entfernt - Freigabe ist jetzt dauerhaft",
+      "expirationSet": "Ablaufdatum erfolgreich festgelegt"
+    },
+    "info": {
+      "canBeChanged": "Sie können das Ablaufdatum jederzeit ändern oder entfernen",
+      "willBeInaccessible": "Die Freigabe wird nach diesem Datum unzugänglich",
+      "noExpiration": "Diese Freigabe läuft nie ab und bleibt unbegrenzt zugänglich.",
+      "title": "Über Ablauf:"
+    },
+    "enableExpiration": "Ablauf aktivieren",
+    "title": "Freigabe-Ablaufeinstellungen",
+    "subtitle": "Konfigurieren, wann diese Freigabe abläuft",
+    "validation": {
+      "dateMustBeFuture": "Ablaufdatum muss in der Zukunft liegen",
+      "dateRequired": "Bitte wählen Sie ein Ablaufdatum"
+    },
+    "currentStatus": "Aktueller Status",
+    "error": {
+      "updateFailed": "Ablaufeinstellungen konnten nicht aktualisiert werden"
+    },
+    "expires": "Läuft ab:",
+    "expirationDate": "Ablaufdatum"
+  },
+  "auth": {
+    "errors": {
+      "account_inactive": "Konto inaktiv. Kontaktieren Sie den Administrator.",
+      "registration_disabled": "Registrierung über SSO ist deaktiviert.",
+      "token_expired": "Token abgelaufen. Versuchen Sie es erneut.",
+      "config_error": "Konfigurationsfehler. Kontaktieren Sie den Support.",
+      "auth_failed": "Authentifizierung fehlgeschlagen. Versuchen Sie es erneut."
+    }
+  },
+  "reverseShares": {
+    "pageTitle": "Dateien empfangen",
+    "search": {
+      "title": "Empfangslinks verwalten",
+      "createButton": "Link erstellen",
+      "placeholder": "Empfangslinks durchsuchen...",
+      "results": "{filtered} von {total} Empfangslinks gefunden"
+    },
+    "labels": {
+      "files": "Dateien",
+      "size": "Größe",
+      "status": "Status",
+      "access": "Zugriff",
+      "description": "Beschreibung",
+      "pageLayout": "Seitenlayout",
+      "security": "Sicherheit & Status",
+      "limits": "Beschränkungen",
+      "maxFiles": "Maximale Dateien",
+      "maxFileSize": "Maximale Größe",
+      "allowedTypes": "Erlaubte Typen",
+      "filesReceived": "Empfangene Dateien",
+      "fileLimit": "Dateilimit",
+      "noLimit": "Kein Limit",
+      "noLinkCreated": "Kein Link erstellt",
+      "publicAccess": "Öffentlicher Zugriff",
+      "protectedByPassword": "Passwortgeschützt",
+      "configureProtection": "Klicken Sie, um Schutz zu konfigurieren",
+      "enterPassword": "Passwort eingeben",
+      "thisLinkProtected": "Dieser Link wird passwortgeschützt sein",
+      "thisLinkPublic": "Dieser Link wird öffentlich verfügbar sein",
+      "configureExpiration": "Ablauf konfigurieren",
+      "configureLimits": "Dateilimits konfigurieren",
+      "protectWithPassword": "Mit Passwort schützen",
+      "layoutOptions": {
+        "default": "Standard",
+        "wetransfer": "WeTransfer"
+      },
+      "noFilesLimit": "Kein Dateilimit",
+      "noSizeLimit": "Kein Größenlimit",
+      "allFileTypes": "Alle Dateitypen",
+      "fileTypesHelp": "Geben Sie Erweiterungen ohne Punkt ein, getrennt durch Leerzeichen, Komma, Bindestrich oder Pipe"
+    },
+    "card": {
+      "untitled": "Unbenannter Link",
+      "noDescription": "Keine Beschreibung",
+      "addDescriptionPlaceholder": "Beschreibung hinzufügen...",
+      "files": "Dateien",
+      "progress": "Fortschritt",
+      "created": "Erstellt",
+      "expired": "Abgelaufen",
+      "expires": "Läuft ab",
+      "viewDetails": "Details anzeigen",
+      "copyLink": "Link kopieren",
+      "openInNewTab": "In neuem Tab öffnen",
+      "editLink": "Link bearbeiten",
+      "createLink": "Link erstellen",
+      "delete": "Löschen",
+      "copyLinkTitle": "Link kopieren",
+      "createLinkCTA": "Empfangslink erstellen"
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "expired": "Abgelaufen",
+      "protected": "Geschützt",
+      "public": "Öffentlich"
+    },
+    "actions": {
+      "copyLink": "Link kopieren",
+      "editAlias": "Alias bearbeiten",
+      "createAlias": "Alias erstellen",
+      "viewDetails": "Details anzeigen",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "viewFiles": "Empfangene Dateien"
+    },
+    "empty": {
+      "title": "Keine Empfangslinks erstellt",
+      "description": "Erstellen Sie personalisierte Links, damit andere Ihnen Dateien sicher und organisiert senden können.",
+      "createButton": "Ersten Link erstellen"
+    },
+    "modals": {
+      "create": {
+        "title": "Empfangslink erstellen",
+        "description": "Konfigurieren Sie einen personalisierten Link zum Empfangen von Dateien von anderen"
+      },
+      "edit": {
+        "title": "Empfangslink bearbeiten",
+        "description": "Aktualisieren Sie die Einstellungen dieses Empfangslinks",
+        "updating": "Wird aktualisiert...",
+        "saveChanges": "Änderungen speichern"
+      },
+      "details": {
+        "title": "Link-Details",
+        "description": "Sehen und bearbeiten Sie die Informationen Ihres Empfangslinks",
+        "pageLayout": "Seitenlayout",
+        "linkSection": "Empfangslink",
+        "noLinkCreated": "Kein Link erstellt",
+        "limits": "Beschränkungen",
+        "maxFiles": "Maximale Dateien",
+        "maxFileSize": "Maximale Größe",
+        "allowedTypes": "Erlaubte Typen",
+        "noLimit": "Kein Limit",
+        "security": "Sicherheit",
+        "status": "Status",
+        "password": "Passwort",
+        "files": "Empfangene Dateien",
+        "noFiles": "Noch keine Dateien empfangen",
+        "copyLink": "Link kopieren",
+        "openLink": "Link öffnen",
+        "editAlias": "Alias bearbeiten",
+        "createAlias": "Alias erstellen",
+        "editPassword": "Passwortschutz bearbeiten",
+        "basicInfo": "Grundlegende Informationen",
+        "securityAndStatus": "Sicherheit & Status",
+        "protection": "Schutz",
+        "protectedByPassword": "Passwortgeschützt",
+        "publicAccess": "Öffentlicher Zugriff",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "deactivate": "Deaktivieren",
+        "activate": "Aktivieren",
+        "expiration": "Ablauf",
+        "dates": "Daten",
+        "createdAt": "Erstellt am",
+        "updatedAt": "Aktualisiert am",
+        "allTypes": "Alle Typen",
+        "placeholderTypes": ".pdf,.jpg,.png (durch Komma getrennt)",
+        "downloadSuccess": "Download gestartet",
+        "downloadError": "Fehler beim Herunterladen der Datei",
+        "editSuccess": "Datei erfolgreich aktualisiert",
+        "editError": "Fehler beim Aktualisieren der Datei",
+        "previewNotAvailable": "Vorschau nicht verfügbar",
+        "notAvailable": "Nicht verfügbar",
+        "invalidDate": "Ungültiges Datum"
+      },
+      "alias": {
+        "editTitle": "Alias bearbeiten",
+        "createTitle": "Alias erstellen",
+        "editDescription": "Aktualisieren Sie den Alias dieses Empfangslinks",
+        "createDescription": "Erstellen Sie einen benutzerdefinierten Alias für diesen Empfangslink",
+        "aliasLabel": "Link-Alias",
+        "aliasPlaceholder": "mein-benutzerdefinierter-link",
+        "preview": "Vorschau:",
+        "currentLink": "Aktueller Link:",
+        "copyCurrentLink": "Aktuellen Link kopieren",
+        "randomTooltip": "Zufälligen Alias generieren",
+        "cancel": "Abbrechen",
+        "creating": "Wird erstellt...",
+        "updating": "Wird aktualisiert...",
+        "create": "Alias erstellen",
+        "update": "Alias aktualisieren",
+        "validation": {
+          "required": "Alias ist erforderlich",
+          "minLength": "Alias muss mindestens 3 Zeichen lang sein",
+          "maxLength": "Alias darf maximal 50 Zeichen lang sein",
+          "pattern": "Alias darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten"
+        },
+        "help": "3-50 Zeichen. Leerzeichen werden automatisch in Bindestriche umgewandelt."
+      },
+      "password": {
+        "title": "Passwortschutz bearbeiten",
+        "description": "Konfigurieren Sie den Passwortschutz für diesen Link",
+        "hasPassword": "Passwortgeschützt",
+        "password": "Passwort",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert..."
+      },
+      "receivedFiles": {
+        "title": "Empfangene Dateien",
+        "description": "Sehen und verwalten Sie die über diesen Link gesendeten Dateien",
+        "noFiles": "Noch keine Dateien empfangen",
+        "noFilesDescription": "Über diesen Link gesendete Dateien erscheinen hier",
+        "fileCount": "{count, plural, =0 {Keine Dateien} =1 {1 Datei} other {# Dateien}}",
+        "totalSize": "Gesamtgröße: {size}",
+        "columns": {
+          "file": "Datei",
+          "size": "Größe",
+          "sender": "Gesendet von",
+          "date": "Datum",
+          "actions": "Aktionen"
+        },
+        "actions": {
+          "preview": "Vorschau",
+          "download": "Herunterladen"
+        },
+        "uploadedBy": "Hochgeladen von {name}",
+        "anonymous": "Anonym",
+        "downloadSuccess": "Download gestartet",
+        "downloadError": "Fehler beim Herunterladen der Datei",
+        "editSuccess": "Datei erfolgreich aktualisiert",
+        "editError": "Fehler beim Aktualisieren der Datei",
+        "previewNotAvailable": "Vorschau nicht verfügbar"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Link-Name",
+        "placeholder": "z.B. Projektdokumente, Familienfotos..."
+      },
+      "description": {
+        "label": "Beschreibung",
+        "placeholder": "Beschreiben Sie, welche Art von Dateien Sie erwarten...",
+        "description": "Optional. Hilft anderen zu verstehen, was sie senden sollen."
+      },
+      "status": {
+        "label": "Link-Status",
+        "description": "Aktivieren oder deaktivieren Sie diesen Empfangslink"
+      },
+      "expiration": {
+        "label": "Ablaufdatum",
+        "description": "Optional. Der Link wird nach diesem Datum deaktiviert.",
+        "configure": "Ablauf konfigurieren"
+      },
+      "fileLimits": {
+        "configure": "Dateilimits konfigurieren"
+      },
+      "maxFiles": {
+        "label": "Maximale Dateien",
+        "placeholder": "z.B. 10",
+        "description": "Optional. Begrenzen Sie die Gesamtzahl der Dateien, die gesendet werden können.",
+        "noLimit": "Kein Dateilimit"
+      },
+      "maxFileSize": {
+        "label": "Maximale Dateigröße",
+        "placeholder": "z.B. 100",
+        "description": "Optional. Begrenzen Sie die individuelle Größe jeder Datei.",
+        "noLimit": "Kein Größenlimit"
+      },
+      "allowedFileTypes": {
+        "label": "Erlaubte Dateitypen",
+        "placeholder": "z.B. pdf, jpg, png, docx",
+        "description": "Geben Sie Erweiterungen ohne Punkt ein, getrennt durch Leerzeichen, Komma, Bindestrich oder Pipe",
+        "allTypes": "Alle Dateitypen"
+      },
+      "pageLayout": {
+        "label": "Seitenlayout",
+        "placeholder": "Layout auswählen",
+        "description": "Wie die Upload-Seite für Benutzer aussehen wird.",
+        "options": {
+          "default": "Standard-Layout",
+          "wetransfer": "WeTransfer-Stil"
+        }
+      },
+      "password": {
+        "label": "Schutzpasswort",
+        "placeholder": "Optional. Fügen Sie ein Passwort hinzu, um den Link zu schützen",
+        "description": "Optional. Benutzer benötigen dieses Passwort, um auf den Link zuzugreifen.",
+        "configurePassword": "Passwort konfigurieren",
+        "protectWithPassword": "Mit Passwort schützen",
+        "passwordHelp": "Das Passwort muss mindestens 4 Zeichen lang sein",
+        "passwordPlaceholder": "Geben Sie ein Passwort ein, um den Link zu schützen"
+      },
+      "submit": "Empfangslink erstellen"
+    },
+    "messages": {
+      "created": "Empfangslink erfolgreich erstellt!",
+      "createSuccess": "Empfangslink erfolgreich erstellt!",
+      "updateSuccess": "Empfangslink erfolgreich aktualisiert!",
+      "linkCopied": "Link in die Zwischenablage kopiert!",
+      "deleteSuccess": "Empfangslink erfolgreich gelöscht!",
+      "aliasCreated": "Alias erfolgreich erstellt!",
+      "activateSuccess": "Empfangslink erfolgreich aktiviert!",
+      "deactivateSuccess": "Empfangslink erfolgreich deaktiviert!"
+    },
+    "errors": {
+      "loadFailed": "Fehler beim Laden der Empfangslinks",
+      "createFailed": "Fehler beim Erstellen des Empfangslinks. Bitte versuchen Sie es erneut.",
+      "updateFailed": "Fehler beim Aktualisieren des Empfangslinks. Bitte versuchen Sie es erneut.",
+      "deleteFailed": "Fehler beim Löschen des Empfangslinks. Bitte versuchen Sie es erneut.",
+      "aliasCreateFailed": "Fehler beim Erstellen des Alias. Bitte versuchen Sie es erneut."
+    },
+    "delete": {
+      "title": "Empfangslink löschen",
+      "description": "Diese Aktion kann nicht rückgängig gemacht werden. Der Link wird dauerhaft entfernt und kann keine Dateien mehr empfangen.",
+      "confirmButton": "Link löschen",
+      "cancelButton": "Abbrechen",
+      "deleting": "Wird gelöscht..."
+    },
+    "upload": {
+      "metadata": {
+        "title": "Dateien senden - Palmr",
+        "description": "Senden Sie Dateien über den geteilten Link"
+      },
+      "layout": {
+        "defaultTitle": "Dateien senden",
+        "importantInfo": "Wichtige Informationen:",
+        "maxFiles": "Maximal {count} Datei(en)",
+        "maxFileSize": "Maximale Dateigröße: {size}MB",
+        "allowedTypes": "Erlaubte Typen: {types}",
+        "loading": "Wird geladen..."
+      },
+      "password": {
+        "title": "Geschützter Link",
+        "description": "Dieser Link ist passwortgeschützt. Geben Sie das Passwort ein, um fortzufahren.",
+        "label": "Passwort",
+        "placeholder": "Passwort eingeben",
+        "cancel": "Abbrechen",
+        "submit": "Fortfahren",
+        "verifying": "Wird überprüft..."
+      },
+      "errors": {
+        "loadFailed": "Fehler beim Laden der Informationen. Bitte versuchen Sie es erneut.",
+        "passwordIncorrect": "Falsches Passwort. Bitte versuchen Sie es erneut.",
+        "linkNotFound": "Link nicht gefunden oder abgelaufen.",
+        "linkInactive": "Dieser Link ist inaktiv.",
+        "linkExpired": "Dieser Link ist abgelaufen.",
+        "uploadFailed": "Fehler beim Hochladen der Datei",
+        "fileTooLarge": "Datei zu groß. Maximale Größe: {maxSize}",
+        "fileTypeNotAllowed": "Dateityp nicht erlaubt. Erlaubte Typen: {allowedTypes}",
+        "maxFilesExceeded": "Maximal {maxFiles} Dateien erlaubt",
+        "selectAtLeastOneFile": "Wählen Sie mindestens eine Datei aus",
+        "provideNameOrEmail": "Geben Sie Ihren Namen oder E-Mail an"
+      },
+      "fileDropzone": {
+        "dragActive": "Dateien hier ablegen",
+        "dragInactive": "Dateien hierher ziehen oder klicken zum Auswählen",
+        "acceptedTypes": "Erlaubte Typen: {types}",
+        "maxFileSize": "Maximale Größe: {size}",
+        "maxFiles": "Maximal {count} Dateien",
+        "remainingFiles": "Noch {remaining} von {max} Dateien übrig"
+      },
+      "fileList": {
+        "title": "Ausgewählte Dateien:",
+        "statusUploaded": "Hochgeladen",
+        "statusError": "Fehler"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Ihr Name",
+        "emailLabel": "E-Mail",
+        "emailPlaceholder": "ihre@email.de",
+        "descriptionLabel": "Beschreibung (optional)",
+        "descriptionPlaceholder": "Fügen Sie eine Beschreibung zu den Dateien hinzu...",
+        "uploadButton": "{count} Datei(en) senden",
+        "uploading": "Wird hochgeladen..."
+      },
+      "success": {
+        "title": "Dateien erfolgreich hochgeladen! 🎉",
+        "description": "Sie können diese Seite jetzt schließen.",
+        "countMessage": "{count} Datei(en) erfolgreich hochgeladen!"
+      },
+      "maxFilesReached": {
+        "title": "Dateilimit erreicht",
+        "description": "Dieser Link hat bereits die maximale Anzahl von {maxFiles} Datei(en) empfangen.",
+        "contactOwner": "Wenn ein Fehler aufgetreten ist oder Sie weitere Dateien senden müssen, kontaktieren Sie bitte den Link-Eigentümer."
+      },
+      "linkInactive": {
+        "title": "Link inaktiv",
+        "description": "Dieser Empfangslink ist vorübergehend inaktiv.",
+        "contactOwner": "Kontaktieren Sie den Link-Eigentümer für weitere Informationen."
+      },
+      "linkNotFound": {
+        "title": "Link nicht gefunden",
+        "description": "Dieser Link wurde möglicherweise entfernt oder hat nie existiert."
+      },
+      "linkExpired": {
+        "title": "Link abgelaufen",
+        "description": "Dieser Empfangslink ist abgelaufen und akzeptiert keine Dateien mehr.",
+        "contactOwner": "Kontaktieren Sie den Link-Eigentümer, wenn Sie Dateien senden müssen."
+      }
+    },
+    "components": {
+      "fileRow": {
+        "addDescription": "Beschreibung hinzufügen...",
+        "anonymous": "Anonym"
+      },
+      "fileActions": {
+        "edit": "Bearbeiten",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "preview": "Vorschau",
+        "download": "Herunterladen",
+        "delete": "Löschen"
+      },
+      "editField": {
+        "saveChanges": "Änderungen speichern",
+        "cancelEdit": "Bearbeitung abbrechen"
+      }
+    }
   }
 }

@@ -1,7 +1,8 @@
+import { IconTrash } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { UserDeleteModalProps } from "../types";
 
 export function UserDeleteModal({ isOpen, onClose, user, onConfirm }: UserDeleteModalProps) {
@@ -10,10 +11,15 @@ export function UserDeleteModal({ isOpen, onClose, user, onConfirm }: UserDelete
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        <DialogHeader className="flex flex-col gap-1">{t("users.delete.title")}</DialogHeader>
+        <DialogHeader className="flex flex-col gap-1">
+          <DialogTitle className="flex items-center gap-2 font-semibold">
+            <IconTrash size={24} className="mr-1" />
+            {t("users.delete.title")}
+          </DialogTitle>
+        </DialogHeader>
         <div className="py-4">
           {user && (
-            <p>
+            <p className="text-muted-foreground">
               {t("users.delete.confirmation", {
                 firstName: user.firstName,
                 lastName: user.lastName,

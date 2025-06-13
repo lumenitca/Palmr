@@ -12,7 +12,7 @@ export function EmptyState({ onUpload }: EmptyStateProps) {
       <IconFolder className="h-8 w-8 text-muted-foreground" />
       <p className="text-muted-foreground">{t("emptyState.noFiles")}</p>
       <Button variant="default" size="sm" onClick={onUpload}>
-        <IconCloudUpload className="mr-2 h-4 w-4" />
+        <IconCloudUpload className="h-4 w-4" />
         {t("emptyState.uploadFile")}
       </Button>
     </div>

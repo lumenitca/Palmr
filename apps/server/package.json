@@ -1,7 +1,19 @@
 {
   "name": "palmr-api",
-  "version": "1.1.6",
-  "description": "",
+  "version": "3.0-beta",
+  "description": "API for Palmr",
+  "private": true,
+  "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
+  "keywords": [
+    "palmr",
+    "api",
+    "backend",
+    "server",
+    "nodejs",
+    "typescript"
+  ],
+  "license": "BSD-2-Clause",
+  "packageManager": "pnpm@10.6.0",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
@@ -16,10 +28,9 @@
   "prisma": {
     "seed": "node prisma/seed.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.817.0",
+    "@aws-sdk/s3-request-presigner": "^3.817.0",
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.0.2",
     "@fastify/jwt": "^9.0.3",
@@ -29,11 +40,15 @@
     "@fastify/swagger-ui": "^5.2.1",
     "@prisma/client": "^6.4.1",
     "@scalar/fastify-api-reference": "^1.25.116",
+    "@types/crypto-js": "^4.2.2",
     "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.2.0",
     "fastify": "^5.2.1",
     "fastify-type-provider-zod": "^4.0.2",
-    "minio": "^8.0.4",
+    "jose": "^5.10.0",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
+    "openid-client": "^6.5.0",
     "sharp": "^0.33.5",
     "zod": "^3.24.1"
   },

@@ -43,12 +43,10 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
-              <ShareProvider>
-                {children}
-                <Toaster />
-              </ShareProvider>
+              <ShareProvider>{children}</ShareProvider>
             </AuthProvider>
           </ThemeProvider>
+          <Toaster position="bottom-right" expand={false} richColors={false} closeButton={false} />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -2,7 +2,7 @@
   "title": "v1.1.7-beta",
   "description": "(Deprecated)",
   "root": true,
-  "icon": "Building2",
+  "icon": "Trash2",
   "pages": [
     "---Introduction---",
     "index",

@@ -1,25 +1,31 @@
+import { LATEST_VERSION_PATH } from "@/config/constants";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Github } from "lucide-react";
+import { Github, Palmtree } from "lucide-react";
 
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: "🌴 Palmr.",
+    title: (
+      <div className="flex items-start gap-1.5">
+        <Palmtree className="text-[#52822D]" />
+        <span className="text-xl font-medium">Palmr.</span>
+      </div>
+    ),
   },
   links: [
     {
       text: "Docs",
-      url: "/docs/2.0.0-beta",
+      url: LATEST_VERSION_PATH,
       active: "nested-url",
     },
-		{
-			text: "Github",
-			url: "https://github.com/kyantech/Palmr",
-			active: "nested-url",
-			icon: (
-				<>
-					<Github fill="currentColor" />
-				</>
-			),
-		}
-	],
+    {
+      text: "Github",
+      url: "https://github.com/kyantech/Palmr",
+      active: "nested-url",
+      icon: (
+        <>
+          <Github fill="currentColor" />
+        </>
+      ),
+    },
+  ],
 };

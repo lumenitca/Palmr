@@ -21,7 +21,8 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
               <IconShare className="text-xl text-gray-500" />
               {t("recentShares.title")}
             </h2>
-            {shares.length >= 5 ? (
+
+            <div className="flex items-center gap-2">
               <Button
                 className="font-semibold text-sm cursor-pointer"
                 variant="outline"
@@ -31,7 +32,7 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
                 <IconShare className="h-4 w-4" />
                 {t("recentShares.viewAll")}
               </Button>
-            ) : shares.length === 0 ? null : (
+
               <Button
                 className="font-semibold text-sm cursor-pointer"
                 variant="outline"
@@ -41,7 +42,7 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
                 <IconPlus className="h-4 w-4" />
                 {t("recentShares.createShare")}
               </Button>
-            )}
+            </div>
           </div>
 
           {shares.length > 0 ? (
@@ -49,12 +50,18 @@ export function RecentShares({ shares, shareManager, onOpenCreateModal, onCopyLi
               shares={shares}
               onCopyLink={onCopyLink}
               onDelete={shareManager.setShareToDelete}
+              onBulkDelete={shareManager.handleBulkDelete}
               onEdit={shareManager.setShareToEdit}
+              onUpdateName={shareManager.handleUpdateName}
+              onUpdateDescription={shareManager.handleUpdateDescription}
+              onUpdateSecurity={shareManager.setShareToManageSecurity}
+              onUpdateExpiration={shareManager.setShareToManageExpiration}
               onGenerateLink={shareManager.setShareToGenerateLink}
               onManageFiles={shareManager.setShareToManageFiles}
               onManageRecipients={shareManager.setShareToManageRecipients}
               onNotifyRecipients={shareManager.handleNotifyRecipients}
               onViewDetails={shareManager.setShareToViewDetails}
+              setClearSelectionCallback={shareManager.setClearSelectionCallback}
             />
           ) : (
             <EmptySharesState onCreate={onOpenCreateModal} />

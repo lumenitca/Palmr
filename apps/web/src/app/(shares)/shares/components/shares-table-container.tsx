@@ -8,12 +8,18 @@ export function SharesTableContainer({ shares, onCopyLink, onCreateShare, shareM
       shares={shares}
       onCopyLink={onCopyLink}
       onDelete={shareManager.setShareToDelete}
+      onBulkDelete={shareManager.handleBulkDelete}
       onEdit={shareManager.setShareToEdit}
+      onUpdateName={shareManager.handleUpdateName}
+      onUpdateDescription={shareManager.handleUpdateDescription}
+      onUpdateSecurity={shareManager.setShareToManageSecurity}
+      onUpdateExpiration={shareManager.setShareToManageExpiration}
       onGenerateLink={shareManager.setShareToGenerateLink}
       onManageFiles={shareManager.setShareToManageFiles}
       onManageRecipients={shareManager.setShareToManageRecipients}
       onNotifyRecipients={shareManager.handleNotifyRecipients}
       onViewDetails={shareManager.setShareToViewDetails}
+      setClearSelectionCallback={shareManager.setClearSelectionCallback}
     />
   ) : (
     <EmptySharesState onCreateShare={onCreateShare} />

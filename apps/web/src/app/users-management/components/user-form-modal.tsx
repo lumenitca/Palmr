@@ -1,8 +1,8 @@
-import { IconDeviceFloppy } from "@tabler/icons-react";
+import { IconDeviceFloppy, IconUserPlus } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +23,10 @@ export function UserFormModal({ isOpen, onClose, modalMode, selectedUser, formMe
         <Form {...formMethods}>
           <form onSubmit={formMethods.handleSubmit(onSubmit)}>
             <DialogHeader>
-              {modalMode === "create" ? t("users.form.titleCreate") : t("users.form.titleEdit")}
+              <DialogTitle className="flex items-center gap-2 mb-2">
+                <IconUserPlus size={24} className="mr-1" />
+                {modalMode === "create" ? t("users.form.titleCreate") : t("users.form.titleEdit")}
+              </DialogTitle>
             </DialogHeader>
             <div className="py-4">
               <div className="flex flex-col gap-4">
@@ -78,16 +81,28 @@ export function UserFormModal({ isOpen, onClose, modalMode, selectedUser, formMe
                 {modalMode === "edit" && (
                   <div className="space-y-2">
                     <Label>{t("users.form.role")}</Label>
-                    <Select defaultValue={selectedUser?.isAdmin ? "true" : "false"} {...register("isAdmin")}>
-                      <SelectTrigger className={errors.isAdmin ? "border-destructive" : ""}>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="false">{t("users.form.roleUser")}</SelectItem>
-                        <SelectItem value="true">{t("users.form.roleAdmin")}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.isAdmin && <FormMessage>{errors.isAdmin.message}</FormMessage>}
+                    <FormField
+                      control={control}
+                      name="isAdmin"
+                      render={({ field }) => (
+                        <FormItem>
+                          <Select
+                            defaultValue={selectedUser?.isAdmin ? "true" : "false"}
+                            onValueChange={(value) => field.onChange(value === "true")}
+                            value={field.value?.toString()}
+                          >
+                            <SelectTrigger className={errors.isAdmin ? "border-destructive" : ""}>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="false">{t("users.form.roleUser")}</SelectItem>
+                              <SelectItem value="true">{t("users.form.roleAdmin")}</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          {errors.isAdmin && <FormMessage>{errors.isAdmin.message}</FormMessage>}
+                        </FormItem>
+                      )}
+                    />
                   </div>
                 )}
               </div>
