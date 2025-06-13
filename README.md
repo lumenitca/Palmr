@@ -105,6 +105,12 @@
       <br /><strong>Forgot Password</strong>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="https://res.cloudinary.com/technical-intelligence/image/upload/v1749824928/WeTransfer_Reverse_u0g7eb.png" alt="Forgot Password" style="width: 100%; border-radius: 8px;" />
+      <br /><strong>Reverse Share (WeTransfer Style)</strong>
+    </td>
+  </tr>
 </table>
 
 
