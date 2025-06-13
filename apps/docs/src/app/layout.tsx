@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <RootProvider
           search={{
             options: {
-              defaultTag: "2.1-beta",
+              defaultTag: "3.0-beta",
               tags: [
                 {
                   name: "v1.1.7 Beta",
@@ -39,8 +39,8 @@ export default function Layout({ children }: { children: ReactNode }) {
                   value: "2.0.0-beta",
                 },
                 {
-                  name: "v2.1 Beta ✨",
-                  value: "2.1-beta",
+                  name: "v3.0 Beta ✨",
+                  value: "3.0-beta",
                   props: {
                     style: {
                       border: "1px solid rgba(0,165,80,0.2)",

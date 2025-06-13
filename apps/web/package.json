@@ -1,6 +1,6 @@
 {
   "name": "palmr-frontend",
-  "version": "2.1-beta",
+  "version": "3.0-beta",
   "description": "Frontend for Palmr",
   "private": true,
   "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
@@ -11,7 +11,7 @@
     "react",
     "typescript"
   ],
-  "license": "BSD-2-Clause",
+  "license": "BSD-2-Clause Copyright 2023 Kyantech",
   "packageManager": "pnpm@10.6.0",
   "scripts": {
     "dev": "next dev --turbopack",

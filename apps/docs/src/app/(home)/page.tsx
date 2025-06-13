@@ -61,7 +61,7 @@ const images = [
   "https://res.cloudinary.com/technical-intelligence/image/upload/v1745546005/Palmr./profile_mizwvg.png",
 ];
 
-const docsLink = "/docs/2.0.0-beta";
+const docsLink = "/docs/3.0-beta";
 
 export default function HomePage() {
   return (
@@ -89,7 +89,7 @@ function Hero() {
       <h1 className="mb-8 text-6xl font-bold">
         Palmr.{" "}
         <span className="text-[13px] font-light text-muted-foreground/50 font-mono">
-          v2.1-beta
+          v3.0-beta
         </span>
       </h1>
       <h1 className="hidden text-4xl font-medium max-w-[600px] md:block mb-4">

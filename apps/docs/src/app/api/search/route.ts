@@ -8,8 +8,8 @@ export const { GET } = createFromSource(source, (page) => {
     url: page.url,
     id: page.url,
     structuredData: page.data.structuredData,
-    tag: page.url.startsWith("/docs/2.1-beta")
-      ? "v2.1-beta"
+    tag: page.url.startsWith("/docs/3.0-beta")
+      ? "v3.0-beta"
       : page.url.startsWith("/docs/2.0.0-beta")
       ? "v2.0.0-beta"
       : "v1.1.7-beta",

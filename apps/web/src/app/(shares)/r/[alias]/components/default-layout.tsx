@@ -166,7 +166,7 @@ export function DefaultLayout({
                   <p>• {t("reverseShares.upload.layout.maxFileSize", { size: reverseShare.maxFileSize })}</p>
                 )}
                 {reverseShare?.allowedFileTypes && (
-                  <p>• {t("allowedTypes", { types: reverseShare.allowedFileTypes })}</p>
+                  <p>• {t("reverseShares.upload.layout.allowedTypes", { types: reverseShare.allowedFileTypes })}</p>
                 )}
               </div>
             </div>

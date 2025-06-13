@@ -31,7 +31,7 @@ export default function LoginPage() {
         <div className="relative flex h-full w-full items-center justify-center">
           <motion.div
             animate={{ opacity: 1, y: 0 }}
-            className="flex w-full max-w-sm flex-col gap-4 rounded-lg bg-background/80 backdrop-blur-md px-8 pb-10 pt-6 shadow-lg"
+            className="flex w-full max-w-sm flex-col gap-4 rounded-lg bg-background/60 backdrop-blur-md px-8 pb-10 pt-6 shadow-lg border"
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
