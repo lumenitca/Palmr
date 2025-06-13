@@ -24,8 +24,7 @@ export const RedirectUriInput = forwardRef<HTMLInputElement, RedirectUriInputPro
 
     const buildFullUrl = (baseUrl: string) => {
       if (!baseUrl) return "";
-      const cleanBaseUrl = baseUrl.replace(/\/$/, "");
-      return `${cleanBaseUrl}${CALLBACK_PATH}`;
+      return `${baseUrl}${CALLBACK_PATH}`;
     };
 
     const baseUrl = getBaseUrl(value || "");
