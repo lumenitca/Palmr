@@ -1,0 +1,263 @@
+---
+title: UID/GID Configuration
+icon: "Users"
+---
+
+Having trouble with **permission denied** errors when using bind-mounted directories? This guide will help you configure <span className="font-bold">Palmr.</span> to work seamlessly with your host system's <span className="font-bold italic">user and group permissions</span>.
+
+This is particularly common on **NAS systems** like Synology or QNAP, where the container's default UID/GID doesn't match your host system. Instead of manually changing directory ownership on your host, Palmr. now supports <span className="font-bold italic">flexible UID/GID configuration</span> to automatically handle these permission conflicts.
+
+## The Problem
+
+By default, Palmr. runs with UID 1001 and GID 1001 inside the container. When you bind-mount a directory from your host system (like `./data:/app/server`), permission conflicts can occur if:
+
+- Your host user has a different UID/GID
+- You're running on a NAS system with specific user configurations
+- The mounted directory ownership doesn't match the container user
+
+This results in errors like:
+
+- **Access denied** even with 777 permissions
+- **Database connection failures** (SQLite can't create/access files)
+- **File upload failures** in the application
+
+## The Solution
+
+Palmr. now supports **runtime UID/GID configuration** through environment variables. The container will automatically adjust its internal user permissions to match your host system, eliminating the need to manually change directory ownership.
+
+## Environment Variables
+
+Configure these **optional** environment variables in your `docker-compose.yml`:
+
+| Variable    | Description                        | Default | When to Use                                 |
+| ----------- | ---------------------------------- | ------- | ------------------------------------------- |
+| `PALMR_UID` | User ID for the container process  | 1001    | When host directory owner has different UID |
+| `PALMR_GID` | Group ID for the container process | 1001    | When host directory group has different GID |
+
+> **Important**: These variables are **completely optional**. If you don't set them, Palmr. works exactly as before with UID/GID 1001.
+
+## Finding Your Host UID/GID
+
+Before configuring, you need to find your host system's user and group IDs:
+
+```bash
+# Find your user ID
+id -u
+
+# Find your group ID
+id -g
+
+# See both together
+id
+```
+
+Example output:
+
+```bash
+$ id
+uid=1000(myuser) gid=1000(mygroup) groups=1000(mygroup),27(sudo)
+```
+
+In this example, you would use `PALMR_UID=1000` and `PALMR_GID=1000`.
+
+## Configuration Examples
+
+### Basic Linux System
+
+Most Linux desktop systems use UID/GID 1000 for the first user:
+
+```yaml
+services:
+  palmr:
+    image: docker.io/kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars
+      # Add these lines to match your host user
+      - PALMR_UID=1000
+      - PALMR_GID=1000
+    ports:
+      - "5487:5487"
+    volumes:
+      - ./data:/app/server
+    restart: unless-stopped
+```
+
+### Synology NAS
+
+Synology systems commonly use these UID/GID combinations:
+
+```yaml
+services:
+  palmr:
+    image: docker.io/kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars
+      # Common Synology configuration
+      - PALMR_UID=1026
+      - PALMR_GID=100
+    ports:
+      - "5487:5487"
+    volumes:
+      - /volume1/docker/palmr/data:/app/server
+    restart: unless-stopped
+```
+
+### QNAP NAS
+
+QNAP systems typically use:
+
+```yaml
+services:
+  palmr:
+    image: docker.io/kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars
+      # Common QNAP configuration
+      - PALMR_UID=1000
+      - PALMR_GID=100
+    ports:
+      - "5487:5487"
+    volumes:
+      - /share/Container/palmr/data:/app/server
+    restart: unless-stopped
+```
+
+### No Configuration Needed
+
+If you're not experiencing permission issues, you don't need to set these variables:
+
+```yaml
+services:
+  palmr:
+    image: docker.io/kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars
+      # No PALMR_UID/PALMR_GID needed - uses defaults
+    ports:
+      - "5487:5487"
+    volumes:
+      - ./data:/app/server
+    restart: unless-stopped
+```
+
+## Migration for Existing Installations
+
+If you already have Palmr. running and want to add UID/GID configuration:
+
+### Step 1: Backup Your Data
+
+```bash
+docker-compose down
+cp -r ./data ./data-backup
+```
+
+### Step 2: Update docker-compose.yml
+
+Add the UID/GID environment variables to your existing configuration:
+
+```yaml
+services:
+  palmr:
+    image: docker.io/kyantech/palmr:latest
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=your-existing-key
+      # Add these new lines
+      - PALMR_UID=1000 # Your host user UID
+      - PALMR_GID=1000 # Your host group GID
+    # ... rest of your configuration
+```
+
+### Step 3: Restart Palmr.
+
+```bash
+docker-compose up -d
+```
+
+The container will automatically detect the new UID/GID configuration and adjust permissions accordingly.
+
+## Troubleshooting
+
+### Checking Current Configuration
+
+To verify your container is running with the correct UID/GID:
+
+```bash
+# Check the user ID inside the container
+docker exec palmr id
+
+# Check file ownership in the mounted volume
+docker exec palmr ls -la /app/server/
+```
+
+### Permission Issues Persist
+
+If you're still having permission issues after configuration:
+
+```bash
+# Check container logs for UID/GID adjustment messages
+docker-compose logs palmr | grep -i "uid\|gid"
+
+# Manually fix permissions if needed
+docker exec -u root palmr chown -R palmr:nodejs /app/server
+```
+
+### Finding NAS-Specific UID/GID
+
+For NAS systems, check your system's user management interface or use SSH:
+
+```bash
+# On your NAS, check existing users
+cat /etc/passwd | grep -v nobody
+
+# Check groups
+cat /etc/group
+```
+
+## How It Works
+
+When you set `PALMR_UID` and/or `PALMR_GID` environment variables:
+
+1. **Container startup**: The container detects the environment variables
+2. **User adjustment**: Automatically modifies the internal `palmr` user to use your specified UID/GID
+3. **Ownership update**: Updates file ownership of application directories
+4. **Conflict handling**: Gracefully handles cases where the UID/GID already exists
+5. **Logging**: Provides clear feedback about what changes were made
+
+The process is completely automatic and requires no manual intervention.
+
+## Build-Time Customization
+
+For advanced users who want to build custom images with different default UID/GID:
+
+```bash
+docker build \
+  --build-arg PALMR_UID=2000 \
+  --build-arg PALMR_GID=2000 \
+  -t palmr:custom .
+```
+
+This sets new defaults at build time, which can still be overridden with environment variables at runtime.
+
+---
+
+## Summary
+
+The UID/GID configuration feature makes Palmr. **universally compatible** with different host systems without requiring manual permission changes. Key benefits:
+
+- ✅ **Automatic permission handling** - No manual `chown` commands needed
+- ✅ **NAS system compatibility** - Tested with Synology and QNAP
+- ✅ **Backward compatible** - Existing installations continue to work unchanged
+- ✅ **Optional configuration** - Only use when needed
+- ✅ **Runtime flexibility** - Change UID/GID without rebuilding images
+
+If you're experiencing permission issues with bind-mounted directories, try adding the appropriate `PALMR_UID` and `PALMR_GID` environment variables to your configuration. The container will handle the rest automatically!

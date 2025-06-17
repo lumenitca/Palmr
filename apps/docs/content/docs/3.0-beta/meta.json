@@ -14,6 +14,7 @@
     "---Configuration---",
     "configuring-smtp",
     "available-languages",
+    "uid-gid-configuration",
     "password-reset-without-smtp",
     "oidc-authentication",
     "---Developers---",
