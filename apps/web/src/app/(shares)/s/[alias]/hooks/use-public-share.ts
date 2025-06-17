@@ -51,11 +51,11 @@ export function usePublicShare() {
     await loadShare(password);
   };
 
-  const handleDownload = async (file: { id: string; name: string }) => {
+  const handleDownload = async (objectName: string, fileName: string) => {
     try {
-      const response = await getDownloadUrl(file.id);
+      const encodedObjectName = encodeURIComponent(objectName);
+      const response = await getDownloadUrl(encodedObjectName);
       const downloadUrl = response.data.url;
-      const fileName = downloadUrl.split("/").pop() || file.name;
 
       const link = document.createElement("a");
       link.href = downloadUrl;
@@ -63,8 +63,9 @@ export function usePublicShare() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      toast.success(t("files.downloadStart"));
     } catch (error) {
-      toast.error(t("share.errors.downloadFailed"));
+      toast.error(t("files.downloadError"));
     }
   };
 
