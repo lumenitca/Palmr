@@ -136,7 +136,7 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/server.err.log
 stdout_logfile=/var/log/supervisor/server.out.log
-environment=PORT=3333,HOME="/home/palmr",ENABLE_S3="false",ENCRYPTION_KEY="default-key-change-in-production"
+environment=PORT=3333,HOME="/home/palmr"
 priority=100
 
 [program:web]
