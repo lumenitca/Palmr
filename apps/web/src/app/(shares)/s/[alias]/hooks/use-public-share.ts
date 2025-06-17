@@ -63,9 +63,9 @@ export function usePublicShare() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      toast.success(t("files.downloadStart"));
+      toast.success(t("share.messages.downloadStarted"));
     } catch (error) {
-      toast.error(t("files.downloadError"));
+      toast.error(t("share.errors.downloadFailed"));
     }
   };
 
