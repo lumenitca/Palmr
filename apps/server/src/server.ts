@@ -13,6 +13,7 @@ import { storageRoutes } from "./modules/storage/routes";
 import { userRoutes } from "./modules/user/routes";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
+import * as fsSync from "fs";
 import * as fs from "fs/promises";
 import crypto from "node:crypto";
 import path from "path";
@@ -26,21 +27,36 @@ if (typeof global.crypto === "undefined") {
 }
 
 async function ensureDirectories() {
-  const uploadsDir = path.join(process.cwd(), "uploads");
-  const tempChunksDir = path.join(process.cwd(), "temp-chunks");
+  // Use /app/server paths in Docker, current directory for local development
+  const isDocker = (() => {
+    try {
+      fsSync.statSync("/.dockerenv");
+      return true;
+    } catch {
+      try {
+        return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
+      } catch {
+        return false;
+      }
+    }
+  })();
+
+  const baseDir = isDocker ? "/app/server" : process.cwd();
+  const uploadsDir = path.join(baseDir, "uploads");
+  const tempChunksDir = path.join(baseDir, "temp-chunks");
 
   try {
     await fs.access(uploadsDir);
   } catch {
     await fs.mkdir(uploadsDir, { recursive: true });
-    console.log("📁 Created uploads directory");
+    console.log(`📁 Created uploads directory: ${uploadsDir}`);
   }
 
   try {
     await fs.access(tempChunksDir);
   } catch {
     await fs.mkdir(tempChunksDir, { recursive: true });
-    console.log("📁 Created temp-chunks directory");
+    console.log(`📁 Created temp-chunks directory: ${tempChunksDir}`);
   }
 }
 
@@ -62,8 +78,24 @@ async function startServer() {
   });
 
   if (env.ENABLE_S3 !== "true") {
+    const isDocker = (() => {
+      try {
+        fsSync.statSync("/.dockerenv");
+        return true;
+      } catch {
+        try {
+          return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
+        } catch {
+          return false;
+        }
+      }
+    })();
+
+    const baseDir = isDocker ? "/app/server" : process.cwd();
+    const uploadsPath = path.join(baseDir, "uploads");
+
     await app.register(fastifyStatic, {
-      root: path.join(process.cwd(), "uploads"),
+      root: uploadsPath,
       prefix: "/uploads/",
       decorateReply: false,
     });
