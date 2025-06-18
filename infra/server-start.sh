@@ -36,46 +36,86 @@ echo "💾 Database: $DATABASE_URL"
 echo "📁 Creating data directories..."
 mkdir -p /app/server/prisma /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
 
+# Fix ownership of database directory BEFORE database operations
+if [ "$(id -u)" = "0" ]; then
+    echo "🔐 Ensuring proper ownership before database operations..."
+    chown -R $TARGET_UID:$TARGET_GID /app/server/prisma 2>/dev/null || true
+fi
+
 # Check if it's a first run (no database file exists)
 if [ ! -f "/app/server/prisma/palmr.db" ]; then
     echo "🚀 First run detected - setting up database..."
     
-    # Create database with proper schema path
+    # Create database with proper schema path - run as target user to avoid permission issues
     echo "🗄️ Creating database schema..."
-    npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    if [ "$(id -u)" = "0" ]; then
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    else
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    fi
     
-    # Run seed script from application directory (where node_modules is)
+    # Run seed script from application directory (where node_modules is) - as target user
     echo "🌱 Seeding database..."
-    node ./prisma/seed.js
+    if [ "$(id -u)" = "0" ]; then
+        su-exec $TARGET_UID:$TARGET_GID node ./prisma/seed.js
+    else
+        node ./prisma/seed.js
+    fi
     
     echo "✅ Database setup completed!"
 else
     echo "♻️ Existing database found"
     
-    # Always run migrations to ensure schema is up to date
+    # Always run migrations to ensure schema is up to date - as target user
     echo "🔧 Checking for schema updates..."
-    npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    if [ "$(id -u)" = "0" ]; then
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    else
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+    fi
     
-    # Check if configurations exist
+    # Check if configurations exist - as target user
     echo "🔍 Verifying database configurations..."
-    CONFIG_COUNT=$(node -e "
-        const { PrismaClient } = require('@prisma/client');
-        const prisma = new PrismaClient();
-        prisma.appConfig.count()
-            .then(count => {
-                console.log(count);
-                process.exit(0);
-            })
-            .catch(() => {
-                console.log(0);
-                process.exit(0);
-            });
-    " 2>/dev/null || echo "0")
+    CONFIG_COUNT=$(
+        if [ "$(id -u)" = "0" ]; then
+            su-exec $TARGET_UID:$TARGET_GID node -e "
+                const { PrismaClient } = require('@prisma/client');
+                const prisma = new PrismaClient();
+                prisma.appConfig.count()
+                    .then(count => {
+                        console.log(count);
+                        process.exit(0);
+                    })
+                    .catch(() => {
+                        console.log(0);
+                        process.exit(0);
+                    });
+            " 2>/dev/null || echo "0"
+        else
+            node -e "
+                const { PrismaClient } = require('@prisma/client');
+                const prisma = new PrismaClient();
+                prisma.appConfig.count()
+                    .then(count => {
+                        console.log(count);
+                        process.exit(0);
+                    })
+                    .catch(() => {
+                        console.log(0);
+                        process.exit(0);
+                    });
+            " 2>/dev/null || echo "0"
+        fi
+    )
     
     if [ "$CONFIG_COUNT" -eq "0" ]; then
         echo "🌱 No configurations found, running seed..."
-        # Always run seed from application directory where node_modules is available
-        node ./prisma/seed.js
+        # Always run seed from application directory where node_modules is available - as target user
+        if [ "$(id -u)" = "0" ]; then
+            su-exec $TARGET_UID:$TARGET_GID node ./prisma/seed.js
+        else
+            node ./prisma/seed.js
+        fi
     else
         echo "✅ Found $CONFIG_COUNT configurations"
     fi
