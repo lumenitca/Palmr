@@ -2,12 +2,35 @@ import { ConfigService } from "../config/service";
 import { PrismaClient } from "@prisma/client";
 import { exec } from "child_process";
 import { promisify } from "util";
+import fs from 'node:fs';
 
 const execAsync = promisify(exec);
 const prisma = new PrismaClient();
 
 export class StorageService {
   private configService = new ConfigService();
+  private isDockerCached = false;
+
+  private _hasDockerEnv() {
+    try {
+      fs.statSync('/.dockerenv');
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private _hasDockerCGroup() {
+    try {
+      return fs.readFileSync('/proc/self/cgroup', 'utf8').includes('docker');
+    } catch {
+      return false;
+    }
+  }
+
+  private _isDocker() {
+    return this.isDockerCached ?? (this._hasDockerEnv() || this._hasDockerCGroup());
+  }
 
   async getDiskSpace(
     userId?: string,
@@ -20,11 +43,14 @@ export class StorageService {
   }> {
     try {
       if (isAdmin) {
-        const command = process.platform === "win32" 
-          ? "wmic logicaldisk get size,freespace,caption" 
-          : process.platform === "darwin" 
-            ? "df -k ." 
-            : "df -B1 .";
+        const isDocker = this._isDocker();
+        const pathToCheck = isDocker ? "/app/server/uploads" : ".";
+
+        const command = process.platform === "win32"
+          ? "wmic logicaldisk get size,freespace,caption"
+          : process.platform === "darwin"
+            ? `df -k ${pathToCheck}`
+            : `df -B1 ${pathToCheck}`;
 
         const { stdout } = await execAsync(command);
         let total = 0;
