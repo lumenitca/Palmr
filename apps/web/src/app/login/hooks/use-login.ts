@@ -49,6 +49,17 @@ export function useLogin() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        const appInfoResponse = await fetch("/api/app/info");
+        const appInfo = await appInfoResponse.json();
+
+        if (appInfo.firstUserAccess) {
+          setUser(null);
+          setIsAdmin(false);
+          setIsAuthenticated(false);
+          setIsInitialized(true);
+          return;
+        }
+
         const userResponse = await getCurrentUser();
         if (!userResponse?.data?.user) {
           throw new Error("No user data");

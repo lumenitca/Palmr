@@ -1,5 +1,6 @@
 import { LoginSchema, RequestPasswordResetSchema, createResetPasswordSchema } from "./dto";
 import { AuthService } from "./service";
+import { env } from "env";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export class AuthController {
@@ -17,8 +18,8 @@ export class AuthController {
       reply.setCookie("token", token, {
         httpOnly: true,
         path: "/",
-        secure: false,
-        sameSite: "strict",
+        secure: env.SECURE_SITE === "true" ? true : false,
+        sameSite: env.SECURE_SITE === "true" ? "lax" : "strict",
       });
 
       return reply.send({ user });

@@ -14,8 +14,8 @@ export default function AuthCallbackPage() {
     if (token) {
       Cookies.set("token", token, {
         path: "/",
-        secure: false,
-        sameSite: "strict",
+        secure: window.location.protocol === "https:",
+        sameSite: window.location.protocol === "https:" ? "lax" : "strict",
         httpOnly: false,
       });
 
