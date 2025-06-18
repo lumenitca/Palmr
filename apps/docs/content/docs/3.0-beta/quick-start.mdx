@@ -56,6 +56,7 @@ services:
     environment:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
+      # - SECURE_SITE=false # Set to true if you are using a reverse proxy
     ports:
       - "5487:5487" # Web interface
       - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY)
@@ -91,6 +92,7 @@ services:
     environment:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
+      # - SECURE_SITE=false # Set to true if you are using a reverse proxy
       # Optional: Set custom UID/GID for file permissions
       # - PALMR_UID=1000
       # - PALMR_GID=1000
@@ -121,8 +123,11 @@ Configure Palmr. behavior through environment variables:
 | ---------------- | ------- | ------------------------------------------------------- |
 | `ENABLE_S3`      | `false` | Enable S3-compatible storage                            |
 | `ENCRYPTION_KEY` | -       | **Required**: Minimum 32 characters for file encryption |
+| `SECURE_SITE`    | `false` | Enable secure cookies for HTTPS/reverse proxy setups    |
 
 > **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production. This key encrypts your files - losing it makes files permanently inaccessible.
+
+> **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.0-beta/reverse-proxy-configuration) guide for proper setup.
 
 ### Generate Secure Encryption Keys
 

@@ -15,6 +15,7 @@
     "configuring-smtp",
     "available-languages",
     "uid-gid-configuration",
+    "reverse-proxy-configuration",
     "password-reset-without-smtp",
     "oidc-authentication",
     "---Developers---",
