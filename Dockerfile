@@ -115,7 +115,7 @@ COPY --from=web-builder --chown=palmr:nodejs /app/web/.next/static ./.next/stati
 WORKDIR /app
 
 # Create supervisor configuration
-RUN mkdir -p /etc/supervisor/conf.d /var/log/supervisor
+RUN mkdir -p /etc/supervisor/conf.d
 
 # Copy server start script
 COPY infra/server-start.sh /app/server-start.sh
