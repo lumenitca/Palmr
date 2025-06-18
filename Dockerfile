@@ -1,10 +1,11 @@
 FROM node:20-alpine AS base
 
-# Install system dependencies (removed netcat-openbsd since we no longer need to wait for PostgreSQL)
+# Install system dependencies
 RUN apk add --no-cache \
   gcompat \
   supervisor \
-  curl
+  curl \
+  su-exec
 
 # Enable pnpm
 RUN corepack enable pnpm
@@ -80,15 +81,12 @@ ARG PALMR_GID=1001
 RUN addgroup --system --gid ${PALMR_GID} nodejs
 RUN adduser --system --uid ${PALMR_UID} --ingroup nodejs palmr
 
-# Create application directories and set permissions
-# Include storage directories for filesystem mode and SQLite database directory
-RUN mkdir -p /app/server /app/web /home/palmr/.npm /home/palmr/.cache \
-  /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo \
-  /app/server/prisma
+# Create application directories 
+RUN mkdir -p /app/palmr-app /app/web /home/palmr/.npm /home/palmr/.cache
 RUN chown -R palmr:nodejs /app /home/palmr
 
-# === Copy Server Files ===
-WORKDIR /app/server
+# === Copy Server Files to /app/palmr-app (separate from /app/server for bind mounts) ===
+WORKDIR /app/palmr-app
 
 # Copy server production files
 COPY --from=server-builder --chown=palmr:nodejs /app/server/dist ./dist
@@ -101,8 +99,9 @@ COPY --from=server-builder --chown=palmr:nodejs /app/server/reset-password.sh ./
 COPY --from=server-builder --chown=palmr:nodejs /app/server/src/scripts/ ./src/scripts/
 RUN chmod +x ./reset-password.sh
 
-# Ensure storage directories have correct permissions
-RUN chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma
+# Copy seed file to the shared location for bind mounts
+RUN mkdir -p /app/server/prisma
+COPY --from=server-builder --chown=palmr:nodejs /app/server/prisma/seed.js /app/server/prisma/seed.js
 
 # === Copy Web Files ===
 WORKDIR /app/web
@@ -116,46 +115,17 @@ COPY --from=web-builder --chown=palmr:nodejs /app/web/.next/static ./.next/stati
 WORKDIR /app
 
 # Create supervisor configuration
-RUN mkdir -p /etc/supervisor/conf.d /var/log/supervisor
+RUN mkdir -p /etc/supervisor/conf.d
 
 # Copy server start script
 COPY infra/server-start.sh /app/server-start.sh
 RUN chmod +x /app/server-start.sh
 RUN chown palmr:nodejs /app/server-start.sh
 
-# Copy supervisor configuration (simplified without PostgreSQL dependency)
-COPY <<EOF /etc/supervisor/conf.d/supervisord.conf
-[supervisord]
-nodaemon=true
-user=root
-logfile=/var/log/supervisor/supervisord.log
-pidfile=/var/run/supervisord.pid
+# Copy supervisor configuration
+COPY infra/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-[program:server]
-command=/app/server-start.sh
-directory=/app/server
-user=palmr
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/supervisor/server.err.log
-stdout_logfile=/var/log/supervisor/server.out.log
-environment=PORT=3333,HOME="/home/palmr"
-priority=100
-
-[program:web]
-command=/bin/sh -c 'echo "Waiting for API to be ready..."; while ! curl -f http://127.0.0.1:3333/health >/dev/null 2>&1; do echo "API not ready, waiting..."; sleep 2; done; echo "API is ready! Starting frontend..."; exec node server.js'
-directory=/app/web
-user=palmr
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/supervisor/web.err.log
-stdout_logfile=/var/log/supervisor/web.out.log
-environment=PORT=5487,HOSTNAME="0.0.0.0",HOME="/home/palmr",API_BASE_URL="http://127.0.0.1:3333"
-priority=200
-startsecs=10
-EOF
-
-# Create main startup script with UID/GID runtime support
+# Create main startup script
 COPY <<EOF /app/start.sh
 #!/bin/sh
 set -e
@@ -164,56 +134,15 @@ echo "Starting Palmr Application..."
 echo "Storage Mode: \${ENABLE_S3:-false}"
 echo "Database: SQLite"
 
-# Runtime UID/GID configuration - only apply if environment variables are set
-if [ -n "\${PALMR_UID}" ] || [ -n "\${PALMR_GID}" ]; then
-    RUNTIME_UID=\${PALMR_UID:-${PALMR_UID}}
-    RUNTIME_GID=\${PALMR_GID:-${PALMR_GID}}
-    
-    echo "Runtime UID/GID configuration detected: UID=\$RUNTIME_UID, GID=\$RUNTIME_GID"
-    
-    # Get current user/group IDs
-    CURRENT_UID=\$(id -u palmr 2>/dev/null || echo "${PALMR_UID}")
-    CURRENT_GID=\$(id -g palmr 2>/dev/null || echo "${PALMR_GID}")
-    
-    # Only modify if different from current
-    if [ "\$CURRENT_UID" != "\$RUNTIME_UID" ] || [ "\$CURRENT_GID" != "\$RUNTIME_GID" ]; then
-        echo "Adjusting user/group IDs from \$CURRENT_UID:\$CURRENT_GID to \$RUNTIME_UID:\$RUNTIME_GID"
-        
-        # Modify group if needed
-        if [ "\$CURRENT_GID" != "\$RUNTIME_GID" ]; then
-            if getent group \$RUNTIME_GID >/dev/null 2>&1; then
-                EXISTING_GROUP=\$(getent group \$RUNTIME_GID | cut -d: -f1)
-                echo "Using existing group with GID \$RUNTIME_GID: \$EXISTING_GROUP"
-                usermod -g \$EXISTING_GROUP palmr 2>/dev/null || echo "Warning: Could not change user group"
-            else
-                groupmod -g \$RUNTIME_GID nodejs 2>/dev/null || echo "Warning: Could not modify group GID"
-            fi
-        fi
-        
-        # Modify user if needed
-        if [ "\$CURRENT_UID" != "\$RUNTIME_UID" ]; then
-            if getent passwd \$RUNTIME_UID >/dev/null 2>&1; then
-                EXISTING_USER=\$(getent passwd \$RUNTIME_UID | cut -d: -f1)
-                echo "Warning: UID \$RUNTIME_UID already exists as user '\$EXISTING_USER'"
-                echo "Container will continue but may have permission issues"
-            else
-                usermod -u \$RUNTIME_UID palmr 2>/dev/null || echo "Warning: Could not modify user UID"
-            fi
-        fi
-        
-        # Update file ownership for application directories
-        echo "Updating file ownership for application directories..."
-        chown -R palmr:nodejs /app /home/palmr 2>/dev/null || echo "Warning: Could not update all file ownership"
-    else
-        echo "Runtime UID/GID matches current values, no changes needed"
-    fi
-else
-    echo "No runtime UID/GID configuration provided, using defaults"
-fi
+# Set global environment variables
+export DATABASE_URL="file:/app/server/prisma/palmr.db"
+export UPLOAD_PATH="/app/server/uploads"
+export TEMP_CHUNKS_PATH="/app/server/temp-chunks"
 
-# Ensure storage directories exist with correct permissions
+# Ensure /app/server directory exists for bind mounts
 mkdir -p /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo /app/server/prisma
-chown -R palmr:nodejs /app/server/uploads /app/server/temp-chunks /app/server/prisma 2>/dev/null || echo "Warning: Could not set permissions on storage directories"
+
+echo "Data directories ready for first run..."
 
 # Start supervisor
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
@@ -221,8 +150,8 @@ EOF
 
 RUN chmod +x /app/start.sh
 
-# Create volume mount points for persistent storage (filesystem mode and SQLite database)
-VOLUME ["/app/server/uploads", "/app/server/temp-chunks", "/app/server/prisma"]
+# Create volume mount points for bind mounts
+VOLUME ["/app/server"]
 
 # Expose ports
 EXPOSE 3333 5487
@@ -232,4 +161,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD curl -f http://localhost:5487 || exit 1
 
 # Start application
-CMD ["/app/start.sh"] 
+CMD ["/app/start.sh"]
