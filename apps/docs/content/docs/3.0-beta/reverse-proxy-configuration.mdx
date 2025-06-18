@@ -42,46 +42,6 @@ Keep `SECURE_SITE=false` (default) for:
 
 ## HTTP Reverse Proxy Setup
 
-For reverse proxies **without HTTPS/SSL** (like internal networks), use `SECURE_SITE=false` but ensure proper proxy configuration.
-
-### Nginx HTTP Configuration
-
-**Nginx Config (`/etc/nginx/sites-available/palmr`):**
-
-```nginx
-server {
-    listen 80;
-    server_name palmr.yourdomain.com;
-
-    location / {
-        proxy_pass http://localhost:5487;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-
-        # Important for cookies
-        proxy_set_header Cookie $http_cookie;
-        proxy_pass_header Set-Cookie;
-    }
-
-    # API endpoints
-    location /api {
-        proxy_pass http://localhost:3333;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-
-        # Important for cookies
-        proxy_set_header Cookie $http_cookie;
-        proxy_pass_header Set-Cookie;
-    }
-}
-```
-
 **Docker Compose for HTTP Nginx:**
 
 ```yaml
