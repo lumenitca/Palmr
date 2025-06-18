@@ -3,12 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest, { params }: { params: Promise<{ shareId: string }> }) {
   const cookieHeader = req.headers.get("cookie");
   const { shareId } = await params;
+  const body = await req.text();
 
-  const apiRes = await fetch(`${process.env.API_BASE_URL}/shares/${shareId}/recipients/notify`, {
+  const apiRes = await fetch(`${process.env.API_BASE_URL}/shares/${shareId}/notify`, {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       cookie: cookieHeader || "",
     },
+    body: body,
     redirect: "manual",
   });
 
