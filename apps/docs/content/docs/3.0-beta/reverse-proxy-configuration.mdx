@@ -85,23 +85,8 @@ server {
 **Docker Compose for HTTP Nginx:**
 
 ```yaml
-services:
-  palmr:
-    image: kyantech/palmr:latest
-    container_name: palmr
-    environment:
-      - ENABLE_S3=false
-      - ENCRYPTION_KEY=your-secure-key-here
-      - SECURE_SITE=false # HTTP = false
-    ports:
-      - "127.0.0.1:5487:5487" # Bind to localhost only
-      - "127.0.0.1:3333:3333"
-    volumes:
-      - palmr_data:/app/server
-    restart: unless-stopped
-
-volumes:
-  palmr_data:
+environment:
+  - SECURE_SITE=false # HTTP = false
 ```
 
 > **⚠️ HTTP Security**: Remember that HTTP transmits data in plain text. Consider using HTTPS in production environments.
