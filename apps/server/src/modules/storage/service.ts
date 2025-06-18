@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 export class StorageService {
   private configService = new ConfigService();
-  private isDockerCached = false;
+  private isDockerCached = undefined;
 
   private _hasDockerEnv() {
     try {
