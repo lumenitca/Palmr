@@ -120,6 +120,19 @@ proxy_set_header Cookie $http_cookie;
 proxy_pass_header Set-Cookie;
 ```
 
+**Problem**: SQLite "readonly database" error with bind mounts
+
+**Solution**: Configure proper UID/GID permissions:
+
+```yaml
+environment:
+  - PALMR_UID=1000 # Your host UID (check with: id)
+  - PALMR_GID=1000 # Your host GID
+  - ENCRYPTION_KEY=your-key-here
+```
+
+> **💡 Note**: Check your host UID/GID with `id` command and use those values. See [UID/GID Configuration](/docs/3.0-beta/uid-gid-configuration) for detailed setup.
+
 ---
 
 ## Security Considerations
