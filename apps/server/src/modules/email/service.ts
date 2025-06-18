@@ -1,5 +1,5 @@
+import { env } from "../../env";
 import { ConfigService } from "../config/service";
-import { env } from "env";
 import nodemailer from "nodemailer";
 
 export class EmailService {

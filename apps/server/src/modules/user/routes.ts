@@ -14,20 +14,26 @@ export async function userRoutes(app: FastifyInstance) {
       const usersCount = await prisma.user.count();
 
       if (usersCount > 0) {
-        await request.jwtVerify();
-        if (!request.user.isAdmin) {
+        try {
+          await request.jwtVerify();
+          if (!request.user.isAdmin) {
+            return reply
+              .status(403)
+              .send({ error: "Access restricted to administrators" })
+              .description("Access restricted to administrators");
+          }
+        } catch (authErr) {
+          console.error(authErr);
           return reply
-            .status(403)
-            .send({ error: "Access restricted to administrators" })
-            .description("Access restricted to administrators");
+            .status(401)
+            .send({ error: "Unauthorized: a valid token is required to access this resource." })
+            .description("Unauthorized: a valid token is required to access this resource.");
         }
       }
+      // If usersCount is 0, allow the request to proceed without authentication
     } catch (err) {
       console.error(err);
-      return reply
-        .status(401)
-        .send({ error: "Unauthorized: a valid token is required to access this resource." })
-        .description("Unauthorized: a valid token is required to access this resource.");
+      return reply.status(500).send({ error: "Internal server error" }).description("Internal server error");
     }
   };
 
