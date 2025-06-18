@@ -1,6 +1,6 @@
+import { env } from "../../env";
 import { LoginSchema, RequestPasswordResetSchema, createResetPasswordSchema } from "./dto";
 import { AuthService } from "./service";
-import { env } from "env";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export class AuthController {
