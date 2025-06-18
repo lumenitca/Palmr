@@ -122,37 +122,8 @@ COPY infra/server-start.sh /app/server-start.sh
 RUN chmod +x /app/server-start.sh
 RUN chown palmr:nodejs /app/server-start.sh
 
-# Copy supervisor configuration (updated paths)
-COPY <<EOF /etc/supervisor/conf.d/supervisord.conf
-[supervisord]
-nodaemon=true
-user=root
-logfile=/var/log/supervisor/supervisord.log
-pidfile=/var/run/supervisord.pid
-
-[program:server]
-command=/bin/sh -c "export DATABASE_URL='file:/app/server/prisma/palmr.db' && export UPLOAD_PATH='/app/server/uploads' && export TEMP_CHUNKS_PATH='/app/server/temp-chunks' && /app/server-start.sh"
-directory=/app/palmr-app
-user=root
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/supervisor/server.err.log
-stdout_logfile=/var/log/supervisor/server.out.log
-environment=PORT=3333,HOME="/home/palmr"
-priority=100
-
-[program:web]
-command=/bin/sh -c 'echo "Waiting for API to be ready..."; while ! curl -f http://127.0.0.1:3333/health >/dev/null 2>&1; do echo "API not ready, waiting..."; sleep 2; done; echo "API is ready! Starting frontend..."; exec node server.js'
-directory=/app/web
-user=palmr
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/supervisor/web.err.log
-stdout_logfile=/var/log/supervisor/web.out.log
-environment=PORT=5487,HOSTNAME="0.0.0.0",HOME="/home/palmr",API_BASE_URL="http://127.0.0.1:3333"
-priority=200
-startsecs=10
-EOF
+# Copy supervisor configuration
+COPY infra/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Create main startup script
 COPY <<EOF /app/start.sh
