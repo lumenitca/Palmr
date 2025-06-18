@@ -9,14 +9,29 @@ import { pipeline } from "stream/promises";
 
 export class FilesystemStorageProvider implements StorageProvider {
   private static instance: FilesystemStorageProvider;
-  private uploadsDir = path.join(process.cwd(), "uploads");
+  private uploadsDir: string;
   private encryptionKey = env.ENCRYPTION_KEY;
   private uploadTokens = new Map<string, { objectName: string; expiresAt: number }>();
   private downloadTokens = new Map<string, { objectName: string; expiresAt: number; fileName?: string }>();
 
   private constructor() {
+    this.uploadsDir = this.isDocker() ? "/app/server/uploads" : path.join(process.cwd(), "uploads");
+
     this.ensureUploadsDir();
     setInterval(() => this.cleanExpiredTokens(), 5 * 60 * 1000);
+  }
+
+  private isDocker(): boolean {
+    try {
+      fsSync.statSync("/.dockerenv");
+      return true;
+    } catch {
+      try {
+        return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
+      } catch {
+        return false;
+      }
+    }
   }
 
   public static getInstance(): FilesystemStorageProvider {

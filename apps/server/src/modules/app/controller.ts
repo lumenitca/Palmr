@@ -4,7 +4,21 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import fs from "fs";
 import path from "path";
 
-const uploadsDir = path.join(process.cwd(), "uploads/logo");
+const isDocker = (() => {
+  try {
+    require("fs").statSync("/.dockerenv");
+    return true;
+  } catch {
+    try {
+      return require("fs").readFileSync("/proc/self/cgroup", "utf8").includes("docker");
+    } catch {
+      return false;
+    }
+  }
+})();
+
+const baseDir = isDocker ? "/app/server" : process.cwd();
+const uploadsDir = path.join(baseDir, "uploads/logo");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
