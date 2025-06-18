@@ -49,7 +49,7 @@ export function LanguageSwitcher() {
       maxAge: COOKIE_MAX_AGE,
       path: "/",
       sameSite: "lax",
-      secure: false,
+      secure: window.location.protocol === "https:",
     });
 
     router.refresh();
