@@ -1,4 +1,3 @@
-import { env } from "../../env";
 import { ConfigService } from "../config/service";
 import nodemailer from "nodemailer";
 
