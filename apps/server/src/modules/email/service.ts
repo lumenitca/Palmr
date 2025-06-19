@@ -1,4 +1,3 @@
-import { env } from "../../env";
 import { ConfigService } from "../config/service";
 import nodemailer from "nodemailer";
 
@@ -14,7 +13,7 @@ export class EmailService {
     return nodemailer.createTransport({
       host: await this.configService.getValue("smtpHost"),
       port: Number(await this.configService.getValue("smtpPort")),
-      secure: env.SECURE_SITE === "true" ? true : false,
+      secure: false,
       auth: {
         user: await this.configService.getValue("smtpUser"),
         pass: await this.configService.getValue("smtpPass"),
