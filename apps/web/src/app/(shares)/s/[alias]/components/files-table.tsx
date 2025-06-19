@@ -2,12 +2,12 @@ import { useState } from "react";
 import { IconDownload, IconEye } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
-import { FilePreviewModal } from "@/components/modals/file-preview-modal";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getFileIcon } from "@/utils/file-icons";
 import { formatFileSize } from "@/utils/format-file-size";
 import { ShareFilesTableProps } from "../types";
+import { ShareFilePreviewModal } from "./share-file-preview-modal";
 
 export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
   const t = useTranslations();
@@ -99,7 +99,14 @@ export function ShareFilesTable({ files, onDownload }: ShareFilesTableProps) {
         </Table>
       </div>
 
-      {selectedFile && <FilePreviewModal isOpen={isPreviewOpen} onClose={handleClosePreview} file={selectedFile} />}
+      {selectedFile && (
+        <ShareFilePreviewModal
+          isOpen={isPreviewOpen}
+          onClose={handleClosePreview}
+          file={selectedFile}
+          onDownload={onDownload}
+        />
+      )}
     </div>
   );
 }
