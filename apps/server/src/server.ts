@@ -11,9 +11,9 @@ import { reverseShareRoutes } from "./modules/reverse-share/routes";
 import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
 import { userRoutes } from "./modules/user/routes";
+import { IS_RUNNING_IN_CONTAINER } from "./utils/container-detection";
 import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
-import * as fsSync from "fs";
 import * as fs from "fs/promises";
 import crypto from "node:crypto";
 import path from "path";
@@ -27,21 +27,7 @@ if (typeof global.crypto === "undefined") {
 }
 
 async function ensureDirectories() {
-  // Use /app/server paths in Docker, current directory for local development
-  const isDocker = (() => {
-    try {
-      fsSync.statSync("/.dockerenv");
-      return true;
-    } catch {
-      try {
-        return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
-      } catch {
-        return false;
-      }
-    }
-  })();
-
-  const baseDir = isDocker ? "/app/server" : process.cwd();
+  const baseDir = IS_RUNNING_IN_CONTAINER ? "/app/server" : process.cwd();
   const uploadsDir = path.join(baseDir, "uploads");
   const tempChunksDir = path.join(baseDir, "temp-chunks");
 
@@ -78,20 +64,7 @@ async function startServer() {
   });
 
   if (env.ENABLE_S3 !== "true") {
-    const isDocker = (() => {
-      try {
-        fsSync.statSync("/.dockerenv");
-        return true;
-      } catch {
-        try {
-          return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
-        } catch {
-          return false;
-        }
-      }
-    })();
-
-    const baseDir = isDocker ? "/app/server" : process.cwd();
+    const baseDir = IS_RUNNING_IN_CONTAINER ? "/app/server" : process.cwd();
     const uploadsPath = path.join(baseDir, "uploads");
 
     await app.register(fastifyStatic, {
