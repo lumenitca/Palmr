@@ -1,5 +1,6 @@
 import { env } from "../env";
 import { StorageProvider } from "../types/storage";
+import { IS_RUNNING_IN_CONTAINER } from "../utils/container-detection";
 import * as crypto from "crypto";
 import * as fsSync from "fs";
 import * as fs from "fs/promises";
@@ -15,23 +16,10 @@ export class FilesystemStorageProvider implements StorageProvider {
   private downloadTokens = new Map<string, { objectName: string; expiresAt: number; fileName?: string }>();
 
   private constructor() {
-    this.uploadsDir = this.isDocker() ? "/app/server/uploads" : path.join(process.cwd(), "uploads");
+    this.uploadsDir = IS_RUNNING_IN_CONTAINER ? "/app/server/uploads" : path.join(process.cwd(), "uploads");
 
     this.ensureUploadsDir();
     setInterval(() => this.cleanExpiredTokens(), 5 * 60 * 1000);
-  }
-
-  private isDocker(): boolean {
-    try {
-      fsSync.statSync("/.dockerenv");
-      return true;
-    } catch {
-      try {
-        return fsSync.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
-      } catch {
-        return false;
-      }
-    }
   }
 
   public static getInstance(): FilesystemStorageProvider {
@@ -229,8 +217,10 @@ export class FilesystemStorageProvider implements StorageProvider {
     if (encryptedBuffer.length > 16) {
       try {
         return this.decryptFileBuffer(encryptedBuffer);
-      } catch (error) {
-        console.warn("Failed to decrypt with new method, trying legacy format");
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.warn("Failed to decrypt with new method, trying legacy format", error.message);
+        }
         return this.decryptFileLegacy(encryptedBuffer);
       }
     }
