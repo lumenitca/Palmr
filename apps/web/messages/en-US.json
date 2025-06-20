@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Welcome to",
     "signInToContinue": "Sign in to continue",
+    "emailOrUsernameLabel": "Email or Username",
+    "emailOrUsernamePlaceholder": "Enter your email or username",
     "emailLabel": "Email Address",
     "emailPlaceholder": "Enter your email",
     "passwordLabel": "Password",
@@ -909,6 +911,7 @@
     "passwordLength": "Password must be at least 8 characters long",
     "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
+    "emailOrUsernameRequired": "Email or username is required",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 6 characters",
     "nameRequired": "Name is required",

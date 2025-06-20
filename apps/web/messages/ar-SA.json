@@ -202,6 +202,8 @@
   "login": {
     "welcome": "مرحبا بك",
     "signInToContinue": "قم بتسجيل الدخول للمتابعة",
+    "emailOrUsernameLabel": "البريد الإلكتروني أو اسم المستخدم",
+    "emailOrUsernamePlaceholder": "أدخل بريدك الإلكتروني أو اسم المستخدم",
     "emailLabel": "البريد الإلكتروني",
     "emailPlaceholder": "أدخل بريدك الإلكتروني",
     "passwordLabel": "كلمة المرور",
@@ -852,6 +854,7 @@
     "passwordLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
     "passwordsMatch": "كلمتا المرور غير متطابقتين",
     "emailRequired": "البريد الإلكتروني مطلوب",
+    "emailOrUsernameRequired": "البريد الإلكتروني أو اسم المستخدم مطلوب",
     "passwordRequired": "كلمة المرور مطلوبة",
     "nameRequired": "الاسم مطلوب",
     "required": "هذا الحقل مطلوب"

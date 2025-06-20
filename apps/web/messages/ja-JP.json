@@ -202,6 +202,8 @@
   "login": {
     "welcome": "ようこそへ",
     "signInToContinue": "続行するにはサインインしてください",
+    "emailOrUsernameLabel": "メールアドレスまたはユーザー名",
+    "emailOrUsernamePlaceholder": "メールアドレスまたはユーザー名を入力してください",
     "emailLabel": "メールアドレス",
     "emailPlaceholder": "メールアドレスを入力してください",
     "passwordLabel": "パスワード",
@@ -852,6 +854,7 @@
     "passwordLength": "パスワードは最低8文字必要です",
     "passwordsMatch": "パスワードが一致しません",
     "emailRequired": "メールアドレスは必須です",
+    "emailOrUsernameRequired": "メールアドレスまたはユーザー名は必須です",
     "passwordRequired": "パスワードは必須です",
     "nameRequired": "名前は必須です",
     "required": "このフィールドは必須です"

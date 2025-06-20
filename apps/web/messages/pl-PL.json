@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Witaj w",
     "signInToContinue": "Zaloguj się, aby kontynuować",
+    "emailOrUsernameLabel": "E-mail lub nazwa użytkownika",
+    "emailOrUsernamePlaceholder": "Wprowadź swój e-mail lub nazwę użytkownika",
     "emailLabel": "Adres e-mail",
     "emailPlaceholder": "Wprowadź swój adres e-mail",
     "passwordLabel": "Hasło",
@@ -909,6 +911,7 @@
     "passwordLength": "Hasło musi mieć co najmniej 8 znaków",
     "passwordsMatch": "Hasła muszą być zgodne",
     "emailRequired": "E-mail jest wymagany",
+    "emailOrUsernameRequired": "E-mail lub nazwa użytkownika jest wymagana",
     "passwordRequired": "Hasło jest wymagane",
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",

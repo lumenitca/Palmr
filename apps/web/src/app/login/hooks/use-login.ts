@@ -12,7 +12,7 @@ import { getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
 
 export const loginSchema = z.object({
-  email: z.string(),
+  emailOrUsername: z.string(),
   password: z.string(),
 });
 

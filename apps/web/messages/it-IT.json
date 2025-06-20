@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Benvenuto in",
     "signInToContinue": "Accedi per continuare",
+    "emailOrUsernameLabel": "Email o Nome utente",
+    "emailOrUsernamePlaceholder": "Inserisci la tua email o nome utente",
     "emailLabel": "Indirizzo Email",
     "emailPlaceholder": "Inserisci la tua email",
     "passwordLabel": "Parola d'accesso",
@@ -851,6 +853,7 @@
     "passwordLength": "La parola d'accesso deve essere di almeno 8 caratteri",
     "passwordsMatch": "Le parole d'accesso devono corrispondere",
     "emailRequired": "L'indirizzo email è obbligatorio",
+    "emailOrUsernameRequired": "L'indirizzo email o il nome utente è obbligatorio",
     "passwordRequired": "La parola d'accesso è obbligatoria",
     "passwordMinLength": "La password deve contenere almeno 6 caratteri",
     "nameRequired": "Il nome è obbligatorio",

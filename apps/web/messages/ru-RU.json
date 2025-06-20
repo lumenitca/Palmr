@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Добро пожаловать в",
     "signInToContinue": "Войдите, чтобы продолжить",
+    "emailOrUsernameLabel": "Электронная почта или имя пользователя",
+    "emailOrUsernamePlaceholder": "Введите электронную почту или имя пользователя",
     "emailLabel": "Адрес электронной почты",
     "emailPlaceholder": "Введите вашу электронную почту",
     "passwordLabel": "Пароль",
@@ -852,6 +854,7 @@
     "passwordLength": "Пароль должен содержать не менее 8 символов",
     "passwordsMatch": "Пароли не совпадают",
     "emailRequired": "Требуется электронная почта",
+    "emailOrUsernameRequired": "Электронная почта или имя пользователя обязательно",
     "passwordRequired": "Требуется пароль",
     "nameRequired": "Требуется имя",
     "required": "Это поле обязательно"

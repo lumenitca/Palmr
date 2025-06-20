@@ -23,7 +23,7 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      emailOrUsername: "",
       password: "",
     },
   });
@@ -37,18 +37,18 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
       </p>
     );
 
-  const renderEmailField = () => (
+  const renderEmailOrUsernameField = () => (
     <FormField
       control={form.control}
-      name="email"
+      name="emailOrUsername"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t("login.emailLabel")}</FormLabel>
+          <FormLabel>{t("login.emailOrUsernameLabel")}</FormLabel>
           <FormControl className="-mb-1">
             <Input
               {...field}
-              type="email"
-              placeholder={t("login.emailPlaceholder")}
+              type="text"
+              placeholder={t("login.emailOrUsernamePlaceholder")}
               disabled={isSubmitting}
               className="bg-transparent backdrop-blur-md"
             />
@@ -89,7 +89,7 @@ export function LoginForm({ error, isVisible, onToggleVisibility, onSubmit }: Lo
       {renderErrorMessage()}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          {renderEmailField()}
+          {renderEmailOrUsernameField()}
           {renderPasswordField()}
           <Button className="w-full mt-4 cursor-pointer" variant="default" size="lg" type="submit">
             {isSubmitting ? t("login.signingIn") : t("login.signIn")}

@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Welkom bij",
     "signInToContinue": "Log in om door te gaan",
+    "emailOrUsernameLabel": "E-mail of Gebruikersnaam",
+    "emailOrUsernamePlaceholder": "Voer je e-mail of gebruikersnaam in",
     "emailLabel": "E-mailadres",
     "emailPlaceholder": "Voer je e-mail in",
     "passwordLabel": "Wachtwoord",
@@ -851,6 +853,7 @@
     "passwordLength": "Wachtwoord moet minimaal 8 tekens zijn",
     "passwordsMatch": "Wachtwoorden moeten overeenkomen",
     "emailRequired": "E-mail is verplicht",
+    "emailOrUsernameRequired": "E-mail of gebruikersnaam is verplicht",
     "passwordRequired": "Wachtwoord is verplicht",
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",

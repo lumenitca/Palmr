@@ -202,6 +202,8 @@
   "login": {
     "welcome": "欢迎您",
     "signInToContinue": "请登录以继续",
+    "emailOrUsernameLabel": "电子邮件或用户名",
+    "emailOrUsernamePlaceholder": "请输入您的电子邮件或用户名",
     "emailLabel": "电子邮件地址",
     "emailPlaceholder": "请输入您的电子邮件",
     "passwordLabel": "密码",
@@ -852,6 +854,7 @@
     "passwordLength": "密码至少需要8个字符",
     "passwordsMatch": "密码不匹配",
     "emailRequired": "电子邮件为必填项",
+    "emailOrUsernameRequired": "电子邮件或用户名是必填项",
     "passwordRequired": "密码为必填项",
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
