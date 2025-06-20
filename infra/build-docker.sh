@@ -23,7 +23,7 @@ docker buildx build \
     --no-cache \
     -t kyantech/palmr:latest \
     -t kyantech/palmr:$TAG \
-    --push \
+    --load \
     .
 
 if [ $? -eq 0 ]; then
