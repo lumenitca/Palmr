@@ -177,22 +177,13 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
         downloadUrlToUse = response.data.url;
       }
 
-      const fileResponse = await fetch(downloadUrlToUse);
-      if (!fileResponse.ok) {
-        throw new Error(`Download failed: ${fileResponse.status} - ${fileResponse.statusText}`);
-      }
-
-      const blob = await fileResponse.blob();
-      const url = window.URL.createObjectURL(blob);
-
+      // Use direct link approach like other parts of the app
       const link = document.createElement("a");
-      link.href = url;
+      link.href = downloadUrlToUse;
       link.download = file.name;
       document.body.appendChild(link);
       link.click();
-
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       toast.error(t("filePreview.downloadError"));
       console.error("Download error:", error);
