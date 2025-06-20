@@ -32,6 +32,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [pdfLoadFailed, setPdfLoadFailed] = useState(false);
   const [isLoadingPreview, setIsLoadingPreview] = useState(false);
+  const [jsonContent, setJsonContent] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen && file.objectName && !isLoadingPreview) {
@@ -41,6 +42,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       setPdfAsBlob(false);
       setDownloadUrl(null);
       setPdfLoadFailed(false);
+      setJsonContent(null);
       loadPreview();
     }
   }, [file.objectName, isOpen]);
@@ -88,6 +90,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
         await loadAudioPreview(url);
       } else if (fileType === "pdf") {
         await loadPdfPreview(url);
+      } else if (fileType === "json") {
+        await loadJsonPreview(url);
       } else {
         setPreviewUrl(url);
       }
@@ -155,6 +159,29 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     }
   };
 
+  const loadJsonPreview = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const text = await response.text();
+      try {
+        // Validate and format JSON
+        const parsed = JSON.parse(text);
+        const formatted = JSON.stringify(parsed, null, 2);
+        setJsonContent(formatted);
+      } catch (jsonError) {
+        // If it's not valid JSON, show as plain text
+        setJsonContent(text);
+      }
+    } catch (error) {
+      console.error("Failed to load JSON:", error);
+      setJsonContent(null);
+    }
+  };
+
   const handlePdfLoadError = async () => {
     if (pdfLoadFailed || pdfAsBlob) return;
 
@@ -193,6 +220,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     const extension = file.name.split(".").pop()?.toLowerCase();
 
     if (extension === "pdf") return "pdf";
+    if (extension === "json") return "json";
     if (["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "tiff"].includes(extension || "")) return "image";
     if (["mp3", "wav", "ogg", "m4a", "aac", "flac"].includes(extension || "")) return "audio";
     if (["mp4", "webm", "ogg", "mov", "avi", "mkv", "wmv", "flv", "m4v"].includes(extension || "")) return "video";
@@ -225,7 +253,18 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       );
     }
 
-    if (!previewUrl && fileType !== "video") {
+    // For JSON files, we don't need previewUrl, we use jsonContent instead
+    if (fileType === "json" && !jsonContent && !isLoading) {
+      return (
+        <div className="flex flex-col items-center justify-center h-96 gap-4">
+          <FileIcon className={`h-12 w-12 ${color}`} />
+          <p className="text-muted-foreground">{t("filePreview.notAvailable")}</p>
+          <p className="text-sm text-muted-foreground">{t("filePreview.downloadToView")}</p>
+        </div>
+      );
+    }
+
+    if (!previewUrl && fileType !== "video" && fileType !== "json") {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
           <FileIcon className={`h-12 w-12 ${color}`} />
@@ -270,6 +309,25 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
                       onError={handlePdfLoadError}
                     />
                   </object>
+                </div>
+              )}
+            </div>
+          </ScrollArea>
+        );
+      case "json":
+        return (
+          <ScrollArea className="w-full max-h-[600px]">
+            <div className="w-full border rounded-lg overflow-hidden bg-card">
+              {jsonContent ? (
+                <pre className="p-4 text-sm font-mono whitespace-pre-wrap break-words overflow-x-auto">
+                  <code className="language-json">{jsonContent}</code>
+                </pre>
+              ) : (
+                <div className="flex items-center justify-center h-32">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary" />
+                    <p className="text-sm text-muted-foreground">{t("filePreview.loading")}</p>
+                  </div>
                 </div>
               )}
             </div>

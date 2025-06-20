@@ -98,43 +98,82 @@ export class FilesystemController {
     } catch (error) {
       try {
         await fs.promises.unlink(tempPath);
-      } catch (error) {
-        console.error("Error deleting temp file:", error);
+      } catch (cleanupError) {
+        console.error("Error deleting temp file:", cleanupError);
       }
       throw error;
     }
   }
 
   private async uploadSmallFile(request: FastifyRequest, provider: FilesystemStorageProvider, objectName: string) {
-    const stream = request.body as any;
-    const chunks: Buffer[] = [];
+    const body = request.body as any;
 
-    return new Promise<void>((resolve, reject) => {
-      stream.on("data", (chunk: Buffer) => {
-        chunks.push(chunk);
-      });
+    if (Buffer.isBuffer(body)) {
+      if (body.length === 0) {
+        throw new Error("No file data received");
+      }
+      await provider.uploadFile(objectName, body);
+      return;
+    }
 
-      stream.on("end", async () => {
-        try {
-          const buffer = Buffer.concat(chunks);
+    if (typeof body === "string") {
+      const buffer = Buffer.from(body, "utf8");
+      if (buffer.length === 0) {
+        throw new Error("No file data received");
+      }
+      await provider.uploadFile(objectName, buffer);
+      return;
+    }
 
-          if (buffer.length === 0) {
-            throw new Error("No file data received");
+    if (typeof body === "object" && body !== null && !body.on) {
+      const buffer = Buffer.from(JSON.stringify(body), "utf8");
+      if (buffer.length === 0) {
+        throw new Error("No file data received");
+      }
+      await provider.uploadFile(objectName, buffer);
+      return;
+    }
+
+    if (body && typeof body.on === "function") {
+      const chunks: Buffer[] = [];
+
+      return new Promise<void>((resolve, reject) => {
+        body.on("data", (chunk: Buffer) => {
+          chunks.push(chunk);
+        });
+
+        body.on("end", async () => {
+          try {
+            const buffer = Buffer.concat(chunks);
+
+            if (buffer.length === 0) {
+              throw new Error("No file data received");
+            }
+
+            await provider.uploadFile(objectName, buffer);
+            resolve();
+          } catch (error) {
+            console.error("Error uploading small file:", error);
+            reject(error);
           }
+        });
 
-          await provider.uploadFile(objectName, buffer);
-          resolve();
-        } catch (error) {
-          console.error("Error uploading small file:", error);
+        body.on("error", (error: Error) => {
+          console.error("Error reading upload stream:", error);
           reject(error);
-        }
+        });
       });
+    }
 
-      stream.on("error", (error: Error) => {
-        console.error("Error reading upload stream:", error);
-        reject(error);
-      });
-    });
+    try {
+      const buffer = Buffer.from(body);
+      if (buffer.length === 0) {
+        throw new Error("No file data received");
+      }
+      await provider.uploadFile(objectName, buffer);
+    } catch (error) {
+      throw new Error(`Unsupported request body type: ${typeof body}. Expected stream, buffer, string, or object.`);
+    }
   }
 
   async download(request: FastifyRequest, reply: FastifyReply) {
