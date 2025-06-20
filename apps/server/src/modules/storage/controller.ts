@@ -22,7 +22,21 @@ export class StorageController {
       const diskSpace = await this.storageService.getDiskSpace(userId, isAdmin);
       return reply.send(diskSpace);
     } catch (error: any) {
-      return reply.status(500).send({ error: error.message });
+      console.error("Controller error in getDiskSpace:", error);
+
+      // For disk space detection issues, provide a more specific error
+      if (error.message?.includes("Unable to determine actual disk space")) {
+        return reply.status(503).send({
+          error: "Disk space detection unavailable - system configuration issue",
+          details: "Please check system permissions and available disk utilities",
+          code: "DISK_SPACE_DETECTION_FAILED",
+        });
+      }
+
+      return reply.status(500).send({
+        error: "Failed to retrieve disk space information",
+        details: error.message || "Unknown error occurred",
+      });
     }
   }
 

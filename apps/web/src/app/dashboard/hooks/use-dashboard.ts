@@ -18,6 +18,7 @@ export function useDashboard() {
     diskAvailableGB: number;
     uploadAllowed: boolean;
   } | null>(null);
+  const [diskSpaceError, setDiskSpaceError] = useState<string | null>(null);
   const [recentFiles, setRecentFiles] = useState<any[]>([]);
   const [recentShares, setRecentShares] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,24 +35,48 @@ export function useDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      const [diskSpaceRes, filesRes, sharesRes] = await Promise.all([getDiskSpace(), listFiles(), listUserShares()]);
+      // Load disk space separately to not block other data
+      const loadDiskSpace = async () => {
+        try {
+          const diskSpaceRes = await getDiskSpace();
+          setDiskSpace(diskSpaceRes.data);
+          setDiskSpaceError(null);
+        } catch (error: any) {
+          console.warn("Failed to load disk space:", error);
+          setDiskSpace(null);
 
-      setDiskSpace(diskSpaceRes.data);
+          // Check for specific disk space detection error
+          if (error.response?.status === 503 && error.response?.data?.code === "DISK_SPACE_DETECTION_FAILED") {
+            setDiskSpaceError("disk_detection_failed");
+          } else if (error.response?.status >= 500) {
+            setDiskSpaceError("server_error");
+          } else {
+            setDiskSpaceError("unknown_error");
+          }
+        }
+      };
 
-      const allFiles = filesRes.data.files || [];
-      const sortedFiles = [...allFiles].sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
+      // Load files and shares (these should work even if disk space fails)
+      const loadFilesAndShares = async () => {
+        const [filesRes, sharesRes] = await Promise.all([listFiles(), listUserShares()]);
 
-      setRecentFiles(sortedFiles.slice(0, 5));
+        const allFiles = filesRes.data.files || [];
+        const sortedFiles = [...allFiles].sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setRecentFiles(sortedFiles.slice(0, 5));
 
-      const allShares = sharesRes.data.shares || [];
-      const sortedShares = [...allShares].sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
+        const allShares = sharesRes.data.shares || [];
+        const sortedShares = [...allShares].sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setRecentShares(sortedShares.slice(0, 5));
+      };
 
-      setRecentShares(sortedShares.slice(0, 5));
+      // Load everything in parallel but handle errors separately
+      await Promise.allSettled([loadDiskSpace(), loadFilesAndShares()]);
     } catch (error) {
+      console.error("Critical dashboard error:", error);
       toast.error(t("dashboard.loadError"));
     } finally {
       setIsLoading(false);
@@ -76,6 +101,7 @@ export function useDashboard() {
   return {
     isLoading,
     diskSpace,
+    diskSpaceError,
     recentFiles,
     recentShares,
     modals: {

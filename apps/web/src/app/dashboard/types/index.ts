@@ -24,6 +24,8 @@ export interface StorageUsageProps {
     diskAvailableGB: number;
     uploadAllowed: boolean;
   } | null;
+  diskSpaceError?: string | null;
+  onRetry?: () => void;
 }
 
 export interface DashboardModalsProps {
