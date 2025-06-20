@@ -7,6 +7,7 @@ export interface IUserRepository {
   findUserByEmail(email: string): Promise<User | null>;
   findUserById(id: string): Promise<User | null>;
   findUserByUsername(username: string): Promise<User | null>;
+  findUserByEmailOrUsername(emailOrUsername: string): Promise<User | null>;
   listUsers(): Promise<User[]>;
   updateUser(data: UpdateUserInput & { password?: string }): Promise<User>;
   deleteUser(id: string): Promise<User>;
@@ -39,6 +40,14 @@ export class PrismaUserRepository implements IUserRepository {
 
   async findUserByUsername(username: string): Promise<User | null> {
     return prisma.user.findUnique({ where: { username } });
+  }
+
+  async findUserByEmailOrUsername(emailOrUsername: string): Promise<User | null> {
+    return prisma.user.findFirst({
+      where: {
+        OR: [{ email: emailOrUsername }, { username: emailOrUsername }],
+      },
+    });
   }
 
   async listUsers(): Promise<User[]> {

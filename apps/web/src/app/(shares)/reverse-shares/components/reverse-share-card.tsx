@@ -103,7 +103,6 @@ export function ReverseShareCard({
     const { field } = editingField;
     let processedValue: string | number | null | boolean = editValue;
 
-    // Processar valores específicos
     if (field === "isActive") {
       processedValue = editValue === "true";
     }

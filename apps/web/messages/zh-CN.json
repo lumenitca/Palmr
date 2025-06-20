@@ -202,6 +202,8 @@
   "login": {
     "welcome": "欢迎您",
     "signInToContinue": "请登录以继续",
+    "emailOrUsernameLabel": "电子邮件或用户名",
+    "emailOrUsernamePlaceholder": "请输入您的电子邮件或用户名",
     "emailLabel": "电子邮件地址",
     "emailPlaceholder": "请输入您的电子邮件",
     "passwordLabel": "密码",
@@ -730,7 +732,15 @@
     "title": "存储使用情况",
     "ariaLabel": "存储使用进度条",
     "used": "已使用：",
-    "available": "可用："
+    "available": "可用",
+    "loading": "加载中...",
+    "retry": "重试",
+    "errors": {
+      "title": "存储信息不可用",
+      "detectionFailed": "无法检测磁盘空间。这可能是由于系统配置问题或权限不足。",
+      "serverError": "检索存储信息时发生服务器错误。请稍后重试。",
+      "unknown": "加载存储信息时发生意外错误。"
+    }
   },
   "theme": {
     "toggle": "切换主题",
@@ -748,6 +758,7 @@
     "uploadProgress": "上传进度",
     "upload": "上传",
     "startUploads": "开始上传",
+    "retry": "重试",
     "finish": "完成",
     "success": "文件上传成功",
     "allSuccess": "{count, plural, =1 {文件上传成功} other {# 个文件上传成功}}",
@@ -844,6 +855,7 @@
     "passwordLength": "密码至少需要8个字符",
     "passwordsMatch": "密码不匹配",
     "emailRequired": "电子邮件为必填项",
+    "emailOrUsernameRequired": "电子邮件或用户名是必填项",
     "passwordRequired": "密码为必填项",
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
@@ -1269,6 +1281,7 @@
         "linkInactive": "此链接已停用。",
         "linkExpired": "此链接已过期。",
         "uploadFailed": "上传文件时出错",
+        "retry": "重试",
         "fileTooLarge": "文件太大。最大大小：{maxSize}",
         "fileTypeNotAllowed": "不允许的文件类型。允许的类型：{allowedTypes}",
         "maxFilesExceeded": "最多允许 {maxFiles} 个文件",

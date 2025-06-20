@@ -18,17 +18,17 @@
     "click": "Clique para"
   },
   "createShare": {
-    "title": "Criar Compartilhamento",
-    "nameLabel": "Nome do Compartilhamento",
+    "title": "Criar compartilhamento",
+    "nameLabel": "Nome do compartilhamento",
     "descriptionLabel": "Descrição",
     "descriptionPlaceholder": "Digite uma descrição (opcional)",
-    "expirationLabel": "Data de Expiração",
+    "expirationLabel": "Data de expiração",
     "expirationPlaceholder": "DD/MM/AAAA HH:MM",
-    "maxViewsLabel": "Máximo de Visualizações",
+    "maxViewsLabel": "Máximo de visualizações",
     "maxViewsPlaceholder": "Deixe vazio para ilimitado",
     "passwordProtection": "Protegido por Senha",
     "passwordLabel": "Senha",
-    "create": "Criar Compartilhamento",
+    "create": "Criar compartilhamento",
     "success": "Compartilhamento criado com sucesso",
     "error": "Falha ao criar compartilhamento"
   },
@@ -44,7 +44,7 @@
   },
   "emptyState": {
     "noFiles": "Nenhum arquivo enviado ainda",
-    "uploadFile": "Enviar Arquivo"
+    "uploadFile": "Enviar arquivo"
   },
   "errors": {
     "invalidCredentials": "E-mail ou senha inválidos",
@@ -53,13 +53,13 @@
     "unexpectedError": "Ocorreu um erro inesperado. Por favor, tente novamente"
   },
   "fileActions": {
-    "editFile": "Editar Arquivo",
+    "editFile": "Editar arquivo",
     "nameLabel": "Nome",
     "namePlaceholder": "Digite o novo nome",
     "extension": "Extensão",
     "descriptionLabel": "Descrição",
     "descriptionPlaceholder": "Digite a descrição do arquivo",
-    "deleteFile": "Excluir Arquivo",
+    "deleteFile": "Excluir arquivo",
     "deleteConfirmation": "Tem certeza que deseja excluir ?",
     "deleteWarning": "Esta ação não pode ser desfeita."
   },
@@ -154,9 +154,9 @@
     "bulkActions": {
       "selected": "{count, plural, =1 {1 arquivo selecionado} other {# arquivos selecionados}}",
       "actions": "Ações",
-      "download": "Baixar Selecionados",
-      "share": "Compartilhar Selecionados",
-      "delete": "Excluir Selecionados"
+      "download": "Baixar selecionados",
+      "share": "Compartilhar selecionados",
+      "delete": "Excluir selecionados"
     }
   },
   "footer": {
@@ -175,23 +175,23 @@
     "pageTitle": "Esqueceu a Senha"
   },
   "generateShareLink": {
-    "generateTitle": "Gerar Link de Compartilhamento",
-    "updateTitle": "Atualizar Link de Compartilhamento",
+    "generateTitle": "Gerar link de compartilhamento",
+    "updateTitle": "Atualizar link de compartilhamento",
     "generateDescription": "Gere um link para compartilhar seus arquivos",
     "updateDescription": "Atualize o alias deste link de compartilhamento",
     "aliasPlaceholder": "Digite o alias",
     "linkReady": "Seu link de compartilhamento está pronto:",
-    "generateButton": "Gerar Link",
-    "updateButton": "Atualizar Link",
-    "copyButton": "Copiar Link",
+    "generateButton": "Gerar link",
+    "updateButton": "Atualizar link",
+    "copyButton": "Copiar link",
     "success": "Link gerado com sucesso",
     "error": "Erro ao gerar link",
     "copied": "Link copiado para a área de transferência"
   },
   "shareFile": {
-    "title": "Compartilhar Arquivo",
-    "linkTitle": "Gerar Link",
-    "nameLabel": "Nome do Compartilhamento",
+    "title": "Compartilhar arquivo",
+    "linkTitle": "Gerar link",
+    "nameLabel": "Nome do compartilhamento",
     "namePlaceholder": "Digite o nome do compartilhamento",
     "descriptionLabel": "Descrição",
     "descriptionPlaceholder": "Digite uma descrição (opcional)",
@@ -199,16 +199,16 @@
     "expirationPlaceholder": "DD/MM/AAAA HH:MM",
     "maxViewsLabel": "Máximo de Visualizações",
     "maxViewsPlaceholder": "Deixe vazio para ilimitado",
-    "passwordProtection": "Protegido por Senha",
+    "passwordProtection": "Protegido por senha",
     "passwordLabel": "Senha",
     "passwordPlaceholder": "Digite a senha",
     "linkDescription": "Gere um link personalizado para compartilhar o arquivo",
-    "aliasLabel": "Alias do Link",
+    "aliasLabel": "Alias do link",
     "aliasPlaceholder": "Digite um alias personalizado",
     "linkReady": "Seu link de compartilhamento está pronto:",
-    "createShare": "Criar Compartilhamento",
-    "generateLink": "Gerar Link",
-    "copyLink": "Copiar Link"
+    "createShare": "Criar compartilhamento",
+    "generateLink": "Gerar link",
+    "copyLink": "Copiar link"
   },
   "home": {
     "description": "A alternativa open-source ao WeTransfer. Compartilhe arquivos com segurança, sem rastreamento ou limitações.",
@@ -223,7 +223,9 @@
   },
   "login": {
     "welcome": "Bem-vindo ao",
-    "signInToContinue": "Entre para continuar",
+    "signInToContinue": "Faça login para continuar",
+    "emailOrUsernameLabel": "E-mail ou Nome de Usuário",
+    "emailOrUsernamePlaceholder": "Digite seu e-mail ou nome de usuário",
     "emailLabel": "Endereço de E-mail",
     "emailPlaceholder": "Digite seu e-mail",
     "passwordLabel": "Senha",
@@ -231,18 +233,18 @@
     "signIn": "Entrar",
     "signingIn": "Entrando...",
     "forgotPassword": "Esqueceu a senha?",
-    "pageTitle": "Entrar",
+    "pageTitle": "Login",
     "or": "ou",
     "continueWithSSO": "Continuar com SSO",
     "processing": "Processando autenticação..."
   },
   "logo": {
     "labels": {
-      "appLogo": "Logo do Aplicativo"
+      "appLogo": "Logo do aplicativo"
     },
     "buttons": {
-      "upload": "Enviar Logo",
-      "remove": "Remover Logo"
+      "upload": "Enviar logo",
+      "remove": "Remover logo"
     },
     "messages": {
       "uploadSuccess": "Logo enviado com sucesso",
@@ -254,11 +256,11 @@
     }
   },
   "navbar": {
-    "logoAlt": "Logo do Aplicativo",
+    "logoAlt": "Logo do aplicativo",
     "profileMenu": "Menu do Perfil",
     "profile": "Perfil",
     "settings": "Configurações",
-    "usersManagement": "Gerenciar Usuários",
+    "usersManagement": "Gerenciar usuários",
     "logout": "Sair"
   },
   "navigation": {
@@ -752,7 +754,15 @@
     "title": "Uso de Armazenamento",
     "ariaLabel": "Barra de progresso do uso de armazenamento",
     "used": "usado",
-    "available": "disponível"
+    "available": "disponível",
+    "loading": "Carregando...",
+    "retry": "Tentar novamente",
+    "errors": {
+      "title": "Informações de armazenamento indisponíveis",
+      "detectionFailed": "Não foi possível detectar o espaço em disco. Isso pode ser devido a problemas de configuração do sistema ou permissões insuficientes.",
+      "serverError": "Ocorreu um erro no servidor ao recuperar as informações de armazenamento. Por favor, tente novamente mais tarde.",
+      "unknown": "Ocorreu um erro inesperado ao carregar as informações de armazenamento."
+    }
   },
   "theme": {
     "toggle": "Alternar tema",
@@ -770,6 +780,7 @@
     "uploadProgress": "Progresso do upload",
     "upload": "Enviar",
     "startUploads": "Iniciar Uploads",
+    "retry": "Tentar Novamente",
     "finish": "Concluir",
     "success": "Arquivo enviado com sucesso",
     "allSuccess": "{count, plural, =1 {Arquivo enviado com sucesso} other {# arquivos enviados com sucesso}}",
@@ -857,18 +868,15 @@
     }
   },
   "validation": {
-    "invalidEmail": "Endereço de email inválido",
-    "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
-    "firstNameRequired": "Nome é obrigatório",
-    "lastNameRequired": "Sobrenome é obrigatório",
-    "usernameLength": "Nome de usuário deve ter pelo menos 3 caracteres",
-    "usernameSpaces": "Nome de usuário não pode conter espaços",
+    "invalidEmail": "Por favor, insira um endereço de e-mail válido",
     "passwordLength": "A senha deve ter pelo menos 8 caracteres",
-    "passwordsMatch": "As senhas não coincidem",
+    "passwordsMatch": "As senhas devem coincidir",
     "emailRequired": "Email é obrigatório",
+    "emailOrUsernameRequired": "E-mail ou nome de usuário é obrigatório",
     "passwordRequired": "Senha é obrigatória",
-    "required": "Este campo é obrigatório",
-    "nameRequired": "Nome é obrigatório"
+    "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+    "nameRequired": "Nome é obrigatório",
+    "required": "Este campo é obrigatório"
   },
   "bulkDownload": {
     "title": "Download em Lote",
@@ -937,8 +945,8 @@
       "noExpiration": "Este compartilhamento nunca expirará e permanecerá acessível indefinidamente.",
       "title": "Sobre expiração:"
     },
-    "enableExpiration": "Habilitar Expiração",
-    "title": "Configurações de Expiração do Compartilhamento",
+    "enableExpiration": "Habilitar expiração",
+    "title": "Configurações de expiração do compartilhamento",
     "subtitle": "Configurar quando este compartilhamento expirará",
     "validation": {
       "dateMustBeFuture": "A data de expiração deve estar no futuro",
@@ -949,7 +957,7 @@
       "updateFailed": "Falha ao atualizar configurações de expiração"
     },
     "expires": "Expira:",
-    "expirationDate": "Data de Expiração"
+    "expirationDate": "Data de expiração"
   },
   "auth": {
     "errors": {
@@ -961,10 +969,10 @@
     }
   },
   "reverseShares": {
-    "pageTitle": "Receber Arquivos",
+    "pageTitle": "Receber arquivos",
     "search": {
-      "title": "Gerenciar Links de Recebimento",
-      "createButton": "Criar Link",
+      "title": "Gerenciar links de recebimento",
+      "createButton": "Criar link",
       "placeholder": "Buscar links de recebimento...",
       "results": "Encontrados {filtered} de {total} links de recebimento"
     },
@@ -974,13 +982,13 @@
       "status": "status",
       "access": "acesso",
       "description": "Descrição",
-      "pageLayout": "Layout da Página",
+      "pageLayout": "Layout da página",
       "security": "Segurança & Status",
       "limits": "Limites",
-      "maxFiles": "Máximo de Arquivos",
-      "maxFileSize": "Tamanho Máximo",
-      "allowedTypes": "Tipos Permitidos",
-      "filesReceived": "Arquivos Recebidos",
+      "maxFiles": "Máximo de arquivos",
+      "maxFileSize": "Tamanho máximo",
+      "allowedTypes": "Tipos permitidos",
+      "filesReceived": "Arquivos recebidos",
       "fileLimit": "Limite de Arquivos",
       "noLimit": "Sem limite",
       "noLinkCreated": "Nenhum link criado",
@@ -1269,6 +1277,7 @@
         "linkInactive": "Este link está inativo.",
         "linkExpired": "Este link expirou.",
         "uploadFailed": "Erro ao enviar arquivo",
+        "retry": "Tentar Novamente",
         "fileTooLarge": "Arquivo muito grande. Tamanho máximo: {maxSize}",
         "fileTypeNotAllowed": "Tipo de arquivo não permitido. Tipos aceitos: {allowedTypes}",
         "maxFilesExceeded": "Máximo de {maxFiles} arquivos permitidos",

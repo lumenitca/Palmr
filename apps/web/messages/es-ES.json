@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Bienvenido a",
     "signInToContinue": "Inicia sesión para continuar",
+    "emailOrUsernameLabel": "Correo electrónico o nombre de usuario",
+    "emailOrUsernamePlaceholder": "Introduce tu correo electrónico o nombre de usuario",
     "emailLabel": "Dirección de correo electrónico",
     "emailPlaceholder": "Introduce tu correo electrónico",
     "passwordLabel": "Contraseña",
@@ -730,7 +732,15 @@
     "title": "Uso de almacenamiento",
     "ariaLabel": "Barra de progreso del uso de almacenamiento",
     "used": "usados",
-    "available": "disponibles"
+    "available": "disponible",
+    "loading": "Cargando...",
+    "retry": "Reintentar",
+    "errors": {
+      "title": "Información de almacenamiento no disponible",
+      "detectionFailed": "No se pudo detectar el espacio en disco. Esto puede deberse a problemas de configuración del sistema o permisos insuficientes.",
+      "serverError": "Ocurrió un error del servidor al recuperar la información de almacenamiento. Por favor, inténtelo de nuevo más tarde.",
+      "unknown": "Ocurrió un error inesperado al cargar la información de almacenamiento."
+    }
   },
   "theme": {
     "toggle": "Cambiar tema",
@@ -748,6 +758,7 @@
     "uploadProgress": "Progreso de la subida",
     "upload": "Subir",
     "startUploads": "Iniciar Subidas",
+    "retry": "Reintentar",
     "finish": "Finalizar",
     "success": "Archivo subido exitosamente",
     "allSuccess": "{count, plural, =1 {Archivo subido exitosamente} other {# archivos subidos exitosamente}}",
@@ -844,6 +855,7 @@
     "passwordLength": "La contraseña debe tener al menos 8 caracteres",
     "passwordsMatch": "Las contraseñas no coinciden",
     "emailRequired": "Se requiere el correo electrónico",
+    "emailOrUsernameRequired": "Se requiere el correo electrónico o nombre de usuario",
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
@@ -1269,6 +1281,7 @@
         "linkInactive": "Este enlace está inactivo.",
         "linkExpired": "Este enlace ha expirado.",
         "uploadFailed": "Error al subir archivo",
+        "retry": "Reintentar",
         "fileTooLarge": "Archivo demasiado grande. Tamaño máximo: {maxSize}",
         "fileTypeNotAllowed": "Tipo de archivo no permitido. Tipos aceptados: {allowedTypes}",
         "maxFilesExceeded": "Máximo de {maxFiles} archivos permitidos",

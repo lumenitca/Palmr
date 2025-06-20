@@ -66,7 +66,6 @@ export function WeTransferStatusMessage({
 }: WeTransferStatusMessageProps) {
   const t = useTranslations();
 
-  // Map message types to variants
   const getVariant = (): "success" | "warning" | "error" | "info" | "neutral" => {
     switch (type) {
       case MESSAGE_TYPES.SUCCESS:

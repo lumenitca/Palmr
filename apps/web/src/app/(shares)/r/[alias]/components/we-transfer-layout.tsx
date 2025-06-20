@@ -12,13 +12,11 @@ import { FileUploadSection } from "./file-upload-section";
 import { WeTransferStatusMessage } from "./shared/status-message";
 import { TransparentFooter } from "./transparent-footer";
 
-// Função para escolher uma imagem aleatória
 const getRandomBackgroundImage = (): string => {
   const randomIndex = Math.floor(Math.random() * BACKGROUND_IMAGES.length);
   return BACKGROUND_IMAGES[randomIndex];
 };
 
-// Hook para gerenciar a imagem de background
 const useBackgroundImage = () => {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -42,7 +40,6 @@ const useBackgroundImage = () => {
   return { selectedImage, imageLoaded };
 };
 
-// Componente para controles do header
 const HeaderControls = () => (
   <div className="absolute top-4 right-4 md:top-6 md:right-6 z-40 flex items-center gap-2">
     <div className="bg-white/10 dark:bg-black/20 backdrop-blur-xs border border-white/20 dark:border-white/10 rounded-lg p-1">
@@ -54,7 +51,6 @@ const HeaderControls = () => (
   </div>
 );
 
-// Componente para o fundo com imagem
 const BackgroundLayer = ({ selectedImage, imageLoaded }: { selectedImage: string; imageLoaded: boolean }) => (
   <>
     <div className="absolute inset-0 z-0 bg-background" />
@@ -162,18 +158,15 @@ export function WeTransferLayout({
       <BackgroundLayer selectedImage={selectedImage} imageLoaded={imageLoaded} />
       <HeaderControls />
 
-      {/* Loading indicator */}
       {!imageLoaded && (
         <div className="absolute inset-0 z-30 flex items-center justify-center">
           <div className="animate-pulse text-white/70 text-sm">{t("reverseShares.upload.layout.loading")}</div>
         </div>
       )}
 
-      {/* Main Content */}
       <div className="relative z-30 min-h-screen flex items-center justify-start p-4 md:p-8 lg:p-12 xl:p-16">
         <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl">
           <div className="bg-white dark:bg-black rounded-2xl shadow-2xl p-6 md:p-8 backdrop-blur-sm border border-white/20">
-            {/* Header */}
             <div className="text-left mb-6 md:mb-8">
               <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 {reverseShare?.name || t("reverseShares.upload.layout.defaultTitle")}
@@ -183,7 +176,6 @@ export function WeTransferLayout({
               )}
             </div>
 
-            {/* Upload Section */}
             {getUploadSectionContent()}
           </div>
         </div>

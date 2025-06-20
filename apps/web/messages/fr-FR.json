@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Bienvenue à",
     "signInToContinue": "Connectez-vous pour continuer",
+    "emailOrUsernameLabel": "Email ou Nom d'utilisateur",
+    "emailOrUsernamePlaceholder": "Entrez votre email ou nom d'utilisateur",
     "emailLabel": "Adresse e-mail",
     "emailPlaceholder": "Entrez votre e-mail",
     "passwordLabel": "Mot de passe",
@@ -730,7 +732,15 @@
     "title": "Utilisation du Stockage",
     "ariaLabel": "Barre de progression de l'utilisation du stockage",
     "used": "utilisé",
-    "available": "disponible"
+    "available": "disponible",
+    "loading": "Chargement...",
+    "retry": "Réessayer",
+    "errors": {
+      "title": "Informations de stockage non disponibles",
+      "detectionFailed": "Impossible de détecter l'espace disque. Cela peut être dû à des problèmes de configuration système ou à des permissions insuffisantes.",
+      "serverError": "Une erreur serveur s'est produite lors de la récupération des informations de stockage. Veuillez réessayer plus tard.",
+      "unknown": "Une erreur inattendue s'est produite lors du chargement des informations de stockage."
+    }
   },
   "theme": {
     "toggle": "Changer le thème",
@@ -748,6 +758,7 @@
     "uploadProgress": "Progression du téléchargement",
     "upload": "Télécharger",
     "startUploads": "Commencer les Téléchargements",
+    "retry": "Réessayer",
     "finish": "Terminer",
     "success": "Fichier téléchargé avec succès",
     "allSuccess": "{count, plural, =1 {Fichier téléchargé avec succès} other {# fichiers téléchargés avec succès}}",
@@ -844,6 +855,7 @@
     "passwordLength": "Le mot de passe doit contenir au moins 8 caractères",
     "passwordsMatch": "Les mots de passe ne correspondent pas",
     "emailRequired": "L'email est requis",
+    "emailOrUsernameRequired": "L'email ou le nom d'utilisateur est requis",
     "passwordRequired": "Le mot de passe est requis",
     "nameRequired": "Nome é obrigatório",
     "required": "Este campo é obrigatório"
@@ -1269,6 +1281,7 @@
         "linkInactive": "Ce lien est inactif.",
         "linkExpired": "Ce lien a expiré.",
         "uploadFailed": "Erreur lors de l'envoi du fichier",
+        "retry": "Réessayer",
         "fileTooLarge": "Fichier trop volumineux. Taille maximale : {maxSize}",
         "fileTypeNotAllowed": "Type de fichier non autorisé. Types acceptés : {allowedTypes}",
         "maxFilesExceeded": "Maximum de {maxFiles} fichiers autorisés",

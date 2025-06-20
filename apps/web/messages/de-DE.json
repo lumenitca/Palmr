@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Willkommen zu",
     "signInToContinue": "Melden Sie sich an, um fortzufahren",
+    "emailOrUsernameLabel": "E-Mail-Adresse oder Benutzername",
+    "emailOrUsernamePlaceholder": "Geben Sie Ihre E-Mail-Adresse oder Benutzernamen ein",
     "emailLabel": "E-Mail-Adresse",
     "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
     "passwordLabel": "Passwort",
@@ -730,7 +732,15 @@
     "title": "Speichernutzung",
     "ariaLabel": "Fortschrittsbalken der Speichernutzung",
     "used": "genutzt",
-    "available": "verfügbar"
+    "available": "verfügbar",
+    "loading": "Wird geladen...",
+    "retry": "Wiederholen",
+    "errors": {
+      "title": "Speicherinformationen nicht verfügbar",
+      "detectionFailed": "Speicherplatz konnte nicht erkannt werden. Dies kann an Systemkonfigurationsproblemen oder unzureichenden Berechtigungen liegen.",
+      "serverError": "Serverfehler beim Abrufen der Speicherinformationen. Bitte versuchen Sie es später erneut.",
+      "unknown": "Ein unerwarteter Fehler ist beim Laden der Speicherinformationen aufgetreten."
+    }
   },
   "theme": {
     "toggle": "Design umschalten",
@@ -748,6 +758,7 @@
     "uploadProgress": "Upload-Fortschritt",
     "upload": "Hochladen",
     "startUploads": "Uploads Starten",
+    "retry": "Wiederholen",
     "finish": "Beenden",
     "success": "Datei erfolgreich hochgeladen",
     "allSuccess": "{count, plural, =1 {Datei erfolgreich hochgeladen} other {# Dateien erfolgreich hochgeladen}}",
@@ -844,6 +855,7 @@
     "passwordLength": "Das Passwort muss mindestens 8 Zeichen lang sein",
     "passwordsMatch": "Die Passwörter stimmen nicht überein",
     "emailRequired": "E-Mail ist erforderlich",
+    "emailOrUsernameRequired": "E-Mail oder Benutzername ist erforderlich",
     "passwordRequired": "Passwort ist erforderlich",
     "nameRequired": "Name ist erforderlich",
     "required": "Dieses Feld ist erforderlich"
@@ -1269,6 +1281,7 @@
         "linkInactive": "Dieser Link ist inaktiv.",
         "linkExpired": "Dieser Link ist abgelaufen.",
         "uploadFailed": "Fehler beim Hochladen der Datei",
+        "retry": "Wiederholen",
         "fileTooLarge": "Datei zu groß. Maximale Größe: {maxSize}",
         "fileTypeNotAllowed": "Dateityp nicht erlaubt. Erlaubte Typen: {allowedTypes}",
         "maxFilesExceeded": "Maximal {maxFiles} Dateien erlaubt",

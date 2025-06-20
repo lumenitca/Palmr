@@ -30,7 +30,6 @@ export async function userRoutes(app: FastifyInstance) {
             .description("Unauthorized: a valid token is required to access this resource.");
         }
       }
-      // If usersCount is 0, allow the request to proceed without authentication
     } catch (err) {
       console.error(err);
       return reply.status(500).send({ error: "Internal server error" }).description("Internal server error");

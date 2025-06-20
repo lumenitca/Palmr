@@ -25,7 +25,6 @@ import { getFileIcon } from "@/utils/file-icons";
 import { ReverseShare } from "../hooks/use-reverse-shares";
 import { ReverseShareFilePreviewModal } from "./reverse-share-file-preview-modal";
 
-// Types
 interface EditingState {
   fileId: string;
   field: string;
@@ -36,7 +35,6 @@ interface HoverState {
   field: string;
 }
 
-// Custom Hooks
 function useFileEdit() {
   const [editingFile, setEditingFile] = useState<EditingState | null>(null);
   const [editValue, setEditValue] = useState("");
@@ -74,7 +72,6 @@ function useFileEdit() {
   };
 }
 
-// Utility Functions
 const formatFileSize = (sizeString: string) => {
   const sizeInBytes = parseInt(sizeString);
   if (sizeInBytes === 0) return "0 B";
@@ -122,7 +119,6 @@ const getSenderInitials = (file: ReverseShareFile) => {
   return "?";
 };
 
-// Components
 interface EditableFieldProps {
   file: ReverseShareFile;
   field: "name" | "description";

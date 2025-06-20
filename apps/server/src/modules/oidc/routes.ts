@@ -6,7 +6,6 @@ import { z } from "zod";
 export async function oidcRoutes(fastify: FastifyInstance) {
   const oidcController = new OIDCController();
 
-  // Get OIDC configuration
   fastify.get(
     "/config",
     {
@@ -27,7 +26,6 @@ export async function oidcRoutes(fastify: FastifyInstance) {
     oidcController.getConfig.bind(oidcController)
   );
 
-  // Initiate OIDC authorization
   fastify.get(
     "/authorize",
     {
@@ -54,7 +52,6 @@ export async function oidcRoutes(fastify: FastifyInstance) {
     oidcController.authorize.bind(oidcController)
   );
 
-  // Handle OIDC callback
   fastify.get(
     "/callback",
     {

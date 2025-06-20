@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Hoş geldiniz'e",
     "signInToContinue": "Devam etmek için oturum açın",
+    "emailOrUsernameLabel": "E-posta veya Kullanıcı Adı",
+    "emailOrUsernamePlaceholder": "E-posta veya kullanıcı adınızı girin",
     "emailLabel": "E-posta Adresi",
     "emailPlaceholder": "E-posta adresinizi girin",
     "passwordLabel": "Şifre",
@@ -730,7 +732,15 @@
     "title": "Depolama Kullanımı",
     "ariaLabel": "Depolama kullanım ilerleme çubuğu",
     "used": "kullanıldı",
-    "available": "kullanılabilir"
+    "available": "kullanılabilir",
+    "loading": "Yükleniyor...",
+    "retry": "Tekrar Dene",
+    "errors": {
+      "title": "Depolama bilgisi kullanılamıyor",
+      "detectionFailed": "Disk alanı tespit edilemiyor. Bu, sistem yapılandırma sorunlarından veya yetersiz izinlerden kaynaklanıyor olabilir.",
+      "serverError": "Depolama bilgisi alınırken sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
+      "unknown": "Depolama bilgisi yüklenirken beklenmeyen bir hata oluştu."
+    }
   },
   "theme": {
     "toggle": "Temayı değiştir",
@@ -748,6 +758,7 @@
     "uploadProgress": "Yükleme ilerlemesi",
     "upload": "Yükle",
     "startUploads": "Yüklemeleri Başlat",
+    "retry": "Tekrar Dene",
     "finish": "Bitir",
     "success": "Dosya başarıyla yüklendi",
     "allSuccess": "{count, plural, =1 {Dosya başarıyla yüklendi} other {# dosya başarıyla yüklendi}}",
@@ -844,6 +855,7 @@
     "passwordLength": "Şifre en az 8 karakter olmalıdır",
     "passwordsMatch": "Şifreler eşleşmiyor",
     "emailRequired": "E-posta gerekli",
+    "emailOrUsernameRequired": "E-posta veya kullanıcı adı gereklidir",
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
@@ -1269,6 +1281,7 @@
         "linkInactive": "Bu bağlantı pasif durumda.",
         "linkExpired": "Bu bağlantının süresi doldu.",
         "uploadFailed": "Dosya yüklenirken hata oluştu",
+        "retry": "Tekrar Dene",
         "fileTooLarge": "Dosya çok büyük. Maksimum boyut: {maxSize}",
         "fileTypeNotAllowed": "Dosya türüne izin verilmiyor. İzin verilen türler: {allowedTypes}",
         "maxFilesExceeded": "Maksimum {maxFiles} dosyaya izin veriliyor",

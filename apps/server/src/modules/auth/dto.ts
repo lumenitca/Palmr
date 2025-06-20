@@ -9,7 +9,7 @@ export const createPasswordSchema = async () => {
 };
 
 export const LoginSchema = z.object({
-  email: z.string().email("Invalid email").describe("User email"),
+  emailOrUsername: z.string().min(1, "Email or username is required").describe("User email or username"),
   password: z.string().min(6, "Password must be at least 6 characters").describe("User password"),
 });
 export type LoginInput = z.infer<typeof LoginSchema>;

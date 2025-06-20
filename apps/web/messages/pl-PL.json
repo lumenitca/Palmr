@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Witaj w",
     "signInToContinue": "Zaloguj się, aby kontynuować",
+    "emailOrUsernameLabel": "E-mail lub nazwa użytkownika",
+    "emailOrUsernamePlaceholder": "Wprowadź swój e-mail lub nazwę użytkownika",
     "emailLabel": "Adres e-mail",
     "emailPlaceholder": "Wprowadź swój adres e-mail",
     "passwordLabel": "Hasło",
@@ -788,7 +790,15 @@
     "title": "Użycie pamięci",
     "ariaLabel": "Pasek postępu użycia pamięci",
     "used": "użyte",
-    "available": "dostępne"
+    "available": "dostępne",
+    "loading": "Ładowanie...",
+    "retry": "Spróbuj ponownie",
+    "errors": {
+      "title": "Informacje o pamięci niedostępne",
+      "detectionFailed": "Nie można wykryć miejsca na dysku. Może to być spowodowane problemami z konfiguracją systemu lub niewystarczającymi uprawnieniami.",
+      "serverError": "Wystąpił błąd serwera podczas pobierania informacji o pamięci. Spróbuj ponownie później.",
+      "unknown": "Wystąpił nieoczekiwany błąd podczas ładowania informacji o pamięci."
+    }
   },
   "theme": {
     "toggle": "Przełącz motyw",
@@ -806,6 +816,7 @@
     "uploadProgress": "Postęp przesyłania",
     "upload": "Prześlij",
     "startUploads": "Rozpocznij przesyłanie",
+    "retry": "Spróbuj Ponownie",
     "finish": "Zakończ",
     "success": "Plik przesłany pomyślnie",
     "allSuccess": "{count, plural, =1 {Plik przesłany pomyślnie} other {# plików przesłanych pomyślnie}}",
@@ -901,6 +912,7 @@
     "passwordLength": "Hasło musi mieć co najmniej 8 znaków",
     "passwordsMatch": "Hasła muszą być zgodne",
     "emailRequired": "E-mail jest wymagany",
+    "emailOrUsernameRequired": "E-mail lub nazwa użytkownika jest wymagana",
     "passwordRequired": "Hasło jest wymagane",
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",
@@ -1269,6 +1281,7 @@
         "linkInactive": "Ten link jest nieaktywny.",
         "linkExpired": "Ten link wygasł.",
         "uploadFailed": "Błąd przesyłania pliku",
+        "retry": "Spróbuj Ponownie",
         "fileTooLarge": "Plik za duży. Maksymalny rozmiar: {maxSize}",
         "fileTypeNotAllowed": "Typ pliku niedozwolony. Akceptowane typy: {allowedTypes}",
         "maxFilesExceeded": "Dozwolono maksymalnie {maxFiles} plików",

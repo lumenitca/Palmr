@@ -168,7 +168,6 @@ export class ReverseShareService {
       throw new Error("Unauthorized to delete this reverse share");
     }
 
-    // Delete all files associated with this reverse share
     for (const file of reverseShare.files) {
       try {
         await this.fileService.deleteObject(file.objectName);
@@ -265,7 +264,6 @@ export class ReverseShareService {
       }
     }
 
-    // Check file count limit
     if (reverseShare.maxFiles) {
       const currentFileCount = await this.reverseShareRepository.countFilesByReverseShareId(reverseShareId);
       if (currentFileCount >= reverseShare.maxFiles) {
@@ -273,12 +271,10 @@ export class ReverseShareService {
       }
     }
 
-    // Check file size limit
     if (reverseShare.maxFileSize && BigInt(fileData.size) > reverseShare.maxFileSize) {
       throw new Error("File size exceeds limit");
     }
 
-    // Check allowed file types
     if (reverseShare.allowedFileTypes) {
       const allowedTypes = reverseShare.allowedFileTypes.split(",").map((type) => type.trim().toLowerCase());
       if (!allowedTypes.includes(fileData.extension.toLowerCase())) {
@@ -318,7 +314,6 @@ export class ReverseShareService {
       }
     }
 
-    // Check file count limit
     if (reverseShare.maxFiles) {
       const currentFileCount = await this.reverseShareRepository.countFilesByReverseShareId(reverseShare.id);
       if (currentFileCount >= reverseShare.maxFiles) {
@@ -326,12 +321,10 @@ export class ReverseShareService {
       }
     }
 
-    // Check file size limit
     if (reverseShare.maxFileSize && BigInt(fileData.size) > reverseShare.maxFileSize) {
       throw new Error("File size exceeds limit");
     }
 
-    // Check allowed file types
     if (reverseShare.allowedFileTypes) {
       const allowedTypes = reverseShare.allowedFileTypes.split(",").map((type) => type.trim().toLowerCase());
       if (!allowedTypes.includes(fileData.extension.toLowerCase())) {
@@ -372,10 +365,8 @@ export class ReverseShareService {
       throw new Error("Unauthorized to delete this file");
     }
 
-    // Delete from storage
     await this.fileService.deleteObject(file.objectName);
 
-    // Delete from database
     const deletedFile = await this.reverseShareRepository.deleteFile(fileId);
     return this.formatFileResponse(deletedFile);
   }
@@ -473,7 +464,6 @@ export class ReverseShareService {
     data: { name?: string; description?: string | null },
     creatorId: string
   ) {
-    // Verificar se o arquivo existe e se o usuário tem permissão
     const file = await this.reverseShareRepository.findFileById(fileId);
     if (!file) {
       throw new Error("File not found");
@@ -483,13 +473,10 @@ export class ReverseShareService {
       throw new Error("Unauthorized to edit this file");
     }
 
-    // Se o nome está sendo atualizado, preservar a extensão original
     const updateData = { ...data };
     if (data.name) {
       const originalExtension = file.extension;
-      // Remove qualquer extensão que o usuário possa ter digitado
       const nameWithoutExtension = data.name.replace(/\.[^/.]+$/, "");
-      // Adiciona a extensão original (garantindo que tenha o ponto)
       const extensionWithDot = originalExtension.startsWith(".") ? originalExtension : `.${originalExtension}`;
       updateData.name = `${nameWithoutExtension}${extensionWithDot}`;
     }

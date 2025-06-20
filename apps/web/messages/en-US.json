@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Welcome to",
     "signInToContinue": "Sign in to continue",
+    "emailOrUsernameLabel": "Email or Username",
+    "emailOrUsernamePlaceholder": "Enter your email or username",
     "emailLabel": "Email Address",
     "emailPlaceholder": "Enter your email",
     "passwordLabel": "Password",
@@ -788,7 +790,15 @@
     "title": "Storage Usage",
     "ariaLabel": "Storage usage progress bar",
     "used": "used",
-    "available": "available"
+    "available": "available",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "errors": {
+      "title": "Storage information unavailable",
+      "detectionFailed": "Unable to detect disk space. This may be due to system configuration issues or insufficient permissions.",
+      "serverError": "Server error occurred while retrieving storage information. Please try again later.",
+      "unknown": "An unexpected error occurred while loading storage information."
+    }
   },
   "theme": {
     "toggle": "Toggle theme",
@@ -806,6 +816,7 @@
     "uploadProgress": "Upload progress",
     "upload": "Upload",
     "startUploads": "Start Uploads",
+    "retry": "Retry",
     "finish": "Finish",
     "success": "File uploaded successfully",
     "allSuccess": "{count, plural, =1 {File uploaded successfully} other {# files uploaded successfully}}",
@@ -901,6 +912,7 @@
     "passwordLength": "Password must be at least 8 characters long",
     "passwordsMatch": "Passwords must match",
     "emailRequired": "Email is required",
+    "emailOrUsernameRequired": "Email or username is required",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 6 characters",
     "nameRequired": "Name is required",
@@ -1269,6 +1281,7 @@
         "linkInactive": "This link is inactive.",
         "linkExpired": "This link has expired.",
         "uploadFailed": "Error uploading file",
+        "retry": "Retry",
         "fileTooLarge": "File too large. Maximum size: {maxSize}",
         "fileTypeNotAllowed": "File type not allowed. Accepted types: {allowedTypes}",
         "maxFilesExceeded": "Maximum of {maxFiles} files allowed",

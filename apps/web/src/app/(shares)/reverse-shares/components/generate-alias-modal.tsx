@@ -54,14 +54,11 @@ export function GenerateAliasModal({
     },
   });
 
-  // Atualiza o valor padrão quando o reverseShare muda
   React.useEffect(() => {
     if (reverseShare) {
       if (reverseShare.alias?.alias) {
-        // Se já tem alias, usa o existente
         form.setValue("alias", reverseShare.alias.alias);
       } else {
-        // Se não tem alias, gera um novo valor padrão
         form.setValue("alias", generateDefaultAlias());
       }
     }
@@ -75,7 +72,6 @@ export function GenerateAliasModal({
       await onCreateAlias(reverseShare.id, data.alias);
       onClose();
     } catch (error) {
-      // Erro já é tratado no hook
     } finally {
       setIsSubmitting(false);
     }
@@ -150,17 +146,15 @@ export function GenerateAliasModal({
                       className="max-w-full"
                       {...field}
                       onChange={(e) => {
-                        // Converter espaços em hífens e remover caracteres não permitidos
                         const value = e.target.value
-                          .replace(/\s+/g, "-") // espaços viram hífens
-                          .replace(/[^a-zA-Z0-9-_]/g, "") // remove caracteres não permitidos
-                          .toLowerCase(); // converte para minúsculo
+                          .replace(/\s+/g, "-")
+                          .replace(/[^a-zA-Z0-9-_]/g, "")
+                          .toLowerCase();
                         field.onChange(value);
                       }}
                     />
                   </FormControl>
 
-                  {/* Preview do link */}
                   {field.value && field.value.length >= 3 && (
                     <div className="mt-2 p-2 bg-primary/5 border border-primary/20 rounded-md overflow-hidden">
                       <label className="text-xs text-muted-foreground block mb-1">

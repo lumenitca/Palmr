@@ -137,6 +137,22 @@ The setup process varies depending on your chosen identity provider. Here are ex
 
 ![Identity Provider Setup](/assets/v3/oidc/provider-setup.png)
 
+### Zitadel
+1. **Create New ProjectApp**: In your desired Zitadel project, create a new application
+2. **Name and Type**: Give your application a name and choose **WEB** as the application type
+3. **Authentication Method**: Choose Code
+4. **Set Redirect URI**: Add your Palmr callback URL to valid redirect URIs
+5. **Finish**: After reviewing the configuration create the application
+6. **Copy the client ID and client Secrat**: Copy the client id paste it into the **Client ID** of your Palmr OIDC condiguration Form, repeat for the client secret and paste it into the **Client Secret** field
+7. **Obtain your Provider URL**: In your Zitadel application go to **URLs** and copy the **Authorization Endpoint (remove the /authorize from that url)** e.g. https://auth.example.com/oauth/v2
+
+**Configuration values:**
+
+- **Issuer URL**: Depends on your Zitadel installation and project. Example: `https://auth.example.com/oauth/v2`
+- **Scope**: `openid profile email`
+
+![Zitadel Identity Provider Setup](/assets/v3/oidc/zitadel-provider-setup.png)
+
 ---
 
 ## Testing OIDC configuration

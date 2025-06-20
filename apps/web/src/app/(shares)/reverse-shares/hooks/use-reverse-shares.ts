@@ -18,7 +18,6 @@ import type {
   UpdateReverseShareBody,
 } from "@/http/endpoints/reverse-shares/types";
 
-// Tipo baseado na resposta da API
 export type ReverseShare = ListUserReverseSharesResult["data"]["reverseShares"][0];
 
 export function useReverseShares() {
@@ -62,7 +61,6 @@ export function useReverseShares() {
 
       setReverseShares(sortedReverseShares);
 
-      // Atualiza o reverseShare específico que está sendo visualizado
       const updatedReverseShare = allReverseShares.find((rs) => rs.id === id);
       if (updatedReverseShare) {
         if (reverseShareToViewFiles && reverseShareToViewFiles.id === id) {
@@ -83,13 +81,11 @@ export function useReverseShares() {
       const response = await createReverseShare(data);
       const newReverseShare = response.data.reverseShare;
 
-      // Adiciona ao estado local
       setReverseShares((prev) => [newReverseShare as ReverseShare, ...prev]);
 
       toast.success(t("reverseShares.messages.createSuccess"));
       setIsCreateModalOpen(false);
 
-      // Automaticamente abre o modal de alias para o reverse share criado
       setReverseShareToGenerateLink(newReverseShare as ReverseShare);
 
       return newReverseShare;
@@ -113,7 +109,6 @@ export function useReverseShares() {
         updatedAt: new Date().toISOString(),
       };
 
-      // Atualiza o estado local
       setReverseShares((prev) =>
         prev.map((rs) =>
           rs.id === reverseShareId
@@ -125,7 +120,6 @@ export function useReverseShares() {
         )
       );
 
-      // Atualiza o reverseShare que está sendo visualizado no modal de detalhes
       if (reverseShareToViewDetails && reverseShareToViewDetails.id === reverseShareId) {
         setReverseShareToViewDetails({
           ...reverseShareToViewDetails,
@@ -145,7 +139,6 @@ export function useReverseShares() {
     try {
       await deleteReverseShare(reverseShare.id);
 
-      // Remove do estado local
       setReverseShares((prev) => prev.filter((rs) => rs.id !== reverseShare.id));
 
       toast.success(t("reverseShares.messages.deleteSuccess"));
@@ -163,7 +156,6 @@ export function useReverseShares() {
       const response = await updateReverseShare(data);
       const updatedReverseShare = response.data.reverseShare;
 
-      // Atualiza o estado local
       setReverseShares((prev) =>
         prev.map((rs) => (rs.id === data.id ? ({ ...rs, ...updatedReverseShare } as ReverseShare) : rs))
       );
@@ -186,12 +178,10 @@ export function useReverseShares() {
       const response = await updateReverseSharePassword(id, payload);
       const updatedReverseShare = response.data.reverseShare;
 
-      // Atualiza o estado local
       setReverseShares((prev) =>
         prev.map((rs) => (rs.id === id ? ({ ...rs, ...updatedReverseShare } as ReverseShare) : rs))
       );
 
-      // Atualiza o reverseShare que está sendo visualizado no modal de detalhes
       if (reverseShareToViewDetails && reverseShareToViewDetails.id === id) {
         setReverseShareToViewDetails({ ...reverseShareToViewDetails, ...updatedReverseShare } as ReverseShare);
       }
@@ -208,12 +198,10 @@ export function useReverseShares() {
       const response = await updateReverseShare(payload);
       const updatedReverseShare = response.data.reverseShare;
 
-      // Atualiza o estado local
       setReverseShares((prev) =>
         prev.map((rs) => (rs.id === id ? ({ ...rs, ...updatedReverseShare } as ReverseShare) : rs))
       );
 
-      // Atualiza o reverseShare que está sendo visualizado no modal de detalhes
       if (reverseShareToViewDetails && reverseShareToViewDetails.id === id) {
         setReverseShareToViewDetails({ ...reverseShareToViewDetails, ...updatedReverseShare } as ReverseShare);
       }
@@ -232,12 +220,10 @@ export function useReverseShares() {
       const response = await updateReverseShare(payload);
       const updatedReverseShare = response.data.reverseShare;
 
-      // Atualiza o estado local
       setReverseShares((prev) =>
         prev.map((rs) => (rs.id === id ? ({ ...rs, ...updatedReverseShare } as ReverseShare) : rs))
       );
 
-      // Atualiza o reverseShare que está sendo visualizado no modal de detalhes
       if (reverseShareToViewDetails && reverseShareToViewDetails.id === id) {
         setReverseShareToViewDetails({ ...reverseShareToViewDetails, ...updatedReverseShare } as ReverseShare);
       }
@@ -256,7 +242,6 @@ export function useReverseShares() {
     loadReverseShares();
   }, []);
 
-  // Sincroniza o reverseShareToViewDetails com a lista atualizada
   useEffect(() => {
     if (reverseShareToViewDetails) {
       const updatedReverseShare = reverseShares.find((rs) => rs.id === reverseShareToViewDetails.id);
@@ -266,7 +251,6 @@ export function useReverseShares() {
     }
   }, [reverseShares, reverseShareToViewDetails?.id]);
 
-  // Sincroniza o reverseShareToViewFiles com a lista atualizada
   useEffect(() => {
     if (reverseShareToViewFiles) {
       const updatedReverseShare = reverseShares.find((rs) => rs.id === reverseShareToViewFiles.id);

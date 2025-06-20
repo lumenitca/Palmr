@@ -19,6 +19,7 @@ export default function DashboardPage() {
   const {
     isLoading,
     diskSpace,
+    diskSpaceError,
     recentFiles,
     recentShares,
     modals,
@@ -32,6 +33,10 @@ export default function DashboardPage() {
     return <LoadingScreen />;
   }
 
+  const handleRetryDiskSpace = async () => {
+    await loadDashboardData();
+  };
+
   return (
     <ProtectedRoute>
       <FileManagerLayout
@@ -40,7 +45,7 @@ export default function DashboardPage() {
         showBreadcrumb={false}
         title={t("dashboard.pageTitle")}
       >
-        <StorageUsage diskSpace={diskSpace} />
+        <StorageUsage diskSpace={diskSpace} diskSpaceError={diskSpaceError} onRetry={handleRetryDiskSpace} />
         <QuickAccessCards />
 
         <div className="flex flex-col gap-6">

@@ -7,8 +7,8 @@
  */
 
 export type LoginBody = {
-  /** User email */
-  email: string;
+  /** User email or username */
+  emailOrUsername: string;
   /**
    * User password
    * @minLength 8

@@ -9,6 +9,10 @@ export async function filesystemRoutes(app: FastifyInstance) {
     return payload;
   });
 
+  app.addContentTypeParser("application/json", async (request: FastifyRequest, payload: any) => {
+    return payload;
+  });
+
   app.put(
     "/filesystem/upload/:token",
     {
