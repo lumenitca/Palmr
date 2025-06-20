@@ -27,19 +27,16 @@ export default function ReverseShareUploadPage() {
     handleUploadSuccess,
   } = useReverseShareUpload({ alias: shareAlias });
 
-  // Loading state
   if (isLoading) {
     return <LoadingScreen />;
   }
 
-  // Password required state
   if (isPasswordModalOpen) {
     return (
       <PasswordModal isOpen={isPasswordModalOpen} onSubmit={handlePasswordSubmit} onClose={handlePasswordModalClose} />
     );
   }
 
-  // Error states or missing data - always use DefaultLayout for simplicity
   if (hasError) {
     return (
       <DefaultLayout
@@ -56,7 +53,6 @@ export default function ReverseShareUploadPage() {
     );
   }
 
-  // Render appropriate layout for normal states
   if (isWeTransferLayout) {
     return (
       <WeTransferLayout

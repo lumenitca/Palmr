@@ -23,10 +23,7 @@ export class StorageService {
     return this._ensureNumber(parsed, 0);
   }
 
-  private async _tryDiskSpaceCommand(
-    command: string,
-    pathToCheck: string
-  ): Promise<{ total: number; available: number } | null> {
+  private async _tryDiskSpaceCommand(command: string): Promise<{ total: number; available: number } | null> {
     try {
       console.log(`Trying disk space command: ${command}`);
       const { stdout, stderr } = await execAsync(command);
@@ -56,23 +53,20 @@ export class StorageService {
           const parts = lines[1].trim().split(/\s+/);
           if (parts.length >= 4) {
             const [, size, , avail] = parts;
-            total = this._safeParseInt(size) * 1024; // df -k returns KB, convert to bytes
+            total = this._safeParseInt(size) * 1024;
             available = this._safeParseInt(avail) * 1024;
           }
         }
       } else {
-        // Linux
         const lines = stdout.trim().split("\n");
         if (lines.length >= 2) {
           const parts = lines[1].trim().split(/\s+/);
           if (parts.length >= 4) {
             const [, size, , avail] = parts;
-            // Check if command used -B1 (bytes) or default (1K blocks)
             if (command.includes("-B1")) {
               total = this._safeParseInt(size);
               available = this._safeParseInt(avail);
             } else {
-              // Default df returns 1K blocks
               total = this._safeParseInt(size) * 1024;
               available = this._safeParseInt(avail) * 1024;
             }
@@ -101,7 +95,6 @@ export class StorageService {
     for (const pathToCheck of pathsToTry) {
       console.log(`Trying path: ${pathToCheck}`);
 
-      // Ensure the path exists if it's our uploads directory
       if (pathToCheck.includes("uploads")) {
         try {
           if (!fs.existsSync(pathToCheck)) {
@@ -114,7 +107,6 @@ export class StorageService {
         }
       }
 
-      // Check if path exists
       if (!fs.existsSync(pathToCheck)) {
         console.warn(`Path does not exist: ${pathToCheck}`);
         continue;
@@ -128,7 +120,7 @@ export class StorageService {
             : [`df -B1 "${pathToCheck}"`, `df -k "${pathToCheck}"`, `df "${pathToCheck}"`];
 
       for (const command of commandsToTry) {
-        const result = await this._tryDiskSpaceCommand(command, pathToCheck);
+        const result = await this._tryDiskSpaceCommand(command);
         if (result) {
           console.log(`✅ Successfully got disk space for path: ${pathToCheck}`);
           return result;
@@ -161,7 +153,6 @@ export class StorageService {
           console.error("2. Available disk utilities (df, wmic)");
           console.error("3. Container/system configuration");
 
-          // Only now use fallback, but make it very clear this is an error state
           throw new Error("Unable to determine actual disk space - system configuration issue");
         }
 
@@ -208,8 +199,6 @@ export class StorageService {
     } catch (error) {
       console.error("❌ Error getting disk space:", error);
 
-      // Re-throw the error instead of returning fallback values
-      // This way the API will return a proper error and the frontend can handle it
       throw new Error(
         `Failed to get disk space information: ${error instanceof Error ? error.message : String(error)}`
       );

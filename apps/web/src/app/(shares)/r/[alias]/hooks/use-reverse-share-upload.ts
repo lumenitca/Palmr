@@ -17,7 +17,6 @@ export function useReverseShareUpload({ alias }: UseReverseShareUploadProps) {
   const router = useRouter();
   const t = useTranslations();
 
-  // States
   const [reverseShare, setReverseShare] = useState<ReverseShareInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -25,7 +24,6 @@ export function useReverseShareUpload({ alias }: UseReverseShareUploadProps) {
   const [hasUploadedSuccessfully, setHasUploadedSuccessfully] = useState(false);
   const [error, setError] = useState<{ type: ErrorType }>({ type: null });
 
-  // Utility functions
   const redirectToHome = () => router.push("/");
 
   const checkIfMaxFilesReached = (reverseShareData: ReverseShareInfo): boolean => {
@@ -109,23 +107,19 @@ export function useReverseShareUpload({ alias }: UseReverseShareUploadProps) {
     }
   }, [alias]);
 
-  // Computed values
   const isMaxFilesReached = reverseShare ? checkIfMaxFilesReached(reverseShare) : false;
   const isWeTransferLayout = reverseShare?.pageLayout === "WETRANSFER";
   const hasError = error.type !== null || (!reverseShare && !isLoading && !isPasswordModalOpen);
 
-  // Error state booleans for backward compatibility
   const isLinkInactive = error.type === "inactive";
   const isLinkNotFound = error.type === "notFound" || (!reverseShare && !isLoading && !isPasswordModalOpen);
   const isLinkExpired = error.type === "expired";
 
   return {
-    // Data
     reverseShare,
     currentPassword,
     alias,
 
-    // States
     isLoading,
     isPasswordModalOpen,
     hasUploadedSuccessfully,
@@ -134,12 +128,10 @@ export function useReverseShareUpload({ alias }: UseReverseShareUploadProps) {
     isWeTransferLayout,
     hasError,
 
-    // Error states (for backward compatibility)
     isLinkInactive,
     isLinkNotFound,
     isLinkExpired,
 
-    // Actions
     handlePasswordSubmit,
     handlePasswordModalClose,
     handleUploadSuccess,

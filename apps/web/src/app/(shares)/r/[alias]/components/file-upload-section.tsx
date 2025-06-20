@@ -156,13 +156,11 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     const { file } = fileWithProgress;
 
     try {
-      // Start upload
       updateFileStatus(index, {
         status: FILE_STATUS.UPLOADING,
         progress: UPLOAD_PROGRESS.INITIAL,
       });
 
-      // Generate object name and get presigned URL
       const objectName = generateObjectName(file.name);
       const presignedResponse = await getPresignedUrlForUploadByAlias(
         alias,
@@ -170,16 +168,12 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         password ? { password } : undefined
       );
 
-      // Upload to storage
       await uploadFileToStorage(file, presignedResponse.data.url);
 
-      // Update progress
       updateFileStatus(index, { progress: UPLOAD_PROGRESS.COMPLETE });
 
-      // Register file upload
       await registerUploadedFile(file, objectName);
 
-      // Mark as successful
       updateFileStatus(index, { status: FILE_STATUS.SUCCESS });
     } catch (error: any) {
       console.error("Upload error:", error);
@@ -243,7 +237,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
   );
   const hasSuccessfulUploads = files.some((file) => file.status === FILE_STATUS.SUCCESS);
 
-  // Call onUploadSuccess when all files are processed and there are successful uploads
   useEffect(() => {
     if (allFilesProcessed && hasSuccessfulUploads && files.length > 0) {
       onUploadSuccess?.();
@@ -266,7 +259,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
   };
 
   const renderFileRestrictions = () => {
-    // Calculate remaining files that can be uploaded
     const calculateRemainingFiles = (): number => {
       if (!reverseShare.maxFiles) return 0;
       const currentTotal = reverseShare.currentFileCount + files.length;
@@ -345,7 +337,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
   return (
     <div className="space-y-6">
-      {/* File Drop Zone */}
       <div {...getRootProps()} className={getDropzoneStyles()}>
         <input {...getInputProps()} />
         <IconUpload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
@@ -357,7 +348,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         {renderFileRestrictions()}
       </div>
 
-      {/* File List */}
       {files.length > 0 && (
         <div className="space-y-2">
           <h4 className="font-medium text-gray-900 dark:text-white">{t("reverseShares.upload.fileList.title")}</h4>
@@ -365,7 +355,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         </div>
       )}
 
-      {/* User Information */}
       <div className="space-y-4">
         <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
@@ -409,14 +398,12 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         </div>
       </div>
 
-      {/* Upload Button */}
       <Button onClick={handleUpload} disabled={!canUpload} className="w-full text-white" size="lg" variant="default">
         {isUploading
           ? t("reverseShares.upload.form.uploading")
           : t("reverseShares.upload.form.uploadButton", { count: files.length })}
       </Button>
 
-      {/* Success Message */}
       {allFilesProcessed && hasSuccessfulUploads && (
         <div className="text-center p-4 bg-green-50 dark:bg-green-950/20 rounded-lg">
           <p className="text-green-800 dark:text-green-200 font-medium">{t("reverseShares.upload.success.title")}</p>

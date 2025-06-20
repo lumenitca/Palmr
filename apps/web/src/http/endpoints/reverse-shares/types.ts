@@ -1,6 +1,5 @@
 import type { AxiosResponse } from "axios";
 
-// Create Reverse Share
 export type CreateReverseShareBody = {
   name?: string;
   description?: string;
@@ -31,7 +30,6 @@ export type CreateReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// Update Reverse Share
 export type UpdateReverseShareBody = {
   id: string;
   name?: string;
@@ -64,7 +62,6 @@ export type UpdateReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// List User Reverse Shares
 export type ListUserReverseSharesResult = AxiosResponse<{
   reverseShares: {
     id: string;
@@ -91,7 +88,6 @@ export type ListUserReverseSharesResult = AxiosResponse<{
   }[];
 }>;
 
-// Get Reverse Share
 export type GetReverseShareResult = AxiosResponse<{
   reverseShare: {
     id: string;
@@ -118,7 +114,6 @@ export type GetReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// Delete Reverse Share
 export type DeleteReverseShareResult = AxiosResponse<{
   reverseShare: {
     id: string;
@@ -138,7 +133,6 @@ export type DeleteReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// Get Reverse Share for Upload (Public)
 export type GetReverseShareForUploadParams = {
   password?: string;
 };
@@ -157,7 +151,6 @@ export type GetReverseShareForUploadResult = AxiosResponse<{
   };
 }>;
 
-// Update Password
 export type UpdateReverseSharePasswordBody = {
   password: string | null;
 };
@@ -181,7 +174,6 @@ export type UpdateReverseSharePasswordResult = AxiosResponse<{
   };
 }>;
 
-// Presigned URL
 export type GetPresignedUrlBody = {
   objectName: string;
 };
@@ -191,7 +183,6 @@ export type GetPresignedUrlResult = AxiosResponse<{
   expiresIn: number;
 }>;
 
-// Register File Upload
 export type RegisterFileUploadBody = {
   name: string;
   description?: string;
@@ -210,7 +201,6 @@ export type RegisterFileUploadResult = AxiosResponse<{
   file: ReverseShareFile;
 }>;
 
-// Check Password
 export type CheckReverseSharePasswordBody = {
   password: string;
 };
@@ -219,18 +209,15 @@ export type CheckReverseSharePasswordResult = AxiosResponse<{
   valid: boolean;
 }>;
 
-// Download File
 export type DownloadReverseShareFileResult = AxiosResponse<{
   url: string;
   expiresIn: number;
 }>;
 
-// Delete File
 export type DeleteReverseShareFileResult = AxiosResponse<{
   file: ReverseShareFile;
 }>;
 
-// Shared Type
 export type ReverseShareFile = {
   id: string;
   name: string;
@@ -244,7 +231,6 @@ export type ReverseShareFile = {
   updatedAt: string;
 };
 
-// Activate Reverse Share
 export type ActivateReverseShareResult = AxiosResponse<{
   reverseShare: {
     id: string;
@@ -264,7 +250,6 @@ export type ActivateReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// Deactivate Reverse Share
 export type DeactivateReverseShareResult = AxiosResponse<{
   reverseShare: {
     id: string;
@@ -284,7 +269,6 @@ export type DeactivateReverseShareResult = AxiosResponse<{
   };
 }>;
 
-// Update Reverse Share File
 export type UpdateReverseShareFileBody = {
   name?: string;
   description?: string | null;

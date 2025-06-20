@@ -35,7 +35,6 @@ export function useDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      // Load disk space separately to not block other data
       const loadDiskSpace = async () => {
         try {
           const diskSpaceRes = await getDiskSpace();
@@ -45,7 +44,6 @@ export function useDashboard() {
           console.warn("Failed to load disk space:", error);
           setDiskSpace(null);
 
-          // Check for specific disk space detection error
           if (error.response?.status === 503 && error.response?.data?.code === "DISK_SPACE_DETECTION_FAILED") {
             setDiskSpaceError("disk_detection_failed");
           } else if (error.response?.status >= 500) {
@@ -56,7 +54,6 @@ export function useDashboard() {
         }
       };
 
-      // Load files and shares (these should work even if disk space fails)
       const loadFilesAndShares = async () => {
         const [filesRes, sharesRes] = await Promise.all([listFiles(), listUserShares()]);
 
@@ -73,7 +70,6 @@ export function useDashboard() {
         setRecentShares(sortedShares.slice(0, 5));
       };
 
-      // Load everything in parallel but handle errors separately
       await Promise.allSettled([loadDiskSpace(), loadFilesAndShares()]);
     } catch (error) {
       console.error("Critical dashboard error:", error);

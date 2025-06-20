@@ -24,7 +24,6 @@ export class StorageController {
     } catch (error: any) {
       console.error("Controller error in getDiskSpace:", error);
 
-      // For disk space detection issues, provide a more specific error
       if (error.message?.includes("Unable to determine actual disk space")) {
         return reply.status(503).send({
           error: "Disk space detection unavailable - system configuration issue",
