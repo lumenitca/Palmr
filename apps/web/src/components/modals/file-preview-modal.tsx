@@ -177,7 +177,6 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
         downloadUrlToUse = response.data.url;
       }
 
-      // Use direct link approach like other parts of the app
       const link = document.createElement("a");
       link.href = downloadUrlToUse;
       link.download = file.name;
