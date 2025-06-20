@@ -32,7 +32,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [pdfLoadFailed, setPdfLoadFailed] = useState(false);
   const [isLoadingPreview, setIsLoadingPreview] = useState(false);
-  const [jsonContent, setJsonContent] = useState<string | null>(null);
+  const [textContent, setTextContent] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen && file.objectName && !isLoadingPreview) {
@@ -42,7 +42,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       setPdfAsBlob(false);
       setDownloadUrl(null);
       setPdfLoadFailed(false);
-      setJsonContent(null);
+      setTextContent(null);
       loadPreview();
     }
   }, [file.objectName, isOpen]);
@@ -90,8 +90,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
         await loadAudioPreview(url);
       } else if (fileType === "pdf") {
         await loadPdfPreview(url);
-      } else if (fileType === "json") {
-        await loadJsonPreview(url);
+      } else if (fileType === "text") {
+        await loadTextPreview(url);
       } else {
         setPreviewUrl(url);
       }
@@ -159,7 +159,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     }
   };
 
-  const loadJsonPreview = async (url: string) => {
+  const loadTextPreview = async (url: string) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -167,18 +167,25 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       }
 
       const text = await response.text();
+      const extension = file.name.split(".").pop()?.toLowerCase();
+
       try {
-        // Validate and format JSON
-        const parsed = JSON.parse(text);
-        const formatted = JSON.stringify(parsed, null, 2);
-        setJsonContent(formatted);
+        // For JSON files, validate and format
+        if (extension === "json") {
+          const parsed = JSON.parse(text);
+          const formatted = JSON.stringify(parsed, null, 2);
+          setTextContent(formatted);
+        } else {
+          // For other text files, show as-is
+          setTextContent(text);
+        }
       } catch (jsonError) {
-        // If it's not valid JSON, show as plain text
-        setJsonContent(text);
+        // If JSON parsing fails, show as plain text
+        setTextContent(text);
       }
     } catch (error) {
-      console.error("Failed to load JSON:", error);
-      setJsonContent(null);
+      console.error("Failed to load text content:", error);
+      setTextContent(null);
     }
   };
 
@@ -220,10 +227,89 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
     const extension = file.name.split(".").pop()?.toLowerCase();
 
     if (extension === "pdf") return "pdf";
-    if (extension === "json") return "json";
     if (["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "tiff"].includes(extension || "")) return "image";
     if (["mp3", "wav", "ogg", "m4a", "aac", "flac"].includes(extension || "")) return "audio";
     if (["mp4", "webm", "ogg", "mov", "avi", "mkv", "wmv", "flv", "m4v"].includes(extension || "")) return "video";
+
+    // Text and code files
+    if (
+      [
+        "json",
+        "txt",
+        "md",
+        "markdown",
+        "log",
+        "csv",
+        "xml",
+        "html",
+        "htm",
+        "css",
+        "scss",
+        "sass",
+        "less",
+        "js",
+        "jsx",
+        "ts",
+        "tsx",
+        "vue",
+        "svelte",
+        "php",
+        "py",
+        "rb",
+        "java",
+        "c",
+        "cpp",
+        "h",
+        "hpp",
+        "cs",
+        "go",
+        "rs",
+        "kt",
+        "swift",
+        "dart",
+        "scala",
+        "clj",
+        "hs",
+        "elm",
+        "f#",
+        "vb",
+        "pl",
+        "r",
+        "sql",
+        "sh",
+        "bash",
+        "zsh",
+        "fish",
+        "ps1",
+        "bat",
+        "cmd",
+        "dockerfile",
+        "yaml",
+        "yml",
+        "toml",
+        "ini",
+        "conf",
+        "config",
+        "env",
+        "gitignore",
+        "gitattributes",
+        "editorconfig",
+        "eslintrc",
+        "prettierrc",
+        "babelrc",
+        "tsconfig",
+        "package",
+        "composer",
+        "gemfile",
+        "requirements",
+        "makefile",
+        "rakefile",
+        "gradle",
+        "pom",
+        "build",
+      ].includes(extension || "")
+    )
+      return "text";
 
     return "other";
   };
@@ -253,8 +339,8 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       );
     }
 
-    // For JSON files, we don't need previewUrl, we use jsonContent instead
-    if (fileType === "json" && !jsonContent && !isLoading) {
+    // For text files, we don't need previewUrl, we use textContent instead
+    if (fileType === "text" && !textContent && !isLoading) {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
           <FileIcon className={`h-12 w-12 ${color}`} />
@@ -264,7 +350,7 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
       );
     }
 
-    if (!previewUrl && fileType !== "video" && fileType !== "json") {
+    if (!previewUrl && fileType !== "video" && fileType !== "text") {
       return (
         <div className="flex flex-col items-center justify-center h-96 gap-4">
           <FileIcon className={`h-12 w-12 ${color}`} />
@@ -314,13 +400,15 @@ export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProp
             </div>
           </ScrollArea>
         );
-      case "json":
+      case "text":
         return (
           <ScrollArea className="w-full max-h-[600px]">
             <div className="w-full border rounded-lg overflow-hidden bg-card">
-              {jsonContent ? (
+              {textContent ? (
                 <pre className="p-4 text-sm font-mono whitespace-pre-wrap break-words overflow-x-auto">
-                  <code className="language-json">{jsonContent}</code>
+                  <code className={`language-${file.name.split(".").pop()?.toLowerCase() || "text"}`}>
+                    {textContent}
+                  </code>
                 </pre>
               ) : (
                 <div className="flex items-center justify-center h-32">
