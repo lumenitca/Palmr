@@ -752,7 +752,15 @@
     "title": "Uso de Armazenamento",
     "ariaLabel": "Barra de progresso do uso de armazenamento",
     "used": "usado",
-    "available": "disponível"
+    "available": "disponível",
+    "loading": "Carregando...",
+    "retry": "Tentar novamente",
+    "errors": {
+      "title": "Informações de armazenamento indisponíveis",
+      "detectionFailed": "Não foi possível detectar o espaço em disco. Isso pode ser devido a problemas de configuração do sistema ou permissões insuficientes.",
+      "serverError": "Ocorreu um erro no servidor ao recuperar as informações de armazenamento. Por favor, tente novamente mais tarde.",
+      "unknown": "Ocorreu um erro inesperado ao carregar as informações de armazenamento."
+    }
   },
   "theme": {
     "toggle": "Alternar tema",

@@ -730,7 +730,15 @@
     "title": "Uso de almacenamiento",
     "ariaLabel": "Barra de progreso del uso de almacenamiento",
     "used": "usados",
-    "available": "disponibles"
+    "available": "disponible",
+    "loading": "Cargando...",
+    "retry": "Reintentar",
+    "errors": {
+      "title": "Información de almacenamiento no disponible",
+      "detectionFailed": "No se pudo detectar el espacio en disco. Esto puede deberse a problemas de configuración del sistema o permisos insuficientes.",
+      "serverError": "Ocurrió un error del servidor al recuperar la información de almacenamiento. Por favor, inténtelo de nuevo más tarde.",
+      "unknown": "Ocurrió un error inesperado al cargar la información de almacenamiento."
+    }
   },
   "theme": {
     "toggle": "Cambiar tema",
