@@ -5,7 +5,7 @@ type TFunction = ReturnType<typeof useTranslations>;
 
 export const createLoginSchema = (t: TFunction) =>
   z.object({
-    email: z.string().min(1, t("validation.emailRequired")).email(t("validation.invalidEmail")),
+    emailOrUsername: z.string().min(1, t("validation.emailOrUsernameRequired")),
     password: z.string().min(1, t("validation.passwordRequired")),
   });
 

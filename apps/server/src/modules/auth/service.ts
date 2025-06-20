@@ -13,7 +13,7 @@ export class AuthService {
   private emailService = new EmailService();
 
   async login(data: LoginInput) {
-    const user = await this.userRepository.findUserByEmail(data.email);
+    const user = await this.userRepository.findUserByEmailOrUsername(data.emailOrUsername);
     if (!user) {
       throw new Error("Invalid credentials");
     }

@@ -17,7 +17,7 @@ export async function authRoutes(app: FastifyInstance) {
 
   const passwordSchema = await createPasswordSchema();
   const loginSchema = z.object({
-    email: z.string().email("Invalid email").describe("User email"),
+    emailOrUsername: z.string().min(1, "Email or username is required").describe("User email or username"),
     password: passwordSchema,
   });
 

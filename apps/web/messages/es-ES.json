@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Bienvenido a",
     "signInToContinue": "Inicia sesión para continuar",
+    "emailOrUsernameLabel": "Correo electrónico o nombre de usuario",
+    "emailOrUsernamePlaceholder": "Introduce tu correo electrónico o nombre de usuario",
     "emailLabel": "Dirección de correo electrónico",
     "emailPlaceholder": "Introduce tu correo electrónico",
     "passwordLabel": "Contraseña",
@@ -852,6 +854,7 @@
     "passwordLength": "La contraseña debe tener al menos 8 caracteres",
     "passwordsMatch": "Las contraseñas no coinciden",
     "emailRequired": "Se requiere el correo electrónico",
+    "emailOrUsernameRequired": "Se requiere el correo electrónico o nombre de usuario",
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"

@@ -202,6 +202,8 @@
   "login": {
     "welcome": "Hoş geldiniz'e",
     "signInToContinue": "Devam etmek için oturum açın",
+    "emailOrUsernameLabel": "E-posta veya Kullanıcı Adı",
+    "emailOrUsernamePlaceholder": "E-posta veya kullanıcı adınızı girin",
     "emailLabel": "E-posta Adresi",
     "emailPlaceholder": "E-posta adresinizi girin",
     "passwordLabel": "Şifre",
@@ -852,6 +854,7 @@
     "passwordLength": "Şifre en az 8 karakter olmalıdır",
     "passwordsMatch": "Şifreler eşleşmiyor",
     "emailRequired": "E-posta gerekli",
+    "emailOrUsernameRequired": "E-posta veya kullanıcı adı gereklidir",
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
