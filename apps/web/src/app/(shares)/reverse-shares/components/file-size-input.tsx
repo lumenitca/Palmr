@@ -34,10 +34,8 @@ function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
     const value = numBytes / multiplier;
 
     if (value >= 1) {
-      // Se o valor é >= 1 nesta unidade, usar ela
-      const rounded = Math.round(value * 100) / 100; // Arredonda para 2 casas decimais
+      const rounded = Math.round(value * 100) / 100;
 
-      // Se está muito próximo de um inteiro, usar inteiro
       if (Math.abs(rounded - Math.round(rounded)) < 0.01) {
         return { value: Math.round(rounded).toString(), unit };
       } else {
@@ -46,7 +44,6 @@ function bytesToHumanReadable(bytes: string): { value: string; unit: Unit } {
     }
   }
 
-  // Fallback para MB
   const mbValue = numBytes / UNIT_MULTIPLIERS.MB;
   return { value: mbValue.toFixed(2), unit: "MB" as Unit };
 }
@@ -92,7 +89,6 @@ export function FileSizeInput({ value, onChange, disabled = false, error, placeh
   };
 
   const handleUnitChange = (newUnit: Unit) => {
-    // Ignorar valores vazios ou inválidos que podem vir do Select quando atualizado programaticamente
     if (!newUnit || !["MB", "GB", "TB", "PB"].includes(newUnit)) {
       return;
     }

@@ -4,7 +4,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ obje
   const { objectPath } = await params;
   const cookieHeader = req.headers.get("cookie");
 
-  // Reconstruct the full objectName from the path segments
   const objectName = objectPath.join("/");
 
   const url = `${process.env.API_BASE_URL}/files/${encodeURIComponent(objectName)}/download`;

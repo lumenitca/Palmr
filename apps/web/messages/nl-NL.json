@@ -730,7 +730,15 @@
     "title": "Opslaggebruik",
     "ariaLabel": "Opslaggebruik voortgangsbalk",
     "used": "gebruikt",
-    "available": "beschikbaar"
+    "available": "beschikbaar",
+    "loading": "Laden...",
+    "retry": "Opnieuw proberen",
+    "errors": {
+      "title": "Opslaginformatie niet beschikbaar",
+      "detectionFailed": "Kan schijfruimte niet detecteren. Dit kan komen door systeemconfiguratieproblemen of onvoldoende rechten.",
+      "serverError": "Er is een serverfout opgetreden bij het ophalen van opslaginformatie. Probeer het later opnieuw.",
+      "unknown": "Er is een onverwachte fout opgetreden bij het laden van opslaginformatie."
+    }
   },
   "theme": {
     "toggle": "Thema wisselen",

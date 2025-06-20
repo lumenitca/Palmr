@@ -26,7 +26,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     }
   };
 
-  // Create reverse share (authenticated)
   app.post(
     "/reverse-shares",
     {
@@ -50,7 +49,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.createReverseShare.bind(reverseShareController)
   );
 
-  // List user's reverse shares (authenticated)
   app.get(
     "/reverse-shares",
     {
@@ -72,7 +70,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.listUserReverseShares.bind(reverseShareController)
   );
 
-  // Get reverse share by ID (authenticated)
   app.get(
     "/reverse-shares/:id",
     {
@@ -98,7 +95,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.getReverseShare.bind(reverseShareController)
   );
 
-  // Update reverse share (authenticated)
   app.put(
     "/reverse-shares",
     {
@@ -123,7 +119,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.updateReverseShare.bind(reverseShareController)
   );
 
-  // Update reverse share password (authenticated)
   app.put(
     "/reverse-shares/:id/password",
     {
@@ -151,7 +146,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.updatePassword.bind(reverseShareController)
   );
 
-  // Delete reverse share (authenticated)
   app.delete(
     "/reverse-shares/:id",
     {
@@ -177,7 +171,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.deleteReverseShare.bind(reverseShareController)
   );
 
-  // Get reverse share for upload (public)
   app.get(
     "/reverse-shares/:id/upload",
     {
@@ -207,7 +200,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.getReverseShareForUpload.bind(reverseShareController)
   );
 
-  // Get reverse share for upload by alias (public)
   app.get(
     "/reverse-shares/alias/:alias/upload",
     {
@@ -237,7 +229,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.getReverseShareForUploadByAlias.bind(reverseShareController)
   );
 
-  // Get presigned URL for file upload (public)
   app.post(
     "/reverse-shares/:id/presigned-url",
     {
@@ -269,7 +260,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.getPresignedUrl.bind(reverseShareController)
   );
 
-  // Get presigned URL for file upload by alias (public)
   app.post(
     "/reverse-shares/alias/:alias/presigned-url",
     {
@@ -301,7 +291,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.getPresignedUrlByAlias.bind(reverseShareController)
   );
 
-  // Register file upload completion (public)
   app.post(
     "/reverse-shares/:id/register-file",
     {
@@ -333,7 +322,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.registerFileUpload.bind(reverseShareController)
   );
 
-  // Register file upload completion by alias (public)
   app.post(
     "/reverse-shares/alias/:alias/register-file",
     {
@@ -365,7 +353,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.registerFileUploadByAlias.bind(reverseShareController)
   );
 
-  // Check password (public)
   app.post(
     "/reverse-shares/:id/check-password",
     {
@@ -394,7 +381,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.checkPassword.bind(reverseShareController)
   );
 
-  // Download file from reverse share (authenticated)
   app.get(
     "/reverse-shares/files/:fileId/download",
     {
@@ -421,7 +407,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.downloadFile.bind(reverseShareController)
   );
 
-  // Delete file from reverse share (authenticated)
   app.delete(
     "/reverse-shares/files/:fileId",
     {
@@ -447,7 +432,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.deleteFile.bind(reverseShareController)
   );
 
-  // Create or update reverse share alias (authenticated)
   app.post(
     "/reverse-shares/:reverseShareId/alias",
     {
@@ -486,7 +470,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.createOrUpdateAlias.bind(reverseShareController)
   );
 
-  // Activate reverse share (authenticated)
   app.patch(
     "/reverse-shares/:id/activate",
     {
@@ -512,7 +495,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.activateReverseShare.bind(reverseShareController)
   );
 
-  // Deactivate reverse share (authenticated)
   app.patch(
     "/reverse-shares/:id/deactivate",
     {
@@ -538,7 +520,6 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     reverseShareController.deactivateReverseShare.bind(reverseShareController)
   );
 
-  // Update file from reverse share (authenticated)
   app.put(
     "/reverse-shares/files/:fileId",
     {

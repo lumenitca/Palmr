@@ -37,18 +37,10 @@ import { ReverseShare } from "../hooks/use-reverse-shares";
 import { FileSizeInput } from "./file-size-input";
 import { FileTypesTagsInput } from "./file-types-tags-input";
 
-// Constants
 const DEFAULT_VALUES = {
   EMPTY_STRING: "",
   ZERO_STRING: "0",
   PAGE_LAYOUT: "DEFAULT" as const,
-} as const;
-
-const FORM_SECTIONS = {
-  BASIC_INFO: "basicInfo",
-  EXPIRATION: "expiration",
-  FILE_LIMITS: "fileLimits",
-  PASSWORD: "password",
 } as const;
 
 interface EditReverseShareFormData {
@@ -168,7 +160,6 @@ export function EditReverseShareModal({
   );
 }
 
-// Helper functions
 function getFormDefaultValues(): EditReverseShareFormData {
   return {
     name: DEFAULT_VALUES.EMPTY_STRING,
@@ -224,19 +215,16 @@ function buildUpdatePayload(data: EditReverseShareFormData, id: string): UpdateR
     isActive: data.isActive,
   };
 
-  // Add optional fields
   if (data.description?.trim()) {
     payload.description = data.description.trim();
   }
 
-  // Handle expiration
   if (data.hasExpiration && data.expiration) {
     payload.expiration = new Date(data.expiration).toISOString();
   } else if (!data.hasExpiration) {
     payload.expiration = undefined;
   }
 
-  // Handle file limits
   if (data.hasFileLimits) {
     payload.maxFiles = parsePositiveIntegerOrNull(data.maxFiles);
     payload.maxFileSize = parsePositiveIntegerOrNull(data.maxFileSize);
@@ -245,10 +233,8 @@ function buildUpdatePayload(data: EditReverseShareFormData, id: string): UpdateR
     payload.maxFileSize = null;
   }
 
-  // Handle allowed file types
   payload.allowedFileTypes = data.allowedFileTypes?.trim() || null;
 
-  // Handle password
   if (data.hasPassword && data.password) {
     payload.password = data.password;
   } else if (!data.hasPassword) {
@@ -289,7 +275,6 @@ function createLimitCheckbox(id: string, checked: boolean, onChange: (checked: b
   );
 }
 
-// Section Components
 function BasicInfoSection({ form, t }: { form: any; t: any }) {
   return (
     <div className="space-y-4">
@@ -442,7 +427,6 @@ function FileLimitsSection({
 
       {hasFileLimits && (
         <div className="space-y-4">
-          {/* Max Files Field */}
           <FormField
             control={form.control}
             name="maxFiles"
@@ -479,7 +463,6 @@ function FileLimitsSection({
             )}
           />
 
-          {/* Max File Size Field */}
           <FormField
             control={form.control}
             name="maxFileSize"
@@ -515,7 +498,6 @@ function FileLimitsSection({
             )}
           />
 
-          {/* Allowed File Types Field */}
           <FormField
             control={form.control}
             name="allowedFileTypes"

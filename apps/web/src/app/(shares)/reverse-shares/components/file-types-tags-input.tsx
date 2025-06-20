@@ -24,7 +24,6 @@ export function FileTypesTagsInput({
   const [inputValue, setInputValue] = useState("");
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // Separadores: Enter, espaço, vírgula, pipe, traço
     if (e.key === "Enter" || e.key === " " || e.key === "," || e.key === "|" || e.key === "-") {
       e.preventDefault();
       addTag();
@@ -32,7 +31,6 @@ export function FileTypesTagsInput({
       e.preventDefault();
       removeTag(value.length - 1);
     } else if (e.key === ".") {
-      // Impedir pontos
       e.preventDefault();
     }
   };
@@ -51,7 +49,6 @@ export function FileTypesTagsInput({
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Remover pontos e forçar minúsculo
     const sanitizedValue = e.target.value.replace(/\./g, "").toLowerCase();
     setInputValue(sanitizedValue);
   };

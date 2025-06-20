@@ -730,7 +730,15 @@
     "title": "Utilizzo Archiviazione",
     "ariaLabel": "Barra di progresso utilizzo archiviazione",
     "used": "utilizzato",
-    "available": "disponibile"
+    "available": "disponibile",
+    "loading": "Caricamento...",
+    "retry": "Riprova",
+    "errors": {
+      "title": "Informazioni di archiviazione non disponibili",
+      "detectionFailed": "Impossibile rilevare lo spazio su disco. Ciò potrebbe essere dovuto a problemi di configurazione del sistema o permessi insufficienti.",
+      "serverError": "Si è verificato un errore del server durante il recupero delle informazioni di archiviazione. Riprova più tardi.",
+      "unknown": "Si è verificato un errore imprevisto durante il caricamento delle informazioni di archiviazione."
+    }
   },
   "theme": {
     "toggle": "Cambia tema",

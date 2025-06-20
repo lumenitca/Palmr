@@ -788,7 +788,15 @@
     "title": "Storage Usage",
     "ariaLabel": "Storage usage progress bar",
     "used": "used",
-    "available": "available"
+    "available": "available",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "errors": {
+      "title": "Storage information unavailable",
+      "detectionFailed": "Unable to detect disk space. This may be due to system configuration issues or insufficient permissions.",
+      "serverError": "Server error occurred while retrieving storage information. Please try again later.",
+      "unknown": "An unexpected error occurred while loading storage information."
+    }
   },
   "theme": {
     "toggle": "Toggle theme",

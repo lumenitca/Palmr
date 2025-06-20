@@ -5,7 +5,6 @@ import * as readline from "readline";
 
 const prisma = new PrismaClient();
 
-// Função para ler entrada do usuário de forma assíncrona
 function createReadlineInterface() {
   return readline.createInterface({
     input: process.stdin,
@@ -17,15 +16,12 @@ function question(rl: readline.Interface, query: string): Promise<string> {
   return new Promise((resolve) => rl.question(query, resolve));
 }
 
-// Função para validar formato de email básico
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-// Função para validar senha com base nas regras do sistema
 function isValidPassword(password: string): boolean {
-  // Minimum length baseado na configuração padrão do sistema (8 caracteres)
   return password.length >= 8;
 }
 
@@ -38,7 +34,6 @@ async function resetUserPassword() {
     console.log("This script allows you to reset a user's password directly from the Docker terminal.");
     console.log("⚠️  WARNING: This bypasses normal security checks. Use only when necessary!\n");
 
-    // Solicitar email do usuário
     let email: string;
     let user: any;
 
@@ -55,7 +50,6 @@ async function resetUserPassword() {
         continue;
       }
 
-      // Buscar usuário no banco de dados
       user = await prisma.user.findUnique({
         where: { email: email.toLowerCase() },
         select: {
@@ -83,7 +77,6 @@ async function resetUserPassword() {
       break;
     }
 
-    // Mostrar informações do usuário encontrado
     console.log("\n✅ User found:");
     console.log(`   Name: ${user.firstName} ${user.lastName}`);
     console.log(`   Username: ${user.username}`);
@@ -91,14 +84,12 @@ async function resetUserPassword() {
     console.log(`   Status: ${user.isActive ? "Active" : "Inactive"}`);
     console.log(`   Admin: ${user.isAdmin ? "Yes" : "No"}\n`);
 
-    // Confirmar se deseja prosseguir
     const confirm = await question(rl, "Do you want to reset the password for this user? (y/n): ");
     if (confirm.toLowerCase() !== "y") {
       console.log("\n👋 Operation cancelled.");
       return;
     }
 
-    // Solicitar nova senha
     let newPassword: string;
     while (true) {
       console.log("\n🔑 Enter new password requirements:");
@@ -126,18 +117,15 @@ async function resetUserPassword() {
       break;
     }
 
-    // Hash da senha usando bcrypt (mesmo método usado pelo sistema)
     console.log("\n🔄 Hashing password...");
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Atualizar senha no banco de dados
     console.log("💾 Updating password in database...");
     await prisma.user.update({
       where: { id: user.id },
       data: { password: hashedPassword },
     });
 
-    // Limpar tokens de reset de senha existentes para este usuário
     console.log("🧹 Cleaning up existing password reset tokens...");
     await prisma.passwordReset.deleteMany({
       where: {
@@ -159,7 +147,6 @@ async function resetUserPassword() {
   }
 }
 
-// Função para listar usuários (funcionalidade auxiliar)
 async function listUsers() {
   try {
     console.log("\n👥 Registered Users:");
@@ -198,7 +185,6 @@ async function listUsers() {
   }
 }
 
-// Main function
 async function main() {
   const args = process.argv.slice(2);
 
@@ -227,7 +213,6 @@ async function main() {
   await resetUserPassword();
 }
 
-// Handle process termination
 process.on("SIGINT", async () => {
   console.log("\n\n👋 Goodbye!");
   await prisma.$disconnect();
@@ -239,7 +224,6 @@ process.on("SIGTERM", async () => {
   process.exit(0);
 });
 
-// Run the script
 if (require.main === module) {
   main().catch(console.error);
 }
