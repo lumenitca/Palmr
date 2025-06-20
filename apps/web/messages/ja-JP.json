@@ -771,6 +771,7 @@
     },
     "multipleTitle": "複数ファイルをアップロード",
     "startUploads": "アップロードを開始",
+    "retry": "再試行",
     "allSuccess": "{count, plural, =1 {ファイルがアップロードされました} other {#個のファイルがアップロードされました}}",
     "partialSuccess": "{success}個のファイルがアップロードされ、{error}個が失敗しました",
     "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ"
@@ -1280,6 +1281,7 @@
         "linkInactive": "このリンクは無効です。",
         "linkExpired": "このリンクは期限切れです。",
         "uploadFailed": "ファイルのアップロードに失敗しました",
+        "retry": "再試行",
         "fileTooLarge": "ファイルが大きすぎます。最大サイズ: {maxSize}",
         "fileTypeNotAllowed": "このファイル形式は許可されていません。許可される形式: {allowedTypes}",
         "maxFilesExceeded": "最大 {maxFiles} ファイルまで許可されています",

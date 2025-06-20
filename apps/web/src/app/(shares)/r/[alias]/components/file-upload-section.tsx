@@ -331,6 +331,28 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
             <IconX className="h-4 w-4" />
           </Button>
         )}
+        {fileWithProgress.status === FILE_STATUS.ERROR && (
+          <div className="flex gap-1">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+                setFiles((prev) =>
+                  prev.map((file, i) =>
+                    i === index ? { ...file, status: FILE_STATUS.PENDING, error: undefined } : file
+                  )
+                );
+              }}
+              disabled={isUploading}
+              title={t("reverseShares.upload.retry")}
+            >
+              <IconUpload className="h-4 w-4" />
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => removeFile(index)} disabled={isUploading}>
+              <IconX className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

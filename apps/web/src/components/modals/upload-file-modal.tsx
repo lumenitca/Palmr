@@ -453,7 +453,33 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                         >
                           <IconX size={14} />
                         </Button>
-                      ) : upload.status === UploadStatus.SUCCESS ? null : (
+                      ) : upload.status === UploadStatus.SUCCESS ? null : upload.status === UploadStatus.ERROR ? (
+                        <div className="flex gap-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setFileUploads((prev) =>
+                                prev.map((u) =>
+                                  u.id === upload.id ? { ...u, status: UploadStatus.PENDING, error: undefined } : u
+                                )
+                              );
+                            }}
+                            className="h-8 w-8 p-0"
+                            title={t("uploadFile.retry")}
+                          >
+                            <IconLoader size={14} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeFile(upload.id)}
+                            className="h-8 w-8 p-0"
+                          >
+                            <IconTrash size={14} />
+                          </Button>
+                        </div>
+                      ) : (
                         <Button variant="ghost" size="sm" onClick={() => removeFile(upload.id)} className="h-8 w-8 p-0">
                           <IconTrash size={14} />
                         </Button>
