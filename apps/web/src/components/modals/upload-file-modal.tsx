@@ -1,18 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  IconAlertTriangle,
-  IconCheck,
-  IconCloudUpload,
-  IconFileText,
-  IconFileTypePdf,
-  IconFileTypography,
-  IconLoader,
-  IconPhoto,
-  IconTrash,
-  IconX,
-} from "@tabler/icons-react";
+import { IconAlertTriangle, IconCheck, IconCloudUpload, IconLoader, IconTrash, IconX } from "@tabler/icons-react";
 import axios from "axios";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -21,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
+import { getFileIcon } from "@/utils/file-icons";
 import { generateSafeFileName } from "@/utils/file-utils";
 import getErrorData from "@/utils/getErrorData";
 
@@ -157,11 +147,9 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     handleFilesSelect(event.dataTransfer.files);
   };
 
-  const getFileIcon = (fileType: string) => {
-    if (fileType.startsWith("image/")) return <IconPhoto size={24} className="text-blue-500" />;
-    if (fileType.includes("pdf")) return <IconFileTypePdf size={24} className="text-red-500" />;
-    if (fileType.includes("word")) return <IconFileTypography size={24} className="text-blue-700" />;
-    return <IconFileText size={24} className="text-muted-foreground" />;
+  const renderFileIcon = (fileName: string) => {
+    const { icon: FileIcon, color } = getFileIcon(fileName);
+    return <FileIcon size={24} className={color} />;
   };
 
   const getStatusIcon = (status: UploadStatus) => {
@@ -420,7 +408,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
                           className="w-10 h-10 rounded object-cover"
                         />
                       ) : (
-                        getFileIcon(upload.file.type)
+                        renderFileIcon(upload.file.name)
                       )}
                     </div>
 
