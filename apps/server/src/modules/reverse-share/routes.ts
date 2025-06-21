@@ -385,6 +385,7 @@ export async function reverseShareRoutes(app: FastifyInstance) {
     "/reverse-shares/files/:fileId/download",
     {
       preValidation,
+      bodyLimit: 1024 * 1024 * 1024 * 1024 * 1024, // 1PB limit for large video files
       schema: {
         tags: ["Reverse Share"],
         operationId: "downloadReverseShareFile",
@@ -545,5 +546,43 @@ export async function reverseShareRoutes(app: FastifyInstance) {
       },
     },
     reverseShareController.updateFile.bind(reverseShareController)
+  );
+
+  app.post(
+    "/reverse-shares/files/:fileId/copy",
+    {
+      preValidation,
+      schema: {
+        tags: ["Reverse Share"],
+        operationId: "copyReverseShareFileToUserFiles",
+        summary: "Copy File from Reverse Share to User Files",
+        description:
+          "Copy a file from a reverse share to the user's personal files. Only the creator of the reverse share can copy files. The file will be duplicated in storage and added to the user's file collection.",
+        params: z.object({
+          fileId: z.string().describe("Unique identifier of the file to copy"),
+        }),
+        response: {
+          200: z.object({
+            file: z.object({
+              id: z.string(),
+              name: z.string(),
+              description: z.string().nullable(),
+              extension: z.string(),
+              size: z.string(),
+              objectName: z.string(),
+              userId: z.string(),
+              createdAt: z.string(),
+              updatedAt: z.string(),
+            }),
+            message: z.string(),
+          }),
+          400: z.object({ error: z.string() }),
+          401: z.object({ error: z.string() }),
+          403: z.object({ error: z.string() }),
+          404: z.object({ error: z.string() }),
+        },
+      },
+    },
+    reverseShareController.copyFileToUserFiles.bind(reverseShareController)
   );
 }

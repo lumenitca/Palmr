@@ -1153,7 +1153,9 @@
         },
         "actions": {
           "preview": "Visualizar",
-          "download": "Baixar"
+          "download": "Baixar",
+          "copyToMyFiles": "Copiar para meus arquivos",
+          "copying": "Copiando..."
         },
         "uploadedBy": "Enviado por {name}",
         "anonymous": "Anônimo",
@@ -1161,7 +1163,9 @@
         "downloadError": "Erro ao baixar arquivo",
         "editSuccess": "Arquivo atualizado com sucesso",
         "editError": "Erro ao atualizar arquivo",
-        "previewNotAvailable": "Visualização não disponível"
+        "previewNotAvailable": "Visualização não disponível",
+        "copySuccess": "Arquivo copiado para seus arquivos com sucesso",
+        "copyError": "Erro ao copiar arquivo para seus arquivos"
       }
     },
     "form": {
@@ -1343,7 +1347,9 @@
         "cancel": "Cancelar",
         "preview": "Visualizar",
         "download": "Baixar",
-        "delete": "Excluir"
+        "delete": "Excluir",
+        "copyToMyFiles": "Copiar para meus arquivos",
+        "copying": "Copiando..."
       },
       "editField": {
         "saveChanges": "Salvar alterações",

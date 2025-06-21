@@ -1,7 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { IconCheck, IconDownload, IconEdit, IconEye, IconFile, IconTrash, IconX } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconClipboardCopy,
+  IconDownload,
+  IconEdit,
+  IconEye,
+  IconFile,
+  IconTrash,
+  IconX,
+} from "@tabler/icons-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useTranslations } from "next-intl";
@@ -16,6 +25,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
+  copyReverseShareFileToUserFiles,
   deleteReverseShareFile,
   downloadReverseShareFile,
   updateReverseShareFile,
@@ -248,6 +258,7 @@ interface FileRowProps {
   editValue: string;
   inputRef: React.RefObject<HTMLInputElement | null>;
   hoveredFile: HoverState | null;
+  copyingFile: string | null;
   onStartEdit: (fileId: string, field: string, currentValue: string) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
@@ -257,6 +268,7 @@ interface FileRowProps {
   onPreview: (file: ReverseShareFile) => void;
   onDownload: (file: ReverseShareFile) => void;
   onDelete: (file: ReverseShareFile) => void;
+  onCopy: (file: ReverseShareFile) => void;
 }
 
 function FileRow({
@@ -265,6 +277,7 @@ function FileRow({
   editValue,
   inputRef,
   hoveredFile,
+  copyingFile,
   onStartEdit,
   onSaveEdit,
   onCancelEdit,
@@ -274,6 +287,7 @@ function FileRow({
   onPreview,
   onDownload,
   onDelete,
+  onCopy,
 }: FileRowProps) {
   const t = useTranslations();
   const { icon: FileIcon, color } = getFileIcon(file.name);
@@ -351,6 +365,24 @@ function FileRow({
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => onCopy(file)}
+            disabled={copyingFile === file.id}
+            title={
+              copyingFile === file.id
+                ? t("reverseShares.components.fileActions.copying")
+                : t("reverseShares.components.fileActions.copyToMyFiles")
+            }
+            className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 disabled:opacity-50"
+          >
+            {copyingFile === file.id ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent"></div>
+            ) : (
+              <IconClipboardCopy className="h-4 w-4" />
+            )}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onDownload(file)}
             title={t("reverseShares.components.fileActions.download")}
           >
@@ -389,6 +421,7 @@ export function ReceivedFilesModal({
   const t = useTranslations();
   const [previewFile, setPreviewFile] = useState<ReverseShareFile | null>(null);
   const [hoveredFile, setHoveredFile] = useState<HoverState | null>(null);
+  const [copyingFile, setCopyingFile] = useState<string | null>(null);
 
   const { editingFile, editValue, setEditValue, inputRef, startEdit, cancelEdit } = useFileEdit();
 
@@ -477,6 +510,29 @@ export function ReceivedFilesModal({
     }
   };
 
+  const handleCopyFile = async (file: ReverseShareFile) => {
+    try {
+      setCopyingFile(file.id);
+      await copyReverseShareFileToUserFiles(file.id);
+      toast.success(t("reverseShares.modals.receivedFiles.copySuccess"));
+    } catch (error: any) {
+      console.error("Error copying file:", error);
+
+      if (error.response?.data?.error) {
+        const errorMessage = error.response.data.error;
+        if (errorMessage.includes("File size exceeds") || errorMessage.includes("Insufficient storage")) {
+          toast.error(errorMessage);
+        } else {
+          toast.error(t("reverseShares.modals.receivedFiles.copyError"));
+        }
+      } else {
+        toast.error(t("reverseShares.modals.receivedFiles.copyError"));
+      }
+    } finally {
+      setCopyingFile(null);
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       saveEdit();
@@ -550,6 +606,7 @@ export function ReceivedFilesModal({
                         editValue={editValue}
                         inputRef={inputRef}
                         hoveredFile={hoveredFile}
+                        copyingFile={copyingFile}
                         onStartEdit={startEdit}
                         onSaveEdit={saveEdit}
                         onCancelEdit={cancelEdit}
@@ -559,6 +616,7 @@ export function ReceivedFilesModal({
                         onPreview={handlePreview}
                         onDownload={handleDownload}
                         onDelete={handleDeleteFile}
+                        onCopy={handleCopyFile}
                       />
                     ))}
                   </TableBody>
