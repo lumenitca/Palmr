@@ -11,6 +11,7 @@ import {
   IconFiles,
   IconLock,
   IconSettings,
+  IconUser,
 } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -51,8 +52,11 @@ interface EditReverseShareFormData {
   maxFileSize?: string;
   allowedFileTypes?: string;
   pageLayout?: "DEFAULT" | "WETRANSFER";
+  nameFieldRequired: "HIDDEN" | "OPTIONAL" | "REQUIRED";
+  emailFieldRequired: "HIDDEN" | "OPTIONAL" | "REQUIRED";
   hasExpiration: boolean;
   hasFileLimits: boolean;
+  hasFieldRequirements: boolean;
   hasPassword: boolean;
   password?: string;
   isActive: boolean;
@@ -85,6 +89,7 @@ export function EditReverseShareModal({
   const watchedValues = {
     hasExpiration: form.watch("hasExpiration"),
     hasFileLimits: form.watch("hasFileLimits"),
+    hasFieldRequirements: form.watch("hasFieldRequirements"),
     noFilesLimit: form.watch("noFilesLimit"),
     noSizeLimit: form.watch("noSizeLimit"),
     allFileTypes: form.watch("allFileTypes"),
@@ -136,6 +141,8 @@ export function EditReverseShareModal({
               />
               <Separator />
               <PasswordSection form={form} t={t} hasPassword={watchedValues.hasPassword} />
+              <Separator />
+              <FieldRequirementsSection form={form} t={t} hasFieldRequirements={watchedValues.hasFieldRequirements} />
 
               <DialogFooter className="gap-2">
                 <Button type="button" variant="outline" onClick={onClose} disabled={isUpdating}>
@@ -169,8 +176,11 @@ function getFormDefaultValues(): EditReverseShareFormData {
     maxFileSize: DEFAULT_VALUES.EMPTY_STRING,
     allowedFileTypes: DEFAULT_VALUES.EMPTY_STRING,
     pageLayout: DEFAULT_VALUES.PAGE_LAYOUT,
+    nameFieldRequired: "OPTIONAL",
+    emailFieldRequired: "OPTIONAL",
     hasExpiration: false,
     hasFileLimits: false,
+    hasFieldRequirements: false,
     hasPassword: false,
     password: DEFAULT_VALUES.EMPTY_STRING,
     isActive: true,
@@ -196,8 +206,11 @@ function mapReverseShareToFormData(reverseShare: ReverseShare): EditReverseShare
     maxFileSize: maxFileSizeValue,
     allowedFileTypes: allowedFileTypesValue,
     pageLayout: (reverseShare.pageLayout as "DEFAULT" | "WETRANSFER") || DEFAULT_VALUES.PAGE_LAYOUT,
+    nameFieldRequired: (reverseShare.nameFieldRequired as "HIDDEN" | "OPTIONAL" | "REQUIRED") || "OPTIONAL",
+    emailFieldRequired: (reverseShare.emailFieldRequired as "HIDDEN" | "OPTIONAL" | "REQUIRED") || "OPTIONAL",
     hasExpiration: false,
     hasFileLimits: false,
+    hasFieldRequirements: false,
     hasPassword: false,
     password: DEFAULT_VALUES.EMPTY_STRING,
     isActive: reverseShare.isActive,
@@ -213,6 +226,8 @@ function buildUpdatePayload(data: EditReverseShareFormData, id: string): UpdateR
     name: data.name,
     pageLayout: data.pageLayout || DEFAULT_VALUES.PAGE_LAYOUT,
     isActive: data.isActive,
+    nameFieldRequired: data.nameFieldRequired,
+    emailFieldRequired: data.emailFieldRequired,
   };
 
   if (data.description?.trim()) {
@@ -568,6 +583,140 @@ function PasswordSection({ form, t, hasPassword }: { form: any; t: any; hasPassw
             </FormItem>
           )}
         />
+      )}
+    </div>
+  );
+}
+
+function FieldRequirementsSection({
+  form,
+  t,
+  hasFieldRequirements,
+}: {
+  form: any;
+  t: any;
+  hasFieldRequirements: boolean;
+}) {
+  const toggleFieldRequirements = () => {
+    const newValue = !hasFieldRequirements;
+    form.setValue("hasFieldRequirements", newValue);
+  };
+
+  return (
+    <div className="space-y-4">
+      {createToggleButton(
+        hasFieldRequirements,
+        toggleFieldRequirements,
+        <IconUser size={16} />,
+        t("reverseShares.form.fieldRequirements.title")
+      )}
+
+      {hasFieldRequirements && (
+        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="nameFieldRequired"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-2 font-medium">
+                    <IconUser size={14} />
+                    {t("reverseShares.form.nameFieldRequired.label")}
+                  </FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="bg-white dark:bg-gray-900">
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="HIDDEN">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-gray-400" />
+                          {t("reverseShares.labels.fieldOptions.hidden")}
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="OPTIONAL">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-blue-500" />
+                          {t("reverseShares.labels.fieldOptions.optional")}
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="REQUIRED">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-red-500" />
+                          {t("reverseShares.labels.fieldOptions.required")}
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="emailFieldRequired"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-2 font-medium">
+                    <IconUser size={14} />
+                    {t("reverseShares.form.emailFieldRequired.label")}
+                  </FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="bg-white dark:bg-gray-900">
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="HIDDEN">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-gray-400" />
+                          {t("reverseShares.labels.fieldOptions.hidden")}
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="OPTIONAL">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-blue-500" />
+                          {t("reverseShares.labels.fieldOptions.optional")}
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="REQUIRED">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-red-500" />
+                          {t("reverseShares.labels.fieldOptions.required")}
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="text-xs text-muted-foreground bg-blue-50 dark:bg-blue-950/20 p-3 rounded-md border border-blue-200 dark:border-blue-800">
+            <div className="flex items-start gap-2">
+              <IconSettings size={12} className="mt-0.5 text-blue-600 dark:text-blue-400" />
+              <div className="space-y-1">
+                <p className="font-medium text-blue-900 dark:text-blue-100">Field Configuration:</p>
+                <ul className="space-y-0.5 text-blue-800 dark:text-blue-200">
+                  <li>
+                    • <strong>Hidden:</strong> Field won't appear in the upload form
+                  </li>
+                  <li>
+                    • <strong>Optional:</strong> Field appears but isn't required
+                  </li>
+                  <li>
+                    • <strong>Required:</strong> Field appears and must be filled
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -194,9 +194,25 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
       return false;
     }
 
-    if (!uploaderName.trim() && !uploaderEmail.trim()) {
-      toast.error(t("reverseShares.upload.errors.provideNameOrEmail"));
+    // Check if either name or email is required
+    const nameRequired = reverseShare.nameFieldRequired === "REQUIRED";
+    const emailRequired = reverseShare.emailFieldRequired === "REQUIRED";
+
+    if (nameRequired && !uploaderName.trim()) {
+      toast.error(t("reverseShares.upload.errors.provideNameRequired"));
       return false;
+    }
+
+    if (emailRequired && !uploaderEmail.trim()) {
+      toast.error(t("reverseShares.upload.errors.provideEmailRequired"));
+      return false;
+    }
+
+    if (reverseShare.nameFieldRequired === "OPTIONAL" && reverseShare.emailFieldRequired === "OPTIONAL") {
+      if (!uploaderName.trim() && !uploaderEmail.trim()) {
+        toast.error(t("reverseShares.upload.errors.provideNameOrEmail"));
+        return false;
+      }
     }
 
     return true;
@@ -231,7 +247,27 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     }
   };
 
-  const canUpload = files.length > 0 && (uploaderName.trim() || uploaderEmail.trim()) && !isUploading;
+  const getCanUpload = (): boolean => {
+    if (files.length === 0 || isUploading) return false;
+
+    const nameRequired = reverseShare.nameFieldRequired === "REQUIRED";
+    const emailRequired = reverseShare.emailFieldRequired === "REQUIRED";
+    const nameHidden = reverseShare.nameFieldRequired === "HIDDEN";
+    const emailHidden = reverseShare.emailFieldRequired === "HIDDEN";
+
+    if (nameHidden && emailHidden) return true;
+
+    if (nameRequired && !uploaderName.trim()) return false;
+
+    if (emailRequired && !uploaderEmail.trim()) return false;
+
+    if (reverseShare.nameFieldRequired === "OPTIONAL" && reverseShare.emailFieldRequired === "OPTIONAL") {
+      return !!(uploaderName.trim() || uploaderEmail.trim());
+    }
+    return true;
+  };
+
+  const canUpload = getCanUpload();
   const allFilesProcessed = files.every(
     (file) => file.status === FILE_STATUS.SUCCESS || file.status === FILE_STATUS.ERROR
   );
@@ -379,33 +415,45 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
       <div className="space-y-4">
         <div className="grid grid-cols-1 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">
-              <IconUser className="inline h-4 w-4" />
-              {t("reverseShares.upload.form.nameLabel")}
-            </Label>
-            <Input
-              id="name"
-              placeholder={t("reverseShares.upload.form.namePlaceholder")}
-              value={uploaderName}
-              onChange={(e) => setUploaderName(e.target.value)}
-              disabled={isUploading}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">
-              <IconMail className="inline h-4 w-4" />
-              {t("reverseShares.upload.form.emailLabel")}
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder={t("reverseShares.upload.form.emailPlaceholder")}
-              value={uploaderEmail}
-              onChange={(e) => setUploaderEmail(e.target.value)}
-              disabled={isUploading}
-            />
-          </div>
+          {reverseShare.nameFieldRequired !== "HIDDEN" && (
+            <div className="space-y-2">
+              <Label htmlFor="name">
+                <IconUser className="inline h-4 w-4" />
+                {reverseShare.nameFieldRequired === "OPTIONAL"
+                  ? t("reverseShares.upload.form.nameLabelOptional")
+                  : t("reverseShares.upload.form.nameLabel")}
+                {reverseShare.nameFieldRequired === "REQUIRED" && <span className="text-red-500 ml-1">*</span>}
+              </Label>
+              <Input
+                id="name"
+                placeholder={t("reverseShares.upload.form.namePlaceholder")}
+                value={uploaderName}
+                onChange={(e) => setUploaderName(e.target.value)}
+                disabled={isUploading}
+                required={reverseShare.nameFieldRequired === "REQUIRED"}
+              />
+            </div>
+          )}
+          {reverseShare.emailFieldRequired !== "HIDDEN" && (
+            <div className="space-y-2">
+              <Label htmlFor="email">
+                <IconMail className="inline h-4 w-4" />
+                {reverseShare.emailFieldRequired === "OPTIONAL"
+                  ? t("reverseShares.upload.form.emailLabelOptional")
+                  : t("reverseShares.upload.form.emailLabel")}
+                {reverseShare.emailFieldRequired === "REQUIRED" && <span className="text-red-500 ml-1">*</span>}
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder={t("reverseShares.upload.form.emailPlaceholder")}
+                value={uploaderEmail}
+                onChange={(e) => setUploaderEmail(e.target.value)}
+                disabled={isUploading}
+                required={reverseShare.emailFieldRequired === "REQUIRED"}
+              />
+            </div>
+          )}
         </div>
         <div className="space-y-2">
           <Label htmlFor="description">{t("reverseShares.upload.form.descriptionLabel")}</Label>

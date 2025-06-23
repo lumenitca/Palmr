@@ -656,7 +656,16 @@
     "securityUpdateError": "Fout bij het bijwerken van beveiligingsinstellingen",
     "expirationUpdateError": "Fout bij het bijwerken van verloop instellingen",
     "securityUpdateSuccess": "Beveiligingsinstellingen succesvol bijgewerkt",
-    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt"
+    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt",
+    "creatingZip": "Zip -bestand maken ...",
+    "defaultShareName": "Deel",
+    "downloadError": "Kan niet downloaden Delen -bestanden downloaden",
+    "downloadSuccess": "Download begonnen met succes",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Geen bestanden beschikbaar om te downloaden",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Kan zip -bestand niet maken",
+    "zipDownloadSuccess": "Zipbestand met succes gedownload"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Link Bewerken",
       "copyLink": "Link Kopiëren",
       "notifyRecipients": "Ontvangers Informeren",
-      "delete": "Verwijderen"
+      "delete": "Verwijderen",
+      "downloadShareFiles": "Download alle bestanden"
     },
     "bulkActions": {
       "delete": "Verwijderen",
-      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}"
+      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}",
+      "actions": "Acties",
+      "download": "Download geselecteerd"
     },
     "selectAll": "Alles selecteren",
     "selectShare": "Deel {shareName} selecteren"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "Geen bestandslimiet",
       "noSizeLimit": "Geen groottelimiet",
       "allFileTypes": "Alle bestandstypes",
-      "fileTypesHelp": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep"
+      "fileTypesHelp": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep",
+      "emailFieldRequired": "E -mailveld",
+      "fieldOptions": {
+        "hidden": "Verborgen",
+        "optional": "Optioneel",
+        "required": "Vereist"
+      },
+      "fieldRequirements": "Veldvereisten",
+      "nameFieldRequired": "Naamveld"
     },
     "card": {
       "untitled": "Link zonder titel",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "Voorvertoning",
-          "download": "Downloaden"
+          "download": "Downloaden",
+          "copyToMyFiles": "Kopieer naar mijn bestanden",
+          "copying": "Kopiëren ..."
         },
         "uploadedBy": "Verzonden door {name}",
         "anonymous": "Anoniem",
@@ -1165,7 +1187,9 @@
         "downloadError": "Fout bij downloaden bestand",
         "editSuccess": "Bestand succesvol bijgewerkt",
         "editError": "Fout bij bijwerken bestand",
-        "previewNotAvailable": "Voorvertoning niet beschikbaar"
+        "previewNotAvailable": "Voorvertoning niet beschikbaar",
+        "copyError": "Fout bij het kopiëren van bestand naar uw bestanden",
+        "copySuccess": "Bestand gekopieerd naar uw bestanden succesvol"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "Wachtwoord moet minimaal 4 tekens bevatten",
         "passwordPlaceholder": "Voer een wachtwoord in om de link te beveiligen"
       },
-      "submit": "Ontvangstlink Aanmaken"
+      "submit": "Ontvangstlink Aanmaken",
+      "emailFieldRequired": {
+        "label": "E -mailveldvereiste",
+        "description": "Configureer of het veld Uploader e -mail moet worden getoond en of het vereist is"
+      },
+      "fieldRequirements": {
+        "title": "Veldvereisten",
+        "description": "Configureer welke velden worden weergegeven in het uploadformulier"
+      },
+      "nameFieldRequired": {
+        "label": "Naam veldvereiste",
+        "description": "Configureer of het veld Uploader Naam moet worden getoond en of het vereist is"
+      }
     },
     "messages": {
       "created": "Ontvangstlink succesvol aangemaakt!",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "Bestandstype niet toegestaan. Toegestane types: {allowedTypes}",
         "maxFilesExceeded": "Maximum van {maxFiles} bestanden toegestaan",
         "selectAtLeastOneFile": "Selecteer ten minste één bestand",
-        "provideNameOrEmail": "Voer uw naam of e-mail in"
+        "provideNameOrEmail": "Voer uw naam of e-mail in",
+        "provideEmailRequired": "E -mail is vereist",
+        "provideNameRequired": "Naam is vereist"
       },
       "fileDropzone": {
         "dragActive": "Laat bestanden hier los",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "Beschrijving (optioneel)",
         "descriptionPlaceholder": "Voeg een beschrijving toe aan de bestanden...",
         "uploadButton": "{count} bestand(en) verzenden",
-        "uploading": "Verzenden..."
+        "uploading": "Verzenden...",
+        "emailLabelOptional": "E -mail (optioneel)",
+        "nameLabelOptional": "Naam (optioneel)"
       },
       "success": {
         "title": "Bestanden succesvol verzonden! 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "Annuleren",
         "preview": "Voorvertoning",
         "download": "Downloaden",
-        "delete": "Verwijderen"
+        "delete": "Verwijderen",
+        "copyToMyFiles": "Kopieer naar mijn bestanden",
+        "copying": "Kopiëren ..."
       },
       "editField": {
         "saveChanges": "Wijzigingen opslaan",

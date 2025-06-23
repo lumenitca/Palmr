@@ -190,18 +190,42 @@ export class FilesystemController {
 
       const filePath = provider.getFilePath(tokenData.objectName);
       const stats = await fs.promises.stat(filePath);
-      const isLargeFile = stats.size > 50 * 1024 * 1024;
+      const fileSize = stats.size;
+      const isLargeFile = fileSize > 50 * 1024 * 1024;
 
       const fileName = tokenData.fileName || "download";
+      const range = request.headers.range;
+
       reply.header("Content-Disposition", this.encodeFilenameForHeader(fileName));
       reply.header("Content-Type", "application/octet-stream");
-      reply.header("Content-Length", stats.size);
+      reply.header("Accept-Ranges", "bytes");
 
-      if (isLargeFile) {
-        await this.downloadLargeFile(reply, provider, filePath);
+      if (range) {
+        const parts = range.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+        const chunkSize = end - start + 1;
+
+        reply.status(206);
+        reply.header("Content-Range", `bytes ${start}-${end}/${fileSize}`);
+        reply.header("Content-Length", chunkSize);
+
+        if (isLargeFile) {
+          await this.downloadLargeFileRange(reply, provider, tokenData.objectName, start, end);
+        } else {
+          const buffer = await provider.downloadFile(tokenData.objectName);
+          const chunk = buffer.slice(start, end + 1);
+          reply.send(chunk);
+        }
       } else {
-        const buffer = await provider.downloadFile(tokenData.objectName);
-        reply.send(buffer);
+        reply.header("Content-Length", fileSize);
+
+        if (isLargeFile) {
+          await this.downloadLargeFile(reply, provider, filePath);
+        } else {
+          const buffer = await provider.downloadFile(tokenData.objectName);
+          reply.send(buffer);
+        }
       }
 
       provider.consumeDownloadToken(token);
@@ -221,5 +245,17 @@ export class FilesystemController {
       console.error("Error streaming large file:", error);
       throw error;
     }
+  }
+
+  private async downloadLargeFileRange(
+    reply: FastifyReply,
+    provider: FilesystemStorageProvider,
+    objectName: string,
+    start: number,
+    end: number
+  ) {
+    const buffer = await provider.downloadFile(objectName);
+    const chunk = buffer.slice(start, end + 1);
+    reply.send(chunk);
   }
 }

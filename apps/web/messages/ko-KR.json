@@ -656,7 +656,16 @@
     "securityUpdateError": "보안 설정 업데이트에 실패했습니다",
     "expirationUpdateError": "만료 설정 업데이트에 실패했습니다",
     "securityUpdateSuccess": "보안 설정이 성공적으로 업데이트되었습니다",
-    "expirationUpdateSuccess": "만료 설정이 성공적으로 업데이트되었습니다"
+    "expirationUpdateSuccess": "만료 설정이 성공적으로 업데이트되었습니다",
+    "creatingZip": "zip 파일 만들기 ...",
+    "defaultShareName": "공유하다",
+    "downloadError": "공유 파일을 다운로드하지 못했습니다",
+    "downloadSuccess": "다운로드가 성공적으로 시작되었습니다",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "다운로드 할 수있는 파일이 없습니다",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "zip 파일을 만들지 못했습니다",
+    "zipDownloadSuccess": "zip 파일이 성공적으로 다운로드되었습니다"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "링크 편집",
       "copyLink": "링크 복사",
       "notifyRecipients": "받는 사람에게 알림",
-      "delete": "삭제"
+      "delete": "삭제",
+      "downloadShareFiles": "모든 파일을 다운로드하십시오"
     },
     "bulkActions": {
       "delete": "삭제",
-      "selected": "{count, plural, =1 {1개의 공유가 선택됨} other {#개의 공유가 선택됨}}"
+      "selected": "{count, plural, =1 {1개의 공유가 선택됨} other {#개의 공유가 선택됨}}",
+      "actions": "행위",
+      "download": "선택한 다운로드"
     },
     "selectAll": "모두 선택",
     "selectShare": "공유 {shareName} 선택"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "파일 수 제한 없음",
       "noSizeLimit": "크기 제한 없음",
       "allFileTypes": "모든 파일 유형",
-      "fileTypesHelp": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분"
+      "fileTypesHelp": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분",
+      "emailFieldRequired": "이메일 필드",
+      "fieldOptions": {
+        "hidden": "숨겨진",
+        "optional": "선택 과목",
+        "required": "필수의"
+      },
+      "fieldRequirements": "필드 요구 사항",
+      "nameFieldRequired": "이름 필드"
     },
     "card": {
       "untitled": "제목 없는 링크",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "미리보기",
-          "download": "다운로드"
+          "download": "다운로드",
+          "copyToMyFiles": "내 파일에 복사하십시오",
+          "copying": "사자..."
         },
         "uploadedBy": "{name}님이 업로드함",
         "anonymous": "익명",
@@ -1165,7 +1187,9 @@
         "downloadError": "파일 다운로드 오류",
         "editSuccess": "파일이 성공적으로 업데이트됨",
         "editError": "파일 업데이트 오류",
-        "previewNotAvailable": "미리보기 불가"
+        "previewNotAvailable": "미리보기 불가",
+        "copyError": "파일에 파일을 복사합니다",
+        "copySuccess": "파일을 파일에 성공적으로 복사했습니다"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "비밀번호는 최소 4자 이상이어야 합니다",
         "passwordPlaceholder": "링크를 보호할 비밀번호 입력"
       },
-      "submit": "수신 링크 생성"
+      "submit": "수신 링크 생성",
+      "emailFieldRequired": {
+        "label": "이메일 필드 요구 사항",
+        "description": "업 로더 이메일 필드를 표시 해야하는지 확인하고 필요한 경우 구성하십시오."
+      },
+      "fieldRequirements": {
+        "title": "필드 요구 사항",
+        "description": "업로드 양식으로 표시되는 필드를 구성하십시오"
+      },
+      "nameFieldRequired": {
+        "label": "이름 필드 요구 사항",
+        "description": "업로더 이름 필드를 표시 해야하는지 확인하고 필요한 경우 구성하십시오."
+      }
     },
     "messages": {
       "created": "수신 링크가 성공적으로 생성되었습니다!",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "허용되지 않는 파일 유형입니다. 허용된 유형: {allowedTypes}",
         "maxFilesExceeded": "최대 {maxFiles}개의 파일만 허용됩니다",
         "selectAtLeastOneFile": "최소 한 개의 파일을 선택하세요",
-        "provideNameOrEmail": "이름 또는 이메일을 입력하세요"
+        "provideNameOrEmail": "이름 또는 이메일을 입력하세요",
+        "provideEmailRequired": "이메일이 필요합니다",
+        "provideNameRequired": "이름이 필요합니다"
       },
       "fileDropzone": {
         "dragActive": "여기에 파일을 놓으세요",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "설명 (선택사항)",
         "descriptionPlaceholder": "파일에 대한 설명 추가...",
         "uploadButton": "{count}개 파일 보내기",
-        "uploading": "보내는 중..."
+        "uploading": "보내는 중...",
+        "emailLabelOptional": "이메일 (선택 사항)",
+        "nameLabelOptional": "이름 (선택 사항)"
       },
       "success": {
         "title": "파일이 성공적으로 보내졌습니다! 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "취소",
         "preview": "미리보기",
         "download": "다운로드",
-        "delete": "삭제"
+        "delete": "삭제",
+        "copyToMyFiles": "내 파일에 복사하십시오",
+        "copying": "사자..."
       },
       "editField": {
         "saveChanges": "변경사항 저장",

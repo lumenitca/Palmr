@@ -243,6 +243,16 @@ export function ReverseShareCard({
                 <IconEye className="h-3 w-3" />
               </Button>
 
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-6 w-6 p-0 hover:bg-background/80 rounded-sm"
+                onClick={() => onEdit(reverseShare)}
+                title={t("reverseShares.actions.edit")}
+              >
+                <IconEdit className="h-3 w-3" />
+              </Button>
+
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="sm" className="h-6 w-6 p-0 hover:bg-background/80 rounded-sm">
@@ -270,7 +280,7 @@ export function ReverseShareCard({
                   )}
 
                   <DropdownMenuItem onClick={() => onEdit(reverseShare)}>
-                    <IconFileText className="h-4 w-4 mr-2" />
+                    <IconEdit className="h-4 w-4 mr-2" />
                     {t("reverseShares.actions.edit")}
                   </DropdownMenuItem>
 

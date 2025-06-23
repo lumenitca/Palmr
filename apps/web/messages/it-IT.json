@@ -656,7 +656,16 @@
     "securityUpdateError": "Impossibile aggiornare le impostazioni di sicurezza",
     "expirationUpdateError": "Impossibile aggiornare le impostazioni di scadenza",
     "securityUpdateSuccess": "Impostazioni di sicurezza aggiornate con successo",
-    "expirationUpdateSuccess": "Impostazioni di scadenza aggiornate con successo"
+    "expirationUpdateSuccess": "Impostazioni di scadenza aggiornate con successo",
+    "creatingZip": "Creazione di file zip ...",
+    "defaultShareName": "Condividere",
+    "downloadError": "Impossibile scaricare i file di condivisione",
+    "downloadSuccess": "Download avviato con successo",
+    "multipleSharesZipName": "{Count} _Shares_files.zip",
+    "noFilesToDownload": "Nessun file disponibile per il download",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Impossibile creare un file zip",
+    "zipDownloadSuccess": "File zip scaricato correttamente"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Modifica Link",
       "copyLink": "Copia Link",
       "notifyRecipients": "Notifica Destinatari",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "downloadShareFiles": "Scarica tutti i file"
     },
     "bulkActions": {
       "delete": "Elimina",
-      "selected": "{count, plural, =1 {1 condivisione selezionata} other {# condivisioni selezionate}}"
+      "selected": "{count, plural, =1 {1 condivisione selezionata} other {# condivisioni selezionate}}",
+      "actions": "Azioni",
+      "download": "Scarica selezionato"
     },
     "selectAll": "Seleziona tutto",
     "selectShare": "Seleziona condivisione {shareName}"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "Nessun limite di file",
       "noSizeLimit": "Nessun limite di dimensione",
       "allFileTypes": "Tutti i tipi di file",
-      "fileTypesHelp": "Inserisci le estensioni senza punto, separate da spazio, virgola, trattino o barra verticale"
+      "fileTypesHelp": "Inserisci le estensioni senza punto, separate da spazio, virgola, trattino o barra verticale",
+      "emailFieldRequired": "Campo e -mail",
+      "fieldOptions": {
+        "hidden": "Nascosto",
+        "optional": "Opzionale",
+        "required": "Obbligatorio"
+      },
+      "fieldRequirements": "Requisiti sul campo",
+      "nameFieldRequired": "Campo nome"
     },
     "card": {
       "untitled": "Link senza titolo",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "Anteprima",
-          "download": "Scarica"
+          "download": "Scarica",
+          "copyToMyFiles": "Copia sui miei file",
+          "copying": "Copia ..."
         },
         "uploadedBy": "Inviato da {name}",
         "anonymous": "Anonimo",
@@ -1165,7 +1187,9 @@
         "downloadError": "Errore durante il download del file",
         "editSuccess": "File aggiornato con successo",
         "editError": "Errore durante l'aggiornamento del file",
-        "previewNotAvailable": "Anteprima non disponibile"
+        "previewNotAvailable": "Anteprima non disponibile",
+        "copyError": "Errore di copia del file sui tuoi file",
+        "copySuccess": "File copiato sui tuoi file correttamente"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "La password deve contenere almeno 4 caratteri",
         "passwordPlaceholder": "Inserisci una password per proteggere il link"
       },
-      "submit": "Crea Link di Ricezione"
+      "submit": "Crea Link di Ricezione",
+      "emailFieldRequired": {
+        "label": "Requisito del campo e -mail",
+        "description": "Configurare se il campo e -mail del caricatore deve essere visualizzato e se è richiesto"
+      },
+      "fieldRequirements": {
+        "title": "Requisiti sul campo",
+        "description": "Configurare quali campi sono mostrati nel modulo di caricamento"
+      },
+      "nameFieldRequired": {
+        "label": "Requisiti del campo Nome",
+        "description": "Configurare se il campo Nome del caricatore deve essere visualizzato e se è richiesto"
+      }
     },
     "messages": {
       "created": "Link di ricezione creato con successo!",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "Tipo di file non consentito. Tipi accettati: {allowedTypes}",
         "maxFilesExceeded": "Massimo {maxFiles} file consentiti",
         "selectAtLeastOneFile": "Seleziona almeno un file",
-        "provideNameOrEmail": "Inserisci il tuo nome o email"
+        "provideNameOrEmail": "Inserisci il tuo nome o email",
+        "provideEmailRequired": "È richiesta l'e -mail",
+        "provideNameRequired": "È richiesto il nome"
       },
       "fileDropzone": {
         "dragActive": "Rilascia i file qui",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "Descrizione (opzionale)",
         "descriptionPlaceholder": "Aggiungi una descrizione ai file...",
         "uploadButton": "Invia {count} file",
-        "uploading": "Invio in corso..."
+        "uploading": "Invio in corso...",
+        "emailLabelOptional": "Email (opzionale)",
+        "nameLabelOptional": "Nome (opzionale)"
       },
       "success": {
         "title": "File inviati con successo! 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "Annulla",
         "preview": "Anteprima",
         "download": "Scarica",
-        "delete": "Elimina"
+        "delete": "Elimina",
+        "copyToMyFiles": "Copia sui miei file",
+        "copying": "Copia ..."
       },
       "editField": {
         "saveChanges": "Salva modifiche",

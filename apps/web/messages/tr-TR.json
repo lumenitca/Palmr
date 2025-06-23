@@ -656,7 +656,16 @@
     "securityUpdateError": "Güvenlik ayarlarını güncelleme başarısız",
     "expirationUpdateError": "Son kullanma ayarlarını güncelleme başarısız",
     "securityUpdateSuccess": "Güvenlik ayarları başarıyla güncellendi",
-    "expirationUpdateSuccess": "Son kullanma ayarları başarıyla güncellendi"
+    "expirationUpdateSuccess": "Son kullanma ayarları başarıyla güncellendi",
+    "creatingZip": "Zip dosyası oluşturma ...",
+    "defaultShareName": "Paylaşmak",
+    "downloadError": "Paylaşım dosyalarını indiremedi",
+    "downloadSuccess": "İndir başarıyla başladı",
+    "multipleSharesZipName": "{Count} _Shares_files.zip",
+    "noFilesToDownload": "İndirilebilecek dosya yok",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Zip dosyası oluşturulamadı",
+    "zipDownloadSuccess": "Zip dosyası başarıyla indirildi"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Bağlantıyı Düzenle",
       "copyLink": "Bağlantıyı Kopyala",
       "notifyRecipients": "Alıcıları Bilgilendir",
-      "delete": "Sil"
+      "delete": "Sil",
+      "downloadShareFiles": "Tüm dosyaları indirin"
     },
     "bulkActions": {
       "delete": "Sil",
-      "selected": "{count, plural, =1 {1 paylaşım seçildi} other {# paylaşım seçildi}}"
+      "selected": "{count, plural, =1 {1 paylaşım seçildi} other {# paylaşım seçildi}}",
+      "actions": "Eylem",
+      "download": "Seçili indir"
     },
     "selectAll": "Tümünü seç",
     "selectShare": "Paylaşım {shareName} seç"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "Dosya sınırı yok",
       "noSizeLimit": "Boyut sınırı yok",
       "allFileTypes": "Tüm dosya türleri",
-      "fileTypesHelp": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin"
+      "fileTypesHelp": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin",
+      "emailFieldRequired": "E -posta alanı",
+      "fieldOptions": {
+        "hidden": "Gizlenmiş",
+        "optional": "İsteğe bağlı",
+        "required": "Gerekli"
+      },
+      "fieldRequirements": "Saha Gereksinimleri",
+      "nameFieldRequired": "İsim alanı"
     },
     "card": {
       "untitled": "Başlıksız bağlantı",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "Önizle",
-          "download": "İndir"
+          "download": "İndir",
+          "copyToMyFiles": "Dosyalarımı kopyala",
+          "copying": "Kopyalama ..."
         },
         "uploadedBy": "{name} tarafından gönderildi",
         "anonymous": "Anonim",
@@ -1165,7 +1187,9 @@
         "downloadError": "Dosya indirilirken hata oluştu",
         "editSuccess": "Dosya başarıyla güncellendi",
         "editError": "Dosya güncellenirken hata oluştu",
-        "previewNotAvailable": "Önizleme mevcut değil"
+        "previewNotAvailable": "Önizleme mevcut değil",
+        "copyError": "Dosyalarınıza dosyayı kopyalama hatası",
+        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "Şifre en az 4 karakter olmalıdır",
         "passwordPlaceholder": "Bağlantıyı korumak için şifre girin"
       },
-      "submit": "Alma Bağlantısı Oluştur"
+      "submit": "Alma Bağlantısı Oluştur",
+      "emailFieldRequired": {
+        "label": "E -posta alanı gereksinimi",
+        "description": "Yükleyici e -posta alanının gösterilmesi gerekip gerekmediğini ve gerekli olup olmadığını yapılandırın"
+      },
+      "fieldRequirements": {
+        "title": "Saha Gereksinimleri",
+        "description": "Hangi alanların yükleme formunda gösterildiğini yapılandırın"
+      },
+      "nameFieldRequired": {
+        "label": "İsim alanı gereksinimi",
+        "description": "Yükleyici adı alanının gösterilmesi gerekip gerekmediğini ve gerekli olup olmadığını yapılandırın"
+      }
     },
     "messages": {
       "created": "Alma bağlantısı başarıyla oluşturuldu!",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "Dosya türüne izin verilmiyor. İzin verilen türler: {allowedTypes}",
         "maxFilesExceeded": "Maksimum {maxFiles} dosyaya izin veriliyor",
         "selectAtLeastOneFile": "En az bir dosya seçin",
-        "provideNameOrEmail": "Adınızı veya e-postanızı girin"
+        "provideNameOrEmail": "Adınızı veya e-postanızı girin",
+        "provideEmailRequired": "E -posta gerekli",
+        "provideNameRequired": "İsim gerekli"
       },
       "fileDropzone": {
         "dragActive": "Dosyaları buraya bırakın",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "Açıklama (isteğe bağlı)",
         "descriptionPlaceholder": "Dosyalara açıklama ekleyin...",
         "uploadButton": "{count} dosya gönder",
-        "uploading": "Gönderiliyor..."
+        "uploading": "Gönderiliyor...",
+        "emailLabelOptional": "E -posta (isteğe bağlı)",
+        "nameLabelOptional": "İsim (isteğe bağlı)"
       },
       "success": {
         "title": "Dosyalar başarıyla gönderildi! 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "İptal",
         "preview": "Önizle",
         "download": "İndir",
-        "delete": "Sil"
+        "delete": "Sil",
+        "copyToMyFiles": "Dosyalarımı kopyala",
+        "copying": "Kopyalama ..."
       },
       "editField": {
         "saveChanges": "Değişiklikleri kaydet",

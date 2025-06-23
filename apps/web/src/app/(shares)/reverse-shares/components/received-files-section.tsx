@@ -32,6 +32,15 @@ export function ReceivedFilesSection({ files, onFileDeleted }: ReceivedFilesSect
   const t = useTranslations();
   const [previewFile, setPreviewFile] = useState<ReverseShareFile | null>(null);
 
+  const getSenderDisplay = (file: ReverseShareFile) => {
+    if (file.uploaderName && file.uploaderEmail) {
+      return `${file.uploaderName}(${file.uploaderEmail})`;
+    }
+    if (file.uploaderName) return file.uploaderName;
+    if (file.uploaderEmail) return file.uploaderEmail;
+    return t("reverseShares.components.fileRow.anonymous");
+  };
+
   const formatFileSize = (size: string | number | null) => {
     if (!size) return "0 B";
     const sizeInBytes = typeof size === "string" ? parseInt(size) : size;
@@ -119,10 +128,10 @@ export function ReceivedFilesSection({ files, onFileDeleted }: ReceivedFilesSect
                     </div>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <span>{formatFileSize(file.size)}</span>
-                      {file.uploaderEmail && (
+                      {(file.uploaderName || file.uploaderEmail) && (
                         <>
                           <span>•</span>
-                          <span title={file.uploaderEmail}>{file.uploaderName || file.uploaderEmail}</span>
+                          <span title={getSenderDisplay(file)}>{getSenderDisplay(file)}</span>
                         </>
                       )}
                       <span>•</span>

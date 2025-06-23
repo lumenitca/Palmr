@@ -7,10 +7,8 @@ import { GenerateShareLinkModal } from "@/components/modals/generate-share-link-
 import { ShareActionsModals } from "@/components/modals/share-actions-modals";
 import { ShareDetailsModal } from "@/components/modals/share-details-modal";
 import { ShareExpirationModal } from "@/components/modals/share-expiration-modal";
-import { ShareFileModal } from "@/components/modals/share-file-modal";
 import { ShareMultipleFilesModal } from "@/components/modals/share-multiple-files-modal";
 import { ShareSecurityModal } from "@/components/modals/share-security-modal";
-import { UploadFileModal } from "@/components/modals/upload-file-modal";
 import { SharesModalsProps } from "../types";
 
 export function SharesModals({
@@ -106,12 +104,6 @@ export function SharesModals({
           fileManager.handleShareBulkSuccess();
           onSuccess();
         }}
-      />
-
-      <UploadFileModal
-        isOpen={!!shareManager.shareToEdit}
-        onClose={() => shareManager.setShareToEdit(null)}
-        onSuccess={onSuccess}
       />
     </>
   );
