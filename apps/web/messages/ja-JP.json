@@ -1189,7 +1189,23 @@
         "editError": "ファイルの更新に失敗しました",
         "previewNotAvailable": "プレビューは利用できません",
         "copyError": "ファイルにファイルをコピーするエラー",
-        "copySuccess": "ファイルに正常にコピーされたファイル"
+        "copySuccess": "ファイルに正常にコピーされたファイル",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1ファイルを選択} other {#ファイルを選択}}",
+          "actions": "アクション",
+          "download": "選択したファイルをダウンロード",
+          "copyToMyFiles": "選択したファイルを私のファイルにコピー",
+          "delete": "選択したファイルを削除"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1ファイル} other {#ファイル}}を私のファイルにコピー中...",
+        "bulkCopySuccess": "{count, plural, =1 {1ファイル} other {#ファイル}}を私のファイルに正常にコピーしました",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {ファイル} other {ファイル}}を削除",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {このファイル} other {これらの#ファイル}}を削除してもよろしいですか？この操作は取り消せません。",
+        "bulkDeleteConfirmTitle": "選択したファイルを削除",
+        "bulkDeleteProgress": "{count, plural, =1 {1ファイル} other {#ファイル}}を削除中...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1ファイル} other {#ファイル}}を正常に削除しました",
+        "selectAll": "すべて選択",
+        "selectFile": "ファイル{fileName}を選択"
       }
     },
     "form": {

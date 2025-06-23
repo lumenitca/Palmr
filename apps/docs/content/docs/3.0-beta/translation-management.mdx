@@ -6,7 +6,7 @@ icon: Languages
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Callout } from "fumadocs-ui/components/callout";
 
-Palmr includes a comprehensive translation management system that automates synchronization, validation, and translation of the application's internationalization files.
+Palmr includes a comprehensive translation key management system that automates synchronization and validation of the application's internationalization files.
 
 ## Overview
 
@@ -14,7 +14,7 @@ The translation management system consists of Python scripts that help maintain 
 
 - **Synchronization**: Automatically add missing translation keys
 - **Validation**: Check translation status and completeness
-- **Auto-translation**: Use Google Translate API for initial translations
+- **Key Management**: Manage translation keys structure and consistency
 - **Reporting**: Generate detailed translation reports
 
 ## Quick Start
@@ -31,10 +31,7 @@ The translation management system consists of Python scripts that help maintain 
     # Synchronize missing keys
     pnpm run translations:sync
 
-    # Auto-translate [TO_TRANSLATE] strings
-    pnpm run translations:translate
-
-    # Dry run mode (test without changes)
+    # Test workflow without changes (dry run)
     pnpm run translations:dry-run
 
     # Show help
@@ -52,7 +49,7 @@ The translation management system consists of Python scripts that help maintain 
     # Individual commands
     python3 run_translations.py check
     python3 run_translations.py sync
-    python3 run_translations.py translate
+    python3 run_translations.py all --dry-run
     python3 run_translations.py help
     ```
 
@@ -63,14 +60,13 @@ The translation management system consists of Python scripts that help maintain 
 
 ### Main Commands (npm/pnpm)
 
-| Command                           | Description                                 |
-| --------------------------------- | ------------------------------------------- |
-| `pnpm run translations`           | Complete workflow: sync + translate + check |
-| `pnpm run translations:check`     | Check translation status and completeness   |
-| `pnpm run translations:sync`      | Synchronize missing keys from en-US.json    |
-| `pnpm run translations:translate` | Auto-translate [TO_TRANSLATE] strings       |
-| `pnpm run translations:dry-run`   | Test workflow without making changes        |
-| `pnpm run translations:help`      | Show detailed help and examples             |
+| Command                         | Description                               |
+| ------------------------------- | ----------------------------------------- |
+| `pnpm run translations`         | Complete workflow: sync + check           |
+| `pnpm run translations:check`   | Check translation status and completeness |
+| `pnpm run translations:sync`    | Synchronize missing keys from en-US.json  |
+| `pnpm run translations:dry-run` | Test workflow without making changes      |
+| `pnpm run translations:help`    | Show detailed help and examples           |
 
 ## Workflow
 
@@ -80,13 +76,13 @@ When you add new text to the application:
 
 1. **Add to English**: Update `apps/web/messages/en-US.json` with your new keys
 2. **Sync translations**: Run `pnpm run translations:sync` to add missing keys to all languages
-3. **Auto-translate**: Run `pnpm run translations:translate` for automatic translations
-4. **Review translations**: **Mandatory step** - Check all auto-generated translations for accuracy
-5. **Test in UI**: Verify translations work correctly in the application interface
+3. **Manual translation**: Translate strings marked with `[TO_TRANSLATE]` manually
+4. **Test in UI**: Verify translations work correctly in the application interface
 
 <Callout type="important">
-  **Never skip step 4**: Auto-generated translations must be reviewed before
-  committing to production. They are a starting point, not a final solution.
+  **Manual translation required**: All strings marked with `[TO_TRANSLATE]` must
+  be manually translated by native speakers or professional translators for
+  accuracy.
 </Callout>
 
 ### 2. Checking Translation Status
@@ -110,7 +106,7 @@ The report shows:
 
 ### 3. Manual Translation Process
 
-For critical strings or when automatic translation isn't sufficient:
+For all translation strings:
 
 1. **Find untranslated strings**: Look for `[TO_TRANSLATE] Original text` in language files
 2. **Replace with translation**: Remove the prefix and add proper translation
@@ -130,13 +126,13 @@ apps/web/
     ├── run_translations.py     # Main wrapper
     ├── sync_translations.py    # Synchronization
     ├── check_translations.py   # Status checking
-    └── translate_missing.py    # Auto-translation
+    └── clean_translations.py   # Cleanup utilities
 ```
 
 ## Prerequisites
 
 - **Python 3.6 or higher** - Required for running the translation scripts
-- **No external dependencies** - Scripts use only Python standard libraries (googletrans auto-installs when needed)
+- **No external dependencies** - Scripts use only Python standard libraries
 - **UTF-8 support** - Ensure your terminal supports UTF-8 for proper display of translations
 
 ## Script Details
@@ -149,8 +145,7 @@ The main script provides a unified interface for all translation operations:
 
 - `check` - Check translation status and generate reports
 - `sync` - Synchronize missing keys from reference language
-- `translate` - Automatically translate marked strings
-- `all` - Run complete workflow (sync + translate + check)
+- `all` - Run complete workflow (sync + check)
 - `help` - Show detailed help with examples
 
 #### How it Works
@@ -197,27 +192,6 @@ Provides comprehensive translation analysis:
 - **Quality insights**: Identifies potential translation issues
 - **Export friendly**: Output can be redirected to files for reports
 
-### Auto-Translation Script (`translate_missing.py`)
-
-Automated translation using Google Translate API:
-
-#### Process
-
-1. **Dependency check**: Auto-installs `googletrans` if needed
-2. **Scan for work**: Finds all `[TO_TRANSLATE]` prefixed strings
-3. **Language mapping**: Maps file names to Google Translate language codes
-4. **Batch translation**: Processes strings with rate limiting
-5. **Update files**: Replaces marked strings with translations
-6. **Error handling**: Retries failed translations, reports results
-
-#### Safety Features
-
-- **Rate limiting**: Configurable delay between requests
-- **Retry logic**: Multiple attempts for failed translations
-- **Dry run mode**: Preview changes without modifications
-- **Language skipping**: Exclude specific languages from processing
-- **Progress tracking**: Real-time status of translation progress
-
 ## Advanced Usage
 
 ### Custom Parameters
@@ -240,22 +214,6 @@ python3 scripts/run_translations.py sync --messages-dir /path/to/messages
 python3 scripts/run_translations.py sync --dry-run
 ```
 
-#### Translation Parameters (`translate`)
-
-```bash
-# Custom delay between translation requests (avoid rate limiting)
-python3 scripts/run_translations.py translate --delay 2.0
-
-# Skip specific languages from translation
-python3 scripts/run_translations.py translate --skip-languages pt-BR.json fr-FR.json
-
-# Dry run - see what would be translated
-python3 scripts/run_translations.py translate --dry-run
-
-# Specify custom messages directory
-python3 scripts/run_translations.py translate --messages-dir /path/to/messages
-```
-
 #### Check Parameters (`check`)
 
 ```bash
@@ -268,58 +226,46 @@ python3 scripts/run_translations.py check --messages-dir /path/to/messages
 
 ### Parameter Reference
 
-| Parameter                | Commands                   | Description                                   |
-| ------------------------ | -------------------------- | --------------------------------------------- |
-| `--dry-run`              | `sync`, `translate`, `all` | Preview changes without modifying files       |
-| `--messages-dir`         | All                        | Custom directory containing translation files |
-| `--reference`            | `sync`, `check`            | Reference file to use (default: en-US.json)   |
-| `--no-mark-untranslated` | `sync`                     | Don't add [TO_TRANSLATE] prefix to new keys   |
-| `--delay`                | `translate`                | Delay in seconds between translation requests |
-| `--skip-languages`       | `translate`                | List of language files to skip                |
+| Parameter                | Commands        | Description                                   |
+| ------------------------ | --------------- | --------------------------------------------- |
+| `--dry-run`              | `sync`, `all`   | Preview changes without modifying files       |
+| `--messages-dir`         | All             | Custom directory containing translation files |
+| `--reference`            | `sync`, `check` | Reference file to use (default: en-US.json)   |
+| `--no-mark-untranslated` | `sync`          | Don't add [TO_TRANSLATE] prefix to new keys   |
 
 ### Dry Run Mode
 
 Always test changes first:
 
 ```bash
-# Test complete workflow
+# Test complete workflow (recommended)
 pnpm run translations:dry-run
 
-# Test individual commands
+# Alternative: Direct Python commands
+python3 scripts/run_translations.py all --dry-run
 python3 scripts/run_translations.py sync --dry-run
-python3 scripts/run_translations.py translate --dry-run
 ```
 
 ### Common Use Cases
 
-#### Scenario 1: Careful Translation with Review
+#### Scenario 1: Adding Keys Without Marking for Translation
 
 ```bash
-# 1. Sync new keys without auto-marking for translation
+# Sync new keys without auto-marking for translation
 python3 scripts/run_translations.py sync --no-mark-untranslated
 
-# 2. Manually mark specific keys that need translation
+# Manually mark specific keys that need translation
 # Edit files to add [TO_TRANSLATE] prefix where needed
-
-# 3. Translate only marked strings with slower rate
-python3 scripts/run_translations.py translate --delay 2.0
 ```
 
-#### Scenario 2: Skip Already Reviewed Languages
-
-```bash
-# Skip languages that were already manually reviewed
-python3 scripts/run_translations.py translate --skip-languages pt-BR.json es-ES.json
-```
-
-#### Scenario 3: Custom Project Structure
+#### Scenario 2: Custom Project Structure
 
 ```bash
 # Work with translations in different directory
 python3 scripts/run_translations.py all --messages-dir ../custom-translations
 ```
 
-#### Scenario 4: Quality Assurance
+#### Scenario 3: Quality Assurance
 
 ```bash
 # Use different language as reference for comparison
@@ -352,15 +298,15 @@ Translation files use nested JSON structure:
 }
 ```
 
-## Automatic Translation
+## Manual Translation
 
 <Callout type="warning">
-  **Review Required**: Automatic translations are provided for convenience but
-  **must be reviewed** before production use. They serve as a starting point,
-  not a final solution.
+  **Professional translation recommended**: For production applications,
+  consider using professional translation services or native speakers to ensure
+  high-quality, culturally appropriate translations.
 </Callout>
 
-The system uses Google Translate (free API) to automatically translate strings marked with `[TO_TRANSLATE]`:
+The system marks strings that need translation with the `[TO_TRANSLATE]` prefix:
 
 ```json
 {
@@ -368,7 +314,7 @@ The system uses Google Translate (free API) to automatically translate strings m
 }
 ```
 
-After auto-translation:
+After manual translation:
 
 ```json
 {
@@ -378,14 +324,15 @@ After auto-translation:
 
 ### Translation Review Process
 
-1. **Generate**: Use `pnpm run translations:translate` to auto-translate
-2. **Review**: Check each translation for:
+1. **Identify**: Use `pnpm run translations:check` to find untranslated strings
+2. **Translate**: Replace `[TO_TRANSLATE]` strings with proper translations
+3. **Review**: Check each translation for:
    - **Context accuracy**: Does it make sense in the UI?
    - **Technical terms**: Are they correctly translated?
    - **Tone consistency**: Matches the application's voice?
    - **Cultural appropriateness**: Suitable for target audience?
-3. **Test**: Verify translations in the actual application interface
-4. **Document**: Note any translation decisions for future reference
+4. **Test**: Verify translations in the actual application interface
+5. **Document**: Note any translation decisions for future reference
 
 ### Common Review Points
 
@@ -405,15 +352,15 @@ After auto-translation:
 ### Translation Workflow for Development
 
 1. **English First**: Add all new text to `apps/web/messages/en-US.json`
-2. **Auto-generate**: Use scripts to generate translations for other languages
-3. **Review Required**: All auto-generated translations must be reviewed before production use
+2. **Sync keys**: Use scripts to generate key structure for other languages
+3. **Manual translation**: All strings must be manually translated for accuracy
 4. **Quality Check**: Run translation validation before merging PRs
 
 ### Why English as Parent Language?
 
 - **Consistency**: Ensures all languages have the same keys structure
 - **Reference**: English serves as the source of truth for meaning
-- **Auto-translation**: Scripts use English as source for automatic translation
+- **Key management**: Scripts use English as source for key synchronization
 - **Documentation**: Most technical documentation is in English
 
 ## Best Practices
@@ -422,8 +369,8 @@ After auto-translation:
 
 1. **Always use English as reference**: Add new keys to `en-US.json` first - never add keys directly to other languages
 2. **Use semantic key names**: `dashboard.welcome` instead of `text1`
-3. **Test translations**: Run `pnpm run translations:dry-run` before committing
-4. **Review auto-translations**: All generated translations must be reviewed before production
+3. **Test key sync**: Run `pnpm run translations:dry-run` before committing
+4. **Coordinate with translators**: Ensure translation team is aware of new keys
 5. **Maintain consistency**: Use existing patterns for similar UI elements
 
 ### For Translators
@@ -432,6 +379,7 @@ After auto-translation:
 2. **Check identical strings**: May need localization even if identical to English
 3. **Use proper formatting**: Maintain HTML tags and placeholders
 4. **Test in context**: Verify translations work in the actual UI
+5. **Maintain glossary**: Keep consistent terminology across translations
 
 ## Troubleshooting
 
@@ -439,17 +387,9 @@ After auto-translation:
 
 **Python not found**: Ensure Python 3.6+ is installed and in PATH
 
-**googletrans errors**: The system auto-installs dependencies, but you can manually install:
+**Permission errors**: Ensure write permissions to message files
 
-```bash
-pip install googletrans==4.0.0rc1
-```
-
-**Rate limiting**: Increase delay between requests:
-
-```bash
-python3 scripts/run_translations.py translate --delay 2.0
-```
+**Encoding issues**: Ensure your terminal supports UTF-8
 
 ### Getting Help
 
@@ -491,28 +431,6 @@ LANGUAGE        COMPLETENESS STRINGS         UNTRANSLATED    POSSIBLE MATCHES
 ================================================================================
 ```
 
-### Auto-Translation Progress
-
-```
-🌍 Translating 3 languages...
-⏱️  Delay between requests: 1.0s
-
-[1/3] 🌐 Language: PT
-🔍 Processing: pt-BR.json
-  📝 Found 12 strings to translate
-  📍 (1/12) Translating: dashboard.welcome
-    ✅ "Welcome to Palmr" → "Bem-vindo ao Palmr"
-  💾 File saved with 12 translations
-
-📊 FINAL SUMMARY
-================================================================================
-✅ Translations performed:
-   • 34 successes
-   • 2 failures
-   • 36 total processed
-   • Success rate: 94.4%
-```
-
 ## Contributing
 
 When contributing translations:
@@ -520,6 +438,6 @@ When contributing translations:
 1. **Follow the workflow**: Use the provided scripts for consistency
 2. **Test thoroughly**: Run complete checks before submitting
 3. **Document changes**: Note any significant translation decisions
-4. **Maintain quality**: Review auto-translations for accuracy
+4. **Maintain quality**: Ensure manual translations are accurate and appropriate
 
 The translation management system ensures consistency and makes it easy to maintain high-quality localization across all supported languages.

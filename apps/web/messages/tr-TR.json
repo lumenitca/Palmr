@@ -1189,7 +1189,23 @@
         "editError": "Dosya güncellenirken hata oluştu",
         "previewNotAvailable": "Önizleme mevcut değil",
         "copyError": "Dosyalarınıza dosyayı kopyalama hatası",
-        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya"
+        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 dosya seçildi} other {# dosya seçildi}}",
+          "actions": "İşlemler",
+          "download": "Seçilenleri İndir",
+          "copyToMyFiles": "Seçilenleri Dosyalarıma Kopyala",
+          "delete": "Seçilenleri Sil"
+        },
+        "bulkCopyProgress": "Dosyalarınıza {count, plural, =1 {1 dosya} other {# dosya}} kopyalanıyor...",
+        "bulkCopySuccess": "{count, plural, =1 {1 dosya dosyalarınıza başarıyla kopyalandı} other {# dosya dosyalarınıza başarıyla kopyalandı}}",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {Dosyayı} other {Dosyaları}} Sil",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {Bu dosyayı} other {Bu # dosyayı}} silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+        "bulkDeleteConfirmTitle": "Seçili Dosyaları Sil",
+        "bulkDeleteProgress": "{count, plural, =1 {1 dosya} other {# dosya}} siliniyor...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 dosya başarıyla silindi} other {# dosya başarıyla silindi}}",
+        "selectAll": "Tümünü seç",
+        "selectFile": "{fileName} dosyasını seç"
       }
     },
     "form": {

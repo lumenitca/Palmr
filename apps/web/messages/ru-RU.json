@@ -1189,7 +1189,23 @@
         "editError": "Ошибка при обновлении файла",
         "previewNotAvailable": "Предпросмотр недоступен",
         "copyError": "Ошибка копирования файла в ваши файлы",
-        "copySuccess": "Файл успешно скопирован в ваши файлы"
+        "copySuccess": "Файл успешно скопирован в ваши файлы",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 файл выбран} other {# файлов выбрано}}",
+          "actions": "Действия",
+          "download": "Скачать выбранные",
+          "copyToMyFiles": "Копировать выбранные в мои файлы",
+          "delete": "Удалить выбранные"
+        },
+        "bulkCopyProgress": "Копирование {count, plural, =1 {1 файла} other {# файлов}} в ваши файлы...",
+        "bulkCopySuccess": "{count, plural, =1 {1 файл успешно скопирован в ваши файлы} other {# файлов успешно скопировано в ваши файлы}}",
+        "bulkDeleteConfirmButton": "Удалить {count, plural, =1 {файл} other {файлы}}",
+        "bulkDeleteConfirmMessage": "Вы уверены, что хотите удалить {count, plural, =1 {этот файл} other {эти # файлов}}? Это действие нельзя отменить.",
+        "bulkDeleteConfirmTitle": "Удалить выбранные файлы",
+        "bulkDeleteProgress": "Удаление {count, plural, =1 {1 файла} other {# файлов}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 файл успешно удален} other {# файлов успешно удалено}}",
+        "selectAll": "Выбрать все",
+        "selectFile": "Выбрать файл {fileName}"
       }
     },
     "form": {

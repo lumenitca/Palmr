@@ -1189,7 +1189,23 @@
         "editError": "Błąd aktualizacji pliku",
         "previewNotAvailable": "Podgląd niedostępny",
         "copyError": "Plik kopiowania błędów do plików",
-        "copySuccess": "Plik skopiowany do plików pomyślnie"
+        "copySuccess": "Plik skopiowany do plików pomyślnie",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 plik wybrany} other {# plików wybranych}}",
+          "actions": "Akcje",
+          "download": "Pobierz wybrane",
+          "copyToMyFiles": "Skopiuj wybrane do Moich plików",
+          "delete": "Usuń wybrane"
+        },
+        "bulkCopyProgress": "Kopiowanie {count, plural, =1 {1 pliku} other {# plików}} do twoich plików...",
+        "bulkCopySuccess": "{count, plural, =1 {1 plik skopiowany pomyślnie do twoich plików} other {# plików skopiowanych pomyślnie do twoich plików}}",
+        "bulkDeleteConfirmButton": "Usuń {count, plural, =1 {plik} other {pliki}}",
+        "bulkDeleteConfirmMessage": "Czy na pewno chcesz usunąć {count, plural, =1 {ten plik} other {te # pliki}}? Tej akcji nie można cofnąć.",
+        "bulkDeleteConfirmTitle": "Usuń wybrane pliki",
+        "bulkDeleteProgress": "Usuwanie {count, plural, =1 {1 pliku} other {# plików}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 plik usunięty pomyślnie} other {# plików usuniętych pomyślnie}}",
+        "selectAll": "Zaznacz wszystko",
+        "selectFile": "Wybierz plik {fileName}"
       }
     },
     "form": {

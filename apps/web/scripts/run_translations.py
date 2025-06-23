@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Main script to run all Palmr translation operations.
+Main script to run Palmr translation management operations.
 Makes it easy to run scripts without remembering specific names.
 """
 
@@ -17,25 +17,65 @@ def run_command(script_name: str, args: list) -> int:
     return subprocess.run(cmd).returncode
 
 
+def filter_args_for_script(script_name: str, args: list) -> list:
+    """Filter arguments based on what each script accepts."""
+    
+    # Arguments that check_translations.py accepts
+    check_args = ['--messages-dir', '--reference']
+    
+    # Arguments that sync_translations.py accepts  
+    sync_args = ['--messages-dir', '--reference', '--no-mark-untranslated', '--dry-run']
+    
+    if script_name == 'check_translations.py':
+        filtered = []
+        skip_next = False
+        for i, arg in enumerate(args):
+            if skip_next:
+                skip_next = False
+                continue
+            if arg in check_args:
+                filtered.append(arg)
+                # Add the value for the argument if it exists
+                if i + 1 < len(args) and not args[i + 1].startswith('--'):
+                    filtered.append(args[i + 1])
+                    skip_next = True
+        return filtered
+    
+    elif script_name == 'sync_translations.py':
+        filtered = []
+        skip_next = False
+        for i, arg in enumerate(args):
+            if skip_next:
+                skip_next = False
+                continue
+            if arg in sync_args:
+                filtered.append(arg)
+                # Add the value for the argument if it exists
+                if i + 1 < len(args) and not args[i + 1].startswith('--'):
+                    filtered.append(args[i + 1])
+                    skip_next = True
+        return filtered
+    
+    return args
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Main script to manage Palmr translations',
         epilog='Examples:\n'
                '  python3 run_translations.py check\n'
                '  python3 run_translations.py sync --dry-run\n'
-               '  python3 run_translations.py translate --delay 2.0\n'
-               '  python3 run_translations.py all  # Complete workflow\n',
+               '  python3 run_translations.py all --dry-run\n',
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     
     parser.add_argument(
         'command',
-        choices=['check', 'sync', 'translate', 'all', 'help'],
+        choices=['check', 'sync', 'all', 'help'],
         help='Command to execute:\n'
              'check - Check translation status\n'
              'sync - Synchronize missing keys\n' 
-             'translate - Automatically translate strings\n'
-             'all - Run complete workflow\n'
+             'all - Run complete workflow (sync + check)\n'
              'help - Show detailed help'
     )
     
@@ -57,13 +97,7 @@ def main():
         print("   python3 run_translations.py sync --dry-run")
         print("   python3 run_translations.py sync --no-mark-untranslated")
         print()
-        print("🌐 translate - Automatically translate")
-        print("   python3 run_translations.py translate")
-        print("   python3 run_translations.py translate --dry-run")
-        print("   python3 run_translations.py translate --delay 2.0")
-        print("   python3 run_translations.py translate --skip-languages pt-BR.json")
-        print()
-        print("⚡ all - Complete workflow (sync + translate)")
+        print("⚡ all - Complete workflow (sync + check)")
         print("   python3 run_translations.py all")
         print("   python3 run_translations.py all --dry-run")
         print()
@@ -72,22 +106,21 @@ def main():
         print("   apps/web/messages/   - Translation files")
         print()
         print("💡 TIPS:")
-        print("• Use --dry-run on any command to test")
+        print("• Use --dry-run on sync or all commands to test")
         print("• Use --help on any command for specific options")
-        print("• Read https://docs.palmr.dev/docs/3.0-beta/translation-management for complete documentation")
+        print("• Manually translate strings marked with [TO_TRANSLATE]")
+        print("• Read documentation for complete translation guidelines")
         return 0
     
     elif args.command == 'check':
         print("🔍 Checking translation status...")
-        return run_command('check_translations.py', remaining_args)
+        filtered_args = filter_args_for_script('check_translations.py', remaining_args)
+        return run_command('check_translations.py', filtered_args)
     
     elif args.command == 'sync':
         print("🔄 Synchronizing translation keys...")
-        return run_command('sync_translations.py', remaining_args)
-    
-    elif args.command == 'translate':
-        print("🌐 Automatically translating strings...")
-        return run_command('translate_missing.py', remaining_args)
+        filtered_args = filter_args_for_script('sync_translations.py', remaining_args)
+        return run_command('sync_translations.py', filtered_args)
     
     elif args.command == 'all':
         print("⚡ Running complete translation workflow...")
@@ -98,7 +131,8 @@ def main():
         
         # 1. Initial check
         print("1️⃣ Checking initial status...")
-        result = run_command('check_translations.py', remaining_args)
+        check_args = filter_args_for_script('check_translations.py', remaining_args)
+        result = run_command('check_translations.py', check_args)
         if result != 0:
             print("❌ Error in initial check")
             return result
@@ -107,33 +141,27 @@ def main():
         
         # 2. Sync
         print("2️⃣ Synchronizing missing keys...")
-        result = run_command('sync_translations.py', remaining_args)
+        sync_args = filter_args_for_script('sync_translations.py', remaining_args)
+        result = run_command('sync_translations.py', sync_args)
         if result != 0:
             print("❌ Error in synchronization")
             return result
         
-        if not is_dry_run:
-            print("\n" + "="*50)
-            
-            # 3. Translate
-            print("3️⃣ Automatically translating strings...")
-            result = run_command('translate_missing.py', remaining_args)
-            if result != 0:
-                print("❌ Error in translation")
-                return result
-            
-            print("\n" + "="*50)
-            
-            # 4. Final check
-            print("4️⃣ Final check...")
-            result = run_command('check_translations.py', remaining_args)
-            if result != 0:
-                print("❌ Error in final check")
-                return result
+        print("\n" + "="*50)
+        
+        # 3. Final check
+        print("3️⃣ Final check...")
+        check_args = filter_args_for_script('check_translations.py', remaining_args)
+        result = run_command('check_translations.py', check_args)
+        if result != 0:
+            print("❌ Error in final check")
+            return result
         
         print("\n🎉 Complete workflow executed successfully!")
         if is_dry_run:
             print("💡 Run without --dry-run to apply changes")
+        else:
+            print("💡 Review strings marked with [TO_TRANSLATE] and translate them manually")
         
         return 0
     

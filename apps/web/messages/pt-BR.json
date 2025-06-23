@@ -1189,7 +1189,23 @@
         "editError": "Erro ao atualizar arquivo",
         "previewNotAvailable": "Visualização não disponível",
         "copySuccess": "Arquivo copiado para seus arquivos com sucesso",
-        "copyError": "Erro ao copiar arquivo para seus arquivos"
+        "copyError": "Erro ao copiar arquivo para seus arquivos",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 arquivo selecionado} other {# arquivos selecionados}}",
+          "actions": "Ações",
+          "download": "Baixar Selecionados",
+          "copyToMyFiles": "Copiar Selecionados para Meus Arquivos",
+          "delete": "Excluir Selecionados"
+        },
+        "bulkCopyProgress": "Copiando {count, plural, =1 {1 arquivo} other {# arquivos}} para seus arquivos...",
+        "bulkCopySuccess": "{count, plural, =1 {1 arquivo copiado para seus arquivos com sucesso} other {# arquivos copiados para seus arquivos com sucesso}}",
+        "bulkDeleteConfirmButton": "Excluir {count, plural, =1 {Arquivo} other {Arquivos}}",
+        "bulkDeleteConfirmMessage": "Tem certeza que deseja excluir {count, plural, =1 {este arquivo} other {estes # arquivos}}? Esta ação não pode ser desfeita.",
+        "bulkDeleteConfirmTitle": "Excluir Arquivos Selecionados",
+        "bulkDeleteProgress": "Excluindo {count, plural, =1 {1 arquivo} other {# arquivos}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 arquivo excluído com sucesso} other {# arquivos excluídos com sucesso}}",
+        "selectAll": "Selecionar todos",
+        "selectFile": "Selecionar arquivo {fileName}"
       }
     },
     "form": {
