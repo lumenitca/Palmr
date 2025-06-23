@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "एडमिन ईमेल डोमेन",
         "description": "जिन ईमेल डोमेन को स्वचालित रूप से व्यवस्थापक विशेषाधिकार प्राप्त होंगे"
+      },
+      "testSmtp": {
+        "title": "SMTP कनेक्शन का परीक्षण करें",
+        "description": "जांचें कि SMTP कॉन्फ़िगरेशन मान्य है"
       }
     },
     "buttons": {
-      "save": "{group} सहेजें"
+      "save": "{group} सहेजें",
+      "testSmtp": "कनेक्शन का परीक्षण करें",
+      "testing": "परीक्षण किया जा रहा है..."
     },
     "errors": {
       "loadFailed": "सेटिंग्स लोड करने में विफल",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "सहेजने के लिए कोई परिवर्तन नहीं",
-      "updateSuccess": "{group} सेटिंग्स सफलतापूर्वक अपडेट हुईं"
+      "updateSuccess": "{group} सेटिंग्स सफलतापूर्वक अपडेट हुईं",
+      "smtpTestFailed": "SMTP कनेक्शन विफल: {error}",
+      "smtpTestGenericError": "SMTP कनेक्शन का परीक्षण करने में विफल। कृपया अपनी सेटिंग्स जांचें और पुनः प्रयास करें।",
+      "smtpTestSuccess": "SMTP कनेक्शन सफल! आपका ईमेल कॉन्फ़िगरेशन सही ढंग से काम कर रहा है।"
     },
     "title": "सेटिंग्स",
     "breadcrumb": "सेटिंग्स",
     "pageTitle": "सेटिंग्स",
     "tooltips": {
       "oidcScope": "स्कोप जोड़ने के लिए एक स्कोप दर्ज करें और Enter दबाएं",
-      "oidcAdminEmailDomains": "डोमेन जोड़ने के लिए एक डोमेन दर्ज करें और Enter दबाएं"
+      "oidcAdminEmailDomains": "डोमेन जोड़ने के लिए एक डोमेन दर्ज करें और Enter दबाएं",
+      "testSmtp": "फॉर्म में वर्तमान में दर्ज मानों के साथ SMTP कनेक्शन का परीक्षण करता है। परिवर्तनों को स्थायी बनाने के लिए, परीक्षण के बाद अपनी सेटिंग्स को सहेजना याद रखें।"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

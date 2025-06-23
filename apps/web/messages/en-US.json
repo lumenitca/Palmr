@@ -465,6 +465,10 @@
         "title": "Sender Email",
         "description": "Sender email address"
       },
+      "testSmtp": {
+        "title": "Test SMTP Connection",
+        "description": "Test if the SMTP configuration is valid"
+      },
       "maxLoginAttempts": {
         "title": "Maximum Login Attempts",
         "description": "Maximum number of login attempts before blocking"
@@ -531,7 +535,9 @@
       }
     },
     "buttons": {
-      "save": "Save {group}"
+      "save": "Save {group}",
+      "testSmtp": "Test Connection",
+      "testing": "Testing..."
     },
     "errors": {
       "loadFailed": "Failed to load settings",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "No changes to save",
-      "updateSuccess": "{group} settings updated successfully"
+      "updateSuccess": "{group} settings updated successfully",
+      "smtpTestSuccess": "SMTP connection successful! Your email configuration is working correctly.",
+      "smtpTestFailed": "SMTP connection failed: {error}",
+      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again."
     },
     "title": "Settings",
     "breadcrumb": "Settings",
     "pageTitle": "Settings",
     "tooltips": {
       "oidcScope": "Enter a scope and press Enter to add",
-      "oidcAdminEmailDomains": "Enter a domain and press Enter to add"
+      "oidcAdminEmailDomains": "Enter a domain and press Enter to add",
+      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing."
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

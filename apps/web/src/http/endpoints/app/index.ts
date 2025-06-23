@@ -80,3 +80,22 @@ export const checkUploadAllowed = <TData = CheckUploadAllowedResult>(
     params: { ...params, ...options?.params },
   });
 };
+
+export type TestSmtpConnectionResult = { success: boolean; message: string };
+
+export interface TestSmtpConnectionBody {
+  smtpConfig?: {
+    smtpEnabled: string;
+    smtpHost: string;
+    smtpPort: string;
+    smtpUser: string;
+    smtpPass: string;
+  };
+}
+
+export const testSmtpConnection = (
+  body?: TestSmtpConnectionBody,
+  options?: AxiosRequestConfig
+): Promise<{ data: TestSmtpConnectionResult }> => {
+  return apiInstance.post(`/api/app/test-smtp`, body || {}, options);
+};

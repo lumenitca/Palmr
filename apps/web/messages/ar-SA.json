@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "نطاقات البريد الإلكتروني للمشرف",
         "description": "نطاقات البريد الإلكتروني التي تحصل على صلاحيات المشرف تلقائياً"
+      },
+      "testSmtp": {
+        "title": "اختبار اتصال SMTP",
+        "description": "اختبار ما إذا كان تكوين SMTP صالحًا"
       }
     },
     "buttons": {
-      "save": "احفظ {group}"
+      "save": "احفظ {group}",
+      "testSmtp": "اختبار الاتصال",
+      "testing": "جاري الاختبار..."
     },
     "errors": {
       "loadFailed": "فشل في تحميل الإعدادات",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "لا توجد تغييرات للحفظ",
-      "updateSuccess": "تم تحديث إعدادات {group} بنجاح"
+      "updateSuccess": "تم تحديث إعدادات {group} بنجاح",
+      "smtpTestFailed": "فشل اتصال SMTP: {error}",
+      "smtpTestGenericError": "فشل اختبار اتصال SMTP. يرجى التحقق من إعداداتك والمحاولة مرة أخرى.",
+      "smtpTestSuccess": "تم اتصال SMTP بنجاح! تكوين البريد الإلكتروني الخاص بك يعمل بشكل صحيح."
     },
     "title": "الإعدادات",
     "breadcrumb": "الإعدادات",
     "pageTitle": "الإعدادات",
     "tooltips": {
       "oidcScope": "أدخل نطاقاً واضغط Enter للإضافة",
-      "oidcAdminEmailDomains": "أدخل نطاقاً واضغط Enter للإضافة"
+      "oidcAdminEmailDomains": "أدخل نطاقاً واضغط Enter للإضافة",
+      "testSmtp": "يختبر اتصال SMTP بالقيم المدخلة حاليًا في النموذج. لجعل التغييرات دائمة، تذكر حفظ إعداداتك بعد الاختبار."
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

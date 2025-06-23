@@ -1,6 +1,14 @@
 import { ConfigService } from "../config/service";
 import nodemailer from "nodemailer";
 
+interface SmtpConfig {
+  smtpEnabled: string;
+  smtpHost: string;
+  smtpPort: string;
+  smtpUser: string;
+  smtpPass: string;
+}
+
 export class EmailService {
   private configService = new ConfigService();
 
@@ -19,6 +27,45 @@ export class EmailService {
         pass: await this.configService.getValue("smtpPass"),
       },
     });
+  }
+
+  async testConnection(config?: SmtpConfig) {
+    let smtpConfig: SmtpConfig;
+
+    if (config) {
+      // Use provided configuration
+      smtpConfig = config;
+    } else {
+      // Fallback to saved configuration
+      smtpConfig = {
+        smtpEnabled: await this.configService.getValue("smtpEnabled"),
+        smtpHost: await this.configService.getValue("smtpHost"),
+        smtpPort: await this.configService.getValue("smtpPort"),
+        smtpUser: await this.configService.getValue("smtpUser"),
+        smtpPass: await this.configService.getValue("smtpPass"),
+      };
+    }
+
+    if (smtpConfig.smtpEnabled !== "true") {
+      throw new Error("SMTP is not enabled");
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpConfig.smtpHost,
+      port: Number(smtpConfig.smtpPort),
+      secure: false,
+      auth: {
+        user: smtpConfig.smtpUser,
+        pass: smtpConfig.smtpPass,
+      },
+    });
+
+    try {
+      await transporter.verify();
+      return { success: true, message: "SMTP connection successful" };
+    } catch (error: any) {
+      throw new Error(`SMTP connection failed: ${error.message}`);
+    }
   }
 
   async sendPasswordResetEmail(to: string, resetToken: string, origin: string) {

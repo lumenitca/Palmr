@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Domini Email Admin",
         "description": "Domini email che ricevono automaticamente i privilegi di amministratore"
+      },
+      "testSmtp": {
+        "title": "Test Connessione SMTP",
+        "description": "Verifica se la configurazione SMTP è valida"
       }
     },
     "buttons": {
-      "save": "Salva {group}"
+      "save": "Salva {group}",
+      "testSmtp": "Prova Connessione",
+      "testing": "Verifica in corso..."
     },
     "errors": {
       "loadFailed": "Errore durante il caricamento delle impostazioni",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Nessuna modifica da salvare",
-      "updateSuccess": "Impostazioni {group} aggiornate con successo"
+      "updateSuccess": "Impostazioni {group} aggiornate con successo",
+      "smtpTestFailed": "Connessione SMTP fallita: {error}",
+      "smtpTestGenericError": "Impossibile testare la connessione SMTP. Controlla le impostazioni e riprova.",
+      "smtpTestSuccess": "Connessione SMTP riuscita! La configurazione email funziona correttamente."
     },
     "title": "Impostazioni",
     "breadcrumb": "Impostazioni",
     "pageTitle": "Impostazioni",
     "tooltips": {
       "oidcScope": "Inserisci uno scope e premi Invio per aggiungerlo",
-      "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo"
+      "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo",
+      "testSmtp": "Verifica la connessione SMTP con i valori attualmente inseriti nel modulo. Per rendere permanenti le modifiche, ricordati di salvare le impostazioni dopo il test."
     },
     "redirectUri": {
       "placeholder": "https://miosito.com",

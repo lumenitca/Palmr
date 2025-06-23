@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Domeny e-mail administratora",
         "description": "Domeny e-mail, które automatycznie otrzymują uprawnienia administratora"
+      },
+      "testSmtp": {
+        "title": "Test połączenia SMTP",
+        "description": "Sprawdź, czy konfiguracja SMTP jest prawidłowa"
       }
     },
     "buttons": {
-      "save": "Zapisz {group}"
+      "save": "Zapisz {group}",
+      "testSmtp": "Testuj połączenie",
+      "testing": "Testowanie..."
     },
     "errors": {
       "loadFailed": "Nie udało się załadować ustawień",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Brak zmian do zapisania",
-      "updateSuccess": "Ustawienia {group} zaktualizowane pomyślnie"
+      "updateSuccess": "Ustawienia {group} zaktualizowane pomyślnie",
+      "smtpTestFailed": "Połączenie SMTP nie powiodło się: {error}",
+      "smtpTestGenericError": "Nie udało się przetestować połączenia SMTP. Sprawdź ustawienia i spróbuj ponownie.",
+      "smtpTestSuccess": "Połączenie SMTP udane! Twoja konfiguracja poczty e-mail działa poprawnie."
     },
     "title": "Ustawienia",
     "breadcrumb": "Ustawienia",
     "pageTitle": "Ustawienia",
     "tooltips": {
       "oidcScope": "Wprowadź zakres i naciśnij Enter, aby dodać",
-      "oidcAdminEmailDomains": "Wprowadź domenę i naciśnij Enter, aby dodać"
+      "oidcAdminEmailDomains": "Wprowadź domenę i naciśnij Enter, aby dodać",
+      "testSmtp": "Testuje połączenie SMTP z obecnie wprowadzonymi wartościami w formularzu. Aby wprowadzić trwałe zmiany, pamiętaj o zapisaniu ustawień po testowaniu."
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

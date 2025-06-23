@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Dominios de Correo Admin",
         "description": "Dominios de correo que reciben privilegios de administrador automáticamente"
+      },
+      "testSmtp": {
+        "title": "Probar Conexión SMTP",
+        "description": "Probar si la configuración SMTP es válida"
       }
     },
     "buttons": {
-      "save": "Guardar {group}"
+      "save": "Guardar {group}",
+      "testSmtp": "Probar Conexión",
+      "testing": "Probando..."
     },
     "errors": {
       "loadFailed": "Error al cargar la configuración",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "No hay cambios para guardar",
-      "updateSuccess": "Configuración de {group} actualizada exitosamente"
+      "updateSuccess": "Configuración de {group} actualizada exitosamente",
+      "smtpTestSuccess": "¡Conexión SMTP exitosa! Tu configuración de correo funciona correctamente.",
+      "smtpTestFailed": "Falló la conexión SMTP: {error}",
+      "smtpTestGenericError": "Error al probar la conexión SMTP. Por favor revisa tu configuración e inténtalo de nuevo."
     },
     "title": "Configuración",
     "breadcrumb": "Configuración",
     "pageTitle": "Configuración",
     "tooltips": {
       "oidcScope": "Ingrese un ámbito y presione Enter para agregar",
-      "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar"
+      "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar",
+      "testSmtp": "Prueba la conexión SMTP con los valores actualmente ingresados en el formulario. Para hacer los cambios permanentes, recuerda guardar la configuración después de probar."
     },
     "redirectUri": {
       "placeholder": "https://misitio.com",
