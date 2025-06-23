@@ -19,6 +19,8 @@ interface ReverseShareData {
   password: string | null;
   pageLayout: string;
   isActive: boolean;
+  nameFieldRequired: string;
+  emailFieldRequired: string;
   createdAt: Date;
   updatedAt: Date;
   creatorId: string;
@@ -102,6 +104,8 @@ export class ReverseShareService {
       pageLayout: reverseShare.pageLayout,
       hasPassword: !!reverseShare.password,
       currentFileCount,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
   }
 
@@ -141,6 +145,8 @@ export class ReverseShareService {
       pageLayout: reverseShare.pageLayout,
       hasPassword: !!reverseShare.password,
       currentFileCount,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
   }
 
@@ -613,6 +619,8 @@ export class ReverseShareService {
             updatedAt: reverseShare.alias.updatedAt.toISOString(),
           }
         : null,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
 
     return result;

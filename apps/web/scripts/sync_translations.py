@@ -96,9 +96,15 @@ def add_missing_keys(reference_data: Dict[str, Any], target_data: Dict[str, Any]
         reference_value = get_nested_value(reference_data, key_path)
         
         if reference_value is not None:
-            # If marking as untranslated, add prefix
+            # Check if the key already exists in target with a [TO_TRANSLATE] prefix
+            existing_value = get_nested_value(target_data, key_path)
+            
             if mark_as_untranslated and isinstance(reference_value, str):
-                translated_value = f"[TO_TRANSLATE] {reference_value}"
+                # If the existing value already starts with [TO_TRANSLATE], don't add another prefix
+                if existing_value and isinstance(existing_value, str) and existing_value.startswith("[TO_TRANSLATE]"):
+                    translated_value = existing_value
+                else:
+                    translated_value = f"[TO_TRANSLATE] {reference_value}"
             else:
                 translated_value = reference_value
             

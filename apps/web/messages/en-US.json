@@ -1024,7 +1024,15 @@
       "noFilesLimit": "No file limit",
       "noSizeLimit": "No size limit",
       "allFileTypes": "All file types",
-      "fileTypesHelp": "Enter extensions without dots, separated by space, comma, dash or pipe"
+      "fileTypesHelp": "Enter extensions without dots, separated by space, comma, dash or pipe",
+      "fieldRequirements": "Field Requirements",
+      "nameFieldRequired": "Name Field",
+      "emailFieldRequired": "Email Field",
+      "fieldOptions": {
+        "hidden": "Hidden",
+        "optional": "Optional",
+        "required": "Required"
+      }
     },
     "card": {
       "untitled": "Untitled Link",
@@ -1242,6 +1250,18 @@
         "passwordHelp": "Password must be at least 4 characters",
         "passwordPlaceholder": "Enter a password to protect the link"
       },
+      "nameFieldRequired": {
+        "label": "Name Field Requirement",
+        "description": "Configure if the uploader name field should be shown and if it's required"
+      },
+      "emailFieldRequired": {
+        "label": "Email Field Requirement",
+        "description": "Configure if the uploader email field should be shown and if it's required"
+      },
+      "fieldRequirements": {
+        "title": "Field Requirements",
+        "description": "Configure which fields are shown in the upload form"
+      },
       "submit": "Create Receive Link"
     },
     "messages": {
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "File type not allowed. Accepted types: {allowedTypes}",
         "maxFilesExceeded": "Maximum of {maxFiles} files allowed",
         "selectAtLeastOneFile": "Select at least one file",
-        "provideNameOrEmail": "Please provide your name or email"
+        "provideNameOrEmail": "Please provide your name or email",
+        "provideNameRequired": "Name is required",
+        "provideEmailRequired": "Email is required"
       },
       "fileDropzone": {
         "dragActive": "Drop files here",
@@ -1319,8 +1341,10 @@
       },
       "form": {
         "nameLabel": "Name",
+        "nameLabelOptional": "Name (optional)",
         "namePlaceholder": "Your name",
         "emailLabel": "Email",
+        "emailLabelOptional": "Email (optional)",
         "emailPlaceholder": "your@email.com",
         "descriptionLabel": "Description (optional)",
         "descriptionPlaceholder": "Add a description to the files...",

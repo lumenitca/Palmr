@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Sem limite de arquivos",
       "noSizeLimit": "Sem limite de tamanho",
       "allFileTypes": "Todos os tipos de arquivo",
-      "fileTypesHelp": "Digite as extensões sem ponto, separadas por espaço, vírgula, traço ou pipe"
+      "fileTypesHelp": "Digite as extensões sem ponto, separadas por espaço, vírgula, traço ou pipe",
+      "emailFieldRequired": "Campo de e -mail",
+      "fieldOptions": {
+        "hidden": "Oculto",
+        "optional": "Opcional",
+        "required": "Obrigatório"
+      },
+      "fieldRequirements": "Requisitos de campo",
+      "nameFieldRequired": "Campo de nome"
     },
     "card": {
       "untitled": "Link sem título",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "A senha deve ter pelo menos 4 caracteres",
         "passwordPlaceholder": "Digite uma senha para proteger o link"
       },
-      "submit": "Criar Link de Recebimento"
+      "submit": "Criar Link de Recebimento",
+      "emailFieldRequired": {
+        "label": "Requisito de campo de e -mail",
+        "description": "Configure se o campo de email do upload deve ser mostrado e se for necessário"
+      },
+      "fieldRequirements": {
+        "title": "Requisitos de campo",
+        "description": "Configure quais campos são mostrados no formulário de upload"
+      },
+      "nameFieldRequired": {
+        "label": "Nome Requisito de campo",
+        "description": "Configure se o campo de nome do upload deve ser mostrado e se for necessário"
+      }
     },
     "messages": {
       "created": "Link de recebimento criado com sucesso!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Tipo de arquivo não permitido. Tipos aceitos: {allowedTypes}",
         "maxFilesExceeded": "Máximo de {maxFiles} arquivos permitidos",
         "selectAtLeastOneFile": "Selecione pelo menos um arquivo",
-        "provideNameOrEmail": "Informe seu nome ou e-mail"
+        "provideNameOrEmail": "Informe seu nome ou e-mail",
+        "provideEmailRequired": "O email é necessário",
+        "provideNameRequired": "O nome é necessário"
       },
       "fileDropzone": {
         "dragActive": "Solte os arquivos aqui",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Descrição (opcional)",
         "descriptionPlaceholder": "Adicione uma descrição aos arquivos...",
         "uploadButton": "Enviar {count} arquivo(s)",
-        "uploading": "Enviando..."
+        "uploading": "Enviando...",
+        "emailLabelOptional": "Email (opcional)",
+        "nameLabelOptional": "Nome (opcional)"
       },
       "success": {
         "title": "Arquivos enviados com sucesso! 🎉",

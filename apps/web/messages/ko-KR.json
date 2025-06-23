@@ -1024,7 +1024,15 @@
       "noFilesLimit": "파일 수 제한 없음",
       "noSizeLimit": "크기 제한 없음",
       "allFileTypes": "모든 파일 유형",
-      "fileTypesHelp": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분"
+      "fileTypesHelp": "확장자를 점 없이 입력하고 공백, 쉼표, 대시 또는 파이프로 구분",
+      "emailFieldRequired": "이메일 필드",
+      "fieldOptions": {
+        "hidden": "숨겨진",
+        "optional": "선택 과목",
+        "required": "필수의"
+      },
+      "fieldRequirements": "필드 요구 사항",
+      "nameFieldRequired": "이름 필드"
     },
     "card": {
       "untitled": "제목 없는 링크",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "비밀번호는 최소 4자 이상이어야 합니다",
         "passwordPlaceholder": "링크를 보호할 비밀번호 입력"
       },
-      "submit": "수신 링크 생성"
+      "submit": "수신 링크 생성",
+      "emailFieldRequired": {
+        "label": "이메일 필드 요구 사항",
+        "description": "업 로더 이메일 필드를 표시 해야하는지 확인하고 필요한 경우 구성하십시오."
+      },
+      "fieldRequirements": {
+        "title": "필드 요구 사항",
+        "description": "업로드 양식으로 표시되는 필드를 구성하십시오"
+      },
+      "nameFieldRequired": {
+        "label": "이름 필드 요구 사항",
+        "description": "업로더 이름 필드를 표시 해야하는지 확인하고 필요한 경우 구성하십시오."
+      }
     },
     "messages": {
       "created": "수신 링크가 성공적으로 생성되었습니다!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "허용되지 않는 파일 유형입니다. 허용된 유형: {allowedTypes}",
         "maxFilesExceeded": "최대 {maxFiles}개의 파일만 허용됩니다",
         "selectAtLeastOneFile": "최소 한 개의 파일을 선택하세요",
-        "provideNameOrEmail": "이름 또는 이메일을 입력하세요"
+        "provideNameOrEmail": "이름 또는 이메일을 입력하세요",
+        "provideEmailRequired": "이메일이 필요합니다",
+        "provideNameRequired": "이름이 필요합니다"
       },
       "fileDropzone": {
         "dragActive": "여기에 파일을 놓으세요",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "설명 (선택사항)",
         "descriptionPlaceholder": "파일에 대한 설명 추가...",
         "uploadButton": "{count}개 파일 보내기",
-        "uploading": "보내는 중..."
+        "uploading": "보내는 중...",
+        "emailLabelOptional": "이메일 (선택 사항)",
+        "nameLabelOptional": "이름 (선택 사항)"
       },
       "success": {
         "title": "파일이 성공적으로 보내졌습니다! 🎉",

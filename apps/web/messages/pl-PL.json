@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Bez limitu plików",
       "noSizeLimit": "Bez limitu rozmiaru",
       "allFileTypes": "Wszystkie typy plików",
-      "fileTypesHelp": "Wprowadź rozszerzenia bez kropek, oddzielone spacją, przecinkiem, myślnikiem lub kreską pionową"
+      "fileTypesHelp": "Wprowadź rozszerzenia bez kropek, oddzielone spacją, przecinkiem, myślnikiem lub kreską pionową",
+      "emailFieldRequired": "Pole e -mail",
+      "fieldOptions": {
+        "hidden": "Ukryty",
+        "optional": "Fakultatywny",
+        "required": "Wymagany"
+      },
+      "fieldRequirements": "Wymagania terenowe",
+      "nameFieldRequired": "Pole Nazwa"
     },
     "card": {
       "untitled": "Link bez tytułu",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "Hasło musi mieć co najmniej 4 znaki",
         "passwordPlaceholder": "Wprowadź hasło, aby chronić link"
       },
-      "submit": "Utwórz link do odbierania"
+      "submit": "Utwórz link do odbierania",
+      "emailFieldRequired": {
+        "label": "Wymagania pola e -mail",
+        "description": "Skonfiguruj, czy należy wyświetlić pole e -mail przesyłania, a jeśli jest to wymagane"
+      },
+      "fieldRequirements": {
+        "title": "Wymagania terenowe",
+        "description": "Skonfiguruj, które pola są pokazane w formularzu przesyłania"
+      },
+      "nameFieldRequired": {
+        "label": "Nazwa Wymagania pola",
+        "description": "Skonfiguruj, czy należy wyświetlić pole nazwy przesyłania, a jeśli jest to wymagane"
+      }
     },
     "messages": {
       "created": "Link do odbierania utworzony pomyślnie!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Typ pliku niedozwolony. Akceptowane typy: {allowedTypes}",
         "maxFilesExceeded": "Dozwolono maksymalnie {maxFiles} plików",
         "selectAtLeastOneFile": "Wybierz co najmniej jeden plik",
-        "provideNameOrEmail": "Proszę podać swoje imię lub adres e-mail"
+        "provideNameOrEmail": "Proszę podać swoje imię lub adres e-mail",
+        "provideEmailRequired": "Wymagany jest e -mail",
+        "provideNameRequired": "Nazwa jest wymagana"
       },
       "fileDropzone": {
         "dragActive": "Upuść pliki tutaj",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Opis (opcjonalnie)",
         "descriptionPlaceholder": "Dodaj opis do plików...",
         "uploadButton": "Wyślij {count} plik(ów)",
-        "uploading": "Wysyłanie..."
+        "uploading": "Wysyłanie...",
+        "emailLabelOptional": "E -mail (opcjonalnie)",
+        "nameLabelOptional": "Nazwa (opcjonalnie)"
       },
       "success": {
         "title": "Pliki wysłane pomyślnie! 🎉",

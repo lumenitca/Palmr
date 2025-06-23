@@ -109,6 +109,9 @@ const getFileNameWithoutExtension = (fileName: string) => {
 };
 
 const getSenderDisplay = (file: ReverseShareFile, t: any) => {
+  if (file.uploaderName && file.uploaderEmail) {
+    return `${file.uploaderName} (${file.uploaderEmail})`;
+  }
   if (file.uploaderName) return file.uploaderName;
   if (file.uploaderEmail) return file.uploaderEmail;
   return t("reverseShares.components.fileRow.anonymous");
@@ -341,12 +344,12 @@ function FileRow({
         </div>
       </TableCell>
       <TableCell className="font-mono text-sm">{formatFileSize(file.size)}</TableCell>
-      <TableCell>
-        <div className="flex items-center gap-2">
-          <Avatar className="h-6 w-6">
+      <TableCell className="max-w-[200px]">
+        <div className="flex items-center gap-2 min-w-0">
+          <Avatar className="h-6 w-6 flex-shrink-0">
             <AvatarFallback className="text-xs">{getSenderInitials(file)}</AvatarFallback>
           </Avatar>
-          <span className="text-sm truncate" title={getSenderDisplay(file, t)}>
+          <span className="text-sm truncate min-w-0" title={getSenderDisplay(file, t)}>
             {getSenderDisplay(file, t)}
           </span>
         </div>

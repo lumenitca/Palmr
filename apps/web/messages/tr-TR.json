@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Dosya sınırı yok",
       "noSizeLimit": "Boyut sınırı yok",
       "allFileTypes": "Tüm dosya türleri",
-      "fileTypesHelp": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin"
+      "fileTypesHelp": "Uzantıları nokta olmadan, boşluk, virgül, tire veya dikey çizgi ile ayırarak girin",
+      "emailFieldRequired": "E -posta alanı",
+      "fieldOptions": {
+        "hidden": "Gizlenmiş",
+        "optional": "İsteğe bağlı",
+        "required": "Gerekli"
+      },
+      "fieldRequirements": "Saha Gereksinimleri",
+      "nameFieldRequired": "İsim alanı"
     },
     "card": {
       "untitled": "Başlıksız bağlantı",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "Şifre en az 4 karakter olmalıdır",
         "passwordPlaceholder": "Bağlantıyı korumak için şifre girin"
       },
-      "submit": "Alma Bağlantısı Oluştur"
+      "submit": "Alma Bağlantısı Oluştur",
+      "emailFieldRequired": {
+        "label": "E -posta alanı gereksinimi",
+        "description": "Yükleyici e -posta alanının gösterilmesi gerekip gerekmediğini ve gerekli olup olmadığını yapılandırın"
+      },
+      "fieldRequirements": {
+        "title": "Saha Gereksinimleri",
+        "description": "Hangi alanların yükleme formunda gösterildiğini yapılandırın"
+      },
+      "nameFieldRequired": {
+        "label": "İsim alanı gereksinimi",
+        "description": "Yükleyici adı alanının gösterilmesi gerekip gerekmediğini ve gerekli olup olmadığını yapılandırın"
+      }
     },
     "messages": {
       "created": "Alma bağlantısı başarıyla oluşturuldu!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Dosya türüne izin verilmiyor. İzin verilen türler: {allowedTypes}",
         "maxFilesExceeded": "Maksimum {maxFiles} dosyaya izin veriliyor",
         "selectAtLeastOneFile": "En az bir dosya seçin",
-        "provideNameOrEmail": "Adınızı veya e-postanızı girin"
+        "provideNameOrEmail": "Adınızı veya e-postanızı girin",
+        "provideEmailRequired": "E -posta gerekli",
+        "provideNameRequired": "İsim gerekli"
       },
       "fileDropzone": {
         "dragActive": "Dosyaları buraya bırakın",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Açıklama (isteğe bağlı)",
         "descriptionPlaceholder": "Dosyalara açıklama ekleyin...",
         "uploadButton": "{count} dosya gönder",
-        "uploading": "Gönderiliyor..."
+        "uploading": "Gönderiliyor...",
+        "emailLabelOptional": "E -posta (isteğe bağlı)",
+        "nameLabelOptional": "İsim (isteğe bağlı)"
       },
       "success": {
         "title": "Dosyalar başarıyla gönderildi! 🎉",

@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Sin límite de archivos",
       "noSizeLimit": "Sin límite de tamaño",
       "allFileTypes": "Todos los tipos de archivo",
-      "fileTypesHelp": "Escribe las extensiones sin punto, separadas por espacio, coma, guion o barra vertical"
+      "fileTypesHelp": "Escribe las extensiones sin punto, separadas por espacio, coma, guion o barra vertical",
+      "emailFieldRequired": "Campo de correo electrónico",
+      "fieldOptions": {
+        "hidden": "Oculto",
+        "optional": "Opcional",
+        "required": "Obligatorio"
+      },
+      "fieldRequirements": "Requisitos de campo",
+      "nameFieldRequired": "Campo de nombre"
     },
     "card": {
       "untitled": "Enlace sin título",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "La contraseña debe tener al menos 4 caracteres",
         "passwordPlaceholder": "Ingresa una contraseña para proteger el enlace"
       },
-      "submit": "Crear Enlace de Recepción"
+      "submit": "Crear Enlace de Recepción",
+      "emailFieldRequired": {
+        "label": "Requisito de campo de correo electrónico",
+        "description": "Configurar si se debe mostrar el campo de correo electrónico del cargador y si es necesario"
+      },
+      "fieldRequirements": {
+        "title": "Requisitos de campo",
+        "description": "Configurar qué campos se muestran en el formulario de carga"
+      },
+      "nameFieldRequired": {
+        "label": "Requisito de campo de nombre",
+        "description": "Configurar si se debe mostrar el campo Nombre del cargador y si es necesario"
+      }
     },
     "messages": {
       "created": "¡Enlace de recepción creado con éxito!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Tipo de archivo no permitido. Tipos aceptados: {allowedTypes}",
         "maxFilesExceeded": "Máximo de {maxFiles} archivos permitidos",
         "selectAtLeastOneFile": "Selecciona al menos un archivo",
-        "provideNameOrEmail": "Proporciona tu nombre o correo electrónico"
+        "provideNameOrEmail": "Proporciona tu nombre o correo electrónico",
+        "provideEmailRequired": "Se requiere correo electrónico",
+        "provideNameRequired": "Se requiere el nombre"
       },
       "fileDropzone": {
         "dragActive": "Suelta los archivos aquí",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Descripción (opcional)",
         "descriptionPlaceholder": "Añade una descripción a los archivos...",
         "uploadButton": "Enviar {count} archivo(s)",
-        "uploading": "Enviando..."
+        "uploading": "Enviando...",
+        "emailLabelOptional": "Correo electrónico (opcional)",
+        "nameLabelOptional": "Nombre (opcional)"
       },
       "success": {
         "title": "¡Archivos enviados con éxito! 🎉",

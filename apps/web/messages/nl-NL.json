@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Geen bestandslimiet",
       "noSizeLimit": "Geen groottelimiet",
       "allFileTypes": "Alle bestandstypes",
-      "fileTypesHelp": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep"
+      "fileTypesHelp": "Voer extensies in zonder punt, gescheiden door spatie, komma, streepje of verticale streep",
+      "emailFieldRequired": "E -mailveld",
+      "fieldOptions": {
+        "hidden": "Verborgen",
+        "optional": "Optioneel",
+        "required": "Vereist"
+      },
+      "fieldRequirements": "Veldvereisten",
+      "nameFieldRequired": "Naamveld"
     },
     "card": {
       "untitled": "Link zonder titel",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "Wachtwoord moet minimaal 4 tekens bevatten",
         "passwordPlaceholder": "Voer een wachtwoord in om de link te beveiligen"
       },
-      "submit": "Ontvangstlink Aanmaken"
+      "submit": "Ontvangstlink Aanmaken",
+      "emailFieldRequired": {
+        "label": "E -mailveldvereiste",
+        "description": "Configureer of het veld Uploader e -mail moet worden getoond en of het vereist is"
+      },
+      "fieldRequirements": {
+        "title": "Veldvereisten",
+        "description": "Configureer welke velden worden weergegeven in het uploadformulier"
+      },
+      "nameFieldRequired": {
+        "label": "Naam veldvereiste",
+        "description": "Configureer of het veld Uploader Naam moet worden getoond en of het vereist is"
+      }
     },
     "messages": {
       "created": "Ontvangstlink succesvol aangemaakt!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Bestandstype niet toegestaan. Toegestane types: {allowedTypes}",
         "maxFilesExceeded": "Maximum van {maxFiles} bestanden toegestaan",
         "selectAtLeastOneFile": "Selecteer ten minste één bestand",
-        "provideNameOrEmail": "Voer uw naam of e-mail in"
+        "provideNameOrEmail": "Voer uw naam of e-mail in",
+        "provideEmailRequired": "E -mail is vereist",
+        "provideNameRequired": "Naam is vereist"
       },
       "fileDropzone": {
         "dragActive": "Laat bestanden hier los",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Beschrijving (optioneel)",
         "descriptionPlaceholder": "Voeg een beschrijving toe aan de bestanden...",
         "uploadButton": "{count} bestand(en) verzenden",
-        "uploading": "Verzenden..."
+        "uploading": "Verzenden...",
+        "emailLabelOptional": "E -mail (optioneel)",
+        "nameLabelOptional": "Naam (optioneel)"
       },
       "success": {
         "title": "Bestanden succesvol verzonden! 🎉",

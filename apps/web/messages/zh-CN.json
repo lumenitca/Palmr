@@ -1024,7 +1024,15 @@
       "noFilesLimit": "无文件数限制",
       "noSizeLimit": "无大小限制",
       "allFileTypes": "所有文件类型",
-      "fileTypesHelp": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔"
+      "fileTypesHelp": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔",
+      "emailFieldRequired": "电子邮件字段",
+      "fieldOptions": {
+        "hidden": "隐",
+        "optional": "选修的",
+        "required": "必需的"
+      },
+      "fieldRequirements": "现场要求",
+      "nameFieldRequired": "名称字段"
     },
     "card": {
       "untitled": "无标题链接",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "密码至少需要4个字符",
         "passwordPlaceholder": "输入密码以保护链接"
       },
-      "submit": "创建接收链接"
+      "submit": "创建接收链接",
+      "emailFieldRequired": {
+        "label": "电子邮件字段要求",
+        "description": "配置是否应显示上传器电子邮件字段以及是否需要"
+      },
+      "fieldRequirements": {
+        "title": "现场要求",
+        "description": "配置在上传表单中显示哪些字段"
+      },
+      "nameFieldRequired": {
+        "label": "名称字段要求",
+        "description": "配置是否应显示上传器名称字段以及是否需要"
+      }
     },
     "messages": {
       "created": "接收链接创建成功！",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "不允许的文件类型。允许的类型：{allowedTypes}",
         "maxFilesExceeded": "最多允许 {maxFiles} 个文件",
         "selectAtLeastOneFile": "请至少选择一个文件",
-        "provideNameOrEmail": "请提供您的姓名或电子邮件"
+        "provideNameOrEmail": "请提供您的姓名或电子邮件",
+        "provideEmailRequired": "需要电子邮件",
+        "provideNameRequired": "需要名称"
       },
       "fileDropzone": {
         "dragActive": "将文件拖放到此处",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "描述（可选）",
         "descriptionPlaceholder": "为文件添加描述...",
         "uploadButton": "上传 {count} 个文件",
-        "uploading": "上传中..."
+        "uploading": "上传中...",
+        "emailLabelOptional": "电子邮件（可选）",
+        "nameLabelOptional": "名称（可选）"
       },
       "success": {
         "title": "文件上传成功！🎉",

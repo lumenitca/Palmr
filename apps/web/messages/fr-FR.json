@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Sans limite de fichiers",
       "noSizeLimit": "Sans limite de taille",
       "allFileTypes": "Tous types de fichiers",
-      "fileTypesHelp": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale"
+      "fileTypesHelp": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale",
+      "emailFieldRequired": "Champ de courrier électronique",
+      "fieldOptions": {
+        "hidden": "Masqué",
+        "optional": "Optionnel",
+        "required": "Obligatoire"
+      },
+      "fieldRequirements": "Exigences sur le terrain",
+      "nameFieldRequired": "Champ de nom"
     },
     "card": {
       "untitled": "Lien sans titre",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "Le mot de passe doit contenir au moins 4 caractères",
         "passwordPlaceholder": "Saisissez un mot de passe pour protéger le lien"
       },
-      "submit": "Créer le Lien de Réception"
+      "submit": "Créer le Lien de Réception",
+      "emailFieldRequired": {
+        "label": "Exigence de champ de messagerie",
+        "description": "Configurez si le champ de messagerie du téléchargeur doit être affiché et s'il est requis"
+      },
+      "fieldRequirements": {
+        "title": "Exigences sur le terrain",
+        "description": "Configurer quels champs sont affichés dans le formulaire de téléchargement"
+      },
+      "nameFieldRequired": {
+        "label": "Exigence de champ de nom",
+        "description": "Configurer si le champ Nom du téléchargeur doit être affiché et s'il est requis"
+      }
     },
     "messages": {
       "created": "Lien de réception créé avec succès !",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Type de fichier non autorisé. Types acceptés : {allowedTypes}",
         "maxFilesExceeded": "Maximum de {maxFiles} fichiers autorisés",
         "selectAtLeastOneFile": "Sélectionnez au moins un fichier",
-        "provideNameOrEmail": "Indiquez votre nom ou e-mail"
+        "provideNameOrEmail": "Indiquez votre nom ou e-mail",
+        "provideEmailRequired": "Un e-mail est requis",
+        "provideNameRequired": "Le nom est requis"
       },
       "fileDropzone": {
         "dragActive": "Déposez les fichiers ici",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Description (optionnelle)",
         "descriptionPlaceholder": "Ajoutez une description aux fichiers...",
         "uploadButton": "Envoyer {count} fichier(s)",
-        "uploading": "Envoi en cours..."
+        "uploading": "Envoi en cours...",
+        "emailLabelOptional": "E-mail (facultatif)",
+        "nameLabelOptional": "Nom (facultatif)"
       },
       "success": {
         "title": "Fichiers envoyés avec succès ! 🎉",

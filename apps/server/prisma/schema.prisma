@@ -161,18 +161,20 @@ model UserAuthProvider {
 }
 
 model ReverseShare {
-  id               String     @id @default(cuid())
-  name             String?
-  description      String?
-  expiration       DateTime?
-  maxFiles         Int?
-  maxFileSize      BigInt?
-  allowedFileTypes String?
-  password         String?
-  pageLayout       PageLayout @default(DEFAULT)
-  isActive         Boolean    @default(true)
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
+  id                 String           @id @default(cuid())
+  name               String?
+  description        String?
+  expiration         DateTime?
+  maxFiles           Int?
+  maxFileSize        BigInt?
+  allowedFileTypes   String?
+  password           String?
+  pageLayout         PageLayout       @default(DEFAULT)
+  isActive           Boolean          @default(true)
+  nameFieldRequired  FieldRequirement @default(OPTIONAL)
+  emailFieldRequired FieldRequirement @default(OPTIONAL)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
 
   creatorId String
   creator   User   @relation(fields: [creatorId], references: [id], onDelete: Cascade)
@@ -210,6 +212,12 @@ model ReverseShareAlias {
   updatedAt      DateTime     @updatedAt
 
   @@map("reverse_share_aliases")
+}
+
+enum FieldRequirement {
+  HIDDEN
+  OPTIONAL
+  REQUIRED
 }
 
 enum PageLayout {

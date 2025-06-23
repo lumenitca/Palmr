@@ -1024,7 +1024,15 @@
       "noFilesLimit": "ファイル数制限なし",
       "noSizeLimit": "サイズ制限なし",
       "allFileTypes": "すべてのファイル形式",
-      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください"
+      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください",
+      "emailFieldRequired": "電子メールフィールド",
+      "fieldOptions": {
+        "hidden": "隠れた",
+        "optional": "オプション",
+        "required": "必須"
+      },
+      "fieldRequirements": "フィールド要件",
+      "nameFieldRequired": "名前フィールド"
     },
     "card": {
       "untitled": "無題のリンク",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "パスワードは4文字以上必要です",
         "passwordPlaceholder": "リンクを保護するパスワードを入力"
       },
-      "submit": "受信リンクを作成"
+      "submit": "受信リンクを作成",
+      "emailFieldRequired": {
+        "label": "電子メールフィールドの要件",
+        "description": "アップローダーの電子メールフィールドが表示されるかどうか、そしてそれが必要かどうかを構成します"
+      },
+      "fieldRequirements": {
+        "title": "フィールド要件",
+        "description": "アップロードフォームに表示されるフィールドを構成します"
+      },
+      "nameFieldRequired": {
+        "label": "名前フィールドの要件",
+        "description": "アップローダー名フィールドが表示されるかどうか、そしてそれが必要かどうかを構成します"
+      }
     },
     "messages": {
       "created": "受信リンクを作成しました！",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "このファイル形式は許可されていません。許可される形式: {allowedTypes}",
         "maxFilesExceeded": "最大 {maxFiles} ファイルまで許可されています",
         "selectAtLeastOneFile": "少なくとも1つのファイルを選択してください",
-        "provideNameOrEmail": "名前またはメールアドレスを入力してください"
+        "provideNameOrEmail": "名前またはメールアドレスを入力してください",
+        "provideEmailRequired": "メールが必要です",
+        "provideNameRequired": "名前が必要です"
       },
       "fileDropzone": {
         "dragActive": "ここにファイルをドロップ",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "説明（オプション）",
         "descriptionPlaceholder": "ファイルの説明を追加...",
         "uploadButton": "{count} ファイルを送信",
-        "uploading": "送信中..."
+        "uploading": "送信中...",
+        "emailLabelOptional": "メール（オプション）",
+        "nameLabelOptional": "名前（オプション）"
       },
       "success": {
         "title": "ファイルを送信しました！ 🎉",

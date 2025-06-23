@@ -1024,7 +1024,15 @@
       "noFilesLimit": "Kein Dateilimit",
       "noSizeLimit": "Kein Größenlimit",
       "allFileTypes": "Alle Dateitypen",
-      "fileTypesHelp": "Geben Sie Erweiterungen ohne Punkt ein, getrennt durch Leerzeichen, Komma, Bindestrich oder Pipe"
+      "fileTypesHelp": "Geben Sie Erweiterungen ohne Punkt ein, getrennt durch Leerzeichen, Komma, Bindestrich oder Pipe",
+      "emailFieldRequired": "E -Mail -Feld",
+      "fieldOptions": {
+        "hidden": "Versteckt",
+        "optional": "Fakultativ",
+        "required": "Erforderlich"
+      },
+      "fieldRequirements": "Feldanforderungen",
+      "nameFieldRequired": "Namensfeld"
     },
     "card": {
       "untitled": "Unbenannter Link",
@@ -1242,7 +1250,19 @@
         "passwordHelp": "Das Passwort muss mindestens 4 Zeichen lang sein",
         "passwordPlaceholder": "Geben Sie ein Passwort ein, um den Link zu schützen"
       },
-      "submit": "Empfangslink erstellen"
+      "submit": "Empfangslink erstellen",
+      "emailFieldRequired": {
+        "label": "E -Mail -Feldanforderung",
+        "description": "Konfigurieren Sie, ob das Feld Uploader -E -Mail angezeigt werden soll und ob es erforderlich ist"
+      },
+      "fieldRequirements": {
+        "title": "Feldanforderungen",
+        "description": "Konfigurieren Sie, welche Felder im Upload -Formular angezeigt werden"
+      },
+      "nameFieldRequired": {
+        "label": "Namensfeldbedarf",
+        "description": "Konfigurieren Sie, ob das Feld Uploader -Name angezeigt werden soll und ob es erforderlich ist"
+      }
     },
     "messages": {
       "created": "Empfangslink erfolgreich erstellt!",
@@ -1302,7 +1322,9 @@
         "fileTypeNotAllowed": "Dateityp nicht erlaubt. Erlaubte Typen: {allowedTypes}",
         "maxFilesExceeded": "Maximal {maxFiles} Dateien erlaubt",
         "selectAtLeastOneFile": "Wählen Sie mindestens eine Datei aus",
-        "provideNameOrEmail": "Geben Sie Ihren Namen oder E-Mail an"
+        "provideNameOrEmail": "Geben Sie Ihren Namen oder E-Mail an",
+        "provideEmailRequired": "E -Mail ist erforderlich",
+        "provideNameRequired": "Name ist erforderlich"
       },
       "fileDropzone": {
         "dragActive": "Dateien hier ablegen",
@@ -1325,7 +1347,9 @@
         "descriptionLabel": "Beschreibung (optional)",
         "descriptionPlaceholder": "Fügen Sie eine Beschreibung zu den Dateien hinzu...",
         "uploadButton": "{count} Datei(en) senden",
-        "uploading": "Wird hochgeladen..."
+        "uploading": "Wird hochgeladen...",
+        "emailLabelOptional": "E-Mail (optional)",
+        "nameLabelOptional": "Name (optional)"
       },
       "success": {
         "title": "Dateien erfolgreich hochgeladen! 🎉",
