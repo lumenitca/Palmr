@@ -1189,7 +1189,23 @@
         "editError": "Error updating file",
         "previewNotAvailable": "Preview not available",
         "copySuccess": "File copied to your files successfully",
-        "copyError": "Error copying file to your files"
+        "copyError": "Error copying file to your files",
+        "bulkCopySuccess": "{count, plural, =1 {1 file copied to your files successfully} other {# files copied to your files successfully}}",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
+        "bulkCopyProgress": "Copying {count, plural, =1 {1 file} other {# files}} to your files...",
+        "bulkDeleteProgress": "Deleting {count, plural, =1 {1 file} other {# files}}...",
+        "bulkDeleteConfirmTitle": "Delete Selected Files",
+        "bulkDeleteConfirmMessage": "Are you sure you want to delete {count, plural, =1 {this file} other {these # files}}? This action cannot be undone.",
+        "bulkDeleteConfirmButton": "Delete {count, plural, =1 {File} other {Files}}",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 file selected} other {# files selected}}",
+          "actions": "Actions",
+          "download": "Download Selected",
+          "copyToMyFiles": "Copy Selected to My Files",
+          "delete": "Delete Selected"
+        },
+        "selectAll": "Select all",
+        "selectFile": "Select file {fileName}"
       }
     },
     "form": {

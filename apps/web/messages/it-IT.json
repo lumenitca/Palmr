@@ -1189,7 +1189,23 @@
         "editError": "Errore durante l'aggiornamento del file",
         "previewNotAvailable": "Anteprima non disponibile",
         "copyError": "Errore di copia del file sui tuoi file",
-        "copySuccess": "File copiato sui tuoi file correttamente"
+        "copySuccess": "File copiato sui tuoi file correttamente",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 file selezionato} other {# file selezionati}}",
+          "actions": "Azioni",
+          "download": "Scarica Selezionati",
+          "copyToMyFiles": "Copia Selezionati sui Miei File",
+          "delete": "Elimina Selezionati"
+        },
+        "bulkCopyProgress": "Copia di {count, plural, =1 {1 file} other {# file}} sui tuoi file in corso...",
+        "bulkCopySuccess": "{count, plural, =1 {1 file copiato sui tuoi file con successo} other {# file copiati sui tuoi file con successo}}",
+        "bulkDeleteConfirmButton": "Elimina {count, plural, =1 {File} other {File}}",
+        "bulkDeleteConfirmMessage": "Sei sicuro di voler eliminare {count, plural, =1 {questo file} other {questi # file}}? Questa azione non può essere annullata.",
+        "bulkDeleteConfirmTitle": "Elimina File Selezionati",
+        "bulkDeleteProgress": "Eliminazione di {count, plural, =1 {1 file} other {# file}} in corso...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 file eliminato con successo} other {# file eliminati con successo}}",
+        "selectAll": "Seleziona tutto",
+        "selectFile": "Seleziona file {fileName}"
       }
     },
     "form": {

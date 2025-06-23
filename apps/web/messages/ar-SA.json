@@ -1189,7 +1189,23 @@
         "editError": "خطأ في تحديث الملف",
         "previewNotAvailable": "المعاينة غير متوفرة",
         "copyError": "خطأ نسخ الملف إلى ملفاتك",
-        "copySuccess": "تم نسخ الملف إلى ملفاتك بنجاح"
+        "copySuccess": "تم نسخ الملف إلى ملفاتك بنجاح",
+        "bulkActions": {
+          "selected": "{count, plural, =0 {لا ملفات محددة} =1 {ملف واحد محدد} =2 {ملفان محددان} other {# ملفات محددة}}",
+          "actions": "إجراءات",
+          "download": "تحميل المحدد",
+          "copyToMyFiles": "نسخ المحدد إلى ملفاتي",
+          "delete": "حذف المحدد"
+        },
+        "bulkCopyProgress": "جارٍ نسخ {count, plural, =1 {ملف واحد} =2 {ملفين} other {# ملفات}} إلى ملفاتك...",
+        "bulkCopySuccess": "{count, plural, =1 {تم نسخ ملف واحد إلى ملفاتك بنجاح} =2 {تم نسخ ملفين إلى ملفاتك بنجاح} other {تم نسخ # ملفات إلى ملفاتك بنجاح}}",
+        "bulkDeleteConfirmButton": "حذف {count, plural, =1 {الملف} =2 {الملفين} other {الملفات}}",
+        "bulkDeleteConfirmMessage": "هل أنت متأكد أنك تريد حذف {count, plural, =1 {هذا الملف} =2 {هذين الملفين} other {هذه الملفات الـ #}}؟ لا يمكن التراجع عن هذا الإجراء.",
+        "bulkDeleteConfirmTitle": "حذف الملفات المحددة",
+        "bulkDeleteProgress": "جارٍ حذف {count, plural, =1 {ملف واحد} =2 {ملفين} other {# ملفات}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {تم حذف ملف واحد بنجاح} =2 {تم حذف ملفين بنجاح} other {تم حذف # ملفات بنجاح}}",
+        "selectAll": "تحديد الكل",
+        "selectFile": "تحديد الملف {fileName}"
       }
     },
     "form": {

@@ -1189,7 +1189,23 @@
         "editError": "파일 업데이트 오류",
         "previewNotAvailable": "미리보기 불가",
         "copyError": "파일에 파일을 복사합니다",
-        "copySuccess": "파일을 파일에 성공적으로 복사했습니다"
+        "copySuccess": "파일을 파일에 성공적으로 복사했습니다",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1개의 파일 선택됨} other {#개의 파일 선택됨}}",
+          "actions": "작업",
+          "download": "선택한 항목 다운로드",
+          "copyToMyFiles": "선택한 항목을 내 파일로 복사",
+          "delete": "선택한 항목 삭제"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1개의 파일} other {#개의 파일}}을(를) 내 파일로 복사하는 중...",
+        "bulkCopySuccess": "{count, plural, =1 {1개의 파일이} other {#개의 파일이}} 내 파일로 성공적으로 복사됨",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {파일} other {파일}} 삭제",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {이 파일을} other {이 #개의 파일을}} 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+        "bulkDeleteConfirmTitle": "선택한 파일 삭제",
+        "bulkDeleteProgress": "{count, plural, =1 {1개의 파일} other {#개의 파일}} 삭제 중...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1개의 파일이} other {#개의 파일이}} 성공적으로 삭제됨",
+        "selectAll": "모두 선택",
+        "selectFile": "{fileName} 파일 선택"
       }
     },
     "form": {

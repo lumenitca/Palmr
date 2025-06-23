@@ -1189,7 +1189,23 @@
         "editError": "फ़ाइल अपडेट करने में त्रुटि",
         "previewNotAvailable": "पूर्वावलोकन उपलब्ध नहीं है",
         "copyError": "अपनी फ़ाइलों में फ़ाइल की नकल करने में त्रुटि",
-        "copySuccess": "आपकी फ़ाइलों को सफलतापूर्वक कॉपी की गई फ़ाइल"
+        "copySuccess": "आपकी फ़ाइलों को सफलतापूर्वक कॉपी की गई फ़ाइल",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 फ़ाइल चयनित} other {# फ़ाइलें चयनित}}",
+          "actions": "कार्रवाइयां",
+          "download": "चयनित डाउनलोड करें",
+          "copyToMyFiles": "चयनित को मेरी फ़ाइलों में कॉपी करें",
+          "delete": "चयनित हटाएं"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1 फ़ाइल} other {# फ़ाइलें}} आपकी फ़ाइलों में कॉपी की जा रही हैं...",
+        "bulkCopySuccess": "{count, plural, =1 {1 फ़ाइल सफलतापूर्वक आपकी फ़ाइलों में कॉपी की गई} other {# फ़ाइलें सफलतापूर्वक आपकी फ़ाइलों में कॉपी की गईं}}",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {फ़ाइल} other {फ़ाइलें}} हटाएं",
+        "bulkDeleteConfirmMessage": "क्या आप वाकई {count, plural, =1 {इस फ़ाइल} other {इन # फ़ाइलों}} को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "bulkDeleteConfirmTitle": "चयनित फ़ाइलें हटाएं",
+        "bulkDeleteProgress": "{count, plural, =1 {1 फ़ाइल} other {# फ़ाइलें}} हटाई जा रही हैं...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 फ़ाइल सफलतापूर्वक हटाई गई} other {# फ़ाइलें सफलतापूर्वक हटाई गईं}}",
+        "selectAll": "सभी चुनें",
+        "selectFile": "फ़ाइल {fileName} चुनें"
       }
     },
     "form": {

@@ -1189,7 +1189,23 @@
         "editError": "更新文件时出错",
         "previewNotAvailable": "预览不可用",
         "copyError": "错误将文件复制到您的文件",
-        "copySuccess": "文件已成功复制到您的文件"
+        "copySuccess": "文件已成功复制到您的文件",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {已选择1个文件} other {已选择#个文件}}",
+          "actions": "操作",
+          "download": "下载所选",
+          "copyToMyFiles": "复制所选到我的文件",
+          "delete": "删除所选"
+        },
+        "bulkCopyProgress": "正在将{count, plural, =1 {1个文件} other {#个文件}}复制到您的文件...",
+        "bulkCopySuccess": "{count, plural, =1 {1个文件已成功复制到您的文件} other {#个文件已成功复制到您的文件}}",
+        "bulkDeleteConfirmButton": "删除{count, plural, =1 {文件} other {文件}}",
+        "bulkDeleteConfirmMessage": "您确定要删除{count, plural, =1 {这个文件} other {这些#个文件}}吗？此操作无法撤消。",
+        "bulkDeleteConfirmTitle": "删除所选文件",
+        "bulkDeleteProgress": "正在删除{count, plural, =1 {1个文件} other {#个文件}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1个文件已成功删除} other {#个文件已成功删除}}",
+        "selectAll": "全选",
+        "selectFile": "选择文件 {fileName}"
       }
     },
     "form": {

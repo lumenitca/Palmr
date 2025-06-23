@@ -1189,7 +1189,23 @@
         "editError": "Fout bij bijwerken bestand",
         "previewNotAvailable": "Voorvertoning niet beschikbaar",
         "copyError": "Fout bij het kopiëren van bestand naar uw bestanden",
-        "copySuccess": "Bestand gekopieerd naar uw bestanden succesvol"
+        "copySuccess": "Bestand gekopieerd naar uw bestanden succesvol",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 bestand geselecteerd} other {# bestanden geselecteerd}}",
+          "actions": "Acties",
+          "download": "Geselecteerde Downloaden",
+          "copyToMyFiles": "Geselecteerde Kopiëren naar Mijn Bestanden",
+          "delete": "Geselecteerde Verwijderen"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1 bestand} other {# bestanden}} kopiëren naar uw bestanden...",
+        "bulkCopySuccess": "{count, plural, =1 {1 bestand succesvol gekopieerd naar uw bestanden} other {# bestanden succesvol gekopieerd naar uw bestanden}}",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {Bestand} other {Bestanden}} Verwijderen",
+        "bulkDeleteConfirmMessage": "Weet u zeker dat u {count, plural, =1 {dit bestand} other {deze # bestanden}} wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+        "bulkDeleteConfirmTitle": "Geselecteerde Bestanden Verwijderen",
+        "bulkDeleteProgress": "{count, plural, =1 {1 bestand} other {# bestanden}} verwijderen...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 bestand succesvol verwijderd} other {# bestanden succesvol verwijderd}}",
+        "selectAll": "Alles selecteren",
+        "selectFile": "Selecteer bestand {fileName}"
       }
     },
     "form": {
