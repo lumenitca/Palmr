@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "管理者メールドメイン",
         "description": "自動的に管理者権限が付与されるメールドメイン"
+      },
+      "testSmtp": {
+        "title": "SMTP接続テスト",
+        "description": "SMTP設定が有効かどうかをテストします"
       }
     },
     "buttons": {
-      "save": "{group}を保存"
+      "save": "{group}を保存",
+      "testSmtp": "接続テスト",
+      "testing": "テスト中..."
     },
     "errors": {
       "loadFailed": "設定の読み込みに失敗しました",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "保存する変更はありません",
-      "updateSuccess": "{group}の設定が正常に更新されました"
+      "updateSuccess": "{group}の設定が正常に更新されました",
+      "smtpTestFailed": "SMTP接続に失敗しました: {error}",
+      "smtpTestGenericError": "SMTP接続のテストに失敗しました。設定を確認して再度お試しください。",
+      "smtpTestSuccess": "SMTP接続に成功しました！メール設定は正常に動作しています。"
     },
     "title": "設定",
     "breadcrumb": "設定",
     "pageTitle": "設定",
     "tooltips": {
       "oidcScope": "スコープを入力してEnterキーを押して追加",
-      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加"
+      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加",
+      "testSmtp": "フォームに現在入力されている値でSMTP接続をテストします。変更を永続化するには、テスト後に設定を保存することを忘れないでください。"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

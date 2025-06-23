@@ -127,6 +127,54 @@ export async function appRoutes(app: FastifyInstance) {
   );
 
   app.post(
+    "/app/test-smtp",
+    {
+      preValidation: adminPreValidation,
+      schema: {
+        tags: ["App"],
+        operationId: "testSmtpConnection",
+        summary: "Test SMTP connection with provided or saved configuration",
+        description:
+          "Validates SMTP connectivity using either provided configuration parameters or the currently saved settings. This endpoint allows testing SMTP settings before saving them permanently. Requires admin privileges.",
+        body: z
+          .object({
+            smtpConfig: z
+              .object({
+                smtpEnabled: z.string().describe("Whether SMTP is enabled ('true' or 'false')"),
+                smtpHost: z.string().describe("SMTP server hostname or IP address (e.g., 'smtp.gmail.com')"),
+                smtpPort: z
+                  .union([z.string(), z.number()])
+                  .transform(String)
+                  .describe("SMTP server port (typically 587 for TLS, 25 for non-secure)"),
+                smtpUser: z.string().describe("Username for SMTP authentication (e.g., email address)"),
+                smtpPass: z.string().describe("Password for SMTP authentication (for Gmail, use App Password)"),
+              })
+              .optional()
+              .describe("SMTP configuration to test. If not provided, uses currently saved configuration"),
+          })
+          .optional()
+          .describe("Request body containing SMTP configuration to test. Send empty body to test saved configuration"),
+        response: {
+          200: z.object({
+            success: z.boolean().describe("Whether the SMTP connection test was successful"),
+            message: z.string().describe("Descriptive message about the test result"),
+          }),
+          400: z.object({
+            error: z.string().describe("Error message describing what went wrong with the test"),
+          }),
+          401: z.object({
+            error: z.string().describe("Authentication error - invalid or missing JWT token"),
+          }),
+          403: z.object({
+            error: z.string().describe("Authorization error - user does not have admin privileges"),
+          }),
+        },
+      },
+    },
+    appController.testSmtpConnection.bind(appController)
+  );
+
+  app.post(
     "/app/logo",
     {
       preValidation: adminPreValidation,

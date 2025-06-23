@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Admin-E-Mail-Domains",
         "description": "E-Mail-Domains, die automatisch Administratorrechte erhalten"
+      },
+      "testSmtp": {
+        "title": "SMTP-Verbindung testen",
+        "description": "Testen Sie, ob die SMTP-Konfiguration gültig ist"
       }
     },
     "buttons": {
-      "save": "{group} speichern"
+      "save": "{group} speichern",
+      "testSmtp": "Verbindung testen",
+      "testing": "Teste..."
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Einstellungen",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Keine Änderungen zum Speichern",
-      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert"
+      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert",
+      "smtpTestFailed": "SMTP-Verbindung fehlgeschlagen: {error}",
+      "smtpTestGenericError": "SMTP-Verbindungstest fehlgeschlagen. Bitte überprüfen Sie Ihre Einstellungen und versuchen Sie es erneut.",
+      "smtpTestSuccess": "SMTP-Verbindung erfolgreich! Ihre E-Mail-Konfiguration funktioniert korrekt."
     },
     "title": "Einstellungen",
     "breadcrumb": "Einstellungen",
     "pageTitle": "Einstellungen",
     "tooltips": {
       "oidcScope": "Geben Sie einen Scope ein und drücken Sie Enter zum Hinzufügen",
-      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen"
+      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen",
+      "testSmtp": "Testet die SMTP-Verbindung mit den aktuell im Formular eingegebenen Werten. Um die Änderungen dauerhaft zu machen, denken Sie daran, Ihre Einstellungen nach dem Test zu speichern."
     },
     "redirectUri": {
       "placeholder": "https://meineseite.com",

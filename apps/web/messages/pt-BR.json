@@ -443,7 +443,8 @@
     },
     "tooltips": {
       "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar"
+      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
+      "testSmtp": "Testa a conexão SMTP com os valores atualmente inseridos no formulário. Para tornar as alterações permanentes, lembre-se de salvar suas configurações após o teste."
     },
     "redirectUri": {
       "placeholder": "https://meusite.com",
@@ -558,10 +559,16 @@
       "oidcAdminEmailDomains": {
         "title": "Domínios de E-mail Admin",
         "description": "Domínios de e-mail que recebem privilégios de administrador automaticamente"
+      },
+      "testSmtp": {
+        "title": "Testar Conexão SMTP",
+        "description": "Testa se a configuração SMTP é válida"
       }
     },
     "buttons": {
-      "save": "Salvar {group}"
+      "save": "Salvar {group}",
+      "testSmtp": "Testar Conexão",
+      "testing": "Testando..."
     },
     "errors": {
       "loadFailed": "Falha ao carregar configurações",
@@ -569,7 +576,10 @@
     },
     "messages": {
       "noChanges": "Nenhuma alteração para salvar",
-      "updateSuccess": "Configurações de {group} atualizadas com sucesso"
+      "updateSuccess": "Configurações de {group} atualizadas com sucesso",
+      "smtpTestFailed": "Falha na conexão SMTP: {error}",
+      "smtpTestGenericError": "Falha ao testar conexão SMTP. Por favor, verifique suas configurações e tente novamente.",
+      "smtpTestSuccess": "Conexão SMTP bem-sucedida! Sua configuração de e-mail está funcionando corretamente."
     },
     "title": "Configurações",
     "breadcrumb": "Configurações",

@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "管理员电子邮件域名",
         "description": "自动获得管理员权限的电子邮件域名"
+      },
+      "testSmtp": {
+        "title": "测试SMTP连接",
+        "description": "测试SMTP配置是否有效"
       }
     },
     "buttons": {
-      "save": "保存 {group}"
+      "save": "保存 {group}",
+      "testSmtp": "测试连接",
+      "testing": "测试中..."
     },
     "errors": {
       "loadFailed": "加载设置失败",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "没有需要保存的更改",
-      "updateSuccess": "{group}设置更新成功"
+      "updateSuccess": "{group}设置更新成功",
+      "smtpTestFailed": "SMTP连接失败：{error}",
+      "smtpTestGenericError": "SMTP连接测试失败。请检查您的设置并重试。",
+      "smtpTestSuccess": "SMTP连接成功！您的电子邮件配置工作正常。"
     },
     "title": "设置",
     "breadcrumb": "设置",
     "pageTitle": "设置",
     "tooltips": {
       "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar"
+      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
+      "testSmtp": "使用当前在表单中输入的值测试SMTP连接。要使更改永久生效，请记得在测试后保存您的设置。"
     },
     "redirectUri": {
       "placeholder": "https://meusite.com",
