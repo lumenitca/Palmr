@@ -656,7 +656,16 @@
     "securityUpdateError": "更新安全设置失败",
     "expirationUpdateError": "更新过期设置失败",
     "securityUpdateSuccess": "安全设置更新成功",
-    "expirationUpdateSuccess": "过期设置更新成功"
+    "expirationUpdateSuccess": "过期设置更新成功",
+    "creatingZip": "创建zip文件...",
+    "defaultShareName": "分享",
+    "downloadError": "无法下载共享文件",
+    "downloadSuccess": "下载成功开始",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "无需下载文件",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "无法创建zip文件",
+    "zipDownloadSuccess": "zip文件成功下载了"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "编辑链接",
       "copyLink": "复制链接",
       "notifyRecipients": "通知收件人",
-      "delete": "删除"
+      "delete": "删除",
+      "downloadShareFiles": "下载所有文件"
     },
     "bulkActions": {
       "delete": "删除",
-      "selected": "{count, plural, =1 {已选择1个共享} other {已选择#个共享}}"
+      "selected": "{count, plural, =1 {已选择1个共享} other {已选择#个共享}}",
+      "actions": "动作",
+      "download": "选择下载"
     },
     "selectAll": "全选",
     "selectShare": "选择共享 {shareName}"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "无文件数限制",
       "noSizeLimit": "无大小限制",
       "allFileTypes": "所有文件类型",
-      "fileTypesHelp": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔"
+      "fileTypesHelp": "输入不带点的扩展名，用空格、逗号、横线或竖线分隔",
+      "emailFieldRequired": "电子邮件字段",
+      "fieldOptions": {
+        "hidden": "隐",
+        "optional": "选修的",
+        "required": "必需的"
+      },
+      "fieldRequirements": "现场要求",
+      "nameFieldRequired": "名称字段"
     },
     "card": {
       "untitled": "无标题链接",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "预览",
-          "download": "下载"
+          "download": "下载",
+          "copyToMyFiles": "复制到我的文件",
+          "copying": "复制..."
         },
         "uploadedBy": "由 {name} 上传",
         "anonymous": "匿名",
@@ -1165,7 +1187,9 @@
         "downloadError": "下载文件时出错",
         "editSuccess": "文件更新成功",
         "editError": "更新文件时出错",
-        "previewNotAvailable": "预览不可用"
+        "previewNotAvailable": "预览不可用",
+        "copyError": "错误将文件复制到您的文件",
+        "copySuccess": "文件已成功复制到您的文件"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "密码至少需要4个字符",
         "passwordPlaceholder": "输入密码以保护链接"
       },
-      "submit": "创建接收链接"
+      "submit": "创建接收链接",
+      "emailFieldRequired": {
+        "label": "电子邮件字段要求",
+        "description": "配置是否应显示上传器电子邮件字段以及是否需要"
+      },
+      "fieldRequirements": {
+        "title": "现场要求",
+        "description": "配置在上传表单中显示哪些字段"
+      },
+      "nameFieldRequired": {
+        "label": "名称字段要求",
+        "description": "配置是否应显示上传器名称字段以及是否需要"
+      }
     },
     "messages": {
       "created": "接收链接创建成功！",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "不允许的文件类型。允许的类型：{allowedTypes}",
         "maxFilesExceeded": "最多允许 {maxFiles} 个文件",
         "selectAtLeastOneFile": "请至少选择一个文件",
-        "provideNameOrEmail": "请提供您的姓名或电子邮件"
+        "provideNameOrEmail": "请提供您的姓名或电子邮件",
+        "provideEmailRequired": "需要电子邮件",
+        "provideNameRequired": "需要名称"
       },
       "fileDropzone": {
         "dragActive": "将文件拖放到此处",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "描述（可选）",
         "descriptionPlaceholder": "为文件添加描述...",
         "uploadButton": "上传 {count} 个文件",
-        "uploading": "上传中..."
+        "uploading": "上传中...",
+        "emailLabelOptional": "电子邮件（可选）",
+        "nameLabelOptional": "名称（可选）"
       },
       "success": {
         "title": "文件上传成功！🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "取消",
         "preview": "预览",
         "download": "下载",
-        "delete": "删除"
+        "delete": "删除",
+        "copyToMyFiles": "复制到我的文件",
+        "copying": "复制..."
       },
       "editField": {
         "saveChanges": "保存更改",

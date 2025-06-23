@@ -449,4 +449,31 @@ export class ReverseShareController {
       return reply.status(500).send({ error: "Internal server error" });
     }
   }
+
+  async copyFileToUserFiles(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      await request.jwtVerify();
+      const { fileId } = request.params as { fileId: string };
+      const userId = (request as any).user?.userId;
+
+      if (!userId) {
+        return reply.status(401).send({ error: "Unauthorized" });
+      }
+
+      const file = await this.reverseShareService.copyReverseShareFileToUserFiles(fileId, userId);
+      return reply.send({ file, message: "File copied to your files successfully" });
+    } catch (error: any) {
+      if (error.message === "File not found") {
+        return reply.status(404).send({ error: "File not found" });
+      }
+      if (error.message === "Unauthorized to copy this file") {
+        return reply.status(403).send({ error: "Unauthorized to copy this file" });
+      }
+      if (error.message.includes("File size exceeds") || error.message.includes("Insufficient storage")) {
+        return reply.status(400).send({ error: error.message });
+      }
+      console.error("Error in copyFileToUserFiles:", error);
+      return reply.status(500).send({ error: "Internal server error" });
+    }
+  }
 }

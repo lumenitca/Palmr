@@ -16,12 +16,23 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ obje
     redirect: "manual",
   });
 
-  const resBody = await apiRes.text();
+  if (!apiRes.ok) {
+    const resBody = await apiRes.text();
+    return new NextResponse(resBody, {
+      status: apiRes.status,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
-  const res = new NextResponse(resBody, {
+  const res = new NextResponse(apiRes.body, {
     status: apiRes.status,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": apiRes.headers.get("Content-Type") || "application/octet-stream",
+      "Content-Length": apiRes.headers.get("Content-Length") || "",
+      "Accept-Ranges": apiRes.headers.get("Accept-Ranges") || "",
+      "Content-Range": apiRes.headers.get("Content-Range") || "",
     },
   });
 

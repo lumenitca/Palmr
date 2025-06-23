@@ -656,7 +656,16 @@
     "securityUpdateError": "Échec de mise à jour des paramètres de sécurité",
     "expirationUpdateError": "Échec de mise à jour des paramètres d'expiration",
     "securityUpdateSuccess": "Paramètres de sécurité mis à jour avec succès",
-    "expirationUpdateSuccess": "Paramètres d'expiration mis à jour avec succès"
+    "expirationUpdateSuccess": "Paramètres d'expiration mis à jour avec succès",
+    "creatingZip": "Création d'un fichier zip ...",
+    "defaultShareName": "Partager",
+    "downloadError": "Échec de téléchargement des fichiers de partage",
+    "downloadSuccess": "Le téléchargement a commencé avec succès",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Aucun fichier disponible en téléchargement",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "Échec de la création du fichier zip",
+    "zipDownloadSuccess": "Fichier zip téléchargé avec succès"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Modifier le Lien",
       "copyLink": "Copier le Lien",
       "notifyRecipients": "Notifier les Destinataires",
-      "delete": "Supprimer"
+      "delete": "Supprimer",
+      "downloadShareFiles": "Télécharger tous les fichiers"
     },
     "bulkActions": {
       "delete": "Supprimer",
-      "selected": "{count, plural, =1 {1 partage sélectionné} other {# partages sélectionnés}}"
+      "selected": "{count, plural, =1 {1 partage sélectionné} other {# partages sélectionnés}}",
+      "actions": "Actes",
+      "download": "Télécharger sélectionné"
     },
     "selectAll": "Tout sélectionner",
     "selectShare": "Sélectionner le partage {shareName}"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "Sans limite de fichiers",
       "noSizeLimit": "Sans limite de taille",
       "allFileTypes": "Tous types de fichiers",
-      "fileTypesHelp": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale"
+      "fileTypesHelp": "Saisissez les extensions sans point, séparées par espace, virgule, tiret ou barre verticale",
+      "emailFieldRequired": "Champ de courrier électronique",
+      "fieldOptions": {
+        "hidden": "Masqué",
+        "optional": "Optionnel",
+        "required": "Obligatoire"
+      },
+      "fieldRequirements": "Exigences sur le terrain",
+      "nameFieldRequired": "Champ de nom"
     },
     "card": {
       "untitled": "Lien sans titre",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "Aperçu",
-          "download": "Télécharger"
+          "download": "Télécharger",
+          "copyToMyFiles": "Copier dans mes fichiers",
+          "copying": "Copier..."
         },
         "uploadedBy": "Envoyé par {name}",
         "anonymous": "Anonyme",
@@ -1165,7 +1187,9 @@
         "downloadError": "Erreur lors du téléchargement",
         "editSuccess": "Fichier mis à jour avec succès",
         "editError": "Erreur lors de la mise à jour du fichier",
-        "previewNotAvailable": "Aperçu non disponible"
+        "previewNotAvailable": "Aperçu non disponible",
+        "copyError": "Erreur de copie du fichier dans vos fichiers",
+        "copySuccess": "Fichier copié dans vos fichiers avec succès"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "Le mot de passe doit contenir au moins 4 caractères",
         "passwordPlaceholder": "Saisissez un mot de passe pour protéger le lien"
       },
-      "submit": "Créer le Lien de Réception"
+      "submit": "Créer le Lien de Réception",
+      "emailFieldRequired": {
+        "label": "Exigence de champ de messagerie",
+        "description": "Configurez si le champ de messagerie du téléchargeur doit être affiché et s'il est requis"
+      },
+      "fieldRequirements": {
+        "title": "Exigences sur le terrain",
+        "description": "Configurer quels champs sont affichés dans le formulaire de téléchargement"
+      },
+      "nameFieldRequired": {
+        "label": "Exigence de champ de nom",
+        "description": "Configurer si le champ Nom du téléchargeur doit être affiché et s'il est requis"
+      }
     },
     "messages": {
       "created": "Lien de réception créé avec succès !",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "Type de fichier non autorisé. Types acceptés : {allowedTypes}",
         "maxFilesExceeded": "Maximum de {maxFiles} fichiers autorisés",
         "selectAtLeastOneFile": "Sélectionnez au moins un fichier",
-        "provideNameOrEmail": "Indiquez votre nom ou e-mail"
+        "provideNameOrEmail": "Indiquez votre nom ou e-mail",
+        "provideEmailRequired": "Un e-mail est requis",
+        "provideNameRequired": "Le nom est requis"
       },
       "fileDropzone": {
         "dragActive": "Déposez les fichiers ici",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "Description (optionnelle)",
         "descriptionPlaceholder": "Ajoutez une description aux fichiers...",
         "uploadButton": "Envoyer {count} fichier(s)",
-        "uploading": "Envoi en cours..."
+        "uploading": "Envoi en cours...",
+        "emailLabelOptional": "E-mail (facultatif)",
+        "nameLabelOptional": "Nom (facultatif)"
       },
       "success": {
         "title": "Fichiers envoyés avec succès ! 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "Annuler",
         "preview": "Aperçu",
         "download": "Télécharger",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "copyToMyFiles": "Copier dans mes fichiers",
+        "copying": "Copier..."
       },
       "editField": {
         "saveChanges": "Enregistrer les modifications",

@@ -60,11 +60,11 @@ export function BulkDownloadModal({ isOpen, onClose, onDownload, fileCount }: Bu
 
         <DialogFooter className="flex gap-2">
           <Button variant="outline" onClick={handleClose}>
-            <IconX className="h-4 w-4 mr-2" />
+            <IconX className="h-4 w-4" />
             {t("common.cancel")}
           </Button>
           <Button onClick={handleSubmit} disabled={!zipName.trim()}>
-            <IconDownload className="h-4 w-4 mr-2" />
+            <IconDownload className="h-4 w-4" />
             {t("bulkDownload.download")}
           </Button>
         </DialogFooter>

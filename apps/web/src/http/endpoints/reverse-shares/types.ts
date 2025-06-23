@@ -1,5 +1,7 @@
 import type { AxiosResponse } from "axios";
 
+export type FieldRequirement = "HIDDEN" | "OPTIONAL" | "REQUIRED";
+
 export type CreateReverseShareBody = {
   name?: string;
   description?: string;
@@ -9,6 +11,8 @@ export type CreateReverseShareBody = {
   allowedFileTypes?: string | null;
   password?: string;
   pageLayout?: "WETRANSFER" | "DEFAULT";
+  nameFieldRequired?: FieldRequirement;
+  emailFieldRequired?: FieldRequirement;
 };
 
 export type CreateReverseShareResult = AxiosResponse<{
@@ -23,6 +27,8 @@ export type CreateReverseShareResult = AxiosResponse<{
     pageLayout: string;
     isActive: boolean;
     hasPassword: boolean;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
     createdAt: string;
     updatedAt: string;
     creatorId: string;
@@ -41,6 +47,8 @@ export type UpdateReverseShareBody = {
   password?: string | null;
   pageLayout?: "WETRANSFER" | "DEFAULT";
   isActive?: boolean;
+  nameFieldRequired?: FieldRequirement;
+  emailFieldRequired?: FieldRequirement;
 };
 
 export type UpdateReverseShareResult = AxiosResponse<{
@@ -55,6 +63,8 @@ export type UpdateReverseShareResult = AxiosResponse<{
     pageLayout: string;
     isActive: boolean;
     hasPassword: boolean;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
     createdAt: string;
     updatedAt: string;
     creatorId: string;
@@ -74,6 +84,8 @@ export type ListUserReverseSharesResult = AxiosResponse<{
     pageLayout: string;
     isActive: boolean;
     hasPassword: boolean;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
     createdAt: string;
     updatedAt: string;
     creatorId: string;
@@ -100,6 +112,8 @@ export type GetReverseShareResult = AxiosResponse<{
     pageLayout: string;
     isActive: boolean;
     hasPassword: boolean;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
     createdAt: string;
     updatedAt: string;
     creatorId: string;
@@ -126,6 +140,8 @@ export type DeleteReverseShareResult = AxiosResponse<{
     pageLayout: string;
     isActive: boolean;
     hasPassword: boolean;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
     createdAt: string;
     updatedAt: string;
     creatorId: string;
@@ -148,6 +164,8 @@ export type GetReverseShareForUploadResult = AxiosResponse<{
     pageLayout: string;
     hasPassword: boolean;
     currentFileCount: number;
+    nameFieldRequired: string;
+    emailFieldRequired: string;
   };
 }>;
 

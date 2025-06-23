@@ -9,9 +9,9 @@ import {
   addRecipients,
   createShareAlias,
   deleteShare,
+  getDownloadUrl,
   notifyRecipients,
   updateShare,
-  updateSharePassword,
 } from "@/http/endpoints";
 import { ListUserShares200SharesItem } from "@/http/models/listUserShares200SharesItem";
 
@@ -36,6 +36,9 @@ export interface ShareManagerHook {
   setSharesToDelete: (shares: ListUserShares200SharesItem[] | null) => void;
   handleDelete: (shareId: string) => Promise<void>;
   handleBulkDelete: (shares: ListUserShares200SharesItem[]) => void;
+  handleBulkDownload: (shares: ListUserShares200SharesItem[]) => void;
+  handleDownloadShareFiles: (share: ListUserShares200SharesItem) => Promise<void>;
+  handleBulkDownloadWithZip: (shares: ListUserShares200SharesItem[], zipName: string) => Promise<void>;
   handleDeleteBulk: () => Promise<void>;
   handleEdit: (shareId: string, data: any) => Promise<void>;
   handleUpdateName: (shareId: string, newName: string) => Promise<void>;
@@ -198,6 +201,114 @@ export function useShareManager(onSuccess: () => void) {
     }
   };
 
+  const handleBulkDownload = (shares: ListUserShares200SharesItem[]) => {
+    const zipName =
+      shares.length === 1
+        ? t("shareManager.singleShareZipName", { shareName: shares[0].name || t("shareManager.defaultShareName") })
+        : t("shareManager.multipleSharesZipName", { count: shares.length });
+
+    handleBulkDownloadWithZip(shares, zipName);
+  };
+
+  const handleDownloadShareFiles = async (share: ListUserShares200SharesItem) => {
+    if (!share.files || share.files.length === 0) {
+      toast.error(t("shareManager.noFilesToDownload"));
+      return;
+    }
+
+    if (share.files.length === 1) {
+      const file = share.files[0];
+      try {
+        const encodedObjectName = encodeURIComponent(file.objectName);
+        const response = await getDownloadUrl(encodedObjectName);
+        const downloadUrl = response.data.url;
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = file.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast.success(t("shareManager.downloadSuccess"));
+      } catch (error) {
+        console.error("Download error:", error);
+        toast.error(t("shareManager.downloadError"));
+      }
+    } else {
+      const zipName = t("shareManager.singleShareZipName", {
+        shareName: share.name || t("shareManager.defaultShareName"),
+      });
+      await handleBulkDownloadWithZip([share], zipName);
+    }
+  };
+
+  const handleBulkDownloadWithZip = async (shares: ListUserShares200SharesItem[], zipName: string) => {
+    try {
+      toast.promise(
+        (async () => {
+          const JSZip = (await import("jszip")).default;
+          const zip = new JSZip();
+
+          const allFiles: any[] = [];
+          shares.forEach((share) => {
+            if (share.files) {
+              share.files.forEach((file) => {
+                allFiles.push({
+                  ...file,
+                  shareName: share.name || "Unnamed Share",
+                });
+              });
+            }
+          });
+
+          const downloadPromises = allFiles.map(async (file) => {
+            try {
+              const encodedObjectName = encodeURIComponent(file.objectName);
+              const downloadResponse = await getDownloadUrl(encodedObjectName);
+              const downloadUrl = downloadResponse.data.url;
+              const response = await fetch(downloadUrl);
+
+              if (!response.ok) {
+                throw new Error(`Failed to download ${file.name}`);
+              }
+
+              const blob = await response.blob();
+              const fileName = shares.length > 1 ? `${file.shareName}/${file.name}` : file.name;
+              zip.file(fileName, blob);
+            } catch (error) {
+              console.error(`Error downloading file ${file.name}:`, error);
+              throw error;
+            }
+          });
+
+          await Promise.all(downloadPromises);
+
+          const zipBlob = await zip.generateAsync({ type: "blob" });
+
+          const url = URL.createObjectURL(zipBlob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = zipName.endsWith(".zip") ? zipName : `${zipName}.zip`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          if (clearSelectionCallback) {
+            clearSelectionCallback();
+          }
+        })(),
+        {
+          loading: t("shareManager.creatingZip"),
+          success: t("shareManager.zipDownloadSuccess"),
+          error: t("shareManager.zipDownloadError"),
+        }
+      );
+    } catch (error) {
+      console.error("Error creating ZIP:", error);
+    }
+  };
+
   return {
     shareToDelete,
     shareToEdit,
@@ -229,6 +340,9 @@ export function useShareManager(onSuccess: () => void) {
     handleManageRecipients,
     handleGenerateLink,
     handleNotifyRecipients,
+    handleBulkDownload,
+    handleDownloadShareFiles,
+    handleBulkDownloadWithZip,
     setClearSelectionCallback,
   };
 }

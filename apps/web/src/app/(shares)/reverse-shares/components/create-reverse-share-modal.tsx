@@ -8,8 +8,10 @@ import {
   IconFile,
   IconFiles,
   IconLock,
+  IconMail,
   IconSettings,
   IconUpload,
+  IconUser,
 } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -55,9 +57,12 @@ interface CreateReverseShareFormData {
   allowedFileTypes?: string;
   password?: string;
   pageLayout?: "DEFAULT" | "WETRANSFER";
+  nameFieldRequired: "HIDDEN" | "OPTIONAL" | "REQUIRED";
+  emailFieldRequired: "HIDDEN" | "OPTIONAL" | "REQUIRED";
   isPasswordProtected: boolean;
   hasExpiration: boolean;
   hasFileLimits: boolean;
+  hasFieldRequirements: boolean;
   noFilesLimit: boolean;
   noSizeLimit: boolean;
   allFileTypes: boolean;
@@ -79,9 +84,12 @@ const DEFAULT_FORM_VALUES: CreateReverseShareFormData = {
   allowedFileTypes: "",
   password: "",
   pageLayout: "DEFAULT",
+  nameFieldRequired: "OPTIONAL",
+  emailFieldRequired: "OPTIONAL",
   isPasswordProtected: false,
   hasExpiration: false,
   hasFileLimits: false,
+  hasFieldRequirements: false,
   noFilesLimit: true,
   noSizeLimit: true,
   allFileTypes: true,
@@ -103,6 +111,7 @@ export function CreateReverseShareModal({
     isPasswordProtected: form.watch("isPasswordProtected"),
     hasExpiration: form.watch("hasExpiration"),
     hasFileLimits: form.watch("hasFileLimits"),
+    hasFieldRequirements: form.watch("hasFieldRequirements"),
     noFilesLimit: form.watch("noFilesLimit"),
     noSizeLimit: form.watch("noSizeLimit"),
     allFileTypes: form.watch("allFileTypes"),
@@ -112,6 +121,8 @@ export function CreateReverseShareModal({
     const payload: CreateReverseShareBody = {
       name: formData.name,
       pageLayout: formData.pageLayout || "DEFAULT",
+      nameFieldRequired: formData.nameFieldRequired,
+      emailFieldRequired: formData.emailFieldRequired,
     };
 
     if (formData.description?.trim()) {
@@ -462,6 +473,126 @@ export function CreateReverseShareModal({
                         </FormItem>
                       )}
                     />
+                  </div>
+                )}
+              </div>
+
+              <Separator />
+
+              {/* Field Requirements */}
+              <div className="space-y-4">
+                {renderSectionToggle(
+                  watchedValues.hasFieldRequirements,
+                  <IconUser size={ICON_SIZES.medium} />,
+                  t("reverseShares.form.fieldRequirements.title"),
+                  toggleSection("hasFieldRequirements")
+                )}
+
+                {watchedValues.hasFieldRequirements && (
+                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="nameFieldRequired"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2 font-medium">
+                              <IconUser size={ICON_SIZES.small} />
+                              {t("reverseShares.form.nameFieldRequired.label")}
+                            </FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="bg-white dark:bg-gray-900">
+                                  <SelectValue />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="HIDDEN">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-gray-400" />
+                                    {t("reverseShares.labels.fieldOptions.hidden")}
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="OPTIONAL">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                    {t("reverseShares.labels.fieldOptions.optional")}
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="REQUIRED">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                                    {t("reverseShares.labels.fieldOptions.required")}
+                                  </div>
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="emailFieldRequired"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2 font-medium">
+                              <IconUser size={ICON_SIZES.small} />
+                              {t("reverseShares.form.emailFieldRequired.label")}
+                            </FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="bg-white dark:bg-gray-900">
+                                  <SelectValue />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="HIDDEN">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-gray-400" />
+                                    {t("reverseShares.labels.fieldOptions.hidden")}
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="OPTIONAL">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                    {t("reverseShares.labels.fieldOptions.optional")}
+                                  </div>
+                                </SelectItem>
+                                <SelectItem value="REQUIRED">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                                    {t("reverseShares.labels.fieldOptions.required")}
+                                  </div>
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="text-xs text-muted-foreground bg-blue-50 dark:bg-blue-950/20 p-3 rounded-md border border-blue-200 dark:border-blue-800">
+                      <div className="flex items-start gap-2">
+                        <IconSettings size={12} className="mt-0.5 text-blue-600 dark:text-blue-400" />
+                        <div className="space-y-1">
+                          <p className="font-medium text-blue-900 dark:text-blue-100">Field Configuration:</p>
+                          <ul className="space-y-0.5 text-blue-800 dark:text-blue-200">
+                            <li>
+                              • <strong>Hidden:</strong> Field won't appear in the upload form
+                            </li>
+                            <li>
+                              • <strong>Optional:</strong> Field appears but isn't required
+                            </li>
+                            <li>
+                              • <strong>Required:</strong> Field appears and must be filled
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

@@ -20,7 +20,13 @@
     "lint": "eslint \"src/**/*.+(ts|tsx)\"",
     "lint:fix": "eslint \"src/**/*.+(ts|tsx)\" --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "translations": "python3 scripts/run_translations.py all",
+    "translations:check": "python3 scripts/run_translations.py check",
+    "translations:sync": "python3 scripts/run_translations.py sync",
+    "translations:translate": "python3 scripts/run_translations.py translate",
+    "translations:help": "python3 scripts/run_translations.py help",
+    "translations:dry-run": "python3 scripts/run_translations.py all --dry-run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

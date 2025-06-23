@@ -656,7 +656,16 @@
     "securityUpdateError": "セキュリティ設定の更新に失敗しました",
     "expirationUpdateError": "有効期限設定の更新に失敗しました",
     "securityUpdateSuccess": "セキュリティ設定が正常に更新されました",
-    "expirationUpdateSuccess": "有効期限設定が正常に更新されました"
+    "expirationUpdateSuccess": "有効期限設定が正常に更新されました",
+    "creatingZip": "zipファイルの作成...",
+    "defaultShareName": "共有",
+    "downloadError": "共有ファイルをダウンロードできませんでした",
+    "downloadSuccess": "ダウンロードは正常に開始されました",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "ダウンロードできるファイルはありません",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "zipファイルの作成に失敗しました",
+    "zipDownloadSuccess": "zipファイルは正常にダウンロードされました"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "リンク編集",
       "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
-      "delete": "削除"
+      "delete": "削除",
+      "downloadShareFiles": "すべてのファイルをダウンロードします"
     },
     "bulkActions": {
       "delete": "削除",
-      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}"
+      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}",
+      "actions": "アクション",
+      "download": "選択したダウンロード"
     },
     "selectAll": "すべて選択",
     "selectShare": "共有{shareName}を選択"
@@ -1012,7 +1024,15 @@
       "noFilesLimit": "ファイル数制限なし",
       "noSizeLimit": "サイズ制限なし",
       "allFileTypes": "すべてのファイル形式",
-      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください"
+      "fileTypesHelp": "拡張子をドット無しで入力し、スペース、カンマ、ハイフン、パイプで区切ってください",
+      "emailFieldRequired": "電子メールフィールド",
+      "fieldOptions": {
+        "hidden": "隠れた",
+        "optional": "オプション",
+        "required": "必須"
+      },
+      "fieldRequirements": "フィールド要件",
+      "nameFieldRequired": "名前フィールド"
     },
     "card": {
       "untitled": "無題のリンク",
@@ -1157,7 +1177,9 @@
         },
         "actions": {
           "preview": "プレビュー",
-          "download": "ダウンロード"
+          "download": "ダウンロード",
+          "copyToMyFiles": "私のファイルにコピーします",
+          "copying": "コピー..."
         },
         "uploadedBy": "{name}が送信",
         "anonymous": "匿名",
@@ -1165,7 +1187,9 @@
         "downloadError": "ファイルのダウンロードに失敗しました",
         "editSuccess": "ファイルを更新しました",
         "editError": "ファイルの更新に失敗しました",
-        "previewNotAvailable": "プレビューは利用できません"
+        "previewNotAvailable": "プレビューは利用できません",
+        "copyError": "ファイルにファイルをコピーするエラー",
+        "copySuccess": "ファイルに正常にコピーされたファイル"
       }
     },
     "form": {
@@ -1226,7 +1250,19 @@
         "passwordHelp": "パスワードは4文字以上必要です",
         "passwordPlaceholder": "リンクを保護するパスワードを入力"
       },
-      "submit": "受信リンクを作成"
+      "submit": "受信リンクを作成",
+      "emailFieldRequired": {
+        "label": "電子メールフィールドの要件",
+        "description": "アップローダーの電子メールフィールドが表示されるかどうか、そしてそれが必要かどうかを構成します"
+      },
+      "fieldRequirements": {
+        "title": "フィールド要件",
+        "description": "アップロードフォームに表示されるフィールドを構成します"
+      },
+      "nameFieldRequired": {
+        "label": "名前フィールドの要件",
+        "description": "アップローダー名フィールドが表示されるかどうか、そしてそれが必要かどうかを構成します"
+      }
     },
     "messages": {
       "created": "受信リンクを作成しました！",
@@ -1286,7 +1322,9 @@
         "fileTypeNotAllowed": "このファイル形式は許可されていません。許可される形式: {allowedTypes}",
         "maxFilesExceeded": "最大 {maxFiles} ファイルまで許可されています",
         "selectAtLeastOneFile": "少なくとも1つのファイルを選択してください",
-        "provideNameOrEmail": "名前またはメールアドレスを入力してください"
+        "provideNameOrEmail": "名前またはメールアドレスを入力してください",
+        "provideEmailRequired": "メールが必要です",
+        "provideNameRequired": "名前が必要です"
       },
       "fileDropzone": {
         "dragActive": "ここにファイルをドロップ",
@@ -1309,7 +1347,9 @@
         "descriptionLabel": "説明（オプション）",
         "descriptionPlaceholder": "ファイルの説明を追加...",
         "uploadButton": "{count} ファイルを送信",
-        "uploading": "送信中..."
+        "uploading": "送信中...",
+        "emailLabelOptional": "メール（オプション）",
+        "nameLabelOptional": "名前（オプション）"
       },
       "success": {
         "title": "ファイルを送信しました！ 🎉",
@@ -1347,7 +1387,9 @@
         "cancel": "キャンセル",
         "preview": "プレビュー",
         "download": "ダウンロード",
-        "delete": "削除"
+        "delete": "削除",
+        "copyToMyFiles": "私のファイルにコピーします",
+        "copying": "コピー..."
       },
       "editField": {
         "saveChanges": "変更を保存",

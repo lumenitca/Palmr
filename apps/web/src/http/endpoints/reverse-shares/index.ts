@@ -262,3 +262,14 @@ export const updateReverseShareFile = <TData = UpdateReverseShareFileResult>(
 ): Promise<TData> => {
   return apiInstance.put(`/api/reverse-shares/files/${fileId}`, updateReverseShareFileBody, options);
 };
+
+/**
+ * Copy file from reverse share to user files
+ * @summary Copy File from Reverse Share to User Files
+ */
+export const copyReverseShareFileToUserFiles = <TData = any>(
+  fileId: string,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return apiInstance.post(`/api/reverse-shares/files/${fileId}/copy`, undefined, options);
+};

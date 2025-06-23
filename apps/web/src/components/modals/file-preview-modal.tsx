@@ -16,12 +16,14 @@ interface FilePreviewModalProps {
     name: string;
     objectName: string;
     type?: string;
+    id?: string;
   };
+  isReverseShare?: boolean;
 }
 
-export function FilePreviewModal({ isOpen, onClose, file }: FilePreviewModalProps) {
+export function FilePreviewModal({ isOpen, onClose, file, isReverseShare = false }: FilePreviewModalProps) {
   const t = useTranslations();
-  const previewState = useFilePreview({ file, isOpen });
+  const previewState = useFilePreview({ file, isOpen, isReverseShare });
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

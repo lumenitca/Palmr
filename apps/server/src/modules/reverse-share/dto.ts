@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export const FieldRequirementSchema = z.enum(["HIDDEN", "OPTIONAL", "REQUIRED"]);
+
 export const CreateReverseShareSchema = z.object({
   name: z.string().optional().describe("The reverse share name"),
   description: z.string().optional().describe("The reverse share description"),
@@ -14,6 +16,8 @@ export const CreateReverseShareSchema = z.object({
   allowedFileTypes: z.string().nullable().optional().describe("Comma-separated list of allowed file extensions"),
   password: z.string().optional().describe("Password for private access"),
   pageLayout: z.enum(["WETRANSFER", "DEFAULT"]).default("DEFAULT").describe("Page layout type"),
+  nameFieldRequired: FieldRequirementSchema.default("OPTIONAL").describe("Name field requirement setting"),
+  emailFieldRequired: FieldRequirementSchema.default("OPTIONAL").describe("Email field requirement setting"),
 });
 
 export const UpdateReverseShareSchema = z.object({
@@ -27,6 +31,8 @@ export const UpdateReverseShareSchema = z.object({
   password: z.string().nullable().optional(),
   pageLayout: z.enum(["WETRANSFER", "DEFAULT"]).optional(),
   isActive: z.boolean().optional(),
+  nameFieldRequired: FieldRequirementSchema.optional().describe("Name field requirement setting"),
+  emailFieldRequired: FieldRequirementSchema.optional().describe("Email field requirement setting"),
 });
 
 export const ReverseShareFileSchema = z.object({
@@ -53,6 +59,8 @@ export const ReverseShareResponseSchema = z.object({
   pageLayout: z.string().describe("Page layout type"),
   isActive: z.boolean().describe("Whether the reverse share is active"),
   hasPassword: z.boolean().describe("Whether the reverse share has a password"),
+  nameFieldRequired: z.string().describe("Name field requirement setting"),
+  emailFieldRequired: z.string().describe("Email field requirement setting"),
   createdAt: z.string().describe("The reverse share creation date"),
   updatedAt: z.string().describe("The reverse share update date"),
   creatorId: z.string().describe("The creator ID"),
@@ -80,6 +88,8 @@ export const ReverseSharePublicSchema = z.object({
   pageLayout: z.string().describe("Page layout type"),
   hasPassword: z.boolean().describe("Whether the reverse share has a password"),
   currentFileCount: z.number().describe("Current number of files uploaded"),
+  nameFieldRequired: z.string().describe("Name field requirement setting"),
+  emailFieldRequired: z.string().describe("Email field requirement setting"),
 });
 
 export const UploadToReverseShareSchema = z.object({

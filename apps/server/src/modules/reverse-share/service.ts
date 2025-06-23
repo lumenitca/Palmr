@@ -19,6 +19,8 @@ interface ReverseShareData {
   password: string | null;
   pageLayout: string;
   isActive: boolean;
+  nameFieldRequired: string;
+  emailFieldRequired: string;
   createdAt: Date;
   updatedAt: Date;
   creatorId: string;
@@ -102,6 +104,8 @@ export class ReverseShareService {
       pageLayout: reverseShare.pageLayout,
       hasPassword: !!reverseShare.password,
       currentFileCount,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
   }
 
@@ -141,6 +145,8 @@ export class ReverseShareService {
       pageLayout: reverseShare.pageLayout,
       hasPassword: !!reverseShare.password,
       currentFileCount,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
   }
 
@@ -350,8 +356,9 @@ export class ReverseShareService {
       throw new Error("Unauthorized to download this file");
     }
 
+    const fileName = file.name;
     const expires = 3600; // 1 hour
-    const url = await this.fileService.getPresignedGetUrl(file.objectName, expires);
+    const url = await this.fileService.getPresignedGetUrl(file.objectName, expires, fileName);
     return { url, expiresIn: expires };
   }
 
@@ -485,6 +492,96 @@ export class ReverseShareService {
     return this.formatFileResponse(updatedFile);
   }
 
+  async copyReverseShareFileToUserFiles(fileId: string, creatorId: string) {
+    const file = await this.reverseShareRepository.findFileById(fileId);
+    if (!file) {
+      throw new Error("File not found");
+    }
+
+    if (file.reverseShare.creatorId !== creatorId) {
+      throw new Error("Unauthorized to copy this file");
+    }
+
+    const { prisma } = await import("../../shared/prisma.js");
+    const { ConfigService } = await import("../config/service.js");
+    const configService = new ConfigService();
+
+    const maxFileSize = BigInt(await configService.getValue("maxFileSize"));
+    if (file.size > maxFileSize) {
+      const maxSizeMB = Number(maxFileSize) / (1024 * 1024);
+      throw new Error(`File size exceeds the maximum allowed size of ${maxSizeMB}MB`);
+    }
+
+    const maxTotalStorage = BigInt(await configService.getValue("maxTotalStoragePerUser"));
+
+    const userFiles = await prisma.file.findMany({
+      where: { userId: creatorId },
+      select: { size: true },
+    });
+
+    const currentStorage = userFiles.reduce((acc: bigint, userFile: any) => acc + userFile.size, BigInt(0));
+
+    if (currentStorage + file.size > maxTotalStorage) {
+      const availableSpace = Number(maxTotalStorage - currentStorage) / (1024 * 1024);
+      throw new Error(`Insufficient storage space. You have ${availableSpace.toFixed(2)}MB available`);
+    }
+
+    const newObjectName = `${creatorId}/${Date.now()}-${file.name}`;
+
+    if (this.fileService.isFilesystemMode()) {
+      const { FilesystemStorageProvider } = await import("../../providers/filesystem-storage.provider.js");
+      const provider = FilesystemStorageProvider.getInstance();
+
+      const sourceBuffer = await provider.downloadFile(file.objectName);
+      await provider.uploadFile(newObjectName, sourceBuffer);
+    } else {
+      const downloadUrl = await this.fileService.getPresignedGetUrl(file.objectName, 300);
+      const uploadUrl = await this.fileService.getPresignedPutUrl(newObjectName, 300);
+
+      const response = await fetch(downloadUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to download file: ${response.statusText}`);
+      }
+
+      const fileBuffer = Buffer.from(await response.arrayBuffer());
+
+      const uploadResponse = await fetch(uploadUrl, {
+        method: "PUT",
+        body: fileBuffer,
+        headers: {
+          "Content-Type": "application/octet-stream",
+        },
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error(`Failed to upload file: ${uploadResponse.statusText}`);
+      }
+    }
+
+    const newFileRecord = await prisma.file.create({
+      data: {
+        name: file.name,
+        description: file.description || `Copied from: ${file.reverseShare.name || "Unnamed"}`,
+        extension: file.extension,
+        size: file.size,
+        objectName: newObjectName,
+        userId: creatorId,
+      },
+    });
+
+    return {
+      id: newFileRecord.id,
+      name: newFileRecord.name,
+      description: newFileRecord.description,
+      extension: newFileRecord.extension,
+      size: newFileRecord.size.toString(),
+      objectName: newFileRecord.objectName,
+      userId: newFileRecord.userId,
+      createdAt: newFileRecord.createdAt.toISOString(),
+      updatedAt: newFileRecord.updatedAt.toISOString(),
+    };
+  }
+
   private formatReverseShareResponse(reverseShare: ReverseShareData) {
     const result = {
       id: reverseShare.id,
@@ -522,6 +619,8 @@ export class ReverseShareService {
             updatedAt: reverseShare.alias.updatedAt.toISOString(),
           }
         : null,
+      nameFieldRequired: reverseShare.nameFieldRequired,
+      emailFieldRequired: reverseShare.emailFieldRequired,
     };
 
     return result;
