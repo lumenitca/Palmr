@@ -656,7 +656,16 @@
     "securityUpdateError": "Échec de mise à jour des paramètres de sécurité",
     "expirationUpdateError": "Échec de mise à jour des paramètres d'expiration",
     "securityUpdateSuccess": "Paramètres de sécurité mis à jour avec succès",
-    "expirationUpdateSuccess": "Paramètres d'expiration mis à jour avec succès"
+    "expirationUpdateSuccess": "Paramètres d'expiration mis à jour avec succès",
+    "creatingZip": "Création d'un fichier zip ...",
+    "defaultShareName": "Partager",
+    "downloadError": "Échec de téléchargement des fichiers de partage",
+    "downloadSuccess": "Le téléchargement a commencé avec succès",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Aucun fichier disponible en téléchargement",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "Échec de la création du fichier zip",
+    "zipDownloadSuccess": "Fichier zip téléchargé avec succès"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Modifier le Lien",
       "copyLink": "Copier le Lien",
       "notifyRecipients": "Notifier les Destinataires",
-      "delete": "Supprimer"
+      "delete": "Supprimer",
+      "downloadShareFiles": "Télécharger tous les fichiers"
     },
     "bulkActions": {
       "delete": "Supprimer",
-      "selected": "{count, plural, =1 {1 partage sélectionné} other {# partages sélectionnés}}"
+      "selected": "{count, plural, =1 {1 partage sélectionné} other {# partages sélectionnés}}",
+      "actions": "Actes",
+      "download": "Télécharger sélectionné"
     },
     "selectAll": "Tout sélectionner",
     "selectShare": "Sélectionner le partage {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Aperçu",
-          "download": "Télécharger"
+          "download": "Télécharger",
+          "copyToMyFiles": "Copier dans mes fichiers",
+          "copying": "Copier..."
         },
         "uploadedBy": "Envoyé par {name}",
         "anonymous": "Anonyme",
@@ -1165,7 +1179,9 @@
         "downloadError": "Erreur lors du téléchargement",
         "editSuccess": "Fichier mis à jour avec succès",
         "editError": "Erreur lors de la mise à jour du fichier",
-        "previewNotAvailable": "Aperçu non disponible"
+        "previewNotAvailable": "Aperçu non disponible",
+        "copyError": "Erreur de copie du fichier dans vos fichiers",
+        "copySuccess": "Fichier copié dans vos fichiers avec succès"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Annuler",
         "preview": "Aperçu",
         "download": "Télécharger",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "copyToMyFiles": "Copier dans mes fichiers",
+        "copying": "Copier..."
       },
       "editField": {
         "saveChanges": "Enregistrer les modifications",

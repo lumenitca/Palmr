@@ -656,7 +656,16 @@
     "securityUpdateError": "Sicherheitseinstellungen konnten nicht aktualisiert werden",
     "expirationUpdateError": "Ablaufeinstellungen konnten nicht aktualisiert werden",
     "securityUpdateSuccess": "Sicherheitseinstellungen erfolgreich aktualisiert",
-    "expirationUpdateSuccess": "Ablaufeinstellungen erfolgreich aktualisiert"
+    "expirationUpdateSuccess": "Ablaufeinstellungen erfolgreich aktualisiert",
+    "creatingZip": "ZIP -Datei erstellen ...",
+    "defaultShareName": "Aktie",
+    "downloadError": "Download Share -Dateien nicht herunterladen",
+    "downloadSuccess": "Download begann erfolgreich",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Keine Dateien zum Download zur Verfügung stehen",
+    "singleShareZipName": "{ShareName} _files.zip",
+    "zipDownloadError": "Die ZIP -Datei erstellt nicht",
+    "zipDownloadSuccess": "ZIP -Datei erfolgreich heruntergeladen"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Link Bearbeiten",
       "copyLink": "Link Kopieren",
       "notifyRecipients": "Empfänger Benachrichtigen",
-      "delete": "Löschen"
+      "delete": "Löschen",
+      "downloadShareFiles": "Laden Sie alle Dateien herunter"
     },
     "bulkActions": {
       "delete": "Löschen",
-      "selected": "{count, plural, =1 {1 Freigabe ausgewählt} other {# Freigaben ausgewählt}}"
+      "selected": "{count, plural, =1 {1 Freigabe ausgewählt} other {# Freigaben ausgewählt}}",
+      "actions": "Aktionen",
+      "download": "Download ausgewählt"
     },
     "selectAll": "Alle auswählen",
     "selectShare": "Freigabe {shareName} auswählen"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Vorschau",
-          "download": "Herunterladen"
+          "download": "Herunterladen",
+          "copyToMyFiles": "Kopieren Sie in meine Dateien",
+          "copying": "Kopieren..."
         },
         "uploadedBy": "Hochgeladen von {name}",
         "anonymous": "Anonym",
@@ -1165,7 +1179,9 @@
         "downloadError": "Fehler beim Herunterladen der Datei",
         "editSuccess": "Datei erfolgreich aktualisiert",
         "editError": "Fehler beim Aktualisieren der Datei",
-        "previewNotAvailable": "Vorschau nicht verfügbar"
+        "previewNotAvailable": "Vorschau nicht verfügbar",
+        "copyError": "Fehler beim Kopieren der Datei in Ihre Dateien",
+        "copySuccess": "Datei erfolgreich in Ihre Dateien kopiert"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Abbrechen",
         "preview": "Vorschau",
         "download": "Herunterladen",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "copyToMyFiles": "Kopieren Sie in meine Dateien",
+        "copying": "Kopieren..."
       },
       "editField": {
         "saveChanges": "Änderungen speichern",

@@ -656,7 +656,16 @@
     "securityUpdateError": "Не удалось обновить настройки безопасности",
     "expirationUpdateError": "Не удалось обновить настройки истечения",
     "securityUpdateSuccess": "Настройки безопасности успешно обновлены",
-    "expirationUpdateSuccess": "Настройки истечения успешно обновлены"
+    "expirationUpdateSuccess": "Настройки истечения успешно обновлены",
+    "creatingZip": "Создание файла Zip ...",
+    "defaultShareName": "Делиться",
+    "downloadError": "Не удалось скачать общие файлы",
+    "downloadSuccess": "Скачать началась успешно",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Нет файлов для скачивания",
+    "singleShareZipName": "{shareme} _files.zip",
+    "zipDownloadError": "Не удалось создать zip -файл",
+    "zipDownloadSuccess": "Zip -файл успешно загружен"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Редактировать Ссылку",
       "copyLink": "Скопировать Ссылку",
       "notifyRecipients": "Уведомить Получателей",
-      "delete": "Удалить"
+      "delete": "Удалить",
+      "downloadShareFiles": "Загрузите все файлы"
     },
     "bulkActions": {
       "delete": "Удалить",
-      "selected": "{count, plural, =1 {1 общая папка выбрана} other {# общих папок выбрано}}"
+      "selected": "{count, plural, =1 {1 общая папка выбрана} other {# общих папок выбрано}}",
+      "actions": "Действия",
+      "download": "Скачать выбранный"
     },
     "selectAll": "Выбрать все",
     "selectShare": "Выбрать общую папку {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Предпросмотр",
-          "download": "Скачать"
+          "download": "Скачать",
+          "copyToMyFiles": "Скопируйте в мои файлы",
+          "copying": "Копирование ..."
         },
         "uploadedBy": "Загружено {name}",
         "anonymous": "Аноним",
@@ -1165,7 +1179,9 @@
         "downloadError": "Ошибка при загрузке файла",
         "editSuccess": "Файл успешно обновлен",
         "editError": "Ошибка при обновлении файла",
-        "previewNotAvailable": "Предпросмотр недоступен"
+        "previewNotAvailable": "Предпросмотр недоступен",
+        "copyError": "Ошибка копирования файла в ваши файлы",
+        "copySuccess": "Файл успешно скопирован в ваши файлы"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Отмена",
         "preview": "Предпросмотр",
         "download": "Скачать",
-        "delete": "Удалить"
+        "delete": "Удалить",
+        "copyToMyFiles": "Скопируйте в мои файлы",
+        "copying": "Копирование ..."
       },
       "editField": {
         "saveChanges": "Сохранить изменения",

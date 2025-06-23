@@ -714,7 +714,16 @@
     "notifyError": "Nie udało się powiadomić odbiorców",
     "bulkDeleteError": "Nie udało się usunąć udostępnień",
     "bulkDeleteLoading": "Usuwanie {count, plural, =1 {1 udostępnienia} other {# udostępnień}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 udostępnienie usunięte pomyślnie} other {# udostępnień usuniętych pomyślnie}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 udostępnienie usunięte pomyślnie} other {# udostępnień usuniętych pomyślnie}}",
+    "creatingZip": "Tworzenie pliku zip ...",
+    "defaultShareName": "Udział",
+    "downloadError": "Nie udało się pobrać plików udostępniania",
+    "downloadSuccess": "Pobierz zaczęło się pomyślnie",
+    "multipleSharesZipName": "{Count} _Shares_files.zip",
+    "noFilesToDownload": "Brak plików do pobrania",
+    "singleShareZipName": "{ShaRename} _files.zip",
+    "zipDownloadError": "Nie udało się utworzyć pliku zip",
+    "zipDownloadSuccess": "Plik zip pobrany pomyślnie"
   },
   "shares": {
     "errors": {
@@ -777,11 +786,14 @@
       "editLink": "Edytuj link",
       "copyLink": "Skopiuj link",
       "notifyRecipients": "Powiadom odbiorców",
-      "delete": "Usuń"
+      "delete": "Usuń",
+      "downloadShareFiles": "Pobierz wszystkie pliki"
     },
     "bulkActions": {
       "delete": "Usuń",
-      "selected": "{count, plural, =1 {Wybrano 1 udostępnienie} other {# wybranych udostępnień}}"
+      "selected": "{count, plural, =1 {Wybrano 1 udostępnienie} other {# wybranych udostępnień}}",
+      "actions": "Działania",
+      "download": "Pobierz wybrany"
     },
     "selectAll": "Zaznacz wszystko",
     "selectShare": "Wybierz udostępnienie {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Podgląd",
-          "download": "Pobierz"
+          "download": "Pobierz",
+          "copyToMyFiles": "Skopiuj do moich plików",
+          "copying": "Biurowy..."
         },
         "uploadedBy": "Przesłane przez {name}",
         "anonymous": "Anonimowy",
@@ -1165,7 +1179,9 @@
         "downloadError": "Błąd pobierania pliku",
         "editSuccess": "Plik zaktualizowany pomyślnie",
         "editError": "Błąd aktualizacji pliku",
-        "previewNotAvailable": "Podgląd niedostępny"
+        "previewNotAvailable": "Podgląd niedostępny",
+        "copyError": "Plik kopiowania błędów do plików",
+        "copySuccess": "Plik skopiowany do plików pomyślnie"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Anuluj",
         "preview": "Podgląd",
         "download": "Pobierz",
-        "delete": "Usuń"
+        "delete": "Usuń",
+        "copyToMyFiles": "Skopiuj do moich plików",
+        "copying": "Biurowy..."
       },
       "editField": {
         "saveChanges": "Zapisz zmiany",

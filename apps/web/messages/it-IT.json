@@ -656,7 +656,16 @@
     "securityUpdateError": "Impossibile aggiornare le impostazioni di sicurezza",
     "expirationUpdateError": "Impossibile aggiornare le impostazioni di scadenza",
     "securityUpdateSuccess": "Impostazioni di sicurezza aggiornate con successo",
-    "expirationUpdateSuccess": "Impostazioni di scadenza aggiornate con successo"
+    "expirationUpdateSuccess": "Impostazioni di scadenza aggiornate con successo",
+    "creatingZip": "Creazione di file zip ...",
+    "defaultShareName": "Condividere",
+    "downloadError": "Impossibile scaricare i file di condivisione",
+    "downloadSuccess": "Download avviato con successo",
+    "multipleSharesZipName": "{Count} _Shares_files.zip",
+    "noFilesToDownload": "Nessun file disponibile per il download",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Impossibile creare un file zip",
+    "zipDownloadSuccess": "File zip scaricato correttamente"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Modifica Link",
       "copyLink": "Copia Link",
       "notifyRecipients": "Notifica Destinatari",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "downloadShareFiles": "Scarica tutti i file"
     },
     "bulkActions": {
       "delete": "Elimina",
-      "selected": "{count, plural, =1 {1 condivisione selezionata} other {# condivisioni selezionate}}"
+      "selected": "{count, plural, =1 {1 condivisione selezionata} other {# condivisioni selezionate}}",
+      "actions": "Azioni",
+      "download": "Scarica selezionato"
     },
     "selectAll": "Seleziona tutto",
     "selectShare": "Seleziona condivisione {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Anteprima",
-          "download": "Scarica"
+          "download": "Scarica",
+          "copyToMyFiles": "Copia sui miei file",
+          "copying": "Copia ..."
         },
         "uploadedBy": "Inviato da {name}",
         "anonymous": "Anonimo",
@@ -1165,7 +1179,9 @@
         "downloadError": "Errore durante il download del file",
         "editSuccess": "File aggiornato con successo",
         "editError": "Errore durante l'aggiornamento del file",
-        "previewNotAvailable": "Anteprima non disponibile"
+        "previewNotAvailable": "Anteprima non disponibile",
+        "copyError": "Errore di copia del file sui tuoi file",
+        "copySuccess": "File copiato sui tuoi file correttamente"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Annulla",
         "preview": "Anteprima",
         "download": "Scarica",
-        "delete": "Elimina"
+        "delete": "Elimina",
+        "copyToMyFiles": "Copia sui miei file",
+        "copying": "Copia ..."
       },
       "editField": {
         "saveChanges": "Salva modifiche",

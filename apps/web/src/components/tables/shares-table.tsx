@@ -4,6 +4,7 @@ import {
   IconChevronDown,
   IconCopy,
   IconDotsVertical,
+  IconDownload,
   IconEdit,
   IconEye,
   IconFolder,
@@ -45,7 +46,9 @@ export interface SharesTableProps {
   onGenerateLink: (share: any) => void;
   onCopyLink: (share: any) => void;
   onNotifyRecipients: (share: any) => void;
+  onDownloadShareFiles?: (share: any) => void;
   onBulkDelete?: (shares: any[]) => void;
+  onBulkDownload?: (shares: any[]) => void;
   setClearSelectionCallback?: (callback: () => void) => void;
 }
 
@@ -63,7 +66,9 @@ export function SharesTable({
   onGenerateLink,
   onCopyLink,
   onNotifyRecipients,
+  onDownloadShareFiles,
   onBulkDelete,
+  onBulkDownload,
   setClearSelectionCallback,
 }: SharesTableProps) {
   const t = useTranslations();
@@ -180,7 +185,17 @@ export function SharesTable({
     }
   };
 
-  const showBulkActions = selectedShares.size > 0 && onBulkDelete;
+  const handleBulkDownload = () => {
+    const selectedShareObjects = getSelectedShares();
+
+    if (selectedShareObjects.length === 0) return;
+
+    if (onBulkDownload) {
+      onBulkDownload(selectedShareObjects);
+    }
+  };
+
+  const showBulkActions = selectedShares.size > 0 && (onBulkDelete || onBulkDownload);
 
   return (
     <div className="space-y-4">
@@ -192,10 +207,31 @@ export function SharesTable({
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="destructive" size="sm" className="gap-2" onClick={handleBulkDelete}>
-              <IconTrash className="h-4 w-4" />
-              {t("sharesTable.bulkActions.delete")}
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="default" size="sm" className="gap-2">
+                  {t("sharesTable.bulkActions.actions")}
+                  <IconChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[200px]">
+                {onBulkDownload && (
+                  <DropdownMenuItem className="cursor-pointer py-2" onClick={handleBulkDownload}>
+                    <IconDownload className="h-4 w-4" />
+                    {t("sharesTable.bulkActions.download")}
+                  </DropdownMenuItem>
+                )}
+                {onBulkDelete && (
+                  <DropdownMenuItem
+                    onClick={handleBulkDelete}
+                    className="cursor-pointer py-2 text-destructive focus:text-destructive"
+                  >
+                    <IconTrash className="h-4 w-4" />
+                    {t("sharesTable.bulkActions.delete")}
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button variant="outline" size="sm" onClick={() => setSelectedShares(new Set())}>
               {t("common.cancel")}
             </Button>
@@ -572,6 +608,17 @@ export function SharesTable({
                           <DropdownMenuItem className="cursor-pointer py-2" onClick={() => onNotifyRecipients(share)}>
                             <IconMail className="h-4 w-4" />
                             {t("sharesTable.actions.notifyRecipients")}
+                          </DropdownMenuItem>
+                        )}
+                        {onDownloadShareFiles && share.files && share.files.length > 0 && (
+                          <DropdownMenuItem
+                            className="cursor-pointer py-2"
+                            onClick={() => {
+                              onDownloadShareFiles(share);
+                            }}
+                          >
+                            <IconDownload className="h-4 w-4" />
+                            {t("sharesTable.actions.downloadShareFiles")}
                           </DropdownMenuItem>
                         )}
                         <DropdownMenuItem

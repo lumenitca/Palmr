@@ -656,7 +656,16 @@
     "securityUpdateError": "सुरक्षा सेटिंग्स अपडेट करने में विफल",
     "expirationUpdateError": "समाप्ति सेटिंग्स अपडेट करने में विफल",
     "securityUpdateSuccess": "सुरक्षा सेटिंग्स सफलतापूर्वक अपडेट हुईं",
-    "expirationUpdateSuccess": "समाप्ति सेटिंग्स सफलतापूर्वक अपडेट हुईं"
+    "expirationUpdateSuccess": "समाप्ति सेटिंग्स सफलतापूर्वक अपडेट हुईं",
+    "creatingZip": "ज़िप फ़ाइल बनाना ...",
+    "defaultShareName": "शेयर करना",
+    "downloadError": "शेयर फ़ाइलें डाउनलोड करने में विफल",
+    "downloadSuccess": "डाउनलोड सफलतापूर्वक शुरू हुआ",
+    "multipleSharesZipName": "{गिनती} _shares_files.zip",
+    "noFilesToDownload": "डाउनलोड करने के लिए कोई फाइलें उपलब्ध नहीं हैं",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "ज़िप फ़ाइल बनाने में विफल",
+    "zipDownloadSuccess": "ज़िप फ़ाइल सफलतापूर्वक डाउनलोड की गई"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "लिंक संपादित करें",
       "copyLink": "लिंक कॉपी करें",
       "notifyRecipients": "प्राप्तकर्ताओं को सूचित करें",
-      "delete": "हटाएं"
+      "delete": "हटाएं",
+      "downloadShareFiles": "सभी फ़ाइलें डाउनलोड करें"
     },
     "bulkActions": {
       "delete": "हटाएं",
-      "selected": "{count, plural, =1 {1 साझाकरण चयनित} other {# साझाकरण चयनित}}"
+      "selected": "{count, plural, =1 {1 साझाकरण चयनित} other {# साझाकरण चयनित}}",
+      "actions": "कार्रवाई",
+      "download": "चयनित डाउनलोड करें"
     },
     "selectAll": "सभी चुनें",
     "selectShare": "साझाकरण {shareName} चुनें"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "पूर्वावलोकन",
-          "download": "डाउनलोड"
+          "download": "डाउनलोड",
+          "copyToMyFiles": "मेरी फ़ाइलों में कॉपी करें",
+          "copying": "नकल ..."
         },
         "uploadedBy": "{name} द्वारा भेजा गया",
         "anonymous": "अज्ञात",
@@ -1165,7 +1179,9 @@
         "downloadError": "फ़ाइल डाउनलोड करने में त्रुटि",
         "editSuccess": "फ़ाइल सफलतापूर्वक अपडेट की गई",
         "editError": "फ़ाइल अपडेट करने में त्रुटि",
-        "previewNotAvailable": "पूर्वावलोकन उपलब्ध नहीं है"
+        "previewNotAvailable": "पूर्वावलोकन उपलब्ध नहीं है",
+        "copyError": "अपनी फ़ाइलों में फ़ाइल की नकल करने में त्रुटि",
+        "copySuccess": "आपकी फ़ाइलों को सफलतापूर्वक कॉपी की गई फ़ाइल"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "रद्द करें",
         "preview": "पूर्वावलोकन",
         "download": "डाउनलोड",
-        "delete": "हटाएं"
+        "delete": "हटाएं",
+        "copyToMyFiles": "मेरी फ़ाइलों में कॉपी करें",
+        "copying": "नकल ..."
       },
       "editField": {
         "saveChanges": "परिवर्तन सहेजें",

@@ -656,7 +656,16 @@
     "securityUpdateError": "更新安全设置失败",
     "expirationUpdateError": "更新过期设置失败",
     "securityUpdateSuccess": "安全设置更新成功",
-    "expirationUpdateSuccess": "过期设置更新成功"
+    "expirationUpdateSuccess": "过期设置更新成功",
+    "creatingZip": "创建zip文件...",
+    "defaultShareName": "分享",
+    "downloadError": "无法下载共享文件",
+    "downloadSuccess": "下载成功开始",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "无需下载文件",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "无法创建zip文件",
+    "zipDownloadSuccess": "zip文件成功下载了"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "编辑链接",
       "copyLink": "复制链接",
       "notifyRecipients": "通知收件人",
-      "delete": "删除"
+      "delete": "删除",
+      "downloadShareFiles": "下载所有文件"
     },
     "bulkActions": {
       "delete": "删除",
-      "selected": "{count, plural, =1 {已选择1个共享} other {已选择#个共享}}"
+      "selected": "{count, plural, =1 {已选择1个共享} other {已选择#个共享}}",
+      "actions": "动作",
+      "download": "选择下载"
     },
     "selectAll": "全选",
     "selectShare": "选择共享 {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "预览",
-          "download": "下载"
+          "download": "下载",
+          "copyToMyFiles": "复制到我的文件",
+          "copying": "复制..."
         },
         "uploadedBy": "由 {name} 上传",
         "anonymous": "匿名",
@@ -1165,7 +1179,9 @@
         "downloadError": "下载文件时出错",
         "editSuccess": "文件更新成功",
         "editError": "更新文件时出错",
-        "previewNotAvailable": "预览不可用"
+        "previewNotAvailable": "预览不可用",
+        "copyError": "错误将文件复制到您的文件",
+        "copySuccess": "文件已成功复制到您的文件"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "取消",
         "preview": "预览",
         "download": "下载",
-        "delete": "删除"
+        "delete": "删除",
+        "copyToMyFiles": "复制到我的文件",
+        "copying": "复制..."
       },
       "editField": {
         "saveChanges": "保存更改",

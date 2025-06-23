@@ -714,7 +714,16 @@
     "notifyError": "Failed to notify recipients",
     "bulkDeleteError": "Failed to delete shares",
     "bulkDeleteLoading": "Deleting {count, plural, =1 {1 share} other {# shares}}...",
-    "bulkDeleteSuccess": "{count, plural, =1 {1 share deleted successfully} other {# shares deleted successfully}}"
+    "bulkDeleteSuccess": "{count, plural, =1 {1 share deleted successfully} other {# shares deleted successfully}}",
+    "downloadSuccess": "Download started successfully",
+    "downloadError": "Failed to download share files",
+    "noFilesToDownload": "No files available to download",
+    "creatingZip": "Creating ZIP file...",
+    "zipDownloadSuccess": "ZIP file downloaded successfully",
+    "zipDownloadError": "Failed to create ZIP file",
+    "singleShareZipName": "{shareName}_files.zip",
+    "multipleSharesZipName": "{count}_shares_files.zip",
+    "defaultShareName": "Share"
   },
   "shares": {
     "errors": {
@@ -777,9 +786,12 @@
       "editLink": "Edit Link",
       "copyLink": "Copy Link",
       "notifyRecipients": "Notify Recipients",
+      "downloadShareFiles": "Download All Files",
       "delete": "Delete"
     },
     "bulkActions": {
+      "actions": "Actions",
+      "download": "Download Selected",
       "delete": "Delete",
       "selected": "{count, plural, =1 {1 share selected} other {# shares selected}}"
     },

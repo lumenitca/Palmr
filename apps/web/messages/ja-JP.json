@@ -656,7 +656,16 @@
     "securityUpdateError": "セキュリティ設定の更新に失敗しました",
     "expirationUpdateError": "有効期限設定の更新に失敗しました",
     "securityUpdateSuccess": "セキュリティ設定が正常に更新されました",
-    "expirationUpdateSuccess": "有効期限設定が正常に更新されました"
+    "expirationUpdateSuccess": "有効期限設定が正常に更新されました",
+    "creatingZip": "zipファイルの作成...",
+    "defaultShareName": "共有",
+    "downloadError": "共有ファイルをダウンロードできませんでした",
+    "downloadSuccess": "ダウンロードは正常に開始されました",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "ダウンロードできるファイルはありません",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "zipファイルの作成に失敗しました",
+    "zipDownloadSuccess": "zipファイルは正常にダウンロードされました"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "リンク編集",
       "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
-      "delete": "削除"
+      "delete": "削除",
+      "downloadShareFiles": "すべてのファイルをダウンロードします"
     },
     "bulkActions": {
       "delete": "削除",
-      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}"
+      "selected": "{count, plural, =1 {1つの共有が選択されました} other {#つの共有が選択されました}}",
+      "actions": "アクション",
+      "download": "選択したダウンロード"
     },
     "selectAll": "すべて選択",
     "selectShare": "共有{shareName}を選択"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "プレビュー",
-          "download": "ダウンロード"
+          "download": "ダウンロード",
+          "copyToMyFiles": "私のファイルにコピーします",
+          "copying": "コピー..."
         },
         "uploadedBy": "{name}が送信",
         "anonymous": "匿名",
@@ -1165,7 +1179,9 @@
         "downloadError": "ファイルのダウンロードに失敗しました",
         "editSuccess": "ファイルを更新しました",
         "editError": "ファイルの更新に失敗しました",
-        "previewNotAvailable": "プレビューは利用できません"
+        "previewNotAvailable": "プレビューは利用できません",
+        "copyError": "ファイルにファイルをコピーするエラー",
+        "copySuccess": "ファイルに正常にコピーされたファイル"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "キャンセル",
         "preview": "プレビュー",
         "download": "ダウンロード",
-        "delete": "削除"
+        "delete": "削除",
+        "copyToMyFiles": "私のファイルにコピーします",
+        "copying": "コピー..."
       },
       "editField": {
         "saveChanges": "変更を保存",

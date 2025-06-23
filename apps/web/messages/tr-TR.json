@@ -656,7 +656,16 @@
     "securityUpdateError": "Güvenlik ayarlarını güncelleme başarısız",
     "expirationUpdateError": "Son kullanma ayarlarını güncelleme başarısız",
     "securityUpdateSuccess": "Güvenlik ayarları başarıyla güncellendi",
-    "expirationUpdateSuccess": "Son kullanma ayarları başarıyla güncellendi"
+    "expirationUpdateSuccess": "Son kullanma ayarları başarıyla güncellendi",
+    "creatingZip": "Zip dosyası oluşturma ...",
+    "defaultShareName": "Paylaşmak",
+    "downloadError": "Paylaşım dosyalarını indiremedi",
+    "downloadSuccess": "İndir başarıyla başladı",
+    "multipleSharesZipName": "{Count} _Shares_files.zip",
+    "noFilesToDownload": "İndirilebilecek dosya yok",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Zip dosyası oluşturulamadı",
+    "zipDownloadSuccess": "Zip dosyası başarıyla indirildi"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Bağlantıyı Düzenle",
       "copyLink": "Bağlantıyı Kopyala",
       "notifyRecipients": "Alıcıları Bilgilendir",
-      "delete": "Sil"
+      "delete": "Sil",
+      "downloadShareFiles": "Tüm dosyaları indirin"
     },
     "bulkActions": {
       "delete": "Sil",
-      "selected": "{count, plural, =1 {1 paylaşım seçildi} other {# paylaşım seçildi}}"
+      "selected": "{count, plural, =1 {1 paylaşım seçildi} other {# paylaşım seçildi}}",
+      "actions": "Eylem",
+      "download": "Seçili indir"
     },
     "selectAll": "Tümünü seç",
     "selectShare": "Paylaşım {shareName} seç"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Önizle",
-          "download": "İndir"
+          "download": "İndir",
+          "copyToMyFiles": "Dosyalarımı kopyala",
+          "copying": "Kopyalama ..."
         },
         "uploadedBy": "{name} tarafından gönderildi",
         "anonymous": "Anonim",
@@ -1165,7 +1179,9 @@
         "downloadError": "Dosya indirilirken hata oluştu",
         "editSuccess": "Dosya başarıyla güncellendi",
         "editError": "Dosya güncellenirken hata oluştu",
-        "previewNotAvailable": "Önizleme mevcut değil"
+        "previewNotAvailable": "Önizleme mevcut değil",
+        "copyError": "Dosyalarınıza dosyayı kopyalama hatası",
+        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "İptal",
         "preview": "Önizle",
         "download": "İndir",
-        "delete": "Sil"
+        "delete": "Sil",
+        "copyToMyFiles": "Dosyalarımı kopyala",
+        "copying": "Kopyalama ..."
       },
       "editField": {
         "saveChanges": "Değişiklikleri kaydet",

@@ -656,7 +656,16 @@
     "securityUpdateError": "Error al actualizar configuración de seguridad",
     "expirationUpdateError": "Error al actualizar configuración de expiración",
     "securityUpdateSuccess": "Configuración de seguridad actualizada exitosamente",
-    "expirationUpdateSuccess": "Configuración de expiración actualizada exitosamente"
+    "expirationUpdateSuccess": "Configuración de expiración actualizada exitosamente",
+    "creatingZip": "Creación de archivo zip ...",
+    "defaultShareName": "Compartir",
+    "downloadError": "No se pudo descargar archivos compartidos",
+    "downloadSuccess": "Descargar comenzó con éxito",
+    "multipleSharesZipName": "{Count} _shares_files.zip",
+    "noFilesToDownload": "No hay archivos disponibles para descargar",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "No se pudo crear un archivo zip",
+    "zipDownloadSuccess": "Archivo zip descargado correctamente"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Editar Enlace",
       "copyLink": "Copiar Enlace",
       "notifyRecipients": "Notificar Destinatarios",
-      "delete": "Eliminar"
+      "delete": "Eliminar",
+      "downloadShareFiles": "Descargar todos los archivos"
     },
     "bulkActions": {
       "delete": "Eliminar",
-      "selected": "{count, plural, =1 {1 compartido seleccionado} other {# compartidos seleccionados}}"
+      "selected": "{count, plural, =1 {1 compartido seleccionado} other {# compartidos seleccionados}}",
+      "actions": "Comportamiento",
+      "download": "Descargar Seleccionados"
     },
     "selectAll": "Seleccionar todo",
     "selectShare": "Seleccionar compartido {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Vista previa",
-          "download": "Descargar"
+          "download": "Descargar",
+          "copyToMyFiles": "Copiar a mis archivos",
+          "copying": "Proceso de copiar..."
         },
         "uploadedBy": "Enviado por {name}",
         "anonymous": "Anónimo",
@@ -1165,7 +1179,9 @@
         "downloadError": "Error al descargar archivo",
         "editSuccess": "Archivo actualizado con éxito",
         "editError": "Error al actualizar archivo",
-        "previewNotAvailable": "Vista previa no disponible"
+        "previewNotAvailable": "Vista previa no disponible",
+        "copyError": "Error de copiar el archivo a sus archivos",
+        "copySuccess": "Archivo copiado en sus archivos correctamente"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Cancelar",
         "preview": "Vista previa",
         "download": "Descargar",
-        "delete": "Eliminar"
+        "delete": "Eliminar",
+        "copyToMyFiles": "Copiar a mis archivos",
+        "copying": "Proceso de copiar..."
       },
       "editField": {
         "saveChanges": "Guardar cambios",

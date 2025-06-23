@@ -656,7 +656,16 @@
     "securityUpdateError": "Fout bij het bijwerken van beveiligingsinstellingen",
     "expirationUpdateError": "Fout bij het bijwerken van verloop instellingen",
     "securityUpdateSuccess": "Beveiligingsinstellingen succesvol bijgewerkt",
-    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt"
+    "expirationUpdateSuccess": "Verloop instellingen succesvol bijgewerkt",
+    "creatingZip": "Zip -bestand maken ...",
+    "defaultShareName": "Deel",
+    "downloadError": "Kan niet downloaden Delen -bestanden downloaden",
+    "downloadSuccess": "Download begonnen met succes",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Geen bestanden beschikbaar om te downloaden",
+    "singleShareZipName": "{Sharename} _files.zip",
+    "zipDownloadError": "Kan zip -bestand niet maken",
+    "zipDownloadSuccess": "Zipbestand met succes gedownload"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "Link Bewerken",
       "copyLink": "Link Kopiëren",
       "notifyRecipients": "Ontvangers Informeren",
-      "delete": "Verwijderen"
+      "delete": "Verwijderen",
+      "downloadShareFiles": "Download alle bestanden"
     },
     "bulkActions": {
       "delete": "Verwijderen",
-      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}"
+      "selected": "{count, plural, =1 {1 deel geselecteerd} other {# delen geselecteerd}}",
+      "actions": "Acties",
+      "download": "Download geselecteerd"
     },
     "selectAll": "Alles selecteren",
     "selectShare": "Deel {shareName} selecteren"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "Voorvertoning",
-          "download": "Downloaden"
+          "download": "Downloaden",
+          "copyToMyFiles": "Kopieer naar mijn bestanden",
+          "copying": "Kopiëren ..."
         },
         "uploadedBy": "Verzonden door {name}",
         "anonymous": "Anoniem",
@@ -1165,7 +1179,9 @@
         "downloadError": "Fout bij downloaden bestand",
         "editSuccess": "Bestand succesvol bijgewerkt",
         "editError": "Fout bij bijwerken bestand",
-        "previewNotAvailable": "Voorvertoning niet beschikbaar"
+        "previewNotAvailable": "Voorvertoning niet beschikbaar",
+        "copyError": "Fout bij het kopiëren van bestand naar uw bestanden",
+        "copySuccess": "Bestand gekopieerd naar uw bestanden succesvol"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "Annuleren",
         "preview": "Voorvertoning",
         "download": "Downloaden",
-        "delete": "Verwijderen"
+        "delete": "Verwijderen",
+        "copyToMyFiles": "Kopieer naar mijn bestanden",
+        "copying": "Kopiëren ..."
       },
       "editField": {
         "saveChanges": "Wijzigingen opslaan",

@@ -656,7 +656,16 @@
     "securityUpdateError": "فشل في تحديث إعدادات الأمان",
     "expirationUpdateError": "فشل في تحديث إعدادات انتهاء الصلاحية",
     "securityUpdateSuccess": "تم تحديث إعدادات الأمان بنجاح",
-    "expirationUpdateSuccess": "تم تحديث إعدادات انتهاء الصلاحية بنجاح"
+    "expirationUpdateSuccess": "تم تحديث إعدادات انتهاء الصلاحية بنجاح",
+    "creatingZip": "إنشاء ملف zip ...",
+    "defaultShareName": "يشارك",
+    "downloadError": "فشل تنزيل ملفات المشاركة",
+    "downloadSuccess": "بدأ التنزيل بنجاح",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "لا توجد ملفات متاحة للتنزيل",
+    "singleShareZipName": "{ShareName} _files.zip",
+    "zipDownloadError": "فشل في إنشاء ملف مضغوط",
+    "zipDownloadSuccess": "تم تنزيل ملف zip بنجاح"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "تحرير الرابط",
       "copyLink": "نسخ الرابط",
       "notifyRecipients": "إشعار المستقبلين",
-      "delete": "حذف"
+      "delete": "حذف",
+      "downloadShareFiles": "قم بتنزيل جميع الملفات"
     },
     "bulkActions": {
       "delete": "حذف",
-      "selected": "{count, plural, =1 {مشاركة واحدة محددة} other {# مشاركات محددة}}"
+      "selected": "{count, plural, =1 {مشاركة واحدة محددة} other {# مشاركات محددة}}",
+      "actions": "الإجراءات",
+      "download": "تنزيل محدد"
     },
     "selectAll": "تحديد الكل",
     "selectShare": "تحديد المشاركة {shareName}"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "معاينة",
-          "download": "تحميل"
+          "download": "تحميل",
+          "copyToMyFiles": "انسخ إلى ملفاتي",
+          "copying": "نسخ ..."
         },
         "uploadedBy": "تم الرفع بواسطة {name}",
         "anonymous": "مجهول",
@@ -1165,7 +1179,9 @@
         "downloadError": "خطأ في تحميل الملف",
         "editSuccess": "تم تحديث الملف بنجاح",
         "editError": "خطأ في تحديث الملف",
-        "previewNotAvailable": "المعاينة غير متوفرة"
+        "previewNotAvailable": "المعاينة غير متوفرة",
+        "copyError": "خطأ نسخ الملف إلى ملفاتك",
+        "copySuccess": "تم نسخ الملف إلى ملفاتك بنجاح"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "إلغاء",
         "preview": "معاينة",
         "download": "تحميل",
-        "delete": "حذف"
+        "delete": "حذف",
+        "copyToMyFiles": "انسخ إلى ملفاتي",
+        "copying": "نسخ ..."
       },
       "editField": {
         "saveChanges": "حفظ التغييرات",

@@ -656,7 +656,16 @@
     "securityUpdateError": "보안 설정 업데이트에 실패했습니다",
     "expirationUpdateError": "만료 설정 업데이트에 실패했습니다",
     "securityUpdateSuccess": "보안 설정이 성공적으로 업데이트되었습니다",
-    "expirationUpdateSuccess": "만료 설정이 성공적으로 업데이트되었습니다"
+    "expirationUpdateSuccess": "만료 설정이 성공적으로 업데이트되었습니다",
+    "creatingZip": "zip 파일 만들기 ...",
+    "defaultShareName": "공유하다",
+    "downloadError": "공유 파일을 다운로드하지 못했습니다",
+    "downloadSuccess": "다운로드가 성공적으로 시작되었습니다",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "다운로드 할 수있는 파일이 없습니다",
+    "singleShareZipName": "{sharename} _files.zip",
+    "zipDownloadError": "zip 파일을 만들지 못했습니다",
+    "zipDownloadSuccess": "zip 파일이 성공적으로 다운로드되었습니다"
   },
   "shares": {
     "errors": {
@@ -719,11 +728,14 @@
       "editLink": "링크 편집",
       "copyLink": "링크 복사",
       "notifyRecipients": "받는 사람에게 알림",
-      "delete": "삭제"
+      "delete": "삭제",
+      "downloadShareFiles": "모든 파일을 다운로드하십시오"
     },
     "bulkActions": {
       "delete": "삭제",
-      "selected": "{count, plural, =1 {1개의 공유가 선택됨} other {#개의 공유가 선택됨}}"
+      "selected": "{count, plural, =1 {1개의 공유가 선택됨} other {#개의 공유가 선택됨}}",
+      "actions": "행위",
+      "download": "선택한 다운로드"
     },
     "selectAll": "모두 선택",
     "selectShare": "공유 {shareName} 선택"
@@ -1157,7 +1169,9 @@
         },
         "actions": {
           "preview": "미리보기",
-          "download": "다운로드"
+          "download": "다운로드",
+          "copyToMyFiles": "내 파일에 복사하십시오",
+          "copying": "사자..."
         },
         "uploadedBy": "{name}님이 업로드함",
         "anonymous": "익명",
@@ -1165,7 +1179,9 @@
         "downloadError": "파일 다운로드 오류",
         "editSuccess": "파일이 성공적으로 업데이트됨",
         "editError": "파일 업데이트 오류",
-        "previewNotAvailable": "미리보기 불가"
+        "previewNotAvailable": "미리보기 불가",
+        "copyError": "파일에 파일을 복사합니다",
+        "copySuccess": "파일을 파일에 성공적으로 복사했습니다"
       }
     },
     "form": {
@@ -1347,7 +1363,9 @@
         "cancel": "취소",
         "preview": "미리보기",
         "download": "다운로드",
-        "delete": "삭제"
+        "delete": "삭제",
+        "copyToMyFiles": "내 파일에 복사하십시오",
+        "copying": "사자..."
       },
       "editField": {
         "saveChanges": "변경사항 저장",

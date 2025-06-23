@@ -678,7 +678,16 @@
     "securityUpdateError": "Falha ao atualizar configurações de segurança",
     "expirationUpdateError": "Falha ao atualizar configurações de expiração",
     "securityUpdateSuccess": "Configurações de segurança atualizadas com sucesso",
-    "expirationUpdateSuccess": "Configurações de expiração atualizadas com sucesso"
+    "expirationUpdateSuccess": "Configurações de expiração atualizadas com sucesso",
+    "creatingZip": "Criando arquivo zip ...",
+    "defaultShareName": "Compartilhar",
+    "downloadError": "Falha ao baixar arquivos de compartilhamento",
+    "downloadSuccess": "Download começou com sucesso",
+    "multipleSharesZipName": "{count} _shares_files.zip",
+    "noFilesToDownload": "Nenhum arquivo disponível para download",
+    "singleShareZipName": "{sharename}.zip",
+    "zipDownloadError": "Falha ao criar o arquivo zip",
+    "zipDownloadSuccess": "FILE DE ZIP FILHADO COMBONHADO com sucesso"
   },
   "shares": {
     "errors": {
@@ -713,7 +722,9 @@
     "selectShare": "Selecionar compartilhamento {shareName}",
     "bulkActions": {
       "selected": "{count, plural, =1 {1 compartilhamento selecionado} other {# compartilhamentos selecionados}}",
-      "delete": "Excluir"
+      "delete": "Excluir",
+      "actions": "Ações",
+      "download": "Download selecionado"
     },
     "columns": {
       "name": "NOME",
@@ -747,7 +758,8 @@
       "editLink": "Editar Link",
       "copyLink": "Copiar Link",
       "notifyRecipients": "Notificar Destinatários",
-      "delete": "Excluir"
+      "delete": "Excluir",
+      "downloadShareFiles": "Baixar todos os arquivos"
     }
   },
   "storageUsage": {
@@ -876,7 +888,11 @@
     "passwordRequired": "Senha é obrigatória",
     "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
     "nameRequired": "Nome é obrigatório",
-    "required": "Este campo é obrigatório"
+    "required": "Este campo é obrigatório",
+    "firstNameRequired": "O primeiro nome é necessário",
+    "lastNameRequired": "O sobrenome é necessário",
+    "usernameLength": "O nome de usuário deve ter pelo menos 3 caracteres",
+    "usernameSpaces": "O nome de usuário não pode conter espaços"
   },
   "bulkDownload": {
     "title": "Download em Lote",
