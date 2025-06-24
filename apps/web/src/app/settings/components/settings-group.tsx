@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { createFieldDescriptions, createGroupMetadata } from "../constants";
 import { SettingsGroupProps } from "../types";
 import { isFieldHidden, SettingsInput } from "./settings-input";
+import { SmtpTestButton } from "./smtp-test-button";
 
 export function SettingsGroup({ group, configs, form, isCollapsed, onToggleCollapse, onSubmit }: SettingsGroupProps) {
   const t = useTranslations();
@@ -18,6 +19,8 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
     title: group,
     description: t("settings.groups.defaultDescription"),
   };
+
+  const isEmailGroup = group === "email";
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -70,18 +73,32 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
                 </div>
               ))}
           </div>
-          <div className="flex justify-end mt-4">
-            <Button
-              variant="default"
-              disabled={form.formState.isSubmitting}
-              className="flex items-center gap-2"
-              type="submit"
-            >
-              {!form.formState.isSubmitting && <IconDeviceFloppy className="h-4 w-4" />}
-              {t("settings.buttons.save", {
-                group: t(`settings.groups.${group}.title`, { defaultValue: metadata.title }),
-              })}
-            </Button>
+          <div className="flex justify-between items-center mt-4">
+            {isEmailGroup && (
+              <SmtpTestButton
+                smtpEnabled={form.watch("configs.smtpEnabled") || "false"}
+                getFormValues={() => ({
+                  smtpEnabled: form.getValues("configs.smtpEnabled") || "false",
+                  smtpHost: form.getValues("configs.smtpHost") || "",
+                  smtpPort: form.getValues("configs.smtpPort") || "",
+                  smtpUser: form.getValues("configs.smtpUser") || "",
+                  smtpPass: form.getValues("configs.smtpPass") || "",
+                })}
+              />
+            )}
+            <div className={`flex ${isEmailGroup ? "ml-auto" : ""}`}>
+              <Button
+                variant="default"
+                disabled={form.formState.isSubmitting}
+                className="flex items-center gap-2"
+                type="submit"
+              >
+                {!form.formState.isSubmitting && <IconDeviceFloppy className="h-4 w-4" />}
+                {t("settings.buttons.save", {
+                  group: t(`settings.groups.${group}.title`, { defaultValue: metadata.title }),
+                })}
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>

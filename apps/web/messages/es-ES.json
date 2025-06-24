@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Dominios de Correo Admin",
         "description": "Dominios de correo que reciben privilegios de administrador automáticamente"
+      },
+      "testSmtp": {
+        "title": "Probar Conexión SMTP",
+        "description": "Probar si la configuración SMTP es válida"
       }
     },
     "buttons": {
-      "save": "Guardar {group}"
+      "save": "Guardar {group}",
+      "testSmtp": "Probar Conexión",
+      "testing": "Probando..."
     },
     "errors": {
       "loadFailed": "Error al cargar la configuración",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "No hay cambios para guardar",
-      "updateSuccess": "Configuración de {group} actualizada exitosamente"
+      "updateSuccess": "Configuración de {group} actualizada exitosamente",
+      "smtpTestSuccess": "¡Conexión SMTP exitosa! Tu configuración de correo funciona correctamente.",
+      "smtpTestFailed": "Falló la conexión SMTP: {error}",
+      "smtpTestGenericError": "Error al probar la conexión SMTP. Por favor revisa tu configuración e inténtalo de nuevo."
     },
     "title": "Configuración",
     "breadcrumb": "Configuración",
     "pageTitle": "Configuración",
     "tooltips": {
       "oidcScope": "Ingrese un ámbito y presione Enter para agregar",
-      "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar"
+      "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar",
+      "testSmtp": "Prueba la conexión SMTP con los valores actualmente ingresados en el formulario. Para hacer los cambios permanentes, recuerda guardar la configuración después de probar."
     },
     "redirectUri": {
       "placeholder": "https://misitio.com",
@@ -1189,7 +1199,23 @@
         "editError": "Error al actualizar archivo",
         "previewNotAvailable": "Vista previa no disponible",
         "copyError": "Error de copiar el archivo a sus archivos",
-        "copySuccess": "Archivo copiado en sus archivos correctamente"
+        "copySuccess": "Archivo copiado en sus archivos correctamente",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 archivo seleccionado} other {# archivos seleccionados}}",
+          "actions": "Acciones",
+          "download": "Descargar Seleccionados",
+          "copyToMyFiles": "Copiar Seleccionados a Mis Archivos",
+          "delete": "Eliminar Seleccionados"
+        },
+        "bulkCopyProgress": "Copiando {count, plural, =1 {1 archivo} other {# archivos}} a tus archivos...",
+        "bulkCopySuccess": "{count, plural, =1 {1 archivo copiado a tus archivos correctamente} other {# archivos copiados a tus archivos correctamente}}",
+        "bulkDeleteConfirmButton": "Eliminar {count, plural, =1 {Archivo} other {Archivos}}",
+        "bulkDeleteConfirmMessage": "¿Estás seguro de que quieres eliminar {count, plural, =1 {este archivo} other {estos # archivos}}? Esta acción no se puede deshacer.",
+        "bulkDeleteConfirmTitle": "Eliminar Archivos Seleccionados",
+        "bulkDeleteProgress": "Eliminando {count, plural, =1 {1 archivo} other {# archivos}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 archivo eliminado correctamente} other {# archivos eliminados correctamente}}",
+        "selectAll": "Seleccionar todo",
+        "selectFile": "Seleccionar archivo {fileName}"
       }
     },
     "form": {

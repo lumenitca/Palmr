@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Домены Email Администратора",
         "description": "Домены электронной почты, которые автоматически получают права администратора"
+      },
+      "testSmtp": {
+        "title": "Проверить SMTP-соединение",
+        "description": "Проверить правильность настройки SMTP"
       }
     },
     "buttons": {
-      "save": "Сохранить {group}"
+      "save": "Сохранить {group}",
+      "testSmtp": "Проверить соединение",
+      "testing": "Проверка..."
     },
     "errors": {
       "loadFailed": "Ошибка загрузки настроек",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Изменений для сохранения нет",
-      "updateSuccess": "Настройки {group} успешно обновлены"
+      "updateSuccess": "Настройки {group} успешно обновлены",
+      "smtpTestFailed": "Ошибка SMTP-соединения: {error}",
+      "smtpTestGenericError": "Не удалось проверить SMTP-соединение. Пожалуйста, проверьте настройки и попробуйте снова.",
+      "smtpTestSuccess": "SMTP-соединение успешно установлено! Ваша конфигурация электронной почты работает корректно."
     },
     "title": "Настройки",
     "breadcrumb": "Настройки",
     "pageTitle": "Настройки",
     "tooltips": {
       "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar"
+      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
+      "testSmtp": "Проверяет SMTP-соединение с текущими значениями в форме. Чтобы сохранить изменения, не забудьте сохранить настройки после тестирования."
     },
     "redirectUri": {
       "placeholder": "https://meusite.com",
@@ -1189,7 +1199,23 @@
         "editError": "Ошибка при обновлении файла",
         "previewNotAvailable": "Предпросмотр недоступен",
         "copyError": "Ошибка копирования файла в ваши файлы",
-        "copySuccess": "Файл успешно скопирован в ваши файлы"
+        "copySuccess": "Файл успешно скопирован в ваши файлы",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 файл выбран} other {# файлов выбрано}}",
+          "actions": "Действия",
+          "download": "Скачать выбранные",
+          "copyToMyFiles": "Копировать выбранные в мои файлы",
+          "delete": "Удалить выбранные"
+        },
+        "bulkCopyProgress": "Копирование {count, plural, =1 {1 файла} other {# файлов}} в ваши файлы...",
+        "bulkCopySuccess": "{count, plural, =1 {1 файл успешно скопирован в ваши файлы} other {# файлов успешно скопировано в ваши файлы}}",
+        "bulkDeleteConfirmButton": "Удалить {count, plural, =1 {файл} other {файлы}}",
+        "bulkDeleteConfirmMessage": "Вы уверены, что хотите удалить {count, plural, =1 {этот файл} other {эти # файлов}}? Это действие нельзя отменить.",
+        "bulkDeleteConfirmTitle": "Удалить выбранные файлы",
+        "bulkDeleteProgress": "Удаление {count, plural, =1 {1 файла} other {# файлов}}...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 файл успешно удален} other {# файлов успешно удалено}}",
+        "selectAll": "Выбрать все",
+        "selectFile": "Выбрать файл {fileName}"
       }
     },
     "form": {

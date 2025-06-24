@@ -465,6 +465,10 @@
         "title": "Sender Email",
         "description": "Sender email address"
       },
+      "testSmtp": {
+        "title": "Test SMTP Connection",
+        "description": "Test if the SMTP configuration is valid"
+      },
       "maxLoginAttempts": {
         "title": "Maximum Login Attempts",
         "description": "Maximum number of login attempts before blocking"
@@ -531,7 +535,9 @@
       }
     },
     "buttons": {
-      "save": "Save {group}"
+      "save": "Save {group}",
+      "testSmtp": "Test Connection",
+      "testing": "Testing..."
     },
     "errors": {
       "loadFailed": "Failed to load settings",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "No changes to save",
-      "updateSuccess": "{group} settings updated successfully"
+      "updateSuccess": "{group} settings updated successfully",
+      "smtpTestSuccess": "SMTP connection successful! Your email configuration is working correctly.",
+      "smtpTestFailed": "SMTP connection failed: {error}",
+      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again."
     },
     "title": "Settings",
     "breadcrumb": "Settings",
     "pageTitle": "Settings",
     "tooltips": {
       "oidcScope": "Enter a scope and press Enter to add",
-      "oidcAdminEmailDomains": "Enter a domain and press Enter to add"
+      "oidcAdminEmailDomains": "Enter a domain and press Enter to add",
+      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing."
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -1189,7 +1199,23 @@
         "editError": "Error updating file",
         "previewNotAvailable": "Preview not available",
         "copySuccess": "File copied to your files successfully",
-        "copyError": "Error copying file to your files"
+        "copyError": "Error copying file to your files",
+        "bulkCopySuccess": "{count, plural, =1 {1 file copied to your files successfully} other {# files copied to your files successfully}}",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
+        "bulkCopyProgress": "Copying {count, plural, =1 {1 file} other {# files}} to your files...",
+        "bulkDeleteProgress": "Deleting {count, plural, =1 {1 file} other {# files}}...",
+        "bulkDeleteConfirmTitle": "Delete Selected Files",
+        "bulkDeleteConfirmMessage": "Are you sure you want to delete {count, plural, =1 {this file} other {these # files}}? This action cannot be undone.",
+        "bulkDeleteConfirmButton": "Delete {count, plural, =1 {File} other {Files}}",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 file selected} other {# files selected}}",
+          "actions": "Actions",
+          "download": "Download Selected",
+          "copyToMyFiles": "Copy Selected to My Files",
+          "delete": "Delete Selected"
+        },
+        "selectAll": "Select all",
+        "selectFile": "Select file {fileName}"
       }
     },
     "form": {

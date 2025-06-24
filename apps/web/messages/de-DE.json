@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Admin-E-Mail-Domains",
         "description": "E-Mail-Domains, die automatisch Administratorrechte erhalten"
+      },
+      "testSmtp": {
+        "title": "SMTP-Verbindung testen",
+        "description": "Testen Sie, ob die SMTP-Konfiguration gültig ist"
       }
     },
     "buttons": {
-      "save": "{group} speichern"
+      "save": "{group} speichern",
+      "testSmtp": "Verbindung testen",
+      "testing": "Teste..."
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Einstellungen",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Keine Änderungen zum Speichern",
-      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert"
+      "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert",
+      "smtpTestFailed": "SMTP-Verbindung fehlgeschlagen: {error}",
+      "smtpTestGenericError": "SMTP-Verbindungstest fehlgeschlagen. Bitte überprüfen Sie Ihre Einstellungen und versuchen Sie es erneut.",
+      "smtpTestSuccess": "SMTP-Verbindung erfolgreich! Ihre E-Mail-Konfiguration funktioniert korrekt."
     },
     "title": "Einstellungen",
     "breadcrumb": "Einstellungen",
     "pageTitle": "Einstellungen",
     "tooltips": {
       "oidcScope": "Geben Sie einen Scope ein und drücken Sie Enter zum Hinzufügen",
-      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen"
+      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen",
+      "testSmtp": "Testet die SMTP-Verbindung mit den aktuell im Formular eingegebenen Werten. Um die Änderungen dauerhaft zu machen, denken Sie daran, Ihre Einstellungen nach dem Test zu speichern."
     },
     "redirectUri": {
       "placeholder": "https://meineseite.com",
@@ -1189,7 +1199,23 @@
         "editError": "Fehler beim Aktualisieren der Datei",
         "previewNotAvailable": "Vorschau nicht verfügbar",
         "copyError": "Fehler beim Kopieren der Datei in Ihre Dateien",
-        "copySuccess": "Datei erfolgreich in Ihre Dateien kopiert"
+        "copySuccess": "Datei erfolgreich in Ihre Dateien kopiert",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 Datei ausgewählt} other {# Dateien ausgewählt}}",
+          "actions": "Aktionen",
+          "download": "Ausgewählte herunterladen",
+          "copyToMyFiles": "Ausgewählte in meine Dateien kopieren",
+          "delete": "Ausgewählte löschen"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1 Datei wird} other {# Dateien werden}} in Ihre Dateien kopiert...",
+        "bulkCopySuccess": "{count, plural, =1 {1 Datei wurde erfolgreich in Ihre Dateien kopiert} other {# Dateien wurden erfolgreich in Ihre Dateien kopiert}}",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {Datei löschen} other {Dateien löschen}}",
+        "bulkDeleteConfirmMessage": "Sind Sie sicher, dass Sie {count, plural, =1 {diese Datei} other {diese # Dateien}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+        "bulkDeleteConfirmTitle": "Ausgewählte Dateien löschen",
+        "bulkDeleteProgress": "{count, plural, =1 {1 Datei wird} other {# Dateien werden}} gelöscht...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 Datei wurde erfolgreich gelöscht} other {# Dateien wurden erfolgreich gelöscht}}",
+        "selectAll": "Alle auswählen",
+        "selectFile": "Datei {fileName} auswählen"
       }
     },
     "form": {

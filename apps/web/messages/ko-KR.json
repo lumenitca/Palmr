@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "관리자 이메일 도메인",
         "description": "자동으로 관리자 권한이 부여되는 이메일 도메인"
+      },
+      "testSmtp": {
+        "title": "SMTP 연결 테스트",
+        "description": "SMTP 구성이 유효한지 테스트합니다"
       }
     },
     "buttons": {
-      "save": "{group} 저장"
+      "save": "{group} 저장",
+      "testSmtp": "연결 테스트",
+      "testing": "테스트 중..."
     },
     "errors": {
       "loadFailed": "설정을 불러오는데 실패했습니다",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "저장할 변경 사항이 없습니다",
-      "updateSuccess": "{group} 설정이 성공적으로 업데이트되었습니다"
+      "updateSuccess": "{group} 설정이 성공적으로 업데이트되었습니다",
+      "smtpTestFailed": "SMTP 연결 실패: {error}",
+      "smtpTestGenericError": "SMTP 연결 테스트에 실패했습니다. 설정을 확인하고 다시 시도해주세요.",
+      "smtpTestSuccess": "SMTP 연결 성공! 이메일 구성이 올바르게 작동합니다."
     },
     "title": "설정",
     "breadcrumb": "설정",
     "pageTitle": "설정",
     "tooltips": {
       "oidcScope": "스코프를 입력하고 Enter 키를 눌러 추가",
-      "oidcAdminEmailDomains": "도메인을 입력하고 Enter 키를 눌러 추가"
+      "oidcAdminEmailDomains": "도메인을 입력하고 Enter 키를 눌러 추가",
+      "testSmtp": "현재 입력된 값으로 SMTP 연결을 테스트합니다. 변경 사항을 영구적으로 적용하려면 테스트 후 설정을 저장하는 것을 잊지 마세요."
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -1189,7 +1199,23 @@
         "editError": "파일 업데이트 오류",
         "previewNotAvailable": "미리보기 불가",
         "copyError": "파일에 파일을 복사합니다",
-        "copySuccess": "파일을 파일에 성공적으로 복사했습니다"
+        "copySuccess": "파일을 파일에 성공적으로 복사했습니다",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1개의 파일 선택됨} other {#개의 파일 선택됨}}",
+          "actions": "작업",
+          "download": "선택한 항목 다운로드",
+          "copyToMyFiles": "선택한 항목을 내 파일로 복사",
+          "delete": "선택한 항목 삭제"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1개의 파일} other {#개의 파일}}을(를) 내 파일로 복사하는 중...",
+        "bulkCopySuccess": "{count, plural, =1 {1개의 파일이} other {#개의 파일이}} 내 파일로 성공적으로 복사됨",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {파일} other {파일}} 삭제",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {이 파일을} other {이 #개의 파일을}} 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+        "bulkDeleteConfirmTitle": "선택한 파일 삭제",
+        "bulkDeleteProgress": "{count, plural, =1 {1개의 파일} other {#개의 파일}} 삭제 중...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1개의 파일이} other {#개의 파일이}} 성공적으로 삭제됨",
+        "selectAll": "모두 선택",
+        "selectFile": "{fileName} 파일 선택"
       }
     },
     "form": {

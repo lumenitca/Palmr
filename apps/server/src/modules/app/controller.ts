@@ -1,3 +1,4 @@
+import { EmailService } from "../email/service";
 import { LogoService } from "./logo.service";
 import { AppService } from "./service";
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -26,6 +27,7 @@ if (!fs.existsSync(uploadsDir)) {
 export class AppController {
   private appService = new AppService();
   private logoService = new LogoService();
+  private emailService = new EmailService();
 
   async getAppInfo(request: FastifyRequest, reply: FastifyReply) {
     try {
@@ -65,6 +67,24 @@ export class AppController {
       const updates = request.body as Array<{ key: string; value: string }>;
       const configs = await this.appService.bulkUpdateConfigs(updates);
       return reply.send({ configs });
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async testSmtpConnection(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      await request.jwtVerify();
+
+      if (!(request as any).user?.isAdmin) {
+        return reply.status(403).send({ error: "Access restricted to administrators" });
+      }
+
+      const body = request.body as any;
+      const smtpConfig = body.smtpConfig || undefined;
+
+      const result = await this.emailService.testConnection(smtpConfig);
+      return reply.send(result);
     } catch (error: any) {
       return reply.status(400).send({ error: error.message });
     }

@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "管理者メールドメイン",
         "description": "自動的に管理者権限が付与されるメールドメイン"
+      },
+      "testSmtp": {
+        "title": "SMTP接続テスト",
+        "description": "SMTP設定が有効かどうかをテストします"
       }
     },
     "buttons": {
-      "save": "{group}を保存"
+      "save": "{group}を保存",
+      "testSmtp": "接続テスト",
+      "testing": "テスト中..."
     },
     "errors": {
       "loadFailed": "設定の読み込みに失敗しました",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "保存する変更はありません",
-      "updateSuccess": "{group}の設定が正常に更新されました"
+      "updateSuccess": "{group}の設定が正常に更新されました",
+      "smtpTestFailed": "SMTP接続に失敗しました: {error}",
+      "smtpTestGenericError": "SMTP接続のテストに失敗しました。設定を確認して再度お試しください。",
+      "smtpTestSuccess": "SMTP接続に成功しました！メール設定は正常に動作しています。"
     },
     "title": "設定",
     "breadcrumb": "設定",
     "pageTitle": "設定",
     "tooltips": {
       "oidcScope": "スコープを入力してEnterキーを押して追加",
-      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加"
+      "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加",
+      "testSmtp": "フォームに現在入力されている値でSMTP接続をテストします。変更を永続化するには、テスト後に設定を保存することを忘れないでください。"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -1189,7 +1199,23 @@
         "editError": "ファイルの更新に失敗しました",
         "previewNotAvailable": "プレビューは利用できません",
         "copyError": "ファイルにファイルをコピーするエラー",
-        "copySuccess": "ファイルに正常にコピーされたファイル"
+        "copySuccess": "ファイルに正常にコピーされたファイル",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1ファイルを選択} other {#ファイルを選択}}",
+          "actions": "アクション",
+          "download": "選択したファイルをダウンロード",
+          "copyToMyFiles": "選択したファイルを私のファイルにコピー",
+          "delete": "選択したファイルを削除"
+        },
+        "bulkCopyProgress": "{count, plural, =1 {1ファイル} other {#ファイル}}を私のファイルにコピー中...",
+        "bulkCopySuccess": "{count, plural, =1 {1ファイル} other {#ファイル}}を私のファイルに正常にコピーしました",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {ファイル} other {ファイル}}を削除",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {このファイル} other {これらの#ファイル}}を削除してもよろしいですか？この操作は取り消せません。",
+        "bulkDeleteConfirmTitle": "選択したファイルを削除",
+        "bulkDeleteProgress": "{count, plural, =1 {1ファイル} other {#ファイル}}を削除中...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1ファイル} other {#ファイル}}を正常に削除しました",
+        "selectAll": "すべて選択",
+        "selectFile": "ファイル{fileName}を選択"
       }
     },
     "form": {

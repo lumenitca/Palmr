@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   IconCheck,
+  IconChevronDown,
   IconClipboardCopy,
   IconDownload,
   IconEdit,
@@ -19,7 +20,21 @@ import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -262,6 +277,7 @@ interface FileRowProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
   hoveredFile: HoverState | null;
   copyingFile: string | null;
+  isSelected: boolean;
   onStartEdit: (fileId: string, field: string, currentValue: string) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
@@ -272,6 +288,7 @@ interface FileRowProps {
   onDownload: (file: ReverseShareFile) => void;
   onDelete: (file: ReverseShareFile) => void;
   onCopy: (file: ReverseShareFile) => void;
+  onSelectFile: (fileId: string, checked: boolean) => void;
 }
 
 function FileRow({
@@ -281,6 +298,7 @@ function FileRow({
   inputRef,
   hoveredFile,
   copyingFile,
+  isSelected,
   onStartEdit,
   onSaveEdit,
   onCancelEdit,
@@ -291,12 +309,20 @@ function FileRow({
   onDownload,
   onDelete,
   onCopy,
+  onSelectFile,
 }: FileRowProps) {
   const t = useTranslations();
   const { icon: FileIcon, color } = getFileIcon(file.name);
 
   return (
     <TableRow key={file.id}>
+      <TableCell>
+        <Checkbox
+          checked={isSelected}
+          onCheckedChange={(checked: boolean) => onSelectFile(file.id, checked)}
+          aria-label={t("reverseShares.modals.receivedFiles.selectFile", { fileName: file.name })}
+        />
+      </TableCell>
       <TableCell>
         <div className="flex items-center gap-3">
           <FileIcon className={`h-8 w-8 ${color} flex-shrink-0`} />
@@ -425,8 +451,18 @@ export function ReceivedFilesModal({
   const [previewFile, setPreviewFile] = useState<ReverseShareFile | null>(null);
   const [hoveredFile, setHoveredFile] = useState<HoverState | null>(null);
   const [copyingFile, setCopyingFile] = useState<string | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
+  const [bulkCopying, setBulkCopying] = useState(false);
+  const [bulkDeleting, setBulkDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [filesToDeleteBulk, setFilesToDeleteBulk] = useState<ReverseShareFile[]>([]);
 
   const { editingFile, editValue, setEditValue, inputRef, startEdit, cancelEdit } = useFileEdit();
+
+  // Clear selections when files change
+  useEffect(() => {
+    setSelectedFiles(new Set());
+  }, [reverseShare?.files]);
 
   const getTotalSize = () => {
     if (!reverseShare?.files) return "0 B";
@@ -548,6 +584,176 @@ export function ReceivedFilesModal({
 
   const files = reverseShare.files || [];
 
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedFiles(new Set(files.map((file) => file.id)));
+    } else {
+      setSelectedFiles(new Set());
+    }
+  };
+
+  const handleSelectFile = (fileId: string, checked: boolean) => {
+    const newSelected = new Set(selectedFiles);
+    if (checked) {
+      newSelected.add(fileId);
+    } else {
+      newSelected.delete(fileId);
+    }
+    setSelectedFiles(newSelected);
+  };
+
+  const getSelectedFileObjects = () => {
+    return files.filter((file) => selectedFiles.has(file.id));
+  };
+
+  const isAllSelected = files.length > 0 && selectedFiles.size === files.length;
+
+  const handleBulkDownload = async () => {
+    const selectedFileObjects = getSelectedFileObjects();
+    if (selectedFileObjects.length === 0) return;
+
+    try {
+      toast.promise(
+        (async () => {
+          const JSZip = (await import("jszip")).default;
+          const zip = new JSZip();
+
+          const downloadPromises = selectedFileObjects.map(async (file) => {
+            try {
+              const response = await downloadReverseShareFile(file.id);
+              const downloadUrl = response.data.url;
+              const fileResponse = await fetch(downloadUrl);
+
+              if (!fileResponse.ok) {
+                throw new Error(`Failed to download ${file.name}`);
+              }
+
+              const blob = await fileResponse.blob();
+              zip.file(file.name, blob);
+            } catch (error) {
+              console.error(`Error downloading file ${file.name}:`, error);
+              throw error;
+            }
+          });
+
+          await Promise.all(downloadPromises);
+
+          const zipBlob = await zip.generateAsync({ type: "blob" });
+          const zipName = `${reverseShare.name || "received_files"}_files.zip`;
+
+          const url = URL.createObjectURL(zipBlob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = zipName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          // Clear selections after successful download
+          setSelectedFiles(new Set());
+        })(),
+        {
+          loading: t("shareManager.creatingZip"),
+          success: t("shareManager.zipDownloadSuccess"),
+          error: t("shareManager.zipDownloadError"),
+        }
+      );
+    } catch (error) {
+      console.error("Error creating ZIP:", error);
+    }
+  };
+
+  const handleBulkCopyToMyFiles = async () => {
+    const selectedFileObjects = getSelectedFileObjects();
+    if (selectedFileObjects.length === 0) return;
+
+    toast.promise(
+      (async () => {
+        setBulkCopying(true);
+        try {
+          const copyPromises = selectedFileObjects.map(async (file) => {
+            try {
+              await copyReverseShareFileToUserFiles(file.id);
+            } catch (error: any) {
+              console.error(`Error copying file ${file.name}:`, error);
+              throw new Error(`Failed to copy ${file.name}: ${error.response?.data?.error || error.message}`);
+            }
+          });
+
+          await Promise.all(copyPromises);
+
+          // Clear selections after successful copy
+          setSelectedFiles(new Set());
+        } finally {
+          setBulkCopying(false);
+        }
+      })(),
+      {
+        loading: t("reverseShares.modals.receivedFiles.bulkCopyProgress", { count: selectedFileObjects.length }),
+        success: t("reverseShares.modals.receivedFiles.bulkCopySuccess", { count: selectedFileObjects.length }),
+        error: (error: any) => {
+          if (error.message.includes("File size exceeds") || error.message.includes("Insufficient storage")) {
+            return error.message;
+          } else {
+            return t("reverseShares.modals.receivedFiles.copyError");
+          }
+        },
+      }
+    );
+  };
+
+  const handleBulkDelete = () => {
+    const selectedFileObjects = getSelectedFileObjects();
+    if (selectedFileObjects.length === 0) return;
+
+    setFilesToDeleteBulk(selectedFileObjects);
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmBulkDelete = async () => {
+    if (filesToDeleteBulk.length === 0) return;
+
+    setShowDeleteConfirm(false);
+
+    toast.promise(
+      (async () => {
+        setBulkDeleting(true);
+        try {
+          const deletePromises = filesToDeleteBulk.map(async (file) => {
+            try {
+              await deleteReverseShareFile(file.id);
+            } catch (error) {
+              console.error(`Error deleting file ${file.name}:`, error);
+              throw new Error(`Failed to delete ${file.name}`);
+            }
+          });
+
+          await Promise.all(deletePromises);
+
+          // Clear selections and refresh data
+          setSelectedFiles(new Set());
+          setFilesToDeleteBulk([]);
+          if (onRefresh) {
+            await onRefresh();
+          }
+          if (refreshReverseShare) {
+            await refreshReverseShare(reverseShare.id);
+          }
+        } finally {
+          setBulkDeleting(false);
+        }
+      })(),
+      {
+        loading: t("reverseShares.modals.receivedFiles.bulkDeleteProgress", { count: filesToDeleteBulk.length }),
+        success: t("reverseShares.modals.receivedFiles.bulkDeleteSuccess", { count: filesToDeleteBulk.length }),
+        error: "Error deleting selected files",
+      }
+    );
+  };
+
+  const showBulkActions = selectedFiles.size > 0;
+
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
@@ -574,6 +780,59 @@ export function ReceivedFilesModal({
 
             <Separator />
 
+            {showBulkActions && (
+              <div className="flex items-center justify-between p-4 bg-muted/30 border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-foreground">
+                    {t("reverseShares.modals.receivedFiles.bulkActions.selected", { count: selectedFiles.size })}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="default" size="sm" className="gap-2">
+                        {t("reverseShares.modals.receivedFiles.bulkActions.actions")}
+                        <IconChevronDown className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-[200px]">
+                      <DropdownMenuItem className="cursor-pointer py-2" onClick={handleBulkDownload}>
+                        <IconDownload className="h-4 w-4" />
+                        {t("reverseShares.modals.receivedFiles.bulkActions.download")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="cursor-pointer py-2"
+                        onClick={handleBulkCopyToMyFiles}
+                        disabled={bulkCopying}
+                      >
+                        {bulkCopying ? (
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent"></div>
+                        ) : (
+                          <IconClipboardCopy className="h-4 w-4" />
+                        )}
+                        {t("reverseShares.modals.receivedFiles.bulkActions.copyToMyFiles")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="cursor-pointer py-2 text-destructive focus:text-destructive"
+                        onClick={handleBulkDelete}
+                        disabled={bulkDeleting}
+                      >
+                        {bulkDeleting ? (
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-red-600 border-t-transparent"></div>
+                        ) : (
+                          <IconTrash className="h-4 w-4" />
+                        )}
+                        {t("reverseShares.modals.receivedFiles.bulkActions.delete")}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <Button variant="outline" size="sm" onClick={() => setSelectedFiles(new Set())}>
+                    {t("common.cancel")}
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {files.length === 0 ? (
               <div className="flex flex-col items-center justify-center flex-1 gap-4 py-12">
                 <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
@@ -591,6 +850,13 @@ export function ReceivedFilesModal({
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead className="w-[50px]">
+                        <Checkbox
+                          checked={isAllSelected}
+                          onCheckedChange={handleSelectAll}
+                          aria-label={t("reverseShares.modals.receivedFiles.selectAll")}
+                        />
+                      </TableHead>
                       <TableHead>{t("reverseShares.modals.receivedFiles.columns.file")}</TableHead>
                       <TableHead>{t("reverseShares.modals.receivedFiles.columns.size")}</TableHead>
                       <TableHead>{t("reverseShares.modals.receivedFiles.columns.sender")}</TableHead>
@@ -610,6 +876,7 @@ export function ReceivedFilesModal({
                         inputRef={inputRef}
                         hoveredFile={hoveredFile}
                         copyingFile={copyingFile}
+                        isSelected={selectedFiles.has(file.id)}
                         onStartEdit={startEdit}
                         onSaveEdit={saveEdit}
                         onCancelEdit={cancelEdit}
@@ -620,6 +887,7 @@ export function ReceivedFilesModal({
                         onDownload={handleDownload}
                         onDelete={handleDeleteFile}
                         onCopy={handleCopyFile}
+                        onSelectFile={handleSelectFile}
                       />
                     ))}
                   </TableBody>
@@ -627,6 +895,46 @@ export function ReceivedFilesModal({
               </ScrollArea>
             )}
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{t("reverseShares.modals.receivedFiles.bulkDeleteConfirmTitle")}</DialogTitle>
+            <DialogDescription>
+              {t("reverseShares.modals.receivedFiles.bulkDeleteConfirmMessage", { count: filesToDeleteBulk.length })}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="max-h-48 overflow-y-auto border rounded-lg p-2">
+            <div className="space-y-1">
+              {filesToDeleteBulk.map((file) => {
+                const { icon: FileIcon, color } = getFileIcon(file.name);
+                return (
+                  <div key={file.id} className="flex items-center gap-2 p-2 bg-muted/20 rounded text-sm">
+                    <FileIcon className={`h-4 w-4 ${color} flex-shrink-0`} />
+                    <span className="truncate" title={file.name}>
+                      {file.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <DialogFooter className="flex gap-2">
+            <Button variant="outline" onClick={() => setShowDeleteConfirm(false)}>
+              {t("common.cancel")}
+            </Button>
+            <Button variant="destructive" onClick={confirmBulkDelete} disabled={bulkDeleting}>
+              {bulkDeleting ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
+              ) : null}
+              {t("reverseShares.modals.receivedFiles.bulkDeleteConfirmButton", { count: filesToDeleteBulk.length })}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 

@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Yönetici E-posta Alanları",
         "description": "Otomatik olarak yönetici ayrıcalıkları alan e-posta alanları"
+      },
+      "testSmtp": {
+        "title": "SMTP Bağlantısını Test Et",
+        "description": "SMTP yapılandırmasının geçerli olup olmadığını test et"
       }
     },
     "buttons": {
-      "save": "{group} Kaydet"
+      "save": "{group} Kaydet",
+      "testSmtp": "Bağlantıyı Test Et",
+      "testing": "Test Ediliyor..."
     },
     "errors": {
       "loadFailed": "Ayarlar yüklenemedi",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Kaydedilecek değişiklik yok",
-      "updateSuccess": "{group} ayarları başarıyla güncellendi"
+      "updateSuccess": "{group} ayarları başarıyla güncellendi",
+      "smtpTestFailed": "SMTP bağlantısı başarısız: {error}",
+      "smtpTestGenericError": "SMTP bağlantısı test edilemedi. Lütfen ayarlarınızı kontrol edin ve tekrar deneyin.",
+      "smtpTestSuccess": "SMTP bağlantısı başarılı! E-posta yapılandırmanız doğru çalışıyor."
     },
     "title": "Ayarlar",
     "breadcrumb": "Ayarlar",
     "pageTitle": "Ayarlar",
     "tooltips": {
       "oidcScope": "Bir kapsam girin ve eklemek için Enter'a basın",
-      "oidcAdminEmailDomains": "Bir alan girin ve eklemek için Enter'a basın"
+      "oidcAdminEmailDomains": "Bir alan girin ve eklemek için Enter'a basın",
+      "testSmtp": "Formda şu anda girilen değerlerle SMTP bağlantısını test eder. Değişiklikleri kalıcı yapmak için test ettikten sonra ayarlarınızı kaydetmeyi unutmayın."
     },
     "redirectUri": {
       "placeholder": "https://sitem.com",
@@ -1189,7 +1199,23 @@
         "editError": "Dosya güncellenirken hata oluştu",
         "previewNotAvailable": "Önizleme mevcut değil",
         "copyError": "Dosyalarınıza dosyayı kopyalama hatası",
-        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya"
+        "copySuccess": "Dosyalarınıza başarılı bir şekilde kopyalanan dosya",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 dosya seçildi} other {# dosya seçildi}}",
+          "actions": "İşlemler",
+          "download": "Seçilenleri İndir",
+          "copyToMyFiles": "Seçilenleri Dosyalarıma Kopyala",
+          "delete": "Seçilenleri Sil"
+        },
+        "bulkCopyProgress": "Dosyalarınıza {count, plural, =1 {1 dosya} other {# dosya}} kopyalanıyor...",
+        "bulkCopySuccess": "{count, plural, =1 {1 dosya dosyalarınıza başarıyla kopyalandı} other {# dosya dosyalarınıza başarıyla kopyalandı}}",
+        "bulkDeleteConfirmButton": "{count, plural, =1 {Dosyayı} other {Dosyaları}} Sil",
+        "bulkDeleteConfirmMessage": "{count, plural, =1 {Bu dosyayı} other {Bu # dosyayı}} silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+        "bulkDeleteConfirmTitle": "Seçili Dosyaları Sil",
+        "bulkDeleteProgress": "{count, plural, =1 {1 dosya} other {# dosya}} siliniyor...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 dosya başarıyla silindi} other {# dosya başarıyla silindi}}",
+        "selectAll": "Tümünü seç",
+        "selectFile": "{fileName} dosyasını seç"
       }
     },
     "form": {

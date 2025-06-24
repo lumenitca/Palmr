@@ -528,10 +528,16 @@
       "oidcAdminEmailDomains": {
         "title": "Domini Email Admin",
         "description": "Domini email che ricevono automaticamente i privilegi di amministratore"
+      },
+      "testSmtp": {
+        "title": "Test Connessione SMTP",
+        "description": "Verifica se la configurazione SMTP è valida"
       }
     },
     "buttons": {
-      "save": "Salva {group}"
+      "save": "Salva {group}",
+      "testSmtp": "Prova Connessione",
+      "testing": "Verifica in corso..."
     },
     "errors": {
       "loadFailed": "Errore durante il caricamento delle impostazioni",
@@ -539,14 +545,18 @@
     },
     "messages": {
       "noChanges": "Nessuna modifica da salvare",
-      "updateSuccess": "Impostazioni {group} aggiornate con successo"
+      "updateSuccess": "Impostazioni {group} aggiornate con successo",
+      "smtpTestFailed": "Connessione SMTP fallita: {error}",
+      "smtpTestGenericError": "Impossibile testare la connessione SMTP. Controlla le impostazioni e riprova.",
+      "smtpTestSuccess": "Connessione SMTP riuscita! La configurazione email funziona correttamente."
     },
     "title": "Impostazioni",
     "breadcrumb": "Impostazioni",
     "pageTitle": "Impostazioni",
     "tooltips": {
       "oidcScope": "Inserisci uno scope e premi Invio per aggiungerlo",
-      "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo"
+      "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo",
+      "testSmtp": "Verifica la connessione SMTP con i valori attualmente inseriti nel modulo. Per rendere permanenti le modifiche, ricordati di salvare le impostazioni dopo il test."
     },
     "redirectUri": {
       "placeholder": "https://miosito.com",
@@ -1189,7 +1199,23 @@
         "editError": "Errore durante l'aggiornamento del file",
         "previewNotAvailable": "Anteprima non disponibile",
         "copyError": "Errore di copia del file sui tuoi file",
-        "copySuccess": "File copiato sui tuoi file correttamente"
+        "copySuccess": "File copiato sui tuoi file correttamente",
+        "bulkActions": {
+          "selected": "{count, plural, =1 {1 file selezionato} other {# file selezionati}}",
+          "actions": "Azioni",
+          "download": "Scarica Selezionati",
+          "copyToMyFiles": "Copia Selezionati sui Miei File",
+          "delete": "Elimina Selezionati"
+        },
+        "bulkCopyProgress": "Copia di {count, plural, =1 {1 file} other {# file}} sui tuoi file in corso...",
+        "bulkCopySuccess": "{count, plural, =1 {1 file copiato sui tuoi file con successo} other {# file copiati sui tuoi file con successo}}",
+        "bulkDeleteConfirmButton": "Elimina {count, plural, =1 {File} other {File}}",
+        "bulkDeleteConfirmMessage": "Sei sicuro di voler eliminare {count, plural, =1 {questo file} other {questi # file}}? Questa azione non può essere annullata.",
+        "bulkDeleteConfirmTitle": "Elimina File Selezionati",
+        "bulkDeleteProgress": "Eliminazione di {count, plural, =1 {1 file} other {# file}} in corso...",
+        "bulkDeleteSuccess": "{count, plural, =1 {1 file eliminato con successo} other {# file eliminati con successo}}",
+        "selectAll": "Seleziona tutto",
+        "selectFile": "Seleziona file {fileName}"
       }
     },
     "form": {
