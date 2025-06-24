@@ -444,7 +444,8 @@
     "tooltips": {
       "oidcScope": "Digite um escopo e pressione Enter para adicionar",
       "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
-      "testSmtp": "Testa a conexão SMTP com os valores atualmente inseridos no formulário. Para tornar as alterações permanentes, lembre-se de salvar suas configurações após o teste."
+      "testSmtp": "Testa a conexão SMTP com os valores atualmente inseridos no formulário. Para tornar as alterações permanentes, lembre-se de salvar suas configurações após o teste.",
+      "defaultPlaceholder": "Digite e pressione Enter"
     },
     "redirectUri": {
       "placeholder": "https://meusite.com",
@@ -563,6 +564,20 @@
       "testSmtp": {
         "title": "Testar Conexão SMTP",
         "description": "Testa se a configuração SMTP é válida"
+      },
+      "smtpNoAuth": {
+        "title": "Sem Autenticação",
+        "description": "Ative isso para servidores internos que não exigem nome de usuário/senha (oculta campos de autenticação)"
+      },
+      "smtpSecure": {
+        "title": "Segurança da Conexão",
+        "description": "Método de segurança da conexão SMTP - Auto (recomendado), SSL, STARTTLS ou Nenhum (inseguro)",
+        "options": {
+          "auto": "Auto (Recomendado)",
+          "ssl": "SSL (Porta 465)",
+          "tls": "STARTTLS (Porta 587)",
+          "none": "Nenhum (Inseguro)"
+        }
       }
     },
     "buttons": {
@@ -579,7 +594,10 @@
       "updateSuccess": "Configurações de {group} atualizadas com sucesso",
       "smtpTestFailed": "Falha na conexão SMTP: {error}",
       "smtpTestGenericError": "Falha ao testar conexão SMTP. Por favor, verifique suas configurações e tente novamente.",
-      "smtpTestSuccess": "Conexão SMTP bem-sucedida! Sua configuração de e-mail está funcionando corretamente."
+      "smtpTestSuccess": "Conexão SMTP bem-sucedida! Sua configuração de e-mail está funcionando corretamente.",
+      "smtpMissingAuth": "Por favor, preencha o Nome de Usuário e Senha SMTP, ou ative a opção 'Sem Autenticação'.",
+      "smtpMissingHostPort": "Por favor, preencha o Host e Porta SMTP antes de testar.",
+      "smtpNotEnabled": "SMTP não está habilitado. Por favor, habilite o SMTP primeiro."
     },
     "title": "Configurações",
     "breadcrumb": "Configurações",
@@ -611,7 +629,8 @@
       "title": "Compartilhamento não Encontrado",
       "description": "Este compartilhamento pode ter sido excluído ou expirado."
     },
-    "pageTitle": "Compartilhamento"
+    "pageTitle": "Compartilhamento",
+    "downloadAll": "Baixar todos"
   },
   "shareActions": {
     "deleteTitle": "Excluir Compartilhamento",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "Excluindo {count, plural, =1 {1 arquivo} other {# arquivos}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 arquivo excluído com sucesso} other {# arquivos excluídos com sucesso}}",
         "selectAll": "Selecionar todos",
-        "selectFile": "Selecionar arquivo {fileName}"
+        "selectFile": "Selecionar arquivo {fileName}",
+        "deleteError": "Erro ao excluir arquivo",
+        "deleteSuccess": "Arquivo excluído com sucesso"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Link de recebimento excluído com sucesso!",
       "aliasCreated": "Alias criado com sucesso!",
       "activateSuccess": "Link de recebimento ativado com sucesso!",
-      "deactivateSuccess": "Link de recebimento desativado com sucesso!"
+      "deactivateSuccess": "Link de recebimento desativado com sucesso!",
+      "passwordProtectionDisabled": "Proteção por senha removida com sucesso!",
+      "passwordProtectionEnabled": "Proteção por senha ativada com sucesso!"
     },
     "errors": {
       "loadFailed": "Falha ao carregar links de recebimento",
       "createFailed": "Falha ao criar link de recebimento. Tente novamente.",
       "updateFailed": "Falha ao atualizar link de recebimento. Tente novamente.",
       "deleteFailed": "Falha ao excluir link de recebimento. Tente novamente.",
-      "aliasCreateFailed": "Falha ao criar alias. Tente novamente."
+      "aliasCreateFailed": "Falha ao criar alias. Tente novamente.",
+      "passwordUpdateFailed": "Falha ao atualizar a proteção por senha"
     },
     "delete": {
       "title": "Excluir link de recebimento",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Salvar alterações",
         "cancelEdit": "Cancelar edição"
       }
-    }
+    },
+    "defaultLinkName": "Arquivos recebidos"
   }
 }

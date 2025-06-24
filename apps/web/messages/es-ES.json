@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "Probar Conexión SMTP",
         "description": "Probar si la configuración SMTP es válida"
+      },
+      "smtpNoAuth": {
+        "title": "Sin Autenticación",
+        "description": "Habilitar para servidores internos que no requieren usuario/contraseña (oculta los campos de autenticación)"
+      },
+      "smtpSecure": {
+        "title": "Seguridad de Conexión",
+        "description": "Método de seguridad de conexión SMTP - Auto (recomendado), SSL, STARTTLS o Ninguno (inseguro)",
+        "options": {
+          "auto": "Auto (Recomendado)",
+          "ssl": "SSL (Puerto 465)",
+          "tls": "STARTTLS (Puerto 587)",
+          "none": "Ninguno (Inseguro)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "Configuración de {group} actualizada exitosamente",
       "smtpTestSuccess": "¡Conexión SMTP exitosa! Tu configuración de correo funciona correctamente.",
       "smtpTestFailed": "Falló la conexión SMTP: {error}",
-      "smtpTestGenericError": "Error al probar la conexión SMTP. Por favor revisa tu configuración e inténtalo de nuevo."
+      "smtpTestGenericError": "Error al probar la conexión SMTP. Por favor revisa tu configuración e inténtalo de nuevo.",
+      "smtpMissingAuth": "Por favor ingresa el Usuario y Contraseña SMTP, o habilita la opción 'Sin Autenticación'.",
+      "smtpMissingHostPort": "Por favor ingresa el Host y Puerto SMTP antes de probar.",
+      "smtpNotEnabled": "SMTP no está habilitado. Por favor habilita SMTP primero."
     },
     "title": "Configuración",
     "breadcrumb": "Configuración",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Ingrese un ámbito y presione Enter para agregar",
       "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar",
-      "testSmtp": "Prueba la conexión SMTP con los valores actualmente ingresados en el formulario. Para hacer los cambios permanentes, recuerda guardar la configuración después de probar."
+      "testSmtp": "Prueba la conexión SMTP con los valores actualmente ingresados en el formulario. Para hacer los cambios permanentes, recuerda guardar la configuración después de probar.",
+      "defaultPlaceholder": "Ingrese y presione Enter"
     },
     "redirectUri": {
       "placeholder": "https://misitio.com",
@@ -589,7 +607,8 @@
       "title": "Compartición no encontrada",
       "description": "Esta compartición puede haber sido eliminada o haber expirado."
     },
-    "pageTitle": "Compartición"
+    "pageTitle": "Compartición",
+    "downloadAll": "Descargar Todo"
   },
   "shareActions": {
     "deleteTitle": "Eliminar Compartir",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "Eliminando {count, plural, =1 {1 archivo} other {# archivos}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 archivo eliminado correctamente} other {# archivos eliminados correctamente}}",
         "selectAll": "Seleccionar todo",
-        "selectFile": "Seleccionar archivo {fileName}"
+        "selectFile": "Seleccionar archivo {fileName}",
+        "deleteError": "Error al eliminar el archivo",
+        "deleteSuccess": "Archivo eliminado correctamente"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "¡Enlace de recepción eliminado con éxito!",
       "aliasCreated": "¡Alias creado con éxito!",
       "activateSuccess": "¡Enlace de recepción activado con éxito!",
-      "deactivateSuccess": "¡Enlace de recepción desactivado con éxito!"
+      "deactivateSuccess": "¡Enlace de recepción desactivado con éxito!",
+      "passwordProtectionDisabled": "¡Protección por contraseña eliminada con éxito!",
+      "passwordProtectionEnabled": "¡Protección por contraseña habilitada con éxito!"
     },
     "errors": {
       "loadFailed": "Error al cargar enlaces de recepción",
       "createFailed": "Error al crear enlace de recepción. Inténtalo de nuevo.",
       "updateFailed": "Error al actualizar enlace de recepción. Inténtalo de nuevo.",
       "deleteFailed": "Error al eliminar enlace de recepción. Inténtalo de nuevo.",
-      "aliasCreateFailed": "Error al crear alias. Inténtalo de nuevo."
+      "aliasCreateFailed": "Error al crear alias. Inténtalo de nuevo.",
+      "passwordUpdateFailed": "Error al actualizar la protección por contraseña"
     },
     "delete": {
       "title": "Eliminar enlace de recepción",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Guardar cambios",
         "cancelEdit": "Cancelar edición"
       }
-    }
+    },
+    "defaultLinkName": "Archivos recibidos"
   }
 }

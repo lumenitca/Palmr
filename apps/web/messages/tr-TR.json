@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "SMTP Bağlantısını Test Et",
         "description": "SMTP yapılandırmasının geçerli olup olmadığını test et"
+      },
+      "smtpNoAuth": {
+        "title": "Kimlik Doğrulama Yok",
+        "description": "Kullanıcı adı/şifre gerektirmeyen dahili sunucular için bunu etkinleştirin (kimlik doğrulama alanlarını gizler)"
+      },
+      "smtpSecure": {
+        "title": "Bağlantı Güvenliği",
+        "description": "SMTP bağlantı güvenlik yöntemi - Otomatik (önerilen), SSL, STARTTLS veya Hiçbiri (güvensiz)",
+        "options": {
+          "auto": "Otomatik (Önerilen)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "Hiçbiri (Güvensiz)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "{group} ayarları başarıyla güncellendi",
       "smtpTestFailed": "SMTP bağlantısı başarısız: {error}",
       "smtpTestGenericError": "SMTP bağlantısı test edilemedi. Lütfen ayarlarınızı kontrol edin ve tekrar deneyin.",
-      "smtpTestSuccess": "SMTP bağlantısı başarılı! E-posta yapılandırmanız doğru çalışıyor."
+      "smtpTestSuccess": "SMTP bağlantısı başarılı! E-posta yapılandırmanız doğru çalışıyor.",
+      "smtpMissingAuth": "Lütfen SMTP Kullanıcı Adı ve Şifresini doldurun veya 'Kimlik Doğrulama Yok' seçeneğini etkinleştirin.",
+      "smtpMissingHostPort": "Lütfen test etmeden önce SMTP Ana Bilgisayar ve Bağlantı Noktasını doldurun.",
+      "smtpNotEnabled": "SMTP etkin değil. Lütfen önce SMTP'yi etkinleştirin."
     },
     "title": "Ayarlar",
     "breadcrumb": "Ayarlar",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Bir kapsam girin ve eklemek için Enter'a basın",
       "oidcAdminEmailDomains": "Bir alan girin ve eklemek için Enter'a basın",
-      "testSmtp": "Formda şu anda girilen değerlerle SMTP bağlantısını test eder. Değişiklikleri kalıcı yapmak için test ettikten sonra ayarlarınızı kaydetmeyi unutmayın."
+      "testSmtp": "Formda şu anda girilen değerlerle SMTP bağlantısını test eder. Değişiklikleri kalıcı yapmak için test ettikten sonra ayarlarınızı kaydetmeyi unutmayın.",
+      "defaultPlaceholder": "Girin ve Enter'a basın"
     },
     "redirectUri": {
       "placeholder": "https://sitem.com",
@@ -589,7 +607,8 @@
       "title": "Paylaşım Bulunamadı",
       "description": "Bu paylaşım silinmiş veya süresi dolmuş olabilir."
     },
-    "pageTitle": "Paylaşım"
+    "pageTitle": "Paylaşım",
+    "downloadAll": "Tümünü İndir"
   },
   "shareActions": {
     "deleteTitle": "Paylaşımı Sil",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "{count, plural, =1 {1 dosya} other {# dosya}} siliniyor...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 dosya başarıyla silindi} other {# dosya başarıyla silindi}}",
         "selectAll": "Tümünü seç",
-        "selectFile": "{fileName} dosyasını seç"
+        "selectFile": "{fileName} dosyasını seç",
+        "deleteError": "Dosya silinirken hata oluştu",
+        "deleteSuccess": "Dosya başarıyla silindi"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Alma bağlantısı başarıyla silindi!",
       "aliasCreated": "Takma ad başarıyla oluşturuldu!",
       "activateSuccess": "Alma bağlantısı başarıyla etkinleştirildi!",
-      "deactivateSuccess": "Alma bağlantısı başarıyla devre dışı bırakıldı!"
+      "deactivateSuccess": "Alma bağlantısı başarıyla devre dışı bırakıldı!",
+      "passwordProtectionDisabled": "Şifre koruması başarıyla kaldırıldı!",
+      "passwordProtectionEnabled": "Şifre koruması başarıyla etkinleştirildi!"
     },
     "errors": {
       "loadFailed": "Alma bağlantıları yüklenemedi",
       "createFailed": "Alma bağlantısı oluşturulamadı. Lütfen tekrar deneyin.",
       "updateFailed": "Alma bağlantısı güncellenemedi. Lütfen tekrar deneyin.",
       "deleteFailed": "Alma bağlantısı silinemedi. Lütfen tekrar deneyin.",
-      "aliasCreateFailed": "Takma ad oluşturulamadı. Lütfen tekrar deneyin."
+      "aliasCreateFailed": "Takma ad oluşturulamadı. Lütfen tekrar deneyin.",
+      "passwordUpdateFailed": "Şifre koruması güncellenemedi"
     },
     "delete": {
       "title": "Alma bağlantısını sil",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Değişiklikleri kaydet",
         "cancelEdit": "Düzenlemeyi iptal et"
       }
-    }
+    },
+    "defaultLinkName": "Alınan Dosyalar"
   }
 }

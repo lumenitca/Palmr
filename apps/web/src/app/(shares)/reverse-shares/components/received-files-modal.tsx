@@ -543,10 +543,10 @@ export function ReceivedFilesModal({
         await onRefresh();
       }
 
-      toast.success("Arquivo excluído com sucesso");
+      toast.success(t("reverseShares.modals.receivedFiles.deleteSuccess"));
     } catch (error) {
       console.error("Error deleting file:", error);
-      toast.error("Erro ao excluir arquivo");
+      toast.error(t("reverseShares.modals.receivedFiles.deleteError"));
     }
   };
 
@@ -640,7 +640,7 @@ export function ReceivedFilesModal({
           await Promise.all(downloadPromises);
 
           const zipBlob = await zip.generateAsync({ type: "blob" });
-          const zipName = `${reverseShare.name || "received_files"}_files.zip`;
+          const zipName = `${reverseShare.name || t("reverseShares.defaultLinkName")}_files.zip`;
 
           const url = URL.createObjectURL(zipBlob);
           const a = document.createElement("a");

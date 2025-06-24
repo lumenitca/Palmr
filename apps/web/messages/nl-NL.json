@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "Test SMTP Verbinding",
         "description": "Test of de SMTP configuratie geldig is"
+      },
+      "smtpNoAuth": {
+        "title": "Geen Authenticatie",
+        "description": "Schakel dit in voor interne servers die geen gebruikersnaam/wachtwoord vereisen (verbergt authenticatievelden)"
+      },
+      "smtpSecure": {
+        "title": "Verbindingsbeveiliging",
+        "description": "SMTP verbindingsbeveiligingsmethode - Auto (aanbevolen), SSL, STARTTLS, of Geen (onveilig)",
+        "options": {
+          "auto": "Auto (Aanbevolen)",
+          "ssl": "SSL (Poort 465)",
+          "tls": "STARTTLS (Poort 587)",
+          "none": "Geen (Onveilig)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "{group} instellingen succesvol bijgewerkt",
       "smtpTestFailed": "SMTP verbinding mislukt: {error}",
       "smtpTestGenericError": "SMTP verbinding testen mislukt. Controleer uw instellingen en probeer het opnieuw.",
-      "smtpTestSuccess": "SMTP verbinding succesvol! Uw e-mailconfiguratie werkt correct."
+      "smtpTestSuccess": "SMTP verbinding succesvol! Uw e-mailconfiguratie werkt correct.",
+      "smtpMissingAuth": "Vul de SMTP gebruikersnaam en wachtwoord in, of schakel de optie 'Geen Authenticatie' in.",
+      "smtpMissingHostPort": "Vul de SMTP Host en Poort in voordat u test.",
+      "smtpNotEnabled": "SMTP is niet ingeschakeld. Schakel eerst SMTP in."
     },
     "title": "Instellingen",
     "breadcrumb": "Instellingen",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Voer een scope in en druk op Enter om toe te voegen",
       "oidcAdminEmailDomains": "Voer een domein in en druk op Enter om toe te voegen",
-      "testSmtp": "Test de SMTP verbinding met de waarden die momenteel in het formulier zijn ingevoerd. Om wijzigingen permanent te maken, vergeet niet om uw instellingen op te slaan na het testen."
+      "testSmtp": "Test de SMTP verbinding met de waarden die momenteel in het formulier zijn ingevoerd. Om wijzigingen permanent te maken, vergeet niet om uw instellingen op te slaan na het testen.",
+      "defaultPlaceholder": "Voer in en druk op Enter"
     },
     "redirectUri": {
       "placeholder": "https://mijnsite.com",
@@ -589,7 +607,8 @@
       "title": "Delen Niet Gevonden",
       "description": "Dit delen is mogelijk verwijderd of verlopen."
     },
-    "pageTitle": "Delen"
+    "pageTitle": "Delen",
+    "downloadAll": "Alles Downloaden"
   },
   "shareActions": {
     "deleteTitle": "Delen Verwijderen",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "{count, plural, =1 {1 bestand} other {# bestanden}} verwijderen...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 bestand succesvol verwijderd} other {# bestanden succesvol verwijderd}}",
         "selectAll": "Alles selecteren",
-        "selectFile": "Selecteer bestand {fileName}"
+        "selectFile": "Selecteer bestand {fileName}",
+        "deleteError": "Fout bij verwijderen bestand",
+        "deleteSuccess": "Bestand succesvol verwijderd"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Ontvangstlink succesvol verwijderd!",
       "aliasCreated": "Alias succesvol aangemaakt!",
       "activateSuccess": "Ontvangstlink succesvol geactiveerd!",
-      "deactivateSuccess": "Ontvangstlink succesvol gedeactiveerd!"
+      "deactivateSuccess": "Ontvangstlink succesvol gedeactiveerd!",
+      "passwordProtectionDisabled": "Wachtwoordbeveiliging succesvol verwijderd!",
+      "passwordProtectionEnabled": "Wachtwoordbeveiliging succesvol ingeschakeld!"
     },
     "errors": {
       "loadFailed": "Fout bij laden ontvangstlinks",
       "createFailed": "Fout bij aanmaken ontvangstlink. Probeer het opnieuw.",
       "updateFailed": "Fout bij bijwerken ontvangstlink. Probeer het opnieuw.",
       "deleteFailed": "Fout bij verwijderen ontvangstlink. Probeer het opnieuw.",
-      "aliasCreateFailed": "Fout bij aanmaken alias. Probeer het opnieuw."
+      "aliasCreateFailed": "Fout bij aanmaken alias. Probeer het opnieuw.",
+      "passwordUpdateFailed": "Fout bij bijwerken wachtwoordbeveiliging"
     },
     "delete": {
       "title": "Ontvangstlink verwijderen",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Wijzigingen opslaan",
         "cancelEdit": "Bewerken annuleren"
       }
-    }
+    },
+    "defaultLinkName": "Ontvangen bestanden"
   }
 }

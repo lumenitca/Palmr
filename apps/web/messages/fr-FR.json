@@ -535,6 +535,20 @@
       "testSmtp": {
         "title": "[TO_TRANSLATE] Test SMTP Connection",
         "description": "[TO_TRANSLATE] Test if the SMTP configuration is valid"
+      },
+      "smtpNoAuth": {
+        "title": "Pas d'Authentification",
+        "description": "Activez cette option pour les serveurs internes qui ne nécessitent pas de nom d'utilisateur/mot de passe (masque les champs d'authentification)"
+      },
+      "smtpSecure": {
+        "title": "Sécurité de la Connexion",
+        "description": "Méthode de sécurité de connexion SMTP - Auto (recommandé), SSL, STARTTLS, ou Aucune (non sécurisé)",
+        "options": {
+          "auto": "Auto (Recommandé)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "Aucune (Non sécurisé)"
+        }
       }
     },
     "buttons": {
@@ -551,12 +565,16 @@
       "updateSuccess": "Paramètres {group} mis à jour avec succès",
       "smtpTestFailed": "La connexion SMTP a échoué : {error}",
       "smtpTestGenericError": "Échec du test de connexion SMTP. Veuillez vérifier vos paramètres et réessayer.",
-      "smtpTestSuccess": "Connexion SMTP réussie ! Votre configuration email fonctionne correctement."
+      "smtpTestSuccess": "Connexion SMTP réussie ! Votre configuration email fonctionne correctement.",
+      "smtpMissingAuth": "Veuillez remplir le nom d'utilisateur et le mot de passe SMTP, ou activer l'option 'Pas d'Authentification'.",
+      "smtpMissingHostPort": "Veuillez remplir l'hôte et le port SMTP avant de tester.",
+      "smtpNotEnabled": "SMTP n'est pas activé. Veuillez d'abord activer SMTP."
     },
     "tooltips": {
       "oidcScope": "Entrez une portée et appuyez sur Entrée pour l'ajouter",
       "oidcAdminEmailDomains": "Entrez un domaine et appuyez sur Entrée pour l'ajouter",
-      "testSmtp": "Teste la connexion SMTP avec les valeurs actuellement saisies dans le formulaire. Pour rendre les modifications permanentes, n'oubliez pas d'enregistrer vos paramètres après le test."
+      "testSmtp": "Teste la connexion SMTP avec les valeurs actuellement saisies dans le formulaire. Pour rendre les modifications permanentes, n'oubliez pas d'enregistrer vos paramètres après le test.",
+      "defaultPlaceholder": "Entrez et appuyez sur Entrée"
     },
     "redirectUri": {
       "placeholder": "https://monsite.com",
@@ -589,7 +607,8 @@
       "title": "Partage Non Trouvé",
       "description": "Ce partage a peut-être été supprimé ou a expiré."
     },
-    "pageTitle": "Partage"
+    "pageTitle": "Partage",
+    "downloadAll": "Tout Télécharger"
   },
   "shareActions": {
     "deleteTitle": "Supprimer le Partage",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "Suppression de {count, plural, =1 {1 fichier} other {# fichiers}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 fichier supprimé avec succès} other {# fichiers supprimés avec succès}}",
         "selectAll": "Tout sélectionner",
-        "selectFile": "Sélectionner le fichier {fileName}"
+        "selectFile": "Sélectionner le fichier {fileName}",
+        "deleteError": "Erreur lors de la suppression du fichier",
+        "deleteSuccess": "Fichier supprimé avec succès"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Lien de réception supprimé avec succès !",
       "aliasCreated": "Alias créé avec succès !",
       "activateSuccess": "Lien de réception activé avec succès !",
-      "deactivateSuccess": "Lien de réception désactivé avec succès !"
+      "deactivateSuccess": "Lien de réception désactivé avec succès !",
+      "passwordProtectionDisabled": "Protection par mot de passe supprimée avec succès !",
+      "passwordProtectionEnabled": "Protection par mot de passe activée avec succès !"
     },
     "errors": {
       "loadFailed": "Échec du chargement des liens de réception",
       "createFailed": "Échec de la création du lien de réception. Veuillez réessayer.",
       "updateFailed": "Échec de la mise à jour du lien de réception. Veuillez réessayer.",
       "deleteFailed": "Échec de la suppression du lien de réception. Veuillez réessayer.",
-      "aliasCreateFailed": "Échec de la création de l'alias. Veuillez réessayer."
+      "aliasCreateFailed": "Échec de la création de l'alias. Veuillez réessayer.",
+      "passwordUpdateFailed": "Échec de la mise à jour de la protection par mot de passe"
     },
     "delete": {
       "title": "Supprimer le lien de réception",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Enregistrer les modifications",
         "cancelEdit": "Annuler la modification"
       }
-    }
+    },
+    "defaultLinkName": "Fichiers reçus"
   }
 }

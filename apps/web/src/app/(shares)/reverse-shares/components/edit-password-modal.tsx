@@ -73,14 +73,16 @@ export function EditPasswordModal({
       });
 
       toast.success(
-        data.hasPassword ? "Proteção por senha ativada com sucesso!" : "Proteção por senha removida com sucesso!"
+        data.hasPassword
+          ? t("reverseShares.messages.passwordProtectionEnabled")
+          : t("reverseShares.messages.passwordProtectionDisabled")
       );
 
       onClose();
       form.reset();
     } catch (error) {
       console.error("Failed to update password:", error);
-      toast.error("Erro ao atualizar proteção por senha");
+      toast.error(t("reverseShares.errors.passwordUpdateFailed"));
     }
   };
 

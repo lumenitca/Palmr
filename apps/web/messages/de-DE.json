@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "SMTP-Verbindung testen",
         "description": "Testen Sie, ob die SMTP-Konfiguration gültig ist"
+      },
+      "smtpNoAuth": {
+        "title": "Keine Authentifizierung",
+        "description": "Aktivieren Sie dies für interne Server, die keinen Benutzernamen/Passwort benötigen (blendet Authentifizierungsfelder aus)"
+      },
+      "smtpSecure": {
+        "title": "Verbindungssicherheit",
+        "description": "SMTP-Verbindungssicherheitsmethode - Auto (empfohlen), SSL, STARTTLS oder Keine (unsicher)",
+        "options": {
+          "auto": "Auto (Empfohlen)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "Keine (Unsicher)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "{group}-Einstellungen erfolgreich aktualisiert",
       "smtpTestFailed": "SMTP-Verbindung fehlgeschlagen: {error}",
       "smtpTestGenericError": "SMTP-Verbindungstest fehlgeschlagen. Bitte überprüfen Sie Ihre Einstellungen und versuchen Sie es erneut.",
-      "smtpTestSuccess": "SMTP-Verbindung erfolgreich! Ihre E-Mail-Konfiguration funktioniert korrekt."
+      "smtpTestSuccess": "SMTP-Verbindung erfolgreich! Ihre E-Mail-Konfiguration funktioniert korrekt.",
+      "smtpMissingAuth": "Bitte geben Sie SMTP-Benutzername und Passwort ein oder aktivieren Sie die Option 'Keine Authentifizierung'.",
+      "smtpMissingHostPort": "Bitte geben Sie SMTP-Host und Port vor dem Test ein.",
+      "smtpNotEnabled": "SMTP ist nicht aktiviert. Bitte aktivieren Sie zuerst SMTP."
     },
     "title": "Einstellungen",
     "breadcrumb": "Einstellungen",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Geben Sie einen Scope ein und drücken Sie Enter zum Hinzufügen",
       "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen",
-      "testSmtp": "Testet die SMTP-Verbindung mit den aktuell im Formular eingegebenen Werten. Um die Änderungen dauerhaft zu machen, denken Sie daran, Ihre Einstellungen nach dem Test zu speichern."
+      "testSmtp": "Testet die SMTP-Verbindung mit den aktuell im Formular eingegebenen Werten. Um die Änderungen dauerhaft zu machen, denken Sie daran, Ihre Einstellungen nach dem Test zu speichern.",
+      "defaultPlaceholder": "Eingeben und Enter drücken"
     },
     "redirectUri": {
       "placeholder": "https://meineseite.com",
@@ -589,7 +607,8 @@
       "title": "Freigabe nicht gefunden",
       "description": "Diese Freigabe wurde möglicherweise gelöscht oder ist abgelaufen."
     },
-    "pageTitle": "Freigabe"
+    "pageTitle": "Freigabe",
+    "downloadAll": "Alle herunterladen"
   },
   "shareActions": {
     "deleteTitle": "Freigabe Löschen",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "{count, plural, =1 {1 Datei wird} other {# Dateien werden}} gelöscht...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 Datei wurde erfolgreich gelöscht} other {# Dateien wurden erfolgreich gelöscht}}",
         "selectAll": "Alle auswählen",
-        "selectFile": "Datei {fileName} auswählen"
+        "selectFile": "Datei {fileName} auswählen",
+        "deleteError": "Fehler beim Löschen der Datei",
+        "deleteSuccess": "Datei erfolgreich gelöscht"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Empfangslink erfolgreich gelöscht!",
       "aliasCreated": "Alias erfolgreich erstellt!",
       "activateSuccess": "Empfangslink erfolgreich aktiviert!",
-      "deactivateSuccess": "Empfangslink erfolgreich deaktiviert!"
+      "deactivateSuccess": "Empfangslink erfolgreich deaktiviert!",
+      "passwordProtectionDisabled": "Passwortschutz erfolgreich entfernt!",
+      "passwordProtectionEnabled": "Passwortschutz erfolgreich aktiviert!"
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Empfangslinks",
       "createFailed": "Fehler beim Erstellen des Empfangslinks. Bitte versuchen Sie es erneut.",
       "updateFailed": "Fehler beim Aktualisieren des Empfangslinks. Bitte versuchen Sie es erneut.",
       "deleteFailed": "Fehler beim Löschen des Empfangslinks. Bitte versuchen Sie es erneut.",
-      "aliasCreateFailed": "Fehler beim Erstellen des Alias. Bitte versuchen Sie es erneut."
+      "aliasCreateFailed": "Fehler beim Erstellen des Alias. Bitte versuchen Sie es erneut.",
+      "passwordUpdateFailed": "Fehler beim Aktualisieren des Passwortschutzes"
     },
     "delete": {
       "title": "Empfangslink löschen",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Änderungen speichern",
         "cancelEdit": "Bearbeitung abbrechen"
       }
-    }
+    },
+    "defaultLinkName": "Empfangene Dateien"
   }
 }
