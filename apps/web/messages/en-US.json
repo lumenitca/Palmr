@@ -465,6 +465,20 @@
         "title": "Sender Email",
         "description": "Sender email address"
       },
+      "smtpSecure": {
+        "title": "Connection Security",
+        "description": "SMTP connection security method - Auto (recommended), SSL, STARTTLS, or None (insecure)",
+        "options": {
+          "auto": "Auto (Recommended)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "None (Insecure)"
+        }
+      },
+      "smtpNoAuth": {
+        "title": "No Authentication",
+        "description": "Enable this for internal servers that don't require username/password (hides auth fields)"
+      },
       "testSmtp": {
         "title": "Test SMTP Connection",
         "description": "Test if the SMTP configuration is valid"
@@ -548,7 +562,10 @@
       "updateSuccess": "{group} settings updated successfully",
       "smtpTestSuccess": "SMTP connection successful! Your email configuration is working correctly.",
       "smtpTestFailed": "SMTP connection failed: {error}",
-      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again."
+      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again.",
+      "smtpNotEnabled": "SMTP is not enabled. Please enable SMTP first.",
+      "smtpMissingHostPort": "Please fill in SMTP Host and Port before testing.",
+      "smtpMissingAuth": "Please fill in SMTP Username and Password, or enable 'No Authentication' option."
     },
     "title": "Settings",
     "breadcrumb": "Settings",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Enter a scope and press Enter to add",
       "oidcAdminEmailDomains": "Enter a domain and press Enter to add",
-      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing."
+      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing.",
+      "defaultPlaceholder": "Enter and press Enter"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",

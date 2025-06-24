@@ -118,6 +118,18 @@ const defaultConfigs = [
     group: "email",
   },
   {
+    key: "smtpSecure",
+    value: "auto",
+    type: "string",
+    group: "email",
+  },
+  {
+    key: "smtpNoAuth",
+    value: "false",
+    type: "boolean",
+    group: "email",
+  },
+  {
     key: "passwordResetTokenExpiration",
     value: "3600",
     type: "number",
