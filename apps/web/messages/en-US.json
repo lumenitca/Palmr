@@ -603,6 +603,7 @@
       "created": "Created: {date}",
       "expires": "Expires: {date}"
     },
+    "downloadAll": "Download All",
     "notFound": {
       "title": "Share Not Found",
       "description": "This share may have been deleted or expired."
@@ -1218,6 +1219,8 @@
         "previewNotAvailable": "Preview not available",
         "copySuccess": "File copied to your files successfully",
         "copyError": "Error copying file to your files",
+        "deleteSuccess": "File deleted successfully",
+        "deleteError": "Error deleting file",
         "bulkCopySuccess": "{count, plural, =1 {1 file copied to your files successfully} other {# files copied to your files successfully}}",
         "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
         "bulkCopyProgress": "Copying {count, plural, =1 {1 file} other {# files}} to your files...",
@@ -1316,14 +1319,18 @@
       "deleteSuccess": "Receive link deleted successfully!",
       "aliasCreated": "Alias created successfully!",
       "activateSuccess": "Receive link activated successfully!",
-      "deactivateSuccess": "Receive link deactivated successfully!"
+      "deactivateSuccess": "Receive link deactivated successfully!",
+      "passwordProtectionEnabled": "Password protection enabled successfully!",
+      "passwordProtectionDisabled": "Password protection removed successfully!"
     },
+    "defaultLinkName": "Received Files",
     "errors": {
       "loadFailed": "Failed to load receive links",
       "createFailed": "Failed to create receive link. Please try again.",
       "updateFailed": "Failed to update receive link. Please try again.",
       "deleteFailed": "Failed to delete receive link. Please try again.",
-      "aliasCreateFailed": "Failed to create alias. Please try again."
+      "aliasCreateFailed": "Failed to create alias. Please try again.",
+      "passwordUpdateFailed": "Failed to update password protection"
     },
     "delete": {
       "title": "Delete receive link",

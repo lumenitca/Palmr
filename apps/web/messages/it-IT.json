@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "Test Connessione SMTP",
         "description": "Verifica se la configurazione SMTP è valida"
+      },
+      "smtpNoAuth": {
+        "title": "Nessuna Autenticazione",
+        "description": "Abilita questa opzione per i server interni che non richiedono nome utente/password (nasconde i campi di autenticazione)"
+      },
+      "smtpSecure": {
+        "title": "Sicurezza Connessione",
+        "description": "Metodo di sicurezza della connessione SMTP - Auto (raccomandato), SSL, STARTTLS o Nessuno (non sicuro)",
+        "options": {
+          "auto": "Auto (Raccomandato)",
+          "ssl": "SSL (Porta 465)",
+          "tls": "STARTTLS (Porta 587)",
+          "none": "Nessuno (Non sicuro)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "Impostazioni {group} aggiornate con successo",
       "smtpTestFailed": "Connessione SMTP fallita: {error}",
       "smtpTestGenericError": "Impossibile testare la connessione SMTP. Controlla le impostazioni e riprova.",
-      "smtpTestSuccess": "Connessione SMTP riuscita! La configurazione email funziona correttamente."
+      "smtpTestSuccess": "Connessione SMTP riuscita! La configurazione email funziona correttamente.",
+      "smtpMissingAuth": "Inserisci Nome utente e Password SMTP, oppure abilita l'opzione 'Nessuna Autenticazione'.",
+      "smtpMissingHostPort": "Inserisci Host e Porta SMTP prima di effettuare il test.",
+      "smtpNotEnabled": "SMTP non è abilitato. Abilitalo prima di procedere."
     },
     "title": "Impostazioni",
     "breadcrumb": "Impostazioni",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Inserisci uno scope e premi Invio per aggiungerlo",
       "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo",
-      "testSmtp": "Verifica la connessione SMTP con i valori attualmente inseriti nel modulo. Per rendere permanenti le modifiche, ricordati di salvare le impostazioni dopo il test."
+      "testSmtp": "Verifica la connessione SMTP con i valori attualmente inseriti nel modulo. Per rendere permanenti le modifiche, ricordati di salvare le impostazioni dopo il test.",
+      "defaultPlaceholder": "Inserisci e premi Invio"
     },
     "redirectUri": {
       "placeholder": "https://miosito.com",
@@ -589,7 +607,8 @@
       "title": "Condivisione Non Trovata",
       "description": "Questa condivisione potrebbe essere stata eliminata o è scaduta."
     },
-    "pageTitle": "Condivisione"
+    "pageTitle": "Condivisione",
+    "downloadAll": "Scarica Tutto"
   },
   "shareActions": {
     "deleteTitle": "Elimina Condivisione",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "Eliminazione di {count, plural, =1 {1 file} other {# file}} in corso...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 file eliminato con successo} other {# file eliminati con successo}}",
         "selectAll": "Seleziona tutto",
-        "selectFile": "Seleziona file {fileName}"
+        "selectFile": "Seleziona file {fileName}",
+        "deleteError": "Errore durante l'eliminazione del file",
+        "deleteSuccess": "File eliminato con successo"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Link di ricezione eliminato con successo!",
       "aliasCreated": "Alias creato con successo!",
       "activateSuccess": "Link di ricezione attivato con successo!",
-      "deactivateSuccess": "Link di ricezione disattivato con successo!"
+      "deactivateSuccess": "Link di ricezione disattivato con successo!",
+      "passwordProtectionDisabled": "Protezione con password rimossa con successo!",
+      "passwordProtectionEnabled": "Protezione con password abilitata con successo!"
     },
     "errors": {
       "loadFailed": "Impossibile caricare i link di ricezione",
       "createFailed": "Impossibile creare il link di ricezione. Riprova.",
       "updateFailed": "Impossibile aggiornare il link di ricezione. Riprova.",
       "deleteFailed": "Impossibile eliminare il link di ricezione. Riprova.",
-      "aliasCreateFailed": "Impossibile creare l'alias. Riprova."
+      "aliasCreateFailed": "Impossibile creare l'alias. Riprova.",
+      "passwordUpdateFailed": "Impossibile aggiornare la protezione con password"
     },
     "delete": {
       "title": "Elimina link di ricezione",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Salva modifiche",
         "cancelEdit": "Annulla modifica"
       }
-    }
+    },
+    "defaultLinkName": "File ricevuti"
   }
 }

@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "اختبار اتصال SMTP",
         "description": "اختبار ما إذا كان تكوين SMTP صالحًا"
+      },
+      "smtpNoAuth": {
+        "title": "بدون مصادقة",
+        "description": "قم بتمكين هذا للخوادم الداخلية التي لا تتطلب اسم مستخدم/كلمة مرور (يخفي حقول المصادقة)"
+      },
+      "smtpSecure": {
+        "title": "أمان الاتصال",
+        "description": "طريقة أمان اتصال SMTP - تلقائي (موصى به)، SSL، STARTTLS، أو بدون (غير آمن)",
+        "options": {
+          "auto": "تلقائي (موصى به)",
+          "ssl": "SSL (منفذ 465)",
+          "tls": "STARTTLS (منفذ 587)",
+          "none": "بدون (غير آمن)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "تم تحديث إعدادات {group} بنجاح",
       "smtpTestFailed": "فشل اتصال SMTP: {error}",
       "smtpTestGenericError": "فشل اختبار اتصال SMTP. يرجى التحقق من إعداداتك والمحاولة مرة أخرى.",
-      "smtpTestSuccess": "تم اتصال SMTP بنجاح! تكوين البريد الإلكتروني الخاص بك يعمل بشكل صحيح."
+      "smtpTestSuccess": "تم اتصال SMTP بنجاح! تكوين البريد الإلكتروني الخاص بك يعمل بشكل صحيح.",
+      "smtpMissingAuth": "يرجى ملء اسم المستخدم وكلمة المرور الخاصة بـ SMTP، أو تمكين خيار 'بدون مصادقة'.",
+      "smtpMissingHostPort": "يرجى ملء مضيف ومنفذ SMTP قبل الاختبار.",
+      "smtpNotEnabled": "SMTP غير مفعل. يرجى تفعيل SMTP أولاً."
     },
     "title": "الإعدادات",
     "breadcrumb": "الإعدادات",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "أدخل نطاقاً واضغط Enter للإضافة",
       "oidcAdminEmailDomains": "أدخل نطاقاً واضغط Enter للإضافة",
-      "testSmtp": "يختبر اتصال SMTP بالقيم المدخلة حاليًا في النموذج. لجعل التغييرات دائمة، تذكر حفظ إعداداتك بعد الاختبار."
+      "testSmtp": "يختبر اتصال SMTP بالقيم المدخلة حاليًا في النموذج. لجعل التغييرات دائمة، تذكر حفظ إعداداتك بعد الاختبار.",
+      "defaultPlaceholder": "أدخل واضغط Enter"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -589,7 +607,8 @@
       "title": "لم يتم العثور على المشاركة",
       "description": "قد يكون تم حذف هذه المشاركة أو انتهت صلاحيتها."
     },
-    "pageTitle": "المشاركة"
+    "pageTitle": "المشاركة",
+    "downloadAll": "تحميل الكل"
   },
   "shareActions": {
     "deleteTitle": "حذف المشاركة",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "جارٍ حذف {count, plural, =1 {ملف واحد} =2 {ملفين} other {# ملفات}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {تم حذف ملف واحد بنجاح} =2 {تم حذف ملفين بنجاح} other {تم حذف # ملفات بنجاح}}",
         "selectAll": "تحديد الكل",
-        "selectFile": "تحديد الملف {fileName}"
+        "selectFile": "تحديد الملف {fileName}",
+        "deleteError": "خطأ في حذف الملف",
+        "deleteSuccess": "تم حذف الملف بنجاح"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "تم حذف رابط الاستلام بنجاح!",
       "aliasCreated": "تم إنشاء الاسم المستعار بنجاح!",
       "activateSuccess": "تم تفعيل رابط الاستلام بنجاح!",
-      "deactivateSuccess": "تم تعطيل رابط الاستلام بنجاح!"
+      "deactivateSuccess": "تم تعطيل رابط الاستلام بنجاح!",
+      "passwordProtectionDisabled": "تم إزالة حماية كلمة المرور بنجاح!",
+      "passwordProtectionEnabled": "تم تمكين حماية كلمة المرور بنجاح!"
     },
     "errors": {
       "loadFailed": "فشل في تحميل روابط الاستلام",
       "createFailed": "فشل في إنشاء رابط الاستلام. حاول مرة أخرى.",
       "updateFailed": "فشل في تحديث رابط الاستلام. حاول مرة أخرى.",
       "deleteFailed": "فشل في حذف رابط الاستلام. حاول مرة أخرى.",
-      "aliasCreateFailed": "فشل في إنشاء الاسم المستعار. حاول مرة أخرى."
+      "aliasCreateFailed": "فشل في إنشاء الاسم المستعار. حاول مرة أخرى.",
+      "passwordUpdateFailed": "فشل في تحديث حماية كلمة المرور"
     },
     "delete": {
       "title": "حذف رابط الاستلام",
@@ -1405,7 +1429,9 @@
     "components": {
       "fileRow": {
         "addDescription": "إضافة وصف...",
-        "anonymous": "مجهول"
+        "anonymous": "مجهول",
+        "deleteError": "خطأ في حذف الملف",
+        "deleteSuccess": "تم حذف الملف بنجاح"
       },
       "fileActions": {
         "edit": "تحرير",
@@ -1421,6 +1447,7 @@
         "saveChanges": "حفظ التغييرات",
         "cancelEdit": "إلغاء التحرير"
       }
-    }
+    },
+    "defaultLinkName": "الملفات المستلمة"
   }
 }

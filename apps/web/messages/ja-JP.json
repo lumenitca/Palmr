@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "SMTP接続テスト",
         "description": "SMTP設定が有効かどうかをテストします"
+      },
+      "smtpNoAuth": {
+        "title": "認証なし",
+        "description": "ユーザー名/パスワードを必要としない内部サーバー用（認証フィールドを非表示）"
+      },
+      "smtpSecure": {
+        "title": "接続セキュリティ",
+        "description": "SMTP接続セキュリティ方式 - 自動（推奨）、SSL、STARTTLS、または なし（安全でない）",
+        "options": {
+          "auto": "自動（推奨）",
+          "ssl": "SSL（ポート465）",
+          "tls": "STARTTLS（ポート587）",
+          "none": "なし（安全でない）"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "{group}の設定が正常に更新されました",
       "smtpTestFailed": "SMTP接続に失敗しました: {error}",
       "smtpTestGenericError": "SMTP接続のテストに失敗しました。設定を確認して再度お試しください。",
-      "smtpTestSuccess": "SMTP接続に成功しました！メール設定は正常に動作しています。"
+      "smtpTestSuccess": "SMTP接続に成功しました！メール設定は正常に動作しています。",
+      "smtpMissingAuth": "SMTPユーザー名とパスワードを入力するか、「認証なし」オプションを有効にしてください。",
+      "smtpMissingHostPort": "テストの前にSMTPホストとポートを入力してください。",
+      "smtpNotEnabled": "SMTPが有効になっていません。最初にSMTPを有効にしてください。"
     },
     "title": "設定",
     "breadcrumb": "設定",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "スコープを入力してEnterキーを押して追加",
       "oidcAdminEmailDomains": "ドメインを入力してEnterキーを押して追加",
-      "testSmtp": "フォームに現在入力されている値でSMTP接続をテストします。変更を永続化するには、テスト後に設定を保存することを忘れないでください。"
+      "testSmtp": "フォームに現在入力されている値でSMTP接続をテストします。変更を永続化するには、テスト後に設定を保存することを忘れないでください。",
+      "defaultPlaceholder": "入力してEnterキーを押してください"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -589,7 +607,8 @@
       "title": "共有が見つかりません",
       "description": "この共有は削除されたか、期限が切れている可能性があります。"
     },
-    "pageTitle": "共有"
+    "pageTitle": "共有",
+    "downloadAll": "すべてダウンロード"
   },
   "shareActions": {
     "deleteTitle": "共有を削除",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "{count, plural, =1 {1ファイル} other {#ファイル}}を削除中...",
         "bulkDeleteSuccess": "{count, plural, =1 {1ファイル} other {#ファイル}}を正常に削除しました",
         "selectAll": "すべて選択",
-        "selectFile": "ファイル{fileName}を選択"
+        "selectFile": "ファイル{fileName}を選択",
+        "deleteError": "ファイルの削除に失敗しました",
+        "deleteSuccess": "ファイルを正常に削除しました"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "受信リンクを削除しました！",
       "aliasCreated": "エイリアスを作成しました！",
       "activateSuccess": "受信リンクを有効化しました！",
-      "deactivateSuccess": "受信リンクを無効化しました！"
+      "deactivateSuccess": "受信リンクを無効化しました！",
+      "passwordProtectionDisabled": "パスワード保護を正常に解除しました！",
+      "passwordProtectionEnabled": "パスワード保護を正常に有効化しました！"
     },
     "errors": {
       "loadFailed": "受信リンクの読み込みに失敗しました",
       "createFailed": "受信リンクの作成に失敗しました。もう一度お試しください。",
       "updateFailed": "受信リンクの更新に失敗しました。もう一度お試しください。",
       "deleteFailed": "受信リンクの削除に失敗しました。もう一度お試しください。",
-      "aliasCreateFailed": "エイリアスの作成に失敗しました。もう一度お試しください。"
+      "aliasCreateFailed": "エイリアスの作成に失敗しました。もう一度お試しください。",
+      "passwordUpdateFailed": "パスワード保護の更新に失敗しました"
     },
     "delete": {
       "title": "受信リンクを削除",
@@ -1421,6 +1445,7 @@
         "saveChanges": "変更を保存",
         "cancelEdit": "編集をキャンセル"
       }
-    }
+    },
+    "defaultLinkName": "受信したファイル"
   }
 }

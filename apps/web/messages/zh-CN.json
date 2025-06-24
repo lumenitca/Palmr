@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "测试SMTP连接",
         "description": "测试SMTP配置是否有效"
+      },
+      "smtpNoAuth": {
+        "title": "无需认证",
+        "description": "为不需要用户名/密码的内部服务器启用此选项（隐藏认证字段）"
+      },
+      "smtpSecure": {
+        "title": "连接安全性",
+        "description": "SMTP连接安全方法 - 自动（推荐）、SSL、STARTTLS或无（不安全）",
+        "options": {
+          "auto": "自动（推荐）",
+          "ssl": "SSL（端口465）",
+          "tls": "STARTTLS（端口587）",
+          "none": "无（不安全）"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "{group}设置更新成功",
       "smtpTestFailed": "SMTP连接失败：{error}",
       "smtpTestGenericError": "SMTP连接测试失败。请检查您的设置并重试。",
-      "smtpTestSuccess": "SMTP连接成功！您的电子邮件配置工作正常。"
+      "smtpTestSuccess": "SMTP连接成功！您的电子邮件配置工作正常。",
+      "smtpMissingAuth": "请填写SMTP用户名和密码，或启用“无需认证”选项。",
+      "smtpMissingHostPort": "测试前请填写SMTP主机和端口。",
+      "smtpNotEnabled": "SMTP未启用。请先启用SMTP。"
     },
     "title": "设置",
     "breadcrumb": "设置",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Digite um escopo e pressione Enter para adicionar",
       "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
-      "testSmtp": "使用当前在表单中输入的值测试SMTP连接。要使更改永久生效，请记得在测试后保存您的设置。"
+      "testSmtp": "使用当前在表单中输入的值测试SMTP连接。要使更改永久生效，请记得在测试后保存您的设置。",
+      "defaultPlaceholder": "输入并按回车键"
     },
     "redirectUri": {
       "placeholder": "https://meusite.com",
@@ -589,7 +607,8 @@
       "title": "未找到共享",
       "description": "该共享可能已被删除或已过期。"
     },
-    "pageTitle": "共享"
+    "pageTitle": "共享",
+    "downloadAll": "下载所有"
   },
   "shareActions": {
     "deleteTitle": "删除共享",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "正在删除{count, plural, =1 {1个文件} other {#个文件}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {1个文件已成功删除} other {#个文件已成功删除}}",
         "selectAll": "全选",
-        "selectFile": "选择文件 {fileName}"
+        "selectFile": "选择文件 {fileName}",
+        "deleteError": "删除文件时出错",
+        "deleteSuccess": "文件已成功删除"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "接收链接删除成功！",
       "aliasCreated": "别名创建成功！",
       "activateSuccess": "接收链接启用成功！",
-      "deactivateSuccess": "接收链接停用成功！"
+      "deactivateSuccess": "接收链接停用成功！",
+      "passwordProtectionDisabled": "密码保护已成功移除！",
+      "passwordProtectionEnabled": "密码保护已成功启用！"
     },
     "errors": {
       "loadFailed": "加载接收链接失败",
       "createFailed": "创建接收链接失败。请重试。",
       "updateFailed": "更新接收链接失败。请重试。",
       "deleteFailed": "删除接收链接失败。请重试。",
-      "aliasCreateFailed": "创建别名失败。请重试。"
+      "aliasCreateFailed": "创建别名失败。请重试。",
+      "passwordUpdateFailed": "更新密码保护失败"
     },
     "delete": {
       "title": "删除接收链接",
@@ -1421,6 +1445,7 @@
         "saveChanges": "保存更改",
         "cancelEdit": "取消编辑"
       }
-    }
+    },
+    "defaultLinkName": "已接收文件"
   }
 }

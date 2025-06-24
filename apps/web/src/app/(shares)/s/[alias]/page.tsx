@@ -18,6 +18,7 @@ export default function PublicSharePage() {
     setPassword,
     handlePasswordSubmit,
     handleDownload,
+    handleBulkDownload,
   } = usePublicShare();
 
   if (isLoading) {
@@ -31,7 +32,7 @@ export default function PublicSharePage() {
       <main className="flex-1 container mx-auto px-6 py-8">
         <div className="max-w-5xl mx-auto space-y-6">
           {!isPasswordModalOpen && !share && <ShareNotFound />}
-          {share && <ShareDetails share={share} onDownload={handleDownload} />}
+          {share && <ShareDetails share={share} onDownload={handleDownload} onBulkDownload={handleBulkDownload} />}
         </div>
       </main>
 
