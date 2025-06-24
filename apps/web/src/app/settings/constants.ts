@@ -46,6 +46,8 @@ export const createFieldDescriptions = (t: ReturnType<typeof createTranslator>) 
   smtpPass: t("settings.fields.smtpPass.description"),
   smtpFromName: t("settings.fields.smtpFromName.description"),
   smtpFromEmail: t("settings.fields.smtpFromEmail.description"),
+  smtpSecure: t("settings.fields.smtpSecure.description"),
+  smtpNoAuth: t("settings.fields.smtpNoAuth.description"),
 
   // OIDC settings (nomes corretos do seed)
   oidcEnabled: t("settings.fields.oidcEnabled.description"),
@@ -85,6 +87,8 @@ export const createFieldTitles = (t: ReturnType<typeof createTranslator>) => ({
   smtpPass: t("settings.fields.smtpPass.title"),
   smtpFromName: t("settings.fields.smtpFromName.title"),
   smtpFromEmail: t("settings.fields.smtpFromEmail.title"),
+  smtpSecure: t("settings.fields.smtpSecure.title"),
+  smtpNoAuth: t("settings.fields.smtpNoAuth.title"),
 
   // OIDC settings
   oidcEnabled: t("settings.fields.oidcEnabled.title"),

@@ -2,8 +2,10 @@ import { IconInfoCircle } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
+import { Switch } from "@/components/ui/switch";
 import { TagsInput } from "@/components/ui/tags-input";
 import { createFieldTitles } from "../constants";
 import { Config } from "../types";
@@ -129,10 +131,77 @@ export function SettingsInput({
               ? "openid profile email"
               : config.key === "oidcAdminEmailDomains"
                 ? "admin.com company.org"
-                : "Digite e pressione Enter"
+                : t("settings.tooltips.defaultPlaceholder", { defaultValue: "Enter and press Enter" })
           }
         />
         {error && <p className="text-danger text-xs mt-1">{error.message}</p>}
+      </div>
+    );
+  }
+
+  if (config.key === "smtpEnabled") {
+    const currentValue = watch(`configs.${config.key}`) === "true";
+
+    return (
+      <div className="space-y-2">
+        <div className="flex items-center space-x-3">
+          <Switch
+            id={`configs.${config.key}`}
+            checked={currentValue}
+            onCheckedChange={(checked) => {
+              setValue(`configs.${config.key}`, checked ? "true" : "false", { shouldDirty: true });
+            }}
+            disabled={isDisabled}
+          />
+          <label htmlFor={`configs.${config.key}`} className="text-sm font-semibold cursor-pointer">
+            {friendlyLabel}
+          </label>
+        </div>
+        {config.description && <p className="text-xs text-muted-foreground ml-11">{config.description}</p>}
+        {error && <p className="text-danger text-xs mt-1 ml-11">{error.message}</p>}
+      </div>
+    );
+  }
+
+  if (config.key === "smtpSecure") {
+    return (
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold">{friendlyLabel}</label>
+        <select
+          {...register(`configs.${config.key}`)}
+          className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
+          disabled={isDisabled}
+        >
+          <option value="auto">{t("settings.fields.smtpSecure.options.auto")}</option>
+          <option value="ssl">{t("settings.fields.smtpSecure.options.ssl")}</option>
+          <option value="tls">{t("settings.fields.smtpSecure.options.tls")}</option>
+          <option value="none">{t("settings.fields.smtpSecure.options.none")}</option>
+        </select>
+        {error && <p className="text-danger text-xs mt-1">{error.message}</p>}
+      </div>
+    );
+  }
+
+  if (config.key === "smtpNoAuth") {
+    const currentValue = watch(`configs.${config.key}`) === "true";
+
+    return (
+      <div className="space-y-2">
+        <div className="flex items-center space-x-3">
+          <Checkbox
+            id={`configs.${config.key}`}
+            checked={currentValue}
+            onCheckedChange={(checked) => {
+              setValue(`configs.${config.key}`, checked ? "true" : "false", { shouldDirty: true });
+            }}
+            disabled={isDisabled}
+          />
+          <label htmlFor={`configs.${config.key}`} className="text-sm font-semibold cursor-pointer">
+            {friendlyLabel}
+          </label>
+        </div>
+        {config.description && <p className="text-xs text-muted-foreground ml-7">{config.description}</p>}
+        {error && <p className="text-danger text-xs mt-1 ml-7">{error.message}</p>}
       </div>
     );
   }

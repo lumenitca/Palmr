@@ -77,8 +77,26 @@ export function useSettings() {
           }
 
           if (group === "email") {
-            if (a.key === "smtpEnabled") return -1;
-            if (b.key === "smtpEnabled") return 1;
+            const smtpOrder = [
+              "smtpEnabled",
+              "smtpHost",
+              "smtpPort",
+              "smtpSecure",
+              "smtpNoAuth",
+              "smtpUser",
+              "smtpPass",
+              "smtpFromName",
+              "smtpFromEmail",
+            ];
+
+            const aIndex = smtpOrder.indexOf(a.key);
+            const bIndex = smtpOrder.indexOf(b.key);
+
+            if (aIndex !== -1 && bIndex !== -1) {
+              return aIndex - bIndex;
+            }
+            if (aIndex !== -1) return -1;
+            if (bIndex !== -1) return 1;
           }
 
           if (group === "oidc") {

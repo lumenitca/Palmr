@@ -7,6 +7,8 @@ interface SmtpConfig {
   smtpPort: string;
   smtpUser: string;
   smtpPass: string;
+  smtpSecure?: string;
+  smtpNoAuth?: string;
 }
 
 export class EmailService {
@@ -18,15 +20,46 @@ export class EmailService {
       return null;
     }
 
-    return nodemailer.createTransport({
+    const port = Number(await this.configService.getValue("smtpPort"));
+    const smtpSecure = (await this.configService.getValue("smtpSecure")) || "auto";
+    const smtpNoAuth = await this.configService.getValue("smtpNoAuth");
+
+    let secure = false;
+    let requireTLS = false;
+
+    if (smtpSecure === "ssl") {
+      secure = true;
+    } else if (smtpSecure === "tls") {
+      requireTLS = true;
+    } else if (smtpSecure === "none") {
+      secure = false;
+      requireTLS = false;
+    } else if (smtpSecure === "auto") {
+      if (port === 465) {
+        secure = true;
+      } else if (port === 587 || port === 25) {
+        requireTLS = true;
+      }
+    }
+
+    const transportConfig: any = {
       host: await this.configService.getValue("smtpHost"),
-      port: Number(await this.configService.getValue("smtpPort")),
-      secure: false,
-      auth: {
+      port: port,
+      secure: secure,
+      requireTLS: requireTLS,
+      tls: {
+        rejectUnauthorized: false,
+      },
+    };
+
+    if (smtpNoAuth !== "true") {
+      transportConfig.auth = {
         user: await this.configService.getValue("smtpUser"),
         pass: await this.configService.getValue("smtpPass"),
-      },
-    });
+      };
+    }
+
+    return nodemailer.createTransport(transportConfig);
   }
 
   async testConnection(config?: SmtpConfig) {
@@ -43,6 +76,8 @@ export class EmailService {
         smtpPort: await this.configService.getValue("smtpPort"),
         smtpUser: await this.configService.getValue("smtpUser"),
         smtpPass: await this.configService.getValue("smtpPass"),
+        smtpSecure: (await this.configService.getValue("smtpSecure")) || "auto",
+        smtpNoAuth: await this.configService.getValue("smtpNoAuth"),
       };
     }
 
@@ -50,15 +85,46 @@ export class EmailService {
       throw new Error("SMTP is not enabled");
     }
 
-    const transporter = nodemailer.createTransport({
+    const port = Number(smtpConfig.smtpPort);
+    const smtpSecure = smtpConfig.smtpSecure || "auto";
+    const smtpNoAuth = smtpConfig.smtpNoAuth;
+
+    let secure = false;
+    let requireTLS = false;
+
+    if (smtpSecure === "ssl") {
+      secure = true;
+    } else if (smtpSecure === "tls") {
+      requireTLS = true;
+    } else if (smtpSecure === "none") {
+      secure = false;
+      requireTLS = false;
+    } else if (smtpSecure === "auto") {
+      if (port === 465) {
+        secure = true;
+      } else if (port === 587 || port === 25) {
+        requireTLS = true;
+      }
+    }
+
+    const transportConfig: any = {
       host: smtpConfig.smtpHost,
-      port: Number(smtpConfig.smtpPort),
-      secure: false,
-      auth: {
+      port: port,
+      secure: secure,
+      requireTLS: requireTLS,
+      tls: {
+        rejectUnauthorized: false,
+      },
+    };
+
+    if (smtpNoAuth !== "true") {
+      transportConfig.auth = {
         user: smtpConfig.smtpUser,
         pass: smtpConfig.smtpPass,
-      },
-    });
+      };
+    }
+
+    const transporter = nodemailer.createTransport(transportConfig);
 
     try {
       await transporter.verify();
