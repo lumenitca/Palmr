@@ -497,38 +497,6 @@
         "title": "Server URL",
         "description": "Basis URL van de Palmr server (bijv: https://palmr.voorbeeld.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Ingeschakeld",
-        "description": "Schakel authenticatie via OpenID Connect in of uit"
-      },
-      "oidcIssuerUrl": {
-        "title": "Provider URL",
-        "description": "URL van de OpenID Connect provider (bijv: https://auth.voorbeeld.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "OIDC client ID geregistreerd bij de provider"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "OIDC client secret voor authenticatie"
-      },
-      "oidcRedirectUri": {
-        "title": "Redirect URI",
-        "description": "URI waar de gebruiker naartoe wordt gestuurd na authenticatie. Voer alleen de basis URL in (bijv: https://mijnsite.com). Het pad /api/auth/oidc/callback wordt automatisch toegevoegd."
-      },
-      "oidcScope": {
-        "title": "Scopes",
-        "description": "Gevraagde OIDC scopes (bijv: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Automatische Registratie",
-        "description": "Registreer automatisch gebruikers die niet bestaan bij eerste login"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Admin E-mail Domeinen",
-        "description": "E-mail domeinen die automatisch admin rechten krijgen"
-      },
       "testSmtp": {
         "title": "Test SMTP Verbinding",
         "description": "Test of de SMTP configuratie geldig is"
@@ -571,8 +539,6 @@
     "breadcrumb": "Instellingen",
     "pageTitle": "Instellingen",
     "tooltips": {
-      "oidcScope": "Voer een scope in en druk op Enter om toe te voegen",
-      "oidcAdminEmailDomains": "Voer een domein in en druk op Enter om toe te voegen",
       "testSmtp": "Test de SMTP verbinding met de waarden die momenteel in het formulier zijn ingevoerd. Om wijzigingen permanent te maken, vergeet niet om uw instellingen op te slaan na het testen.",
       "defaultPlaceholder": "Voer in en druk op Enter"
     },

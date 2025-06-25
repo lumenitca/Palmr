@@ -497,38 +497,6 @@
         "title": "Server-URL",
         "description": "Basis-URL des Palmr-Servers (z.B.: https://palmr.example.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC aktiviert",
-        "description": "Authentifizierung über OpenID Connect aktivieren oder deaktivieren"
-      },
-      "oidcIssuerUrl": {
-        "title": "Anbieter-URL",
-        "description": "URL des OpenID Connect-Anbieters (z.B.: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client-ID",
-        "description": "Identifier des beim Anbieter registrierten OIDC-Clients"
-      },
-      "oidcClientSecret": {
-        "title": "Client-Secret",
-        "description": "Secret des OIDC-Clients für die Authentifizierung"
-      },
-      "oidcRedirectUri": {
-        "title": "Weiterleitungs-URI",
-        "description": "URI, zu der der Benutzer nach der Authentifizierung weitergeleitet wird. Geben Sie nur die Basis-URL ein (z.B.: https://meineseite.com). Der Pfad /api/auth/oidc/callback wird automatisch hinzugefügt."
-      },
-      "oidcScope": {
-        "title": "Scopes",
-        "description": "Angeforderte OIDC-Scopes (z.B.: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Automatische Registrierung",
-        "description": "Registriert automatisch Benutzer, die beim ersten Login nicht existieren"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Admin-E-Mail-Domains",
-        "description": "E-Mail-Domains, die automatisch Administratorrechte erhalten"
-      },
       "testSmtp": {
         "title": "SMTP-Verbindung testen",
         "description": "Testen Sie, ob die SMTP-Konfiguration gültig ist"
@@ -571,8 +539,6 @@
     "breadcrumb": "Einstellungen",
     "pageTitle": "Einstellungen",
     "tooltips": {
-      "oidcScope": "Geben Sie einen Scope ein und drücken Sie Enter zum Hinzufügen",
-      "oidcAdminEmailDomains": "Geben Sie eine Domain ein und drücken Sie Enter zum Hinzufügen",
       "testSmtp": "Testet die SMTP-Verbindung mit den aktuell im Formular eingegebenen Werten. Um die Änderungen dauerhaft zu machen, denken Sie daran, Ihre Einstellungen nach dem Test zu speichern.",
       "defaultPlaceholder": "Eingeben und Enter drücken"
     },

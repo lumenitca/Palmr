@@ -497,38 +497,6 @@
         "title": "URL del Servidor",
         "description": "URL base del servidor Palmr (ej: https://palmr.ejemplo.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Habilitado",
-        "description": "Activar o desactivar la autenticación mediante OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "URL del Proveedor",
-        "description": "URL del proveedor OpenID Connect (ej: https://auth.ejemplo.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "ID del Cliente",
-        "description": "Identificador del cliente OIDC registrado en el proveedor"
-      },
-      "oidcClientSecret": {
-        "title": "Secreto del Cliente",
-        "description": "Secreto del cliente OIDC para autenticación"
-      },
-      "oidcRedirectUri": {
-        "title": "URI de Redirección",
-        "description": "URI donde los usuarios serán redirigidos después de la autenticación. Ingrese solo la URL base (ej: https://misitio.com). La ruta /api/auth/oidc/callback se agregará automáticamente."
-      },
-      "oidcScope": {
-        "title": "Ámbitos",
-        "description": "Ámbitos OIDC solicitados (ej: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Registro Automático",
-        "description": "Registra automáticamente usuarios que no existen en el primer inicio de sesión"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Dominios de Correo Admin",
-        "description": "Dominios de correo que reciben privilegios de administrador automáticamente"
-      },
       "testSmtp": {
         "title": "Probar Conexión SMTP",
         "description": "Probar si la configuración SMTP es válida"
@@ -571,8 +539,6 @@
     "breadcrumb": "Configuración",
     "pageTitle": "Configuración",
     "tooltips": {
-      "oidcScope": "Ingrese un ámbito y presione Enter para agregar",
-      "oidcAdminEmailDomains": "Ingrese un dominio y presione Enter para agregar",
       "testSmtp": "Prueba la conexión SMTP con los valores actualmente ingresados en el formulario. Para hacer los cambios permanentes, recuerda guardar la configuración después de probar.",
       "defaultPlaceholder": "Ingrese y presione Enter"
     },

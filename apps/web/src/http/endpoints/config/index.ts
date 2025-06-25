@@ -26,7 +26,7 @@ export const updateConfig = <TData = UpdateConfigResult>(
  * @summary List all configurations
  */
 export const getAllConfigs = <TData = GetAllConfigsResult>(options?: AxiosRequestConfig): Promise<TData> => {
-  return apiInstance.get(`/api/config/list`, options);
+  return apiInstance.get(`/api/app/configs`, options);
 };
 
 /**

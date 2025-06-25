@@ -135,54 +135,12 @@ const defaultConfigs = [
     type: "number",
     group: "security",
   },
-  // OIDC SSO Configurations
+  // Auth Providers Global Configuration
   {
-    key: "oidcEnabled",
-    value: "false",
-    type: "boolean",
-    group: "oidc",
-  },
-  {
-    key: "oidcIssuerUrl",
-    value: "",
-    type: "string",
-    group: "oidc",
-  },
-  {
-    key: "oidcClientId",
-    value: "",
-    type: "string",
-    group: "oidc",
-  },
-  {
-    key: "oidcClientSecret",
-    value: "",
-    type: "string",
-    group: "oidc",
-  },
-  {
-    key: "oidcRedirectUri",
-    value: "",
-    type: "string",
-    group: "oidc",
-  },
-  {
-    key: "oidcScope",
-    value: "openid profile email",
-    type: "string",
-    group: "oidc",
-  },
-  {
-    key: "oidcAutoRegister",
+    key: "authProvidersEnabled",
     value: "true",
     type: "boolean",
-    group: "oidc",
-  },
-  {
-    key: "oidcAdminEmailDomains",
-    value: "",
-    type: "string",
-    group: "oidc",
+    group: "auth-providers",
   },
   {
     key: "serverUrl",
@@ -190,6 +148,75 @@ const defaultConfigs = [
     type: "string",
     group: "general",
   }
+];
+
+const defaultAuthProviders = [
+  {
+    name: "github",
+    displayName: "GitHub",
+    type: "oauth2",
+    icon: "SiGithub",
+    enabled: false,
+    issuerUrl: "https://github.com/login/oauth",
+    scope: "user:email",
+    sortOrder: 1,
+    metadata: JSON.stringify({
+      description: "Sign in with your GitHub account",
+      docs: "https://docs.github.com/en/developers/apps/building-oauth-apps"
+    })
+  },
+  {
+    name: "auth0",
+    displayName: "Auth0",
+    type: "oidc",
+    icon: "SiAuth0",
+    enabled: false,
+    scope: "openid profile email",
+    sortOrder: 2,
+    metadata: JSON.stringify({
+      description: "Sign in with Auth0",
+      docs: "https://auth0.com/docs/get-started/authentication-and-authorization-flow"
+    })
+  },
+  {
+    name: "kinde",
+    displayName: "Kinde Auth",
+    type: "oidc",
+    icon: "FaKey",
+    enabled: false,
+    scope: "openid profile email",
+    sortOrder: 3,
+    metadata: JSON.stringify({
+      description: "Sign in with Kinde",
+      docs: "https://kinde.com/docs/developer-tools/about/"
+    })
+  },
+  {
+    name: "zitadel",
+    displayName: "Zitadel",
+    type: "oidc",
+    icon: "FaShield",
+    enabled: false,
+    scope: "openid profile email",
+    sortOrder: 4,
+    metadata: JSON.stringify({
+      description: "Sign in with Zitadel",
+      docs: "https://zitadel.com/docs/guides/integrate/login/oidc"
+    })
+  },
+  {
+    name: "authentik",
+    displayName: "Authentik",
+    type: "oidc",
+    icon: "FaShieldAlt",
+    enabled: false,
+    scope: "openid profile email",
+    sortOrder: 5,
+    metadata: JSON.stringify({
+      description: "Sign in with Authentik",
+      docs: "https://goauthentik.io/docs/providers/oauth2"
+    })
+  },
 ];
 
 async function main() {
@@ -222,6 +249,37 @@ async function main() {
   console.log(`   ✅ Created: ${createdCount} configurations`);
   console.log(`   ⏭️  Skipped: ${skippedCount} configurations`);
   console.log("🎉 App configurations seeded successfully!");
+
+  // Seed Auth Providers
+  console.log("\n🔐 Starting auth providers seed...");
+  console.log("🛡️  Protected mode: Only creates missing providers");
+
+  let providersCreatedCount = 0;
+  let providersSkippedCount = 0;
+
+  for (const provider of defaultAuthProviders) {
+    const existingProvider = await prisma.authProvider.findUnique({
+      where: { name: provider.name },
+    });
+
+    if (existingProvider) {
+      console.log(`⏭️  Auth provider '${provider.name}' already exists, skipping...`);
+      providersSkippedCount++;
+      continue;
+    }
+
+    await prisma.authProvider.create({
+      data: provider,
+    });
+
+    console.log(`✅ Created auth provider: ${provider.displayName} (${provider.name})`);
+    providersCreatedCount++;
+  }
+
+  console.log("\n📊 Auth Providers Summary:");
+  console.log(`   ✅ Created: ${providersCreatedCount} providers`);
+  console.log(`   ⏭️  Skipped: ${providersSkippedCount} providers`);
+  console.log("🎉 Auth providers seeded successfully!");
 }
 
 main()

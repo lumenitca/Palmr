@@ -29,10 +29,18 @@ export function useLogin() {
 
   useEffect(() => {
     const errorParam = searchParams.get("error");
+    const messageParam = searchParams.get("message");
+    const providerParam = searchParams.get("provider");
 
     if (errorParam) {
-      const errorKey = `auth.errors.${errorParam}`;
-      const message = t(errorKey);
+      let message: string;
+
+      if (messageParam) {
+        message = decodeURIComponent(messageParam);
+      } else {
+        const errorKey = `auth.errors.${errorParam}`;
+        message = t(errorKey);
+      }
 
       setTimeout(() => {
         toast.error(message);
@@ -41,6 +49,8 @@ export function useLogin() {
       setTimeout(() => {
         const url = new URL(window.location.href);
         url.searchParams.delete("error");
+        url.searchParams.delete("message");
+        url.searchParams.delete("provider");
         window.history.replaceState({}, "", url.toString());
       }, 1000);
     }

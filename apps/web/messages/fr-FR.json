@@ -500,38 +500,6 @@
         "title": "URL du Serveur",
         "description": "URL de base du serveur Palmr (ex: https://palmr.exemple.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Activé",
-        "description": "Activer ou désactiver l'authentification via OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "URL du Fournisseur",
-        "description": "URL du fournisseur OpenID Connect (ex: https://auth.exemple.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "ID Client",
-        "description": "Identifiant du client OIDC enregistré auprès du fournisseur"
-      },
-      "oidcClientSecret": {
-        "title": "Secret Client",
-        "description": "Secret du client OIDC pour l'authentification"
-      },
-      "oidcRedirectUri": {
-        "title": "URI de Redirection",
-        "description": "URI vers laquelle les utilisateurs seront redirigés après l'authentification. Entrez uniquement l'URL de base (ex: https://monsite.com). Le chemin /api/auth/oidc/callback sera ajouté automatiquement."
-      },
-      "oidcScope": {
-        "title": "Portées",
-        "description": "Portées OIDC demandées (ex: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Inscription Automatique",
-        "description": "Inscrit automatiquement les utilisateurs qui n'existent pas lors de la première connexion"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Domaines Email Admin",
-        "description": "Domaines email qui reçoivent automatiquement les privilèges d'administrateur"
-      },
       "testSmtp": {
         "title": "[TO_TRANSLATE] Test SMTP Connection",
         "description": "[TO_TRANSLATE] Test if the SMTP configuration is valid"
@@ -571,8 +539,6 @@
       "smtpNotEnabled": "SMTP n'est pas activé. Veuillez d'abord activer SMTP."
     },
     "tooltips": {
-      "oidcScope": "Entrez une portée et appuyez sur Entrée pour l'ajouter",
-      "oidcAdminEmailDomains": "Entrez un domaine et appuyez sur Entrée pour l'ajouter",
       "testSmtp": "Teste la connexion SMTP avec les valeurs actuellement saisies dans le formulaire. Pour rendre les modifications permanentes, n'oubliez pas d'enregistrer vos paramètres après le test.",
       "defaultPlaceholder": "Entrez et appuyez sur Entrée"
     },

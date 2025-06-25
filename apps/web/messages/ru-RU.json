@@ -497,38 +497,6 @@
         "title": "URL do Servidor",
         "description": "URL base do servidor Palmr (ex: https://palmr.exemplo.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Включен",
-        "description": "Включить или отключить аутентификацию через OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "URL Провайдера",
-        "description": "URL провайдера OpenID Connect (например: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "Идентификатор клиента OIDC, зарегистрированный у провайдера"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "Секрет клиента OIDC для аутентификации"
-      },
-      "oidcRedirectUri": {
-        "title": "URI Перенаправления",
-        "description": "URI, куда пользователь будет перенаправлен после аутентификации. Введите только базовый URL (например: https://mysite.com). Путь /api/auth/oidc/callback будет добавлен автоматически."
-      },
-      "oidcScope": {
-        "title": "Области",
-        "description": "Запрашиваемые области OIDC (например: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Автоматическая Регистрация",
-        "description": "Автоматически регистрировать пользователей, которых нет при первом входе"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Домены Email Администратора",
-        "description": "Домены электронной почты, которые автоматически получают права администратора"
-      },
       "testSmtp": {
         "title": "Проверить SMTP-соединение",
         "description": "Проверить правильность настройки SMTP"
@@ -571,8 +539,6 @@
     "breadcrumb": "Настройки",
     "pageTitle": "Настройки",
     "tooltips": {
-      "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
       "testSmtp": "Проверяет SMTP-соединение с текущими значениями в форме. Чтобы сохранить изменения, не забудьте сохранить настройки после тестирования.",
       "defaultPlaceholder": "Введите и нажмите Enter"
     },

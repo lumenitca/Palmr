@@ -1,12 +1,11 @@
 import { buildApp } from "./app";
 import { env } from "./env";
 import { appRoutes } from "./modules/app/routes";
+import { authProvidersRoutes } from "./modules/auth-providers/routes";
 import { authRoutes } from "./modules/auth/routes";
-import { ConfigService } from "./modules/config/service";
 import { fileRoutes } from "./modules/file/routes";
 import { filesystemRoutes } from "./modules/filesystem/routes";
 import { healthRoutes } from "./modules/health/routes";
-import { oidcRoutes } from "./modules/oidc/routes";
 import { reverseShareRoutes } from "./modules/reverse-share/routes";
 import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
@@ -48,7 +47,6 @@ async function ensureDirectories() {
 
 async function startServer() {
   const app = await buildApp();
-  const configService = new ConfigService();
 
   await ensureDirectories();
 
@@ -75,7 +73,7 @@ async function startServer() {
   }
 
   app.register(authRoutes);
-  app.register(oidcRoutes, { prefix: "/auth/oidc" });
+  app.register(authProvidersRoutes, { prefix: "/auth" });
   app.register(userRoutes);
   app.register(fileRoutes);
 
@@ -94,17 +92,19 @@ async function startServer() {
     host: "0.0.0.0",
   });
 
-  let oidcStatus = "Disabled";
+  let authProviders = "Disabled";
   try {
-    const oidcEnabled = await configService.getValue("oidcEnabled");
-    oidcStatus = oidcEnabled === "true" ? "Enabled" : "Disabled";
+    const { AuthProvidersService } = await import("./modules/auth-providers/service.js");
+    const authService = new AuthProvidersService();
+    const enabledProviders = await authService.getEnabledProviders();
+    authProviders = enabledProviders.length > 0 ? `Enabled (${enabledProviders.length} providers)` : "Disabled";
   } catch (error) {
-    console.error("Error getting OIDC status:", error);
+    console.error("Error getting auth providers status:", error);
   }
 
   console.log(`🌴 Palmr server running on port 3333 🌴`);
   console.log(`📦 Storage mode: ${env.ENABLE_S3 === "true" ? "S3" : "Local Filesystem (Encrypted)"}`);
-  console.log(`🔐 OIDC SSO: ${oidcStatus}`);
+  console.log(`🔐 Auth Providers: ${authProviders}`);
 
   console.log("\n📚 API Documentation:");
   console.log(`   - API Reference: http://localhost:3333/docs\n`);

@@ -83,7 +83,7 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
                       register={form.register}
                       setValue={form.setValue}
                       smtpEnabled={form.watch("configs.smtpEnabled")}
-                      oidcEnabled={form.watch("configs.oidcEnabled")}
+                      authProvidersEnabled={form.watch("configs.authProvidersEnabled")}
                       watch={form.watch}
                     />
                     <p className="text-xs text-muted-foreground ml-1">

@@ -497,38 +497,6 @@
         "title": "رابط الخادم",
         "description": "الرابط الأساسي لخادم Palmr (مثال: https://palmr.example.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC مفعل",
-        "description": "تفعيل أو إلغاء تفعيل المصادقة عبر OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "رابط المزود",
-        "description": "رابط مزود OpenID Connect (مثال: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "معرف العميل",
-        "description": "معرف عميل OIDC المسجل لدى المزود"
-      },
-      "oidcClientSecret": {
-        "title": "سر العميل",
-        "description": "سر عميل OIDC للمصادقة"
-      },
-      "oidcRedirectUri": {
-        "title": "رابط إعادة التوجيه",
-        "description": "الرابط الذي سيتم توجيه المستخدم إليه بعد المصادقة. أدخل الرابط الأساسي فقط (مثال: https://mysite.com). سيتم إضافة المسار /api/auth/oidc/callback تلقائياً."
-      },
-      "oidcScope": {
-        "title": "النطاقات",
-        "description": "نطاقات OIDC المطلوبة (مثال: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "التسجيل التلقائي",
-        "description": "تسجيل المستخدمين الذين لا يوجدون تلقائياً في أول تسجيل دخول"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "نطاقات البريد الإلكتروني للمشرف",
-        "description": "نطاقات البريد الإلكتروني التي تحصل على صلاحيات المشرف تلقائياً"
-      },
       "testSmtp": {
         "title": "اختبار اتصال SMTP",
         "description": "اختبار ما إذا كان تكوين SMTP صالحًا"
@@ -571,8 +539,6 @@
     "breadcrumb": "الإعدادات",
     "pageTitle": "الإعدادات",
     "tooltips": {
-      "oidcScope": "أدخل نطاقاً واضغط Enter للإضافة",
-      "oidcAdminEmailDomains": "أدخل نطاقاً واضغط Enter للإضافة",
       "testSmtp": "يختبر اتصال SMTP بالقيم المدخلة حاليًا في النموذج. لجعل التغييرات دائمة، تذكر حفظ إعداداتك بعد الاختبار.",
       "defaultPlaceholder": "أدخل واضغط Enter"
     },

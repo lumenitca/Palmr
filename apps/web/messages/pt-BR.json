@@ -442,8 +442,6 @@
       }
     },
     "tooltips": {
-      "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
       "testSmtp": "Testa a conexão SMTP com os valores atualmente inseridos no formulário. Para tornar as alterações permanentes, lembre-se de salvar suas configurações após o teste.",
       "defaultPlaceholder": "Digite e pressione Enter"
     },
@@ -528,38 +526,6 @@
       "serverUrl": {
         "title": "URL do Servidor",
         "description": "URL base do servidor Palmr (ex: https://palmr.exemplo.com)"
-      },
-      "oidcEnabled": {
-        "title": "OIDC Habilitado",
-        "description": "Ativa ou desativa a autenticação via OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "URL do Provedor",
-        "description": "URL do provedor OpenID Connect (ex: https://auth.exemplo.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "Identificador do cliente OIDC registrado no provedor"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "Segredo do cliente OIDC para autenticação"
-      },
-      "oidcRedirectUri": {
-        "title": "URI de Redirecionamento",
-        "description": "URI para onde o usuário será redirecionado após autenticação. Digite apenas a URL base (ex: https://meusite.com). O path /api/auth/oidc/callback será adicionado automaticamente."
-      },
-      "oidcScope": {
-        "title": "Escopos",
-        "description": "Escopos OIDC solicitados (ex: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Registro Automático",
-        "description": "Registra automaticamente usuários que não existem no primeiro login"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Domínios de E-mail Admin",
-        "description": "Domínios de e-mail que recebem privilégios de administrador automaticamente"
       },
       "testSmtp": {
         "title": "Testar Conexão SMTP",

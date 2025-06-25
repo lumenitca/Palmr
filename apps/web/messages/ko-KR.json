@@ -497,38 +497,6 @@
         "title": "서버 URL",
         "description": "Palmr 서버의 기본 URL (예: https://palmr.example.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC 활성화",
-        "description": "OpenID Connect를 통한 인증을 활성화 또는 비활성화합니다"
-      },
-      "oidcIssuerUrl": {
-        "title": "프로바이더 URL",
-        "description": "OpenID Connect 프로바이더의 URL (예: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "클라이언트 ID",
-        "description": "프로바이더에 등록된 OIDC 클라이언트 식별자"
-      },
-      "oidcClientSecret": {
-        "title": "클라이언트 시크릿",
-        "description": "인증을 위한 OIDC 클라이언트의 시크릿"
-      },
-      "oidcRedirectUri": {
-        "title": "리디렉션 URI",
-        "description": "인증 후 사용자가 리디렉션될 URI. 기본 URL만 입력하세요 (예: https://mysite.com). 경로 /api/auth/oidc/callback는 자동으로 추가됩니다."
-      },
-      "oidcScope": {
-        "title": "스코프",
-        "description": "요청하는 OIDC 스코프 (예: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "자동 등록",
-        "description": "첫 로그인 시 존재하지 않는 사용자를 자동으로 등록합니다"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "관리자 이메일 도메인",
-        "description": "자동으로 관리자 권한이 부여되는 이메일 도메인"
-      },
       "testSmtp": {
         "title": "SMTP 연결 테스트",
         "description": "SMTP 구성이 유효한지 테스트합니다"
@@ -571,8 +539,6 @@
     "breadcrumb": "설정",
     "pageTitle": "설정",
     "tooltips": {
-      "oidcScope": "스코프를 입력하고 Enter 키를 눌러 추가",
-      "oidcAdminEmailDomains": "도메인을 입력하고 Enter 키를 눌러 추가",
       "testSmtp": "현재 입력된 값으로 SMTP 연결을 테스트합니다. 변경 사항을 영구적으로 적용하려면 테스트 후 설정을 저장하는 것을 잊지 마세요.",
       "defaultPlaceholder": "입력하고 Enter 키를 누르세요"
     },

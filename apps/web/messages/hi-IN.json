@@ -497,38 +497,6 @@
         "title": "सर्वर URL",
         "description": "Palmr सर्वर का आधार URL (उदाहरण: https://palmr.example.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC सक्षम",
-        "description": "OpenID Connect के माध्यम से प्रमाणीकरण सक्षम या अक्षम करें"
-      },
-      "oidcIssuerUrl": {
-        "title": "प्रदाता URL",
-        "description": "OpenID Connect प्रदाता का URL (उदाहरण: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "क्लाइंट ID",
-        "description": "प्रदाता में पंजीकृत OIDC क्लाइंट का पहचानकर्ता"
-      },
-      "oidcClientSecret": {
-        "title": "क्लाइंट सीक्रेट",
-        "description": "प्रमाणीकरण के लिए OIDC क्लाइंट का सीक्रेट"
-      },
-      "oidcRedirectUri": {
-        "title": "रीडायरेक्ट URI",
-        "description": "प्रमाणीकरण के बाद उपयोगकर्ता को रीडायरेक्ट करने के लिए URI। केवल आधार URL दर्ज करें (उदाहरण: https://mysite.com)। पथ /api/auth/oidc/callback स्वचालित रूप से जोड़ा जाएगा।"
-      },
-      "oidcScope": {
-        "title": "स्कोप",
-        "description": "अनुरोधित OIDC स्कोप (उदाहरण: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "स्वचालित पंजीकरण",
-        "description": "पहले लॉगिन पर मौजूद नहीं होने वाले उपयोगकर्ताओं को स्वचालित रूप से पंजीकृत करें"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "एडमिन ईमेल डोमेन",
-        "description": "जिन ईमेल डोमेन को स्वचालित रूप से व्यवस्थापक विशेषाधिकार प्राप्त होंगे"
-      },
       "testSmtp": {
         "title": "SMTP कनेक्शन का परीक्षण करें",
         "description": "जांचें कि SMTP कॉन्फ़िगरेशन मान्य है"
@@ -571,8 +539,6 @@
     "breadcrumb": "सेटिंग्स",
     "pageTitle": "सेटिंग्स",
     "tooltips": {
-      "oidcScope": "स्कोप जोड़ने के लिए एक स्कोप दर्ज करें और Enter दबाएं",
-      "oidcAdminEmailDomains": "डोमेन जोड़ने के लिए एक डोमेन दर्ज करें और Enter दबाएं",
       "testSmtp": "फॉर्म में वर्तमान में दर्ज मानों के साथ SMTP कनेक्शन का परीक्षण करता है। परिवर्तनों को स्थायी बनाने के लिए, परीक्षण के बाद अपनी सेटिंग्स को सहेजना याद रखें।",
       "defaultPlaceholder": "दर्ज करें और Enter दबाएं"
     },

@@ -497,38 +497,6 @@
         "title": "URL del Server",
         "description": "URL base del server Palmr (es: https://palmr.esempio.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Abilitato",
-        "description": "Attiva o disattiva l'autenticazione tramite OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "URL del Provider",
-        "description": "URL del provider OpenID Connect (es: https://auth.esempio.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "Identificatore del client OIDC registrato nel provider"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "Segreto del client OIDC per l'autenticazione"
-      },
-      "oidcRedirectUri": {
-        "title": "URI di Reindirizzamento",
-        "description": "URI dove l'utente verrà reindirizzato dopo l'autenticazione. Inserisci solo l'URL base (es: https://miosito.com). Il percorso /api/auth/oidc/callback verrà aggiunto automaticamente."
-      },
-      "oidcScope": {
-        "title": "Scope",
-        "description": "Scope OIDC richiesti (es: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Registrazione Automatica",
-        "description": "Registra automaticamente gli utenti che non esistono al primo accesso"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Domini Email Admin",
-        "description": "Domini email che ricevono automaticamente i privilegi di amministratore"
-      },
       "testSmtp": {
         "title": "Test Connessione SMTP",
         "description": "Verifica se la configurazione SMTP è valida"
@@ -571,8 +539,6 @@
     "breadcrumb": "Impostazioni",
     "pageTitle": "Impostazioni",
     "tooltips": {
-      "oidcScope": "Inserisci uno scope e premi Invio per aggiungerlo",
-      "oidcAdminEmailDomains": "Inserisci un dominio e premi Invio per aggiungerlo",
       "testSmtp": "Verifica la connessione SMTP con i valori attualmente inseriti nel modulo. Per rendere permanenti le modifiche, ricordati di salvare le impostazioni dopo il test.",
       "defaultPlaceholder": "Inserisci e premi Invio"
     },

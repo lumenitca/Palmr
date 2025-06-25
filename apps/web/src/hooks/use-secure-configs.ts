@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getAdminConfigs, getSecureConfigs, getSecureConfigValue } from "@/lib/actions/config";
+import { getAllConfigs } from "@/http/endpoints";
 
 interface Config {
   key: string;
@@ -25,8 +25,8 @@ export function useSecureConfigs() {
     try {
       setIsLoading(true);
       setError(null);
-      const data = await getSecureConfigs();
-      setConfigs(data.configs);
+      const response = await getAllConfigs();
+      setConfigs(response.data.configs);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
       console.error("Error loading secure configs:", err);
@@ -63,12 +63,12 @@ export function useAdminConfigs() {
       setError(null);
       setIsUnauthorized(false);
 
-      const data = await getAdminConfigs();
-      setConfigs(data.configs);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      const response = await getAllConfigs();
+      setConfigs(response.data.configs);
+    } catch (err: any) {
+      const errorMessage = err?.response?.data?.error || err?.message || "Unknown error";
 
-      if (errorMessage.includes("Unauthorized") || errorMessage.includes("Admin access required")) {
+      if (err?.response?.status === 401 || err?.response?.status === 403) {
         setIsUnauthorized(true);
         setError("Access denied: Administrator privileges required");
       } else {
@@ -107,8 +107,9 @@ export function useSecureConfigValue(key: string) {
     try {
       setIsLoading(true);
       setError(null);
-      const configValue = await getSecureConfigValue(key);
-      setValue(configValue);
+      const response = await getAllConfigs();
+      const config = response.data.configs.find((c) => c.key === key);
+      setValue(config?.value || null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
       console.error(`Error loading config value for ${key}:`, err);

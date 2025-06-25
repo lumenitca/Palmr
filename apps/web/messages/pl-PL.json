@@ -497,38 +497,6 @@
         "title": "Adres URL serwera",
         "description": "Podstawowy adres URL serwera Palmr (np. https://palmr.example.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC włączone",
-        "description": "Włącz lub wyłącz uwierzytelnianie OpenID Connect"
-      },
-      "oidcIssuerUrl": {
-        "title": "Adres URL dostawcy",
-        "description": "Adres URL dostawcy OpenID Connect (np. https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "ID klienta",
-        "description": "Identyfikator klienta OIDC zarejestrowany u dostawcy"
-      },
-      "oidcClientSecret": {
-        "title": "Sekret klienta",
-        "description": "Sekret klienta OIDC do uwierzytelniania"
-      },
-      "oidcRedirectUri": {
-        "title": "URI przekierowania",
-        "description": "URI, na który użytkownicy zostaną przekierowani po uwierzytelnieniu. Wprowadź tylko podstawowy adres URL (np. https://mysite.com). Ścieżka /api/auth/oidc/callback zostanie dodana automatycznie."
-      },
-      "oidcScope": {
-        "title": "Zakresy",
-        "description": "Żądane zakresy OIDC (np. openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Automatyczna rejestracja",
-        "description": "Automatycznie rejestruj użytkowników, którzy nie istnieją przy pierwszym logowaniu"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Domeny e-mail administratora",
-        "description": "Domeny e-mail, które automatycznie otrzymują uprawnienia administratora"
-      },
       "testSmtp": {
         "title": "Test połączenia SMTP",
         "description": "Sprawdź, czy konfiguracja SMTP jest prawidłowa"
@@ -571,8 +539,6 @@
     "breadcrumb": "Ustawienia",
     "pageTitle": "Ustawienia",
     "tooltips": {
-      "oidcScope": "Wprowadź zakres i naciśnij Enter, aby dodać",
-      "oidcAdminEmailDomains": "Wprowadź domenę i naciśnij Enter, aby dodać",
       "testSmtp": "Testuje połączenie SMTP z obecnie wprowadzonymi wartościami w formularzu. Aby wprowadzić trwałe zmiany, pamiętaj o zapisaniu ustawień po testowaniu.",
       "defaultPlaceholder": "Wprowadź i naciśnij Enter"
     },

@@ -497,38 +497,6 @@
         "title": "Sunucu URL'si",
         "description": "Palmr sunucu temel URL'si (örn: https://palmr.ornek.com)"
       },
-      "oidcEnabled": {
-        "title": "OIDC Etkin",
-        "description": "OpenID Connect üzerinden kimlik doğrulamayı etkinleştir veya devre dışı bırak"
-      },
-      "oidcIssuerUrl": {
-        "title": "Sağlayıcı URL'si",
-        "description": "OpenID Connect sağlayıcı URL'si (örn: https://auth.ornek.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "Sağlayıcıda kayıtlı OIDC istemci tanımlayıcısı"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "Kimlik doğrulama için OIDC istemci sırrı"
-      },
-      "oidcRedirectUri": {
-        "title": "Yönlendirme URI'si",
-        "description": "Kimlik doğrulama sonrası kullanıcının yönlendirileceği URI. Sadece temel URL'yi girin (örn: https://sitem.com). /api/auth/oidc/callback yolu otomatik olarak eklenecektir."
-      },
-      "oidcScope": {
-        "title": "Kapsamlar",
-        "description": "İstenen OIDC kapsamları (örn: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Otomatik Kayıt",
-        "description": "İlk girişte olmayan kullanıcıları otomatik olarak kaydet"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Yönetici E-posta Alanları",
-        "description": "Otomatik olarak yönetici ayrıcalıkları alan e-posta alanları"
-      },
       "testSmtp": {
         "title": "SMTP Bağlantısını Test Et",
         "description": "SMTP yapılandırmasının geçerli olup olmadığını test et"
@@ -571,8 +539,6 @@
     "breadcrumb": "Ayarlar",
     "pageTitle": "Ayarlar",
     "tooltips": {
-      "oidcScope": "Bir kapsam girin ve eklemek için Enter'a basın",
-      "oidcAdminEmailDomains": "Bir alan girin ve eklemek için Enter'a basın",
       "testSmtp": "Formda şu anda girilen değerlerle SMTP bağlantısını test eder. Değişiklikleri kalıcı yapmak için test ettikten sonra ayarlarınızı kaydetmeyi unutmayın.",
       "defaultPlaceholder": "Girin ve Enter'a basın"
     },

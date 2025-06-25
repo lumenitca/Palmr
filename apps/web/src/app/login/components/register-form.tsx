@@ -12,8 +12,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { registerUser, updateConfig } from "@/http/endpoints";
+import { MultiProviderButtons } from "./multi-provider-buttons";
 import { PasswordVisibilityToggle } from "./password-visibility-toggle";
-import { SSOButton } from "./sso-button";
 
 interface RegisterFormProps {
   isVisible: boolean;
@@ -179,7 +179,7 @@ export function RegisterForm({ isVisible, onToggleVisibility }: RegisterFormProp
   return (
     <>
       {renderForm()}
-      <SSOButton />
+      <MultiProviderButtons />
     </>
   );
 }

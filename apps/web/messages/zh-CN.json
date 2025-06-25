@@ -497,38 +497,6 @@
         "title": "URL do Servidor",
         "description": "URL base do servidor Palmr (ex: https://palmr.exemplo.com)"
       },
-      "oidcEnabled": {
-        "title": "启用OIDC",
-        "description": "启用或禁用OpenID Connect认证"
-      },
-      "oidcIssuerUrl": {
-        "title": "提供商URL",
-        "description": "OpenID Connect提供商URL（例如：https://auth.example.com/auth/realms/master）"
-      },
-      "oidcClientId": {
-        "title": "客户端ID",
-        "description": "在提供商处注册的OIDC客户端标识符"
-      },
-      "oidcClientSecret": {
-        "title": "客户端密钥",
-        "description": "用于认证的OIDC客户端密钥"
-      },
-      "oidcRedirectUri": {
-        "title": "重定向URI",
-        "description": "认证后用户将被重定向到的URI。仅输入基本URL（例如：https://mysite.com）。路径/api/auth/oidc/callback将自动添加。"
-      },
-      "oidcScope": {
-        "title": "范围",
-        "description": "请求的OIDC范围（例如：openid profile email）"
-      },
-      "oidcAutoRegister": {
-        "title": "自动注册",
-        "description": "首次登录时自动注册不存在的用户"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "管理员电子邮件域名",
-        "description": "自动获得管理员权限的电子邮件域名"
-      },
       "testSmtp": {
         "title": "测试SMTP连接",
         "description": "测试SMTP配置是否有效"
@@ -571,8 +539,6 @@
     "breadcrumb": "设置",
     "pageTitle": "设置",
     "tooltips": {
-      "oidcScope": "Digite um escopo e pressione Enter para adicionar",
-      "oidcAdminEmailDomains": "Digite um domínio e pressione Enter para adicionar",
       "testSmtp": "使用当前在表单中输入的值测试SMTP连接。要使更改永久生效，请记得在测试后保存您的设置。",
       "defaultPlaceholder": "输入并按回车键"
     },

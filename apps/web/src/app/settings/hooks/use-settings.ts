@@ -28,7 +28,6 @@ export function useSettings() {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({
     general: true,
     email: true,
-    oidc: true,
     security: true,
     storage: true,
   });
@@ -46,7 +45,6 @@ export function useSettings() {
   const groupForms = {
     general: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     email: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
-    oidc: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     security: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
     storage: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
   } as const;
@@ -99,9 +97,9 @@ export function useSettings() {
             if (bIndex !== -1) return 1;
           }
 
-          if (group === "oidc") {
-            if (a.key === "oidcEnabled") return -1;
-            if (b.key === "oidcEnabled") return 1;
+          if (group === "auth-providers") {
+            if (a.key === "authProvidersEnabled") return -1;
+            if (b.key === "authProvidersEnabled") return 1;
           }
 
           return a.key.localeCompare(b.key);
@@ -114,13 +112,12 @@ export function useSettings() {
       setGroupedConfigs(grouped);
 
       Object.entries(grouped).forEach(([groupName, groupConfigs]) => {
-        if (
-          groupName === "general" ||
-          groupName === "email" ||
-          groupName === "oidc" ||
-          groupName === "security" ||
-          groupName === "storage"
-        ) {
+        // Skip auth-providers group as it has its own custom component
+        if (groupName === "auth-providers") {
+          return;
+        }
+
+        if (groupName === "general" || groupName === "email" || groupName === "security" || groupName === "storage") {
           const group = groupName as ValidGroup;
           const groupConfigData = groupConfigs.reduce(
             (acc, config) => {

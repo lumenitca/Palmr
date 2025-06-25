@@ -514,38 +514,6 @@
       "serverUrl": {
         "title": "Server URL",
         "description": "Base URL of the Palmr server (e.g.: https://palmr.example.com)"
-      },
-      "oidcEnabled": {
-        "title": "OIDC Enabled",
-        "description": "Enable or disable OpenID Connect authentication"
-      },
-      "oidcIssuerUrl": {
-        "title": "Provider URL",
-        "description": "OpenID Connect provider URL (e.g.: https://auth.example.com/auth/realms/master)"
-      },
-      "oidcClientId": {
-        "title": "Client ID",
-        "description": "OIDC client identifier registered with the provider"
-      },
-      "oidcClientSecret": {
-        "title": "Client Secret",
-        "description": "OIDC client secret for authentication"
-      },
-      "oidcRedirectUri": {
-        "title": "Redirect URI",
-        "description": "URI where users will be redirected after authentication. Enter only the base URL (e.g.: https://mysite.com). The path /api/auth/oidc/callback will be added automatically."
-      },
-      "oidcScope": {
-        "title": "Scopes",
-        "description": "Requested OIDC scopes (e.g.: openid profile email)"
-      },
-      "oidcAutoRegister": {
-        "title": "Auto Register",
-        "description": "Automatically register users that don't exist on first login"
-      },
-      "oidcAdminEmailDomains": {
-        "title": "Admin Email Domains",
-        "description": "Email domains that automatically receive admin privileges"
       }
     },
     "buttons": {
@@ -571,8 +539,6 @@
     "breadcrumb": "Settings",
     "pageTitle": "Settings",
     "tooltips": {
-      "oidcScope": "Enter a scope and press Enter to add",
-      "oidcAdminEmailDomains": "Enter a domain and press Enter to add",
       "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing.",
       "defaultPlaceholder": "Enter and press Enter"
     },
