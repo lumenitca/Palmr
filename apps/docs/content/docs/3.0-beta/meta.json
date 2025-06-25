@@ -18,6 +18,7 @@
     "reverse-proxy-configuration",
     "password-reset-without-smtp",
     "oidc-authentication",
+    "troubleshooting",
     "---Developers---",
     "architecture",
     "github-architecture",

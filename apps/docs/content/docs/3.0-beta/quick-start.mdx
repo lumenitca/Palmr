@@ -36,7 +36,7 @@ Palmr. supports two storage approaches for persistent data:
 - ✅ **Direct Access**: Files stored in local directory you specify
 - ✅ **Transparent Storage**: Direct filesystem access from host
 - ✅ **Custom Backup**: Use existing file system backup solutions
-- ⚠️ **Permission Considerations**: May require user/group configuration
+- ⚠️ **Permission Considerations**: **Common Issue** - Requires UID/GID configuration (see troubleshooting below)
 
 ---
 
@@ -93,9 +93,8 @@ services:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
       # - SECURE_SITE=false # Set to true if you are using a reverse proxy
-      # Optional: Set custom UID/GID for file permissions
-      # - PALMR_UID=1000
-      # - PALMR_GID=1000
+      - PALMR_UID=1000 # Set to your user ID (run 'id' to find it)
+      - PALMR_GID=1000 # Set to your group ID (run 'id' to find it)
     ports:
       - "5487:5487" # Web port
       - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY)
@@ -111,7 +110,32 @@ services:
 docker-compose up -d
 ```
 
-> **Permission Configuration**: If you encounter permission issues with bind mounts (common on NAS systems), see our [UID/GID Configuration](/docs/3.0-beta/uid-gid-configuration) guide for automatic permission handling.
+> **⚠️ Common Issue**: If you get "permission denied" errors, it's because Palmr uses UID 1001 by default, but most Linux systems use UID 1000. The configuration above already includes the fix (`PALMR_UID=1000`). See our [UID/GID Configuration](/docs/3.0-beta/uid-gid-configuration) guide for detailed troubleshooting.
+
+### Troubleshooting Bind Mount Permissions
+
+If you encounter permission errors:
+
+```bash
+# 1. Check your UID/GID
+id
+# Example output: uid=1000(user) gid=1000(group)
+
+# 2. Make sure these match your docker-compose.yaml:
+# - PALMR_UID=1000  # ← Your UID here
+# - PALMR_GID=1000  # ← Your GID here
+
+# 3. Restart the container
+docker-compose down && docker-compose up -d
+```
+
+**Alternative fix** (if you prefer not to use environment variables):
+
+```bash
+# Create directories with Palmr's default ownership
+mkdir -p data
+chown -R 1001:1001 data
+```
 
 ---
 
