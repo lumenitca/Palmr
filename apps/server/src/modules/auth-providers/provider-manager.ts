@@ -46,7 +46,6 @@ export class ProviderManager {
     return {
       ...this.config.genericProviderTemplate,
       name: providerName,
-      displayName: providerName,
     };
   }
 
@@ -327,9 +326,20 @@ export class ProviderManager {
   }
 
   /**
-   * Obtém scopes padrão para um provider
+   * Obtém scopes padrão para um provider baseado no tipo do banco
    */
-  getDefaultScopes(config: ProviderConfig): string[] {
-    return config.scopes || ["openid", "profile", "email"];
+  getDefaultScopes(provider: any): string[] {
+    // GitHub OAuth2 usa scopes específicos
+    if (provider.type === "oauth2" && provider.name === "github") {
+      return ["user:email"];
+    }
+
+    // OIDC padrão
+    if (provider.type === "oidc") {
+      return ["openid", "profile", "email"];
+    }
+
+    // OAuth2 genérico
+    return ["profile", "email"];
   }
 }

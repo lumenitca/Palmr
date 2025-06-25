@@ -1,13 +1,9 @@
 export interface ProviderConfig {
   name: string;
-  displayName: string;
-  type: "oidc" | "oauth2";
-  icon: string;
   issuerUrl?: string;
   authorizationEndpoint?: string;
   tokenEndpoint?: string;
   userInfoEndpoint?: string;
-  scopes: string[];
   supportsDiscovery: boolean;
   discoveryEndpoint?: string;
   fallbackEndpoints?: {

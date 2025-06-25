@@ -710,7 +710,7 @@ function EditProviderForm({
         <div>
           <Label className="mb-2 block">Issuer URL *</Label>
           <Input
-            placeholder="https://your-provider.com/.well-known/openid_configuration"
+            placeholder="https://your-provider.com/app/authorize"
             value={formData.issuerUrl}
             onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
           />

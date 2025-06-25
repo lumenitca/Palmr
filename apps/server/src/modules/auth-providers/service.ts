@@ -129,7 +129,6 @@ export class AuthProvidersService {
 
     console.log(`[AuthProvidersService] Config found:`, {
       name: config.name,
-      type: config.type,
       supportsDiscovery: config.supportsDiscovery,
     });
 
@@ -139,7 +138,7 @@ export class AuthProvidersService {
     const callbackUrl = redirectUri || `${baseUrl}/api/auth/providers/${providerName}/callback`;
 
     // Determina se precisa de PKCE
-    const needsPkce = config.type === "oidc";
+    const needsPkce = provider.type === "oidc";
     let codeVerifier: string | undefined;
     let codeChallenge: string | undefined;
 
@@ -164,12 +163,12 @@ export class AuthProvidersService {
     // Constrói URL de autorização
     const authUrl = new URL(endpoints.authorizationEndpoint);
 
-    // Usa scopes do usuário, ou fallback para config interna se não especificado
+    // Usa scopes do usuário, ou fallback baseado no tipo do provider
     let scopes: string[];
     if (provider.scope) {
       scopes = provider.scope.split(" ").filter((s: string) => s.trim());
     } else {
-      scopes = this.providerManager.getDefaultScopes(config);
+      scopes = this.providerManager.getDefaultScopes(provider);
     }
 
     console.log(`[AuthProvidersService] Using scopes:`, scopes);
@@ -222,7 +221,6 @@ export class AuthProvidersService {
 
     console.log(`[AuthProvidersService] Config found in callback:`, {
       name: config.name,
-      type: config.type,
     });
 
     try {
@@ -277,7 +275,6 @@ export class AuthProvidersService {
     console.log(`[AuthProvidersService] Starting token exchange for ${provider.name}`);
     console.log(`[AuthProvidersService] Config:`, {
       name: config.name,
-      type: config.type,
       authMethod: config.authMethod,
     });
 
@@ -306,7 +303,7 @@ export class AuthProvidersService {
     });
 
     // Adiciona code_verifier se for OIDC
-    if (config.type === "oidc" && codeVerifier) {
+    if (provider.type === "oidc" && codeVerifier) {
       body.append("code_verifier", codeVerifier);
     }
 

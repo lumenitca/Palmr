@@ -1,18 +1,14 @@
 import { ProviderConfig, ProvidersConfigFile } from "./types";
 
 /**
- * Configuração oficial do GitHub
+ * Configuração técnica oficial do GitHub
  * OAuth2 com busca separada de email
  */
 const githubConfig: ProviderConfig = {
   name: "GitHub",
-  displayName: "GitHub",
-  type: "oauth2",
-  icon: "github",
   authorizationEndpoint: "https://github.com/login/oauth/authorize",
   tokenEndpoint: "https://github.com/login/oauth/access_token",
   userInfoEndpoint: "https://api.github.com/user",
-  scopes: ["user:email"],
   supportsDiscovery: false,
   authMethod: "body",
   specialHandling: {
@@ -31,14 +27,11 @@ const githubConfig: ProviderConfig = {
 };
 
 /**
- * Configuração oficial do Auth0
+ * Configuração técnica oficial do Auth0
  * OIDC com discovery automático
  */
 const auth0Config: ProviderConfig = {
   name: "Auth0",
-  displayName: "Auth0",
-  type: "oidc",
-  icon: "auth0",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
@@ -46,7 +39,6 @@ const auth0Config: ProviderConfig = {
     tokenEndpoint: "/oauth/token",
     userInfoEndpoint: "/userinfo",
   },
-  scopes: ["openid", "profile", "email"],
   authMethod: "body",
   fieldMappings: {
     id: ["sub"],
@@ -59,14 +51,11 @@ const auth0Config: ProviderConfig = {
 };
 
 /**
- * Configuração oficial do Kinde
+ * Configuração técnica oficial do Kinde
  * OIDC com mapeamentos de campo customizados
  */
 const kindeConfig: ProviderConfig = {
   name: "Kinde",
-  displayName: "Kinde",
-  type: "oidc",
-  icon: "kinde",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
@@ -74,7 +63,6 @@ const kindeConfig: ProviderConfig = {
     tokenEndpoint: "/oauth2/token",
     userInfoEndpoint: "/oauth2/user_profile",
   },
-  scopes: ["openid", "profile", "email"],
   authMethod: "body",
   fieldMappings: {
     id: ["id"],
@@ -87,14 +75,11 @@ const kindeConfig: ProviderConfig = {
 };
 
 /**
- * Configuração oficial do Zitadel
+ * Configuração técnica oficial do Zitadel
  * OIDC com Basic Auth e limpeza de URL
  */
 const zitadelConfig: ProviderConfig = {
   name: "Zitadel",
-  displayName: "Zitadel",
-  type: "oidc",
-  icon: "zitadel",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
@@ -102,7 +87,6 @@ const zitadelConfig: ProviderConfig = {
     tokenEndpoint: "/oauth/v2/token",
     userInfoEndpoint: "/oidc/v1/userinfo",
   },
-  scopes: ["openid", "profile", "email"],
   authMethod: "basic",
   specialHandling: {
     urlCleaning: {
@@ -120,14 +104,11 @@ const zitadelConfig: ProviderConfig = {
 };
 
 /**
- * Configuração oficial do Authentik
+ * Configuração técnica oficial do Authentik
  * OIDC self-hosted com discovery e limpeza de URL
  */
 const authentikConfig: ProviderConfig = {
   name: "Authentik",
-  displayName: "Authentik",
-  type: "oidc",
-  icon: "authentik",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
@@ -135,7 +116,6 @@ const authentikConfig: ProviderConfig = {
     tokenEndpoint: "/application/o/token",
     userInfoEndpoint: "/application/o/userinfo",
   },
-  scopes: ["openid", "profile", "email"],
   authMethod: "body",
   specialHandling: {
     urlCleaning: {
@@ -154,13 +134,10 @@ const authentikConfig: ProviderConfig = {
 
 /**
  * Template genérico para providers customizados
- * Configuração padrão OIDC que funciona com a maioria dos providers
+ * Configuração técnica padrão OIDC que funciona com a maioria dos providers
  */
 const genericProviderTemplate: ProviderConfig = {
   name: "",
-  displayName: "",
-  type: "oidc",
-  icon: "generic",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
@@ -168,7 +145,6 @@ const genericProviderTemplate: ProviderConfig = {
     tokenEndpoint: "/token",
     userInfoEndpoint: "/userinfo",
   },
-  scopes: ["openid", "profile", "email"],
   authMethod: "body",
   fieldMappings: {
     id: ["sub", "id"],
