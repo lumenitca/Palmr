@@ -69,6 +69,62 @@ export function usePublicShare() {
     }
   };
 
+  const handleBulkDownload = async () => {
+    if (!share || !share.files || share.files.length === 0) {
+      toast.error(t("shareManager.noFilesToDownload"));
+      return;
+    }
+
+    try {
+      toast.promise(
+        (async () => {
+          const JSZip = (await import("jszip")).default;
+          const zip = new JSZip();
+
+          const downloadPromises = share.files.map(async (file) => {
+            try {
+              const encodedObjectName = encodeURIComponent(file.objectName);
+              const downloadResponse = await getDownloadUrl(encodedObjectName);
+              const downloadUrl = downloadResponse.data.url;
+              const response = await fetch(downloadUrl);
+
+              if (!response.ok) {
+                throw new Error(`Failed to download ${file.name}`);
+              }
+
+              const blob = await response.blob();
+              zip.file(file.name, blob);
+            } catch (error) {
+              console.error(`Error downloading file ${file.name}:`, error);
+              throw error;
+            }
+          });
+
+          await Promise.all(downloadPromises);
+
+          const zipBlob = await zip.generateAsync({ type: "blob" });
+          const zipName = `${share.name || t("shareManager.defaultShareName")}.zip`;
+
+          const url = URL.createObjectURL(zipBlob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = zipName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        })(),
+        {
+          loading: t("shareManager.creatingZip"),
+          success: t("shareManager.zipDownloadSuccess"),
+          error: t("shareManager.zipDownloadError"),
+        }
+      );
+    } catch (error) {
+      console.error("Error creating ZIP:", error);
+    }
+  };
+
   const downloadFile = async (url: string, fileName: string) => {
     const fileResponse = await fetch(url);
     const blob = await fileResponse.blob();
@@ -97,5 +153,6 @@ export function usePublicShare() {
     setPassword,
     handlePasswordSubmit,
     handleDownload,
+    handleBulkDownload,
   };
 }

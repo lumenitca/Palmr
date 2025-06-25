@@ -532,6 +532,20 @@
       "testSmtp": {
         "title": "Test połączenia SMTP",
         "description": "Sprawdź, czy konfiguracja SMTP jest prawidłowa"
+      },
+      "smtpNoAuth": {
+        "title": "Bez uwierzytelniania",
+        "description": "Włącz tę opcję dla serwerów wewnętrznych, które nie wymagają nazwy użytkownika/hasła (ukrywa pola uwierzytelniania)"
+      },
+      "smtpSecure": {
+        "title": "Bezpieczeństwo połączenia",
+        "description": "Metoda zabezpieczenia połączenia SMTP - Auto (zalecane), SSL, STARTTLS lub Brak (niezabezpieczone)",
+        "options": {
+          "auto": "Auto (Zalecane)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "Brak (Niezabezpieczone)"
+        }
       }
     },
     "buttons": {
@@ -548,7 +562,10 @@
       "updateSuccess": "Ustawienia {group} zaktualizowane pomyślnie",
       "smtpTestFailed": "Połączenie SMTP nie powiodło się: {error}",
       "smtpTestGenericError": "Nie udało się przetestować połączenia SMTP. Sprawdź ustawienia i spróbuj ponownie.",
-      "smtpTestSuccess": "Połączenie SMTP udane! Twoja konfiguracja poczty e-mail działa poprawnie."
+      "smtpTestSuccess": "Połączenie SMTP udane! Twoja konfiguracja poczty e-mail działa poprawnie.",
+      "smtpMissingAuth": "Proszę wypełnić nazwę użytkownika i hasło SMTP lub włączyć opcję 'Bez uwierzytelniania'.",
+      "smtpMissingHostPort": "Proszę wypełnić host i port SMTP przed testowaniem.",
+      "smtpNotEnabled": "SMTP nie jest włączone. Proszę najpierw włączyć SMTP."
     },
     "title": "Ustawienia",
     "breadcrumb": "Ustawienia",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Wprowadź zakres i naciśnij Enter, aby dodać",
       "oidcAdminEmailDomains": "Wprowadź domenę i naciśnij Enter, aby dodać",
-      "testSmtp": "Testuje połączenie SMTP z obecnie wprowadzonymi wartościami w formularzu. Aby wprowadzić trwałe zmiany, pamiętaj o zapisaniu ustawień po testowaniu."
+      "testSmtp": "Testuje połączenie SMTP z obecnie wprowadzonymi wartościami w formularzu. Aby wprowadzić trwałe zmiany, pamiętaj o zapisaniu ustawień po testowaniu.",
+      "defaultPlaceholder": "Wprowadź i naciśnij Enter"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -589,7 +607,8 @@
       "title": "Udostępnienie nie znaleziono",
       "description": "To udostępnienie mogło zostać usunięte lub wygasło."
     },
-    "pageTitle": "Udostępnij"
+    "pageTitle": "Udostępnij",
+    "downloadAll": "[TO_TRANSLATE] Download All"
   },
   "shareActions": {
     "deleteTitle": "Usuń udostępnienie",
@@ -1215,7 +1234,9 @@
         "bulkDeleteProgress": "Usuwanie {count, plural, =1 {1 pliku} other {# plików}}...",
         "bulkDeleteSuccess": "{count, plural, =1 {1 plik usunięty pomyślnie} other {# plików usuniętych pomyślnie}}",
         "selectAll": "Zaznacz wszystko",
-        "selectFile": "Wybierz plik {fileName}"
+        "selectFile": "Wybierz plik {fileName}",
+        "deleteError": "Błąd usuwania pliku",
+        "deleteSuccess": "Plik usunięty pomyślnie"
       }
     },
     "form": {
@@ -1298,14 +1319,17 @@
       "deleteSuccess": "Link do odbierania usunięty pomyślnie!",
       "aliasCreated": "Alias utworzony pomyślnie!",
       "activateSuccess": "Link do odbierania aktywowany pomyślnie!",
-      "deactivateSuccess": "Link do odbierania dezaktywowany pomyślnie!"
+      "deactivateSuccess": "Link do odbierania dezaktywowany pomyślnie!",
+      "passwordProtectionDisabled": "Ochrona hasłem została pomyślnie usunięta!",
+      "passwordProtectionEnabled": "Ochrona hasłem została pomyślnie włączona!"
     },
     "errors": {
       "loadFailed": "Nie udało się załadować linków do odbierania",
       "createFailed": "Nie udało się utworzyć linku do odbierania. Spróbuj ponownie.",
       "updateFailed": "Nie udało się zaktualizować linku do odbierania. Spróbuj ponownie.",
       "deleteFailed": "Nie udało się usunąć linku do odbierania. Spróbuj ponownie.",
-      "aliasCreateFailed": "Nie udało się utworzyć aliasu. Spróbuj ponownie."
+      "aliasCreateFailed": "Nie udało się utworzyć aliasu. Spróbuj ponownie.",
+      "passwordUpdateFailed": "Nie udało się zaktualizować ochrony hasłem"
     },
     "delete": {
       "title": "Usuń link do odbierania",
@@ -1421,6 +1445,7 @@
         "saveChanges": "Zapisz zmiany",
         "cancelEdit": "Anuluj edycję"
       }
-    }
+    },
+    "defaultLinkName": "Otrzymane pliki"
   }
 }

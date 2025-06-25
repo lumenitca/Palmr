@@ -465,6 +465,20 @@
         "title": "Sender Email",
         "description": "Sender email address"
       },
+      "smtpSecure": {
+        "title": "Connection Security",
+        "description": "SMTP connection security method - Auto (recommended), SSL, STARTTLS, or None (insecure)",
+        "options": {
+          "auto": "Auto (Recommended)",
+          "ssl": "SSL (Port 465)",
+          "tls": "STARTTLS (Port 587)",
+          "none": "None (Insecure)"
+        }
+      },
+      "smtpNoAuth": {
+        "title": "No Authentication",
+        "description": "Enable this for internal servers that don't require username/password (hides auth fields)"
+      },
       "testSmtp": {
         "title": "Test SMTP Connection",
         "description": "Test if the SMTP configuration is valid"
@@ -548,7 +562,10 @@
       "updateSuccess": "{group} settings updated successfully",
       "smtpTestSuccess": "SMTP connection successful! Your email configuration is working correctly.",
       "smtpTestFailed": "SMTP connection failed: {error}",
-      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again."
+      "smtpTestGenericError": "Failed to test SMTP connection. Please check your settings and try again.",
+      "smtpNotEnabled": "SMTP is not enabled. Please enable SMTP first.",
+      "smtpMissingHostPort": "Please fill in SMTP Host and Port before testing.",
+      "smtpMissingAuth": "Please fill in SMTP Username and Password, or enable 'No Authentication' option."
     },
     "title": "Settings",
     "breadcrumb": "Settings",
@@ -556,7 +573,8 @@
     "tooltips": {
       "oidcScope": "Enter a scope and press Enter to add",
       "oidcAdminEmailDomains": "Enter a domain and press Enter to add",
-      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing."
+      "testSmtp": "Tests the SMTP connection with the values currently entered in the form. To make changes permanent, remember to save your settings after testing.",
+      "defaultPlaceholder": "Enter and press Enter"
     },
     "redirectUri": {
       "placeholder": "https://mysite.com",
@@ -585,6 +603,7 @@
       "created": "Created: {date}",
       "expires": "Expires: {date}"
     },
+    "downloadAll": "Download All",
     "notFound": {
       "title": "Share Not Found",
       "description": "This share may have been deleted or expired."
@@ -1200,6 +1219,8 @@
         "previewNotAvailable": "Preview not available",
         "copySuccess": "File copied to your files successfully",
         "copyError": "Error copying file to your files",
+        "deleteSuccess": "File deleted successfully",
+        "deleteError": "Error deleting file",
         "bulkCopySuccess": "{count, plural, =1 {1 file copied to your files successfully} other {# files copied to your files successfully}}",
         "bulkDeleteSuccess": "{count, plural, =1 {1 file deleted successfully} other {# files deleted successfully}}",
         "bulkCopyProgress": "Copying {count, plural, =1 {1 file} other {# files}} to your files...",
@@ -1298,14 +1319,18 @@
       "deleteSuccess": "Receive link deleted successfully!",
       "aliasCreated": "Alias created successfully!",
       "activateSuccess": "Receive link activated successfully!",
-      "deactivateSuccess": "Receive link deactivated successfully!"
+      "deactivateSuccess": "Receive link deactivated successfully!",
+      "passwordProtectionEnabled": "Password protection enabled successfully!",
+      "passwordProtectionDisabled": "Password protection removed successfully!"
     },
+    "defaultLinkName": "Received Files",
     "errors": {
       "loadFailed": "Failed to load receive links",
       "createFailed": "Failed to create receive link. Please try again.",
       "updateFailed": "Failed to update receive link. Please try again.",
       "deleteFailed": "Failed to delete receive link. Please try again.",
-      "aliasCreateFailed": "Failed to create alias. Please try again."
+      "aliasCreateFailed": "Failed to create alias. Please try again.",
+      "passwordUpdateFailed": "Failed to update password protection"
     },
     "delete": {
       "title": "Delete receive link",

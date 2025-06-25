@@ -90,6 +90,8 @@ export interface TestSmtpConnectionBody {
     smtpPort: string;
     smtpUser: string;
     smtpPass: string;
+    smtpSecure: string;
+    smtpNoAuth: string;
   };
 }
 

@@ -255,7 +255,7 @@ export function useShareManager(onSuccess: () => void) {
               share.files.forEach((file) => {
                 allFiles.push({
                   ...file,
-                  shareName: share.name || "Unnamed Share",
+                  shareName: share.name || t("shareManager.defaultShareName"),
                 });
               });
             }

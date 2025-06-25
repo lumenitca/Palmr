@@ -16,6 +16,8 @@ interface SmtpTestButtonProps {
     smtpPort: string;
     smtpUser: string;
     smtpPass: string;
+    smtpSecure: string;
+    smtpNoAuth: string;
   };
 }
 
@@ -27,13 +29,17 @@ export function SmtpTestButton({ smtpEnabled, getFormValues }: SmtpTestButtonPro
     const formValues = getFormValues();
 
     if (formValues.smtpEnabled !== "true") {
-      toast.error("SMTP is not enabled. Please enable SMTP first.");
+      toast.error(t("settings.messages.smtpNotEnabled"));
       return;
     }
 
-    // Check if required fields are filled
-    if (!formValues.smtpHost || !formValues.smtpPort || !formValues.smtpUser || !formValues.smtpPass) {
-      toast.error("Please fill in all SMTP configuration fields before testing.");
+    if (!formValues.smtpHost || !formValues.smtpPort) {
+      toast.error(t("settings.messages.smtpMissingHostPort"));
+      return;
+    }
+
+    if (formValues.smtpNoAuth !== "true" && (!formValues.smtpUser || !formValues.smtpPass)) {
+      toast.error(t("settings.messages.smtpMissingAuth"));
       return;
     }
 
@@ -46,6 +52,8 @@ export function SmtpTestButton({ smtpEnabled, getFormValues }: SmtpTestButtonPro
           smtpPort: formValues.smtpPort,
           smtpUser: formValues.smtpUser,
           smtpPass: formValues.smtpPass,
+          smtpSecure: formValues.smtpSecure,
+          smtpNoAuth: formValues.smtpNoAuth,
         },
       });
 
@@ -55,7 +63,7 @@ export function SmtpTestButton({ smtpEnabled, getFormValues }: SmtpTestButtonPro
         toast.error(t("settings.messages.smtpTestGenericError"));
       }
     } catch (error: any) {
-      const errorMessage = error?.response?.data?.error || error?.message || "Unknown error";
+      const errorMessage = error?.response?.data?.error || error?.message || t("common.unexpectedError");
       toast.error(t("settings.messages.smtpTestFailed", { error: errorMessage }));
     } finally {
       setIsLoading(false);

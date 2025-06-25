@@ -24,4 +24,5 @@ export interface PasswordModalProps {
 export interface ShareDetailsProps {
   share: GetShareByAlias200Share;
   onDownload: (objectName: string, fileName: string) => Promise<void>;
+  onBulkDownload?: () => Promise<void>;
 }

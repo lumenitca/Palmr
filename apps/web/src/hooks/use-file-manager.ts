@@ -195,9 +195,9 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
           }
         })(),
         {
-          loading: "Criando arquivo ZIP...",
-          success: "Arquivo ZIP baixado com sucesso!",
-          error: "Erro ao criar arquivo ZIP",
+          loading: t("shareManager.creatingZip"),
+          success: t("shareManager.zipDownloadSuccess"),
+          error: t("shareManager.zipDownloadError"),
         }
       );
     } catch (error) {

@@ -47,6 +47,7 @@ import {
 } from "@/http/endpoints/reverse-shares";
 import type { ReverseShareFile } from "@/http/endpoints/reverse-shares/types";
 import { getFileIcon } from "@/utils/file-icons";
+import { truncateFileName } from "@/utils/file-utils";
 import { ReverseShare } from "../hooks/use-reverse-shares";
 import { ReverseShareFilePreviewModal } from "./reverse-share-file-preview-modal";
 
@@ -542,10 +543,10 @@ export function ReceivedFilesModal({
         await onRefresh();
       }
 
-      toast.success("Arquivo excluído com sucesso");
+      toast.success(t("reverseShares.modals.receivedFiles.deleteSuccess"));
     } catch (error) {
       console.error("Error deleting file:", error);
-      toast.error("Erro ao excluir arquivo");
+      toast.error(t("reverseShares.modals.receivedFiles.deleteError"));
     }
   };
 
@@ -639,7 +640,7 @@ export function ReceivedFilesModal({
           await Promise.all(downloadPromises);
 
           const zipBlob = await zip.generateAsync({ type: "blob" });
-          const zipName = `${reverseShare.name || "received_files"}_files.zip`;
+          const zipName = `${reverseShare.name || t("reverseShares.defaultLinkName")}_files.zip`;
 
           const url = URL.createObjectURL(zipBlob);
           const a = document.createElement("a");
@@ -912,11 +913,12 @@ export function ReceivedFilesModal({
             <div className="space-y-1">
               {filesToDeleteBulk.map((file) => {
                 const { icon: FileIcon, color } = getFileIcon(file.name);
+                const displayName = truncateFileName(file.name);
                 return (
-                  <div key={file.id} className="flex items-center gap-2 p-2 bg-muted/20 rounded text-sm">
+                  <div key={file.id} className="flex items-center gap-2 p-2 bg-muted/20 rounded text-sm min-w-0">
                     <FileIcon className={`h-4 w-4 ${color} flex-shrink-0`} />
-                    <span className="truncate" title={file.name}>
-                      {file.name}
+                    <span className="flex-1 break-all" title={file.name}>
+                      {displayName}
                     </span>
                   </div>
                 );

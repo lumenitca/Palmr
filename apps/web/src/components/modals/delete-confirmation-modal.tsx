@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getFileIcon } from "@/utils/file-icons";
+import { truncateFileName } from "@/utils/file-utils";
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
@@ -54,11 +56,18 @@ export function DeleteConfirmationModal({
               </p>
               <ScrollArea className="h-32 w-full rounded-md border p-2">
                 <div className="space-y-1">
-                  {files.map((fileName, index) => (
-                    <div key={index} className="text-sm text-muted-foreground truncate">
-                      • {fileName}
-                    </div>
-                  ))}
+                  {files.map((fileName, index) => {
+                    const { icon: FileIcon, color } = getFileIcon(fileName);
+                    const displayName = truncateFileName(fileName);
+                    return (
+                      <div key={index} className="flex items-center gap-2 p-2 bg-muted/20 rounded text-sm min-w-0">
+                        <FileIcon className={`h-4 w-4 ${color} flex-shrink-0`} />
+                        <span className="flex-1 break-all" title={fileName}>
+                          {displayName}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </ScrollArea>
             </div>

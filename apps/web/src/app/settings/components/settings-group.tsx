@@ -51,42 +51,71 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
           <div className="flex flex-col gap-4">
             {configs
               .filter((config) => !isFieldHidden(config.key))
-              .map((config) => (
-                <div key={config.key} className="space-y-2 mb-3">
-                  <SettingsInput
-                    config={config}
-                    error={form.formState.errors.configs?.[config.key]}
-                    register={form.register}
-                    setValue={form.setValue}
-                    smtpEnabled={form.watch("configs.smtpEnabled")}
-                    oidcEnabled={form.watch("configs.oidcEnabled")}
-                    watch={form.watch}
-                  />
-                  <p className="text-xs text-muted-foreground ml-1">
-                    {t(`settings.fields.${config.key}.description`, {
-                      defaultValue:
-                        FIELD_DESCRIPTIONS[config.key as keyof typeof FIELD_DESCRIPTIONS] ||
-                        config.description ||
-                        t("settings.fields.noDescription"),
-                    })}
-                  </p>
-                </div>
-              ))}
+              .map((config) => {
+                const smtpEnabled = form.watch("configs.smtpEnabled");
+                const smtpNoAuth = form.watch("configs.smtpNoAuth");
+                const isSmtpAuthField = config.key === "smtpUser" || config.key === "smtpPass";
+
+                const smtpFields = [
+                  "smtpHost",
+                  "smtpPort",
+                  "smtpUser",
+                  "smtpPass",
+                  "smtpSecure",
+                  "smtpNoAuth",
+                  "smtpFromName",
+                  "smtpFromEmail",
+                ];
+
+                if (smtpEnabled !== "true" && smtpFields.includes(config.key)) {
+                  return null;
+                }
+
+                if (isSmtpAuthField && smtpNoAuth === "true") {
+                  return null;
+                }
+
+                return (
+                  <div key={config.key} className="space-y-2 mb-3">
+                    <SettingsInput
+                      config={config}
+                      error={form.formState.errors.configs?.[config.key]}
+                      register={form.register}
+                      setValue={form.setValue}
+                      smtpEnabled={form.watch("configs.smtpEnabled")}
+                      oidcEnabled={form.watch("configs.oidcEnabled")}
+                      watch={form.watch}
+                    />
+                    <p className="text-xs text-muted-foreground ml-1">
+                      {t(`settings.fields.${config.key}.description`, {
+                        defaultValue:
+                          FIELD_DESCRIPTIONS[config.key as keyof typeof FIELD_DESCRIPTIONS] ||
+                          config.description ||
+                          t("settings.fields.noDescription"),
+                      })}
+                    </p>
+                  </div>
+                );
+              })}
           </div>
           <div className="flex justify-between items-center mt-4">
-            {isEmailGroup && (
-              <SmtpTestButton
-                smtpEnabled={form.watch("configs.smtpEnabled") || "false"}
-                getFormValues={() => ({
-                  smtpEnabled: form.getValues("configs.smtpEnabled") || "false",
-                  smtpHost: form.getValues("configs.smtpHost") || "",
-                  smtpPort: form.getValues("configs.smtpPort") || "",
-                  smtpUser: form.getValues("configs.smtpUser") || "",
-                  smtpPass: form.getValues("configs.smtpPass") || "",
-                })}
-              />
-            )}
-            <div className={`flex ${isEmailGroup ? "ml-auto" : ""}`}>
+            <div className="flex">
+              {isEmailGroup && form.watch("configs.smtpEnabled") === "true" && (
+                <SmtpTestButton
+                  smtpEnabled={form.watch("configs.smtpEnabled") || "false"}
+                  getFormValues={() => ({
+                    smtpEnabled: form.getValues("configs.smtpEnabled") || "false",
+                    smtpHost: form.getValues("configs.smtpHost") || "",
+                    smtpPort: form.getValues("configs.smtpPort") || "",
+                    smtpUser: form.getValues("configs.smtpUser") || "",
+                    smtpPass: form.getValues("configs.smtpPass") || "",
+                    smtpSecure: form.getValues("configs.smtpSecure") || "auto",
+                    smtpNoAuth: form.getValues("configs.smtpNoAuth") || "false",
+                  })}
+                />
+              )}
+            </div>
+            <div className="flex">
               <Button
                 variant="default"
                 disabled={form.formState.isSubmitting}

@@ -42,7 +42,7 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
       setShareFiles(allFiles.filter((file) => selectedFiles.includes(file.id)));
       setAvailableFiles(allFiles.filter((file) => !selectedFiles.includes(file.id)));
     } catch (error) {
-      toast.error("Failed to load files");
+      toast.error(t("files.loadError"));
     }
   };
 
@@ -79,7 +79,7 @@ export function FileSelector({ shareId, selectedFiles, onSave, onEditFile }: Fil
 
       await onSave(shareFiles.map((f) => f.id));
     } catch (error) {
-      toast.error("Failed to update files");
+      toast.error(t("shareManager.filesUpdateError"));
     } finally {
       setIsLoading(false);
     }

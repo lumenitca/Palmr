@@ -148,6 +148,11 @@ export async function appRoutes(app: FastifyInstance) {
                   .describe("SMTP server port (typically 587 for TLS, 25 for non-secure)"),
                 smtpUser: z.string().describe("Username for SMTP authentication (e.g., email address)"),
                 smtpPass: z.string().describe("Password for SMTP authentication (for Gmail, use App Password)"),
+                smtpSecure: z
+                  .string()
+                  .optional()
+                  .describe("Connection security method ('auto', 'ssl', 'tls', or 'none')"),
+                smtpNoAuth: z.string().optional().describe("Disable SMTP authentication ('true' or 'false')"),
               })
               .optional()
               .describe("SMTP configuration to test. If not provided, uses currently saved configuration"),
