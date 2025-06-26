@@ -157,12 +157,16 @@ const defaultAuthProviders = [
     type: "oauth2",
     icon: "SiGithub",
     enabled: false,
-    issuerUrl: "https://github.com/login/oauth",
+    issuerUrl: "https://github.com/login/oauth", // URL fixa do GitHub
+    authorizationEndpoint: "/authorize",
+    tokenEndpoint: "/access_token",
+    userInfoEndpoint: "https://api.github.com/user", // GitHub usa URL absoluta para userInfo
     scope: "user:email",
     sortOrder: 1,
     metadata: JSON.stringify({
       description: "Sign in with your GitHub account",
-      docs: "https://docs.github.com/en/developers/apps/building-oauth-apps"
+      docs: "https://docs.github.com/en/developers/apps/building-oauth-apps",
+      specialHandling: "email_fetch_required"
     })
   },
   {
@@ -171,11 +175,16 @@ const defaultAuthProviders = [
     type: "oidc",
     icon: "SiAuth0",
     enabled: false,
+    issuerUrl: "https://your-tenant.auth0.com", // Placeholder - usuário deve configurar
+    authorizationEndpoint: "/authorize",
+    tokenEndpoint: "/oauth/token",
+    userInfoEndpoint: "/userinfo",
     scope: "openid profile email",
     sortOrder: 2,
     metadata: JSON.stringify({
-      description: "Sign in with Auth0",
-      docs: "https://auth0.com/docs/get-started/authentication-and-authorization-flow"
+      description: "Sign in with Auth0 - Replace 'your-tenant' with your Auth0 domain",
+      docs: "https://auth0.com/docs/get-started/authentication-and-authorization-flow",
+      supportsDiscovery: true
     })
   },
   {
@@ -184,11 +193,16 @@ const defaultAuthProviders = [
     type: "oidc",
     icon: "FaKey",
     enabled: false,
+    issuerUrl: "https://your-tenant.kinde.com", // Placeholder - usuário deve configurar
+    authorizationEndpoint: "/oauth2/auth",
+    tokenEndpoint: "/oauth2/token",
+    userInfoEndpoint: "/oauth2/user_profile",
     scope: "openid profile email",
     sortOrder: 3,
     metadata: JSON.stringify({
-      description: "Sign in with Kinde",
-      docs: "https://kinde.com/docs/developer-tools/about/"
+      description: "Sign in with Kinde - Replace 'your-tenant' with your Kinde domain",
+      docs: "https://kinde.com/docs/developer-tools/about/",
+      supportsDiscovery: true
     })
   },
   {
@@ -197,11 +211,17 @@ const defaultAuthProviders = [
     type: "oidc",
     icon: "FaShield",
     enabled: false,
+    issuerUrl: "https://your-instance.zitadel.cloud", // Placeholder - usuário deve configurar
+    authorizationEndpoint: "/oauth/v2/authorize",
+    tokenEndpoint: "/oauth/v2/token",
+    userInfoEndpoint: "/oidc/v1/userinfo",
     scope: "openid profile email",
     sortOrder: 4,
     metadata: JSON.stringify({
-      description: "Sign in with Zitadel",
-      docs: "https://zitadel.com/docs/guides/integrate/login/oidc"
+      description: "Sign in with Zitadel - Replace with your Zitadel instance URL",
+      docs: "https://zitadel.com/docs/guides/integrate/login/oidc",
+      supportsDiscovery: true,
+      authMethod: "basic"
     })
   },
   {
@@ -210,11 +230,34 @@ const defaultAuthProviders = [
     type: "oidc",
     icon: "FaShieldAlt",
     enabled: false,
+    issuerUrl: "https://your-authentik.domain.com", // Placeholder - usuário deve configurar
+    authorizationEndpoint: "/application/o/authorize/",
+    tokenEndpoint: "/application/o/token/",
+    userInfoEndpoint: "/application/o/userinfo/",
     scope: "openid profile email",
     sortOrder: 5,
     metadata: JSON.stringify({
-      description: "Sign in with Authentik",
-      docs: "https://goauthentik.io/docs/providers/oauth2"
+      description: "Sign in with Authentik - Replace with your Authentik instance URL",
+      docs: "https://goauthentik.io/docs/providers/oauth2",
+      supportsDiscovery: true
+    })
+  },
+  {
+    name: "frontegg",
+    displayName: "Frontegg",
+    type: "oidc",
+    icon: "FaEgg",
+    enabled: false,
+    issuerUrl: "https://your-tenant.frontegg.com", // Placeholder - usuário deve configurar
+    authorizationEndpoint: "/oauth/authorize",
+    tokenEndpoint: "/oauth/token",
+    userInfoEndpoint: "/identity/resources/users/v2/me",
+    scope: "openid profile email",
+    sortOrder: 6,
+    metadata: JSON.stringify({
+      description: "Sign in with Frontegg - Replace 'your-tenant' with your Frontegg tenant",
+      docs: "https://docs.frontegg.com",
+      supportsDiscovery: true
     })
   },
 ];

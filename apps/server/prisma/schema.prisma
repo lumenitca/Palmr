@@ -160,6 +160,10 @@ model AuthProvider {
   redirectUri  String?
   scope        String? @default("openid profile email")
 
+  authorizationEndpoint String?
+  tokenEndpoint         String?
+  userInfoEndpoint      String?
+
   metadata String?
 
   autoRegister      Boolean @default(true)

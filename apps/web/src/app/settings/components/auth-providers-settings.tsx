@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import {
+  IconAlertTriangle,
   IconCheck,
   IconChevronDown,
   IconChevronUp,
@@ -15,6 +16,7 @@ import {
   IconPlus,
   IconSettings,
   IconTrash,
+  IconX,
 } from "@tabler/icons-react";
 import { Globe } from "lucide-react";
 import { toast } from "sonner";
@@ -44,6 +46,9 @@ interface AuthProvider {
   adminEmailDomains?: string;
   sortOrder: number;
   isOfficial?: boolean;
+  authorizationEndpoint?: string;
+  tokenEndpoint?: string;
+  userInfoEndpoint?: string;
 }
 
 interface NewProvider {
@@ -51,6 +56,14 @@ interface NewProvider {
   displayName: string;
   type: "oidc" | "oauth2";
   icon: string;
+  clientId: string;
+  clientSecret: string;
+  issuerUrl: string;
+  scope: string;
+  // Endpoints customizados opcionais
+  authorizationEndpoint: string;
+  tokenEndpoint: string;
+  userInfoEndpoint: string;
 }
 
 export function AuthProvidersSettings() {
@@ -61,12 +74,101 @@ export function AuthProvidersSettings() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingProvider, setEditingProvider] = useState<AuthProvider | null>(null);
   const [editingFormData, setEditingFormData] = useState<Record<string, any>>({});
+  const [testResults, setTestResults] = useState<Record<string, any>>({});
+  const [testingProvider, setTestingProvider] = useState<string | null>(null);
   const [newProvider, setNewProvider] = useState<NewProvider>({
     name: "",
     displayName: "",
     type: "oidc",
     icon: "",
+    clientId: "",
+    clientSecret: "",
+    issuerUrl: "",
+    scope: "openid profile email",
+    authorizationEndpoint: "",
+    tokenEndpoint: "",
+    userInfoEndpoint: "",
   });
+
+  // Auto-sugestão de scopes baseada na Provider URL
+  const detectProviderTypeAndSuggestScopes = (url: string): string[] => {
+    if (!url) return [];
+
+    const urlLower = url.toLowerCase();
+
+    // Padrões conhecidos para detecção automática
+    const providerPatterns = [
+      { pattern: "frontegg.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "discord.com", scopes: ["identify", "email"] },
+      { pattern: "github.com", scopes: ["read:user", "user:email"] },
+      { pattern: "gitlab.com", scopes: ["read_user", "read_api"] },
+      { pattern: "google.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "microsoft.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "facebook.com", scopes: ["public_profile", "email"] },
+      { pattern: "twitter.com", scopes: ["tweet.read", "users.read"] },
+      { pattern: "linkedin.com", scopes: ["r_liteprofile", "r_emailaddress"] },
+      { pattern: "authentik", scopes: ["openid", "profile", "email"] },
+      { pattern: "keycloak", scopes: ["openid", "profile", "email"] },
+      { pattern: "auth0.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "okta.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "onelogin.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "pingidentity.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "azure.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "aws.amazon.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "slack.com", scopes: ["identity.basic", "identity.email", "identity.avatar"] },
+      { pattern: "bitbucket.org", scopes: ["account", "repository"] },
+      { pattern: "atlassian.com", scopes: ["read:jira-user", "read:jira-work"] },
+      { pattern: "salesforce.com", scopes: ["api", "refresh_token"] },
+      { pattern: "zendesk.com", scopes: ["read"] },
+      { pattern: "shopify.com", scopes: ["read_products", "read_customers"] },
+      { pattern: "stripe.com", scopes: ["read"] },
+      { pattern: "twilio.com", scopes: ["read"] },
+      { pattern: "sendgrid.com", scopes: ["mail.send"] },
+      { pattern: "mailchimp.com", scopes: ["read"] },
+      { pattern: "hubspot.com", scopes: ["contacts", "crm.objects.contacts.read"] },
+      { pattern: "zoom.us", scopes: ["user:read:admin"] },
+      { pattern: "teams.microsoft.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "notion.so", scopes: ["read"] },
+      { pattern: "figma.com", scopes: ["files:read"] },
+      { pattern: "dropbox.com", scopes: ["files.content.read"] },
+      { pattern: "box.com", scopes: ["root_readwrite"] },
+      { pattern: "trello.com", scopes: ["read"] },
+      { pattern: "asana.com", scopes: ["default"] },
+      { pattern: "monday.com", scopes: ["read"] },
+      { pattern: "clickup.com", scopes: ["read"] },
+      { pattern: "linear.app", scopes: ["read"] },
+    ];
+
+    // Procura por padrões conhecidos
+    for (const { pattern, scopes } of providerPatterns) {
+      if (urlLower.includes(pattern)) {
+        return scopes;
+      }
+    }
+
+    // Fallback baseado no tipo do provider
+    if (newProvider.type === "oidc") {
+      return ["openid", "profile", "email"];
+    } else {
+      return ["profile", "email"];
+    }
+  };
+
+  // Função para auto-sugerir scopes baseado na Provider URL (onBlur)
+  const updateProviderUrl = (url: string) => {
+    if (!url.trim()) return;
+
+    const suggestedScopes = detectProviderTypeAndSuggestScopes(url);
+
+    setNewProvider((prev) => {
+      const shouldUpdateScopes = !prev.scope || prev.scope === "openid profile email" || prev.scope === "profile email";
+
+      return {
+        ...prev,
+        scope: shouldUpdateScopes ? suggestedScopes.join(" ") : prev.scope,
+      };
+    });
+  };
 
   // Load providers
   useEffect(() => {
@@ -146,8 +248,26 @@ export function AuthProvidersSettings() {
 
   // Add new provider
   const addProvider = async () => {
-    if (!newProvider.name || !newProvider.displayName) {
-      toast.error("Please fill in all required fields");
+    if (!newProvider.name || !newProvider.displayName || !newProvider.clientId || !newProvider.clientSecret) {
+      toast.error("Please fill in all required fields (name, display name, client ID, client secret)");
+      return;
+    }
+
+    // Validação de configuração
+    const hasIssuerUrl = !!newProvider.issuerUrl;
+    const hasAllCustomEndpoints = !!(
+      newProvider.authorizationEndpoint &&
+      newProvider.tokenEndpoint &&
+      newProvider.userInfoEndpoint
+    );
+
+    if (!hasIssuerUrl && !hasAllCustomEndpoints) {
+      toast.error("Either provide a Provider URL for automatic discovery OR all three custom endpoints");
+      return;
+    }
+
+    if (hasIssuerUrl && hasAllCustomEndpoints) {
+      toast.error("Choose either automatic discovery (Provider URL) OR manual endpoints, not both");
       return;
     }
 
@@ -157,12 +277,21 @@ export function AuthProvidersSettings() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...newProvider,
           name: newProvider.name.toLowerCase().replace(/\s+/g, "-"),
+          displayName: newProvider.displayName,
+          type: newProvider.type,
+          icon: newProvider.icon,
+          clientId: newProvider.clientId,
+          clientSecret: newProvider.clientSecret,
           enabled: false,
           autoRegister: true,
-          scope: newProvider.type === "oidc" ? "openid profile email" : "user:email",
+          scope: newProvider.scope || (newProvider.type === "oidc" ? "openid profile email" : "user:email"),
           sortOrder: providers.length + 1,
+          // Incluir apenas campos relevantes baseado no modo
+          ...(newProvider.issuerUrl ? { issuerUrl: newProvider.issuerUrl } : {}),
+          ...(newProvider.authorizationEndpoint ? { authorizationEndpoint: newProvider.authorizationEndpoint } : {}),
+          ...(newProvider.tokenEndpoint ? { tokenEndpoint: newProvider.tokenEndpoint } : {}),
+          ...(newProvider.userInfoEndpoint ? { userInfoEndpoint: newProvider.userInfoEndpoint } : {}),
         }),
       });
 
@@ -170,7 +299,19 @@ export function AuthProvidersSettings() {
 
       if (data.success) {
         await loadProviders();
-        setNewProvider({ name: "", displayName: "", type: "oidc", icon: "" });
+        setNewProvider({
+          name: "",
+          displayName: "",
+          type: "oidc",
+          icon: "",
+          clientId: "",
+          clientSecret: "",
+          issuerUrl: "",
+          scope: "openid profile email",
+          authorizationEndpoint: "",
+          tokenEndpoint: "",
+          userInfoEndpoint: "",
+        });
         setShowAddForm(false);
         toast.success("Provider added");
       } else {
@@ -216,6 +357,57 @@ export function AuthProvidersSettings() {
       toast.error("Failed to update provider");
     } finally {
       setSaving(null);
+    }
+  };
+
+  // Test provider
+  const testProvider = async (id: string) => {
+    try {
+      setTestingProvider(id);
+      setTestResults((prev) => ({ ...prev, [id]: null }));
+
+      const response = await fetch(`/api/auth/providers/manage/${id}/test`, {
+        method: "POST",
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        const result = data.data;
+        setTestResults((prev) => ({ ...prev, [id]: result }));
+
+        if (result.overall.status === "success") {
+          toast.success(`✅ ${result.overall.message}`);
+        } else if (result.overall.status === "warning") {
+          toast.warning(`⚠️ ${result.overall.message}`);
+        } else {
+          toast.error(`❌ ${result.overall.message}`);
+        }
+
+        // Log detailed results for debugging
+        console.log("Provider Test Results:", result);
+      } else {
+        setTestResults((prev) => ({
+          ...prev,
+          [id]: {
+            overall: { status: "error", message: data.error },
+            tests: [],
+          },
+        }));
+        toast.error(`Test failed: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error testing provider:", error);
+      setTestResults((prev) => ({
+        ...prev,
+        [id]: {
+          overall: { status: "error", message: "Failed to test provider" },
+          tests: [],
+        },
+      }));
+      toast.error("Failed to test provider");
+    } finally {
+      setTestingProvider(null);
     }
   };
 
@@ -397,6 +589,186 @@ export function AuthProvidersSettings() {
                     />
                   </div>
                 </div>
+
+                {/* Configuration Method Toggle */}
+                <div className="space-y-4">
+                  <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
+                    <h4 className="text-sm font-medium mb-3">Configuration Method</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          id="add-auto-discovery"
+                          name="addConfigMethod"
+                          checked={
+                            !newProvider.authorizationEndpoint &&
+                            !newProvider.tokenEndpoint &&
+                            !newProvider.userInfoEndpoint
+                          }
+                          onChange={() =>
+                            setNewProvider((prev) => ({
+                              ...prev,
+                              authorizationEndpoint: "",
+                              tokenEndpoint: "",
+                              userInfoEndpoint: "",
+                            }))
+                          }
+                          className="w-4 h-4"
+                        />
+                        <label htmlFor="add-auto-discovery" className="text-sm">
+                          <span className="font-medium">Automatic Discovery</span>
+                          <span className="text-muted-foreground ml-2">(Just provide Provider URL)</span>
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          id="add-manual-endpoints"
+                          name="addConfigMethod"
+                          checked={
+                            !!(
+                              newProvider.authorizationEndpoint ||
+                              newProvider.tokenEndpoint ||
+                              newProvider.userInfoEndpoint
+                            )
+                          }
+                          onChange={() => {
+                            if (
+                              !newProvider.authorizationEndpoint &&
+                              !newProvider.tokenEndpoint &&
+                              !newProvider.userInfoEndpoint
+                            ) {
+                              setNewProvider((prev) => ({
+                                ...prev,
+                                authorizationEndpoint: "/oauth/authorize",
+                                tokenEndpoint: "/oauth/token",
+                                userInfoEndpoint: "/oauth/userinfo",
+                                issuerUrl: "",
+                              }));
+                            }
+                          }}
+                          className="w-4 h-4"
+                        />
+                        <label htmlFor="add-manual-endpoints" className="text-sm">
+                          <span className="font-medium">Manual Endpoints</span>
+                          <span className="text-muted-foreground ml-2">
+                            (Recommended - For providers that don't support discovery)
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Automatic Discovery Mode */}
+                  {!newProvider.authorizationEndpoint &&
+                    !newProvider.tokenEndpoint &&
+                    !newProvider.userInfoEndpoint && (
+                      <div>
+                        <Label className="mb-2 block">Provider URL *</Label>
+                        <Input
+                          placeholder="https://your-provider.com (endpoints will be discovered automatically)"
+                          value={newProvider.issuerUrl}
+                          onChange={(e) => setNewProvider((prev) => ({ ...prev, issuerUrl: e.target.value }))}
+                          onBlur={(e) => updateProviderUrl(e.target.value)}
+                        />
+                        <p className="text-xs text-muted-foreground mt-1">
+                          The system will automatically discover authorization, token, and userinfo endpoints
+                        </p>
+                      </div>
+                    )}
+
+                  {/* Manual Endpoints Mode */}
+                  {(newProvider.authorizationEndpoint || newProvider.tokenEndpoint || newProvider.userInfoEndpoint) && (
+                    <div className="space-y-4">
+                      <div>
+                        <Label className="mb-2 block">Provider URL *</Label>
+                        <Input
+                          placeholder="https://your-provider.com"
+                          value={newProvider.issuerUrl}
+                          onChange={(e) => setNewProvider((prev) => ({ ...prev, issuerUrl: e.target.value }))}
+                          onBlur={(e) => updateProviderUrl(e.target.value)}
+                        />
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Base URL of your provider (endpoints will be relative to this)
+                        </p>
+                      </div>
+                      <div>
+                        <Label className="mb-2 block">Authorization Endpoint *</Label>
+                        <Input
+                          placeholder="/oauth/authorize"
+                          value={newProvider.authorizationEndpoint}
+                          onChange={(e) =>
+                            setNewProvider((prev) => ({ ...prev, authorizationEndpoint: e.target.value }))
+                          }
+                        />
+                      </div>
+                      <div>
+                        <Label className="mb-2 block">Token Endpoint *</Label>
+                        <Input
+                          placeholder="/oauth/token"
+                          value={newProvider.tokenEndpoint}
+                          onChange={(e) => setNewProvider((prev) => ({ ...prev, tokenEndpoint: e.target.value }))}
+                        />
+                      </div>
+                      <div>
+                        <Label className="mb-2 block">User Info Endpoint *</Label>
+                        <Input
+                          placeholder="/oauth/userinfo"
+                          value={newProvider.userInfoEndpoint}
+                          onChange={(e) => setNewProvider((prev) => ({ ...prev, userInfoEndpoint: e.target.value }))}
+                        />
+                      </div>
+                      <div className="bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                        <div className="flex items-start gap-2 text-blue-700 dark:text-blue-300">
+                          <IconInfoCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                          <div className="text-xs">
+                            <p className="font-medium">Manual Configuration</p>
+                            <p className="mt-1">
+                              You're providing all endpoints manually. Make sure they're correct for your provider.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Client Credentials */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="mb-2 block">Client ID *</Label>
+                    <Input
+                      placeholder="Your OAuth client ID"
+                      value={newProvider.clientId}
+                      onChange={(e) => setNewProvider((prev) => ({ ...prev, clientId: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <Label className="mb-2 block">Client Secret *</Label>
+                    <Input
+                      type="password"
+                      placeholder="Your OAuth client secret"
+                      value={newProvider.clientSecret}
+                      onChange={(e) => setNewProvider((prev) => ({ ...prev, clientSecret: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                {/* OAuth Scopes */}
+                <div>
+                  <Label className="mb-2 block">OAuth Scopes</Label>
+                  <TagsInput
+                    value={newProvider.scope ? newProvider.scope.split(/[,\s]+/).filter(Boolean) : []}
+                    onChange={(tags) => setNewProvider((prev) => ({ ...prev, scope: tags.join(" ") }))}
+                    placeholder="Enter scopes (e.g., openid, profile, email)"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {newProvider.type === "oidc"
+                      ? "Scopes auto-suggested based on Provider URL. Common OIDC scopes: openid, profile, email, groups"
+                      : "Scopes auto-suggested based on Provider URL. Common OAuth2 scopes depend on the provider"}
+                  </p>
+                </div>
+
                 {/* Show callback URL if provider name is filled */}
                 {newProvider.name && (
                   <div className="pt-2">
@@ -448,7 +820,10 @@ export function AuthProvidersSettings() {
                                   }
                                 }}
                                 onDelete={() => deleteProvider(provider.id, provider.displayName)}
+                                onTest={() => testProvider(provider.id)}
                                 saving={saving === provider.id}
+                                testing={testingProvider === provider.id}
+                                testResults={testResults[provider.id]}
                                 getIcon={getProviderIcon}
                                 editingProvider={editingProvider}
                                 editProvider={editProvider}
@@ -491,7 +866,10 @@ interface ProviderRowProps {
   onUpdate: (updates: Partial<AuthProvider>) => void;
   onEdit: () => void;
   onDelete: () => void;
+  onTest: () => void;
   saving: boolean;
+  testing: boolean;
+  testResults: any;
   getIcon: (provider: AuthProvider) => React.ReactNode;
   editingProvider: AuthProvider | null;
   editProvider: (data: Partial<AuthProvider>) => void;
@@ -507,7 +885,10 @@ function ProviderRow({
   onUpdate,
   onEdit,
   onDelete,
+  onTest,
   saving,
+  testing,
+  testResults,
   getIcon,
   editingProvider,
   editProvider,
@@ -545,7 +926,7 @@ function ProviderRow({
             </div>
             <div className="text-xs text-muted-foreground">
               {provider.type.toUpperCase()} • {provider.name}
-              {provider.isOfficial && <span className="text-blue-600 dark:text-blue-400"> • Optimized by Palmr.</span>}
+              {provider.isOfficial && <span className="text-blue-600 dark:text-blue-400"> • Official Provider</span>}
             </div>
           </div>
         </div>
@@ -582,7 +963,10 @@ function ProviderRow({
             provider={provider}
             onSave={editProvider}
             onCancel={onCancelEdit}
+            onTest={onTest}
             saving={saving}
+            testing={testing}
+            testResults={testResults}
             editingFormData={editingFormData}
             setEditingFormData={setEditingFormData}
           />
@@ -597,7 +981,10 @@ interface EditProviderFormProps {
   provider: AuthProvider;
   onSave: (data: Partial<AuthProvider>) => void;
   onCancel: () => void;
+  onTest: () => void;
   saving: boolean;
+  testing: boolean;
+  testResults: any;
   editingFormData: Record<string, any>;
   setEditingFormData: (data: Record<string, any>) => void;
 }
@@ -606,7 +993,10 @@ function EditProviderForm({
   provider,
   onSave,
   onCancel,
+  onTest,
   saving,
+  testing,
+  testResults,
   editingFormData,
   setEditingFormData,
 }: EditProviderFormProps) {
@@ -623,10 +1013,98 @@ function EditProviderForm({
     scope: savedData.scope || provider.scope || "",
     autoRegister: savedData.autoRegister !== undefined ? savedData.autoRegister : provider.autoRegister,
     adminEmailDomains: savedData.adminEmailDomains || provider.adminEmailDomains || "",
+    authorizationEndpoint: savedData.authorizationEndpoint || provider.authorizationEndpoint || "",
+    tokenEndpoint: savedData.tokenEndpoint || provider.tokenEndpoint || "",
+    userInfoEndpoint: savedData.userInfoEndpoint || provider.userInfoEndpoint || "",
   });
 
   const [showClientSecret, setShowClientSecret] = useState(false);
   const isOfficial = provider.isOfficial;
+
+  // Auto-sugestão de scopes para formulário de edição
+  const detectProviderTypeAndSuggestScopesEdit = (url: string, currentType: string): string[] => {
+    if (!url) return [];
+
+    const urlLower = url.toLowerCase();
+
+    // Mesmos padrões do formulário de adição
+    const providerPatterns = [
+      { pattern: "frontegg.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "discord.com", scopes: ["identify", "email"] },
+      { pattern: "github.com", scopes: ["read:user", "user:email"] },
+      { pattern: "gitlab.com", scopes: ["read_user", "read_api"] },
+      { pattern: "google.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "microsoft.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "facebook.com", scopes: ["public_profile", "email"] },
+      { pattern: "twitter.com", scopes: ["tweet.read", "users.read"] },
+      { pattern: "linkedin.com", scopes: ["r_liteprofile", "r_emailaddress"] },
+      { pattern: "authentik", scopes: ["openid", "profile", "email"] },
+      { pattern: "keycloak", scopes: ["openid", "profile", "email"] },
+      { pattern: "auth0.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "okta.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "onelogin.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "pingidentity.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "azure.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "aws.amazon.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "slack.com", scopes: ["identity.basic", "identity.email", "identity.avatar"] },
+      { pattern: "bitbucket.org", scopes: ["account", "repository"] },
+      { pattern: "atlassian.com", scopes: ["read:jira-user", "read:jira-work"] },
+      { pattern: "salesforce.com", scopes: ["api", "refresh_token"] },
+      { pattern: "zendesk.com", scopes: ["read"] },
+      { pattern: "shopify.com", scopes: ["read_products", "read_customers"] },
+      { pattern: "stripe.com", scopes: ["read"] },
+      { pattern: "twilio.com", scopes: ["read"] },
+      { pattern: "sendgrid.com", scopes: ["mail.send"] },
+      { pattern: "mailchimp.com", scopes: ["read"] },
+      { pattern: "hubspot.com", scopes: ["contacts", "crm.objects.contacts.read"] },
+      { pattern: "zoom.us", scopes: ["user:read:admin"] },
+      { pattern: "teams.microsoft.com", scopes: ["openid", "profile", "email", "User.Read"] },
+      { pattern: "notion.so", scopes: ["read"] },
+      { pattern: "figma.com", scopes: ["files:read"] },
+      { pattern: "dropbox.com", scopes: ["files.content.read"] },
+      { pattern: "box.com", scopes: ["root_readwrite"] },
+      { pattern: "trello.com", scopes: ["read"] },
+      { pattern: "asana.com", scopes: ["default"] },
+      { pattern: "monday.com", scopes: ["read"] },
+      { pattern: "clickup.com", scopes: ["read"] },
+      { pattern: "linear.app", scopes: ["read"] },
+    ];
+
+    // Procura por padrões conhecidos
+    for (const { pattern, scopes } of providerPatterns) {
+      if (urlLower.includes(pattern)) {
+        return scopes;
+      }
+    }
+
+    // Fallback baseado no tipo do provider
+    if (currentType === "oidc") {
+      return ["openid", "profile", "email"];
+    } else {
+      return ["profile", "email"];
+    }
+  };
+
+  // Função para auto-sugerir scopes baseado na Provider URL no formulário de edição (onBlur)
+  const updateProviderUrlEdit = (url: string) => {
+    if (!url.trim()) return;
+
+    if (isOfficial) {
+      // Para providers oficiais, não faz auto-sugestão de scopes
+      return;
+    }
+
+    const suggestedScopes = detectProviderTypeAndSuggestScopesEdit(url, formData.type);
+    const shouldUpdateScopes =
+      !formData.scope || formData.scope === "openid profile email" || formData.scope === "profile email";
+
+    // Só atualiza scopes, não a URL (já foi atualizada pelo onChange)
+    if (shouldUpdateScopes) {
+      updateFormData({
+        scope: suggestedScopes.join(" "),
+      });
+    }
+  };
 
   const updateFormData = (updates: Partial<typeof formData>) => {
     const newFormData = { ...formData, ...updates };
@@ -706,14 +1184,154 @@ function EditProviderForm({
         </div>
       )}
 
-      {formData.type === "oidc" && (
-        <div>
-          <Label className="mb-2 block">Issuer URL *</Label>
-          <Input
-            placeholder="https://your-provider.com/app/authorize"
-            value={formData.issuerUrl}
-            onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
-          />
+      {/* Configuration - Only for custom providers */}
+      {!isOfficial && (
+        <div className="space-y-4">
+          <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
+            <h4 className="text-sm font-medium mb-3">Configuration Method</h4>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  id="auto-discovery"
+                  name="configMethod"
+                  checked={!formData.authorizationEndpoint && !formData.tokenEndpoint && !formData.userInfoEndpoint}
+                  onChange={() =>
+                    updateFormData({
+                      authorizationEndpoint: "",
+                      tokenEndpoint: "",
+                      userInfoEndpoint: "",
+                    })
+                  }
+                  className="w-4 h-4"
+                />
+                <label htmlFor="auto-discovery" className="text-sm">
+                  <span className="font-medium">Automatic Discovery</span>
+                  <span className="text-muted-foreground ml-2">(Just provide Provider URL)</span>
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  id="manual-endpoints"
+                  name="configMethod"
+                  checked={!!(formData.authorizationEndpoint || formData.tokenEndpoint || formData.userInfoEndpoint)}
+                  onChange={() => {
+                    if (!formData.authorizationEndpoint && !formData.tokenEndpoint && !formData.userInfoEndpoint) {
+                      updateFormData({
+                        authorizationEndpoint: "/oauth/authorize",
+                        tokenEndpoint: "/oauth/token",
+                        userInfoEndpoint: "/oauth/userinfo",
+                      });
+                    }
+                  }}
+                  className="w-4 h-4"
+                />
+                <label htmlFor="manual-endpoints" className="text-sm">
+                  <span className="font-medium">Manual Endpoints</span>
+                  <span className="text-muted-foreground ml-2">
+                    (Recommended - For providers that don't support discovery)
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Automatic Discovery Mode */}
+          {!formData.authorizationEndpoint && !formData.tokenEndpoint && !formData.userInfoEndpoint && (
+            <div>
+              <Label className="mb-2 block">Provider URL *</Label>
+              <Input
+                placeholder="https://your-provider.com (endpoints will be discovered automatically)"
+                value={formData.issuerUrl}
+                onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
+                onBlur={(e) => updateProviderUrlEdit(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                The system will automatically discover authorization, token, and userinfo endpoints
+              </p>
+            </div>
+          )}
+
+          {/* Manual Endpoints Mode */}
+          {(formData.authorizationEndpoint || formData.tokenEndpoint || formData.userInfoEndpoint) && (
+            <div className="space-y-4">
+              <div>
+                <Label className="mb-2 block">Provider URL *</Label>
+                <Input
+                  placeholder="https://your-provider.com"
+                  value={formData.issuerUrl}
+                  onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
+                  onBlur={(e) => updateProviderUrlEdit(e.target.value)}
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Base URL of your provider (endpoints will be relative to this)
+                </p>
+              </div>
+              <div>
+                <Label className="mb-2 block">Authorization Endpoint *</Label>
+                <Input
+                  placeholder="/oauth/authorize"
+                  value={formData.authorizationEndpoint}
+                  onChange={(e) => updateFormData({ authorizationEndpoint: e.target.value })}
+                />
+              </div>
+              <div>
+                <Label className="mb-2 block">Token Endpoint *</Label>
+                <Input
+                  placeholder="/oauth/token"
+                  value={formData.tokenEndpoint}
+                  onChange={(e) => updateFormData({ tokenEndpoint: e.target.value })}
+                />
+              </div>
+              <div>
+                <Label className="mb-2 block">User Info Endpoint *</Label>
+                <Input
+                  placeholder="/oauth/userinfo"
+                  value={formData.userInfoEndpoint}
+                  onChange={(e) => updateFormData({ userInfoEndpoint: e.target.value })}
+                />
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                <div className="flex items-start gap-2 text-blue-700 dark:text-blue-300">
+                  <IconInfoCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                  <div className="text-xs">
+                    <p className="font-medium">Manual Configuration</p>
+                    <p className="mt-1">
+                      You're providing all endpoints manually. Make sure they're correct for your provider.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Official Provider - Only Provider URL and Icon */}
+      {isOfficial && (
+        <div className="space-y-4">
+          <div>
+            <Label className="mb-2 block">Provider URL *</Label>
+            <Input
+              placeholder={`Replace placeholder with your ${provider.displayName} URL`}
+              value={formData.issuerUrl}
+              onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
+              onBlur={(e) => updateProviderUrlEdit(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground mt-1">
+              This is an official provider. Endpoints are pre-configured. You can edit just this URL.
+            </p>
+          </div>
+          <div>
+            <Label className="mb-2 block">Icon</Label>
+            <IconPicker
+              value={formData.icon}
+              onChange={(icon) => updateFormData({ icon })}
+              placeholder="Select an icon"
+            />
+            <p className="text-xs text-muted-foreground mt-1">You can customize the icon for this official provider.</p>
+          </div>
         </div>
       )}
 
@@ -762,8 +1380,8 @@ function EditProviderForm({
         />
         <p className="text-xs text-muted-foreground mt-1">
           {formData.type === "oidc"
-            ? "Common OIDC scopes: openid, profile, email, groups"
-            : "Common OAuth2 scopes depend on the provider"}
+            ? "Scopes auto-suggested based on Provider URL. Common OIDC scopes: openid, profile, email, groups"
+            : "Scopes auto-suggested based on Provider URL. Common OAuth2 scopes depend on the provider"}
         </p>
       </div>
 
@@ -787,14 +1405,90 @@ function EditProviderForm({
         <Label className="cursor-pointer">Auto-register new users</Label>
       </div>
 
-      <div className="flex gap-2 justify-end">
-        <Button variant="outline" onClick={onCancel} size="sm">
-          Cancelar
+      <div className="flex gap-2 justify-between pt-4">
+        <Button variant="outline" onClick={onTest} disabled={saving || testing} size="sm">
+          {testing ? (
+            <>
+              <IconSettings className="h-3 w-3 animate-spin" />
+              Testing...
+            </>
+          ) : (
+            "Test Provider"
+          )}
         </Button>
-        <Button onClick={handleSubmit} disabled={saving} size="sm">
-          {saving ? "Salvando..." : "Salvar Provider"}
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={onCancel} size="sm">
+            Cancelar
+          </Button>
+          <Button onClick={handleSubmit} disabled={saving || testing} size="sm">
+            {saving ? "Salvando..." : "Salvar Provider"}
+          </Button>
+        </div>
       </div>
+
+      {/* Test Results Display */}
+      {testResults && (
+        <div className="mt-4">
+          <div
+            className={`rounded-lg p-3 border ${
+              testResults.overall?.status === "success"
+                ? "bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800"
+                : testResults.overall?.status === "warning"
+                  ? "bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800"
+                  : "bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800"
+            }`}
+          >
+            <div className="flex items-start gap-2">
+              {testResults.overall?.status === "success" ? (
+                <IconCheck className="h-4 w-4 mt-0.5 text-green-600 dark:text-green-400 flex-shrink-0" />
+              ) : testResults.overall?.status === "warning" ? (
+                <IconAlertTriangle className="h-4 w-4 mt-0.5 text-yellow-600 dark:text-yellow-400 flex-shrink-0" />
+              ) : (
+                <IconX className="h-4 w-4 mt-0.5 text-red-600 dark:text-red-400 flex-shrink-0" />
+              )}
+              <div className="flex-1">
+                <p
+                  className={`text-sm font-medium ${
+                    testResults.overall?.status === "success"
+                      ? "text-green-700 dark:text-green-300"
+                      : testResults.overall?.status === "warning"
+                        ? "text-yellow-700 dark:text-yellow-300"
+                        : "text-red-700 dark:text-red-300"
+                  }`}
+                >
+                  {testResults.overall?.message}
+                </p>
+                {testResults.tests && testResults.tests.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    {testResults.tests.map((test: any, index: number) => (
+                      <div key={index} className="flex items-center gap-2 text-xs">
+                        {test.status === "success" ? (
+                          <IconCheck className="h-3 w-3 text-green-600 dark:text-green-400" />
+                        ) : test.status === "warning" ? (
+                          <IconAlertTriangle className="h-3 w-3 text-yellow-600 dark:text-yellow-400" />
+                        ) : (
+                          <IconX className="h-3 w-3 text-red-600 dark:text-red-400" />
+                        )}
+                        <span
+                          className={
+                            test.status === "success"
+                              ? "text-green-700 dark:text-green-300"
+                              : test.status === "warning"
+                                ? "text-yellow-700 dark:text-yellow-300"
+                                : "text-red-700 dark:text-red-300"
+                          }
+                        >
+                          {test.message}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

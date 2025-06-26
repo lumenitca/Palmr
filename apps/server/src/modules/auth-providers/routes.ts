@@ -1,5 +1,6 @@
 import { prisma } from "../../shared/prisma";
 import { AuthProvidersController } from "./controller";
+import { CreateAuthProviderSchema, UpdateAuthProviderSchema, UpdateProvidersOrderSchema } from "./dto";
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
 
@@ -110,12 +111,17 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
         tags: ["Auth Providers"],
         operationId: "createAuthProvider",
         summary: "Create authentication provider",
-        description: "Create a new authentication provider",
-        body: z.any(),
+        description:
+          "Create a new authentication provider. Use either issuerUrl for automatic discovery OR provide all three custom endpoints.",
+        body: CreateAuthProviderSchema,
         response: {
           200: z.object({
             success: z.boolean(),
             data: z.any(),
+          }),
+          400: z.object({
+            success: z.boolean(),
+            error: z.string(),
           }),
           401: z.object({
             success: z.boolean(),
@@ -145,14 +151,7 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
         operationId: "updateProvidersOrder",
         summary: "Update providers order",
         description: "Update the display order of authentication providers",
-        body: z.object({
-          providers: z.array(
-            z.object({
-              id: z.string(),
-              sortOrder: z.number(),
-            })
-          ),
-        }),
+        body: UpdateProvidersOrderSchema,
         response: {
           200: z.object({
             success: z.boolean(),
@@ -180,6 +179,51 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.updateProvidersOrder.bind(authProvidersController)
   );
 
+  // Test provider configuration (admin only)
+  fastify.post(
+    "/providers/:id/test",
+    {
+      preValidation: adminPreValidation,
+      schema: {
+        tags: ["Auth Providers"],
+        operationId: "testAuthProvider",
+        summary: "Test authentication provider configuration",
+        description: "Test if the provider configuration is valid by checking endpoints and connectivity",
+        params: z.object({
+          id: z.string(),
+        }),
+        response: {
+          200: z.object({
+            success: z.boolean(),
+            data: z.any(),
+          }),
+          400: z.object({
+            success: z.boolean(),
+            error: z.string(),
+            details: z.string().optional(),
+          }),
+          401: z.object({
+            success: z.boolean(),
+            error: z.string(),
+          }),
+          403: z.object({
+            success: z.boolean(),
+            error: z.string(),
+          }),
+          404: z.object({
+            success: z.boolean(),
+            error: z.string(),
+          }),
+          500: z.object({
+            success: z.boolean(),
+            error: z.string(),
+          }),
+        },
+      },
+    },
+    authProvidersController.testProvider.bind(authProvidersController)
+  );
+
   // Update provider configuration (admin only)
   fastify.put(
     "/providers/:id",
@@ -189,15 +233,20 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
         tags: ["Auth Providers"],
         operationId: "updateAuthProvider",
         summary: "Update authentication provider",
-        description: "Update configuration for a specific authentication provider",
+        description:
+          "Update configuration for a specific authentication provider. Use either issuerUrl for automatic discovery OR provide all three custom endpoints.",
         params: z.object({
           id: z.string(),
         }),
-        body: z.any(),
+        body: z.any(), // Validação manual no controller para providers oficiais
         response: {
           200: z.object({
             success: z.boolean(),
             data: z.any(),
+          }),
+          400: z.object({
+            success: z.boolean(),
+            error: z.string(),
           }),
           401: z.object({
             success: z.boolean(),

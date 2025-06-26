@@ -1,3 +1,4 @@
+import { UpdateAuthProviderSchema } from "./dto";
 import { AuthProvidersService } from "./service";
 import { FastifyRequest, FastifyReply } from "fastify";
 
@@ -54,7 +55,27 @@ export class AuthProvidersController {
     if (reply.sent) return;
 
     try {
-      const data = request.body;
+      const data = request.body as any;
+
+      // Validação adicional: se modo manual, todos os 3 endpoints são obrigatórios
+      const hasAnyCustomEndpoint = !!(data.authorizationEndpoint || data.tokenEndpoint || data.userInfoEndpoint);
+      const hasAllCustomEndpoints = !!(data.authorizationEndpoint && data.tokenEndpoint && data.userInfoEndpoint);
+
+      if (hasAnyCustomEndpoint && !hasAllCustomEndpoints) {
+        return reply.status(400).send({
+          success: false,
+          error: "When using manual endpoints, all three endpoints (authorization, token, userInfo) are required",
+        });
+      }
+
+      // Validação: deve ter ou issuerUrl ou endpoints customizados
+      if (!data.issuerUrl && !hasAllCustomEndpoints) {
+        return reply.status(400).send({
+          success: false,
+          error: "Either provide issuerUrl for automatic discovery OR all three custom endpoints",
+        });
+      }
+
       const provider = await this.authProvidersService.createProvider(data);
 
       return reply.send({
@@ -63,6 +84,15 @@ export class AuthProvidersController {
       });
     } catch (error) {
       console.error("Error creating provider:", error);
+
+      // Se é erro de validação do Zod
+      if (error instanceof Error && error.message.includes("Either provide issuerUrl")) {
+        return reply.status(400).send({
+          success: false,
+          error: error.message,
+        });
+      }
+
       return reply.status(500).send({
         success: false,
         error: "Failed to create provider",
@@ -75,16 +105,92 @@ export class AuthProvidersController {
 
     try {
       const { id } = request.params;
-      const data = request.body;
+      const data = request.body as any;
 
-      const provider = await this.authProvidersService.updateProvider(id, data);
+      // Buscar provider para verificar se é oficial
+      const existingProvider = await this.authProvidersService.getProviderById(id);
+      if (!existingProvider) {
+        return reply.status(404).send({
+          success: false,
+          error: "Provider not found",
+        });
+      }
 
-      return reply.send({
-        success: true,
-        data: provider,
-      });
+      const isOfficial = this.authProvidersService.isOfficialProvider(existingProvider.name);
+
+      // Para providers oficiais, só permite alterar issuerUrl, clientId, clientSecret, enabled, autoRegister, icon
+      if (isOfficial) {
+        const allowedFields = [
+          "issuerUrl",
+          "clientId",
+          "clientSecret",
+          "enabled",
+          "autoRegister",
+          "adminEmailDomains",
+          "icon",
+        ];
+        const sanitizedData: any = {};
+
+        for (const field of allowedFields) {
+          if (data[field] !== undefined) {
+            sanitizedData[field] = data[field];
+          }
+        }
+
+        console.log(
+          `[Controller] Official provider ${existingProvider.name} - only allowing fields:`,
+          Object.keys(sanitizedData)
+        );
+        console.log(`[Controller] Sanitized data:`, sanitizedData);
+
+        // Validação adicional para issuerUrl se fornecida
+        if (sanitizedData.issuerUrl && typeof sanitizedData.issuerUrl === "string") {
+          try {
+            new URL(sanitizedData.issuerUrl);
+          } catch (e) {
+            return reply.status(400).send({
+              success: false,
+              error: "Invalid Provider URL format",
+            });
+          }
+        }
+
+        const provider = await this.authProvidersService.updateProvider(id, sanitizedData);
+        console.log(`[Controller] Provider updated successfully:`, provider?.id);
+        return reply.send({
+          success: true,
+          data: provider,
+        });
+      }
+
+      // Para providers customizados, aplica validação normal
+      try {
+        // Valida usando o schema do Zod
+        const validatedData = UpdateAuthProviderSchema.parse(data);
+        const provider = await this.authProvidersService.updateProvider(id, validatedData);
+
+        return reply.send({
+          success: true,
+          data: provider,
+        });
+      } catch (validationError) {
+        console.error("Validation error for custom provider:", validationError);
+        return reply.status(400).send({
+          success: false,
+          error: "Invalid data provided",
+        });
+      }
     } catch (error) {
       console.error("Error updating provider:", error);
+
+      // Se é erro de validação do Zod
+      if (error instanceof Error && error.message.includes("Either provide issuerUrl")) {
+        return reply.status(400).send({
+          success: false,
+          error: error.message,
+        });
+      }
+
       return reply.status(500).send({
         success: false,
         error: "Failed to update provider",
@@ -265,6 +371,39 @@ export class AuthProvidersController {
       return reply.redirect(
         `${baseUrl}/login?error=${errorType}&provider=${request.params.provider}&message=${encodedMessage}`
       );
+    }
+  }
+
+  async testProvider(request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
+    if (reply.sent) return;
+
+    try {
+      const { id } = request.params;
+
+      const provider = await this.authProvidersService.getProviderById(id);
+      if (!provider) {
+        return reply.status(404).send({
+          success: false,
+          error: "Provider not found",
+        });
+      }
+
+      console.log(`[Controller] Testing provider: ${provider.name}`);
+
+      const testResult = await this.authProvidersService.testProviderConfiguration(provider);
+
+      return reply.send({
+        success: true,
+        data: testResult,
+      });
+    } catch (error) {
+      console.error("Error testing provider:", error);
+
+      return reply.status(400).send({
+        success: false,
+        error: error instanceof Error ? error.message : "Provider test failed",
+        details: error instanceof Error ? error.stack : undefined,
+      });
     }
   }
 }

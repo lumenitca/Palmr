@@ -1,5 +1,5 @@
 export interface ProviderConfig {
-  name: string;
+  name?: string;
   issuerUrl?: string;
   authorizationEndpoint?: string;
   tokenEndpoint?: string;
@@ -16,9 +16,6 @@ export interface ProviderConfig {
     emailEndpoint?: string;
     emailFetchRequired?: boolean;
     responseFormat?: string;
-    urlCleaning?: {
-      removeFromEnd: string[];
-    };
   };
   fieldMappings: {
     id: string[];

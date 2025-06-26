@@ -36,7 +36,7 @@ import * as WiIcons from "react-icons/wi";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -158,7 +158,7 @@ function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories =
               <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 xl:grid-cols-20 gap-2 sm:gap-3">
                 {categoryIcons.map((icon) => (
                   <button
-                    key={icon.name}
+                    key={`${icon.category}-${icon.name}`}
                     className="h-12 w-12 sm:h-14 sm:w-14 p-0 hover:bg-muted transition-colors flex-shrink-0 rounded-md flex items-center justify-center cursor-pointer"
                     onClick={() => onIconSelect(icon.name)}
                     title={icon.name}
@@ -190,7 +190,7 @@ function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories =
       <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 xl:grid-cols-20 gap-2 sm:gap-3">
         {visibleIcons.map((icon) => (
           <button
-            key={icon.name}
+            key={`${icon.category}-${icon.name}`}
             className="h-12 w-12 sm:h-14 sm:w-14 p-0 hover:bg-muted transition-colors flex-shrink-0 rounded-md flex items-center justify-center cursor-pointer"
             onClick={() => onIconSelect(icon.name)}
             title={`${icon.name} (${icon.category})`}
@@ -312,10 +312,17 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
     ];
 
     const icons: IconData[] = [];
+    const seenNames = new Set<string>();
 
     iconSets.forEach(({ icons: iconSet, prefix, category }) => {
       Object.entries(iconSet).forEach(([name, component]) => {
         if (typeof component === "function" && name.startsWith(prefix)) {
+          // Skip duplicates - keep only the first occurrence
+          if (seenNames.has(name)) {
+            return;
+          }
+          seenNames.add(name);
+
           icons.push({
             name,
             component: component as React.ComponentType<{ className?: string }>,
@@ -390,7 +397,7 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
       <DialogContent className="max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-hidden">
         <div className="space-y-4 overflow-hidden">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold">Selecionar Ícone</h3>
+            <DialogTitle>Selecionar Ícone</DialogTitle>
             <div className="text-sm text-muted-foreground">
               {allIcons.length.toLocaleString()} ícones de {categories.length} bibliotecas
             </div>

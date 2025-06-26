@@ -3,12 +3,9 @@ import { ProviderConfig, ProvidersConfigFile } from "./types";
 /**
  * Configuração técnica oficial do GitHub
  * OAuth2 com busca separada de email
+ * Endpoints vêm do banco de dados
  */
 const githubConfig: ProviderConfig = {
-  name: "GitHub",
-  authorizationEndpoint: "https://github.com/login/oauth/authorize",
-  tokenEndpoint: "https://github.com/login/oauth/access_token",
-  userInfoEndpoint: "https://api.github.com/user",
   supportsDiscovery: false,
   authMethod: "body",
   specialHandling: {
@@ -29,16 +26,11 @@ const githubConfig: ProviderConfig = {
 /**
  * Configuração técnica oficial do Auth0
  * OIDC com discovery automático
+ * Endpoints vêm do banco de dados
  */
 const auth0Config: ProviderConfig = {
-  name: "Auth0",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
-  fallbackEndpoints: {
-    authorizationEndpoint: "/authorize",
-    tokenEndpoint: "/oauth/token",
-    userInfoEndpoint: "/userinfo",
-  },
   authMethod: "body",
   fieldMappings: {
     id: ["sub"],
@@ -53,16 +45,11 @@ const auth0Config: ProviderConfig = {
 /**
  * Configuração técnica oficial do Kinde
  * OIDC com mapeamentos de campo customizados
+ * Endpoints vêm do banco de dados
  */
 const kindeConfig: ProviderConfig = {
-  name: "Kinde",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
-  fallbackEndpoints: {
-    authorizationEndpoint: "/oauth2/auth",
-    tokenEndpoint: "/oauth2/token",
-    userInfoEndpoint: "/oauth2/user_profile",
-  },
   authMethod: "body",
   fieldMappings: {
     id: ["id"],
@@ -76,23 +63,13 @@ const kindeConfig: ProviderConfig = {
 
 /**
  * Configuração técnica oficial do Zitadel
- * OIDC com Basic Auth e limpeza de URL
+ * OIDC com Basic Auth
+ * Endpoints vêm do banco de dados
  */
 const zitadelConfig: ProviderConfig = {
-  name: "Zitadel",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
-  fallbackEndpoints: {
-    authorizationEndpoint: "/oauth/v2/authorize",
-    tokenEndpoint: "/oauth/v2/token",
-    userInfoEndpoint: "/oidc/v1/userinfo",
-  },
   authMethod: "basic",
-  specialHandling: {
-    urlCleaning: {
-      removeFromEnd: ["/oauth/v2/authorize", "/oauth/v2", "/authorize"],
-    },
-  },
   fieldMappings: {
     id: ["sub"],
     email: ["email"],
@@ -105,23 +82,13 @@ const zitadelConfig: ProviderConfig = {
 
 /**
  * Configuração técnica oficial do Authentik
- * OIDC self-hosted com discovery e limpeza de URL
+ * OIDC self-hosted com discovery
+ * Endpoints vêm do banco de dados
  */
 const authentikConfig: ProviderConfig = {
-  name: "Authentik",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
-  fallbackEndpoints: {
-    authorizationEndpoint: "/application/o/authorize",
-    tokenEndpoint: "/application/o/token",
-    userInfoEndpoint: "/application/o/userinfo",
-  },
   authMethod: "body",
-  specialHandling: {
-    urlCleaning: {
-      removeFromEnd: ["/.well-known/openid-configuration", "/.well-known/openid_configuration"],
-    },
-  },
   fieldMappings: {
     id: ["sub"],
     email: ["email"],
@@ -133,26 +100,50 @@ const authentikConfig: ProviderConfig = {
 };
 
 /**
- * Template genérico para providers customizados
- * Configuração técnica padrão OIDC que funciona com a maioria dos providers
+ * Configuração técnica oficial do Frontegg
+ * OIDC multi-tenant com discovery automático
+ * Endpoints vêm do banco de dados
+ */
+const fronteggConfig: ProviderConfig = {
+  supportsDiscovery: true,
+  discoveryEndpoint: "/.well-known/openid-configuration",
+  authMethod: "body",
+  fieldMappings: {
+    id: ["sub", "id", "user_id"],
+    email: ["email", "preferred_username"],
+    name: ["name", "preferred_username"],
+    firstName: ["given_name", "name"],
+    lastName: ["family_name"],
+    avatar: ["picture"],
+  },
+};
+
+/**
+ * Template genérico ULTRA-INTELIGENTE para providers customizados
+ * Detecta automaticamente padrões comuns e se adapta
  */
 const genericProviderTemplate: ProviderConfig = {
-  name: "",
   supportsDiscovery: true,
   discoveryEndpoint: "/.well-known/openid_configuration",
   fallbackEndpoints: {
-    authorizationEndpoint: "/auth",
-    tokenEndpoint: "/token",
-    userInfoEndpoint: "/userinfo",
+    authorizationEndpoint: "/oauth2/authorize",
+    tokenEndpoint: "/oauth2/token",
+    userInfoEndpoint: "/oauth2/userinfo",
   },
   authMethod: "body",
+  specialHandling: {
+    emailEndpoint: "",
+    emailFetchRequired: false,
+    responseFormat: "json",
+  },
+
   fieldMappings: {
-    id: ["sub", "id"],
-    email: ["email"],
-    name: ["name"],
-    firstName: ["given_name", "first_name"],
-    lastName: ["family_name", "last_name"],
-    avatar: ["picture", "avatar_url"],
+    id: ["sub", "id", "user_id", "uid", "userid", "account_id"],
+    email: ["email", "mail", "email_address", "preferred_email", "primary_email"],
+    name: ["name", "display_name", "full_name", "username", "login", "first_name last_name", "given_name family_name"],
+    firstName: ["given_name", "first_name", "firstname", "first", "name"],
+    lastName: ["family_name", "last_name", "lastname", "last", "surname"],
+    avatar: ["picture", "avatar", "avatar_url", "profile_picture", "photo", "image", "thumbnail"],
   },
 };
 
@@ -167,6 +158,7 @@ export const providersConfig: ProvidersConfigFile = {
     kinde: kindeConfig,
     zitadel: zitadelConfig,
     authentik: authentikConfig,
+    frontegg: fronteggConfig,
   },
   genericProviderTemplate,
 };
@@ -174,4 +166,12 @@ export const providersConfig: ProvidersConfigFile = {
 /**
  * Exportações individuais para facilitar importação
  */
-export { githubConfig, auth0Config, kindeConfig, zitadelConfig, authentikConfig, genericProviderTemplate };
+export {
+  githubConfig,
+  auth0Config,
+  kindeConfig,
+  zitadelConfig,
+  authentikConfig,
+  fronteggConfig,
+  genericProviderTemplate,
+};
