@@ -31,20 +31,22 @@ export function AuthProviderDeleteModal({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-destructive">
             <IconTrash size={20} />
-            Delete Authentication Provider
+            {t("authProviders.deleteModal.title")}
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            Are you sure you want to delete the "{provider?.displayName}" provider? This action cannot be undone.
+            {t("authProviders.deleteModal.confirmMessage", { displayName: provider?.displayName || "" })}
           </p>
 
           {provider && (
             <div className="rounded-lg border p-4 bg-muted/30">
               <div className="space-y-2">
                 <h4 className="font-medium">{provider.displayName}</h4>
-                <p className="text-sm text-muted-foreground">Provider ID: {provider.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("authProviders.deleteModal.providerId", { name: provider.name })}
+                </p>
               </div>
             </div>
           )}
@@ -52,18 +54,18 @@ export function AuthProviderDeleteModal({
 
         <DialogFooter className="flex gap-2">
           <Button variant="outline" onClick={onClose} disabled={isDeleting}>
-            Cancel
+            {t("authProviders.deleteModal.cancel")}
           </Button>
           <Button variant="destructive" onClick={handleConfirm} disabled={isDeleting}>
             {isDeleting ? (
               <>
                 <IconTrash className="h-4 w-4 mr-2 animate-spin" />
-                Deleting...
+                {t("authProviders.deleteModal.deleting")}
               </>
             ) : (
               <>
                 <IconTrash className="h-4 w-4 mr-2" />
-                Delete Provider
+                {t("authProviders.deleteModal.delete")}
               </>
             )}
           </Button>

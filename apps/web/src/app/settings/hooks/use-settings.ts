@@ -112,7 +112,6 @@ export function useSettings() {
       setGroupedConfigs(grouped);
 
       Object.entries(grouped).forEach(([groupName, groupConfigs]) => {
-        // Skip auth-providers group as it has its own custom component
         if (groupName === "auth-providers") {
           return;
         }
