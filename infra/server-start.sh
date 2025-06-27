@@ -41,9 +41,9 @@ if [ ! -f "/app/server/prisma/palmr.db" ]; then
     
     echo "🗄️ Creating database schema..."
     if [ "$(id -u)" = "0" ]; then
-        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
     else
-        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
     fi
     
     # Run seed script from application directory (where node_modules is) - as target user
@@ -60,9 +60,9 @@ else
     
     echo "🔧 Checking for schema updates..."
     if [ "$(id -u)" = "0" ]; then
-        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
     else
-        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
     fi
     
     echo "🔍 Checking if new tables need seeding..."
