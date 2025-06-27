@@ -11,7 +11,6 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // Forward any authorization headers
         ...Object.fromEntries(
           Array.from(request.headers.entries()).filter(
             ([key]) => key.startsWith("authorization") || key.startsWith("cookie")
@@ -41,7 +40,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     const apiRes = await fetch(`${API_BASE_URL}/auth/providers/${id}`, {
       method: "DELETE",
       headers: {
-        // Forward any authorization headers (but don't include Content-Type for DELETE)
         ...Object.fromEntries(
           Array.from(request.headers.entries()).filter(
             ([key]) => key.startsWith("authorization") || key.startsWith("cookie")

@@ -11,7 +11,6 @@ export async function PUT(request: NextRequest) {
       headers: {
         "Content-Type": "application/json",
         cookie: request.headers.get("cookie") || "",
-        // Forward any authorization headers if needed
         ...Object.fromEntries(Array.from(request.headers.entries()).filter(([key]) => key.startsWith("authorization"))),
       },
       body: JSON.stringify(body),

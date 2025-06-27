@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Schema base para provider
 export const BaseAuthProviderSchema = z.object({
   name: z.string().min(1, "Name is required").describe("Provider name"),
   displayName: z.string().min(1, "Display name is required").describe("Provider display name"),
@@ -14,7 +13,6 @@ export const BaseAuthProviderSchema = z.object({
   clientSecret: z.string().min(1, "Client secret is required").describe("OAuth client secret"),
 });
 
-// Schema para modo discovery automático (apenas issuerUrl)
 export const DiscoveryModeSchema = BaseAuthProviderSchema.extend({
   issuerUrl: z.string().url("Invalid issuer URL").describe("Provider issuer URL for discovery"),
   authorizationEndpoint: z.literal("").optional(),
@@ -22,7 +20,6 @@ export const DiscoveryModeSchema = BaseAuthProviderSchema.extend({
   userInfoEndpoint: z.literal("").optional(),
 });
 
-// Schema para modo manual (todos os endpoints)
 export const ManualEndpointsSchema = BaseAuthProviderSchema.extend({
   issuerUrl: z.string().optional(),
   authorizationEndpoint: z
@@ -33,7 +30,6 @@ export const ManualEndpointsSchema = BaseAuthProviderSchema.extend({
   userInfoEndpoint: z.string().min(1, "User info endpoint is required").describe("User info endpoint URL or path"),
 });
 
-// Schema principal que aceita ambos os modos
 export const CreateAuthProviderSchema = BaseAuthProviderSchema.extend({
   issuerUrl: z.string().url("Invalid issuer URL").optional(),
   authorizationEndpoint: z.string().optional(),
@@ -48,8 +44,7 @@ export const CreateAuthProviderSchema = BaseAuthProviderSchema.extend({
       data.userInfoEndpoint?.trim()
     );
 
-    // Deve ter pelo menos issuerUrl OU todos os endpoints customizados
-    if (hasIssuerUrl && !hasAnyCustomEndpoint) return true; // Modo discovery
+    if (hasIssuerUrl && !hasAnyCustomEndpoint) return true;
 
     if (hasAnyCustomEndpoint) {
       const hasAllCustomEndpoints = !!(
@@ -57,10 +52,10 @@ export const CreateAuthProviderSchema = BaseAuthProviderSchema.extend({
         data.tokenEndpoint?.trim() &&
         data.userInfoEndpoint?.trim()
       );
-      return hasAllCustomEndpoints; // Precisa ter todos os 3 endpoints
+      return hasAllCustomEndpoints;
     }
 
-    return false; // Precisa ter pelo menos um dos dois modos
+    return false;
   },
   {
     message:
@@ -68,7 +63,6 @@ export const CreateAuthProviderSchema = BaseAuthProviderSchema.extend({
   }
 );
 
-// Schema para atualização (todos os campos opcionais exceto validação de modo)
 export const UpdateAuthProviderSchema = z
   .object({
     name: z.string().min(1).optional(),
@@ -88,7 +82,6 @@ export const UpdateAuthProviderSchema = z
   })
   .refine(
     (data) => {
-      // Se não está alterando nenhum campo de configuração, permite
       const hasIssuerUrl = !!data.issuerUrl;
       const hasAnyCustomEndpoint = !!(
         data.authorizationEndpoint?.trim() ||
@@ -96,13 +89,10 @@ export const UpdateAuthProviderSchema = z
         data.userInfoEndpoint?.trim()
       );
 
-      // Se não está alterando nenhum campo de configuração, permite
       if (!hasIssuerUrl && !hasAnyCustomEndpoint) return true;
 
-      // Se está fornecendo apenas issuerUrl, permite (modo discovery)
       if (hasIssuerUrl && !hasAnyCustomEndpoint) return true;
 
-      // Se está fornecendo endpoints customizados, deve fornecer todos os 3
       if (hasAnyCustomEndpoint) {
         const hasAllCustomEndpoints = !!(
           data.authorizationEndpoint?.trim() &&
@@ -119,7 +109,6 @@ export const UpdateAuthProviderSchema = z
     }
   );
 
-// Schema específico para providers oficiais (apenas campos permitidos)
 export const UpdateOfficialProviderSchema = z.object({
   issuerUrl: z.string().url().optional(),
   clientId: z.string().min(1).optional(),
@@ -129,7 +118,6 @@ export const UpdateOfficialProviderSchema = z.object({
   adminEmailDomains: z.string().optional(),
 });
 
-// Schema para reordenação
 export const UpdateProvidersOrderSchema = z.object({
   providers: z.array(
     z.object({

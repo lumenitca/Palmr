@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
     const url = new URL(request.url);
     const queryString = url.search;
 
-    // Forward the original host and protocol to backend
     const originalHost = request.headers.get("host") || url.host;
     const originalProtocol = request.headers.get("x-forwarded-proto") || url.protocol.replace(":", "");
 
@@ -18,7 +17,6 @@ export async function GET(request: NextRequest) {
         "x-forwarded-host": originalHost,
         "x-forwarded-proto": originalProtocol,
         cookie: request.headers.get("cookie") || "",
-        // Forward any authorization headers if needed
         ...Object.fromEntries(Array.from(request.headers.entries()).filter(([key]) => key.startsWith("authorization"))),
       },
     });
@@ -46,7 +44,6 @@ export async function POST(request: NextRequest) {
       headers: {
         "Content-Type": "application/json",
         cookie: request.headers.get("cookie") || "",
-        // Forward any authorization headers if needed
         ...Object.fromEntries(Array.from(request.headers.entries()).filter(([key]) => key.startsWith("authorization"))),
       },
       body: JSON.stringify(body),

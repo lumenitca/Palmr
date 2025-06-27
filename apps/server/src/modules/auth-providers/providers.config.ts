@@ -1,5 +1,82 @@
 import { ProviderConfig, ProvidersConfigFile } from "./types";
 
+export const PROVIDER_PATTERNS = [
+  { pattern: "frontegg.com", type: "frontegg" },
+  { pattern: "discord.com", type: "discord" },
+  { pattern: "github.com", type: "github" },
+  { pattern: "gitlab.com", type: "gitlab" },
+  { pattern: "google.com", type: "google" },
+  { pattern: "microsoft.com", type: "microsoft" },
+  { pattern: "authentik", type: "authentik" },
+  { pattern: "keycloak", type: "keycloak" },
+  { pattern: "auth0.com", type: "auth0" },
+  { pattern: "okta.com", type: "okta" },
+  { pattern: "kinde.com", type: "kinde" },
+  { pattern: "zitadel.com", type: "zitadel" },
+] as const;
+
+export const DEFAULT_SCOPES_BY_TYPE: Record<string, string[]> = {
+  frontegg: ["openid", "profile", "email"],
+  discord: ["identify", "email"],
+  github: ["read:user", "user:email"],
+  gitlab: ["read_user", "read_api"],
+  google: ["openid", "profile", "email"],
+  microsoft: ["openid", "profile", "email", "User.Read"],
+  authentik: ["openid", "profile", "email"],
+  keycloak: ["openid", "profile", "email"],
+  auth0: ["openid", "profile", "email"],
+  okta: ["openid", "profile", "email"],
+  kinde: ["openid", "profile", "email"],
+  zitadel: ["openid", "profile", "email"],
+} as const;
+
+export const DISCOVERY_SUPPORTED_PROVIDERS = [
+  "frontegg",
+  "oidc",
+  "authentik",
+  "keycloak",
+  "auth0",
+  "okta",
+  "google",
+  "microsoft",
+  "kinde",
+  "zitadel",
+] as const;
+
+export const DISCOVERY_PATHS = [
+  "/.well-known/openid_configuration",
+  "/.well-known/openid-configuration",
+  "/.well-known/oauth-authorization-server",
+] as const;
+
+export const FALLBACK_ENDPOINTS: Record<string, any> = {
+  frontegg: {
+    authorizationEndpoint: "/oauth/authorize",
+    tokenEndpoint: "/oauth/token",
+    userInfoEndpoint: "/api/oauth/userinfo",
+  },
+  github: {
+    authorizationEndpoint: "/login/oauth/authorize",
+    tokenEndpoint: "/login/oauth/access_token",
+    userInfoEndpoint: "/user",
+  },
+  gitlab: {
+    authorizationEndpoint: "/oauth/authorize",
+    tokenEndpoint: "/oauth/token",
+    userInfoEndpoint: "/api/v4/user",
+  },
+  discord: {
+    authorizationEndpoint: "/oauth2/authorize",
+    tokenEndpoint: "/oauth2/token",
+    userInfoEndpoint: "/users/@me",
+  },
+  oidc: {
+    authorizationEndpoint: "/oauth2/authorize",
+    tokenEndpoint: "/oauth2/token",
+    userInfoEndpoint: "/oauth2/userinfo",
+  },
+} as const;
+
 /**
  * Configuração técnica oficial do Discord
  * OAuth2 com mapeamentos específicos do Discord
@@ -216,3 +293,38 @@ export {
   fronteggConfig,
   genericProviderTemplate,
 };
+
+export function detectProviderType(issuerUrl: string): string {
+  const url = issuerUrl.toLowerCase();
+
+  for (const { pattern, type } of PROVIDER_PATTERNS) {
+    if (url.includes(pattern)) {
+      return type;
+    }
+  }
+
+  try {
+    return new URL(issuerUrl).hostname.replace("www.", "");
+  } catch {
+    return "custom";
+  }
+}
+
+export function getProviderScopes(provider: any): string[] {
+  if (provider.scope) {
+    return provider.scope.split(" ").filter((s: string) => s.trim());
+  }
+
+  const detectedType = detectProviderType(provider.issuerUrl || "");
+  return (
+    DEFAULT_SCOPES_BY_TYPE[detectedType] || DEFAULT_SCOPES_BY_TYPE[provider.type] || ["openid", "profile", "email"]
+  );
+}
+
+export function shouldSupportDiscovery(providerType: string): boolean {
+  return DISCOVERY_SUPPORTED_PROVIDERS.includes(providerType as any);
+}
+
+export function getFallbackEndpoints(providerType: string): any {
+  return FALLBACK_ENDPOINTS[providerType] || FALLBACK_ENDPOINTS.oidc;
+}

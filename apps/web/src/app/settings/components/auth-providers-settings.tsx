@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import {
-  IconAlertTriangle,
   IconCheck,
   IconChevronDown,
   IconChevronUp,
@@ -16,7 +15,6 @@ import {
   IconPlus,
   IconSettings,
   IconTrash,
-  IconX,
 } from "@tabler/icons-react";
 import { Globe } from "lucide-react";
 import { toast } from "sonner";
@@ -62,7 +60,6 @@ interface NewProvider {
   clientSecret: string;
   issuerUrl: string;
   scope: string;
-  // Endpoints customizados opcionais
   authorizationEndpoint: string;
   tokenEndpoint: string;
   userInfoEndpoint: string;
@@ -96,13 +93,11 @@ export function AuthProvidersSettings() {
     userInfoEndpoint: "",
   });
 
-  // Auto-sugestão de scopes baseada na Provider URL
   const detectProviderTypeAndSuggestScopes = (url: string): string[] => {
     if (!url) return [];
 
     const urlLower = url.toLowerCase();
 
-    // Padrões conhecidos para detecção automática
     const providerPatterns = [
       { pattern: "frontegg.com", scopes: ["openid", "profile", "email"] },
       { pattern: "discord.com", scopes: ["identify", "email"] },
@@ -147,14 +142,12 @@ export function AuthProvidersSettings() {
       { pattern: "zitadel.com", scopes: ["openid", "profile", "email"] },
     ];
 
-    // Procura por padrões conhecidos
     for (const { pattern, scopes } of providerPatterns) {
       if (urlLower.includes(pattern)) {
         return scopes;
       }
     }
 
-    // Fallback baseado no tipo do provider
     if (newProvider.type === "oidc") {
       return ["openid", "profile", "email"];
     } else {
@@ -162,7 +155,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Função para auto-sugerir scopes baseado na Provider URL (onBlur)
   const updateProviderUrl = (url: string) => {
     if (!url.trim()) return;
 
@@ -178,7 +170,6 @@ export function AuthProvidersSettings() {
     });
   };
 
-  // Load hide disabled providers state from localStorage
   useEffect(() => {
     const savedState = localStorage.getItem("hideDisabledProviders");
     if (savedState !== null) {
@@ -186,7 +177,6 @@ export function AuthProvidersSettings() {
     }
   }, []);
 
-  // Load providers
   useEffect(() => {
     loadProviders();
   }, []);
@@ -210,7 +200,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Update provider
   const updateProvider = async (id: string, updates: Partial<AuthProvider>) => {
     try {
       setSaving(id);
@@ -236,7 +225,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Delete provider
   const deleteProvider = async (id: string, name: string) => {
     try {
       setIsDeleting(true);
@@ -261,7 +249,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Open delete confirmation modal
   const openDeleteModal = (provider: AuthProvider) => {
     setProviderToDelete({
       id: provider.id,
@@ -270,14 +257,12 @@ export function AuthProvidersSettings() {
     });
   };
 
-  // Add new provider
   const addProvider = async () => {
     if (!newProvider.name || !newProvider.displayName || !newProvider.clientId || !newProvider.clientSecret) {
       toast.error("Please fill in all required fields (name, display name, client ID, client secret)");
       return;
     }
 
-    // Validação de configuração
     const hasIssuerUrl = !!newProvider.issuerUrl;
     const hasAllCustomEndpoints = !!(
       newProvider.authorizationEndpoint &&
@@ -311,7 +296,6 @@ export function AuthProvidersSettings() {
           autoRegister: true,
           scope: newProvider.scope || (newProvider.type === "oidc" ? "openid profile email" : "user:email"),
           sortOrder: providers.length + 1,
-          // Incluir apenas campos relevantes baseado no modo
           ...(newProvider.issuerUrl ? { issuerUrl: newProvider.issuerUrl } : {}),
           ...(newProvider.authorizationEndpoint ? { authorizationEndpoint: newProvider.authorizationEndpoint } : {}),
           ...(newProvider.tokenEndpoint ? { tokenEndpoint: newProvider.tokenEndpoint } : {}),
@@ -349,7 +333,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Edit provider
   const editProvider = async (providerData: Partial<AuthProvider>) => {
     if (!editingProvider || !providerData.name || !providerData.displayName) {
       toast.error("Please fill in all required fields");
@@ -384,7 +367,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Handle drag and drop
   const handleDragEnd = async (result: DropResult) => {
     if (!result.destination) return;
 
@@ -392,14 +374,12 @@ export function AuthProvidersSettings() {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Update local state immediately for better UX
     const updatedItems = items.map((provider, index) => ({
       ...provider,
       sortOrder: index + 1,
     }));
     setProviders(updatedItems);
 
-    // Update sortOrder values for API
     const updatedProviders = updatedItems.map((provider) => ({
       id: provider.id,
       sortOrder: provider.sortOrder,
@@ -416,22 +396,18 @@ export function AuthProvidersSettings() {
 
       if (data.success) {
         toast.success("Provider order updated");
-        // No need to reload - state is already updated locally
       } else {
         toast.error("Failed to update provider order");
-        // Revert local state on error
         await loadProviders();
       }
     } catch (error) {
       console.error("Error updating provider order:", error);
       toast.error("Failed to update provider order");
-      // Revert local state on error
       await loadProviders();
     }
   };
 
   const getProviderIcon = (provider: AuthProvider) => {
-    // Use the icon saved in the database, fallback to FaCog if not set
     const iconName = provider.icon || "FaCog";
     return renderIconByName(iconName, "w-5 h-5");
   };
@@ -481,7 +457,6 @@ export function AuthProvidersSettings() {
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Add Provider Button */}
             <div className="flex justify-between items-center">
               <div className="text-sm text-muted-foreground">
                 {hideDisabledProviders
@@ -503,7 +478,6 @@ export function AuthProvidersSettings() {
               </Button>
             </div>
 
-            {/* Add Provider Form */}
             {showAddForm && (
               <div className="border border-dashed rounded-lg p-4 space-y-4">
                 <div className="flex items-center justify-between">
@@ -571,7 +545,6 @@ export function AuthProvidersSettings() {
                   </div>
                 </div>
 
-                {/* Configuration Method Toggle */}
                 <div className="space-y-4">
                   <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
                     <h4 className="text-sm font-medium mb-3">Configuration Method</h4>
@@ -640,7 +613,6 @@ export function AuthProvidersSettings() {
                     </div>
                   </div>
 
-                  {/* Automatic Discovery Mode */}
                   {!newProvider.authorizationEndpoint &&
                     !newProvider.tokenEndpoint &&
                     !newProvider.userInfoEndpoint && (
@@ -658,7 +630,6 @@ export function AuthProvidersSettings() {
                       </div>
                     )}
 
-                  {/* Manual Endpoints Mode */}
                   {(newProvider.authorizationEndpoint || newProvider.tokenEndpoint || newProvider.userInfoEndpoint) && (
                     <div className="space-y-4">
                       <div>
@@ -714,7 +685,6 @@ export function AuthProvidersSettings() {
                   )}
                 </div>
 
-                {/* Client Credentials */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label className="mb-2 block">Client ID *</Label>
@@ -735,7 +705,6 @@ export function AuthProvidersSettings() {
                   </div>
                 </div>
 
-                {/* OAuth Scopes */}
                 <div>
                   <Label className="mb-2 block">OAuth Scopes</Label>
                   <TagsInput
@@ -750,7 +719,6 @@ export function AuthProvidersSettings() {
                   </p>
                 </div>
 
-                {/* Show callback URL if provider name is filled */}
                 {newProvider.name && (
                   <div className="pt-2">
                     <CallbackUrlDisplay providerName={newProvider.name} />
@@ -767,7 +735,6 @@ export function AuthProvidersSettings() {
               </div>
             )}
 
-            {/* Hide Disabled Providers Checkbox */}
             {providers.length > 0 && (
               <div className="flex items-center space-x-2 py-2">
                 <Checkbox
@@ -781,7 +748,6 @@ export function AuthProvidersSettings() {
               </div>
             )}
 
-            {/* Providers List - Compact with Drag and Drop */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-muted-foreground">
@@ -892,7 +858,6 @@ export function AuthProvidersSettings() {
         )}
       </CardContent>
 
-      {/* Delete Confirmation Modal */}
       <AuthProviderDeleteModal
         isOpen={!!providerToDelete}
         onClose={() => setProviderToDelete(null)}
@@ -908,7 +873,6 @@ export function AuthProvidersSettings() {
   );
 }
 
-// Compact provider row component
 interface ProviderRowProps {
   provider: AuthProvider;
   onUpdate: (updates: Partial<AuthProvider>) => void;
@@ -946,10 +910,8 @@ function ProviderRow({
 
   return (
     <div className={`border rounded-lg ${isDragging ? "border-blue-300 bg-blue-50 dark:bg-blue-950/20" : ""}`}>
-      {/* Compact Header */}
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-3">
-          {/* Drag Handle */}
           {!isDragDisabled ? (
             <div
               {...dragHandleProps}
@@ -963,7 +925,6 @@ function ProviderRow({
           <span className="text-lg">{getIcon(provider)}</span>
           <div>
             <div className="flex items-center gap-2">
-              {/* Status dot */}
               <div
                 className={`w-2 h-2 rounded-full ${provider.enabled ? "bg-green-500" : "bg-gray-400"}`}
                 title={provider.enabled ? "Enabled" : "Disabled"}
@@ -996,7 +957,6 @@ function ProviderRow({
         </div>
       </div>
 
-      {/* Edit Form - Shows right below this provider when editing */}
       {isEditing && (
         <div className="border-t border-border dark:border-border p-4 space-y-4 bg-muted/50 dark:bg-muted/20">
           <div className="flex items-center justify-between">
@@ -1019,7 +979,6 @@ function ProviderRow({
   );
 }
 
-// Edit Provider Form Component
 interface EditProviderFormProps {
   provider: AuthProvider;
   onSave: (data: Partial<AuthProvider>) => void;
@@ -1037,7 +996,6 @@ function EditProviderForm({
   editingFormData,
   setEditingFormData,
 }: EditProviderFormProps) {
-  // Usar dados preservados se existirem, senão usar dados do provider
   const savedData = editingFormData[provider.id] || {};
   const [formData, setFormData] = useState({
     name: savedData.name || provider.name || "",
@@ -1058,13 +1016,11 @@ function EditProviderForm({
   const [showClientSecret, setShowClientSecret] = useState(false);
   const isOfficial = provider.isOfficial;
 
-  // Auto-sugestão de scopes para formulário de edição
   const detectProviderTypeAndSuggestScopesEdit = (url: string, currentType: string): string[] => {
     if (!url) return [];
 
     const urlLower = url.toLowerCase();
 
-    // Mesmos padrões do formulário de adição
     const providerPatterns = [
       { pattern: "frontegg.com", scopes: ["openid", "profile", "email"] },
       { pattern: "discord.com", scopes: ["identify", "email"] },
@@ -1081,14 +1037,12 @@ function EditProviderForm({
       { pattern: "zitadel.com", scopes: ["openid", "profile", "email"] },
     ];
 
-    // Procura por padrões conhecidos
     for (const { pattern, scopes } of providerPatterns) {
       if (urlLower.includes(pattern)) {
         return scopes;
       }
     }
 
-    // Fallback baseado no tipo do provider
     if (currentType === "oidc") {
       return ["openid", "profile", "email"];
     } else {
@@ -1096,12 +1050,10 @@ function EditProviderForm({
     }
   };
 
-  // Função para auto-sugerir scopes baseado na Provider URL no formulário de edição (onBlur)
   const updateProviderUrlEdit = (url: string) => {
     if (!url.trim()) return;
 
     if (isOfficial) {
-      // Para providers oficiais, não faz auto-sugestão de scopes
       return;
     }
 
@@ -1109,7 +1061,6 @@ function EditProviderForm({
     const shouldUpdateScopes =
       !formData.scope || formData.scope === "openid profile email" || formData.scope === "profile email";
 
-    // Só atualiza scopes, não a URL (já foi atualizada pelo onChange)
     if (shouldUpdateScopes) {
       updateFormData({
         scope: suggestedScopes.join(" "),
@@ -1146,10 +1097,8 @@ function EditProviderForm({
           </p>
         </div>
       )}
-      {/* Callback URL Display */}
       <CallbackUrlDisplay providerName={formData.name || "provider"} />
 
-      {/* Only show basic fields for non-official providers */}
       {!isOfficial && (
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -1195,7 +1144,6 @@ function EditProviderForm({
         </div>
       )}
 
-      {/* Configuration - Only for custom providers */}
       {!isOfficial && (
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
@@ -1248,7 +1196,6 @@ function EditProviderForm({
             </div>
           </div>
 
-          {/* Automatic Discovery Mode */}
           {!formData.authorizationEndpoint && !formData.tokenEndpoint && !formData.userInfoEndpoint && (
             <div>
               <Label className="mb-2 block">Provider URL *</Label>
@@ -1264,7 +1211,6 @@ function EditProviderForm({
             </div>
           )}
 
-          {/* Manual Endpoints Mode */}
           {(formData.authorizationEndpoint || formData.tokenEndpoint || formData.userInfoEndpoint) && (
             <div className="space-y-4">
               <div>
@@ -1319,7 +1265,6 @@ function EditProviderForm({
         </div>
       )}
 
-      {/* Official Provider - Only Provider URL and Icon */}
       {isOfficial && (
         <div className="space-y-4">
           <div>
@@ -1428,7 +1373,6 @@ function EditProviderForm({
   );
 }
 
-// Callback URL Display Component
 interface CallbackUrlDisplayProps {
   providerName: string;
 }
@@ -1436,7 +1380,6 @@ interface CallbackUrlDisplayProps {
 function CallbackUrlDisplay({ providerName }: CallbackUrlDisplayProps) {
   const [copied, setCopied] = useState(false);
 
-  // Usar a URL atual da página
   const callbackUrl =
     typeof window !== "undefined"
       ? `${window.location.origin}/api/auth/providers/${providerName}/callback`

@@ -61,3 +61,61 @@ export interface AuthResult {
   userInfo: ProviderUserInfo;
   tokens: TokenResponse;
 }
+
+export interface RequestContext {
+  protocol: string;
+  host: string;
+  headers: any;
+}
+
+export interface CreateProviderRequest {
+  Body: {
+    authorizationEndpoint?: string;
+    tokenEndpoint?: string;
+    userInfoEndpoint?: string;
+    issuerUrl?: string;
+    [key: string]: any;
+  };
+}
+
+export interface UpdateProviderRequest {
+  Params: { id: string };
+  Body: any;
+}
+
+export interface UpdateProvidersOrderRequest {
+  Body: { providers: { id: string; sortOrder: number }[] };
+}
+
+export interface DeleteProviderRequest {
+  Params: { id: string };
+}
+
+export interface AuthorizeRequest {
+  Params: { provider: string };
+  Querystring: {
+    state?: string;
+    redirect_uri?: string;
+  };
+}
+
+export interface CallbackRequest {
+  Params: { provider: string };
+  Querystring: {
+    code?: string;
+    state?: string;
+    error?: string;
+  };
+}
+
+export interface PendingState {
+  codeVerifier: string;
+  redirectUrl: string;
+  expiresAt: number;
+  providerId: string;
+}
+
+export interface RequestContextService {
+  protocol: string;
+  host: string;
+}

@@ -8,7 +8,6 @@ export async function GET(request: NextRequest) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Forward any authorization headers
         ...Object.fromEntries(
           Array.from(request.headers.entries()).filter(
             ([key]) => key.startsWith("authorization") || key.startsWith("cookie")

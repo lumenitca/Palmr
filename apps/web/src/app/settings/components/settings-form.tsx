@@ -24,12 +24,10 @@ export function SettingsForm({
   return (
     <div className="flex flex-col gap-6">
       {sortedGroups.map(([group, configs]) => {
-        // Render custom auth providers component
         if (group === "auth-providers") {
           return <AuthProvidersSettings key={group} />;
         }
 
-        // Only render SettingsGroup if we have a form for this group
         const form = groupForms[group as ValidGroup];
         if (!form) {
           return null;

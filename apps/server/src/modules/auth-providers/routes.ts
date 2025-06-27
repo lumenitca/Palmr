@@ -7,20 +7,16 @@ import { z } from "zod";
 export async function authProvidersRoutes(fastify: FastifyInstance) {
   const authProvidersController = new AuthProvidersController();
 
-  // Admin-only middleware
   const adminPreValidation = async (request: any, reply: any) => {
     try {
       const usersCount = await prisma.user.count();
 
-      // Se há apenas 1 usuário ou menos, permite acesso (setup inicial)
       if (usersCount <= 1) {
         return;
       }
 
-      // Verifica JWT
       await request.jwtVerify();
 
-      // Verifica se é admin
       if (!request.user.isAdmin) {
         return reply.status(403).send({
           success: false,
@@ -36,7 +32,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     }
   };
 
-  // Get enabled providers for login page
   fastify.get(
     "/providers",
     {
@@ -69,7 +64,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.getProviders.bind(authProvidersController)
   );
 
-  // Get all providers (admin only)
   fastify.get(
     "/providers/all",
     {
@@ -102,7 +96,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.getAllProviders.bind(authProvidersController)
   );
 
-  // Create new provider (admin only)
   fastify.post(
     "/providers",
     {
@@ -141,7 +134,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.createProvider.bind(authProvidersController)
   );
 
-  // Update providers order (admin only) - MUST be before /providers/:id route
   fastify.put(
     "/providers/order",
     {
@@ -179,7 +171,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.updateProvidersOrder.bind(authProvidersController)
   );
 
-  // Update provider configuration (admin only)
   fastify.put(
     "/providers/:id",
     {
@@ -193,7 +184,7 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
         params: z.object({
           id: z.string(),
         }),
-        body: z.any(), // Validação manual no controller para providers oficiais
+        body: z.any(),
         response: {
           200: z.object({
             success: z.boolean(),
@@ -221,7 +212,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.updateProvider.bind(authProvidersController)
   );
 
-  // Delete provider (admin only)
   fastify.delete(
     "/providers/:id",
     {
@@ -257,7 +247,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.deleteProvider.bind(authProvidersController)
   );
 
-  // Initiate authentication with specific provider
   fastify.get(
     "/providers/:provider/authorize",
     {
@@ -289,7 +278,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
     authProvidersController.authorize.bind(authProvidersController)
   );
 
-  // Handle callback from provider
   fastify.get(
     "/providers/:provider/callback",
     {

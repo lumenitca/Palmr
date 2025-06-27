@@ -8,7 +8,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const url = new URL(request.url);
     const queryString = url.search;
 
-    // Forward the original host and protocol to backend
     const originalHost = request.headers.get("host") || url.host;
     const originalProtocol = request.headers.get("x-forwarded-proto") || url.protocol.replace(":", "");
 
@@ -18,17 +17,15 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         "Content-Type": "application/json",
         "x-forwarded-host": originalHost,
         "x-forwarded-proto": originalProtocol,
-        // Forward any authorization headers if needed
         ...Object.fromEntries(
           Array.from(request.headers.entries()).filter(
             ([key]) => key.startsWith("authorization") || key.startsWith("cookie")
           )
         ),
       },
-      redirect: "manual", // Don't follow redirects automatically
+      redirect: "manual",
     });
 
-    // If it's a redirect (OAuth flow), forward the redirect
     if (apiRes.status >= 300 && apiRes.status < 400) {
       const location = apiRes.headers.get("location");
       if (location) {

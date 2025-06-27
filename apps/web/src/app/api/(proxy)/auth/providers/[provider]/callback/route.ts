@@ -8,7 +8,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const url = new URL(request.url);
     const queryString = url.search;
 
-    // Forward the original host and protocol to backend
     const originalHost = request.headers.get("host") || url.host;
     const originalProtocol = request.headers.get("x-forwarded-proto") || url.protocol.replace(":", "");
 
@@ -18,31 +17,26 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         "Content-Type": "application/json",
         "x-forwarded-host": originalHost,
         "x-forwarded-proto": originalProtocol,
-        // Forward any authorization headers if needed
         ...Object.fromEntries(
           Array.from(request.headers.entries()).filter(
             ([key]) => key.startsWith("authorization") || key.startsWith("cookie")
           )
         ),
       },
-      redirect: "manual", // Don't follow redirects automatically
+      redirect: "manual",
     });
 
-    // Handle redirects from the backend
     if (apiRes.status >= 300 && apiRes.status < 400) {
       const location = apiRes.headers.get("location");
       if (location) {
-        // Create redirect response and forward any set-cookie headers
         const response = NextResponse.redirect(location);
 
-        // Copy all set-cookie headers from backend response
         const setCookieHeaders = apiRes.headers.getSetCookie?.() || [];
         if (setCookieHeaders.length > 0) {
           setCookieHeaders.forEach((cookie) => {
             response.headers.append("set-cookie", cookie);
           });
         } else {
-          // Fallback for older implementations
           const singleCookie = apiRes.headers.get("set-cookie");
           if (singleCookie) {
             response.headers.set("set-cookie", singleCookie);
@@ -53,12 +47,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       }
     }
 
-    // Try to parse JSON response
     let data;
     try {
       data = await apiRes.json();
     } catch {
-      // If not JSON, it might be a redirect or other response
       return new NextResponse(null, {
         status: apiRes.status,
         headers: Object.fromEntries(apiRes.headers.entries()),
