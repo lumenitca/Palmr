@@ -193,13 +193,16 @@ export class AuthProvidersService {
 
   async handleCallback(providerName: string, code: string, state: string, requestContext?: any) {
     console.log(`[AuthProvidersService] Handling callback for provider: ${providerName}`);
+    console.log(`[AuthProvidersService] State received: ${state}`);
 
     const pendingState = this.pendingStates.get(state);
+
     if (!pendingState) {
+      console.error(`[AuthProvidersService] No valid pending state found for ${providerName}`);
       throw new Error("Invalid or expired state");
     }
 
-    this.pendingStates.delete(state);
+    console.log(`[AuthProvidersService] Using pending state for ${providerName}`);
 
     const provider = await this.getProviderByName(providerName);
     if (!provider) {
@@ -285,31 +288,33 @@ export class AuthProvidersService {
 
     const callbackUrl = provider.redirectUri || `${baseUrl}/api/auth/providers/${provider.name}/callback`;
 
+    // Constrói body para token exchange
+    const body = new URLSearchParams();
+    body.append("client_id", provider.clientId);
+    body.append("code", code);
+    body.append("redirect_uri", callbackUrl);
+    body.append("grant_type", "authorization_code");
+
+    // Adiciona client_secret se necessário
+    if (authMethod === "body" && provider.clientSecret) {
+      body.append("client_secret", provider.clientSecret);
+    }
+
+    // Adiciona code_verifier se disponível (PKCE)
+    if (codeVerifier) {
+      body.append("code_verifier", codeVerifier);
+    }
+
     // Prepara headers
     const headers: Record<string, string> = {
       "Content-Type": "application/x-www-form-urlencoded",
       Accept: "application/json",
     };
 
-    // Prepara body
-    const body = new URLSearchParams({
-      client_id: provider.clientId,
-      code,
-      redirect_uri: callbackUrl,
-      grant_type: "authorization_code",
-    });
-
-    // Adiciona code_verifier se for OIDC
-    if (provider.type === "oidc" && codeVerifier) {
-      body.append("code_verifier", codeVerifier);
-    }
-
-    // Configura autenticação baseada no método
-    if (authMethod === "basic") {
+    // Configura autenticação basic se necessário
+    if (authMethod === "basic" && provider.clientSecret) {
       const auth = Buffer.from(`${provider.clientId}:${provider.clientSecret}`).toString("base64");
       headers["Authorization"] = `Basic ${auth}`;
-    } else {
-      body.append("client_secret", provider.clientSecret);
     }
 
     console.log(`[AuthProvidersService] Token exchange request:`, {
@@ -335,6 +340,7 @@ export class AuthProvidersService {
         statusText: tokenResponse.statusText,
         error: errorText,
       });
+
       throw new Error(`Token exchange failed: ${tokenResponse.status} - ${errorText}`);
     }
 
@@ -368,7 +374,6 @@ export class AuthProvidersService {
         status: userInfoResponse.status,
         statusText: userInfoResponse.statusText,
         url: endpoints.userInfoEndpoint,
-        headers: Object.fromEntries(userInfoResponse.headers.entries()),
         error: errorText.substring(0, 500), // Limita o tamanho do log
       });
       throw new Error(`UserInfo request failed: ${userInfoResponse.status} - ${errorText.substring(0, 200)}`);

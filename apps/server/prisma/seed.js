@@ -152,6 +152,44 @@ const defaultConfigs = [
 
 const defaultAuthProviders = [
   {
+    name: "google",
+    displayName: "Google",
+    type: "oauth2",
+    icon: "FcGoogle",
+    enabled: false,
+    issuerUrl: "https://accounts.google.com",
+    authorizationEndpoint: "/o/oauth2/v2/auth",
+    tokenEndpoint: "/o/oauth2/token",
+    userInfoEndpoint: "https://www.googleapis.com/oauth2/v3/userinfo",
+    scope: "openid profile email",
+    sortOrder: 1,
+    metadata: JSON.stringify({
+      description: "Sign in with your Google account",
+      docs: "https://developers.google.com/identity/protocols/oauth2",
+      supportsDiscovery: true,
+      authMethod: "body"
+    })
+  },
+  {
+    name: "discord",
+    displayName: "Discord",
+    type: "oauth2",
+    icon: "FaDiscord",
+    enabled: false,
+    issuerUrl: "https://discord.com",
+    authorizationEndpoint: "/oauth2/authorize",
+    tokenEndpoint: "/api/oauth2/token",
+    userInfoEndpoint: "/api/users/@me",
+    scope: "identify email",
+    sortOrder: 2,
+    metadata: JSON.stringify({
+      description: "Sign in with your Discord account",
+      docs: "https://discord.com/developers/docs/topics/oauth2",
+      supportsDiscovery: false,
+      authMethod: "body"
+    })
+  },
+  {
     name: "github",
     displayName: "GitHub",
     type: "oauth2",
@@ -162,7 +200,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/access_token",
     userInfoEndpoint: "https://api.github.com/user", // GitHub usa URL absoluta para userInfo
     scope: "user:email",
-    sortOrder: 1,
+    sortOrder: 3,
     metadata: JSON.stringify({
       description: "Sign in with your GitHub account",
       docs: "https://docs.github.com/en/developers/apps/building-oauth-apps",
@@ -180,7 +218,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/oauth/token",
     userInfoEndpoint: "/userinfo",
     scope: "openid profile email",
-    sortOrder: 2,
+    sortOrder: 4,
     metadata: JSON.stringify({
       description: "Sign in with Auth0 - Replace 'your-tenant' with your Auth0 domain",
       docs: "https://auth0.com/docs/get-started/authentication-and-authorization-flow",
@@ -198,7 +236,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/oauth2/token",
     userInfoEndpoint: "/oauth2/user_profile",
     scope: "openid profile email",
-    sortOrder: 3,
+    sortOrder: 5,
     metadata: JSON.stringify({
       description: "Sign in with Kinde - Replace 'your-tenant' with your Kinde domain",
       docs: "https://kinde.com/docs/developer-tools/about/",
@@ -216,7 +254,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/oauth/v2/token",
     userInfoEndpoint: "/oidc/v1/userinfo",
     scope: "openid profile email",
-    sortOrder: 4,
+    sortOrder: 6,
     metadata: JSON.stringify({
       description: "Sign in with Zitadel - Replace with your Zitadel instance URL",
       docs: "https://zitadel.com/docs/guides/integrate/login/oidc",
@@ -235,7 +273,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/application/o/token/",
     userInfoEndpoint: "/application/o/userinfo/",
     scope: "openid profile email",
-    sortOrder: 5,
+    sortOrder: 7,
     metadata: JSON.stringify({
       description: "Sign in with Authentik - Replace with your Authentik instance URL",
       docs: "https://goauthentik.io/docs/providers/oauth2",
@@ -253,7 +291,7 @@ const defaultAuthProviders = [
     tokenEndpoint: "/oauth/token",
     userInfoEndpoint: "/identity/resources/users/v2/me",
     scope: "openid profile email",
-    sortOrder: 6,
+    sortOrder: 8,
     metadata: JSON.stringify({
       description: "Sign in with Frontegg - Replace 'your-tenant' with your Frontegg tenant",
       docs: "https://docs.frontegg.com",

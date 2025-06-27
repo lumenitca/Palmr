@@ -31,6 +31,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { TagsInput } from "@/components/ui/tags-input";
+import { AuthProviderDeleteModal } from "./auth-provider-delete-modal";
 
 interface AuthProvider {
   id: string;
@@ -76,6 +77,10 @@ export function AuthProvidersSettings() {
   const [editingProvider, setEditingProvider] = useState<AuthProvider | null>(null);
   const [editingFormData, setEditingFormData] = useState<Record<string, any>>({});
   const [hideDisabledProviders, setHideDisabledProviders] = useState<boolean>(false);
+  const [providerToDelete, setProviderToDelete] = useState<{ id: string; name: string; displayName: string } | null>(
+    null
+  );
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const [newProvider, setNewProvider] = useState<NewProvider>({
     name: "",
@@ -138,6 +143,8 @@ export function AuthProvidersSettings() {
       { pattern: "monday.com", scopes: ["read"] },
       { pattern: "clickup.com", scopes: ["read"] },
       { pattern: "linear.app", scopes: ["read"] },
+      { pattern: "kinde.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "zitadel.com", scopes: ["openid", "profile", "email"] },
     ];
 
     // Procura por padrões conhecidos
@@ -231,10 +238,8 @@ export function AuthProvidersSettings() {
 
   // Delete provider
   const deleteProvider = async (id: string, name: string) => {
-    if (!confirm(`Delete "${name}" provider? This cannot be undone.`)) return;
-
     try {
-      setSaving(id);
+      setIsDeleting(true);
       const response = await fetch(`/api/auth/providers/manage/${id}`, {
         method: "DELETE",
       });
@@ -244,6 +249,7 @@ export function AuthProvidersSettings() {
       if (data.success) {
         setProviders((prev) => prev.filter((p) => p.id !== id));
         toast.success("Provider deleted");
+        setProviderToDelete(null);
       } else {
         toast.error("Failed to delete provider");
       }
@@ -251,8 +257,17 @@ export function AuthProvidersSettings() {
       console.error("Error deleting provider:", error);
       toast.error("Failed to delete provider");
     } finally {
-      setSaving(null);
+      setIsDeleting(false);
     }
+  };
+
+  // Open delete confirmation modal
+  const openDeleteModal = (provider: AuthProvider) => {
+    setProviderToDelete({
+      id: provider.id,
+      name: provider.name,
+      displayName: provider.displayName,
+    });
   };
 
   // Add new provider
@@ -802,7 +817,7 @@ export function AuthProvidersSettings() {
                                       setEditingProvider(provider);
                                     }
                                   }}
-                                  onDelete={() => deleteProvider(provider.id, provider.displayName)}
+                                  onDelete={() => openDeleteModal(provider)}
                                   saving={saving === provider.id}
                                   getIcon={getProviderIcon}
                                   editingProvider={editingProvider}
@@ -843,7 +858,7 @@ export function AuthProvidersSettings() {
                           setEditingProvider(provider);
                         }
                       }}
-                      onDelete={() => deleteProvider(provider.id, provider.displayName)}
+                      onDelete={() => openDeleteModal(provider)}
                       saving={saving === provider.id}
                       getIcon={getProviderIcon}
                       editingProvider={editingProvider}
@@ -876,6 +891,19 @@ export function AuthProvidersSettings() {
           </div>
         )}
       </CardContent>
+
+      {/* Delete Confirmation Modal */}
+      <AuthProviderDeleteModal
+        isOpen={!!providerToDelete}
+        onClose={() => setProviderToDelete(null)}
+        provider={providerToDelete}
+        onConfirm={async () => {
+          if (providerToDelete) {
+            await deleteProvider(providerToDelete.id, providerToDelete.name);
+          }
+        }}
+        isDeleting={isDeleting}
+      />
     </Card>
   );
 }
@@ -1047,36 +1075,10 @@ function EditProviderForm({
       { pattern: "facebook.com", scopes: ["public_profile", "email"] },
       { pattern: "twitter.com", scopes: ["tweet.read", "users.read"] },
       { pattern: "linkedin.com", scopes: ["r_liteprofile", "r_emailaddress"] },
-      { pattern: "authentik", scopes: ["openid", "profile", "email"] },
-      { pattern: "keycloak", scopes: ["openid", "profile", "email"] },
       { pattern: "auth0.com", scopes: ["openid", "profile", "email"] },
       { pattern: "okta.com", scopes: ["openid", "profile", "email"] },
-      { pattern: "onelogin.com", scopes: ["openid", "profile", "email"] },
-      { pattern: "pingidentity.com", scopes: ["openid", "profile", "email"] },
-      { pattern: "azure.com", scopes: ["openid", "profile", "email", "User.Read"] },
-      { pattern: "aws.amazon.com", scopes: ["openid", "profile", "email"] },
-      { pattern: "slack.com", scopes: ["identity.basic", "identity.email", "identity.avatar"] },
-      { pattern: "bitbucket.org", scopes: ["account", "repository"] },
-      { pattern: "atlassian.com", scopes: ["read:jira-user", "read:jira-work"] },
-      { pattern: "salesforce.com", scopes: ["api", "refresh_token"] },
-      { pattern: "zendesk.com", scopes: ["read"] },
-      { pattern: "shopify.com", scopes: ["read_products", "read_customers"] },
-      { pattern: "stripe.com", scopes: ["read"] },
-      { pattern: "twilio.com", scopes: ["read"] },
-      { pattern: "sendgrid.com", scopes: ["mail.send"] },
-      { pattern: "mailchimp.com", scopes: ["read"] },
-      { pattern: "hubspot.com", scopes: ["contacts", "crm.objects.contacts.read"] },
-      { pattern: "zoom.us", scopes: ["user:read:admin"] },
-      { pattern: "teams.microsoft.com", scopes: ["openid", "profile", "email", "User.Read"] },
-      { pattern: "notion.so", scopes: ["read"] },
-      { pattern: "figma.com", scopes: ["files:read"] },
-      { pattern: "dropbox.com", scopes: ["files.content.read"] },
-      { pattern: "box.com", scopes: ["root_readwrite"] },
-      { pattern: "trello.com", scopes: ["read"] },
-      { pattern: "asana.com", scopes: ["default"] },
-      { pattern: "monday.com", scopes: ["read"] },
-      { pattern: "clickup.com", scopes: ["read"] },
-      { pattern: "linear.app", scopes: ["read"] },
+      { pattern: "kinde.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "zitadel.com", scopes: ["openid", "profile", "email"] },
     ];
 
     // Procura por padrões conhecidos

@@ -1,6 +1,43 @@
 import { ProviderConfig, ProvidersConfigFile } from "./types";
 
 /**
+ * Configuração técnica oficial do Discord
+ * OAuth2 com mapeamentos específicos do Discord
+ * Endpoints vêm do banco de dados
+ */
+const discordConfig: ProviderConfig = {
+  supportsDiscovery: false,
+  authMethod: "body",
+  fieldMappings: {
+    id: ["id"],
+    email: ["email"],
+    name: ["global_name", "username"],
+    firstName: ["global_name"],
+    lastName: [],
+    avatar: ["avatar"],
+  },
+};
+
+/**
+ * Configuração técnica oficial do Google
+ * OAuth2 com discovery automático
+ * Endpoints vêm do banco de dados
+ */
+const googleConfig: ProviderConfig = {
+  supportsDiscovery: true,
+  discoveryEndpoint: "/.well-known/openid_configuration",
+  authMethod: "body",
+  fieldMappings: {
+    id: ["sub"],
+    email: ["email"],
+    name: ["name"],
+    firstName: ["given_name"],
+    lastName: ["family_name"],
+    avatar: ["picture"],
+  },
+};
+
+/**
  * Configuração técnica oficial do GitHub
  * OAuth2 com busca separada de email
  * Endpoints vêm do banco de dados
@@ -153,6 +190,8 @@ const genericProviderTemplate: ProviderConfig = {
  */
 export const providersConfig: ProvidersConfigFile = {
   officialProviders: {
+    google: googleConfig,
+    discord: discordConfig,
     github: githubConfig,
     auth0: auth0Config,
     kinde: kindeConfig,
@@ -167,6 +206,8 @@ export const providersConfig: ProvidersConfigFile = {
  * Exportações individuais para facilitar importação
  */
 export {
+  discordConfig,
+  googleConfig,
   githubConfig,
   auth0Config,
   kindeConfig,

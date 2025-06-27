@@ -166,8 +166,12 @@ export class AuthProvidersController {
 
       // Para providers customizados, aplica validação normal
       try {
+        console.log(`[Controller] Updating custom provider with data:`, data);
+
         // Valida usando o schema do Zod
         const validatedData = UpdateAuthProviderSchema.parse(data);
+        console.log(`[Controller] Validation passed, validated data:`, validatedData);
+
         const provider = await this.authProvidersService.updateProvider(id, validatedData);
 
         return reply.send({
@@ -176,6 +180,7 @@ export class AuthProvidersController {
         });
       } catch (validationError) {
         console.error("Validation error for custom provider:", validationError);
+        console.error("Raw data that failed validation:", data);
         return reply.status(400).send({
           success: false,
           error: "Invalid data provided",
@@ -297,10 +302,21 @@ export class AuthProvidersController {
   }
 
   async callback(request: FastifyRequest<{ Params: { provider: string }; Querystring: any }>, reply: FastifyReply) {
+    console.log(`[Controller] Callback called for provider: ${request.params.provider}`);
+    console.log(`[Controller] Query params:`, request.query);
+    console.log(`[Controller] Headers:`, {
+      host: request.headers.host,
+      "x-forwarded-proto": request.headers["x-forwarded-proto"],
+      "x-forwarded-host": request.headers["x-forwarded-host"],
+    });
+
     try {
       const { provider: providerName } = request.params;
       const query = request.query as any;
       const { code, state, error } = query;
+
+      console.log(`[Controller] Extracted params:`, { providerName, code, state, error });
+      console.log(`[Controller] All query params:`, query);
 
       const requestContext = {
         protocol: (request.headers["x-forwarded-proto"] as string) || request.protocol,
@@ -308,15 +324,31 @@ export class AuthProvidersController {
       };
       const baseUrl = `${requestContext.protocol}://${requestContext.host}`;
 
+      console.log(`[Controller] Request context:`, requestContext);
+      console.log(`[Controller] Base URL:`, baseUrl);
+
       if (error) {
         console.error(`OAuth error from ${providerName}:`, error);
         return reply.redirect(`${baseUrl}/login?error=oauth_error&provider=${providerName}`);
       }
 
-      if (!code || !state) {
+      if (!code) {
+        console.error(`Missing code parameter for ${providerName}`);
+        return reply.redirect(`${baseUrl}/login?error=missing_code&provider=${providerName}`);
+      }
+
+      // Validação de parâmetros obrigatórios
+      const requiredParams = { code: !!code, state: !!state };
+      const missingParams = Object.entries(requiredParams)
+        .filter(([, hasValue]) => !hasValue)
+        .map(([param]) => param);
+
+      if (missingParams.length > 0) {
+        console.error(`Missing parameters for ${providerName}:`, missingParams);
         return reply.redirect(`${baseUrl}/login?error=missing_parameters&provider=${providerName}`);
       }
 
+      console.log(`[Controller] Calling handleCallback for ${providerName}`);
       const result = await this.authProvidersService.handleCallback(providerName, code, state, requestContext);
 
       const jwt = await request.jwtSign({
@@ -334,6 +366,7 @@ export class AuthProvidersController {
 
       const redirectUrl = result.redirectUrl || "/dashboard";
       const fullRedirectUrl = redirectUrl.startsWith("http") ? redirectUrl : `${baseUrl}${redirectUrl}`;
+      console.log(`[Controller] Redirecting to:`, fullRedirectUrl);
       return reply.redirect(fullRedirectUrl);
     } catch (error) {
       console.error(`Error in ${request.params.provider} callback:`, error);

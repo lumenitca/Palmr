@@ -36,21 +36,35 @@ export const ManualEndpointsSchema = BaseAuthProviderSchema.extend({
 // Schema principal que aceita ambos os modos
 export const CreateAuthProviderSchema = BaseAuthProviderSchema.extend({
   issuerUrl: z.string().url("Invalid issuer URL").optional(),
-  authorizationEndpoint: z.string().min(1).optional(),
-  tokenEndpoint: z.string().min(1).optional(),
-  userInfoEndpoint: z.string().min(1).optional(),
+  authorizationEndpoint: z.string().optional(),
+  tokenEndpoint: z.string().optional(),
+  userInfoEndpoint: z.string().optional(),
 }).refine(
   (data) => {
-    // Modo discovery: deve ter issuerUrl e não ter endpoints customizados
     const hasIssuerUrl = !!data.issuerUrl;
-    const hasCustomEndpoints = !!(data.authorizationEndpoint && data.tokenEndpoint && data.userInfoEndpoint);
+    const hasAnyCustomEndpoint = !!(
+      data.authorizationEndpoint?.trim() ||
+      data.tokenEndpoint?.trim() ||
+      data.userInfoEndpoint?.trim()
+    );
 
-    // Deve ter ou issuerUrl OU todos os endpoints customizados
-    return hasIssuerUrl || hasCustomEndpoints;
+    // Deve ter pelo menos issuerUrl OU todos os endpoints customizados
+    if (hasIssuerUrl && !hasAnyCustomEndpoint) return true; // Modo discovery
+
+    if (hasAnyCustomEndpoint) {
+      const hasAllCustomEndpoints = !!(
+        data.authorizationEndpoint?.trim() &&
+        data.tokenEndpoint?.trim() &&
+        data.userInfoEndpoint?.trim()
+      );
+      return hasAllCustomEndpoints; // Precisa ter todos os 3 endpoints
+    }
+
+    return false; // Precisa ter pelo menos um dos dois modos
   },
   {
     message:
-      "Either provide issuerUrl for automatic discovery OR all three custom endpoints (authorization, token, userInfo)",
+      "Either provide issuerUrl for automatic discovery OR all three custom endpoints (authorization, token, userInfo).",
   }
 );
 
@@ -68,25 +82,40 @@ export const UpdateAuthProviderSchema = z
     clientId: z.string().min(1).optional(),
     clientSecret: z.string().min(1).optional(),
     issuerUrl: z.string().url().optional(),
-    authorizationEndpoint: z.string().min(1).optional(),
-    tokenEndpoint: z.string().min(1).optional(),
-    userInfoEndpoint: z.string().min(1).optional(),
+    authorizationEndpoint: z.string().optional(),
+    tokenEndpoint: z.string().optional(),
+    userInfoEndpoint: z.string().optional(),
   })
   .refine(
     (data) => {
-      // Se está atualizando endpoints, deve seguir a mesma regra
+      // Se não está alterando nenhum campo de configuração, permite
       const hasIssuerUrl = !!data.issuerUrl;
-      const hasCustomEndpoints = !!(data.authorizationEndpoint || data.tokenEndpoint || data.userInfoEndpoint);
+      const hasAnyCustomEndpoint = !!(
+        data.authorizationEndpoint?.trim() ||
+        data.tokenEndpoint?.trim() ||
+        data.userInfoEndpoint?.trim()
+      );
 
-      // Se nenhum dos dois foi fornecido, está OK (não está alterando o modo)
-      if (!hasIssuerUrl && !hasCustomEndpoints) return true;
+      // Se não está alterando nenhum campo de configuração, permite
+      if (!hasIssuerUrl && !hasAnyCustomEndpoint) return true;
 
-      // Se forneceu um, não pode fornecer o outro
-      return hasIssuerUrl !== hasCustomEndpoints;
+      // Se está fornecendo apenas issuerUrl, permite (modo discovery)
+      if (hasIssuerUrl && !hasAnyCustomEndpoint) return true;
+
+      // Se está fornecendo endpoints customizados, deve fornecer todos os 3
+      if (hasAnyCustomEndpoint) {
+        const hasAllCustomEndpoints = !!(
+          data.authorizationEndpoint?.trim() &&
+          data.tokenEndpoint?.trim() &&
+          data.userInfoEndpoint?.trim()
+        );
+        return hasAllCustomEndpoints;
+      }
+
+      return true;
     },
     {
-      message:
-        "Either provide issuerUrl for automatic discovery OR all three custom endpoints (authorization, token, userInfo)",
+      message: "When providing custom endpoints, all three endpoints (authorization, token, userInfo) are required.",
     }
   );
 
