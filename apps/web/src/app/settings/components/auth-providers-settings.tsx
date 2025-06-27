@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { IconPicker, renderIconByName } from "@/components/ui/icon-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -74,8 +75,8 @@ export function AuthProvidersSettings() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingProvider, setEditingProvider] = useState<AuthProvider | null>(null);
   const [editingFormData, setEditingFormData] = useState<Record<string, any>>({});
-  const [testResults, setTestResults] = useState<Record<string, any>>({});
-  const [testingProvider, setTestingProvider] = useState<string | null>(null);
+  const [hideDisabledProviders, setHideDisabledProviders] = useState<boolean>(false);
+
   const [newProvider, setNewProvider] = useState<NewProvider>({
     name: "",
     displayName: "",
@@ -169,6 +170,14 @@ export function AuthProvidersSettings() {
       };
     });
   };
+
+  // Load hide disabled providers state from localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem("hideDisabledProviders");
+    if (savedState !== null) {
+      setHideDisabledProviders(JSON.parse(savedState));
+    }
+  }, []);
 
   // Load providers
   useEffect(() => {
@@ -360,57 +369,6 @@ export function AuthProvidersSettings() {
     }
   };
 
-  // Test provider
-  const testProvider = async (id: string) => {
-    try {
-      setTestingProvider(id);
-      setTestResults((prev) => ({ ...prev, [id]: null }));
-
-      const response = await fetch(`/api/auth/providers/manage/${id}/test`, {
-        method: "POST",
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        const result = data.data;
-        setTestResults((prev) => ({ ...prev, [id]: result }));
-
-        if (result.overall.status === "success") {
-          toast.success(`✅ ${result.overall.message}`);
-        } else if (result.overall.status === "warning") {
-          toast.warning(`⚠️ ${result.overall.message}`);
-        } else {
-          toast.error(`❌ ${result.overall.message}`);
-        }
-
-        // Log detailed results for debugging
-        console.log("Provider Test Results:", result);
-      } else {
-        setTestResults((prev) => ({
-          ...prev,
-          [id]: {
-            overall: { status: "error", message: data.error },
-            tests: [],
-          },
-        }));
-        toast.error(`Test failed: ${data.error}`);
-      }
-    } catch (error) {
-      console.error("Error testing provider:", error);
-      setTestResults((prev) => ({
-        ...prev,
-        [id]: {
-          overall: { status: "error", message: "Failed to test provider" },
-          tests: [],
-        },
-      }));
-      toast.error("Failed to test provider");
-    } finally {
-      setTestingProvider(null);
-    }
-  };
-
   // Handle drag and drop
   const handleDragEnd = async (result: DropResult) => {
     if (!result.destination) return;
@@ -463,7 +421,13 @@ export function AuthProvidersSettings() {
     return renderIconByName(iconName, "w-5 h-5");
   };
 
+  const handleHideDisabledProvidersChange = (checked: boolean) => {
+    setHideDisabledProviders(checked);
+    localStorage.setItem("hideDisabledProviders", JSON.stringify(checked));
+  };
+
   const enabledCount = providers.filter((p) => p.enabled).length;
+  const filteredProviders = hideDisabledProviders ? providers.filter((p) => p.enabled) : providers;
 
   return (
     <Card className="p-6 gap-0">
@@ -504,7 +468,11 @@ export function AuthProvidersSettings() {
           <div className="space-y-4">
             {/* Add Provider Button */}
             <div className="flex justify-between items-center">
-              <div className="text-sm text-muted-foreground">{providers.length} providers configured</div>
+              <div className="text-sm text-muted-foreground">
+                {hideDisabledProviders
+                  ? `${filteredProviders.length} enabled of ${providers.length} providers`
+                  : `${providers.length} providers configured`}
+              </div>
               <Button
                 onClick={() => {
                   if (editingProvider) {
@@ -526,17 +494,16 @@ export function AuthProvidersSettings() {
                 <div className="flex items-center justify-between">
                   <h3 className="font-medium text-foreground dark:text-foreground">Add Provider</h3>
                 </div>
-                <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-800 rounded-lg p-3">
-                  <div className="flex items-center gap-2 text-red-700 dark:text-red-300">
+                <div className="bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                  <div className="flex items-center gap-2 text-blue-700 dark:text-blue-300">
                     <span>
                       <IconInfoCircle className="h-4 w-4" />
                     </span>
-                    <span className="text-sm font-medium">Atenção</span>
+                    <span className="text-sm font-medium">Informação</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Ao adicionar um novo provider, você deve testar seu funcionamento por conta própria. Considere usar
-                    os oficiais para ter um funcionamento mais fluído. Caso não tenha sucesso, considere abrir uma issue
-                    no{" "}
+                    Para melhor funcionamento, considere usar os providers oficiais. Caso tenha problemas com um
+                    provider customizado, considere abrir uma issue no{" "}
                     <a
                       href="https://github.com/kyantech/Palmr/issues"
                       target="_blank"
@@ -545,7 +512,6 @@ export function AuthProvidersSettings() {
                     >
                       GitHub.
                     </a>
-                    .
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -786,71 +752,125 @@ export function AuthProvidersSettings() {
               </div>
             )}
 
+            {/* Hide Disabled Providers Checkbox */}
+            {providers.length > 0 && (
+              <div className="flex items-center space-x-2 py-2">
+                <Checkbox
+                  id="hideDisabledProviders"
+                  checked={hideDisabledProviders}
+                  onCheckedChange={handleHideDisabledProvidersChange}
+                />
+                <Label htmlFor="hideDisabledProviders" className="text-sm cursor-pointer">
+                  Hide disabled providers
+                </Label>
+              </div>
+            )}
+
             {/* Providers List - Compact with Drag and Drop */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-muted-foreground">
-                  Drag providers to reorder them. This order will be reflected on the login page.
+                  {hideDisabledProviders
+                    ? "Drag and drop is disabled when filtering providers. Show all providers to reorder them."
+                    : "Drag providers to reorder them. This order will be reflected on the login page."}
                 </p>
               </div>
 
-              <DragDropContext onDragEnd={handleDragEnd}>
-                <Droppable droppableId="providers">
-                  {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
-                      {providers.map((provider, index) => (
-                        <Draggable key={provider.id} draggableId={provider.id} index={index}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              className={`transition-all ${snapshot.isDragging ? "shadow-lg scale-105" : ""}`}
-                            >
-                              <ProviderRow
-                                provider={provider}
-                                onUpdate={(updates) => updateProvider(provider.id, updates)}
-                                onEdit={() => {
-                                  if (showAddForm) {
-                                    setShowAddForm(false);
-                                  }
-                                  if (editingProvider?.id === provider.id) {
+              {!hideDisabledProviders ? (
+                <DragDropContext onDragEnd={handleDragEnd}>
+                  <Droppable droppableId="providers">
+                    {(provided) => (
+                      <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-2">
+                        {filteredProviders.map((provider, index) => (
+                          <Draggable key={provider.id} draggableId={provider.id} index={index}>
+                            {(provided, snapshot) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                className={`transition-all ${snapshot.isDragging ? "shadow-lg scale-105" : ""}`}
+                              >
+                                <ProviderRow
+                                  provider={provider}
+                                  onUpdate={(updates) => updateProvider(provider.id, updates)}
+                                  onEdit={() => {
+                                    if (showAddForm) {
+                                      setShowAddForm(false);
+                                    }
+                                    if (editingProvider?.id === provider.id) {
+                                      setEditingProvider(null);
+                                    } else {
+                                      setEditingProvider(provider);
+                                    }
+                                  }}
+                                  onDelete={() => deleteProvider(provider.id, provider.displayName)}
+                                  saving={saving === provider.id}
+                                  getIcon={getProviderIcon}
+                                  editingProvider={editingProvider}
+                                  editProvider={editProvider}
+                                  onCancelEdit={() => {
                                     setEditingProvider(null);
-                                  } else {
-                                    setEditingProvider(provider);
-                                  }
-                                }}
-                                onDelete={() => deleteProvider(provider.id, provider.displayName)}
-                                onTest={() => testProvider(provider.id)}
-                                saving={saving === provider.id}
-                                testing={testingProvider === provider.id}
-                                testResults={testResults[provider.id]}
-                                getIcon={getProviderIcon}
-                                editingProvider={editingProvider}
-                                editProvider={editProvider}
-                                onCancelEdit={() => {
-                                  setEditingProvider(null);
-                                  setEditingFormData({});
-                                }}
-                                editingFormData={editingFormData}
-                                setEditingFormData={setEditingFormData}
-                                dragHandleProps={provided.dragHandleProps}
-                                isDragging={snapshot.isDragging}
-                              />
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              </DragDropContext>
+                                    setEditingFormData({});
+                                  }}
+                                  editingFormData={editingFormData}
+                                  setEditingFormData={setEditingFormData}
+                                  dragHandleProps={provided.dragHandleProps}
+                                  isDragging={snapshot.isDragging}
+                                  isDragDisabled={false}
+                                />
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </DragDropContext>
+              ) : (
+                <div className="space-y-2">
+                  {filteredProviders.map((provider) => (
+                    <ProviderRow
+                      key={provider.id}
+                      provider={provider}
+                      onUpdate={(updates) => updateProvider(provider.id, updates)}
+                      onEdit={() => {
+                        if (showAddForm) {
+                          setShowAddForm(false);
+                        }
+                        if (editingProvider?.id === provider.id) {
+                          setEditingProvider(null);
+                        } else {
+                          setEditingProvider(provider);
+                        }
+                      }}
+                      onDelete={() => deleteProvider(provider.id, provider.displayName)}
+                      saving={saving === provider.id}
+                      getIcon={getProviderIcon}
+                      editingProvider={editingProvider}
+                      editProvider={editProvider}
+                      onCancelEdit={() => {
+                        setEditingProvider(null);
+                        setEditingFormData({});
+                      }}
+                      editingFormData={editingFormData}
+                      setEditingFormData={setEditingFormData}
+                      dragHandleProps={null}
+                      isDragging={false}
+                      isDragDisabled={true}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
-            {providers.length === 0 && !showAddForm && (
+            {filteredProviders.length === 0 && !showAddForm && (
               <div className="text-center py-8 text-muted-foreground">
                 <IconSettings className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>No authentication providers configured</p>
+                <p>
+                  {hideDisabledProviders
+                    ? "No enabled authentication providers"
+                    : "No authentication providers configured"}
+                </p>
               </div>
             )}
           </div>
@@ -866,10 +886,7 @@ interface ProviderRowProps {
   onUpdate: (updates: Partial<AuthProvider>) => void;
   onEdit: () => void;
   onDelete: () => void;
-  onTest: () => void;
   saving: boolean;
-  testing: boolean;
-  testResults: any;
   getIcon: (provider: AuthProvider) => React.ReactNode;
   editingProvider: AuthProvider | null;
   editProvider: (data: Partial<AuthProvider>) => void;
@@ -878,6 +895,7 @@ interface ProviderRowProps {
   setEditingFormData: (data: Record<string, any>) => void;
   dragHandleProps: any;
   isDragging: boolean;
+  isDragDisabled: boolean;
 }
 
 function ProviderRow({
@@ -885,10 +903,7 @@ function ProviderRow({
   onUpdate,
   onEdit,
   onDelete,
-  onTest,
   saving,
-  testing,
-  testResults,
   getIcon,
   editingProvider,
   editProvider,
@@ -897,6 +912,7 @@ function ProviderRow({
   setEditingFormData,
   dragHandleProps,
   isDragging,
+  isDragDisabled,
 }: ProviderRowProps) {
   const isEditing = editingProvider?.id === provider.id;
 
@@ -906,13 +922,15 @@ function ProviderRow({
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-3">
           {/* Drag Handle */}
-          <div
-            {...dragHandleProps}
-            className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground transition-colors"
-            title="Drag to reorder"
-          >
-            <IconGripVertical className="h-4 w-4" />
-          </div>
+          {!isDragDisabled ? (
+            <div
+              {...dragHandleProps}
+              className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground transition-colors"
+              title="Drag to reorder"
+            >
+              <IconGripVertical className="h-4 w-4" />
+            </div>
+          ) : null}
 
           <span className="text-lg">{getIcon(provider)}</span>
           <div>
@@ -963,10 +981,7 @@ function ProviderRow({
             provider={provider}
             onSave={editProvider}
             onCancel={onCancelEdit}
-            onTest={onTest}
             saving={saving}
-            testing={testing}
-            testResults={testResults}
             editingFormData={editingFormData}
             setEditingFormData={setEditingFormData}
           />
@@ -981,10 +996,7 @@ interface EditProviderFormProps {
   provider: AuthProvider;
   onSave: (data: Partial<AuthProvider>) => void;
   onCancel: () => void;
-  onTest: () => void;
   saving: boolean;
-  testing: boolean;
-  testResults: any;
   editingFormData: Record<string, any>;
   setEditingFormData: (data: Record<string, any>) => void;
 }
@@ -993,10 +1005,7 @@ function EditProviderForm({
   provider,
   onSave,
   onCancel,
-  onTest,
   saving,
-  testing,
-  testResults,
   editingFormData,
   setEditingFormData,
 }: EditProviderFormProps) {
@@ -1405,90 +1414,14 @@ function EditProviderForm({
         <Label className="cursor-pointer">Auto-register new users</Label>
       </div>
 
-      <div className="flex gap-2 justify-between pt-4">
-        <Button variant="outline" onClick={onTest} disabled={saving || testing} size="sm">
-          {testing ? (
-            <>
-              <IconSettings className="h-3 w-3 animate-spin" />
-              Testing...
-            </>
-          ) : (
-            "Test Provider"
-          )}
+      <div className="flex gap-2 justify-end pt-4">
+        <Button variant="outline" onClick={onCancel} size="sm">
+          Cancelar
         </Button>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={onCancel} size="sm">
-            Cancelar
-          </Button>
-          <Button onClick={handleSubmit} disabled={saving || testing} size="sm">
-            {saving ? "Salvando..." : "Salvar Provider"}
-          </Button>
-        </div>
+        <Button onClick={handleSubmit} disabled={saving} size="sm">
+          {saving ? "Salvando..." : "Salvar Provider"}
+        </Button>
       </div>
-
-      {/* Test Results Display */}
-      {testResults && (
-        <div className="mt-4">
-          <div
-            className={`rounded-lg p-3 border ${
-              testResults.overall?.status === "success"
-                ? "bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800"
-                : testResults.overall?.status === "warning"
-                  ? "bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800"
-                  : "bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800"
-            }`}
-          >
-            <div className="flex items-start gap-2">
-              {testResults.overall?.status === "success" ? (
-                <IconCheck className="h-4 w-4 mt-0.5 text-green-600 dark:text-green-400 flex-shrink-0" />
-              ) : testResults.overall?.status === "warning" ? (
-                <IconAlertTriangle className="h-4 w-4 mt-0.5 text-yellow-600 dark:text-yellow-400 flex-shrink-0" />
-              ) : (
-                <IconX className="h-4 w-4 mt-0.5 text-red-600 dark:text-red-400 flex-shrink-0" />
-              )}
-              <div className="flex-1">
-                <p
-                  className={`text-sm font-medium ${
-                    testResults.overall?.status === "success"
-                      ? "text-green-700 dark:text-green-300"
-                      : testResults.overall?.status === "warning"
-                        ? "text-yellow-700 dark:text-yellow-300"
-                        : "text-red-700 dark:text-red-300"
-                  }`}
-                >
-                  {testResults.overall?.message}
-                </p>
-                {testResults.tests && testResults.tests.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    {testResults.tests.map((test: any, index: number) => (
-                      <div key={index} className="flex items-center gap-2 text-xs">
-                        {test.status === "success" ? (
-                          <IconCheck className="h-3 w-3 text-green-600 dark:text-green-400" />
-                        ) : test.status === "warning" ? (
-                          <IconAlertTriangle className="h-3 w-3 text-yellow-600 dark:text-yellow-400" />
-                        ) : (
-                          <IconX className="h-3 w-3 text-red-600 dark:text-red-400" />
-                        )}
-                        <span
-                          className={
-                            test.status === "success"
-                              ? "text-green-700 dark:text-green-300"
-                              : test.status === "warning"
-                                ? "text-yellow-700 dark:text-yellow-300"
-                                : "text-red-700 dark:text-red-300"
-                          }
-                        >
-                          {test.message}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -150,7 +150,7 @@ export class ProviderManager {
     // TERCEIRO: Se não conseguiu descobrir, usa fallbacks simples
     if (!endpoints.tokenEndpoint) {
       console.log(`[ProviderManager] Building fallback endpoints`);
-      endpoints = this.buildIntelligentFallbackEndpoints(provider, config);
+      endpoints = this.buildIntelligentFallbackEndpoints(provider);
     }
 
     console.log(`[ProviderManager] Final endpoints:`, endpoints);
@@ -274,7 +274,7 @@ export class ProviderManager {
   /**
    * Constrói endpoints usando fallbacks simples baseados no tipo
    */
-  private buildIntelligentFallbackEndpoints(provider: any, config: ProviderConfig): ProviderEndpoints {
+  private buildIntelligentFallbackEndpoints(provider: any): ProviderEndpoints {
     const baseUrl = provider.issuerUrl?.replace(/\/$/, "") || "";
     console.log(`[ProviderManager] Building fallback endpoints for baseUrl: ${baseUrl}`);
 

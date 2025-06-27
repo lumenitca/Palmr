@@ -1,6 +1,6 @@
 import { prisma } from "../../shared/prisma";
 import { AuthProvidersController } from "./controller";
-import { CreateAuthProviderSchema, UpdateAuthProviderSchema, UpdateProvidersOrderSchema } from "./dto";
+import { CreateAuthProviderSchema, UpdateProvidersOrderSchema } from "./dto";
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
 
@@ -177,51 +177,6 @@ export async function authProvidersRoutes(fastify: FastifyInstance) {
       },
     },
     authProvidersController.updateProvidersOrder.bind(authProvidersController)
-  );
-
-  // Test provider configuration (admin only)
-  fastify.post(
-    "/providers/:id/test",
-    {
-      preValidation: adminPreValidation,
-      schema: {
-        tags: ["Auth Providers"],
-        operationId: "testAuthProvider",
-        summary: "Test authentication provider configuration",
-        description: "Test if the provider configuration is valid by checking endpoints and connectivity",
-        params: z.object({
-          id: z.string(),
-        }),
-        response: {
-          200: z.object({
-            success: z.boolean(),
-            data: z.any(),
-          }),
-          400: z.object({
-            success: z.boolean(),
-            error: z.string(),
-            details: z.string().optional(),
-          }),
-          401: z.object({
-            success: z.boolean(),
-            error: z.string(),
-          }),
-          403: z.object({
-            success: z.boolean(),
-            error: z.string(),
-          }),
-          404: z.object({
-            success: z.boolean(),
-            error: z.string(),
-          }),
-          500: z.object({
-            success: z.boolean(),
-            error: z.string(),
-          }),
-        },
-      },
-    },
-    authProvidersController.testProvider.bind(authProvidersController)
   );
 
   // Update provider configuration (admin only)

@@ -147,6 +147,7 @@ export class AuthProvidersController {
         if (sanitizedData.issuerUrl && typeof sanitizedData.issuerUrl === "string") {
           try {
             new URL(sanitizedData.issuerUrl);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (e) {
             return reply.status(400).send({
               success: false,
@@ -371,39 +372,6 @@ export class AuthProvidersController {
       return reply.redirect(
         `${baseUrl}/login?error=${errorType}&provider=${request.params.provider}&message=${encodedMessage}`
       );
-    }
-  }
-
-  async testProvider(request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
-    if (reply.sent) return;
-
-    try {
-      const { id } = request.params;
-
-      const provider = await this.authProvidersService.getProviderById(id);
-      if (!provider) {
-        return reply.status(404).send({
-          success: false,
-          error: "Provider not found",
-        });
-      }
-
-      console.log(`[Controller] Testing provider: ${provider.name}`);
-
-      const testResult = await this.authProvidersService.testProviderConfiguration(provider);
-
-      return reply.send({
-        success: true,
-        data: testResult,
-      });
-    } catch (error) {
-      console.error("Error testing provider:", error);
-
-      return reply.status(400).send({
-        success: false,
-        error: error instanceof Error ? error.message : "Provider test failed",
-        details: error instanceof Error ? error.stack : undefined,
-      });
     }
   }
 }
