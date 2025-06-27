@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { renderIconByName } from "@/components/ui/icon-picker";
+import { useAppInfo } from "@/contexts/app-info-context";
 
 interface AuthProvider {
   id: string;
@@ -18,10 +19,16 @@ interface AuthProvider {
 export function MultiProviderButtons() {
   const [providers, setProviders] = useState<AuthProvider[]>([]);
   const [loading, setLoading] = useState(true);
+  const { firstAccess } = useAppInfo();
 
   useEffect(() => {
+    if (firstAccess) {
+      setLoading(false);
+      return;
+    }
+
     loadProviders();
-  }, []);
+  }, [firstAccess]);
 
   const loadProviders = async () => {
     try {
@@ -47,15 +54,17 @@ export function MultiProviderButtons() {
       return;
     }
 
-    // Redirect to provider's auth URL
     window.location.href = provider.authUrl;
   };
+
+  if (firstAccess) {
+    return null;
+  }
 
   if (loading) {
     return (
       <div className="space-y-2">
-        <div className="h-10 bg-muted animate-pulse rounded-md"></div>
-        <div className="h-10 bg-muted animate-pulse rounded-md"></div>
+        <div className="h-10 bg-muted animate-pulse rounded-md" />
       </div>
     );
   }

@@ -13,7 +13,6 @@ export function useShares() {
   const [shares, setShares] = useState<ListUserShares200SharesItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [shareToViewDetails, setShareToViewDetails] = useState<ListUserShares200SharesItem | null>(null);
   const [shareToGenerateLink, setShareToGenerateLink] = useState<ListUserShares200SharesItem | null>(null);
 
   const { value: smtpEnabled } = useSecureConfigValue("smtpEnabled");
@@ -68,12 +67,10 @@ export function useShares() {
     shares,
     isLoading,
     searchQuery,
-    shareToViewDetails,
     shareToGenerateLink,
     filteredShares,
     smtpEnabled: smtpEnabled || "false",
     setSearchQuery,
-    setShareToViewDetails,
     setShareToGenerateLink,
     handleCopyLink,
     handleNotifyRecipients,
