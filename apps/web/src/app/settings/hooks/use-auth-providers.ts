@@ -5,7 +5,14 @@ import { DropResult } from "@hello-pangea/dnd";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import type { AuthProvider, NewProvider } from "../components/auth-provider-form/types";
+import {
+  createProvider,
+  deleteProvider as deleteProviderEndpoint,
+  getAllProviders,
+  updateProvider as updateProviderEndpoint,
+  updateProvidersOrder as updateProvidersOrderEndpoint,
+} from "@/http/endpoints";
+import type { AuthProvider, NewProvider } from "@/http/endpoints/auth/types";
 
 export function useAuthProviders() {
   const t = useTranslations();
@@ -38,8 +45,8 @@ export function useAuthProviders() {
   const loadProviders = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/providers/all");
-      const data = await response.json();
+      const response = await getAllProviders();
+      const data = response.data;
 
       if (data.success) {
         setProviders(data.data.sort((a: AuthProvider, b: AuthProvider) => a.sortOrder - b.sortOrder));
@@ -57,13 +64,8 @@ export function useAuthProviders() {
   const updateProvider = async (id: string, updates: Partial<AuthProvider>) => {
     try {
       setSaving(id);
-      const response = await fetch(`/api/auth/providers/manage/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
-      });
-
-      const data = await response.json();
+      const response = await updateProviderEndpoint(id, updates);
+      const data = response.data;
 
       if (data.success) {
         setProviders((prev) => prev.map((p) => (p.id === id ? { ...p, ...updates } : p)));
@@ -82,28 +84,21 @@ export function useAuthProviders() {
   const addProvider = async (newProvider: NewProvider) => {
     try {
       setSaving("new");
-      const response = await fetch("/api/auth/providers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: newProvider.name.toLowerCase().replace(/\s+/g, "-"),
-          displayName: newProvider.displayName,
-          type: newProvider.type,
-          icon: newProvider.icon,
-          clientId: newProvider.clientId,
-          clientSecret: newProvider.clientSecret,
-          enabled: false,
-          autoRegister: true,
-          scope: newProvider.scope || (newProvider.type === "oidc" ? "openid profile email" : "user:email"),
-          sortOrder: providers.length + 1,
-          ...(newProvider.issuerUrl ? { issuerUrl: newProvider.issuerUrl } : {}),
-          ...(newProvider.authorizationEndpoint ? { authorizationEndpoint: newProvider.authorizationEndpoint } : {}),
-          ...(newProvider.tokenEndpoint ? { tokenEndpoint: newProvider.tokenEndpoint } : {}),
-          ...(newProvider.userInfoEndpoint ? { userInfoEndpoint: newProvider.userInfoEndpoint } : {}),
-        }),
+      const response = await createProvider({
+        name: newProvider.name.toLowerCase().replace(/\s+/g, "-"),
+        displayName: newProvider.displayName,
+        type: newProvider.type,
+        icon: newProvider.icon,
+        clientId: newProvider.clientId,
+        clientSecret: newProvider.clientSecret,
+        scope: newProvider.scope || (newProvider.type === "oidc" ? "openid profile email" : "user:email"),
+        ...(newProvider.issuerUrl ? { issuerUrl: newProvider.issuerUrl } : {}),
+        ...(newProvider.authorizationEndpoint ? { authorizationEndpoint: newProvider.authorizationEndpoint } : {}),
+        ...(newProvider.tokenEndpoint ? { tokenEndpoint: newProvider.tokenEndpoint } : {}),
+        ...(newProvider.userInfoEndpoint ? { userInfoEndpoint: newProvider.userInfoEndpoint } : {}),
       });
 
-      const data = await response.json();
+      const data = response.data;
 
       if (data.success) {
         await loadProviders();
@@ -127,16 +122,12 @@ export function useAuthProviders() {
 
     try {
       setSaving(editingProvider.id);
-      const response = await fetch(`/api/auth/providers/manage/${editingProvider.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...providerData,
-          name: providerData.name?.toLowerCase().replace(/\s+/g, "-"),
-        }),
+      const response = await updateProviderEndpoint(editingProvider.id, {
+        ...providerData,
+        name: providerData.name?.toLowerCase().replace(/\s+/g, "-"),
       });
 
-      const data = await response.json();
+      const data = response.data;
 
       if (data.success) {
         await loadProviders();
@@ -156,11 +147,8 @@ export function useAuthProviders() {
   const deleteProvider = async (id: string) => {
     try {
       setIsDeleting(true);
-      const response = await fetch(`/api/auth/providers/manage/${id}`, {
-        method: "DELETE",
-      });
-
-      const data = await response.json();
+      const response = await deleteProviderEndpoint(id);
+      const data = response.data;
 
       if (data.success) {
         setProviders((prev) => prev.filter((p) => p.id !== id));
@@ -196,13 +184,8 @@ export function useAuthProviders() {
     }));
 
     try {
-      const response = await fetch("/api/auth/providers/order", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ providers: updatedProviders }),
-      });
-
-      const data = await response.json();
+      const response = await updateProvidersOrderEndpoint({ providers: updatedProviders });
+      const data = response.data;
 
       if (data.success) {
         toast.success(t("authProviders.messages.providerOrderUpdated"));

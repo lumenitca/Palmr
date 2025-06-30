@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
-import { getCurrentUser, login } from "@/http/endpoints";
+import { getAppInfo, getCurrentUser, login } from "@/http/endpoints";
 import { LoginFormValues } from "../schemas/schema";
 
 export const loginSchema = z.object({
@@ -59,8 +59,8 @@ export function useLogin() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const appInfoResponse = await fetch("/api/app/info");
-        const appInfo = await appInfoResponse.json();
+        const appInfoResponse = await getAppInfo();
+        const appInfo = appInfoResponse.data;
 
         if (appInfo.firstUserAccess) {
           setUser(null);

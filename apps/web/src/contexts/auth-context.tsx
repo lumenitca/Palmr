@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getCurrentUser } from "@/http/endpoints";
+import { getAppInfo, getCurrentUser } from "@/http/endpoints";
 import type { GetCurrentUser200User } from "@/http/models";
 
 type AuthUser = Omit<GetCurrentUser200User, "isAdmin">;
@@ -41,8 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const appInfoResponse = await fetch("/api/app/info");
-        const appInfo = await appInfoResponse.json();
+        const appInfoResponse = await getAppInfo();
+        const appInfo = appInfoResponse.data;
 
         if (appInfo.firstUserAccess) {
           setUser(null);

@@ -10,9 +10,9 @@ import { IconPicker } from "@/components/ui/icon-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TagsInput } from "@/components/ui/tags-input";
+import type { NewProvider } from "@/http/endpoints/auth/types";
 import { CallbackUrlDisplay } from "./callback-url-display";
 import { ConfigurationMethodSelector } from "./configuration-method-selector";
-import type { NewProvider } from "./types";
 
 interface AddProviderFormProps {
   showAddForm: boolean;

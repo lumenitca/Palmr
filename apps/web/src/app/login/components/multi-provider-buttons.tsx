@@ -6,18 +6,11 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { renderIconByName } from "@/components/ui/icon-picker";
 import { useAppInfo } from "@/contexts/app-info-context";
-
-interface AuthProvider {
-  id: string;
-  name: string;
-  displayName: string;
-  type: string;
-  icon?: string;
-  authUrl?: string;
-}
+import { getEnabledProviders } from "@/http/endpoints";
+import type { EnabledAuthProvider } from "@/http/endpoints/auth/types";
 
 export function MultiProviderButtons() {
-  const [providers, setProviders] = useState<AuthProvider[]>([]);
+  const [providers, setProviders] = useState<EnabledAuthProvider[]>([]);
   const [loading, setLoading] = useState(true);
   const { firstAccess } = useAppInfo();
 
@@ -33,13 +26,13 @@ export function MultiProviderButtons() {
   const loadProviders = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/providers");
-      const data = await response.json();
+      const response = await getEnabledProviders();
+      const data = response.data;
 
       if (data.success) {
         setProviders(data.data || []);
       } else {
-        console.error("Failed to load providers:", data.error);
+        console.error("Failed to load providers");
       }
     } catch (error) {
       console.error("Error loading providers:", error);
@@ -48,7 +41,7 @@ export function MultiProviderButtons() {
     }
   };
 
-  const handleProviderLogin = (provider: AuthProvider) => {
+  const handleProviderLogin = (provider: EnabledAuthProvider) => {
     if (!provider.authUrl) {
       toast.error(`${provider.displayName} is not properly configured`);
       return;
