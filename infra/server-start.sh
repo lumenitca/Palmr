@@ -3,7 +3,6 @@ set -e
 
 echo "🌴 Starting Palmr Server..."
 
-# === UID/GID Runtime Configuration ===
 TARGET_UID=${PALMR_UID:-1001}
 TARGET_GID=${PALMR_GID:-1001}
 
@@ -46,7 +45,6 @@ if [ ! -f "/app/server/prisma/palmr.db" ]; then
         npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
     fi
     
-    # Run seed script from application directory (where node_modules is) - as target user
     echo "🌱 Seeding database..."
     if [ "$(id -u)" = "0" ]; then
         su-exec $TARGET_UID:$TARGET_GID node ./prisma/seed.js

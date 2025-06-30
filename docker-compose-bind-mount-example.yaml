@@ -7,6 +7,7 @@ services:
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
       - PALMR_UID=1000 # UID for the container processes (default is 1001)
       - PALMR_GID=1000 # GID for the container processes (default is 1001)
+      - SECURE_SITE=false # Set to true if you are using a reverse proxy
     ports:
       - "5487:5487" # Web port
       - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY)
