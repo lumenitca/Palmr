@@ -5,8 +5,9 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3333";
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
+    const url = `${API_BASE_URL}/auth/providers/order`;
 
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers/order`, {
+    const apiRes = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

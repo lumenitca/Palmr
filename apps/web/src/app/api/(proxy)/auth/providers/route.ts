@@ -9,8 +9,9 @@ export async function GET(request: NextRequest) {
 
     const originalHost = request.headers.get("host") || url.host;
     const originalProtocol = request.headers.get("x-forwarded-proto") || url.protocol.replace(":", "");
+    const listUrl = `${API_BASE_URL}/auth/providers${queryString}`;
 
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers${queryString}`, {
+    const apiRes = await fetch(listUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,8 +39,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const createUrl = `${API_BASE_URL}/auth/providers`;
 
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers`, {
+    const apiRes = await fetch(createUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3333";
 
 export async function GET(request: NextRequest) {
+  const url = `${API_BASE_URL}/auth/providers/all`;
   try {
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers/all`, {
+    const apiRes = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

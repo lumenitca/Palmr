@@ -7,11 +7,11 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const { provider } = await params;
     const url = new URL(request.url);
     const queryString = url.search;
-
     const originalHost = request.headers.get("host") || url.host;
     const originalProtocol = request.headers.get("x-forwarded-proto") || url.protocol.replace(":", "");
+    const authorizeUrl = `${API_BASE_URL}/auth/providers/${provider}/authorize${queryString}`;
 
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers/${provider}/authorize${queryString}`, {
+    const apiRes = await fetch(authorizeUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

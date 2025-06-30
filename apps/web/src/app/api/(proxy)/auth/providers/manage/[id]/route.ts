@@ -6,8 +6,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   try {
     const body = await request.json();
     const { id } = await params;
+    const updateUrl = `${API_BASE_URL}/auth/providers/${id}`;
 
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers/${id}`, {
+    const apiRes = await fetch(updateUrl, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +38,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const apiRes = await fetch(`${API_BASE_URL}/auth/providers/${id}`, {
+    const deleteUrl = `${API_BASE_URL}/auth/providers/${id}`;
+
+    const apiRes = await fetch(deleteUrl, {
       method: "DELETE",
       headers: {
         ...Object.fromEntries(
