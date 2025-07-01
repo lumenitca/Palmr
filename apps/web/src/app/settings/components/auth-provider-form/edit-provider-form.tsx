@@ -70,6 +70,16 @@ export function EditProviderForm({
   const [showClientSecret, setShowClientSecret] = useState(false);
   const isOfficial = provider.isOfficial;
 
+  const updateFormData = (updates: Partial<typeof formData>) => {
+    const newFormData = { ...formData, ...updates };
+    setFormData(newFormData);
+
+    setEditingFormData({
+      ...editingFormData,
+      [provider.id]: newFormData,
+    });
+  };
+
   const detectProviderTypeAndSuggestScopesEdit = (url: string, currentType: string): string[] => {
     if (!url) return [];
 
@@ -120,16 +130,6 @@ export function EditProviderForm({
         scope: suggestedScopes.join(" "),
       });
     }
-  };
-
-  const updateFormData = (updates: Partial<typeof formData>) => {
-    const newFormData = { ...formData, ...updates };
-    setFormData(newFormData);
-
-    setEditingFormData({
-      ...editingFormData,
-      [provider.id]: newFormData,
-    });
   };
 
   const handleSubmit = () => {

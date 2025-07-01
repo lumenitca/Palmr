@@ -86,7 +86,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
 
       toast.success(t("createShare.success"));
       setStep("link");
-    } catch (error) {
+    } catch {
       toast.error(t("createShare.error"));
     } finally {
       setIsLoading(false);
@@ -111,7 +111,7 @@ export function ShareFileModal({ isOpen, file, onClose, onSuccess }: ShareFileMo
       const link = `${window.location.origin}/s/${alias}`;
       setGeneratedLink(link);
       toast.success(t("generateShareLink.success"));
-    } catch (error) {
+    } catch {
       toast.error(t("generateShareLink.error"));
     } finally {
       setIsLoading(false);

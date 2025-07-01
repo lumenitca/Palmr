@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { getAllConfigs } from "@/http/endpoints";
 
@@ -103,7 +103,7 @@ export function useSecureConfigValue(key: string) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadConfigValue = async () => {
+  const loadConfigValue = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -116,11 +116,11 @@ export function useSecureConfigValue(key: string) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [key]);
 
   useEffect(() => {
     loadConfigValue();
-  }, [key]);
+  }, [key, loadConfigValue]);
 
   return {
     value,

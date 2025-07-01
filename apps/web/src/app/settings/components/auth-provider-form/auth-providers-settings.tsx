@@ -32,7 +32,6 @@ export function AuthProvidersSettings() {
     isDeleting,
     enabledCount,
     filteredProviders,
-    loadProviders,
     updateProvider,
     addProvider,
     editProvider,

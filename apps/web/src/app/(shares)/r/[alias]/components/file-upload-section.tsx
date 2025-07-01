@@ -26,33 +26,39 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
   const t = useTranslations();
 
-  const validateFileSize = (file: File): string | null => {
-    if (!reverseShare.maxFileSize) return null;
+  const validateFileSize = useCallback(
+    (file: File): string | null => {
+      if (!reverseShare.maxFileSize) return null;
 
-    if (file.size > reverseShare.maxFileSize) {
-      return t("reverseShares.upload.errors.fileTooLarge", {
-        maxSize: formatFileSize(reverseShare.maxFileSize),
-      });
-    }
-    return null;
-  };
+      if (file.size > reverseShare.maxFileSize) {
+        return t("reverseShares.upload.errors.fileTooLarge", {
+          maxSize: formatFileSize(reverseShare.maxFileSize),
+        });
+      }
+      return null;
+    },
+    [reverseShare.maxFileSize, t]
+  );
 
-  const validateFileType = (file: File): string | null => {
-    if (!reverseShare.allowedFileTypes) return null;
+  const validateFileType = useCallback(
+    (file: File): string | null => {
+      if (!reverseShare.allowedFileTypes) return null;
 
-    const allowedTypes = reverseShare.allowedFileTypes.split(",").map((type) => type.trim().toLowerCase());
+      const allowedTypes = reverseShare.allowedFileTypes.split(",").map((type) => type.trim().toLowerCase());
 
-    const fileExtension = file.name.split(".").pop()?.toLowerCase();
+      const fileExtension = file.name.split(".").pop()?.toLowerCase();
 
-    if (fileExtension && !allowedTypes.includes(fileExtension)) {
-      return t("reverseShares.upload.errors.fileTypeNotAllowed", {
-        allowedTypes: reverseShare.allowedFileTypes,
-      });
-    }
-    return null;
-  };
+      if (fileExtension && !allowedTypes.includes(fileExtension)) {
+        return t("reverseShares.upload.errors.fileTypeNotAllowed", {
+          allowedTypes: reverseShare.allowedFileTypes,
+        });
+      }
+      return null;
+    },
+    [reverseShare.allowedFileTypes, t]
+  );
 
-  const validateFileCount = (): string | null => {
+  const validateFileCount = useCallback((): string | null => {
     if (!reverseShare.maxFiles) return null;
 
     const totalFiles = files.length + 1 + reverseShare.currentFileCount;
@@ -62,11 +68,14 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
       });
     }
     return null;
-  };
+  }, [reverseShare.maxFiles, reverseShare.currentFileCount, files.length, t]);
 
-  const validateFile = (file: File): string | null => {
-    return validateFileSize(file) || validateFileType(file) || validateFileCount();
-  };
+  const validateFile = useCallback(
+    (file: File): string | null => {
+      return validateFileSize(file) || validateFileType(file) || validateFileCount();
+    },
+    [validateFileSize, validateFileType, validateFileCount]
+  );
 
   const createFileWithProgress = (file: File): FileWithProgress => ({
     file,
@@ -74,27 +83,30 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     status: FILE_STATUS.PENDING,
   });
 
-  const processAcceptedFiles = (acceptedFiles: File[]): FileWithProgress[] => {
-    const validFiles: FileWithProgress[] = [];
+  const processAcceptedFiles = useCallback(
+    (acceptedFiles: File[]): FileWithProgress[] => {
+      const validFiles: FileWithProgress[] = [];
 
-    for (const file of acceptedFiles) {
-      const validationError = validateFile(file);
-      if (validationError) {
-        toast.error(validationError);
-        continue;
+      for (const file of acceptedFiles) {
+        const validationError = validateFile(file);
+        if (validationError) {
+          toast.error(validationError);
+          continue;
+        }
+        validFiles.push(createFileWithProgress(file));
       }
-      validFiles.push(createFileWithProgress(file));
-    }
 
-    return validFiles;
-  };
+      return validFiles;
+    },
+    [validateFile]
+  );
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const newFiles = processAcceptedFiles(acceptedFiles);
       setFiles((previousFiles) => [...previousFiles, ...newFiles]);
     },
-    [files, reverseShare]
+    [processAcceptedFiles]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -240,8 +252,7 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
     try {
       await processAllUploads();
-    } catch (error) {
-      console.error("Upload error:", error);
+    } catch {
     } finally {
       setIsUploading(false);
     }

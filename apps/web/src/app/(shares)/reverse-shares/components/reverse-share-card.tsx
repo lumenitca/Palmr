@@ -7,7 +7,6 @@ import {
   IconExternalLink,
   IconEye,
   IconFile,
-  IconFileText,
   IconFileUnknown,
   IconLink,
   IconLock,
@@ -20,7 +19,7 @@ import {
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -76,11 +75,9 @@ export function ReverseShareCard({
   }, [editingField]);
 
   const fileCount = reverseShare.files?.length || 0;
-  const maxFiles = reverseShare.maxFiles || 0;
   const hasAlias = Boolean(reverseShare.alias?.alias);
   const isExpired = reverseShare.expiration ? new Date(reverseShare.expiration) < new Date() : false;
   const hasPassword = reverseShare.hasPassword;
-  const hasLimits = Boolean(reverseShare.maxFiles || reverseShare.maxFileSize);
 
   const formatFileSize = (sizeInBytes: number) => {
     if (sizeInBytes === 0) return "0 B";

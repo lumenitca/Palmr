@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DropResult } from "@hello-pangea/dnd";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -37,12 +37,7 @@ export function useAuthProviders() {
     }
   }, []);
 
-  // Load providers on mount
-  useEffect(() => {
-    loadProviders();
-  }, []);
-
-  const loadProviders = async () => {
+  const loadProviders = useCallback(async () => {
     try {
       setLoading(true);
       const response = await getAllProviders();
@@ -59,7 +54,12 @@ export function useAuthProviders() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  // Load providers on mount
+  useEffect(() => {
+    loadProviders();
+  }, [loadProviders]);
 
   const updateProvider = async (id: string, updates: Partial<AuthProvider>) => {
     try {

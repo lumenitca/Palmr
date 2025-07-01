@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { LoadingScreen } from "@/components/layout/loading-screen";
@@ -10,7 +10,6 @@ import { getCurrentUser } from "@/http/endpoints";
 
 export default function OIDCCallbackPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { setUser, setIsAuthenticated, setIsAdmin } = useAuth();
   const t = useTranslations();
 

@@ -101,6 +101,7 @@ export function useFileManager(onRefresh: () => Promise<void>, clearSelection?: 
       toast.success(t("files.downloadStart"));
     } catch (error) {
       toast.error(t("files.downloadError"));
+      throw error;
     }
   };
 

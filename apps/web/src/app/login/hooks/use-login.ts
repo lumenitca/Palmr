@@ -30,7 +30,6 @@ export function useLogin() {
   useEffect(() => {
     const errorParam = searchParams.get("error");
     const messageParam = searchParams.get("message");
-    const providerParam = searchParams.get("provider");
 
     if (errorParam) {
       let message: string;

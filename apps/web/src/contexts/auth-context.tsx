@@ -3,9 +3,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { getAppInfo, getCurrentUser } from "@/http/endpoints";
-import type { GetCurrentUser200User } from "@/http/models";
+import type { User } from "@/http/endpoints/auth/types";
 
-type AuthUser = Omit<GetCurrentUser200User, "isAdmin">;
+type AuthUser = Omit<User, "isAdmin">;
 
 type AuthContextType = {
   user: AuthUser | null;

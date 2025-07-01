@@ -14,15 +14,6 @@ export function MultiProviderButtons() {
   const [loading, setLoading] = useState(true);
   const { firstAccess } = useAppInfo();
 
-  useEffect(() => {
-    if (firstAccess) {
-      setLoading(false);
-      return;
-    }
-
-    loadProviders();
-  }, [firstAccess]);
-
   const loadProviders = async () => {
     try {
       setLoading(true);
@@ -40,6 +31,14 @@ export function MultiProviderButtons() {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    if (firstAccess) {
+      setLoading(false);
+      return;
+    }
+
+    loadProviders();
+  }, [firstAccess]);
 
   const handleProviderLogin = (provider: EnabledAuthProvider) => {
     if (!provider.authUrl) {

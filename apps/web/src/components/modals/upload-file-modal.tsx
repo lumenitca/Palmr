@@ -94,7 +94,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         }
       });
     };
-  }, []);
+  }, [fileUploads]);
 
   const generateFileId = () => {
     return Date.now().toString() + Math.random().toString(36).substr(2, 9);
@@ -324,16 +324,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     }, 100);
   };
 
-  const handleClose = () => {
-    const uploadsInProgress = fileUploads.filter((u) => u.status === UploadStatus.UPLOADING).length;
-
-    if (uploadsInProgress > 0) {
-      setShowConfirmation(true);
-    } else {
-      handleConfirmClose();
-    }
-  };
-
   const handleConfirmClose = () => {
     fileUploads.forEach((upload) => {
       if (upload.status === UploadStatus.UPLOADING && upload.abortController) {
@@ -350,6 +340,16 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     setFileUploads([]);
     setShowConfirmation(false);
     onClose();
+  };
+
+  const handleClose = () => {
+    const uploadsInProgress = fileUploads.filter((u) => u.status === UploadStatus.UPLOADING).length;
+
+    if (uploadsInProgress > 0) {
+      setShowConfirmation(true);
+    } else {
+      handleConfirmClose();
+    }
   };
 
   const handleContinueUploads = () => {

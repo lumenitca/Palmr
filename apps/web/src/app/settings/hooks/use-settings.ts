@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -42,12 +42,20 @@ export function useSettings() {
     reload: reloadConfigs,
   } = useAdminConfigs();
 
-  const groupForms = {
-    general: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
-    email: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
-    security: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
-    storage: useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) }),
-  } as const;
+  const generalForm = useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) });
+  const emailForm = useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) });
+  const securityForm = useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) });
+  const storageForm = useForm<GroupFormData>({ resolver: zodResolver(settingsSchema) });
+
+  const groupForms = useMemo(
+    () => ({
+      general: generalForm,
+      email: emailForm,
+      security: securityForm,
+      storage: storageForm,
+    }),
+    [generalForm, emailForm, securityForm, storageForm]
+  );
 
   type ValidGroup = keyof typeof groupForms;
 
@@ -132,7 +140,7 @@ export function useSettings() {
 
       setIsLoading(false);
     }
-  }, [configsLoading, adminConfigsList]);
+  }, [configsLoading, adminConfigsList, groupForms]);
 
   const onGroupSubmit = async (group: ValidGroup, data: GroupFormData) => {
     try {
@@ -164,7 +172,7 @@ export function useSettings() {
       }
 
       await refreshAppInfo();
-    } catch (error) {
+    } catch {
       toast.error(t("settings.errors.updateFailed"));
     }
   };
