@@ -13,8 +13,8 @@ interface Config {
 }
 
 /**
- * Hook para buscar configurações de forma segura
- * Substitui o uso direto de getAllConfigs que expunha dados sensíveis
+ * Hook to fetch configurations securely
+ * Replaces direct use of getAllConfigs which exposed sensitive data
  */
 export function useSecureConfigs() {
   const [configs, setConfigs] = useState<Config[]>([]);
@@ -48,8 +48,8 @@ export function useSecureConfigs() {
 }
 
 /**
- * Hook para buscar configurações para administradores
- * REQUER PERMISSÕES DE ADMIN - retorna erro se usuário não for admin
+ * Hook to fetch configurations for administrators
+ * REQUIRES ADMIN PERMISSIONS - returns error if user is not admin
  */
 export function useAdminConfigs() {
   const [configs, setConfigs] = useState<Config[]>([]);
@@ -95,8 +95,8 @@ export function useAdminConfigs() {
 }
 
 /**
- * Hook para buscar um valor específico de configuração
- * Útil quando você só precisa de um valor específico (ex: smtpEnabled)
+ * Hook to fetch a specific configuration value
+ * Useful when you only need a specific value (e.g. smtpEnabled)
  */
 export function useSecureConfigValue(key: string) {
   const [value, setValue] = useState<string | null>(null);
