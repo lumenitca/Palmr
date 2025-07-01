@@ -167,7 +167,7 @@ export function useFilePreview({ file, isOpen, isReverseShare = false }: UseFile
 
   const loadPreview = useCallback(async () => {
     const fileKey = isReverseShare ? file.id : file.objectName;
-    if (!fileKey || state.isLoadingPreview || loadingRef.current) return;
+    if (!fileKey || loadingRef.current) return;
 
     loadingRef.current = true;
     setState((prev) => ({ ...prev, isLoadingPreview: true }));
@@ -216,7 +216,6 @@ export function useFilePreview({ file, isOpen, isReverseShare = false }: UseFile
     isReverseShare,
     file.id,
     file.objectName,
-    state.isLoadingPreview,
     fileType,
     loadVideoPreview,
     loadAudioPreview,
