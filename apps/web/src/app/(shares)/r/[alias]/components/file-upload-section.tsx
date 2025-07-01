@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IconCheck, IconFile, IconMail, IconUpload, IconUser, IconX } from "@tabler/icons-react";
+import axios from "axios";
 import { useTranslations } from "next-intl";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -132,18 +133,22 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     return fileName.split(".").pop() || "";
   };
 
-  const uploadFileToStorage = async (file: File, presignedUrl: string): Promise<void> => {
-    const response = await fetch(presignedUrl, {
-      method: "PUT",
-      body: file,
+  const uploadFileToStorage = async (
+    file: File,
+    presignedUrl: string,
+    onProgress?: (progress: number) => void
+  ): Promise<void> => {
+    await axios.put(presignedUrl, file, {
       headers: {
         "Content-Type": file.type,
       },
+      onUploadProgress: (progressEvent) => {
+        if (onProgress && progressEvent.total) {
+          const progress = (progressEvent.loaded / progressEvent.total) * 100;
+          onProgress(Math.round(progress));
+        }
+      },
     });
-
-    if (!response.ok) {
-      throw new Error("Failed to upload file to storage");
-    }
   };
 
   const registerUploadedFile = async (file: File, objectName: string): Promise<void> => {
@@ -180,7 +185,9 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         password ? { password } : undefined
       );
 
-      await uploadFileToStorage(file, presignedResponse.data.url);
+      await uploadFileToStorage(file, presignedResponse.data.url, (progress) => {
+        updateFileStatus(index, { progress });
+      });
 
       updateFileStatus(index, { progress: UPLOAD_PROGRESS.COMPLETE });
 
@@ -220,12 +227,8 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
       return false;
     }
 
-    if (reverseShare.nameFieldRequired === "OPTIONAL" && reverseShare.emailFieldRequired === "OPTIONAL") {
-      if (!uploaderName.trim() && !uploaderEmail.trim()) {
-        toast.error(t("reverseShares.upload.errors.provideNameOrEmail"));
-        return false;
-      }
-    }
+    // Remove the validation that requires at least one field when both are optional
+    // When both fields are OPTIONAL, they should be truly optional (can be empty)
 
     return true;
   };
@@ -272,9 +275,8 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
     if (emailRequired && !uploaderEmail.trim()) return false;
 
-    if (reverseShare.nameFieldRequired === "OPTIONAL" && reverseShare.emailFieldRequired === "OPTIONAL") {
-      return !!(uploaderName.trim() || uploaderEmail.trim());
-    }
+    // When both fields are OPTIONAL, they should be truly optional (can be empty)
+    // Remove the check that requires at least one field to be filled
     return true;
   };
 
