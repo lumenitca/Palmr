@@ -22,7 +22,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "type-check": "npx tsc --noEmit",
-    "validate": "pnpm format && pnpm lint:fix && pnpm type-check",
+    "validate": "pnpm lint && pnpm type-check",
     "translations": "python3 scripts/run_translations.py all",
     "translations:check": "python3 scripts/run_translations.py check",
     "translations:sync": "python3 scripts/run_translations.py sync",
