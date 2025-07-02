@@ -32,4 +32,7 @@ apps/server/dist/*
 .env
 data/
 
+# Turborepo
+.turbo/
+
 node_modules/

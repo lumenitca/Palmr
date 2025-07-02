@@ -5,9 +5,20 @@
   "private": true,
   "packageManager": "pnpm@10.6.0",
   "scripts": {
-    "prepare": "git config core.hooksPath .husky && husky"
+    "prepare": "git config core.hooksPath .husky && husky",
+    "postinstall": "cd apps/server && npx prisma generate",
+    "dev": "turbo run dev",
+    "dev:ui": "turbo run dev --ui=tui",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "type-check": "turbo run type-check",
+    "validate": "turbo run validate"
   },
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "turbo": "^2.5.4"
   }
 }
