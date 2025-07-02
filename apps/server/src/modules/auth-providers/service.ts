@@ -1,21 +1,22 @@
+import crypto from "crypto";
+
 import { prisma } from "../../shared/prisma";
 import {
-  providersConfig,
   detectProviderType,
-  getProviderScopes,
-  shouldSupportDiscovery,
-  getFallbackEndpoints,
   DISCOVERY_PATHS,
+  getFallbackEndpoints,
+  getProviderScopes,
+  providersConfig,
+  shouldSupportDiscovery,
 } from "./providers.config";
 import {
-  ProviderConfig,
-  ProviderUserInfo,
-  TokenResponse,
-  ProviderEndpoints,
-  RequestContextService,
   PendingState,
+  ProviderConfig,
+  ProviderEndpoints,
+  ProviderUserInfo,
+  RequestContextService,
+  TokenResponse,
 } from "./types";
-import crypto from "crypto";
 
 // Constants
 const DEFAULT_BASE_URL = "http://localhost:3000";

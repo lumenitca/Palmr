@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-const { PrismaClient } = require('@prisma/client');
-const crypto = require('crypto');
+const { PrismaClient } = require("@prisma/client");
+const crypto = require("crypto");
 
 const prisma = new PrismaClient();
 
@@ -147,7 +147,7 @@ const defaultConfigs = [
     value: "http://localhost:3333",
     type: "string",
     group: "general",
-  }
+  },
 ];
 
 const defaultAuthProviders = [
@@ -167,8 +167,8 @@ const defaultAuthProviders = [
       description: "Sign in with your Google account",
       docs: "https://developers.google.com/identity/protocols/oauth2",
       supportsDiscovery: true,
-      authMethod: "body"
-    })
+      authMethod: "body",
+    }),
   },
   {
     name: "discord",
@@ -186,8 +186,8 @@ const defaultAuthProviders = [
       description: "Sign in with your Discord account",
       docs: "https://discord.com/developers/docs/topics/oauth2",
       supportsDiscovery: false,
-      authMethod: "body"
-    })
+      authMethod: "body",
+    }),
   },
   {
     name: "github",
@@ -204,8 +204,8 @@ const defaultAuthProviders = [
     metadata: JSON.stringify({
       description: "Sign in with your GitHub account",
       docs: "https://docs.github.com/en/developers/apps/building-oauth-apps",
-      specialHandling: "email_fetch_required"
-    })
+      specialHandling: "email_fetch_required",
+    }),
   },
   {
     name: "auth0",
@@ -222,8 +222,8 @@ const defaultAuthProviders = [
     metadata: JSON.stringify({
       description: "Sign in with Auth0 - Replace 'your-tenant' with your Auth0 domain",
       docs: "https://auth0.com/docs/get-started/authentication-and-authorization-flow",
-      supportsDiscovery: true
-    })
+      supportsDiscovery: true,
+    }),
   },
   {
     name: "kinde",
@@ -240,8 +240,8 @@ const defaultAuthProviders = [
     metadata: JSON.stringify({
       description: "Sign in with Kinde - Replace 'your-tenant' with your Kinde domain",
       docs: "https://kinde.com/docs/developer-tools/about/",
-      supportsDiscovery: true
-    })
+      supportsDiscovery: true,
+    }),
   },
   {
     name: "zitadel",
@@ -259,8 +259,8 @@ const defaultAuthProviders = [
       description: "Sign in with Zitadel - Replace with your Zitadel instance URL",
       docs: "https://zitadel.com/docs/guides/integrate/login/oidc",
       supportsDiscovery: true,
-      authMethod: "basic"
-    })
+      authMethod: "basic",
+    }),
   },
   {
     name: "authentik",
@@ -277,8 +277,8 @@ const defaultAuthProviders = [
     metadata: JSON.stringify({
       description: "Sign in with Authentik - Replace with your Authentik instance URL",
       docs: "https://goauthentik.io/docs/providers/oauth2",
-      supportsDiscovery: true
-    })
+      supportsDiscovery: true,
+    }),
   },
   {
     name: "frontegg",
@@ -295,8 +295,8 @@ const defaultAuthProviders = [
     metadata: JSON.stringify({
       description: "Sign in with Frontegg - Replace 'your-tenant' with your Frontegg tenant",
       docs: "https://docs.frontegg.com",
-      supportsDiscovery: true
-    })
+      supportsDiscovery: true,
+    }),
   },
 ];
 
@@ -370,4 +370,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-  }); 
+  });

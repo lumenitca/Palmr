@@ -1,7 +1,8 @@
-import { AvatarService } from "./avatar.service";
-import { UpdateUserSchema, createRegisterUserSchema } from "./dto";
-import { UserService } from "./service";
 import { FastifyReply, FastifyRequest } from "fastify";
+
+import { AvatarService } from "./avatar.service";
+import { createRegisterUserSchema, UpdateUserSchema } from "./dto";
+import { UserService } from "./service";
 
 export class UserController {
   private userService = new UserService();
@@ -101,7 +102,7 @@ export class UserController {
         return reply.status(400).send({ error: "No file uploaded" });
       }
 
-      if (!file.mimetype.startsWith('image/')) {
+      if (!file.mimetype.startsWith("image/")) {
         return reply.status(400).send({ error: "Only images are allowed" });
       }
 

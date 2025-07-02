@@ -1,9 +1,10 @@
+import fs from "fs";
+import path from "path";
+import { FastifyReply, FastifyRequest } from "fastify";
+
 import { EmailService } from "../email/service";
 import { LogoService } from "./logo.service";
 import { AppService } from "./service";
-import { FastifyReply, FastifyRequest } from "fastify";
-import fs from "fs";
-import path from "path";
 
 const isDocker = (() => {
   try {

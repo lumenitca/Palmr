@@ -1,3 +1,9 @@
+import * as fs from "fs/promises";
+import crypto from "node:crypto";
+import path from "path";
+import fastifyMultipart from "@fastify/multipart";
+import fastifyStatic from "@fastify/static";
+
 import { buildApp } from "./app";
 import { env } from "./env";
 import { appRoutes } from "./modules/app/routes";
@@ -11,11 +17,6 @@ import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
 import { userRoutes } from "./modules/user/routes";
 import { IS_RUNNING_IN_CONTAINER } from "./utils/container-detection";
-import fastifyMultipart from "@fastify/multipart";
-import fastifyStatic from "@fastify/static";
-import * as fs from "fs/promises";
-import crypto from "node:crypto";
-import path from "path";
 
 if (typeof globalThis.crypto === "undefined") {
   globalThis.crypto = crypto.webcrypto as any;

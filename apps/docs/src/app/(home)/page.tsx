@@ -59,23 +59,6 @@ const images = [
 
 const docsLink = "/docs/3.1-beta";
 
-export default function HomePage() {
-  return (
-    <>
-      <main className="relative z-[2] w-full px-4 py-6 sm:px-6 lg:px-8">
-        <div className="relative mx-auto max-w-screen-xl bg-background">
-          <Hero />
-          <LogoShowcase />
-          <Feedback />
-          <Features />
-          <GetStarted />
-        </div>
-      </main>
-      <FullWidthFooter />
-    </>
-  );
-}
-
 function Hero() {
   return (
     <section className="relative z-[2] flex flex-col border-x border-t  px-6 pt-12 pb-10 md:px-12 md:pt-16 max-md:text-center">
@@ -133,6 +116,18 @@ function Feedback() {
         />
       </p>
     </section>
+  );
+}
+
+function Highlight({ icon: Icon, heading, children }: { icon: LucideIcon; heading: ReactNode; children: ReactNode }) {
+  return (
+    <div className="border-l border-t px-6 py-12">
+      <div className="mb-4 flex items-center gap-2 text-fd-muted-foreground">
+        <Icon className="size-6" />
+        <h2 className="text-sm font-medium">{heading}</h2>
+      </div>
+      <span className="font-medium">{children}</span>
+    </div>
   );
 }
 
@@ -215,18 +210,6 @@ function Features() {
         </Highlight>
       </section>
     </>
-  );
-}
-
-function Highlight({ icon: Icon, heading, children }: { icon: LucideIcon; heading: ReactNode; children: ReactNode }) {
-  return (
-    <div className="border-l border-t px-6 py-12">
-      <div className="mb-4 flex items-center gap-2 text-fd-muted-foreground">
-        <Icon className="size-6" />
-        <h2 className="text-sm font-medium">{heading}</h2>
-      </div>
-      <span className="font-medium">{children}</span>
-    </div>
   );
 }
 
@@ -319,5 +302,22 @@ function FullWidthFooter() {
         </Link>
       </div>
     </footer>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <>
+      <main className="relative z-[2] w-full px-4 py-6 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-screen-xl bg-background">
+          <Hero />
+          <LogoShowcase />
+          <Feedback />
+          <Features />
+          <GetStarted />
+        </div>
+      </main>
+      <FullWidthFooter />
+    </>
   );
 }

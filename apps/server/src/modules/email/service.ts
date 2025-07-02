@@ -1,5 +1,6 @@
-import { ConfigService } from "../config/service";
 import nodemailer from "nodemailer";
+
+import { ConfigService } from "../config/service";
 
 interface SmtpConfig {
   smtpEnabled: string;

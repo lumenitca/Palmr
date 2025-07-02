@@ -1,8 +1,9 @@
-import { prisma } from "../../shared/prisma";
-import { AppController } from "./controller";
-import { ConfigResponseSchema, BulkUpdateConfigSchema } from "./dto";
 import { FastifyInstance } from "fastify";
 import { z } from "zod";
+
+import { prisma } from "../../shared/prisma";
+import { AppController } from "./controller";
+import { BulkUpdateConfigSchema, ConfigResponseSchema } from "./dto";
 
 export async function appRoutes(app: FastifyInstance) {
   const appController = new AppController();

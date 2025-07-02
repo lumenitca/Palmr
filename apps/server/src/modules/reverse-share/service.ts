@@ -1,12 +1,13 @@
+import { PrismaClient } from "@prisma/client";
+
 import { FileService } from "../file/service";
 import {
   CreateReverseShareInput,
+  ReverseShareResponseSchema,
   UpdateReverseShareInput,
   UploadToReverseShareInput,
-  ReverseShareResponseSchema,
 } from "./dto";
 import { ReverseShareRepository } from "./repository";
-import { PrismaClient } from "@prisma/client";
 
 interface ReverseShareData {
   id: string;

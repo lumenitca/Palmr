@@ -1,9 +1,10 @@
-import { FilesystemStorageProvider } from "../../providers/filesystem-storage.provider";
-import { FileService } from "../file/service";
-import { FastifyRequest, FastifyReply } from "fastify";
 import * as fs from "fs";
 import * as path from "path";
 import { pipeline } from "stream/promises";
+import { FastifyReply, FastifyRequest } from "fastify";
+
+import { FilesystemStorageProvider } from "../../providers/filesystem-storage.provider";
+import { FileService } from "../file/service";
 
 export class FilesystemController {
   private fileService = new FileService();

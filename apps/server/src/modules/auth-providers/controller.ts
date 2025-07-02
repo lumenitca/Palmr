@@ -1,3 +1,5 @@
+import { FastifyReply, FastifyRequest } from "fastify";
+
 import { UpdateAuthProviderSchema } from "./dto";
 import { AuthProvidersService } from "./service";
 import {
@@ -9,7 +11,6 @@ import {
   UpdateProviderRequest,
   UpdateProvidersOrderRequest,
 } from "./types";
-import { FastifyRequest, FastifyReply } from "fastify";
 
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 

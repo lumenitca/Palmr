@@ -62,6 +62,6 @@ export default [
   },
   // Ignore ESLint errors in @/ui directory
   {
-    ignores: ["src/components/ui/**/*"],
+    ignores: ["src/components/ui/**/*", "src/components/magicui/**/*"],
   },
 ];

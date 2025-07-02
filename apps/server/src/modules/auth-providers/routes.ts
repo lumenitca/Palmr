@@ -1,8 +1,9 @@
+import { FastifyInstance } from "fastify";
+import { z } from "zod";
+
 import { prisma } from "../../shared/prisma";
 import { AuthProvidersController } from "./controller";
 import { CreateAuthProviderSchema, UpdateProvidersOrderSchema } from "./dto";
-import { FastifyInstance } from "fastify";
-import { z } from "zod";
 
 export async function authProvidersRoutes(fastify: FastifyInstance) {
   const authProvidersController = new AuthProvidersController();
