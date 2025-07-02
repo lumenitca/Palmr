@@ -112,7 +112,7 @@ services:
 docker-compose up -d
 ```
 
-> **Permission Configuration**: If you encounter permission issues with bind mounts (common on NAS systems), see our [UID/GID Configuration](/docs/3.0-beta/uid-gid-configuration) guide for automatic permission handling.
+> **Permission Configuration**: If you encounter permission issues with bind mounts (common on NAS systems), see our [UID/GID Configuration](/docs/3.1-beta/uid-gid-configuration) guide for automatic permission handling.
 
 ---
 
@@ -128,7 +128,7 @@ Configure Palmr. behavior through environment variables:
 
 > **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production. This key encrypts your files - losing it makes files permanently inaccessible.
 
-> **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.0-beta/reverse-proxy-configuration) guide for proper setup.
+> **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.1-beta/reverse-proxy-configuration) guide for proper setup.
 
 ### Generate Secure Encryption Keys
 
@@ -152,7 +152,7 @@ If you exposed port 3333 in your configuration, you can also access:
 - **API Documentation**: `http://localhost:3333/docs` (local) or `http://YOUR_SERVER_IP:3333/docs` (server)
 - **API Endpoints**: Available at `http://localhost:3333` (local) or `http://YOUR_SERVER_IP:3333` (server)
 
-> **📚 Learn More**: For complete API documentation, authentication, and integration examples, see our [API Reference](/docs/3.0-beta/api) guide.
+> **📚 Learn More**: For complete API documentation, authentication, and integration examples, see our [API Reference](/docs/3.1-beta/api) guide.
 
 > **💡 Production Tip**: For production deployments, configure HTTPS with a valid SSL certificate for enhanced security.
 
@@ -245,14 +245,14 @@ Your Palmr. instance is now ready! Explore additional configuration options:
 
 ### Advanced Configuration
 
-- **[UID/GID Configuration](/docs/3.0-beta/uid-gid-configuration)** - Configure user permissions for NAS systems and custom environments
-- **[S3 Storage](/docs/3.0-beta/s3-configuration)** - Scale with Amazon S3 or compatible storage providers
-- **[Manual Installation](/docs/3.0-beta/manual-installation)** - Manual installation and custom configurations
+- **[UID/GID Configuration](/docs/3.1-beta/uid-gid-configuration)** - Configure user permissions for NAS systems and custom environments
+- **[S3 Storage](/docs/3.1-beta/s3-configuration)** - Scale with Amazon S3 or compatible storage providers
+- **[Manual Installation](/docs/3.1-beta/manual-installation)** - Manual installation and custom configurations
 
 ### Integration & Development
 
-- **[API Reference](/docs/3.0-beta/api)** - Integrate Palmr. with your applications
-- **[Architecture Guide](/docs/3.0-beta/architecture)** - Understanding Palmr. components and design
+- **[API Reference](/docs/3.1-beta/api)** - Integrate Palmr. with your applications
+- **[Architecture Guide](/docs/3.1-beta/architecture)** - Understanding Palmr. components and design
 
 ---
 

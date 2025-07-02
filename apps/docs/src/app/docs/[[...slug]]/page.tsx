@@ -5,7 +5,7 @@ import {
   DocsDescription,
   DocsTitle,
 } from "fumadocs-ui/page";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { getMDXComponents } from "@/mdx-components";
 import { Footer } from "../components/footer";
@@ -17,14 +17,12 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const page = source.getPage(params.slug);
-  if (!page) notFound();
+  if (!page) redirect("/docs/3.1-beta");
 
   const MDXContent = page.data.body;
 
   // Check if this is an older version page that needs a warning
-  const shouldShowWarning =
-    page.url.startsWith("/docs/2.0.0-beta") ||
-    page.url.startsWith("/docs/1.1.7-beta");
+  const shouldShowWarning = page.url.startsWith("/docs/2.0.0-beta");
 
   return (
     <DocsPage
@@ -60,7 +58,7 @@ export async function generateMetadata(props: {
 }) {
   const params = await props.params;
   const page = source.getPage(params.slug);
-  if (!page) notFound();
+  if (!page) redirect("/docs/3.1-beta");
 
   return {
     title: page.data.title + " | Palmr. Docs",

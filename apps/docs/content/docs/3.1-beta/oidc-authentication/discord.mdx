@@ -1,0 +1,429 @@
+---
+title: Discord
+icon: MessageSquare
+---
+
+Discord is one of Palmr's officially supported OIDC providers, offering secure authentication through Discord OAuth 2.0. This integration allows users to sign in to Palmr using their existing Discord accounts, making it perfect for gaming communities, developer teams, and organizations already using Discord.
+
+{/* Imagem: Screenshot da tela de login do Palmr mostrando o botão "Sign in with Discord" em destaque */}
+
+## Why use Discord authentication?
+
+Discord authentication provides several advantages for community-focused organizations and teams:
+
+- **Community integration** - Perfect for gaming communities and Discord-centric organizations
+- **Familiar experience** - Users already trust and use Discord daily
+- **Rich user profiles** - Access to Discord usernames, avatars, and global names
+- **Developer-friendly** - Great for technical teams and open-source projects
+- **No additional accounts** - Users can access Palmr without creating new credentials
+
+---
+
+## Prerequisites
+
+Before configuring Discord authentication, ensure you have:
+
+- **Discord Developer Portal access** - Ability to create applications on Discord
+- **Admin privileges in Palmr** - Required to configure OIDC settings
+- **Server ownership or permissions** - If integrating with a Discord server
+
+> **Note:** Discord is pre-configured as an official provider in Palmr, which means the technical configuration is handled automatically. You only need to provide your OAuth credentials.
+
+---
+
+## Setting up Discord Developer Portal
+
+### Creating a Discord application
+
+To get started with Discord authentication, you'll need to create an application in Discord Developer Portal.
+
+1. **Navigate to Discord Developer Portal**: Go to [discord.com/developers/applications](https://discord.com/developers/applications)
+
+{/* Imagem: Screenshot da página inicial do Discord Developer Portal com botão "New Application" em destaque */}
+
+2. **Create new application**: Click **"New Application"** button
+3. **Enter application details**:
+   - **Name**: Enter a descriptive name like "Palmr File Sharing"
+   - **Team**: Select your team (or leave as personal)
+
+{/* Imagem: Modal de criação de aplicação no Discord com campos preenchidos */}
+
+4. **Create application**: Click **"Create"** to generate your application
+
+### Configuring application settings
+
+After creating your application, you'll need to configure basic settings and branding.
+
+1. **Update application information**:
+   - **Description**: Add a clear description of your Palmr instance
+   - **Icon**: Upload your organization's logo or Palmr-related icon
+   - **Cover Image**: Optional banner image for better branding
+
+{/* Imagem: Página de configurações gerais da aplicação Discord com campos preenchidos */}
+
+2. **Configure application details**:
+   - **Tags**: Add relevant tags (optional)
+   - **Privacy Policy URL**: Add your privacy policy URL if required
+   - **Terms of Service URL**: Add your terms of service URL if required
+
+### Setting up OAuth2 configuration
+
+Now you'll configure the OAuth2 settings that Palmr will use to authenticate users.
+
+1. **Navigate to OAuth2**: In the left sidebar, click **"OAuth2"** > **"General"**
+
+{/* Imagem: Menu lateral do Discord Developer Portal com "OAuth2" expandido e "General" em destaque */}
+
+2. **Configure OAuth2 settings**:
+   - **Client Secret**: Click **"Reset Secret"** to generate a new client secret
+   - **Copy credentials**: Save both **Client ID** and **Client Secret** for later use
+
+{/* Imagem: Seção OAuth2 General mostrando Client ID visível e botão "Reset Secret" para gerar Client Secret */}
+
+3. **Add redirect URIs**: In the **"Redirects"** section, add your Palmr callback URLs:
+
+   **For production:**
+
+   ```
+   https://yourdomain.com/api/auth/callback/discord
+   ```
+
+   **For development:**
+
+   ```
+   http://localhost:3000/api/auth/callback/discord
+   ```
+
+   **For custom ports:**
+
+   ```
+   https://yourdomain.com:5487/api/auth/callback/discord
+   ```
+
+{/* Imagem: Campo "Redirects" preenchido com as URLs de callback do Palmr para Discord */}
+
+4. **Save changes**: Click **"Save Changes"** to apply your configuration
+
+### Configuring OAuth2 scopes
+
+Discord uses specific scopes to control what information your application can access.
+
+1. **Navigate to OAuth2 URL Generator**: Click **"OAuth2"** > **"URL Generator"**
+
+{/* Imagem: Página URL Generator do Discord OAuth2 mostrando lista de scopes disponíveis */}
+
+2. **Select required scopes**:
+   - **`identify`** - Access to user's basic account information (required)
+   - **`email`** - Access to user's email address (required for Palmr)
+
+{/* Imagem: Scopes "identify" e "email" selecionados no Discord URL Generator */}
+
+3. **Verify permissions**: Review what each scope provides:
+   - **identify**: Username, discriminator, global name, avatar
+   - **email**: Email address for account creation and management
+
+> **Important:** Palmr requires both `identify` and `email` scopes to function properly. The `identify` scope provides user identification, while `email` is needed for account creation and management.
+
+---
+
+## Configuring Palmr
+
+### Accessing OIDC settings
+
+To configure Discord authentication in Palmr, you need administrator access to the settings panel.
+
+1. **Login as administrator**: Sign in to Palmr with an admin account
+
+{/* Imagem: Tela de login do Palmr com credenciais de administrador */}
+
+2. **Access settings**: Click your profile picture in the header and select **Settings**
+
+{/* Imagem: Menu dropdown do usuário no Palmr com a opção "Settings" em destaque */}
+
+3. **Navigate to authentication**: Find and click on the **Authentication** or **OIDC** configuration section
+
+{/* Imagem: Página de configurações do Palmr mostrando as diferentes seções, com Authentication/OIDC em destaque */}
+
+### Enabling Discord provider
+
+Discord comes pre-configured as an official provider, so the setup process is streamlined.
+
+1. **Locate Discord provider**: Find Discord in the list of available providers
+
+{/* Imagem: Lista de provedores OIDC no Palmr com o Discord listado como provider oficial */}
+
+2. **Enable the provider**: Toggle the status to **Enabled**
+
+{/* Imagem: Card do provedor Discord no Palmr com o toggle "Enabled" ativado */}
+
+3. **Configure credentials**:
+   - **Client ID**: Paste the Client ID from Discord Developer Portal
+   - **Client Secret**: Paste the Client Secret from Discord Developer Portal
+
+{/* Imagem: Formulário de configuração do Discord provider no Palmr com os campos Client ID e Client Secret preenchidos */}
+
+### Advanced configuration options
+
+Configure additional settings to customize the authentication behavior:
+
+**Auto Registration**: Enable this to automatically create user accounts when someone authenticates for the first time.
+
+**Admin Email Domains**: Specify domains that should automatically receive admin privileges. This is less common with Discord since users often use personal emails.
+
+**Sort Order**: Control where the Discord login button appears relative to other authentication providers.
+
+{/* Imagem: Seção de configurações avançadas do Discord provider mostrando Auto Registration e Sort Order */}
+
+> **Community tip:** Discord authentication works great for gaming communities and development teams. Consider enabling auto-registration for trusted Discord communities.
+
+---
+
+## Technical configuration
+
+Discord's technical configuration is handled automatically, but understanding the setup can help with troubleshooting:
+
+```yaml
+Provider Type: OAuth 2.0 (No OIDC Discovery)
+Issuer URL: https://discord.com
+Authorization Endpoint: /oauth2/authorize
+Token Endpoint: /api/oauth2/token
+UserInfo Endpoint: /api/users/@me
+Scopes: identify email
+Discovery: Disabled (Manual endpoint configuration)
+```
+
+### Field mappings
+
+Palmr automatically maps Discord user information to local user accounts:
+
+- **User ID**: Maps from Discord's `id` field
+- **Email**: Maps from Discord's `email` field
+- **Display Name**: Maps from Discord's `global_name` or falls back to `username`
+- **Username**: Maps from Discord's `username` field
+- **Avatar**: Maps from Discord's `avatar` field (processed as Discord CDN URL)
+
+### Discord-specific features
+
+- **Global Names**: Supports Discord's new global name system while maintaining compatibility with legacy usernames
+- **Avatar Processing**: Automatically constructs Discord CDN URLs for user avatars
+- **No Discovery**: Uses manually configured endpoints for better reliability
+
+---
+
+## Testing the configuration
+
+### Verifying the setup
+
+After configuring Discord authentication, test the integration to ensure everything works correctly.
+
+1. **Check login page**: Navigate to your Palmr login page and verify the "Sign in with Discord" button appears
+
+{/* Imagem: Tela de login do Palmr mostrando o botão "Sign in with Discord" visível e funcionando */}
+
+2. **Test authentication flow**: Click the Discord sign-in button and complete the authentication process
+
+{/* Imagem: Fluxo de autenticação do Discord mostrando a tela de autorização do Discord após clicar no botão */}
+
+3. **Verify user creation**: Confirm that a new user account is created (if auto-registration is enabled)
+
+{/* Imagem: Dashboard administrativo do Palmr mostrando o novo usuário criado automaticamente via Discord */}
+
+4. **Check user information**: Verify that Discord username, global name, and avatar are properly imported
+
+### Login flow verification
+
+The complete authentication process should work as follows:
+
+1. **User clicks "Sign in with Discord"**: The browser redirects to Discord's authorization page
+2. **User authorizes application**: User grants permissions for `identify` and `email` scopes
+3. **Discord redirects back to Palmr**: User returns to Palmr with authentication tokens
+4. **Palmr creates or updates user**: User account is automatically managed with Discord information
+5. **User accesses Palmr**: User is logged in with their Discord identity
+
+{/* Imagem: Diagrama de fluxo visual mostrando o processo completo de autenticação Discord -> Palmr */}
+
+---
+
+## Troubleshooting common issues
+
+### Invalid redirect URI error
+
+**Error message**: `invalid_redirect_uri`
+
+{/* Imagem: Screenshot do erro "invalid_redirect_uri" no Discord durante tentativa de login */}
+
+**Cause**: The redirect URI in your request doesn't match what's configured in Discord Developer Portal.
+
+**Solution**:
+
+1. Check the exact URL in the error message
+2. Add this exact URL to your Discord application's redirect URIs
+3. Ensure you include the correct protocol (http/https) and port
+4. Remove any trailing slashes unless they're in the callback URL
+
+### Access denied error
+
+**Error message**: `access_denied`
+
+{/* Imagem: Screenshot do erro "access_denied" na tela de autorização do Discord */}
+
+**Cause**: User denied permissions or the application doesn't have required scopes.
+
+**Solution**:
+
+1. Verify that your Discord application requests `identify` and `email` scopes
+2. Check that users are granting permissions during the authorization flow
+3. Ensure your application is not restricted or disabled in Discord Developer Portal
+4. Verify the application has proper permissions set up
+
+### Invalid client error
+
+**Error message**: `invalid_client`
+
+{/* Imagem: Screenshot do erro "invalid_client" durante tentativa de autenticação com Discord */}
+
+**Cause**: Incorrect Client ID or Client Secret.
+
+**Solution**:
+
+1. Double-check that you've copied the credentials correctly from Discord Developer Portal
+2. Ensure there are no extra spaces or characters in the credentials
+3. Generate a new Client Secret if necessary
+4. Verify you're using the correct application in Discord Developer Portal
+
+### Missing email scope error
+
+**Error message**: Email not provided or scope missing
+
+{/* Imagem: Interface do Discord Developer Portal mostrando configuração de scopes com "email" em destaque */}
+
+**Cause**: Discord application not configured with email scope or user's email is not verified.
+
+**Solution**:
+
+1. Verify that your Discord application requests the `email` scope
+2. Check that users have verified their email addresses on Discord
+3. Ensure the scope configuration matches what Palmr expects
+4. Test with a Discord account that has a verified email
+
+### User information not displaying correctly
+
+**Cause**: Discord username/global name mapping issues.
+
+**Solution**:
+
+1. Check that the user has set a global name in Discord (new feature)
+2. Verify field mappings are working correctly in Palmr logs
+3. Test with different Discord accounts (some may have legacy usernames)
+4. Update user information manually through Palmr admin interface if needed
+
+---
+
+## Security best practices
+
+### Application security
+
+- **Keep secrets secure**: Never expose your Client Secret in client-side code or public repositories
+- **Rotate credentials regularly**: Generate new Client Secrets periodically for enhanced security
+- **Use environment variables**: Store sensitive configuration in environment variables
+- **Monitor application usage**: Regularly check Discord Developer Portal for unusual activity
+
+### Scope and permission management
+
+- **Minimal scopes**: Only request `identify` and `email` scopes as required by Palmr
+- **User consent**: Ensure users understand what permissions they're granting
+- **Regular audits**: Review which users have connected their Discord accounts
+- **Access reviews**: Periodically check user access and remove inactive accounts
+
+### Production considerations
+
+- **Use HTTPS**: Always use HTTPS in production environments
+- **Configure proper domains**: Use production domains in Discord redirect URIs
+- **Test thoroughly**: Verify the complete authentication flow before going live
+- **Monitor logs**: Keep track of authentication attempts and errors
+
+---
+
+## Example configurations
+
+### Gaming community setup
+
+For a gaming community using Discord:
+
+```yaml
+Discord Developer Portal:
+  Application: Gaming Community Files
+  Description: File sharing for our gaming community
+  Redirect URIs: https://files.gamingcommunity.com/api/auth/callback/discord
+  Scopes: identify, email
+
+Palmr Configuration:
+  Provider: Discord (Enabled)
+  Auto Register: Yes
+  Admin Domains: (leave empty - use manual promotion)
+  Client ID: 1234567890123456789
+  Client Secret: abcdefghijklmnopqrstuvwxyz123456
+```
+
+{/* Imagem: Configuração completa para comunidade gaming mostrando Discord Developer Portal e Palmr lado a lado */}
+
+### Development team setup
+
+For a software development team:
+
+```yaml
+Discord Developer Portal:
+  Application: DevTeam File Sharing
+  Description: Secure file sharing for development team
+  Redirect URIs:
+    - https://files.devteam.com/api/auth/callback/discord
+    - http://localhost:3000/api/auth/callback/discord
+  Scopes: identify, email
+
+Palmr Configuration:
+  Provider: Discord (Enabled)
+  Auto Register: Yes
+  Admin Domains: devteam.com
+  Client ID: 9876543210987654321
+  Client Secret: zyxwvutsrqponmlkjihgfedcba654321
+```
+
+{/* Imagem: Configuração para equipe de desenvolvimento com múltiplos ambientes (produção e desenvolvimento) */}
+
+---
+
+## Discord vs other providers
+
+### When to choose Discord
+
+- **Gaming communities**: Perfect for organizations centered around gaming
+- **Developer teams**: Great for technical teams already using Discord
+- **Community-driven projects**: Ideal for open-source projects with Discord communities
+- **Informal organizations**: Better suited for casual, community-based groups
+
+### Considerations
+
+- **Limited business features**: Discord lacks enterprise features like SSO management
+- **Personal accounts**: Users typically use personal Discord accounts, not business emails
+- **Community focus**: Better for communities than traditional business environments
+- **User demographics**: Appeals more to younger, tech-savvy user bases
+
+---
+
+## Next steps
+
+With Discord authentication configured, you might want to:
+
+- **Customize user experience**: Adapt Palmr's interface for your Discord community
+- **Set up community integrations**: Consider Discord bot integrations for notifications
+- **Configure additional providers**: Add other providers for users who don't use Discord
+- **Monitor community engagement**: Track how your Discord community uses Palmr
+
+For more information about OIDC authentication in Palmr, see the [OIDC Authentication overview](/docs/3.1-beta/oidc-authentication).
+
+## Useful resources
+
+- [Discord Developer Documentation](https://discord.com/developers/docs)
+- [Discord OAuth2 Guide](https://discord.com/developers/docs/topics/oauth2)
+- [Discord Applications](https://discord.com/developers/applications)
+- [Discord API Reference](https://discord.com/developers/docs/reference)
