@@ -1,15 +1,6 @@
+import { Chrome, Egg, Github, Key, Lock, MessageSquare, Settings, Shield, Users } from "lucide-react";
+
 import { Card, CardGrid } from "@/components/ui/card";
-import {
-  Chrome,
-  MessageSquare,
-  Github,
-  Shield,
-  Lock,
-  Key,
-  Users,
-  Settings,
-  Egg,
-} from "lucide-react";
 
 const providers = [
   {

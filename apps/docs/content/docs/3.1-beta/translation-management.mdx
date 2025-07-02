@@ -3,8 +3,8 @@ title: Translation Management
 icon: Languages
 ---
 
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Callout } from "fumadocs-ui/components/callout";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 Palmr includes a comprehensive translation key management system that automates synchronization and validation of the application's internationalization files.
 
@@ -80,17 +80,13 @@ When you add new text to the application:
 4. **Test in UI**: Verify translations work correctly in the application interface
 
 <Callout type="important">
-  **Manual translation required**: All strings marked with `[TO_TRANSLATE]` must
-  be manually translated by native speakers or professional translators for
-  accuracy.
+  **Manual translation required**: All strings marked with `[TO_TRANSLATE]` must be manually translated by native
+  speakers or professional translators for accuracy.
 </Callout>
 
 ### 2. Checking Translation Status
 
-<Callout>
-  Always run `pnpm run translations:check` before releases to ensure
-  completeness.
-</Callout>
+<Callout>Always run `pnpm run translations:check` before releases to ensure completeness.</Callout>
 
 ```bash
 # Generate detailed translation report
@@ -301,9 +297,8 @@ Translation files use nested JSON structure:
 ## Manual Translation
 
 <Callout type="warning">
-  **Professional translation recommended**: For production applications,
-  consider using professional translation services or native speakers to ensure
-  high-quality, culturally appropriate translations.
+  **Professional translation recommended**: For production applications, consider using professional translation
+  services or native speakers to ensure high-quality, culturally appropriate translations.
 </Callout>
 
 The system marks strings that need translation with the `[TO_TRANSLATE]` prefix:
@@ -345,8 +340,8 @@ After manual translation:
 ## Development Guidelines
 
 <Callout type="important">
-  **Primary Language**: Always use `en-US.json` as the parent language for
-  development. All new translation keys must be added to English first.
+  **Primary Language**: Always use `en-US.json` as the parent language for development. All new translation keys must be
+  added to English first.
 </Callout>
 
 ### Translation Workflow for Development

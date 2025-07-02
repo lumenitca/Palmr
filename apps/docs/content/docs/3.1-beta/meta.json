@@ -1,7 +1,5 @@
 {
-  "title": "v3.1-beta",
   "description": "Latest version",
-  "root": true,
   "icon": "Sparkles",
   "pages": [
     "---Introduction---",
@@ -28,5 +26,7 @@
     "---Sponsor this project---",
     "gh-star",
     "gh-sponsor"
-  ]
+  ],
+  "root": true,
+  "title": "v3.1-beta"
 }

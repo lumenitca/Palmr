@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 
 interface CardProps {
   title: string;
@@ -11,14 +12,7 @@ interface CardProps {
   onClick?: () => void;
 }
 
-export const Card = ({
-  title,
-  description,
-  href,
-  icon,
-  className,
-  onClick,
-}: CardProps) => {
+export const Card = ({ title, description, href, icon, className, onClick }: CardProps) => {
   const cardContent = (
     <div
       className={cn(
@@ -55,12 +49,7 @@ export const Card = ({
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M9 5l7 7-7 7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </div>
         </div>
@@ -93,15 +82,5 @@ interface CardGridProps {
 }
 
 export const CardGrid = ({ children, className }: CardGridProps) => {
-  return (
-    <div
-      className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-5",
-        "max-w-4xl",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn("grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-5", "max-w-4xl", className)}>{children}</div>;
 };

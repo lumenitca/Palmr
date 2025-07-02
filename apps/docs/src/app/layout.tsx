@@ -1,9 +1,12 @@
 import { Banner } from "fumadocs-ui/components/banner";
+
 import "./global.css";
-import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
+
 import type { ReactNode } from "react";
+import { Inter } from "next/font/google";
 import Link from "fumadocs-core/link";
+import { RootProvider } from "fumadocs-ui/provider";
+
 import { LATEST_VERSION, LATEST_VERSION_PATH } from "@/config/constants";
 
 const inter = Inter({
@@ -12,8 +15,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Palmr. | Official Website",
-  description:
-    "Palmr. is a fast, simple and powerful document sharing platform.",
+  description: "Palmr. is a fast, simple and powerful document sharing platform.",
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -21,9 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <Banner variant="rainbow" id="banner-21-beta">
-          <Link href={LATEST_VERSION_PATH}>
-            Palmr. {LATEST_VERSION} has released!
-          </Link>
+          <Link href={LATEST_VERSION_PATH}>Palmr. {LATEST_VERSION} has released!</Link>
         </Banner>
         <RootProvider
           search={{

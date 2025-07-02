@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useState } from "react";
 import { X, ZoomIn } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 interface ZoomableImageProps {
   src: string;
@@ -10,11 +11,7 @@ interface ZoomableImageProps {
   className?: string;
 }
 
-export const ZoomableImage: React.FC<ZoomableImageProps> = ({
-  src,
-  alt,
-  className,
-}) => {
+export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const handleImageClick = () => {

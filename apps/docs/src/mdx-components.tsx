@@ -1,5 +1,6 @@
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
+
 import { KeyGenerator } from "@/components/KeyGenerator";
 import { OIDCProviderCards } from "@/components/OIDCProviderCards";
 import { Card, CardGrid } from "@/components/ui/card";

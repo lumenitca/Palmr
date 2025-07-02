@@ -1,17 +1,6 @@
 {
-  "title": "OIDC Authentication",
+  "defaultOpen": false,
   "icon": "Key",
-  "pages": [
-    "index",
-    "google",
-    "discord",
-    "github",
-    "zitadel",
-    "auth0",
-    "authentik",
-    "frontegg",
-    "kinde-auth",
-    "other"
-  ],
-  "defaultOpen": false
+  "pages": ["index", "google", "discord", "github", "zitadel", "auth0", "authentik", "frontegg", "kinde-auth", "other"],
+  "title": "OIDC Authentication"
 }
