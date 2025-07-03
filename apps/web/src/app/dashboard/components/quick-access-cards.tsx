@@ -37,7 +37,7 @@ export function QuickAccessCards() {
       {QUICK_ACCESS_ITEMS.map((card) => (
         <Card
           key={card.title}
-          className="cursor-pointer transform transition-all hover:scale-102"
+          className="cursor-pointer transform transition-all hover:bg-card/80"
           onClick={() => router.push(card.path)}
         >
           <CardContent>
