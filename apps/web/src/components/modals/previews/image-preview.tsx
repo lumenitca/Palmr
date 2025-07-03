@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { IconDownload, IconMaximize, IconX } from "@tabler/icons-react";
-import { useTranslations } from "next-intl";
 import { createPortal } from "react-dom";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -17,7 +16,6 @@ interface ImagePreviewProps {
 
 export function ImagePreview({ src, alt, description, onDownload }: ImagePreviewProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const t = useTranslations();
 
   const handleExpandClick = () => {
     setIsFullscreen(true);
