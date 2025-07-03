@@ -18,8 +18,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ toke
   const contentDisposition = apiRes.headers.get("Content-Disposition");
   const contentLength = apiRes.headers.get("Content-Length");
 
-  const resBody = await apiRes.arrayBuffer();
-  const res = new NextResponse(resBody, {
+  const res = new NextResponse(apiRes.body, {
     status: apiRes.status,
     headers: {
       "Content-Type": contentType,

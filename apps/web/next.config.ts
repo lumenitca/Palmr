@@ -16,6 +16,17 @@ const nextConfig: NextConfig = {
     ],
   },
   serverExternalPackages: [],
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "1pb",
+    },
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: "1pb",
+    },
+    responseLimit: false,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

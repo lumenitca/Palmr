@@ -8,7 +8,6 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3333";
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const cookieHeader = req.headers.get("cookie");
-  const body = await req.arrayBuffer();
   const url = `${API_BASE_URL}/filesystem/upload/${token}`;
 
   const apiRes = await fetch(url, {
@@ -16,10 +15,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ toke
     headers: {
       cookie: cookieHeader || "",
       "Content-Type": req.headers.get("Content-Type") || "application/octet-stream",
-      "Content-Length": req.headers.get("Content-Length") || body.byteLength.toString(),
+      "Content-Length": req.headers.get("Content-Length") || "0",
     },
-    body: body,
-  });
+    body: req.body,
+    duplex: "half",
+  } as RequestInit);
 
   const contentType = apiRes.headers.get("Content-Type") || "application/json";
 
