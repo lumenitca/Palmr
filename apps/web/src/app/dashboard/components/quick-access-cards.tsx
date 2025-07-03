@@ -49,7 +49,7 @@ export function QuickAccessCards() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold">{card.title}</h3>
-                <p className="text-sm text-gray-500">{card.description}</p>
+                <p className="text-sm text-muted-foreground">{card.description}</p>
               </div>
             </div>
           </CardContent>
