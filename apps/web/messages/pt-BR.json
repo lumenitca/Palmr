@@ -433,16 +433,16 @@
     }
   },
   "recentFiles": {
-    "title": "Uploads Recentes",
+    "title": "Uploads recentes",
     "viewAll": "Ver Todos",
-    "uploadFile": "Enviar Arquivo",
+    "uploadFile": "Enviar arquivo",
     "noFiles": "Nenhum arquivo enviado ainda",
     "upload": "Carregar"
   },
   "recentShares": {
-    "title": "Compartilhamentos Recentes",
+    "title": "Compartilhamentos recentes",
     "viewAll": "Ver Todos",
-    "createShare": "Criar Compartilhamento",
+    "createShare": "Criar compartilhamento",
     "noShares": "Nenhum compartilhamento criado ainda",
     "createFirst": "Criar seu primeiro compartilhamento"
   },
@@ -450,7 +450,7 @@
     "emailPlaceholder": "Digite o e-mail do destinatário",
     "add": "Adicionar",
     "recipients": "Destinatários ({count})",
-    "notifyAll": "Notificar Todos",
+    "notifyAll": "Notificar todos",
     "noRecipients": "Nenhum destinatário adicionado",
     "addSuccess": "Destinatário adicionado com sucesso",
     "addError": "Falha ao adicionar destinatário",
@@ -462,8 +462,8 @@
     "selectAll": "Selecionar todos",
     "selectedCount": "{count} selecionados",
     "selectRecipient": "Selecionar {email}",
-    "notifySelected": "Notificar Selecionados",
-    "removeSelected": "Remover Selecionados",
+    "notifySelected": "Notificar selecionados",
+    "removeSelected": "Remover selecionados",
     "notifySingle": "Notificar este destinatário",
     "removeSingle": "Remover este destinatário",
     "bulkRemoveSuccess": "{count} destinatários removidos com sucesso",
@@ -473,7 +473,7 @@
     "singleNotifySuccess": "Notificação enviada para {email}",
     "singleNotifyError": "Falha ao notificar destinatário",
     "modalDescription": "Adicione e gerencie destinatários para este compartilhamento. Você pode notificar todos ou destinatários específicos quando o SMTP estiver configurado.",
-    "addRecipient": "Adicionar Destinatário",
+    "addRecipient": "Adicionar destinatário",
     "invalidEmail": "Por favor, digite um endereço de e-mail válido",
     "duplicateEmail": "Este destinatário já foi adicionado",
     "noRecipientsDescription": "Adicione destinatários para compartilhar este conteúdo via e-mail"
@@ -1395,7 +1395,7 @@
     }
   },
   "storageUsage": {
-    "title": "Uso de Armazenamento",
+    "title": "Uso de armazenamento",
     "ariaLabel": "Barra de progresso do uso de armazenamento",
     "used": "usado",
     "available": "disponível",
