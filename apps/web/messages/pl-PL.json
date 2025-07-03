@@ -1399,6 +1399,7 @@
     "ariaLabel": "Pasek postępu użycia pamięci",
     "used": "użyte",
     "available": "dostępne",
+    "total": "Razem",
     "loading": "Ładowanie...",
     "retry": "Spróbuj ponownie",
     "errors": {

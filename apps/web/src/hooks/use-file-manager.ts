@@ -18,6 +18,7 @@ interface FileToDelete {
 interface PreviewFile {
   name: string;
   objectName: string;
+  description?: string;
 }
 
 interface FileToShare {

@@ -1399,6 +1399,7 @@
     "ariaLabel": "存储使用进度条",
     "used": "已使用：",
     "available": "可用",
+    "total": "总计",
     "loading": "加载中...",
     "retry": "重试",
     "errors": {

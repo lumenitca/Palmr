@@ -1399,6 +1399,7 @@
     "ariaLabel": "Storage usage progress bar",
     "used": "used",
     "available": "available",
+    "total": "Total",
     "loading": "Loading...",
     "retry": "Retry",
     "errors": {

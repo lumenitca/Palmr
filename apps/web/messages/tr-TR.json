@@ -1399,6 +1399,7 @@
     "ariaLabel": "Depolama kullanım ilerleme çubuğu",
     "used": "kullanıldı",
     "available": "kullanılabilir",
+    "total": "Toplam",
     "loading": "Yükleniyor...",
     "retry": "Tekrar Dene",
     "errors": {

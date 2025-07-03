@@ -1399,6 +1399,7 @@
     "ariaLabel": "Opslaggebruik voortgangsbalk",
     "used": "gebruikt",
     "available": "beschikbaar",
+    "total": "Totaal",
     "loading": "Laden...",
     "retry": "Opnieuw proberen",
     "errors": {

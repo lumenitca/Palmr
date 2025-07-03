@@ -1399,6 +1399,7 @@
     "ariaLabel": "Barra de progreso del uso de almacenamiento",
     "used": "usados",
     "available": "disponible",
+    "total": "Total",
     "loading": "Cargando...",
     "retry": "Reintentar",
     "errors": {

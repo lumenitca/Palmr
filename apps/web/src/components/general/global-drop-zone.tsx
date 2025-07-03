@@ -206,7 +206,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         if (file) {
           const timestamp = Date.now();
           const extension = file.type.split("/")[1] || "png";
-          const fileName = `pasted-image-${timestamp}.${extension}`;
+          const fileName = `${timestamp}.${extension}`;
 
           const renamedFile = new File([file], fileName, { type: file.type });
 

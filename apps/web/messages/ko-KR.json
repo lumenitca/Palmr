@@ -1399,6 +1399,7 @@
     "ariaLabel": "스토리지 사용량 진행 바",
     "used": "사용됨",
     "available": "사용 가능",
+    "total": "총계",
     "loading": "로딩 중...",
     "retry": "다시 시도",
     "errors": {

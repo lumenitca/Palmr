@@ -1399,6 +1399,7 @@
     "ariaLabel": "Barre de progression de l'utilisation du stockage",
     "used": "utilisé",
     "available": "disponible",
+    "total": "Total",
     "loading": "Chargement...",
     "retry": "Réessayer",
     "errors": {

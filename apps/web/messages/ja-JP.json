@@ -1399,6 +1399,7 @@
     "ariaLabel": "ストレージ使用状況のプログレスバー",
     "used": "使用済み",
     "available": "利用可能",
+    "total": "合計",
     "loading": "読み込み中...",
     "retry": "再試行",
     "errors": {
