@@ -43,19 +43,22 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
   const [fileUploads, setFileUploads] = useState<FileUpload[]>([]);
   const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
 
-  const generateFileId = () => {
+  const generateFileId = useCallback(() => {
     return Date.now().toString() + Math.random().toString(36).substr(2, 9);
-  };
+  }, []);
 
-  const createFileUpload = (file: File): FileUpload => {
-    const id = generateFileId();
-    return {
-      id,
-      file,
-      status: UploadStatus.PENDING,
-      progress: 0,
-    };
-  };
+  const createFileUpload = useCallback(
+    (file: File): FileUpload => {
+      const id = generateFileId();
+      return {
+        id,
+        file,
+        status: UploadStatus.PENDING,
+        progress: 0,
+      };
+    },
+    [generateFileId]
+  );
 
   const handleDragOver = useCallback((event: DragEvent) => {
     event.preventDefault();
@@ -181,7 +184,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
 
       newUploads.forEach((upload) => uploadFile(upload));
     },
-    [uploadFile]
+    [uploadFile, createFileUpload]
   );
 
   const handlePaste = useCallback(
@@ -220,7 +223,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         toast.success(t("uploadFile.pasteSuccess", { count: newUploads.length }));
       }
     },
-    [uploadFile, t]
+    [uploadFile, t, createFileUpload]
   );
 
   useEffect(() => {
