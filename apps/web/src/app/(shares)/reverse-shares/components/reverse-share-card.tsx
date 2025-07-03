@@ -258,36 +258,36 @@ export function ReverseShareCard({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => onCopyLink(reverseShare)}>
-                    <IconCopy className="h-4 w-4 mr-2" />
+                    <IconCopy className="h-4 w-4" />
                     {t("reverseShares.card.copyLink")}
                   </DropdownMenuItem>
 
                   {hasAlias && (
                     <DropdownMenuItem onClick={handleOpenInNewTab}>
-                      <IconExternalLink className="h-4 w-4 mr-2" />
+                      <IconExternalLink className="h-4 w-4" />
                       {t("reverseShares.card.openInNewTab")}
                     </DropdownMenuItem>
                   )}
 
                   {hasAlias && (
                     <DropdownMenuItem onClick={() => onGenerateLink(reverseShare)}>
-                      <IconLink className="h-4 w-4 mr-2" />
+                      <IconLink className="h-4 w-4" />
                       {hasAlias ? t("reverseShares.card.editLink") : t("reverseShares.card.createLink")}
                     </DropdownMenuItem>
                   )}
 
                   <DropdownMenuItem onClick={() => onEdit(reverseShare)}>
-                    <IconEdit className="h-4 w-4 mr-2" />
+                    <IconEdit className="h-4 w-4" />
                     {t("reverseShares.actions.edit")}
                   </DropdownMenuItem>
 
                   <DropdownMenuItem onClick={() => onViewFiles(reverseShare)}>
-                    <IconFile className="h-4 w-4 mr-2" />
+                    <IconFile className="h-4 w-4" />
                     {t("reverseShares.actions.viewFiles")}
                   </DropdownMenuItem>
 
                   <DropdownMenuItem className="text-destructive" onClick={() => onDelete(reverseShare)}>
-                    <IconTrash className="h-4 w-4 mr-2" />
+                    <IconTrash className="h-4 w-4" />
                     {t("reverseShares.card.delete")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -492,7 +492,7 @@ export function ReverseShareCard({
               onClick={() => onGenerateLink(reverseShare)}
               className="w-full h-8 text-sm"
             >
-              <IconLink className="h-3 w-3 mr-2" />
+              <IconLink className="h-3 w-3" />
               {t("reverseShares.card.createLinkCTA")}
             </Button>
           )}

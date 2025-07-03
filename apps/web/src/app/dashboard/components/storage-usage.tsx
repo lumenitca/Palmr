@@ -38,7 +38,7 @@ export function StorageUsage({ diskSpace, diskSpaceError, onRetry }: StorageUsag
               <p className="text-sm text-muted-foreground">{getErrorMessage(diskSpaceError)}</p>
               {onRetry && (
                 <Button variant="outline" size="sm" onClick={onRetry} className="w-fit">
-                  <IconRefresh size={16} className="mr-2" />
+                  <IconRefresh size={16} />
                   {t("storageUsage.retry")}
                 </Button>
               )}

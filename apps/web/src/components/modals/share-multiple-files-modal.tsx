@@ -324,7 +324,7 @@ export function ShareMultipleFilesModal({ files, isOpen, onClose, onSuccess }: S
                 {t("common.close")}
               </Button>
               <Button onClick={handleCopyLink}>
-                <IconCopy className="h-4 w-4 mr-2" />
+                <IconCopy className="h-4 w-4" />
                 {t("shareFile.copyLink")}
               </Button>
             </>

@@ -161,7 +161,7 @@ export function AddProviderForm({ showAddForm, onToggleForm, onAddProvider, savi
   if (!showAddForm) {
     return (
       <Button onClick={onToggleForm} variant="outline" size="sm">
-        <IconPlus className="h-4 w-4 mr-2" />
+        <IconPlus className="h-4 w-4" />
         {t("authProviders.addProvider")}
       </Button>
     );

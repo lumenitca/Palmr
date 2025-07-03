@@ -92,7 +92,7 @@ export function AuthProvidersSettings() {
 
         {loading ? (
           <div className="flex items-center justify-center py-8">
-            <IconSettings className="h-6 w-6 animate-spin mr-2" />
+            <IconSettings className="h-6 w-6 animate-spin" />
             {t("authProviders.loadingProviders")}
           </div>
         ) : (

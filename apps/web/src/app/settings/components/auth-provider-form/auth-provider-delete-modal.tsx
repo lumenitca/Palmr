@@ -59,12 +59,12 @@ export function AuthProviderDeleteModal({
           <Button variant="destructive" onClick={handleConfirm} disabled={isDeleting}>
             {isDeleting ? (
               <>
-                <IconTrash className="h-4 w-4 mr-2 animate-spin" />
+                <IconTrash className="h-4 w-4 animate-spin" />
                 {t("authProviders.deleteModal.deleting")}
               </>
             ) : (
               <>
-                <IconTrash className="h-4 w-4 mr-2" />
+                <IconTrash className="h-4 w-4" />
                 {t("authProviders.deleteModal.delete")}
               </>
             )}
