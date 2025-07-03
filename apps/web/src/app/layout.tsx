@@ -4,9 +4,8 @@ import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 
-import { Toaster } from "sonner";
-
 import { Favicon } from "@/components/layout/favicon";
+import { DynamicToaster } from "@/components/ui/dynamic-toaster";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ShareProvider } from "@/contexts/share-context";
@@ -42,8 +41,8 @@ export default async function RootLayout({
             <AuthProvider>
               <ShareProvider>{children}</ShareProvider>
             </AuthProvider>
+            <DynamicToaster />
           </ThemeProvider>
-          <Toaster position="bottom-right" expand={false} richColors={false} closeButton={false} />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1440,7 +1440,12 @@
       "warning": "Si vous fermez maintenant, les téléchargements seront annulés et tout progrès sera perdu.",
       "continue": "Continuer les Téléchargements",
       "cancel": "Annuler les Téléchargements"
-    }
+    },
+    "globalDrop": {
+      "title": "Déposer des fichiers pour télécharger",
+      "description": "Relâchez pour télécharger vos fichiers"
+    },
+    "pasteSuccess": "{count, plural, =1 {Image collée et téléchargée avec succès} other {# images collées et téléchargées avec succès}}"
   },
   "users": {
     "modes": {

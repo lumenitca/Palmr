@@ -1440,7 +1440,12 @@
       "warning": "Se chiudi ora, i caricamenti saranno annullati e qualsiasi progresso sarà perso.",
       "continue": "Continua Caricamenti",
       "cancel": "Annulla Caricamenti"
-    }
+    },
+    "globalDrop": {
+      "title": "Rilascia i file per caricarli",
+      "description": "Rilascia per caricare i tuoi file"
+    },
+    "pasteSuccess": "{count, plural, =1 {Immagine incollata e caricata con successo} other {# immagini incollate e caricate con successo}}"
   },
   "users": {
     "modes": {

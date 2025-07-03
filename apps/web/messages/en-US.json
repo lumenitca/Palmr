@@ -1433,6 +1433,10 @@
     "fileSizeExceeded": "File size exceeds the limit of {maxsizemb}MB.",
     "insufficientStorage": "Insufficient storage space. You have {availablespace}MB available.",
     "unauthorized": "Unauthorized: a valid token is required to access this resource.",
+    "globalDrop": {
+      "title": "Drop files to upload",
+      "description": "Release to upload your files"
+    },
     "confirmCancel": {
       "title": "Cancel Uploads",
       "messageSingle": "There is one upload in progress.",
@@ -1440,7 +1444,8 @@
       "warning": "If you close now, uploads will be cancelled and any progress will be lost.",
       "continue": "Continue Uploads",
       "cancel": "Cancel Uploads"
-    }
+    },
+    "pasteSuccess": "{count, plural, =1 {Image pasted and uploaded successfully} other {# images pasted and uploaded successfully}}"
   },
   "users": {
     "modes": {

@@ -1440,7 +1440,12 @@
       "warning": "Si cierra ahora, las subidas serán canceladas y se perderá cualquier progreso.",
       "continue": "Continuar Subidas",
       "cancel": "Cancelar Subidas"
-    }
+    },
+    "globalDrop": {
+      "title": "Suelta archivos para subir",
+      "description": "Suelta para subir tus archivos"
+    },
+    "pasteSuccess": "{count, plural, =1 {Imagen pegada y subida exitosamente} other {# imágenes pegadas y subidas exitosamente}}"
   },
   "users": {
     "modes": {

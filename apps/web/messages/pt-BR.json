@@ -1433,6 +1433,10 @@
     "fileSizeExceeded": "O tamanho do arquivo excede o limite de {maxsizemb}MB.",
     "insufficientStorage": "Espaço de armazenamento insuficiente. Você tem {availablespace}MB disponíveis.",
     "unauthorized": "Não autorizado: um token válido é necessário para acessar este recurso.",
+    "globalDrop": {
+      "title": "Solte arquivos para enviar",
+      "description": "Solte para enviar seus arquivos"
+    },
     "confirmCancel": {
       "title": "Cancelar Uploads",
       "messageSingle": "Há um upload em andamento.",
@@ -1440,7 +1444,8 @@
       "warning": "Se você fechar agora, os uploads serão cancelados e qualquer progresso será perdido.",
       "continue": "Continuar Uploads",
       "cancel": "Cancelar Uploads"
-    }
+    },
+    "pasteSuccess": "{count, plural, =1 {Imagem colada e enviada com sucesso} other {# imagens coladas e enviadas com sucesso}}"
   },
   "users": {
     "modes": {

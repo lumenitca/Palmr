@@ -1440,7 +1440,12 @@
     "retry": "再試行",
     "allSuccess": "{count, plural, =1 {ファイルがアップロードされました} other {#個のファイルがアップロードされました}}",
     "partialSuccess": "{success}個のファイルがアップロードされ、{error}個が失敗しました",
-    "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ"
+    "dragAndDrop": "またはここにファイルをドラッグ＆ドロップ",
+    "globalDrop": {
+      "title": "アップロードするファイルをドロップ",
+      "description": "ファイルをアップロードするにはリリースしてください"
+    },
+    "pasteSuccess": "{count, plural, =1 {画像が貼り付けられ、正常にアップロードされました} other {#個の画像が貼り付けられ、正常にアップロードされました}}"
   },
   "users": {
     "modes": {

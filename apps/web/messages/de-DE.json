@@ -1440,7 +1440,12 @@
       "warning": "Wenn Sie jetzt schließen, werden die Uploads abgebrochen und jeder Fortschritt geht verloren.",
       "continue": "Uploads Fortsetzen",
       "cancel": "Uploads Abbrechen"
-    }
+    },
+    "globalDrop": {
+      "title": "Dateien zum Hochladen ablegen",
+      "description": "Loslassen, um Ihre Dateien hochzuladen"
+    },
+    "pasteSuccess": "{count, plural, =1 {Bild erfolgreich eingefügt und hochgeladen} other {# Bilder erfolgreich eingefügt und hochgeladen}}"
   },
   "users": {
     "modes": {

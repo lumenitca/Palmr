@@ -1440,7 +1440,12 @@
       "warning": "如果您现在关闭，上传将被取消，任何进度都将丢失。",
       "continue": "继续上传",
       "cancel": "取消上传"
-    }
+    },
+    "globalDrop": {
+      "title": "拖放文件以上传",
+      "description": "松开以上传您的文件"
+    },
+    "pasteSuccess": "{count, plural, =1 {图片已成功粘贴并上传} other {# 张图片已成功粘贴并上传}}"
   },
   "users": {
     "modes": {

@@ -1440,7 +1440,12 @@
       "warning": "Jeśli teraz zamkniesz, przesyłanie zostanie anulowane, a wszelki postęp zostanie utracony.",
       "continue": "Kontynuuj przesyłanie",
       "cancel": "Anuluj przesyłanie"
-    }
+    },
+    "globalDrop": {
+      "title": "Upuść pliki, aby przesłać",
+      "description": "Zwolnij, aby przesłać pliki"
+    },
+    "pasteSuccess": "{count, plural, =1 {Obraz wklejony i przesłany pomyślnie} other {# obrazy wklejone i przesłane pomyślnie}}"
   },
   "users": {
     "modes": {
