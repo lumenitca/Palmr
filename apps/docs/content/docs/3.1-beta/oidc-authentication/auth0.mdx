@@ -57,57 +57,70 @@ To get started with Auth0 authentication, you'll need to create an application i
 
 4. **Enter application details**:
    - **Name**: Enter a descriptive name like "Palmr File Sharing"
-   - **Description**: Add a clear description of your Palmr instance
-
-<ZoomableImage
-  src="/assets/v3/oidc/auth0/application-details.png"
-  alt="Auth0 Application Details"
-  legend="This is a fake application, you have to use your own."
-/>
 
 5. **Create application**: Click **"Create"** to generate your Auth0 application
 
 ### Configuring application settings
 
-After creating your application, you'll need to configure the settings that Palmr will use.
-
-1. **Configure allowed URLs**: In the **"Allowed Callback URLs"** field, add your Palmr callback URL:
-
-   **For production:**
-
-   ```
-   https://yourdomain.com/api/auth/providers/auth0/callback
-   ```
-
-   **For development:**
-
-   ```
-   http://localhost:3000/api/auth/providers/auth0/callback
-   ```
-
-   **For custom ports:**
-
-   ```
-   https://yourdomain.com:5487/api/auth/providers/auth0/callback
-   ```
+After creating your application, you'll need to configure the settings that Palmr will use. Navigate to the application page and click on the **"Settings"** tab.
 
 <ZoomableImage
-  src="/assets/v3/oidc/auth0/callback-urls.png"
-  alt="Auth0 Callback URLs Configuration"
+  src="/assets/v3/oidc/auth0/application-settings.png"
+  alt="Auth0 Application Settings"
   legend="This is a fake application, you have to use your own."
 />
 
-2. **Configure additional URLs**:
-   - **Allowed Logout URLs**: Add your Palmr logout URL (e.g., `https://yourdomain.com`)
-   - **Allowed Web Origins**: Add your Palmr domain for CORS support
+1. **Configure application URLs**:
 
-3. **Save changes**: Click **"Save Changes"** to apply your configuration
+You'll need to configure several URLs in your Auth0 application settings. Here's what to add for each environment:
+
+### Application Login URIs
+
+| Environment | URL                                 |
+| ----------- | ----------------------------------- |
+| Production  | `https://yourdomain.com/login`      |
+| Development | Don't add anything here             |
+| Custom Port | `https://yourdomain.com:5487/login` |
+
+### Allowed Logout URLs
+
+| Environment | URL                           |
+| ----------- | ----------------------------- |
+| Production  | `https://yourdomain.com`      |
+| Development | `http://localhost:3000`       |
+| Custom Port | `https://yourdomain.com:5487` |
+
+### Allowed Web Origins
+
+| Environment | URL                           |
+| ----------- | ----------------------------- |
+| Production  | `https://yourdomain.com`      |
+| Development | `http://localhost:3000`       |
+| Custom Port | `https://yourdomain.com:5487` |
+
+### Allowed Callback URLs
+
+| Environment | URL                                                             |
+| ----------- | --------------------------------------------------------------- |
+| Production  | `https://yourdomain.com/api/auth/providers/auth0/callback`      |
+| Development | `http://localhost:3000/api/auth/providers/auth0/callback`       |
+| Custom Port | `https://yourdomain.com:5487/api/auth/providers/auth0/callback` |
+
+> **Note:** Replace `yourdomain.com` with your actual domain name in all production and custom port URLs.
+
+<ZoomableImage
+  src="/assets/v3/oidc/auth0/config-urls.png"
+  alt="Auth0 Application URLs Configuration"
+  legend="This is a fake application, you have to use your own."
+/>
+
+2. **Save changes**: Click **"Save"** to apply your configuration
 
 ### Getting OAuth credentials
 
 Now you'll get the credentials that Palmr will use to authenticate with Auth0.
 
-1. **Copy Domain**: Note your Auth0 domain (e.g., `your-tenant.auth0.com`)
+1. **Copy Domain**: Note your Auth0 domain (e.g., `your-tenant.auth0.com`) add `https://` at the beginning
 
 2. **Copy Client ID**: The Client ID is displayed in the **"Client ID"** field
 
@@ -147,12 +160,12 @@ Auth0 comes pre-configured as an official provider, so the setup process is stre
 
 2. **Enable the provider**: Toggle the status to **Enabled**
 
-<ZoomableImage src="/assets/v3/oidc/auth0/palmr-enabled-auth0.png" alt="Palmr Auth0 Provider Enabled" />
+<ZoomableImage src="/assets/v3/oidc/auth0/enabled-auth0.png" alt="Palmr Auth0 Provider Enabled" />
 
 After enabling the provider, click on the pen icon to configure the provider.
 
 3. **Configure credentials**:
-   - **Domain**: Paste your Auth0 domain (e.g., `your-tenant.auth0.com`)
+   - **Provider URL**: Paste your Auth0 domain (e.g., `https://your-tenant.auth0.com`) remember to add the `https://` at the beginning
    - **Client ID**: Paste the Client ID from Auth0 application
    - **Client Secret**: Paste the Client Secret from Auth0 application
    - **Scopes**: Add the scopes you want to use. The default scopes are `openid`, `profile`, and `email`.
@@ -168,8 +181,6 @@ After enabling the provider, click on the pen icon to configure the provider.
 Configure additional settings to customize the authentication behavior:
 
 **Auto Registration**: Enable this to automatically create user accounts when someone authenticates for the first time.
-
-**Admin Email Domains**: Specify domains that should automatically receive admin privileges. For example, entering `yourcompany.com` will grant admin access to anyone with an email from that domain.
 
 **Sort Order**: Control where the Auth0 login button appears relative to other authentication providers.
 
