@@ -1533,5 +1533,20 @@
     "passwordRequired": "كلمة المرور مطلوبة",
     "nameRequired": "الاسم مطلوب",
     "required": "هذا الحقل مطلوب"
+  },
+  "iconPicker": {
+    "title": "اختر أيقونة",
+    "placeholder": "اختر أيقونة",
+    "searchPlaceholder": "البحث عن الأيقونات...",
+    "loadingMore": "جاري تحميل المزيد من الأيقونات...",
+    "allIconsLoaded": "تم تحميل جميع الأيقونات {count}",
+    "noIconsFound": "لم يتم العثور على أيقونات لـ \"{search}\"",
+    "tabs": {
+      "all": "جميع الأيقونات",
+      "popular": "الشائعة",
+      "auth": "مزودي المصادقة"
+    },
+    "stats": "{iconCount} أيقونة من {libraryCount} مكتبة",
+    "categoryBadge": "{category} ({count} أيقونات)"
   }
 }

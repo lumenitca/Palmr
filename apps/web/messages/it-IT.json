@@ -1531,5 +1531,20 @@
     "passwordMinLength": "La password deve contenere almeno 6 caratteri",
     "nameRequired": "Il nome è obbligatorio",
     "required": "Questo campo è obbligatorio"
+  },
+  "iconPicker": {
+    "title": "Seleziona Icona",
+    "placeholder": "Seleziona un'icona",
+    "searchPlaceholder": "Cerca icone...",
+    "loadingMore": "Caricamento altre icone...",
+    "allIconsLoaded": "Tutte le {count} icone caricate",
+    "noIconsFound": "Nessuna icona trovata per \"{search}\"",
+    "tabs": {
+      "all": "Tutte le Icone",
+      "popular": "Popolari",
+      "auth": "Provider di Autenticazione"
+    },
+    "stats": "{iconCount} icone da {libraryCount} librerie",
+    "categoryBadge": "{category} ({count} icone)"
   }
 }

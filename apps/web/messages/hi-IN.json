@@ -1531,5 +1531,20 @@
     "passwordRequired": "पासवर्ड आवश्यक है",
     "nameRequired": "नाम आवश्यक है",
     "required": "यह फ़ील्ड आवश्यक है"
+  },
+  "iconPicker": {
+    "title": "आइकन चुनें",
+    "placeholder": "एक आइकन चुनें",
+    "searchPlaceholder": "आइकन खोजें...",
+    "loadingMore": "अधिक आइकन लोड हो रहे हैं...",
+    "allIconsLoaded": "सभी {count} आइकन लोड हो गए",
+    "noIconsFound": "\"{search}\" के लिए कोई आइकन नहीं मिला",
+    "tabs": {
+      "all": "सभी आइकन",
+      "popular": "लोकप्रिय",
+      "auth": "प्रमाणीकरण प्रदाता"
+    },
+    "stats": "{libraryCount} लाइब्रेरी से {iconCount} आइकन",
+    "categoryBadge": "{category} ({count} आइकन)"
   }
 }

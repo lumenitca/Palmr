@@ -1531,5 +1531,20 @@
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
+  },
+  "iconPicker": {
+    "title": "Simge Seç",
+    "placeholder": "Bir simge seç",
+    "searchPlaceholder": "Simgeleri ara...",
+    "loadingMore": "Daha fazla simge yükleniyor...",
+    "allIconsLoaded": "Tüm {count} simge yüklendi",
+    "noIconsFound": "\"{search}\" için simge bulunamadı",
+    "tabs": {
+      "all": "Tüm Simgeler",
+      "popular": "Popüler",
+      "auth": "Kimlik Doğrulama Sağlayıcıları"
+    },
+    "stats": "{libraryCount} kütüphaneden {iconCount} simge",
+    "categoryBadge": "{category} ({count} simge)"
   }
 }

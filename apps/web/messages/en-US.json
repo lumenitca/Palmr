@@ -1531,5 +1531,20 @@
     "passwordMinLength": "Password must be at least 6 characters",
     "nameRequired": "Name is required",
     "required": "This field is required"
+  },
+  "iconPicker": {
+    "title": "Select Icon",
+    "placeholder": "Select an icon",
+    "searchPlaceholder": "Search icons...",
+    "loadingMore": "Loading more icons...",
+    "allIconsLoaded": "All {count} icons loaded",
+    "noIconsFound": "No icons found for \"{search}\"",
+    "tabs": {
+      "all": "All Icons",
+      "popular": "Popular",
+      "auth": "Auth Providers"
+    },
+    "stats": "{iconCount} icons from {libraryCount} libraries",
+    "categoryBadge": "{category} ({count} icons)"
   }
 }

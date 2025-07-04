@@ -70,6 +70,14 @@ export function EditProviderForm({
   const [showClientSecret, setShowClientSecret] = useState(false);
   const isOfficial = provider.isOfficial;
 
+  // Função para identificar providers oficiais que não devem ter o campo de provider URL editável
+  const isProviderUrlEditable = (providerName: string): boolean => {
+    const nonEditableProviders = ["google", "discord", "github"];
+    return !nonEditableProviders.includes(providerName.toLowerCase());
+  };
+
+  const canEditProviderUrl = isProviderUrlEditable(provider.name);
+
   const updateFormData = (updates: Partial<typeof formData>) => {
     const newFormData = { ...formData, ...updates };
     setFormData(newFormData);
@@ -320,18 +328,20 @@ export function EditProviderForm({
 
       {isOfficial && (
         <div className="space-y-4">
-          <div>
-            <Label className="mb-2 block">{t("authProviders.form.providerUrl")} *</Label>
-            <Input
-              placeholder={t("authProviders.form.officialProviderUrlPlaceholder", {
-                displayName: provider.displayName,
-              })}
-              value={formData.issuerUrl}
-              onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
-              onBlur={(e) => updateProviderUrlEdit(e.target.value)}
-            />
-            <p className="text-xs text-muted-foreground mt-1">{t("authProviders.form.officialProviderHelp")}</p>
-          </div>
+          {canEditProviderUrl ? (
+            <div>
+              <Label className="mb-2 block">{t("authProviders.form.providerUrl")} *</Label>
+              <Input
+                placeholder={t("authProviders.form.officialProviderUrlPlaceholder", {
+                  displayName: provider.displayName,
+                })}
+                value={formData.issuerUrl}
+                onChange={(e) => updateFormData({ issuerUrl: e.target.value })}
+                onBlur={(e) => updateProviderUrlEdit(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground mt-1">{t("authProviders.form.officialProviderHelp")}</p>
+            </div>
+          ) : null}
           <div>
             <Label className="mb-2 block">{t("authProviders.form.icon")}</Label>
             <IconPicker

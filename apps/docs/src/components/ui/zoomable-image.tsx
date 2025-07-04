@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
 interface ZoomableImageProps {
   src: string;
   alt: string;
+  legend?: string;
   className?: string;
 }
 
-export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) => {
+export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, legend, className }) => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const handleImageClick = () => {
@@ -61,6 +62,7 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, classNam
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 rounded-lg flex items-center justify-center">
           <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
         </div>
+        {legend && <p className="text-sm text-center -mt-4 font-light text-muted-foreground">{legend}</p>}
       </div>
 
       {/* Zoomed Modal */}

@@ -1531,5 +1531,20 @@
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",
     "required": "Dit veld is verplicht"
+  },
+  "iconPicker": {
+    "title": "Selecteer Pictogram",
+    "placeholder": "Selecteer een pictogram",
+    "searchPlaceholder": "Zoek pictogrammen...",
+    "loadingMore": "Meer pictogrammen laden...",
+    "allIconsLoaded": "Alle {count} pictogrammen geladen",
+    "noIconsFound": "Geen pictogrammen gevonden voor \"{search}\"",
+    "tabs": {
+      "all": "Alle Pictogrammen",
+      "popular": "Populair",
+      "auth": "Authenticatie Providers"
+    },
+    "stats": "{iconCount} pictogrammen van {libraryCount} bibliotheken",
+    "categoryBadge": "{category} ({count} pictogrammen)"
   }
 }

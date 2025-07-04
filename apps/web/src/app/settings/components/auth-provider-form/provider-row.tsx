@@ -98,9 +98,7 @@ export function ProviderRow({
       {isEditing && (
         <div className="border-t border-border dark:border-border p-4 space-y-4 bg-muted/50 dark:bg-muted/20">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-foreground dark:text-foreground">
-              Editar Provider: {provider.displayName}
-            </h3>
+            <h3 className="font-medium text-foreground dark:text-foreground">{provider.displayName}</h3>
           </div>
           <EditProviderForm
             key={provider.id}

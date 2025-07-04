@@ -1531,5 +1531,20 @@
     "passwordRequired": "パスワードは必須です",
     "nameRequired": "名前は必須です",
     "required": "このフィールドは必須です"
+  },
+  "iconPicker": {
+    "title": "アイコンを選択",
+    "placeholder": "アイコンを選択してください",
+    "searchPlaceholder": "アイコンを検索...",
+    "loadingMore": "アイコンを読み込み中...",
+    "allIconsLoaded": "全{count}個のアイコンを読み込みました",
+    "noIconsFound": "\"{search}\"に一致するアイコンが見つかりませんでした",
+    "tabs": {
+      "all": "すべてのアイコン",
+      "popular": "人気",
+      "auth": "認証プロバイダー"
+    },
+    "stats": "{libraryCount}ライブラリから{iconCount}個のアイコン",
+    "categoryBadge": "{category}（{count}個のアイコン）"
   }
 }

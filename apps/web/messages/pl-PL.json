@@ -1531,5 +1531,20 @@
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",
     "required": "To pole jest wymagane"
+  },
+  "iconPicker": {
+    "title": "Wybierz ikonę",
+    "placeholder": "Wybierz ikonę",
+    "searchPlaceholder": "Szukaj ikon...",
+    "loadingMore": "Ładowanie kolejnych ikon...",
+    "allIconsLoaded": "Załadowano wszystkie {count} ikon",
+    "noIconsFound": "Nie znaleziono ikon dla \"{search}\"",
+    "tabs": {
+      "all": "Wszystkie ikony",
+      "popular": "Popularne",
+      "auth": "Dostawcy uwierzytelniania"
+    },
+    "stats": "{iconCount} ikon z {libraryCount} bibliotek",
+    "categoryBadge": "{category} ({count} ikon)"
   }
 }

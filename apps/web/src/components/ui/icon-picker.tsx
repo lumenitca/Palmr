@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Search, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
@@ -85,6 +86,7 @@ interface VirtualizedIconGridProps {
 }
 
 function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories = false }: VirtualizedIconGridProps) {
+  const t = useTranslations("iconPicker");
   const [visibleCount, setVisibleCount] = useState(ICONS_PER_BATCH);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -153,7 +155,10 @@ function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories =
           {iconsByCategory.map(([category, categoryIcons]) => (
             <div key={category}>
               <Badge variant="secondary" className="text-xs mb-3">
-                {category} ({icons.filter((icon) => icon.category === category).length} icons)
+                {t("categoryBadge", {
+                  category,
+                  count: icons.filter((icon) => icon.category === category).length,
+                })}
               </Badge>
               <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 xl:grid-cols-20 gap-2 sm:gap-3">
                 {categoryIcons.map((icon) => (
@@ -172,10 +177,10 @@ function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories =
 
           {/* Loading indicator and sentinel */}
           <div ref={sentinelRef} className="flex justify-center py-4">
-            {isLoading && <div className="text-sm text-muted-foreground">Carregando mais ícones...</div>}
+            {isLoading && <div className="text-sm text-muted-foreground">{t("loadingMore")}</div>}
             {visibleCount >= icons.length && icons.length > 0 && (
               <div className="text-sm text-muted-foreground">
-                Todos os {icons.length.toLocaleString()} ícones carregados
+                {t("allIconsLoaded", { count: icons.length.toLocaleString() })}
               </div>
             )}
           </div>
@@ -202,10 +207,10 @@ function VirtualizedIconGrid({ icons, onIconSelect, renderIcon, showCategories =
 
       {/* Loading indicator and sentinel */}
       <div ref={sentinelRef} className="flex justify-center py-4">
-        {isLoading && <div className="text-sm text-muted-foreground">Carregando mais ícones...</div>}
+        {isLoading && <div className="text-sm text-muted-foreground">{t("loadingMore")}</div>}
         {visibleCount >= icons.length && icons.length > 0 && (
           <div className="text-sm text-muted-foreground">
-            Todos os {icons.length.toLocaleString()} ícones carregados
+            {t("allIconsLoaded", { count: icons.length.toLocaleString() })}
           </div>
         )}
       </div>
@@ -271,9 +276,13 @@ const AUTH_PROVIDER_ICONS = [
   "AiOutlineSecurityScan",
 ];
 
-export function IconPicker({ value, onChange, placeholder = "Select an icon" }: IconPickerProps) {
+export function IconPicker({ value, onChange, placeholder }: IconPickerProps) {
+  const t = useTranslations("iconPicker");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+
+  // Use translation for placeholder if not provided
+  const displayPlaceholder = placeholder || t("placeholder");
 
   // Combine ALL icon libraries
   const allIcons = useMemo(() => {
@@ -388,7 +397,7 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
                 <span className="text-sm">{currentIcon.name}</span>
               </>
             ) : (
-              <span className="text-muted-foreground">{placeholder}</span>
+              <span className="text-muted-foreground">{displayPlaceholder}</span>
             )}
           </div>
           <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -397,9 +406,12 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
       <DialogContent className="max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-hidden">
         <div className="space-y-4 overflow-hidden">
           <div className="flex items-center justify-between">
-            <DialogTitle>Selecionar Ícone</DialogTitle>
+            <DialogTitle>{t("title")}</DialogTitle>
             <div className="text-sm text-muted-foreground">
-              {allIcons.length.toLocaleString()} ícones de {categories.length} bibliotecas
+              {t("stats", {
+                iconCount: allIcons.length.toLocaleString(),
+                libraryCount: categories.length,
+              })}
             </div>
           </div>
 
@@ -407,7 +419,7 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
           <div className="relative">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Buscar ícones..."
+              placeholder={t("searchPlaceholder")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-8"
@@ -426,9 +438,9 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
 
           <Tabs defaultValue="all" className="w-full overflow-hidden">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="all">Todos os Ícones</TabsTrigger>
-              <TabsTrigger value="popular">Populares</TabsTrigger>
-              <TabsTrigger value="auth">Auth Providers</TabsTrigger>
+              <TabsTrigger value="all">{t("tabs.all")}</TabsTrigger>
+              <TabsTrigger value="popular">{t("tabs.popular")}</TabsTrigger>
+              <TabsTrigger value="auth">{t("tabs.auth")}</TabsTrigger>
             </TabsList>
 
             {/* All Icons */}
@@ -478,7 +490,7 @@ export function IconPicker({ value, onChange, placeholder = "Select an icon" }: 
           {search && filteredIcons.length === 0 && (
             <div className="text-center py-8 text-muted-foreground">
               <Search className="mx-auto h-12 w-12 opacity-50 mb-2" />
-              <p>Nenhum ícone encontrado para "{search}"</p>
+              <p>{t("noIconsFound", { search })}</p>
             </div>
           )}
         </div>

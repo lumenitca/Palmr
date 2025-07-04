@@ -1531,5 +1531,20 @@
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
+  },
+  "iconPicker": {
+    "title": "Seleccionar Icono",
+    "placeholder": "Seleccionar un icono",
+    "searchPlaceholder": "Buscar iconos...",
+    "loadingMore": "Cargando más iconos...",
+    "allIconsLoaded": "Todos los {count} iconos cargados",
+    "noIconsFound": "No se encontraron iconos para \"{search}\"",
+    "tabs": {
+      "all": "Todos los Iconos",
+      "popular": "Populares",
+      "auth": "Proveedores de Autenticación"
+    },
+    "stats": "{iconCount} iconos de {libraryCount} bibliotecas",
+    "categoryBadge": "{category} ({count} iconos)"
   }
 }

@@ -1531,5 +1531,20 @@
     "passwordRequired": "Требуется пароль",
     "nameRequired": "Требуется имя",
     "required": "Это поле обязательно"
+  },
+  "iconPicker": {
+    "title": "Выбрать иконку",
+    "placeholder": "Выберите иконку",
+    "searchPlaceholder": "Поиск иконок...",
+    "loadingMore": "Загрузка дополнительных иконок...",
+    "allIconsLoaded": "Загружено все {count} иконок",
+    "noIconsFound": "Не найдено иконок для \"{search}\"",
+    "tabs": {
+      "all": "Все иконки",
+      "popular": "Популярные",
+      "auth": "Провайдеры аутентификации"
+    },
+    "stats": "{iconCount} иконок из {libraryCount} библиотек",
+    "categoryBadge": "{category} ({count} иконок)"
   }
 }

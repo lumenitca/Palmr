@@ -1531,5 +1531,20 @@
     "passwordRequired": "密码为必填项",
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
+  },
+  "iconPicker": {
+    "title": "选择图标",
+    "placeholder": "选择一个图标",
+    "searchPlaceholder": "搜索图标...",
+    "loadingMore": "正在加载更多图标...",
+    "allIconsLoaded": "已加载全部 {count} 个图标",
+    "noIconsFound": "未找到与\"{search}\"相关的图标",
+    "tabs": {
+      "all": "所有图标",
+      "popular": "常用",
+      "auth": "认证提供商"
+    },
+    "stats": "来自 {libraryCount} 个库的 {iconCount} 个图标",
+    "categoryBadge": "{category}（{count} 个图标）"
   }
 }

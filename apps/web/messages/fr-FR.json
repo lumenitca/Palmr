@@ -1531,5 +1531,20 @@
     "passwordRequired": "Le mot de passe est requis",
     "nameRequired": "Nome é obrigatório",
     "required": "Este campo é obrigatório"
+  },
+  "iconPicker": {
+    "title": "Sélectionner une Icône",
+    "placeholder": "Sélectionner une icône",
+    "searchPlaceholder": "Rechercher des icônes...",
+    "loadingMore": "Chargement d'autres icônes...",
+    "allIconsLoaded": "Toutes les {count} icônes sont chargées",
+    "noIconsFound": "Aucune icône trouvée pour \"{search}\"",
+    "tabs": {
+      "all": "Toutes les Icônes",
+      "popular": "Populaires",
+      "auth": "Fournisseurs d'Authentification"
+    },
+    "stats": "{iconCount} icônes de {libraryCount} bibliothèques",
+    "categoryBadge": "{category} ({count} icônes)"
   }
 }

@@ -1531,5 +1531,20 @@
     "passwordRequired": "Passwort ist erforderlich",
     "nameRequired": "Name ist erforderlich",
     "required": "Dieses Feld ist erforderlich"
+  },
+  "iconPicker": {
+    "title": "Symbol auswählen",
+    "placeholder": "Wählen Sie ein Symbol",
+    "searchPlaceholder": "Symbole suchen...",
+    "loadingMore": "Weitere Symbole werden geladen...",
+    "allIconsLoaded": "Alle {count} Symbole geladen",
+    "noIconsFound": "Keine Symbole für \"{search}\" gefunden",
+    "tabs": {
+      "all": "Alle Symbole",
+      "popular": "Beliebt",
+      "auth": "Authentifizierungsanbieter"
+    },
+    "stats": "{iconCount} Symbole aus {libraryCount} Bibliotheken",
+    "categoryBadge": "{category} ({count} Symbole)"
   }
 }

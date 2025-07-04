@@ -1531,5 +1531,20 @@
     "lastNameRequired": "O sobrenome é necessário",
     "usernameLength": "O nome de usuário deve ter pelo menos 3 caracteres",
     "usernameSpaces": "O nome de usuário não pode conter espaços"
+  },
+  "iconPicker": {
+    "title": "Selecionar ícone",
+    "placeholder": "Selecione um ícone",
+    "searchPlaceholder": "Pesquisar ícones...",
+    "loadingMore": "Carregando mais ícones...",
+    "allIconsLoaded": "Todos os {count} ícones carregados",
+    "noIconsFound": "Nenhum ícone encontrado para \"{search}\"",
+    "tabs": {
+      "all": "Todos os ícones",
+      "popular": "Populares",
+      "auth": "Provedores de autenticação"
+    },
+    "stats": "{iconCount} ícones de {libraryCount} bibliotecas",
+    "categoryBadge": "{category} ({count} ícones)"
   }
 }
