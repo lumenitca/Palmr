@@ -94,17 +94,26 @@ Now you'll create the actual credentials that Palmr will use to authenticate wit
 
 4. **Configure authorized URIs and authorized redirect URIs**:
 
-   **For production:**
-   - Authorized URIs: `https://yourdomain.com`
-   - Authorized redirect URIs: `https://yourdomain.com/api/auth/providers/google/callback`
+You'll need to configure several URLs in your Google Cloud Console credentials. Here's what to add for each environment:
 
-   **For development:**
-   - Authorized URIs: `http://localhost:3000`
-   - Authorized redirect URIs: `http://localhost:3000/api/auth/providers/google/callback`
+### Authorized URIs
 
-   **For custom ports:**
-   - Authorized URIs: `https://yourdomain.com:5487`
-   - Authorized redirect URIs: `https://yourdomain.com:5487/api/auth/providers/google/callback`
+| Environment | URL                           |
+| ----------- | ----------------------------- |
+| Production  | `https://yourdomain.com`      |
+| Development | `http://localhost:3000`       |
+| Custom Port | `https://yourdomain.com:5487` |
+
+### Authorized Redirect URIs
+
+| Environment | URL                                                              |
+| ----------- | ---------------------------------------------------------------- |
+| Production  | `https://yourdomain.com/api/auth/providers/google/callback`      |
+| Development | `http://localhost:3000/api/auth/providers/google/callback`       |
+| Custom Port | `https://yourdomain.com:5487/api/auth/providers/google/callback` |
+
+> **Note:** Replace `yourdomain.com` with your actual domain name in all production and custom port URLs.
+> **Note:** You can add multiple redirect URIs for different environments (development, staging, production).
 
 <ZoomableImage src="/assets/v3/oidc/google/allowed-urls.png" alt="Google Cloud Console Allowed URLs" />
 

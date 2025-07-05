@@ -58,23 +58,18 @@ To get started with GitHub authentication, you'll need to create an OAuth App in
 
 **Set up callback URLs**: In the **"Authorization callback URL"** field, add your Palmr callback URL:
 
-**For production:**
+You'll need to configure several URLs in your GitHub OAuth App settings. Here's what to add for each environment:
 
-```
-https://yourdomain.com/api/auth/providers/github/callback
-```
+### Authorization Callback URLs
 
-**For development:**
+| Environment | URL                                                              |
+| ----------- | ---------------------------------------------------------------- |
+| Production  | `https://yourdomain.com/api/auth/providers/github/callback`      |
+| Development | `http://localhost:3000/api/auth/providers/github/callback`       |
+| Custom Port | `https://yourdomain.com:5487/api/auth/providers/github/callback` |
 
-```
-http://localhost:3000/api/auth/providers/github/callback
-```
-
-**For custom ports:**
-
-```
-https://yourdomain.com:5487/api/auth/providers/github/callback
-```
+> **Note:** Replace `yourdomain.com` with your actual domain name in all production and custom port URLs.
+> **Note:** You can add multiple callback URLs for different environments (development, staging, production).
 
 4. **Create application**: Click **"Register application"** to generate your OAuth App
 

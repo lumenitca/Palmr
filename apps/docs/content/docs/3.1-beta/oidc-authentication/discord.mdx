@@ -86,23 +86,18 @@ Now you'll configure the OAuth2 settings that Palmr will use to authenticate use
 
 3. **Add redirect URIs**: In the **"Redirects"** section, add your Palmr callback URLs:
 
-   **For production:**
+You'll need to configure several URLs in your Discord application settings. Here's what to add for each environment:
 
-   ```
-   https://yourdomain.com/api/auth/providers/discord/callback
-   ```
+### Redirect URIs
 
-   **For development:**
+| Environment | URL                                                               |
+| ----------- | ----------------------------------------------------------------- |
+| Production  | `https://yourdomain.com/api/auth/providers/discord/callback`      |
+| Development | `http://localhost:3000/api/auth/providers/discord/callback`       |
+| Custom Port | `https://yourdomain.com:5487/api/auth/providers/discord/callback` |
 
-   ```
-   http://localhost:3000/api/auth/providers/discord/callback
-   ```
-
-   **For custom ports:**
-
-   ```
-   https://yourdomain.com:5487/api/auth/providers/discord/callback
-   ```
+> **Note:** Replace `yourdomain.com` with your actual domain name in all production and custom port URLs.
+> **Note:** You can add multiple redirect URIs for different environments (development, staging, production).
 
 4. **Select required scopes**:
    - **`identify`** - Access to user's basic account information (required)
