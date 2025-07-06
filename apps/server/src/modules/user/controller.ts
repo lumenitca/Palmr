@@ -106,7 +106,20 @@ export class UserController {
         return reply.status(400).send({ error: "Only images are allowed" });
       }
 
-      const buffer = await file.toBuffer();
+      // Avatar files should be small (max 5MB), so we can safely use streaming to buffer
+      const chunks: Buffer[] = [];
+      const maxAvatarSize = 5 * 1024 * 1024; // 5MB
+      let totalSize = 0;
+
+      for await (const chunk of file.file) {
+        totalSize += chunk.length;
+        if (totalSize > maxAvatarSize) {
+          throw new Error("Avatar file too large. Maximum size is 5MB.");
+        }
+        chunks.push(chunk);
+      }
+
+      const buffer = Buffer.concat(chunks);
       const base64Image = await this.avatarService.uploadAvatar(buffer);
       const updatedUser = await this.userService.updateUserImage(userId, base64Image);
 

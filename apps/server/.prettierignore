@@ -2,5 +2,6 @@
 /dist
 /build
 /uploads
-/temp-chunks
+/temp-uploads
+/logs
 /prisma/migrations 

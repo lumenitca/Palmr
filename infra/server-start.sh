@@ -28,7 +28,7 @@ echo "📂 Data directory: /app/server"
 echo "💾 Database: $DATABASE_URL"
 
 echo "📁 Creating data directories..."
-mkdir -p /app/server/prisma /app/server/uploads /app/server/temp-chunks /app/server/uploads/logo
+mkdir -p /app/server/prisma /app/server/uploads /app/server/temp-uploads
 
 if [ "$(id -u)" = "0" ]; then
     echo "🔐 Ensuring proper ownership before database operations..."

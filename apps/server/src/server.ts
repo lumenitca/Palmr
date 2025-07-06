@@ -5,6 +5,7 @@ import fastifyMultipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
 
 import { buildApp } from "./app";
+import { directoriesConfig } from "./config/directories.config";
 import { env } from "./env";
 import { appRoutes } from "./modules/app/routes";
 import { authProvidersRoutes } from "./modules/auth-providers/routes";
@@ -27,22 +28,18 @@ if (typeof global.crypto === "undefined") {
 }
 
 async function ensureDirectories() {
-  const baseDir = IS_RUNNING_IN_CONTAINER ? "/app/server" : process.cwd();
-  const uploadsDir = path.join(baseDir, "uploads");
-  const tempChunksDir = path.join(baseDir, "temp-chunks");
+  const dirsToCreate = [
+    { path: directoriesConfig.uploads, name: "uploads" },
+    { path: directoriesConfig.tempUploads, name: "temp-uploads" },
+  ];
 
-  try {
-    await fs.access(uploadsDir);
-  } catch {
-    await fs.mkdir(uploadsDir, { recursive: true });
-    console.log(`📁 Created uploads directory: ${uploadsDir}`);
-  }
-
-  try {
-    await fs.access(tempChunksDir);
-  } catch {
-    await fs.mkdir(tempChunksDir, { recursive: true });
-    console.log(`📁 Created temp-chunks directory: ${tempChunksDir}`);
+  for (const dir of dirsToCreate) {
+    try {
+      await fs.access(dir.path);
+    } catch {
+      await fs.mkdir(dir.path, { recursive: true });
+      console.log(`📁 Created ${dir.name} directory: ${dir.path}`);
+    }
   }
 }
 
@@ -63,11 +60,8 @@ async function startServer() {
   });
 
   if (env.ENABLE_S3 !== "true") {
-    const baseDir = IS_RUNNING_IN_CONTAINER ? "/app/server" : process.cwd();
-    const uploadsPath = path.join(baseDir, "uploads");
-
     await app.register(fastifyStatic, {
-      root: uploadsPath,
+      root: directoriesConfig.uploads,
       prefix: "/uploads/",
       decorateReply: false,
     });

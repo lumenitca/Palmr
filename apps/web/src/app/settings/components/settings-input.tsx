@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Config } from "../types";
+import { FileSizeInput } from "./file-size-input";
 
 const HIDDEN_FIELDS = ["serverUrl", "firstUserAccess"];
 
@@ -60,6 +61,19 @@ export function SettingsInput({
           {...register(`configs.${config.key}`)}
           disabled={isDisabled}
           className="min-h-[80px]"
+        />
+      );
+    }
+
+    // Use FileSizeInput for storage size fields
+    if (config.key === "maxFileSize" || config.key === "maxTotalStoragePerUser") {
+      const currentValue = watch(`configs.${config.key}`) || "0";
+      return (
+        <FileSizeInput
+          value={currentValue}
+          onChange={(value) => setValue(`configs.${config.key}`, value)}
+          disabled={isDisabled}
+          placeholder="0"
         />
       );
     }
