@@ -57,8 +57,6 @@ services:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
       # - SECURE_SITE=false # Set to true if you are using a reverse proxy
-      - PALMR_UID=1000 # UID for the container processes (default is 1001)
-      - PALMR_GID=1000 # GID for the container processes (default is 1001)
     ports:
       - "5487:5487" # Web interface
       - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY)
@@ -69,6 +67,16 @@ services:
 volumes:
   palmr_data:
 ```
+
+> **Note:** If you haveing problem with uploading files, try to change the `PALMR_UID` and `PALMR_GID` to the UID and GID of the user running the container. You can find the UID and GID of the user running the container with the command `id -u` and `id -g`. in Linux systems the default user is `1000` and the default group is `1000`. For test you can add the environment variables below to the `docker-compose.yaml` file and restart the container.
+
+```yaml
+environment:
+  - PALMR_UID=1000 # UID for the container processes (default is 1001)
+  - PALMR_GID=1000 # GID for the container processes (default is 1001)
+```
+
+> **Note:** For more information about UID and GID, see our [UID/GID Configuration](/docs/3.1-beta/uid-gid-configuration) guide.
 
 ### Deployment
 
