@@ -3,6 +3,8 @@ title: Introduction
 icon: IdCard
 ---
 
+import { ZoomableImage } from "@/components/ui/zoomable-image";
+
 Palmr supports OpenID Connect (OIDC) authentication, allowing users to sign in using external identity providers such as Google, Zitadel, Auth0, and other OIDC-compliant services. This feature provides seamless single sign-on (SSO) capabilities and centralized user management.
 
 OIDC authentication in Palmr is built using the industry-standard OpenID Connect protocol. The implementation supports automatic user provisioning, and flexible configuration options.
@@ -47,6 +49,12 @@ Palmr's OIDC implementation is compatible with any OpenID Connect compliant prov
 
 Although these are the official providers (internally tested with 100% success), you can connect any OIDC provider by providing your credentials and connection URL. We've developed a practical way to integrate virtually all OIDC providers available in the market. In this documentation, you can consult how to configure each of the official providers, as well as include other providers not listed as official. Just below, you will find instructions on how to access the OIDC provider configuration. For specific details about configuring each provider, select the desired option in the sidebar, in the "OIDC Authentication" section.
 
+<ZoomableImage
+  src="/assets/v3/oidc/all-providers.png"
+  alt="All OIDC Providers"
+  legend="You can use how many providers you want, but we recommend using at least 2 providers to ensure the best user experience."
+/>
+
 ---
 
 ## Configuring OIDC settings
@@ -58,10 +66,16 @@ OIDC configuration is managed through Palmr's administrative settings panel, acc
 To configure OIDC authentication:
 
 1. **Access Settings**: Click on your profile picture in the header and select **Settings**
-2. **Navigate to Authentication**: Find the **Authentication** or **OIDC** configuration section
+2. **Navigate to Authentication**: Find the **Authentication Providers** configuration section
 3. **Enable OIDC**: Toggle the OIDC authentication option to enable it
 
-{/* imagem do novo oconfig de OIDC */}
+> **Note:** Consult the documentation of each provider to configure it.
+
+<ZoomableImage
+  src="/assets/v3/oidc/auth-providers.png"
+  alt="OIDC Settings"
+  legend="Consult the documentation of each provider to configure it."
+/>
 
 ---
 
