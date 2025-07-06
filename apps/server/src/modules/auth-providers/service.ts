@@ -429,17 +429,28 @@ export class AuthProvidersService {
   }
 
   async handleCallback(providerName: string, code: string, state: string, requestContext?: RequestContextService) {
-    const pendingState = this.validateAndGetPendingState(state);
+    try {
+      const pendingState = this.validateAndGetPendingState(state);
 
-    const provider = await this.getProviderByName(providerName);
-    this.validateProvider(provider, providerName);
-    const validatedProvider = provider!;
+      const provider = await this.getProviderByName(providerName);
+      this.validateProvider(provider, providerName);
+      const validatedProvider = provider!;
 
-    const config = this.getProviderConfig(validatedProvider);
-    this.validateConfig(config, providerName);
-    const validatedConfig = config!;
+      const config = this.getProviderConfig(validatedProvider);
+      this.validateConfig(config, providerName);
+      const validatedConfig = config!;
 
-    return await this.executeAuthenticationFlow(validatedProvider, validatedConfig, code, pendingState, requestContext);
+      return await this.executeAuthenticationFlow(
+        validatedProvider,
+        validatedConfig,
+        code,
+        pendingState,
+        requestContext
+      );
+    } catch (error) {
+      console.error("Error in handleCallback:", error);
+      throw error;
+    }
   }
 
   private async performTokenExchange(
@@ -594,13 +605,27 @@ export class AuthProvidersService {
       throw new Error(ERROR_MESSAGES.MISSING_USER_INFO);
     }
 
+    // First, check if there's already an auth provider entry for this external ID
     const existingAuthProvider = await this.findExistingAuthProvider(provider.id, String(externalId));
     if (existingAuthProvider) {
       return await this.updateExistingUserFromProvider(existingAuthProvider.user, userInfo);
     }
 
+    // Check if there's a user with this email
     const existingUser = await this.findExistingUserByEmail(userInfo.email);
     if (existingUser) {
+      // Check if this user already has this provider linked
+      const existingUserProvider = await prisma.userAuthProvider.findFirst({
+        where: {
+          userId: existingUser.id,
+          providerId: provider.id,
+        },
+      });
+
+      if (existingUserProvider) {
+        return await this.updateExistingUserFromProvider(existingUser, userInfo);
+      }
+
       return await this.linkProviderToExistingUser(existingUser, provider.id, String(externalId), userInfo);
     }
 

@@ -366,6 +366,9 @@ export class AuthProvidersController {
   }
 
   private handleCallbackError(request: FastifyRequest<CallbackRequest>, reply: FastifyReply, error: unknown) {
+    // Log error for debugging
+    console.error("Auth callback error for provider:", request.params.provider, error);
+
     const { type: errorType, message: errorMessage } =
       error instanceof Error
         ? this.determineCallbackError(error, request.params.provider)
