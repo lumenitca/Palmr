@@ -40,9 +40,9 @@ if [ ! -f "/app/server/prisma/palmr.db" ]; then
     
     echo "🗄️ Creating database schema..."
     if [ "$(id -u)" = "0" ]; then
-        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
     else
-        npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
     fi
     
     echo "🌱 Seeding database..."
@@ -58,9 +58,9 @@ else
     
     echo "🔧 Checking for schema updates..."
     if [ "$(id -u)" = "0" ]; then
-        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
+        su-exec $TARGET_UID:$TARGET_GID npx prisma db push --schema=./prisma/schema.prisma --skip-generate
     else
-        npx prisma db push --schema=./prisma/schema.prisma --skip-generate --force-reset
+        npx prisma db push --schema=./prisma/schema.prisma --skip-generate
     fi
     
     echo "🔍 Checking if new tables need seeding..."
