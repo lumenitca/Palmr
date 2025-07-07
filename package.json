@@ -5,23 +5,9 @@
   "private": true,
   "packageManager": "pnpm@10.6.0",
   "scripts": {
-    "prepare": "git config core.hooksPath .husky && husky",
-    "postinstall": "cd apps/server && npx prisma generate",
-    "dev": "turbo run dev --ui=tui",
-    "dev:web": "turbo run dev --filter=palmr-web --ui=tui",
-    "dev:server": "turbo run dev --filter=palmr-api --ui=tui",
-    "dev:docs": "turbo run dev --filter=palmr-docs --ui=tui",
-    "dev:fullstack": "turbo run dev --filter=palmr-web --filter=palmr-api --ui=tui",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix",
-    "format": "turbo run format",
-    "format:check": "turbo run format:check",
-    "type-check": "turbo run type-check",
-    "validate": "turbo run validate"
+    "prepare": "git config core.hooksPath .husky && husky"
   },
   "devDependencies": {
-    "husky": "^9.1.7",
-    "turbo": "^2.5.4"
+    "husky": "^9.1.7"
   }
 }
