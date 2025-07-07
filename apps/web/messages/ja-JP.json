@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS（ポート587）",
           "none": "なし（安全でない）"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "自己署名証明書を信頼",
+        "description": "自己署名SSL/TLS証明書を信頼するように設定します（開発環境で便利）"
       }
     },
     "buttons": {

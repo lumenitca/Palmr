@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS (포트 587)",
           "none": "없음 (비보안)"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "자체 서명된 인증서 신뢰",
+        "description": "자체 서명된 SSL/TLS 인증서를 신뢰하려면 활성화하세요 (개발 환경에서 유용)"
       }
     },
     "buttons": {

@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS (Poort 587)",
           "none": "Geen (Onveilig)"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "Vertrouw Zelf-Ondertekende Certificaten",
+        "description": "Schakel dit in om zelf-ondertekende SSL/TLS certificaten te vertrouwen (handig voor ontwikkelomgevingen)"
       }
     },
     "buttons": {

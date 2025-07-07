@@ -1046,6 +1046,10 @@
         "title": "No Authentication",
         "description": "Enable this for internal servers that don't require username/password (hides auth fields)"
       },
+      "smtpTrustSelfSigned": {
+        "title": "Trust Self-Signed Certificates",
+        "description": "Enable this to trust self-signed SSL/TLS certificates (useful for development environments)"
+      },
       "testSmtp": {
         "title": "Test SMTP Connection",
         "description": "Test if the SMTP configuration is valid"

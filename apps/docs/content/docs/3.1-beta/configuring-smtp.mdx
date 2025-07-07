@@ -38,8 +38,6 @@ Before beginning the configuration process:
 
 To access **Settings**, an **ADMIN** user must click on the profile picture in the **header** and select **Settings** from the dropdown menu.
 
-![Dropdown Menu](/assets/v3/smtp/dropdown-menu.png)
-
 Once inside the **Settings** panel, click on the **Email** card to expand the SMTP configuration options.
 
 ![Closed Settings Card](/assets/v3/smtp/closed-card.png)
@@ -62,11 +60,9 @@ The first step is to **enable SMTP** by selecting "Yes" in the **SMTP Enabled** 
 
 ### Configuration fields
 
-Once SMTP is enabled, you can configure the other necessary fields:
+Once SMTP is enabled, you can configure the following fields:
 
-**Sender Name** – This will appear as the sender's name in all outgoing emails. Use a recognizable name like "Palmr" or your organization name.
-
-**Sender Email** – The email address from which notifications will be sent. Use a professional address like "noreply@palmr.app" or "notifications@yourdomain.com".
+#### Basic SMTP Configuration
 
 **SMTP Server** – The SMTP server address provided by your email service. For Gmail, use `smtp.gmail.com` (this is the recommended option and set as default).
 
@@ -75,6 +71,51 @@ Once SMTP is enabled, you can configure the other necessary fields:
 **SMTP Username** – The username for authenticating with your SMTP server. For Gmail, enter your complete email address.
 
 **SMTP Password** – The password for SMTP authentication. For Gmail, you must use an **App Password** (not your regular email password).
+
+#### Email Sender Configuration
+
+**Sender Name** – This will appear as the sender's name in all outgoing emails. Use a recognizable name like "Palmr" or your organization name.
+
+**Sender Email** – The email address from which notifications will be sent. Use a professional address like "noreply@palmr.app" or "notifications@yourdomain.com".
+
+#### Advanced Configuration Options
+
+**Connection Security** – Choose the appropriate security method for your SMTP server:
+
+- **Auto (Recommended)** – Automatically selects the best security method based on the port
+- **SSL (Port 465)** – Uses SSL encryption for the entire connection
+- **STARTTLS (Port 587)** – Uses STARTTLS to upgrade a plain connection to TLS
+- **None (Insecure)** – Uses plain SMTP without encryption (only for development/testing)
+
+**No Authentication** – Enable this option for internal SMTP servers that don't require username/password authentication. When enabled, the username and password fields will be hidden.
+
+**Trust Self-Signed Certificates** – Enable this option to trust self-signed SSL/TLS certificates. This is particularly useful for development environments or internal SMTP servers with self-signed certificates.
+
+#### Field Behavior and Dependencies
+
+**Conditional Field Display**: The SMTP configuration uses intelligent field display:
+
+- **All SMTP fields** are hidden when SMTP is disabled
+- **Username and Password fields** are automatically hidden when "No Authentication" is enabled
+- **Test Connection button** only appears when SMTP is enabled
+
+**Field Validation**: The system provides real-time validation:
+
+- **Required fields** are checked before testing connections
+- **Authentication fields** are validated unless "No Authentication" is enabled
+- **Connection testing** validates all settings before saving
+
+#### Testing Configuration
+
+**Test SMTP Connection** – Use this button to test your SMTP configuration before saving. This will verify that all settings are correct and the connection works properly.
+
+**Test Button Features**:
+
+- **Real-time validation** of all required fields
+- **Informational tooltip** explaining the test process
+- **Loading state** with spinner during connection test
+- **Success/Error messages** with detailed feedback
+- **Uses form values** (not saved settings) for testing
 
 ### Important security note
 
@@ -110,12 +151,52 @@ When using Gmail, your final settings should be:
 - **SMTP Port**: `587`
 - **SMTP Username**: Your Gmail address
 - **SMTP Password**: Generated App Password (16 characters)
+- **Connection Security**: Auto (Recommended) or STARTTLS (Port 587)
+
+---
+
+## Other email provider configurations
+
+While Gmail is recommended for its simplicity, Palmr supports various email providers. Here are common configurations:
+
+### Outlook/Hotmail
+
+- **SMTP Server**: `smtp-mail.outlook.com`
+- **SMTP Port**: `587`
+- **Connection Security**: STARTTLS (Port 587)
+- **Authentication**: Username and password required
+
+### Yahoo Mail
+
+- **SMTP Server**: `smtp.mail.yahoo.com`
+- **SMTP Port**: `587` or `465`
+- **Connection Security**: STARTTLS (Port 587) or SSL (Port 465)
+- **Authentication**: App-specific password required
+
+### Custom SMTP Server
+
+- **SMTP Server**: Your server's hostname or IP address
+- **SMTP Port**: Usually `25`, `587`, or `465`
+- **Connection Security**: Choose based on your server's capabilities
+- **Authentication**: Configure according to your server's requirements
+- **Trust Self-Signed Certificates**: Enable if using self-signed certificates
 
 ---
 
 ## Testing your configuration
 
 After completing the configuration, it's important to verify that everything works correctly.
+
+### Using the Test Connection feature
+
+Palmr provides a built-in **Test SMTP Connection** button that allows you to verify your configuration before saving:
+
+1. **Fill in your SMTP settings** – Complete all required fields in the SMTP configuration
+2. **Click "Test Connection"** – This will attempt to connect to your SMTP server with the current settings
+3. **Review the results** – You'll see a success message if the connection works, or an error message with details if it fails
+4. **Save your settings** – Once the test is successful, save your configuration to make it permanent
+
+**Note:** The test connection uses the values currently entered in the form, not the saved settings. Make sure to save your configuration after a successful test.
 
 ### Validation steps
 
@@ -128,10 +209,54 @@ After completing the configuration, it's important to verify that everything wor
 
 If emails are not being sent:
 
-- Verify that all fields are filled correctly
-- For Gmail, ensure you're using the App Password, not your regular password
-- Check that your email provider allows SMTP connections
-- Confirm that port 587 is not blocked by your firewall
+- **Verify all fields are filled correctly** – Ensure all required fields have valid values
+- **For Gmail, ensure you're using the App Password** – Not your regular email password
+- **Check that your email provider allows SMTP connections** – Some providers require specific settings
+- **Confirm that port 587 is not blocked by your firewall** – Check both local and network firewall settings
+- **Verify the SMTP server address** – Double-check the hostname for typos
+- **Test with different security settings** – Try different Connection Security options if one fails
+
+### Troubleshooting self-signed certificate issues
+
+If you're using an SMTP server with self-signed certificates and encountering connection errors:
+
+1. **Enable Trust Self-Signed Certificates** – In the SMTP settings, enable the "Trust Self-Signed Certificates" option
+2. **Use Appropriate Security Method** – Choose the correct security method for your server:
+   - For servers requiring TLS: Use "STARTTLS (Port 587)" or "SSL (Port 465)"
+   - For development servers without encryption: Use "None (Insecure)"
+3. **Verify Server Configuration** – Ensure your SMTP server is properly configured to accept connections on the specified port
+4. **Test Connection** – Use the "Test Connection" button to verify your configuration before saving
+
+**Note:** The "None (Insecure)" option should only be used in development environments or with trusted internal servers, as it transmits data without encryption.
+
+### Troubleshooting authentication issues
+
+If you're experiencing authentication problems:
+
+- **Check username and password** – Ensure they are correct and match your email provider's requirements
+- **For Gmail users** – Make sure you're using an App Password, not your regular password
+- **Enable "No Authentication" if applicable** – For internal servers that don't require authentication
+- **Verify account settings** – Some providers require enabling "Less secure app access" or similar settings
+
+### Common error messages and solutions
+
+The SMTP configuration system provides specific error messages to help you troubleshoot issues:
+
+**"SMTP is not enabled. Please enable SMTP first."**
+
+- **Solution**: Enable the "SMTP Enabled" toggle before testing
+
+**"Please fill in SMTP Host and Port before testing."**
+
+- **Solution**: Ensure both SMTP Server and SMTP Port fields are filled
+
+**"Please fill in SMTP Username and Password, or enable 'No Authentication' option."**
+
+- **Solution**: Either provide authentication credentials or enable "No Authentication"
+
+**"SMTP connection failed: [specific error]"**
+
+- **Solution**: Check the specific error message for details about the connection issue
 
 ---
 

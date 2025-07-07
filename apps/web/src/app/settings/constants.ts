@@ -48,6 +48,7 @@ export const createFieldDescriptions = (t: ReturnType<typeof createTranslator>) 
   smtpFromEmail: t("settings.fields.smtpFromEmail.description"),
   smtpSecure: t("settings.fields.smtpSecure.description"),
   smtpNoAuth: t("settings.fields.smtpNoAuth.description"),
+  smtpTrustSelfSigned: t("settings.fields.smtpTrustSelfSigned.description"),
 
   // Auth Providers settings
   authProvidersEnabled: "Enable external authentication providers for SSO",
@@ -82,6 +83,7 @@ export const createFieldTitles = (t: ReturnType<typeof createTranslator>) => ({
   smtpFromEmail: t("settings.fields.smtpFromEmail.title"),
   smtpSecure: t("settings.fields.smtpSecure.title"),
   smtpNoAuth: t("settings.fields.smtpNoAuth.title"),
+  smtpTrustSelfSigned: t("settings.fields.smtpTrustSelfSigned.title"),
 
   // Auth Providers settings
   authProvidersEnabled: "Authentication Providers Enabled",

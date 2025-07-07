@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const { PrismaClient } = require("@prisma/client");
 const crypto = require("crypto");
 
@@ -125,6 +124,12 @@ const defaultConfigs = [
   },
   {
     key: "smtpNoAuth",
+    value: "false",
+    type: "boolean",
+    group: "email",
+  },
+  {
+    key: "smtpTrustSelfSigned",
     value: "false",
     type: "boolean",
     group: "email",

@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS（端口587）",
           "none": "无（不安全）"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "信任自签名证书",
+        "description": "启用此选项以信任自签名SSL/TLS证书（对开发环境有用）"
       }
     },
     "buttons": {

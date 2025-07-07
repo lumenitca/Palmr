@@ -1084,6 +1084,10 @@
           "tls": "STARTTLS (Port 587)",
           "none": "Aucune (Non sécurisé)"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "Faire Confiance aux Certificats Auto-signés",
+        "description": "Activez cette option pour faire confiance aux certificats SSL/TLS auto-signés (utile pour les environnements de développement)"
       }
     },
     "buttons": {

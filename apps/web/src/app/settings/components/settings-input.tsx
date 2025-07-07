@@ -5,6 +5,7 @@ import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form"
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Config } from "../types";
@@ -75,6 +76,27 @@ export function SettingsInput({
           disabled={isDisabled}
           placeholder="0"
         />
+      );
+    }
+
+    if (config.key === "smtpSecure") {
+      const currentValue = watch(`configs.${config.key}`) || "auto";
+      return (
+        <Select
+          value={currentValue}
+          onValueChange={(value) => setValue(`configs.${config.key}`, value)}
+          disabled={isDisabled}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="auto">{t("settings.fields.smtpSecure.options.auto")}</SelectItem>
+            <SelectItem value="ssl">{t("settings.fields.smtpSecure.options.ssl")}</SelectItem>
+            <SelectItem value="tls">{t("settings.fields.smtpSecure.options.tls")}</SelectItem>
+            <SelectItem value="none">{t("settings.fields.smtpSecure.options.none")}</SelectItem>
+          </SelectContent>
+        </Select>
       );
     }
 

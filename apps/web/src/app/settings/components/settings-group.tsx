@@ -63,6 +63,7 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
                   "smtpPass",
                   "smtpSecure",
                   "smtpNoAuth",
+                  "smtpTrustSelfSigned",
                   "smtpFromName",
                   "smtpFromEmail",
                 ];
@@ -111,6 +112,7 @@ export function SettingsGroup({ group, configs, form, isCollapsed, onToggleColla
                     smtpPass: form.getValues("configs.smtpPass") || "",
                     smtpSecure: form.getValues("configs.smtpSecure") || "auto",
                     smtpNoAuth: form.getValues("configs.smtpNoAuth") || "false",
+                    smtpTrustSelfSigned: form.getValues("configs.smtpTrustSelfSigned") || "false",
                   })}
                 />
               )}

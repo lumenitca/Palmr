@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS (Porta 587)",
           "none": "Nessuno (Non sicuro)"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "Accetta Certificati Auto-Firmati",
+        "description": "Abilita questa opzione per accettare certificati SSL/TLS auto-firmati (utile per ambienti di sviluppo)"
       }
     },
     "buttons": {

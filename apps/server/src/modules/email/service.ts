@@ -10,6 +10,7 @@ interface SmtpConfig {
   smtpPass: string;
   smtpSecure?: string;
   smtpNoAuth?: string;
+  smtpTrustSelfSigned?: string;
 }
 
 export class EmailService {
@@ -24,6 +25,7 @@ export class EmailService {
     const port = Number(await this.configService.getValue("smtpPort"));
     const smtpSecure = (await this.configService.getValue("smtpSecure")) || "auto";
     const smtpNoAuth = await this.configService.getValue("smtpNoAuth");
+    const smtpTrustSelfSigned = await this.configService.getValue("smtpTrustSelfSigned");
 
     let secure = false;
     let requireTLS = false;
@@ -48,10 +50,13 @@ export class EmailService {
       port: port,
       secure: secure,
       requireTLS: requireTLS,
-      tls: {
-        rejectUnauthorized: false,
-      },
     };
+
+    if (smtpSecure !== "none") {
+      transportConfig.tls = {
+        rejectUnauthorized: smtpTrustSelfSigned === "true" ? false : true,
+      };
+    }
 
     if (smtpNoAuth !== "true") {
       transportConfig.auth = {
@@ -79,6 +84,7 @@ export class EmailService {
         smtpPass: await this.configService.getValue("smtpPass"),
         smtpSecure: (await this.configService.getValue("smtpSecure")) || "auto",
         smtpNoAuth: await this.configService.getValue("smtpNoAuth"),
+        smtpTrustSelfSigned: await this.configService.getValue("smtpTrustSelfSigned"),
       };
     }
 
@@ -113,10 +119,13 @@ export class EmailService {
       port: port,
       secure: secure,
       requireTLS: requireTLS,
-      tls: {
-        rejectUnauthorized: false,
-      },
     };
+
+    if (smtpSecure !== "none") {
+      transportConfig.tls = {
+        rejectUnauthorized: smtpConfig.smtpTrustSelfSigned === "true" ? false : true,
+      };
+    }
 
     if (smtpNoAuth !== "true") {
       transportConfig.auth = {

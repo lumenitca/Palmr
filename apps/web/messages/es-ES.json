@@ -1072,6 +1072,10 @@
         "title": "Sin Autenticación",
         "description": "Habilitar para servidores internos que no requieren usuario/contraseña (oculta los campos de autenticación)"
       },
+      "smtpTrustSelfSigned": {
+        "title": "Confiar en Certificados Autofirmados",
+        "description": "Habilitar para confiar en certificados SSL/TLS autofirmados (útil para entornos de desarrollo)"
+      },
       "smtpSecure": {
         "title": "Seguridad de Conexión",
         "description": "Método de seguridad de conexión SMTP - Auto (recomendado), SSL, STARTTLS o Ninguno (inseguro)",

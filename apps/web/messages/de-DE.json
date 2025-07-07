@@ -1070,7 +1070,11 @@
       },
       "smtpNoAuth": {
         "title": "Keine Authentifizierung",
-        "description": "Aktivieren Sie dies für interne Server, die keinen Benutzernamen/Passwort benötigen (blendet Authentifizierungsfelder aus)"
+        "description": "Aktivieren Sie dies für interne Server, die keinen Benutzernamen/Passwort benötigen (versteckt Authentifizierungsfelder)"
+      },
+      "smtpTrustSelfSigned": {
+        "title": "Selbstsignierte Zertifikate vertrauen",
+        "description": "Aktivieren Sie dies, um selbstsignierten SSL/TLS-Zertifikaten zu vertrauen (nützlich für Entwicklungsumgebungen)"
       },
       "smtpSecure": {
         "title": "Verbindungssicherheit",

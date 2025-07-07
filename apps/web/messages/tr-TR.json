@@ -1081,6 +1081,10 @@
           "tls": "STARTTLS (Port 587)",
           "none": "Hiçbiri (Güvensiz)"
         }
+      },
+      "smtpTrustSelfSigned": {
+        "title": "Kendinden İmzalı Sertifikalara Güven",
+        "description": "Kendinden imzalı SSL/TLS sertifikalarına güvenmek için bunu etkinleştirin (geliştirme ortamları için kullanışlıdır)"
       }
     },
     "buttons": {
