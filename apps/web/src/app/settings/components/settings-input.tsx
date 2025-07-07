@@ -10,6 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Config } from "../types";
 import { FileSizeInput } from "./file-size-input";
+import { LogoInput } from "./logo-input";
 
 const HIDDEN_FIELDS = ["serverUrl", "firstUserAccess"];
 
@@ -44,6 +45,16 @@ export function SettingsInput({
     (isSmtpField && smtpEnabled === "false") || (isAuthProvidersField && authProvidersEnabled === "false");
 
   const renderInput = () => {
+    if (config.key === "appLogo") {
+      return (
+        <LogoInput
+          value={watch(`configs.${config.key}`)}
+          onChange={(value) => setValue(`configs.${config.key}`, value)}
+          isDisabled={isDisabled}
+        />
+      );
+    }
+
     if (config.type === "boolean") {
       return (
         <Switch
