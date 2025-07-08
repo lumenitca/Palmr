@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
+import { ChunkedUploader } from "@/utils/chunked-upload";
 import { getFileIcon } from "@/utils/file-icons";
 import { generateSafeFileName } from "@/utils/file-utils";
 import { formatFileSize } from "@/utils/format-file-size";
@@ -251,23 +252,59 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       const abortController = new AbortController();
       setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
-      await axios.put(url, file, {
-        headers: {
-          "Content-Type": file.type,
-        },
-        signal: abortController.signal,
-        onUploadProgress: (progressEvent) => {
-          const progress = (progressEvent.loaded / (progressEvent.total || file.size)) * 100;
-          setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress: Math.round(progress) } : u)));
-        },
-      });
+      const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
+      const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
 
-      await registerFile({
-        name: fileName,
-        objectName: objectName,
-        size: file.size,
-        extension: extension,
-      });
+      if (shouldUseChunked) {
+        const result = await ChunkedUploader.uploadFile({
+          file,
+          url,
+          chunkSize,
+          signal: abortController.signal,
+          onProgress: (progress) => {
+            setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress } : u)));
+          },
+          onChunkComplete: (chunkIndex, totalChunks) => {
+            console.log(`Chunk ${chunkIndex + 1}/${totalChunks} completed`);
+          },
+        });
+
+        if (!result.success) {
+          throw new Error(result.error || "Chunked upload failed");
+        }
+
+        const finalObjectName = result.finalObjectName || objectName;
+        console.log("Chunked upload result:", result);
+        console.log("Using final object name:", finalObjectName);
+
+        await registerFile({
+          name: fileName,
+          objectName: finalObjectName,
+          size: file.size,
+          extension: extension,
+        });
+      } else {
+        await axios.put(url, file, {
+          headers: {
+            "Content-Type": file.type,
+          },
+          signal: abortController.signal,
+          timeout: 300000, // 5 minutes timeout for direct uploads
+          maxContentLength: Infinity,
+          maxBodyLength: Infinity,
+          onUploadProgress: (progressEvent) => {
+            const progress = (progressEvent.loaded / (progressEvent.total || file.size)) * 100;
+            setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress: Math.round(progress) } : u)));
+          },
+        });
+
+        await registerFile({
+          name: fileName,
+          objectName: objectName,
+          size: file.size,
+          extension: extension,
+        });
+      }
 
       setFileUploads((prev) =>
         prev.map((u) =>
