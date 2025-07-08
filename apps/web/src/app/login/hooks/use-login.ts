@@ -9,6 +9,8 @@ import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
 import { getAppInfo, getCurrentUser, login } from "@/http/endpoints";
+import { completeTwoFactorLogin } from "@/http/endpoints/auth/two-factor";
+import type { LoginResponse } from "@/http/endpoints/auth/two-factor/types";
 import { LoginFormValues } from "../schemas/schema";
 
 export const loginSchema = z.object({
@@ -26,6 +28,10 @@ export function useLogin() {
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [isInitialized, setIsInitialized] = useState(false);
+  const [requiresTwoFactor, setRequiresTwoFactor] = useState(false);
+  const [twoFactorUserId, setTwoFactorUserId] = useState<string | null>(null);
+  const [twoFactorCode, setTwoFactorCode] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const errorParam = searchParams.get("error");
@@ -96,16 +102,25 @@ export function useLogin() {
 
   const onSubmit = async (data: LoginFormValues) => {
     setError(undefined);
+    setIsSubmitting(true);
 
     try {
-      await login(data);
-      const userResponse = await getCurrentUser();
-      const { isAdmin, ...userData } = userResponse.data.user;
+      const response = await login(data);
+      const loginData = response.data as LoginResponse;
 
-      setUser(userData);
-      setIsAdmin(isAdmin);
-      setIsAuthenticated(true);
-      router.replace("/dashboard");
+      if (loginData.requiresTwoFactor && loginData.userId) {
+        setRequiresTwoFactor(true);
+        setTwoFactorUserId(loginData.userId);
+        return;
+      }
+
+      if (loginData.user) {
+        const { isAdmin, ...userData } = loginData.user;
+        setUser({ ...userData, image: userData.image ?? null });
+        setIsAdmin(isAdmin);
+        setIsAuthenticated(true);
+        router.replace("/dashboard");
+      }
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.data?.error) {
         setError(t(`errors.${err.response.data.error}`));
@@ -115,6 +130,40 @@ export function useLogin() {
       setIsAuthenticated(false);
       setUser(null);
       setIsAdmin(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const onTwoFactorSubmit = async () => {
+    if (!twoFactorUserId || !twoFactorCode) {
+      setError(t("twoFactor.messages.enterVerificationCode"));
+      return;
+    }
+
+    setError(undefined);
+    setIsSubmitting(true);
+
+    try {
+      const response = await completeTwoFactorLogin({
+        userId: twoFactorUserId,
+        token: twoFactorCode,
+      });
+
+      const { isAdmin, ...userData } = response.data.user;
+
+      setUser(userData);
+      setIsAdmin(isAdmin);
+      setIsAuthenticated(true);
+      router.replace("/dashboard");
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError(t("twoFactor.errors.invalidTwoFactorCode"));
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -124,5 +173,10 @@ export function useLogin() {
     isVisible,
     toggleVisibility,
     onSubmit,
+    requiresTwoFactor,
+    twoFactorCode,
+    setTwoFactorCode,
+    onTwoFactorSubmit,
+    isSubmitting,
   };
 }

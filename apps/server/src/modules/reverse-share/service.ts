@@ -533,7 +533,6 @@ export class ReverseShareService {
       const { FilesystemStorageProvider } = await import("../../providers/filesystem-storage.provider.js");
       const provider = FilesystemStorageProvider.getInstance();
 
-      // Use streaming copy for filesystem mode
       const sourcePath = provider.getFilePath(file.objectName);
       const fs = await import("fs");
       const { pipeline } = await import("stream/promises");
@@ -541,14 +540,11 @@ export class ReverseShareService {
       const sourceStream = fs.createReadStream(sourcePath);
       const decryptStream = provider.createDecryptStream();
 
-      // Create a passthrough stream to get the decrypted content
       const { PassThrough } = await import("stream");
       const passThrough = new PassThrough();
 
-      // First, decrypt the source file into the passthrough stream
       await pipeline(sourceStream, decryptStream, passThrough);
 
-      // Then upload the decrypted content
       await provider.uploadFileFromStream(newObjectName, passThrough);
     } else {
       const downloadUrl = await this.fileService.getPresignedGetUrl(file.objectName, 300);

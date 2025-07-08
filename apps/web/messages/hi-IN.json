@@ -182,7 +182,14 @@
     "invalidCredentials": "गलत ईमेल या पासवर्ड",
     "userNotFound": "उपयोगकर्ता नहीं मिला",
     "accountLocked": "खाता लॉक है। कृपया बाद में प्रयास करें",
-    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें"
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें",
+    "Invalid password": "अमान्य पासवर्ड",
+    "Invalid two-factor authentication code": "अमान्य दो-कारक प्रमाणीकरण कोड",
+    "Invalid verification code": "अमान्य सत्यापन कोड",
+    "Password verification required": "पासवर्ड सत्यापन आवश्यक है",
+    "Two-factor authentication is already enabled": "दो-कारक प्रमाणीकरण पहले से सक्षम है",
+    "Two-factor authentication is not enabled": "दो-कारक प्रमाणीकरण सक्षम नहीं है",
+    "Two-factor authentication required": "दो-कारक प्रमाणीकरण आवश्यक है"
   },
   "fileActions": {
     "editFile": "फाइल संपादित करें",
@@ -1550,5 +1557,83 @@
     },
     "stats": "{libraryCount} लाइब्रेरी से {iconCount} आइकन",
     "categoryBadge": "{category} ({count} आइकन)"
+  },
+  "twoFactor": {
+    "title": "दो-कारक प्रमाणीकरण",
+    "description": "अपने खाते में अतिरिक्त सुरक्षा स्तर जोड़ें",
+    "enabled": "आपका खाता दो-कारक प्रमाणीकरण से सुरक्षित है",
+    "disabled": "दो-कारक प्रमाणीकरण सक्षम नहीं है",
+    "setup": {
+      "title": "दो-कारक प्रमाणीकरण सक्षम करें",
+      "description": "अपने प्रमाणीकरण ऐप से QR कोड स्कैन करें, फिर सत्यापन कोड दर्ज करें।",
+      "qrCode": "QR कोड",
+      "manualEntryKey": "मैनुअल एंट्री कुंजी",
+      "verificationCode": "सत्यापन कोड",
+      "verificationCodePlaceholder": "6-अंकों का कोड दर्ज करें",
+      "verificationCodeDescription": "अपने प्रमाणीकरण ऐप से 6-अंकों का कोड दर्ज करें",
+      "verifyAndEnable": "सत्यापित करें और सक्षम करें",
+      "cancel": "रद्द करें"
+    },
+    "disable": {
+      "title": "दो-कारक प्रमाणीकरण अक्षम करें",
+      "description": "दो-कारक प्रमाणीकरण को अक्षम करने की पुष्टि के लिए अपना पासवर्ड दर्ज करें।",
+      "password": "पासवर्ड",
+      "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+      "confirm": "अक्षम करने की पुष्टि करें",
+      "cancel": "रद्द करें"
+    },
+    "backupCodes": {
+      "title": "बैकअप कोड",
+      "description": "इन बैकअप कोड को सुरक्षित स्थान पर सहेजें। यदि आप अपना प्रमाणीकरण डिवाइस खो देते हैं तो आप इनका उपयोग अपने खाते तक पहुंचने के लिए कर सकते हैं।",
+      "warning": "महत्वपूर्ण:",
+      "warningText": "प्रत्येक बैकअप कोड का उपयोग केवल एक बार किया जा सकता है। उन्हें सुरक्षित रखें और किसी के साथ साझा न करें।",
+      "generateNew": "नए बैकअप कोड जनरेट करें",
+      "download": "बैकअप कोड डाउनलोड करें",
+      "copyToClipboard": "क्लिपबोर्ड पर कॉपी करें",
+      "savedMessage": "मैंने अपने बैकअप कोड सहेज लिए हैं",
+      "available": "{count} बैकअप कोड उपलब्ध हैं",
+      "instructions": [
+        "• इन कोड को सुरक्षित स्थान पर सहेजें",
+        "• प्रत्येक बैकअप कोड का उपयोग केवल एक बार किया जा सकता है",
+        "• आप कभी भी नए कोड जनरेट कर सकते हैं"
+      ]
+    },
+    "verification": {
+      "title": "दो-कारक प्रमाणीकरण",
+      "description": "अपने प्रमाणीकरण ऐप से 6-अंकों का कोड दर्ज करें",
+      "backupDescription": "जारी रखने के लिए अपने बैकअप कोड में से एक दर्ज करें",
+      "verificationCode": "सत्यापन कोड",
+      "backupCode": "बैकअप कोड",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "सत्यापित करें",
+      "verifying": "सत्यापन हो रहा है...",
+      "useBackupCode": "इसके बजाय बैकअप कोड का उपयोग करें",
+      "useAuthenticatorCode": "इसके बजाय प्रमाणीकरण कोड का उपयोग करें"
+    },
+    "messages": {
+      "enabledSuccess": "दो-कारक प्रमाणीकरण सफलतापूर्वक सक्षम किया गया!",
+      "disabledSuccess": "दो-कारक प्रमाणीकरण सफलतापूर्वक अक्षम किया गया",
+      "backupCodesGenerated": "नए बैकअप कोड सफलतापूर्वक जनरेट किए गए",
+      "backupCodesCopied": "बैकअप कोड क्लिपबोर्ड पर कॉपी किए गए",
+      "setupFailed": "2FA सेटअप जनरेट करने में विफल",
+      "verificationFailed": "अमान्य सत्यापन कोड",
+      "disableFailed": "2FA अक्षम करने में विफल। कृपया अपना पासवर्ड जांचें।",
+      "backupCodesFailed": "बैकअप कोड जनरेट करने में विफल",
+      "backupCodesCopyFailed": "बैकअप कोड कॉपी करने में विफल",
+      "statusLoadFailed": "2FA स्थिति लोड करने में विफल",
+      "enterVerificationCode": "कृपया सत्यापन कोड दर्ज करें",
+      "enterPassword": "कृपया अपना पासवर्ड दर्ज करें"
+    },
+    "errors": {
+      "invalidVerificationCode": "अमान्य सत्यापन कोड",
+      "invalidTwoFactorCode": "अमान्य दो-कारक प्रमाणीकरण कोड",
+      "twoFactorRequired": "दो-कारक प्रमाणीकरण आवश्यक है",
+      "twoFactorAlreadyEnabled": "दो-कारक प्रमाणीकरण पहले से सक्षम है",
+      "twoFactorNotEnabled": "दो-कारक प्रमाणीकरण सक्षम नहीं है",
+      "passwordVerificationRequired": "पासवर्ड सत्यापन आवश्यक है",
+      "invalidPassword": "अमान्य पासवर्ड",
+      "userNotFound": "उपयोगकर्ता नहीं मिला"
+    }
   }
 }

@@ -1,7 +1,12 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { env } from "../../env";
-import { createResetPasswordSchema, LoginSchema, RequestPasswordResetSchema } from "./dto";
+import {
+  CompleteTwoFactorLoginSchema,
+  createResetPasswordSchema,
+  LoginSchema,
+  RequestPasswordResetSchema,
+} from "./dto";
 import { AuthService } from "./service";
 
 export class AuthController {
@@ -10,7 +15,36 @@ export class AuthController {
   async login(request: FastifyRequest, reply: FastifyReply) {
     try {
       const input = LoginSchema.parse(request.body);
-      const user = await this.authService.login(input);
+      const result = await this.authService.login(input);
+
+      if ("requiresTwoFactor" in result) {
+        return reply.send(result);
+      }
+
+      const user = result;
+      const token = await request.jwtSign({
+        userId: user.id,
+        isAdmin: user.isAdmin,
+      });
+
+      reply.setCookie("token", token, {
+        httpOnly: true,
+        path: "/",
+        secure: env.SECURE_SITE === "true" ? true : false,
+        sameSite: env.SECURE_SITE === "true" ? "lax" : "strict",
+      });
+
+      return reply.send({ user });
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async completeTwoFactorLogin(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const input = CompleteTwoFactorLoginSchema.parse(request.body);
+      const user = await this.authService.completeTwoFactorLogin(input.userId, input.token);
+
       const token = await request.jwtSign({
         userId: user.id,
         isAdmin: user.isAdmin,

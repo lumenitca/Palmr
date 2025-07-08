@@ -213,7 +213,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
       return false;
     }
 
-    // Check if either name or email is required
     const nameRequired = reverseShare.nameFieldRequired === "REQUIRED";
     const emailRequired = reverseShare.emailFieldRequired === "REQUIRED";
 
@@ -226,9 +225,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
       toast.error(t("reverseShares.upload.errors.provideEmailRequired"));
       return false;
     }
-
-    // Remove the validation that requires at least one field when both are optional
-    // When both fields are OPTIONAL, they should be truly optional (can be empty)
 
     return true;
   };
@@ -275,8 +271,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
     if (emailRequired && !uploaderEmail.trim()) return false;
 
-    // When both fields are OPTIONAL, they should be truly optional (can be empty)
-    // Remove the check that requires at least one field to be filled
     return true;
   };
 

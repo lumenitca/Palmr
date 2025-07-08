@@ -64,7 +64,6 @@ export default [
       "@typescript-eslint/no-var-requires": "off",
     },
   },
-  // Ignore ESLint errors in @/ui directory
   {
     ignores: ["src/components/ui/**/*"],
   },

@@ -182,7 +182,14 @@
     "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
     "userNotFound": "المستخدم غير موجود",
     "accountLocked": "تم قفل الحساب. يرجى المحاولة لاحقًا",
-    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى"
+    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى",
+    "Invalid password": "كلمة المرور غير صحيحة",
+    "Invalid two-factor authentication code": "رمز المصادقة الثنائية غير صحيح",
+    "Invalid verification code": "رمز التحقق غير صحيح",
+    "Password verification required": "مطلوب التحقق من كلمة المرور",
+    "Two-factor authentication is already enabled": "المصادقة الثنائية مفعلة بالفعل",
+    "Two-factor authentication is not enabled": "المصادقة الثنائية غير مفعلة",
+    "Two-factor authentication required": "المصادقة الثنائية مطلوبة"
   },
   "fileActions": {
     "editFile": "تعديل الملف",
@@ -1552,5 +1559,83 @@
     },
     "stats": "{iconCount} أيقونة من {libraryCount} مكتبة",
     "categoryBadge": "{category} ({count} أيقونات)"
+  },
+  "twoFactor": {
+    "title": "المصادقة الثنائية",
+    "description": "أضف طبقة إضافية من الأمان إلى حسابك",
+    "enabled": "حسابك محمي بالمصادقة الثنائية",
+    "disabled": "المصادقة الثنائية غير مفعلة",
+    "setup": {
+      "title": "تفعيل المصادقة الثنائية",
+      "description": "امسح رمز QR باستخدام تطبيق المصادقة، ثم أدخل رمز التحقق.",
+      "qrCode": "رمز QR",
+      "manualEntryKey": "مفتاح الإدخال اليدوي",
+      "verificationCode": "رمز التحقق",
+      "verificationCodePlaceholder": "أدخل الرمز المكون من 6 أرقام",
+      "verificationCodeDescription": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة",
+      "verifyAndEnable": "تحقق وتفعيل",
+      "cancel": "إلغاء"
+    },
+    "disable": {
+      "title": "تعطيل المصادقة الثنائية",
+      "description": "أدخل كلمة المرور للتأكيد على تعطيل المصادقة الثنائية.",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "confirm": "تأكيد التعطيل",
+      "cancel": "إلغاء"
+    },
+    "backupCodes": {
+      "title": "رموز النسخ الاحتياطي",
+      "description": "احفظ رموز النسخ الاحتياطي هذه في مكان آمن. يمكنك استخدامها للوصول إلى حسابك في حالة فقدان جهاز المصادقة.",
+      "warning": "هام:",
+      "warningText": "يمكن استخدام كل رمز نسخ احتياطي مرة واحدة فقط. احتفظ بها بشكل آمن ولا تشاركها مع أي شخص.",
+      "generateNew": "إنشاء رموز نسخ احتياطي جديدة",
+      "download": "تحميل رموز النسخ الاحتياطي",
+      "copyToClipboard": "نسخ إلى الحافظة",
+      "savedMessage": "لقد حفظت رموز النسخ الاحتياطي",
+      "available": "{count} رموز نسخ احتياطي متاحة",
+      "instructions": [
+        "• احفظ هذه الرموز في مكان آمن",
+        "• يمكن استخدام كل رمز نسخ احتياطي مرة واحدة فقط",
+        "• يمكنك إنشاء رموز جديدة في أي وقت"
+      ]
+    },
+    "verification": {
+      "title": "المصادقة الثنائية",
+      "description": "أدخل الرمز المكون من 6 أرقام من تطبيق المصادقة",
+      "backupDescription": "أدخل أحد رموز النسخ الاحتياطي للمتابعة",
+      "verificationCode": "رمز التحقق",
+      "backupCode": "رمز النسخ الاحتياطي",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "تحقق",
+      "verifying": "جاري التحقق...",
+      "useBackupCode": "استخدم رمز النسخ الاحتياطي بدلاً من ذلك",
+      "useAuthenticatorCode": "استخدم رمز المصادقة بدلاً من ذلك"
+    },
+    "messages": {
+      "enabledSuccess": "تم تفعيل المصادقة الثنائية بنجاح!",
+      "disabledSuccess": "تم تعطيل المصادقة الثنائية بنجاح",
+      "backupCodesGenerated": "تم إنشاء رموز النسخ الاحتياطي الجديدة بنجاح",
+      "backupCodesCopied": "تم نسخ رموز النسخ الاحتياطي إلى الحافظة",
+      "setupFailed": "فشل في إنشاء إعداد المصادقة الثنائية",
+      "verificationFailed": "رمز التحقق غير صالح",
+      "disableFailed": "فشل في تعطيل المصادقة الثنائية. يرجى التحقق من كلمة المرور.",
+      "backupCodesFailed": "فشل في إنشاء رموز النسخ الاحتياطي",
+      "backupCodesCopyFailed": "فشل في نسخ رموز النسخ الاحتياطي",
+      "statusLoadFailed": "فشل في تحميل حالة المصادقة الثنائية",
+      "enterVerificationCode": "يرجى إدخال رمز التحقق",
+      "enterPassword": "يرجى إدخال كلمة المرور"
+    },
+    "errors": {
+      "invalidVerificationCode": "رمز التحقق غير صالح",
+      "invalidTwoFactorCode": "رمز المصادقة الثنائية غير صالح",
+      "twoFactorRequired": "المصادقة الثنائية مطلوبة",
+      "twoFactorAlreadyEnabled": "المصادقة الثنائية مفعلة بالفعل",
+      "twoFactorNotEnabled": "المصادقة الثنائية غير مفعلة",
+      "passwordVerificationRequired": "التحقق من كلمة المرور مطلوب",
+      "invalidPassword": "كلمة المرور غير صالحة",
+      "userNotFound": "المستخدم غير موجود"
+    }
   }
 }

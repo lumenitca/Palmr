@@ -460,7 +460,6 @@ export function ReceivedFilesModal({
 
   const { editingFile, editValue, setEditValue, inputRef, startEdit, cancelEdit } = useFileEdit();
 
-  // Clear selections when files change
   useEffect(() => {
     setSelectedFiles(new Set());
   }, [reverseShare?.files]);
@@ -651,7 +650,6 @@ export function ReceivedFilesModal({
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
 
-          // Clear selections after successful download
           setSelectedFiles(new Set());
         })(),
         {
@@ -684,7 +682,6 @@ export function ReceivedFilesModal({
 
           await Promise.all(copyPromises);
 
-          // Clear selections after successful copy
           setSelectedFiles(new Set());
         } finally {
           setBulkCopying(false);
@@ -732,7 +729,6 @@ export function ReceivedFilesModal({
 
           await Promise.all(deletePromises);
 
-          // Clear selections and refresh data
           setSelectedFiles(new Set());
           setFilesToDeleteBulk([]);
           if (onRefresh) {

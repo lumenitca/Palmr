@@ -182,7 +182,14 @@
     "invalidCredentials": "Invalid email or password",
     "userNotFound": "User not found",
     "accountLocked": "Account locked. Please try again later",
-    "unexpectedError": "An unexpected error occurred. Please try again"
+    "unexpectedError": "An unexpected error occurred. Please try again",
+    "Invalid verification code": "Invalid verification code",
+    "Two-factor authentication is already enabled": "Two-factor authentication is already enabled",
+    "Two-factor authentication is not enabled": "Two-factor authentication is not enabled",
+    "Invalid password": "Invalid password",
+    "Password verification required": "Password verification required",
+    "Invalid two-factor authentication code": "Invalid two-factor authentication code",
+    "Two-factor authentication required": "Two-factor authentication required"
   },
   "fileActions": {
     "editFile": "Edit File",
@@ -1535,6 +1542,84 @@
     "passwordMinLength": "Password must be at least 6 characters",
     "nameRequired": "Name is required",
     "required": "This field is required"
+  },
+  "twoFactor": {
+    "title": "Two-Factor Authentication",
+    "description": "Add an extra layer of security to your account",
+    "enabled": "Your account is protected with two-factor authentication",
+    "disabled": "Two-factor authentication is not enabled",
+    "setup": {
+      "title": "Enable Two-Factor Authentication",
+      "description": "Scan the QR code with your authenticator app, then enter the verification code.",
+      "qrCode": "QR Code",
+      "manualEntryKey": "Manual Entry Key",
+      "verificationCode": "Verification Code",
+      "verificationCodePlaceholder": "Enter 6-digit code",
+      "verificationCodeDescription": "Enter the 6-digit code from your authenticator app",
+      "verifyAndEnable": "Verify & Enable",
+      "cancel": "Cancel"
+    },
+    "disable": {
+      "title": "Disable Two-Factor Authentication",
+      "description": "Enter your password to confirm disabling two-factor authentication.",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirm": "Confirm Disable",
+      "cancel": "Cancel"
+    },
+    "backupCodes": {
+      "title": "Backup Codes",
+      "description": "Save these backup codes in a safe place. You can use them to access your account if you lose your authenticator device.",
+      "warning": "Important:",
+      "warningText": "Each backup code can only be used once. Keep them secure and don't share them with anyone.",
+      "generateNew": "Generate New Backup Codes",
+      "download": "Download Backup Codes",
+      "copyToClipboard": "Copy to Clipboard",
+      "savedMessage": "I've Saved My Backup Codes",
+      "available": "{count} backup codes available",
+      "instructions": [
+        "• Save these codes in a secure location",
+        "• Each backup code can only be used once",
+        "• You can generate new codes anytime"
+      ]
+    },
+    "verification": {
+      "title": "Two-Factor Authentication",
+      "description": "Enter the 6-digit code from your authenticator app",
+      "backupDescription": "Enter one of your backup codes to continue",
+      "verificationCode": "Verification Code",
+      "backupCode": "Backup Code",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "Verify",
+      "verifying": "Verifying...",
+      "useBackupCode": "Use backup code instead",
+      "useAuthenticatorCode": "Use authenticator code instead"
+    },
+    "messages": {
+      "enabledSuccess": "Two-factor authentication enabled successfully!",
+      "disabledSuccess": "Two-factor authentication disabled successfully",
+      "backupCodesGenerated": "New backup codes generated successfully",
+      "backupCodesCopied": "Backup codes copied to clipboard",
+      "setupFailed": "Failed to generate 2FA setup",
+      "verificationFailed": "Invalid verification code",
+      "disableFailed": "Failed to disable 2FA. Please check your password.",
+      "backupCodesFailed": "Failed to generate backup codes",
+      "backupCodesCopyFailed": "Failed to copy backup codes",
+      "statusLoadFailed": "Failed to load 2FA status",
+      "enterVerificationCode": "Please enter the verification code",
+      "enterPassword": "Please enter your password"
+    },
+    "errors": {
+      "invalidVerificationCode": "Invalid verification code",
+      "invalidTwoFactorCode": "Invalid two-factor authentication code",
+      "twoFactorRequired": "Two-factor authentication required",
+      "twoFactorAlreadyEnabled": "Two-factor authentication is already enabled",
+      "twoFactorNotEnabled": "Two-factor authentication is not enabled",
+      "passwordVerificationRequired": "Password verification required",
+      "invalidPassword": "Invalid password",
+      "userNotFound": "User not found"
+    }
   },
   "iconPicker": {
     "title": "Select Icon",
