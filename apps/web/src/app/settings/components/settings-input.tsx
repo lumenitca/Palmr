@@ -77,7 +77,6 @@ export function SettingsInput({
       );
     }
 
-    // Use FileSizeInput for storage size fields
     if (config.key === "maxFileSize" || config.key === "maxTotalStoragePerUser") {
       const currentValue = watch(`configs.${config.key}`) || "0";
       return (

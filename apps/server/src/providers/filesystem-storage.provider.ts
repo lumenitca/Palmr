@@ -179,7 +179,6 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   async uploadFile(objectName: string, buffer: Buffer): Promise<void> {
-    // For backward compatibility, convert buffer to stream and use streaming upload
     const filePath = this.getFilePath(objectName);
     const dir = path.dirname(filePath);
 
@@ -197,7 +196,6 @@ export class FilesystemStorageProvider implements StorageProvider {
 
     await fs.mkdir(dir, { recursive: true });
 
-    // Use the new temp file system for better organization
     const tempPath = getTempFilePath(objectName);
     const tempDir = path.dirname(tempPath);
 
@@ -308,10 +306,8 @@ export class FilesystemStorageProvider implements StorageProvider {
    */
   private async cleanupTempFile(tempPath: string): Promise<void> {
     try {
-      // Remove the temp file
       await fs.unlink(tempPath);
 
-      // Try to remove the parent directory if it's empty
       const tempDir = path.dirname(tempPath);
       try {
         const files = await fs.readdir(tempDir);
@@ -319,7 +315,6 @@ export class FilesystemStorageProvider implements StorageProvider {
           await fs.rmdir(tempDir);
         }
       } catch (dirError: any) {
-        // Ignore errors when trying to remove directory (might not be empty or might not exist)
         if (dirError.code !== "ENOTEMPTY" && dirError.code !== "ENOENT") {
           console.warn("Warning: Could not remove temp directory:", dirError.message);
         }
@@ -338,11 +333,10 @@ export class FilesystemStorageProvider implements StorageProvider {
     try {
       const tempUploadsDir = directoriesConfig.tempUploads;
 
-      // Check if temp-uploads directory exists
       try {
         await fs.access(tempUploadsDir);
       } catch {
-        return; // Directory doesn't exist, nothing to clean
+        return;
       }
 
       const items = await fs.readdir(tempUploadsDir);
@@ -354,14 +348,12 @@ export class FilesystemStorageProvider implements StorageProvider {
           const stat = await fs.stat(itemPath);
 
           if (stat.isDirectory()) {
-            // Check if directory is empty
             const dirContents = await fs.readdir(itemPath);
             if (dirContents.length === 0) {
               await fs.rmdir(itemPath);
               console.log(`🧹 Cleaned up empty temp directory: ${itemPath}`);
             }
           } else if (stat.isFile()) {
-            // Check if file is older than 1 hour (stale temp files)
             const oneHourAgo = Date.now() - 60 * 60 * 1000;
             if (stat.mtime.getTime() < oneHourAgo) {
               await fs.unlink(itemPath);
@@ -369,7 +361,6 @@ export class FilesystemStorageProvider implements StorageProvider {
             }
           }
         } catch (error: any) {
-          // Ignore errors for individual items
           if (error.code !== "ENOENT") {
             console.warn(`Warning: Could not process temp item ${itemPath}:`, error.message);
           }

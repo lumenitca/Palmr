@@ -1075,8 +1075,8 @@
         "description": "URL de base du serveur Palmr (ex: https://palmr.exemple.com)"
       },
       "testSmtp": {
-        "title": "[TO_TRANSLATE] Test SMTP Connection",
-        "description": "[TO_TRANSLATE] Test if the SMTP configuration is valid"
+        "title": "Test de la Connexion SMTP",
+        "description": "Tester si la configuration SMTP est valide"
       },
       "smtpNoAuth": {
         "title": "Pas d'Authentification",

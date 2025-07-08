@@ -1152,7 +1152,7 @@
       "description": "To udostępnienie mogło zostać usunięte lub wygasło."
     },
     "pageTitle": "Udostępnij",
-    "downloadAll": "[TO_TRANSLATE] Download All"
+    "downloadAll": "Pobierz wszystkie"
   },
   "shareActions": {
     "deleteTitle": "Usuń udostępnienie",

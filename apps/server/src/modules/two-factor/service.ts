@@ -31,14 +31,12 @@ export class TwoFactorService {
       throw new Error("Two-factor authentication is already enabled");
     }
 
-    // Generate secret
     const secret = speakeasy.generateSecret({
       name: `${appName || "Palmr"}:${userEmail}`,
       issuer: appName || "Palmr",
       length: 32,
     });
 
-    // Generate QR code
     const qrCodeUrl = await QRCode.toDataURL(secret.otpauth_url || "");
 
     return {
@@ -70,7 +68,7 @@ export class TwoFactorService {
       secret: secret,
       encoding: "base32",
       token: token,
-      window: 1, // Allow 1 step behind/ahead for clock drift
+      window: 1,
     });
 
     if (!verified) {

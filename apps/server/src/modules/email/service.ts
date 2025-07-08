@@ -72,10 +72,8 @@ export class EmailService {
     let smtpConfig: SmtpConfig;
 
     if (config) {
-      // Use provided configuration
       smtpConfig = config;
     } else {
-      // Fallback to saved configuration
       smtpConfig = {
         smtpEnabled: await this.configService.getValue("smtpEnabled"),
         smtpHost: await this.configService.getValue("smtpHost"),

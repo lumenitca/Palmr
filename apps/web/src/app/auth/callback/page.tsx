@@ -44,7 +44,6 @@ export default function AuthCallbackPage() {
     }
 
     if (token) {
-      // Set the token in a cookie and redirect to dashboard (using Palmr's standard cookie name)
       document.cookie = `token=${token}; path=/; max-age=${7 * 24 * 60 * 60}; samesite=lax`;
 
       toast.success("Successfully authenticated!");
@@ -52,7 +51,6 @@ export default function AuthCallbackPage() {
       return;
     }
 
-    // If no token or error, redirect to login
     router.push("/login");
   }, [router, searchParams]);
 

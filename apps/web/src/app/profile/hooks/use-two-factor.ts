@@ -12,14 +12,10 @@ import {
   getTwoFactorStatus,
   verifyTwoFactorSetup,
 } from "@/http/endpoints/auth/two-factor";
-import type {
-  TwoFactorSetupResponse,
-  TwoFactorStatus,
-  VerifySetupResponse,
-} from "@/http/endpoints/auth/two-factor/types";
+import type { TwoFactorSetupResponse, TwoFactorStatus } from "@/http/endpoints/auth/two-factor/types";
 
 export function useTwoFactor() {
-  const t = useTranslations("twoFactor");
+  const t = useTranslations();
   const { appName } = useAppInfo();
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState<TwoFactorStatus>({
@@ -35,7 +31,6 @@ export function useTwoFactor() {
   const [verificationCode, setVerificationCode] = useState("");
   const [disablePassword, setDisablePassword] = useState("");
 
-  // Load 2FA status
   const loadStatus = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -43,13 +38,12 @@ export function useTwoFactor() {
       setStatus(response.data);
     } catch (error) {
       console.error("Failed to load 2FA status:", error);
-      toast.error(t("messages.statusLoadFailed"));
+      toast.error(t("twoFactor.messages.statusLoadFailed"));
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [t]);
 
-  // Generate 2FA setup
   const startSetup = async () => {
     try {
       setIsLoading(true);
@@ -61,17 +55,16 @@ export function useTwoFactor() {
       if (error.response?.data?.error) {
         toast.error(error.response.data.error);
       } else {
-        toast.error(t("messages.setupFailed"));
+        toast.error(t("twoFactor.messages.setupFailed"));
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Verify setup and enable 2FA
   const verifySetup = async () => {
     if (!setupData || !verificationCode) {
-      toast.error(t("messages.enterVerificationCode"));
+      toast.error(t("twoFactor.messages.enterVerificationCode"));
       return;
     }
 
@@ -87,7 +80,7 @@ export function useTwoFactor() {
         setIsSetupModalOpen(false);
         setIsBackupCodesModalOpen(true);
         setVerificationCode("");
-        toast.success(t("messages.enabledSuccess"));
+        toast.success(t("twoFactor.messages.enabledSuccess"));
         await loadStatus();
       }
     } catch (error: any) {
@@ -95,17 +88,16 @@ export function useTwoFactor() {
       if (error.response?.data?.error) {
         toast.error(error.response.data.error);
       } else {
-        toast.error(t("messages.verificationFailed"));
+        toast.error(t("twoFactor.messages.verificationFailed"));
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Disable 2FA
   const disable2FA = async () => {
     if (!disablePassword) {
-      toast.error(t("messages.enterPassword"));
+      toast.error(t("twoFactor.messages.enterPassword"));
       return;
     }
 
@@ -118,7 +110,7 @@ export function useTwoFactor() {
       if (response.data.success) {
         setIsDisableModalOpen(false);
         setDisablePassword("");
-        toast.success(t("messages.disabledSuccess"));
+        toast.success(t("twoFactor.messages.disabledSuccess"));
         await loadStatus();
       }
     } catch (error: any) {
@@ -126,7 +118,7 @@ export function useTwoFactor() {
       if (error.response?.data?.error) {
         toast.error(error.response.data.error);
       } else {
-        toast.error(t("messages.disableFailed"));
+        toast.error(t("twoFactor.messages.disableFailed"));
       }
     } finally {
       setIsLoading(false);
@@ -139,14 +131,14 @@ export function useTwoFactor() {
       const response = await generateBackupCodes();
       setBackupCodes(response.data.backupCodes);
       setIsBackupCodesModalOpen(true);
-      toast.success(t("messages.backupCodesGenerated"));
+      toast.success(t("twoFactor.messages.backupCodesGenerated"));
       await loadStatus();
     } catch (error: any) {
       console.error("Failed to generate backup codes:", error);
       if (error.response?.data?.error) {
         toast.error(error.response.data.error);
       } else {
-        toast.error(t("messages.backupCodesFailed"));
+        toast.error(t("twoFactor.messages.backupCodesFailed"));
       }
     } finally {
       setIsLoading(false);
@@ -169,9 +161,9 @@ export function useTwoFactor() {
   const copyBackupCodes = async () => {
     try {
       await navigator.clipboard.writeText(backupCodes.join("\n"));
-      toast.success(t("messages.backupCodesCopied"));
-    } catch (error) {
-      toast.error(t("messages.backupCodesCopyFailed"));
+      toast.success(t("twoFactor.messages.backupCodesCopied"));
+    } catch {
+      toast.error(t("twoFactor.messages.backupCodesCopyFailed"));
     }
   };
 
@@ -180,7 +172,6 @@ export function useTwoFactor() {
   }, [loadStatus]);
 
   return {
-    // State
     isLoading,
     status,
     setupData,
@@ -188,19 +179,16 @@ export function useTwoFactor() {
     verificationCode,
     disablePassword,
 
-    // Modal states
     isSetupModalOpen,
     isDisableModalOpen,
     isBackupCodesModalOpen,
 
-    // Setters
     setVerificationCode,
     setDisablePassword,
     setIsSetupModalOpen,
     setIsDisableModalOpen,
     setIsBackupCodesModalOpen,
 
-    // Actions
     startSetup,
     verifySetup,
     disable2FA,

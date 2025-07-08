@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IconEye, IconEyeClosed, IconShield } from "@tabler/icons-react";
+import { IconShield } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ export function TwoFactorVerification({
   error,
   isSubmitting,
 }: TwoFactorVerificationProps) {
-  const t = useTranslations("twoFactor");
+  const t = useTranslations();
   const [showBackupCode, setShowBackupCode] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,22 +50,22 @@ export function TwoFactorVerification({
             <IconShield className="h-8 w-8 text-primary" />
           </div>
         </div>
-        <CardTitle>{t("verification.title")}</CardTitle>
+        <CardTitle>{t("twoFactor.verification.title")}</CardTitle>
         <CardDescription>
-          {showBackupCode ? t("verification.backupDescription") : t("verification.description")}
+          {showBackupCode ? t("twoFactor.verification.backupDescription") : t("twoFactor.verification.description")}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="twoFactorCode" className="mb-2">
-              {showBackupCode ? t("verification.backupCode") : t("verification.verificationCode")}
+              {showBackupCode ? t("twoFactor.verification.backupCode") : t("twoFactor.verification.verificationCode")}
             </Label>
             {showBackupCode ? (
               <Input
                 id="twoFactorCode"
                 type="text"
-                placeholder={t("verification.backupCodePlaceholder")}
+                placeholder={t("twoFactor.verification.backupCodePlaceholder")}
                 value={twoFactorCode}
                 onChange={handleBackupCodeChange}
                 className="text-center tracking-widest font-mono"
@@ -95,7 +95,7 @@ export function TwoFactorVerification({
             className="w-full"
             disabled={isSubmitting || twoFactorCode.length < (showBackupCode ? 8 : 6)}
           >
-            {isSubmitting ? t("verification.verifying") : t("verification.verify")}
+            {isSubmitting ? t("twoFactor.verification.verifying") : t("twoFactor.verification.verify")}
           </Button>
 
           {error && (
@@ -112,7 +112,9 @@ export function TwoFactorVerification({
               }}
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              {showBackupCode ? t("verification.useAuthenticatorCode") : t("verification.useBackupCode")}
+              {showBackupCode
+                ? t("twoFactor.verification.useAuthenticatorCode")
+                : t("twoFactor.verification.useBackupCode")}
             </Button>
           </div>
         </form>

@@ -9,7 +9,6 @@ import {
   IconKey,
   IconShield,
   IconShieldCheck,
-  IconX,
 } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
@@ -29,7 +28,7 @@ import { Label } from "@/components/ui/label";
 import { useTwoFactor } from "../hooks/use-two-factor";
 
 export function TwoFactorForm() {
-  const t = useTranslations("twoFactor");
+  const t = useTranslations();
   const {
     isLoading,
     status,
@@ -61,7 +60,7 @@ export function TwoFactorForm() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <IconShield className="h-5 w-5" />
-            {t("title")}
+            {t("twoFactor.title")}
           </CardTitle>
           <CardDescription>Loading...</CardDescription>
         </CardHeader>
@@ -79,9 +78,9 @@ export function TwoFactorForm() {
             ) : (
               <IconShield className="h-5 w-5" />
             )}
-            {t("title")}
+            {t("twoFactor.title")}
           </CardTitle>
-          <CardDescription>{status.enabled ? t("enabled") : t("description")}</CardDescription>
+          <CardDescription>{status.enabled ? t("twoFactor.enabled") : t("twoFactor.description")}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
@@ -89,7 +88,7 @@ export function TwoFactorForm() {
               <p className="font-medium">Status: {status.enabled ? "Enabled" : "Disabled"}</p>
               {status.enabled && (
                 <p className="text-sm text-muted-foreground">
-                  {t("backupCodes.available", { count: status.availableBackupCodes })}
+                  {t("twoFactor.backupCodes.available", { count: status.availableBackupCodes })}
                 </p>
               )}
             </div>
@@ -98,7 +97,7 @@ export function TwoFactorForm() {
                 <>
                   <Button variant="outline" onClick={generateNewBackupCodes} disabled={isLoading}>
                     <IconKey className="h-4 w-4" />
-                    {t("backupCodes.generateNew")}
+                    {t("twoFactor.backupCodes.generateNew")}
                   </Button>
                   <Button variant="destructive" onClick={() => setIsDisableModalOpen(true)} disabled={isLoading}>
                     Disable 2FA
@@ -119,8 +118,8 @@ export function TwoFactorForm() {
       <Dialog open={isSetupModalOpen} onOpenChange={setIsSetupModalOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("setup.title")}</DialogTitle>
-            <DialogDescription>{t("setup.description")}</DialogDescription>
+            <DialogTitle>{t("twoFactor.setup.title")}</DialogTitle>
+            <DialogDescription>{t("twoFactor.setup.description")}</DialogDescription>
           </DialogHeader>
 
           {setupData && (
@@ -132,7 +131,7 @@ export function TwoFactorForm() {
 
               {/* Manual Entry */}
               <div>
-                <Label className="text-sm font-medium">{t("setup.manualEntryKey")}</Label>
+                <Label className="text-sm font-medium">{t("twoFactor.setup.manualEntryKey")}</Label>
                 <div className="flex items-center gap-2 mt-1">
                   <Input value={setupData.manualEntryKey} readOnly className="font-mono text-xs" />
                   <Button
@@ -148,7 +147,7 @@ export function TwoFactorForm() {
               {/* Verification Code */}
               <div>
                 <Label htmlFor="verification-code" className="mb-2">
-                  {t("setup.verificationCode")}
+                  {t("twoFactor.setup.verificationCode")}
                 </Label>
                 <div className="flex justify-start">
                   <InputOTP maxLength={6} value={verificationCode} onChange={setVerificationCode}>
@@ -162,17 +161,19 @@ export function TwoFactorForm() {
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
-                <span className="text-sm text-muted-foreground mt-1">{t("setup.verificationCodeDescription")}</span>
+                <span className="text-sm text-muted-foreground mt-1">
+                  {t("twoFactor.setup.verificationCodeDescription")}
+                </span>
               </div>
             </div>
           )}
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsSetupModalOpen(false)} disabled={isLoading}>
-              {t("setup.cancel")}
+              {t("twoFactor.setup.cancel")}
             </Button>
             <Button onClick={verifySetup} disabled={isLoading || !verificationCode || verificationCode.length !== 6}>
-              {t("setup.verifyAndEnable")}
+              {t("twoFactor.setup.verifyAndEnable")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -182,20 +183,20 @@ export function TwoFactorForm() {
       <Dialog open={isDisableModalOpen} onOpenChange={setIsDisableModalOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("disable.title")}</DialogTitle>
-            <DialogDescription>{t("disable.description")}</DialogDescription>
+            <DialogTitle>{t("twoFactor.disable.title")}</DialogTitle>
+            <DialogDescription>{t("twoFactor.disable.description")}</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
             <div>
               <Label htmlFor="disable-password" className="mb-2">
-                {t("disable.password")}
+                {t("twoFactor.disable.password")}
               </Label>
               <div className="relative">
                 <Input
                   id="disable-password"
                   type={showPassword ? "text" : "password"}
-                  placeholder={t("disable.passwordPlaceholder")}
+                  placeholder={t("twoFactor.disable.passwordPlaceholder")}
                   value={disablePassword}
                   onChange={(e) => setDisablePassword(e.target.value)}
                 />
@@ -218,10 +219,10 @@ export function TwoFactorForm() {
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsDisableModalOpen(false)} disabled={isLoading}>
-              {t("disable.cancel")}
+              {t("twoFactor.disable.cancel")}
             </Button>
             <Button variant="destructive" onClick={disable2FA} disabled={isLoading || !disablePassword}>
-              {t("disable.confirm")}
+              {t("twoFactor.disable.confirm")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -231,8 +232,8 @@ export function TwoFactorForm() {
       <Dialog open={isBackupCodesModalOpen} onOpenChange={setIsBackupCodesModalOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("backupCodes.title")}</DialogTitle>
-            <DialogDescription>{t("backupCodes.description")}</DialogDescription>
+            <DialogTitle>{t("twoFactor.backupCodes.title")}</DialogTitle>
+            <DialogDescription>{t("twoFactor.backupCodes.description")}</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
@@ -249,11 +250,11 @@ export function TwoFactorForm() {
             <div className="flex gap-2">
               <Button variant="outline" onClick={downloadBackupCodes} className="flex-1">
                 <IconDownload className="h-4 w-4" />
-                {t("backupCodes.download")}
+                {t("twoFactor.backupCodes.download")}
               </Button>
               <Button variant="outline" onClick={copyBackupCodes} className="flex-1">
                 <IconCopy className="h-4 w-4" />
-                {t("backupCodes.copyToClipboard")}
+                {t("twoFactor.backupCodes.copyToClipboard")}
               </Button>
             </div>
 
@@ -265,7 +266,7 @@ export function TwoFactorForm() {
           </div>
 
           <DialogFooter>
-            <Button onClick={() => setIsBackupCodesModalOpen(false)}>{t("backupCodes.savedMessage")}</Button>
+            <Button onClick={() => setIsBackupCodesModalOpen(false)}>{t("twoFactor.backupCodes.savedMessage")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

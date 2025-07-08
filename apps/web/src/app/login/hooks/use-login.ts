@@ -150,8 +150,7 @@ export function useLogin() {
         token: twoFactorCode,
       });
 
-      const userResponse = await getCurrentUser();
-      const { isAdmin, ...userData } = userResponse.data.user;
+      const { isAdmin, ...userData } = response.data.user;
 
       setUser(userData);
       setIsAdmin(isAdmin);
