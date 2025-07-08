@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "../../shared/prisma";
 import { ConfigService } from "../config/service";
 import { EmailService } from "../email/service";
+import { TwoFactorService } from "../two-factor/service";
 import { UserResponseSchema } from "../user/dto";
 import { PrismaUserRepository } from "../user/repository";
 import { LoginInput } from "./dto";
@@ -12,6 +13,7 @@ export class AuthService {
   private userRepository = new PrismaUserRepository();
   private configService = new ConfigService();
   private emailService = new EmailService();
+  private twoFactorService = new TwoFactorService();
 
   async login(data: LoginInput) {
     const user = await this.userRepository.findUserByEmailOrUsername(data.emailOrUsername);
@@ -76,6 +78,42 @@ export class AuthService {
         where: { userId: user.id },
       });
     }
+
+    const has2FA = await this.twoFactorService.isEnabled(user.id);
+
+    if (has2FA) {
+      return {
+        requiresTwoFactor: true,
+        userId: user.id,
+        message: "Two-factor authentication required",
+      };
+    }
+
+    return UserResponseSchema.parse(user);
+  }
+
+  async completeTwoFactorLogin(userId: string, token: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (!user.isActive) {
+      throw new Error("Account is inactive. Please contact an administrator.");
+    }
+
+    const verificationResult = await this.twoFactorService.verifyToken(userId, token);
+
+    if (!verificationResult.success) {
+      throw new Error("Invalid two-factor authentication code");
+    }
+
+    await prisma.loginAttempt.deleteMany({
+      where: { userId },
+    });
 
     return UserResponseSchema.parse(user);
   }

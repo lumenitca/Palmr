@@ -182,7 +182,14 @@
     "invalidCredentials": "Correo electrónico o contraseña inválidos",
     "userNotFound": "Usuario no encontrado",
     "accountLocked": "Cuenta bloqueada. Por favor, inténtalo de nuevo más tarde",
-    "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo"
+    "unexpectedError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo",
+    "Invalid password": "Contraseña inválida",
+    "Invalid two-factor authentication code": "Código de autenticación de dos factores inválido",
+    "Invalid verification code": "Código de verificación inválido",
+    "Password verification required": "Se requiere verificación de contraseña",
+    "Two-factor authentication is already enabled": "La autenticación de dos factores ya está habilitada",
+    "Two-factor authentication is not enabled": "La autenticación de dos factores no está habilitada",
+    "Two-factor authentication required": "Se requiere autenticación de dos factores"
   },
   "fileActions": {
     "editFile": "Editar archivo",
@@ -1550,5 +1557,83 @@
     },
     "stats": "{iconCount} iconos de {libraryCount} bibliotecas",
     "categoryBadge": "{category} ({count} iconos)"
+  },
+  "twoFactor": {
+    "title": "Autenticación de dos factores",
+    "description": "Añade una capa extra de seguridad a tu cuenta",
+    "enabled": "Tu cuenta está protegida con autenticación de dos factores",
+    "disabled": "La autenticación de dos factores no está habilitada",
+    "setup": {
+      "title": "Habilitar autenticación de dos factores",
+      "description": "Escanea el código QR con tu aplicación de autenticación y luego ingresa el código de verificación.",
+      "qrCode": "Código QR",
+      "manualEntryKey": "Clave de entrada manual",
+      "verificationCode": "Código de verificación",
+      "verificationCodePlaceholder": "Ingresa el código de 6 dígitos",
+      "verificationCodeDescription": "Ingresa el código de 6 dígitos de tu aplicación de autenticación",
+      "verifyAndEnable": "Verificar y habilitar",
+      "cancel": "Cancelar"
+    },
+    "disable": {
+      "title": "Deshabilitar autenticación de dos factores",
+      "description": "Ingresa tu contraseña para confirmar la desactivación de la autenticación de dos factores.",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "confirm": "Confirmar desactivación",
+      "cancel": "Cancelar"
+    },
+    "backupCodes": {
+      "title": "Códigos de respaldo",
+      "description": "Guarda estos códigos de respaldo en un lugar seguro. Puedes usarlos para acceder a tu cuenta si pierdes tu dispositivo de autenticación.",
+      "warning": "Importante:",
+      "warningText": "Cada código de respaldo solo se puede usar una vez. Mantenlos seguros y no los compartas con nadie.",
+      "generateNew": "Generar nuevos códigos de respaldo",
+      "download": "Descargar códigos de respaldo",
+      "copyToClipboard": "Copiar al portapapeles",
+      "savedMessage": "He guardado mis códigos de respaldo",
+      "available": "{count} códigos de respaldo disponibles",
+      "instructions": [
+        "• Guarda estos códigos en un lugar seguro",
+        "• Cada código de respaldo solo se puede usar una vez",
+        "• Puedes generar nuevos códigos en cualquier momento"
+      ]
+    },
+    "verification": {
+      "title": "Autenticación de dos factores",
+      "description": "Ingresa el código de 6 dígitos de tu aplicación de autenticación",
+      "backupDescription": "Ingresa uno de tus códigos de respaldo para continuar",
+      "verificationCode": "Código de verificación",
+      "backupCode": "Código de respaldo",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "Verificar",
+      "verifying": "Verificando...",
+      "useBackupCode": "Usar código de respaldo en su lugar",
+      "useAuthenticatorCode": "Usar código de autenticación en su lugar"
+    },
+    "messages": {
+      "enabledSuccess": "¡Autenticación de dos factores habilitada exitosamente!",
+      "disabledSuccess": "Autenticación de dos factores deshabilitada exitosamente",
+      "backupCodesGenerated": "Nuevos códigos de respaldo generados exitosamente",
+      "backupCodesCopied": "Códigos de respaldo copiados al portapapeles",
+      "setupFailed": "Error al generar la configuración de 2FA",
+      "verificationFailed": "Código de verificación inválido",
+      "disableFailed": "Error al deshabilitar 2FA. Por favor verifica tu contraseña.",
+      "backupCodesFailed": "Error al generar códigos de respaldo",
+      "backupCodesCopyFailed": "Error al copiar códigos de respaldo",
+      "statusLoadFailed": "Error al cargar el estado de 2FA",
+      "enterVerificationCode": "Por favor ingresa el código de verificación",
+      "enterPassword": "Por favor ingresa tu contraseña"
+    },
+    "errors": {
+      "invalidVerificationCode": "Código de verificación inválido",
+      "invalidTwoFactorCode": "Código de autenticación de dos factores inválido",
+      "twoFactorRequired": "Se requiere autenticación de dos factores",
+      "twoFactorAlreadyEnabled": "La autenticación de dos factores ya está habilitada",
+      "twoFactorNotEnabled": "La autenticación de dos factores no está habilitada",
+      "passwordVerificationRequired": "Se requiere verificación de contraseña",
+      "invalidPassword": "Contraseña inválida",
+      "userNotFound": "Usuario no encontrado"
+    }
   }
 }

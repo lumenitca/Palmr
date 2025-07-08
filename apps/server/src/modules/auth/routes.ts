@@ -4,7 +4,7 @@ import { z } from "zod";
 import { ConfigService } from "../config/service";
 import { validatePasswordMiddleware } from "../user/middleware";
 import { AuthController } from "./controller";
-import { createResetPasswordSchema, RequestPasswordResetSchema } from "./dto";
+import { CompleteTwoFactorLoginSchema, createResetPasswordSchema, RequestPasswordResetSchema } from "./dto";
 
 const configService = new ConfigService();
 
@@ -32,6 +32,43 @@ export async function authRoutes(app: FastifyInstance) {
         description: "Performs login and returns user data",
         body: loginSchema,
         response: {
+          200: z.union([
+            z.object({
+              user: z.object({
+                id: z.string().describe("User ID"),
+                firstName: z.string().describe("User first name"),
+                lastName: z.string().describe("User last name"),
+                username: z.string().describe("User username"),
+                email: z.string().email().describe("User email"),
+                isAdmin: z.boolean().describe("User is admin"),
+                isActive: z.boolean().describe("User is active"),
+                createdAt: z.date().describe("User creation date"),
+                updatedAt: z.date().describe("User last update date"),
+              }),
+            }),
+            z.object({
+              requiresTwoFactor: z.boolean().describe("Whether 2FA is required"),
+              userId: z.string().describe("User ID for 2FA verification"),
+              message: z.string().describe("2FA required message"),
+            }),
+          ]),
+          400: z.object({ error: z.string().describe("Error message") }),
+        },
+      },
+    },
+    authController.login.bind(authController)
+  );
+
+  app.post(
+    "/auth/2fa/login",
+    {
+      schema: {
+        tags: ["Authentication"],
+        operationId: "completeTwoFactorLogin",
+        summary: "Complete Two-Factor Login",
+        description: "Complete login process with 2FA verification",
+        body: CompleteTwoFactorLoginSchema,
+        response: {
           200: z.object({
             user: z.object({
               id: z.string().describe("User ID"),
@@ -49,7 +86,7 @@ export async function authRoutes(app: FastifyInstance) {
         },
       },
     },
-    authController.login.bind(authController)
+    authController.completeTwoFactorLogin.bind(authController)
   );
 
   app.post(
