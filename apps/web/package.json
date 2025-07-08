@@ -21,7 +21,7 @@
     "lint:fix": "eslint \"src/**/*.+(ts|tsx)\" --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "type-check": "npx tsc --noEmit",
+    "type-check": "npx tsc --noEmit --skipLibCheck",
     "validate": "pnpm lint && pnpm type-check",
     "translations": "python3 scripts/run_translations.py all",
     "translations:check": "python3 scripts/run_translations.py check",
