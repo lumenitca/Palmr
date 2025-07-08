@@ -435,8 +435,8 @@
       "description": "Visualisez et gérez vos fichiers partagés"
     },
     "reverseShares": {
-      "title": "Receber Arquivos",
-      "description": "Crie links para outros enviarem arquivos para você"
+      "title": "Recevoir des Fichiers",
+      "description": "Créez des liens pour que d'autres puissent vous envoyer des fichiers"
     }
   },
   "recentFiles": {
