@@ -259,7 +259,7 @@ export function TwoFactorForm() {
             </div>
 
             <div className="text-sm text-muted-foreground">
-              {t.raw("backupCodes.instructions").map((instruction: string, index: number) => (
+              {t.raw("twoFactor.backupCodes.instructions").map((instruction: string, index: number) => (
                 <p key={index}>{instruction}</p>
               ))}
             </div>
