@@ -65,6 +65,6 @@ export default [
     },
   },
   {
-    ignores: ["src/components/ui/**/*"],
+    ignores: ["src/components/ui/**/*", ".next/**/*"],
   },
 ];
