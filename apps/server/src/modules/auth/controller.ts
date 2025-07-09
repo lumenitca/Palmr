@@ -12,10 +12,17 @@ import { AuthService } from "./service";
 export class AuthController {
   private authService = new AuthService();
 
+  private getClientInfo(request: FastifyRequest) {
+    const userAgent = request.headers["user-agent"] || "";
+    const ipAddress = request.ip || request.socket.remoteAddress || "";
+    return { userAgent, ipAddress };
+  }
+
   async login(request: FastifyRequest, reply: FastifyReply) {
     try {
       const input = LoginSchema.parse(request.body);
-      const result = await this.authService.login(input);
+      const { userAgent, ipAddress } = this.getClientInfo(request);
+      const result = await this.authService.login(input, userAgent, ipAddress);
 
       if ("requiresTwoFactor" in result) {
         return reply.send(result);
@@ -43,7 +50,14 @@ export class AuthController {
   async completeTwoFactorLogin(request: FastifyRequest, reply: FastifyReply) {
     try {
       const input = CompleteTwoFactorLoginSchema.parse(request.body);
-      const user = await this.authService.completeTwoFactorLogin(input.userId, input.token);
+      const { userAgent, ipAddress } = this.getClientInfo(request);
+      const user = await this.authService.completeTwoFactorLogin(
+        input.userId,
+        input.token,
+        input.rememberDevice,
+        userAgent,
+        ipAddress
+      );
 
       const token = await request.jwtSign({
         userId: user.id,

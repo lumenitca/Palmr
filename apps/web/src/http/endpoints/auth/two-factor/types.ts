@@ -54,6 +54,7 @@ export interface TwoFactorStatus {
 export interface CompleteTwoFactorLoginRequest {
   userId: string;
   token: string;
+  rememberDevice?: boolean;
 }
 
 export interface LoginResponse {

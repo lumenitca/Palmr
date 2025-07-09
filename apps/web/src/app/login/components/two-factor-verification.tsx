@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
@@ -13,7 +14,7 @@ import { Label } from "@/components/ui/label";
 interface TwoFactorVerificationProps {
   twoFactorCode: string;
   setTwoFactorCode: (code: string) => void;
-  onSubmit: () => void;
+  onSubmit: (rememberDevice?: boolean) => void;
   error?: string;
   isSubmitting: boolean;
 }
@@ -27,10 +28,11 @@ export function TwoFactorVerification({
 }: TwoFactorVerificationProps) {
   const t = useTranslations();
   const [showBackupCode, setShowBackupCode] = useState(false);
+  const [rememberDevice, setRememberDevice] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit();
+    onSubmit(rememberDevice);
   };
 
   const handleCodeChange = (value: string) => {
@@ -88,6 +90,17 @@ export function TwoFactorVerification({
                 </InputOTP>
               </div>
             )}
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="rememberDevice"
+              checked={rememberDevice}
+              onCheckedChange={(checked) => setRememberDevice(checked as boolean)}
+            />
+            <Label htmlFor="rememberDevice" className="text-sm font-normal cursor-pointer">
+              {t("twoFactor.verification.rememberDevice")}
+            </Label>
           </div>
 
           <Button

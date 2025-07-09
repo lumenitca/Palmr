@@ -1594,7 +1594,9 @@
       "verify": "Verify",
       "verifying": "Verifying...",
       "useBackupCode": "Use backup code instead",
-      "useAuthenticatorCode": "Use authenticator code instead"
+      "useAuthenticatorCode": "Use authenticator code instead",
+      "rememberDevice": "Remember this device for 30 days",
+      "rememberDeviceDescription": "You won't need to enter 2FA codes on this device for 30 days"
     },
     "messages": {
       "enabledSuccess": "Two-factor authentication enabled successfully!",
@@ -1608,7 +1610,8 @@
       "backupCodesCopyFailed": "Failed to copy backup codes",
       "statusLoadFailed": "Failed to load 2FA status",
       "enterVerificationCode": "Please enter the verification code",
-      "enterPassword": "Please enter your password"
+      "enterPassword": "Please enter your password",
+      "deviceTrusted": "This device has been marked as trusted for 30 days"
     },
     "errors": {
       "invalidVerificationCode": "Invalid verification code",

@@ -135,7 +135,7 @@ export function useLogin() {
     }
   };
 
-  const onTwoFactorSubmit = async () => {
+  const onTwoFactorSubmit = async (rememberDevice: boolean = false) => {
     if (!twoFactorUserId || !twoFactorCode) {
       setError(t("twoFactor.messages.enterVerificationCode"));
       return;
@@ -143,15 +143,16 @@ export function useLogin() {
 
     setError(undefined);
     setIsSubmitting(true);
-
+  
     try {
       const response = await completeTwoFactorLogin({
         userId: twoFactorUserId,
         token: twoFactorCode,
+        rememberDevice: rememberDevice,
       });
-
+  
       const { isAdmin, ...userData } = response.data.user;
-
+  
       setUser(userData);
       setIsAdmin(isAdmin);
       setIsAuthenticated(true);

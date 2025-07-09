@@ -8,14 +8,16 @@ import { TwoFactorService } from "../two-factor/service";
 import { UserResponseSchema } from "../user/dto";
 import { PrismaUserRepository } from "../user/repository";
 import { LoginInput } from "./dto";
+import { TrustedDeviceService } from "./trusted-device.service";
 
 export class AuthService {
   private userRepository = new PrismaUserRepository();
   private configService = new ConfigService();
   private emailService = new EmailService();
   private twoFactorService = new TwoFactorService();
+  private trustedDeviceService = new TrustedDeviceService();
 
-  async login(data: LoginInput) {
+  async login(data: LoginInput, userAgent?: string, ipAddress?: string) {
     const user = await this.userRepository.findUserByEmailOrUsername(data.emailOrUsername);
     if (!user) {
       throw new Error("Invalid credentials");
@@ -82,6 +84,13 @@ export class AuthService {
     const has2FA = await this.twoFactorService.isEnabled(user.id);
 
     if (has2FA) {
+      if (userAgent && ipAddress) {
+        const isDeviceTrusted = await this.trustedDeviceService.isDeviceTrusted(user.id, userAgent, ipAddress);
+        if (isDeviceTrusted) {
+          return UserResponseSchema.parse(user);
+        }
+      }
+
       return {
         requiresTwoFactor: true,
         userId: user.id,
@@ -92,7 +101,13 @@ export class AuthService {
     return UserResponseSchema.parse(user);
   }
 
-  async completeTwoFactorLogin(userId: string, token: string) {
+  async completeTwoFactorLogin(
+    userId: string,
+    token: string,
+    rememberDevice: boolean = false,
+    userAgent?: string,
+    ipAddress?: string
+  ) {
     const user = await prisma.user.findUnique({
       where: { id: userId },
     });
@@ -114,6 +129,10 @@ export class AuthService {
     await prisma.loginAttempt.deleteMany({
       where: { userId },
     });
+
+    if (rememberDevice && userAgent && ipAddress) {
+      await this.trustedDeviceService.addTrustedDevice(userId, userAgent, ipAddress);
+    }
 
     return UserResponseSchema.parse(user);
   }
