@@ -59,7 +59,7 @@ export function useTrustedDevices() {
   const confirmRemoveAllDevices = useCallback(async () => {
     try {
       setIsRemoving(true);
-      const response = await removeAllTrustedDevices();
+      await removeAllTrustedDevices();
       toast.success(t("twoFactor.trustedDevices.allDevicesRemoved"));
       await loadDevices();
       setIsRemoveAllModalOpen(false);

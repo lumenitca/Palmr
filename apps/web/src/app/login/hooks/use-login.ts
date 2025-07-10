@@ -96,7 +96,7 @@ export function useLogin() {
     };
 
     checkAuth();
-  }, [router, setUser, setIsAdmin, setIsAuthenticated]);
+  }, [router, setUser, setIsAdmin, setIsAuthenticated, t]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
