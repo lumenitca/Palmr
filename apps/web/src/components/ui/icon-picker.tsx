@@ -311,7 +311,6 @@ export function IconPicker({ value, onChange, placeholder }: IconPickerProps) {
     iconSets.forEach(({ icons: iconSet, prefix, category }) => {
       Object.entries(iconSet).forEach(([name, component]) => {
         if (typeof component === "function" && name.startsWith(prefix)) {
-          // Skip duplicates - keep only the first occurrence
           if (seenNames.has(name)) {
             return;
           }

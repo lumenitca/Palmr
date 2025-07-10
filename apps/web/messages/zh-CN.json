@@ -770,7 +770,12 @@
         "selectAll": "全选",
         "selectFile": "选择文件 {fileName}",
         "deleteError": "删除文件时出错",
-        "deleteSuccess": "文件已成功删除"
+        "deleteSuccess": "文件已成功删除",
+        "copyErrors": {
+          "timeout": "复制操作超时。请尝试使用较小的文件或检查您的连接。",
+          "failed": "复制操作失败。请重试。",
+          "aborted": "由于超时，复制操作已取消。"
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "已选择的文件：",
         "statusUploaded": "已上传",
-        "statusError": "错误"
+        "statusError": "错误",
+        "retry": "重试"
       },
       "form": {
         "nameLabel": "姓名",

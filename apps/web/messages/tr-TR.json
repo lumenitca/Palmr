@@ -770,7 +770,12 @@
         "selectAll": "Tümünü seç",
         "selectFile": "{fileName} dosyasını seç",
         "deleteError": "Dosya silinirken hata oluştu",
-        "deleteSuccess": "Dosya başarıyla silindi"
+        "deleteSuccess": "Dosya başarıyla silindi",
+        "copyErrors": {
+          "timeout": "Kopyalama işlemi zaman aşımına uğradı. Lütfen daha küçük bir dosya ile tekrar deneyin veya bağlantınızı kontrol edin.",
+          "failed": "Kopyalama işlemi başarısız oldu. Lütfen tekrar deneyin.",
+          "aborted": "Kopyalama işlemi zaman aşımı nedeniyle iptal edildi."
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "Seçilen dosyalar:",
         "statusUploaded": "Yüklendi",
-        "statusError": "Hata"
+        "statusError": "Hata",
+        "retry": "Tekrar Dene"
       },
       "form": {
         "nameLabel": "Ad",

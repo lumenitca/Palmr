@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { getPresignedUrlForUploadByAlias, registerFileUploadByAlias } from "@/http/endpoints";
+import { ChunkedUploader } from "@/utils/chunked-upload";
 import { formatFileSize } from "@/utils/format-file-size";
 import { FILE_STATUS, UPLOAD_CONFIG, UPLOAD_PROGRESS } from "../constants";
 import { FileUploadSectionProps, FileWithProgress } from "../types";
@@ -138,17 +139,34 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     presignedUrl: string,
     onProgress?: (progress: number) => void
   ): Promise<void> => {
-    await axios.put(presignedUrl, file, {
-      headers: {
-        "Content-Type": file.type,
-      },
-      onUploadProgress: (progressEvent) => {
-        if (onProgress && progressEvent.total) {
-          const progress = (progressEvent.loaded / progressEvent.total) * 100;
-          onProgress(Math.round(progress));
-        }
-      },
-    });
+    const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
+
+    if (shouldUseChunked) {
+      const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
+
+      const result = await ChunkedUploader.uploadFile({
+        file,
+        url: presignedUrl,
+        chunkSize,
+        onProgress,
+      });
+
+      if (!result.success) {
+        throw new Error(result.error || "Chunked upload failed");
+      }
+    } else {
+      await axios.put(presignedUrl, file, {
+        headers: {
+          "Content-Type": file.type,
+        },
+        onUploadProgress: (progressEvent) => {
+          if (onProgress && progressEvent.total) {
+            const progress = (progressEvent.loaded / progressEvent.total) * 100;
+            onProgress(Math.round(progress));
+          }
+        },
+      });
+    }
   };
 
   const registerUploadedFile = async (file: File, objectName: string): Promise<void> => {
@@ -195,7 +213,6 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
 
       updateFileStatus(index, { status: FILE_STATUS.SUCCESS });
     } catch (error: any) {
-      console.error("Upload error:", error);
       const errorMessage = error.response?.data?.error || t("reverseShares.upload.errors.uploadFailed");
 
       updateFileStatus(index, {

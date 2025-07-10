@@ -557,16 +557,21 @@ export function ReceivedFilesModal({
     } catch (error: any) {
       console.error("Error copying file:", error);
 
-      if (error.response?.data?.error) {
-        const errorMessage = error.response.data.error;
-        if (errorMessage.includes("File size exceeds") || errorMessage.includes("Insufficient storage")) {
-          toast.error(errorMessage);
-        } else {
-          toast.error(t("reverseShares.modals.receivedFiles.copyError"));
+      let errorMessage = t("reverseShares.modals.receivedFiles.copyError");
+
+      if (error.message?.includes("timeout") || error.code === "UND_ERR_SOCKET") {
+        errorMessage = t("reverseShares.modals.receivedFiles.copyErrors.timeout");
+      } else if (error.response?.data?.error) {
+        const serverError = error.response.data.error;
+        if (serverError.includes("File size exceeds") || serverError.includes("Insufficient storage")) {
+          errorMessage = serverError;
+        } else if (serverError.includes("Copy operation failed")) {
+          errorMessage = t("reverseShares.modals.receivedFiles.copyErrors.failed");
         }
-      } else {
-        toast.error(t("reverseShares.modals.receivedFiles.copyError"));
+      } else if (error.name === "AbortError") {
+        errorMessage = t("reverseShares.modals.receivedFiles.copyErrors.aborted");
       }
+      toast.error(errorMessage);
     } finally {
       setCopyingFile(null);
     }

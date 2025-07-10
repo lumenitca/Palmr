@@ -770,7 +770,12 @@
         "selectAll": "Alles selecteren",
         "selectFile": "Selecteer bestand {fileName}",
         "deleteError": "Fout bij verwijderen bestand",
-        "deleteSuccess": "Bestand succesvol verwijderd"
+        "deleteSuccess": "Bestand succesvol verwijderd",
+        "copyErrors": {
+          "timeout": "Kopieeroperatie verlopen. Probeer het opnieuw met een kleiner bestand of controleer uw verbinding.",
+          "failed": "Kopieeroperatie mislukt. Probeer het opnieuw.",
+          "aborted": "Kopieeroperatie is geannuleerd vanwege een time-out."
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "Geselecteerde bestanden:",
         "statusUploaded": "Geüpload",
-        "statusError": "Fout"
+        "statusError": "Fout",
+        "retry": "Opnieuw proberen"
       },
       "form": {
         "nameLabel": "Naam",

@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { prisma } from "shared/prisma";
 import { z } from "zod";
 
+import { prisma } from "../../shared/prisma";
 import { ConfigService } from "../config/service";
 import { TwoFactorService } from "./service";
 

@@ -5,7 +5,6 @@ import type {
   AuthProvider,
   CreateProviderResult,
   DeleteProviderResult,
-  // Auth Providers types
   GetAllProvidersResult,
   GetCurrentUserResult,
   GetEnabledProvidersResult,
@@ -62,7 +61,6 @@ export const initiateOIDCLogin = (state?: string, redirectUri?: string): string 
   return `/api/auth/oidc/authorize${queryString ? `?${queryString}` : ""}`;
 };
 
-// Auth Providers endpoints
 export const getEnabledProviders = <TData = GetEnabledProvidersResult>(
   options?: AxiosRequestConfig
 ): Promise<TData> => {

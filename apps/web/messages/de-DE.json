@@ -770,7 +770,12 @@
         "selectAll": "Alle auswählen",
         "selectFile": "Datei {fileName} auswählen",
         "deleteError": "Fehler beim Löschen der Datei",
-        "deleteSuccess": "Datei erfolgreich gelöscht"
+        "deleteSuccess": "Datei erfolgreich gelöscht",
+        "copyErrors": {
+          "timeout": "Zeitüberschreitung beim Kopiervorgang. Bitte versuchen Sie es erneut mit einer kleineren Datei oder überprüfen Sie Ihre Verbindung.",
+          "failed": "Kopiervorgang fehlgeschlagen. Bitte versuchen Sie es erneut.",
+          "aborted": "Kopiervorgang wurde wegen Zeitüberschreitung abgebrochen."
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "Ausgewählte Dateien:",
         "statusUploaded": "Hochgeladen",
-        "statusError": "Fehler"
+        "statusError": "Fehler",
+        "retry": "Wiederholen"
       },
       "form": {
         "nameLabel": "Name",

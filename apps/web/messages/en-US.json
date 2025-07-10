@@ -770,7 +770,12 @@
           "delete": "Delete Selected"
         },
         "selectAll": "Select all",
-        "selectFile": "Select file {fileName}"
+        "selectFile": "Select file {fileName}",
+        "copyErrors": {
+          "timeout": "Copy operation timed out. Please try again with a smaller file or check your connection.",
+          "failed": "Copy operation failed. Please try again.",
+          "aborted": "Copy operation was cancelled due to timeout."
+        }
       }
     },
     "form": {
@@ -922,7 +927,8 @@
       "fileList": {
         "title": "Selected files:",
         "statusUploaded": "Uploaded",
-        "statusError": "Error"
+        "statusError": "Error",
+        "retry": "Retry"
       },
       "form": {
         "nameLabel": "Name",
@@ -968,8 +974,6 @@
       },
       "fileActions": {
         "edit": "Edit",
-        "save": "Save",
-        "cancel": "Cancel",
         "preview": "Preview",
         "download": "Download",
         "delete": "Delete",

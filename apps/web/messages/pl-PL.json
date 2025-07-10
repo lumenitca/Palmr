@@ -770,7 +770,12 @@
         "selectAll": "Zaznacz wszystko",
         "selectFile": "Wybierz plik {fileName}",
         "deleteError": "Błąd usuwania pliku",
-        "deleteSuccess": "Plik usunięty pomyślnie"
+        "deleteSuccess": "Plik usunięty pomyślnie",
+        "copyErrors": {
+          "timeout": "Operacja kopiowania przekroczyła limit czasu. Spróbuj ponownie z mniejszym plikiem lub sprawdź swoje połączenie.",
+          "failed": "Operacja kopiowania nie powiodła się. Spróbuj ponownie.",
+          "aborted": "Operacja kopiowania została anulowana z powodu przekroczenia limitu czasu."
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "Wybrane pliki:",
         "statusUploaded": "Przesłano",
-        "statusError": "Błąd"
+        "statusError": "Błąd",
+        "retry": "Spróbuj Ponownie"
       },
       "form": {
         "nameLabel": "Imię",

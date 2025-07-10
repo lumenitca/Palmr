@@ -770,7 +770,12 @@
         "selectAll": "Seleziona tutto",
         "selectFile": "Seleziona file {fileName}",
         "deleteError": "Errore durante l'eliminazione del file",
-        "deleteSuccess": "File eliminato con successo"
+        "deleteSuccess": "File eliminato con successo",
+        "copyErrors": {
+          "timeout": "Operazione di copia scaduta. Riprova con un file più piccolo o controlla la tua connessione.",
+          "failed": "Operazione di copia fallita. Per favore riprova.",
+          "aborted": "L'operazione di copia è stata annullata per timeout."
+        }
       }
     },
     "form": {
@@ -921,7 +926,8 @@
       "fileList": {
         "title": "File selezionati:",
         "statusUploaded": "Inviato",
-        "statusError": "Errore"
+        "statusError": "Errore",
+        "retry": "Riprova"
       },
       "form": {
         "nameLabel": "Nome",

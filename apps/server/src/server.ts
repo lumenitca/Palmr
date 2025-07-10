@@ -11,6 +11,7 @@ import { appRoutes } from "./modules/app/routes";
 import { authProvidersRoutes } from "./modules/auth-providers/routes";
 import { authRoutes } from "./modules/auth/routes";
 import { fileRoutes } from "./modules/file/routes";
+import { ChunkManager } from "./modules/filesystem/chunk-manager";
 import { filesystemRoutes } from "./modules/filesystem/routes";
 import { healthRoutes } from "./modules/health/routes";
 import { reverseShareRoutes } from "./modules/reverse-share/routes";
@@ -105,6 +106,18 @@ async function startServer() {
 
   console.log("\n📚 API Documentation:");
   console.log(`   - API Reference: http://localhost:3333/docs\n`);
+
+  process.on("SIGINT", async () => {
+    const chunkManager = ChunkManager.getInstance();
+    chunkManager.destroy();
+    process.exit(0);
+  });
+
+  process.on("SIGTERM", async () => {
+    const chunkManager = ChunkManager.getInstance();
+    chunkManager.destroy();
+    process.exit(0);
+  });
 }
 
 startServer().catch((err) => {

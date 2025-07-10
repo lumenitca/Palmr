@@ -1,6 +1,5 @@
 import type { AxiosResponse } from "axios";
 
-// Base types that are reused across different operations
 export interface FileSizeInfo {
   bytes: number;
   kb: number;
@@ -15,7 +14,6 @@ export interface DiskSpaceInfo {
   uploadAllowed: boolean;
 }
 
-// Response types using base types
 export interface CheckHealth200 {
   status: string;
   timestamp: string;
@@ -42,7 +40,6 @@ export interface UploadLogo200 {
   logo: string;
 }
 
-// Request body and parameter types
 export interface CheckUploadAllowedParams {
   fileSize: string;
 }
@@ -51,7 +48,6 @@ export interface UploadLogoBody {
   file?: unknown;
 }
 
-// Axios response types
 export type GetAppInfoResult = AxiosResponse<GetAppInfo200>;
 export type UploadLogoResult = AxiosResponse<UploadLogo200>;
 export type RemoveLogoResult = AxiosResponse<RemoveLogo200>;

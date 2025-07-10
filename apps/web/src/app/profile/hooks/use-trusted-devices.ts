@@ -75,10 +75,8 @@ export function useTrustedDevices() {
     (device: TrustedDevice) => {
       const userAgent = device.userAgent;
 
-      // Extract browser and OS info from user agent
       let deviceInfo = t("twoFactor.deviceNames.unknownDevice");
 
-      // Verificação de null safety
       if (!userAgent) {
         return deviceInfo;
       }
