@@ -12,10 +12,17 @@ import { AuthService } from "./service";
 export class AuthController {
   private authService = new AuthService();
 
+  private getClientInfo(request: FastifyRequest) {
+    const userAgent = request.headers["user-agent"] || "";
+    const ipAddress = request.ip || request.socket.remoteAddress || "";
+    return { userAgent, ipAddress };
+  }
+
   async login(request: FastifyRequest, reply: FastifyReply) {
     try {
       const input = LoginSchema.parse(request.body);
-      const result = await this.authService.login(input);
+      const { userAgent, ipAddress } = this.getClientInfo(request);
+      const result = await this.authService.login(input, userAgent, ipAddress);
 
       if ("requiresTwoFactor" in result) {
         return reply.send(result);
@@ -43,7 +50,14 @@ export class AuthController {
   async completeTwoFactorLogin(request: FastifyRequest, reply: FastifyReply) {
     try {
       const input = CompleteTwoFactorLoginSchema.parse(request.body);
-      const user = await this.authService.completeTwoFactorLogin(input.userId, input.token);
+      const { userAgent, ipAddress } = this.getClientInfo(request);
+      const user = await this.authService.completeTwoFactorLogin(
+        input.userId,
+        input.token,
+        input.rememberDevice,
+        userAgent,
+        ipAddress
+      );
 
       const token = await request.jwtSign({
         userId: user.id,
@@ -104,6 +118,49 @@ export class AuthController {
       }
 
       return reply.send({ user });
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async getTrustedDevices(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const userId = (request as any).user?.userId;
+      if (!userId) {
+        return reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+      }
+
+      const devices = await this.authService.getTrustedDevices(userId);
+      return reply.send({ devices });
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async removeTrustedDevice(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const userId = (request as any).user?.userId;
+      if (!userId) {
+        return reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+      }
+
+      const { id } = request.params as { id: string };
+      await this.authService.removeTrustedDevice(userId, id);
+      return reply.send({ success: true, message: "Trusted device removed successfully" });
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async removeAllTrustedDevices(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const userId = (request as any).user?.userId;
+      if (!userId) {
+        return reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+      }
+
+      const result = await this.authService.removeAllTrustedDevices(userId);
+      return reply.send(result);
     } catch (error: any) {
       return reply.status(400).send({ error: error.message });
     }

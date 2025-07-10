@@ -77,7 +77,7 @@ export function useLogin() {
 
         const userResponse = await getCurrentUser();
         if (!userResponse?.data?.user) {
-          throw new Error("No user data");
+          throw new Error(t("errors.noUserData"));
         }
 
         const { isAdmin, ...userData } = userResponse.data.user;
@@ -96,7 +96,7 @@ export function useLogin() {
     };
 
     checkAuth();
-  }, [router, setUser, setIsAdmin, setIsAuthenticated]);
+  }, [router, setUser, setIsAdmin, setIsAuthenticated, t]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -135,7 +135,7 @@ export function useLogin() {
     }
   };
 
-  const onTwoFactorSubmit = async () => {
+  const onTwoFactorSubmit = async (rememberDevice: boolean = false) => {
     if (!twoFactorUserId || !twoFactorCode) {
       setError(t("twoFactor.messages.enterVerificationCode"));
       return;
@@ -148,6 +148,7 @@ export function useLogin() {
       const response = await completeTwoFactorLogin({
         userId: twoFactorUserId,
         token: twoFactorCode,
+        rememberDevice: rememberDevice,
       });
 
       const { isAdmin, ...userData } = response.data.user;

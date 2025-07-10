@@ -143,7 +143,8 @@
     "saving": "Opslaan...",
     "update": "Bijwerken",
     "click": "Klik om",
-    "creating": "Maken..."
+    "creating": "Maken...",
+    "loadingSimple": "Laden..."
   },
   "createShare": {
     "title": "Delen Maken",
@@ -189,7 +190,8 @@
     "Password verification required": "Wachtwoordverificatie vereist",
     "Two-factor authentication is already enabled": "Tweefactorauthenticatie is al ingeschakeld",
     "Two-factor authentication is not enabled": "Tweefactorauthenticatie is niet ingeschakeld",
-    "Two-factor authentication required": "Tweefactorauthenticatie vereist"
+    "Two-factor authentication required": "Tweefactorauthenticatie vereist",
+    "noUserData": "Geen gebruikersgegevens"
   },
   "fileActions": {
     "editFile": "Bestand Bewerken",
@@ -337,6 +339,21 @@
       "tagline": "eenvoudig en gratis"
     },
     "pageTitle": "Startpagina"
+  },
+  "iconPicker": {
+    "title": "Selecteer Pictogram",
+    "placeholder": "Selecteer een pictogram",
+    "searchPlaceholder": "Zoek pictogrammen...",
+    "loadingMore": "Meer pictogrammen laden...",
+    "allIconsLoaded": "Alle {count} pictogrammen geladen",
+    "noIconsFound": "Geen pictogrammen gevonden voor \"{search}\"",
+    "tabs": {
+      "all": "Alle Pictogrammen",
+      "popular": "Populair",
+      "auth": "Authenticatie Providers"
+    },
+    "stats": "{iconCount} pictogrammen van {libraryCount} bibliotheken",
+    "categoryBadge": "{category} ({count} pictogrammen)"
   },
   "login": {
     "welcome": "Welkom bij",
@@ -1426,6 +1443,160 @@
     "dark": "Donker",
     "system": "Systeem"
   },
+  "twoFactor": {
+    "title": "Twee-Factor Authenticatie",
+    "description": "Voeg een extra beveiligingslaag toe aan uw account",
+    "enabled": "Uw account is beveiligd met twee-factor authenticatie",
+    "disabled": "Twee-factor authenticatie is niet ingeschakeld",
+    "setup": {
+      "title": "Twee-Factor Authenticatie Inschakelen",
+      "description": "Scan de QR-code met uw authenticator-app en voer vervolgens de verificatiecode in.",
+      "qrCode": "QR-Code",
+      "manualEntryKey": "Handmatige Invoersleutel",
+      "verificationCode": "Verificatiecode",
+      "verificationCodePlaceholder": "Voer 6-cijferige code in",
+      "verificationCodeDescription": "Voer de 6-cijferige code van uw authenticator-app in",
+      "verifyAndEnable": "Verifiëren & Inschakelen",
+      "cancel": "Annuleren"
+    },
+    "disable": {
+      "title": "Twee-Factor Authenticatie Uitschakelen",
+      "description": "Voer uw wachtwoord in om het uitschakelen van twee-factor authenticatie te bevestigen.",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "Voer uw wachtwoord in",
+      "confirm": "Bevestig Uitschakelen",
+      "cancel": "Annuleren"
+    },
+    "backupCodes": {
+      "title": "Back-upcodes",
+      "description": "Bewaar deze back-upcodes op een veilige plaats. U kunt ze gebruiken om toegang te krijgen tot uw account als u uw authenticator-apparaat verliest.",
+      "warning": "Belangrijk:",
+      "warningText": "Elke back-upcode kan slechts één keer worden gebruikt. Bewaar ze veilig en deel ze met niemand.",
+      "generateNew": "Genereer Nieuwe Back-upcodes",
+      "download": "Download Back-upcodes",
+      "copyToClipboard": "Kopiëren naar Klembord",
+      "savedMessage": "Ik heb mijn back-upcodes opgeslagen",
+      "available": "{count} back-upcodes beschikbaar",
+      "instructions": [
+        "• Bewaar deze codes op een veilige plaats",
+        "• Elke back-upcode kan slechts één keer worden gebruikt",
+        "• U kunt op elk moment nieuwe codes genereren"
+      ]
+    },
+    "verification": {
+      "title": "Twee-Factor Authenticatie",
+      "description": "Voer de 6-cijferige code van uw authenticator-app in",
+      "backupDescription": "Voer een van uw back-upcodes in om door te gaan",
+      "verificationCode": "Verificatiecode",
+      "backupCode": "Back-upcode",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "Verifiëren",
+      "verifying": "Verifiëren...",
+      "useBackupCode": "Gebruik in plaats daarvan een back-upcode",
+      "useAuthenticatorCode": "Gebruik in plaats daarvan authenticator-code",
+      "rememberDevice": "Onthoud dit apparaat voor 30 dagen",
+      "rememberDeviceDescription": "U hoeft gedurende 30 dagen geen 2FA-codes in te voeren op dit apparaat"
+    },
+    "messages": {
+      "enabledSuccess": "Twee-factor authenticatie succesvol ingeschakeld!",
+      "disabledSuccess": "Twee-factor authenticatie succesvol uitgeschakeld",
+      "backupCodesGenerated": "Nieuwe back-upcodes succesvol gegenereerd",
+      "backupCodesCopied": "Back-upcodes gekopieerd naar klembord",
+      "setupFailed": "Genereren van 2FA-configuratie mislukt",
+      "verificationFailed": "Ongeldige verificatiecode",
+      "disableFailed": "Uitschakelen van 2FA mislukt. Controleer uw wachtwoord.",
+      "backupCodesFailed": "Genereren van back-upcodes mislukt",
+      "backupCodesCopyFailed": "Kopiëren van back-upcodes mislukt",
+      "statusLoadFailed": "Laden van 2FA-status mislukt",
+      "enterVerificationCode": "Voer de verificatiecode in",
+      "enterPassword": "Voer uw wachtwoord in",
+      "deviceTrusted": "Dit apparaat is als vertrouwd gemarkeerd voor 30 dagen"
+    },
+    "errors": {
+      "invalidVerificationCode": "Ongeldige verificatiecode",
+      "invalidTwoFactorCode": "Ongeldige twee-factor authenticatiecode",
+      "twoFactorRequired": "Twee-factor authenticatie vereist",
+      "twoFactorAlreadyEnabled": "Twee-factor authenticatie is al ingeschakeld",
+      "twoFactorNotEnabled": "Twee-factor authenticatie is niet ingeschakeld",
+      "passwordVerificationRequired": "Wachtwoordverificatie vereist",
+      "invalidPassword": "Ongeldig wachtwoord",
+      "userNotFound": "Gebruiker niet gevonden"
+    },
+    "buttons": {
+      "enable2FA": "2FA Inschakelen",
+      "disable2FA": "2FA Uitschakelen"
+    },
+    "deviceNames": {
+      "unknownDevice": "Onbekend Apparaat",
+      "browsers": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Edge"
+      },
+      "platforms": {
+        "windows": " op Windows",
+        "macos": " op macOS",
+        "linux": " op Linux",
+        "iphone": " op iPhone",
+        "android": " op Android"
+      }
+    },
+    "status": {
+      "label": "Status:",
+      "enabled": "Ingeschakeld",
+      "disabled": "Uitgeschakeld"
+    },
+    "trustedDevices": {
+      "title": "Vertrouwde Apparaten - 2FA",
+      "description": "Apparaten die geen 2FA-verificatie vereisen",
+      "noDevices": "Geen vertrouwde apparaten",
+      "deviceName": "Apparaat",
+      "addedOn": "Toegevoegd op",
+      "expiresOn": "Verloopt op",
+      "remove": "Verwijderen",
+      "removeAll": "Alles Verwijderen",
+      "confirmRemove": "Weet u zeker dat u dit vertrouwde apparaat wilt verwijderen?",
+      "confirmRemoveAll": "Weet u zeker dat u alle vertrouwde apparaten wilt verwijderen?",
+      "deviceRemoved": "Vertrouwd apparaat succesvol verwijderd",
+      "allDevicesRemoved": "Alle vertrouwde apparaten succesvol verwijderd",
+      "loadFailed": "Laden van vertrouwde apparaten mislukt",
+      "removeFailed": "Verwijderen van vertrouwd apparaat mislukt",
+      "removeAllFailed": "Verwijderen van alle vertrouwde apparaten mislukt",
+      "loading": "Vertrouwde apparaten laden...",
+      "noDevicesDescription": "Apparaten verschijnen hier wanneer u ervoor kiest om ze te vertrouwen tijdens 2FA-verificatie",
+      "tableHeaders": {
+        "device": "Apparaat",
+        "added": "Toegevoegd",
+        "expires": "Verloopt",
+        "lastUsed": "Laatst Gebruikt",
+        "ipAddress": "IP-Adres",
+        "actions": "Acties"
+      },
+      "status": {
+        "never": "Nooit",
+        "expired": "Verlopen"
+      },
+      "modals": {
+        "removeDevice": {
+          "title": "Vertrouwd Apparaat Verwijderen",
+          "added": "Toegevoegd:",
+          "ip": "IP:"
+        },
+        "removeAllDevices": {
+          "title": "Alle Vertrouwde Apparaten Verwijderen",
+          "description": "Dit zal {count} vertrouwd{count, plural, =1 { apparaat} other {e apparaten}} verwijderen. U moet 2FA opnieuw verifiëren op alle apparaten."
+        },
+        "buttons": {
+          "cancel": "Annuleren",
+          "removing": "Verwijderen...",
+          "removeDevice": "Apparaat Verwijderen",
+          "removeAllDevices": "Alle Apparaten Verwijderen"
+        }
+      }
+    }
+  },
   "uploadFile": {
     "title": "Bestand uploaden",
     "multipleTitle": "Meerdere Bestanden Uploaden",
@@ -1542,98 +1713,5 @@
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",
     "required": "Dit veld is verplicht"
-  },
-  "iconPicker": {
-    "title": "Selecteer Pictogram",
-    "placeholder": "Selecteer een pictogram",
-    "searchPlaceholder": "Zoek pictogrammen...",
-    "loadingMore": "Meer pictogrammen laden...",
-    "allIconsLoaded": "Alle {count} pictogrammen geladen",
-    "noIconsFound": "Geen pictogrammen gevonden voor \"{search}\"",
-    "tabs": {
-      "all": "Alle Pictogrammen",
-      "popular": "Populair",
-      "auth": "Authenticatie Providers"
-    },
-    "stats": "{iconCount} pictogrammen van {libraryCount} bibliotheken",
-    "categoryBadge": "{category} ({count} pictogrammen)"
-  },
-  "twoFactor": {
-    "title": "Twee-Factor Authenticatie",
-    "description": "Voeg een extra beveiligingslaag toe aan uw account",
-    "enabled": "Uw account is beveiligd met twee-factor authenticatie",
-    "disabled": "Twee-factor authenticatie is niet ingeschakeld",
-    "setup": {
-      "title": "Twee-Factor Authenticatie Inschakelen",
-      "description": "Scan de QR-code met uw authenticator-app en voer vervolgens de verificatiecode in.",
-      "qrCode": "QR-Code",
-      "manualEntryKey": "Handmatige Invoersleutel",
-      "verificationCode": "Verificatiecode",
-      "verificationCodePlaceholder": "Voer 6-cijferige code in",
-      "verificationCodeDescription": "Voer de 6-cijferige code van uw authenticator-app in",
-      "verifyAndEnable": "Verifiëren & Inschakelen",
-      "cancel": "Annuleren"
-    },
-    "disable": {
-      "title": "Twee-Factor Authenticatie Uitschakelen",
-      "description": "Voer uw wachtwoord in om het uitschakelen van twee-factor authenticatie te bevestigen.",
-      "password": "Wachtwoord",
-      "passwordPlaceholder": "Voer uw wachtwoord in",
-      "confirm": "Bevestig Uitschakelen",
-      "cancel": "Annuleren"
-    },
-    "backupCodes": {
-      "title": "Back-upcodes",
-      "description": "Bewaar deze back-upcodes op een veilige plaats. U kunt ze gebruiken om toegang te krijgen tot uw account als u uw authenticator-apparaat verliest.",
-      "warning": "Belangrijk:",
-      "warningText": "Elke back-upcode kan slechts één keer worden gebruikt. Bewaar ze veilig en deel ze met niemand.",
-      "generateNew": "Genereer Nieuwe Back-upcodes",
-      "download": "Download Back-upcodes",
-      "copyToClipboard": "Kopiëren naar Klembord",
-      "savedMessage": "Ik heb mijn back-upcodes opgeslagen",
-      "available": "{count} back-upcodes beschikbaar",
-      "instructions": [
-        "• Bewaar deze codes op een veilige plaats",
-        "• Elke back-upcode kan slechts één keer worden gebruikt",
-        "• U kunt op elk moment nieuwe codes genereren"
-      ]
-    },
-    "verification": {
-      "title": "Twee-Factor Authenticatie",
-      "description": "Voer de 6-cijferige code van uw authenticator-app in",
-      "backupDescription": "Voer een van uw back-upcodes in om door te gaan",
-      "verificationCode": "Verificatiecode",
-      "backupCode": "Back-upcode",
-      "verificationCodePlaceholder": "000000",
-      "backupCodePlaceholder": "XXXX-XXXX",
-      "verify": "Verifiëren",
-      "verifying": "Verifiëren...",
-      "useBackupCode": "Gebruik in plaats daarvan een back-upcode",
-      "useAuthenticatorCode": "Gebruik in plaats daarvan authenticator-code"
-    },
-    "messages": {
-      "enabledSuccess": "Twee-factor authenticatie succesvol ingeschakeld!",
-      "disabledSuccess": "Twee-factor authenticatie succesvol uitgeschakeld",
-      "backupCodesGenerated": "Nieuwe back-upcodes succesvol gegenereerd",
-      "backupCodesCopied": "Back-upcodes gekopieerd naar klembord",
-      "setupFailed": "Genereren van 2FA-configuratie mislukt",
-      "verificationFailed": "Ongeldige verificatiecode",
-      "disableFailed": "Uitschakelen van 2FA mislukt. Controleer uw wachtwoord.",
-      "backupCodesFailed": "Genereren van back-upcodes mislukt",
-      "backupCodesCopyFailed": "Kopiëren van back-upcodes mislukt",
-      "statusLoadFailed": "Laden van 2FA-status mislukt",
-      "enterVerificationCode": "Voer de verificatiecode in",
-      "enterPassword": "Voer uw wachtwoord in"
-    },
-    "errors": {
-      "invalidVerificationCode": "Ongeldige verificatiecode",
-      "invalidTwoFactorCode": "Ongeldige twee-factor authenticatiecode",
-      "twoFactorRequired": "Twee-factor authenticatie vereist",
-      "twoFactorAlreadyEnabled": "Twee-factor authenticatie is al ingeschakeld",
-      "twoFactorNotEnabled": "Twee-factor authenticatie is niet ingeschakeld",
-      "passwordVerificationRequired": "Wachtwoordverificatie vereist",
-      "invalidPassword": "Ongeldig wachtwoord",
-      "userNotFound": "Gebruiker niet gevonden"
-    }
   }
 }

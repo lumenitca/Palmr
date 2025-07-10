@@ -143,7 +143,8 @@
     "dashboard": "Panel główny",
     "back": "Wróć",
     "click": "Kliknij, aby",
-    "creating": "Tworzenie..."
+    "creating": "Tworzenie...",
+    "loadingSimple": "Ładowanie..."
   },
   "createShare": {
     "title": "Utwórz Udostępnienie",
@@ -189,7 +190,8 @@
     "Password verification required": "Wymagana weryfikacja hasła",
     "Two-factor authentication is already enabled": "Uwierzytelnianie dwuskładnikowe jest już włączone",
     "Two-factor authentication is not enabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone",
-    "Two-factor authentication required": "Wymagane uwierzytelnianie dwuskładnikowe"
+    "Two-factor authentication required": "Wymagane uwierzytelnianie dwuskładnikowe",
+    "noUserData": "Brak danych użytkownika"
   },
   "fileActions": {
     "editFile": "Edytuj plik",
@@ -337,6 +339,21 @@
       "tagline": "proste i darmowe"
     },
     "pageTitle": "Strona główna"
+  },
+  "iconPicker": {
+    "title": "Wybierz ikonę",
+    "placeholder": "Wybierz ikonę",
+    "searchPlaceholder": "Szukaj ikon...",
+    "loadingMore": "Ładowanie kolejnych ikon...",
+    "allIconsLoaded": "Załadowano wszystkie {count} ikon",
+    "noIconsFound": "Nie znaleziono ikon dla \"{search}\"",
+    "tabs": {
+      "all": "Wszystkie ikony",
+      "popular": "Popularne",
+      "auth": "Dostawcy uwierzytelniania"
+    },
+    "stats": "{iconCount} ikon z {libraryCount} bibliotek",
+    "categoryBadge": "{category} ({count} ikon)"
   },
   "login": {
     "welcome": "Witaj w",
@@ -1426,6 +1443,160 @@
     "dark": "Ciemny",
     "system": "Systemowy"
   },
+  "twoFactor": {
+    "title": "Uwierzytelnianie dwuskładnikowe",
+    "description": "Dodaj dodatkową warstwę zabezpieczeń do swojego konta",
+    "enabled": "Twoje konto jest chronione uwierzytelnianiem dwuskładnikowym",
+    "disabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone",
+    "setup": {
+      "title": "Włącz uwierzytelnianie dwuskładnikowe",
+      "description": "Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, a następnie wprowadź kod weryfikacyjny.",
+      "qrCode": "Kod QR",
+      "manualEntryKey": "Klucz do ręcznego wprowadzenia",
+      "verificationCode": "Kod weryfikacyjny",
+      "verificationCodePlaceholder": "Wprowadź 6-cyfrowy kod",
+      "verificationCodeDescription": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej",
+      "verifyAndEnable": "Zweryfikuj i włącz",
+      "cancel": "Anuluj"
+    },
+    "disable": {
+      "title": "Wyłącz uwierzytelnianie dwuskładnikowe",
+      "description": "Wprowadź hasło, aby potwierdzić wyłączenie uwierzytelniania dwuskładnikowego.",
+      "password": "Hasło",
+      "passwordPlaceholder": "Wprowadź swoje hasło",
+      "confirm": "Potwierdź wyłączenie",
+      "cancel": "Anuluj"
+    },
+    "backupCodes": {
+      "title": "Kody zapasowe",
+      "description": "Zapisz te kody zapasowe w bezpiecznym miejscu. Możesz ich użyć, aby uzyskać dostęp do swojego konta w przypadku utraty urządzenia uwierzytelniającego.",
+      "warning": "Ważne:",
+      "warningText": "Każdy kod zapasowy może być użyty tylko raz. Przechowuj je bezpiecznie i nie udostępniaj nikomu.",
+      "generateNew": "Wygeneruj nowe kody zapasowe",
+      "download": "Pobierz kody zapasowe",
+      "copyToClipboard": "Kopiuj do schowka",
+      "savedMessage": "Zapisałem moje kody zapasowe",
+      "available": "{count} dostępnych kodów zapasowych",
+      "instructions": [
+        "• Zapisz te kody w bezpiecznym miejscu",
+        "• Każdy kod zapasowy może być użyty tylko raz",
+        "• Możesz wygenerować nowe kody w dowolnym momencie"
+      ]
+    },
+    "verification": {
+      "title": "Uwierzytelnianie dwuskładnikowe",
+      "description": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej",
+      "backupDescription": "Wprowadź jeden z kodów zapasowych, aby kontynuować",
+      "verificationCode": "Kod weryfikacyjny",
+      "backupCode": "Kod zapasowy",
+      "verificationCodePlaceholder": "000000",
+      "backupCodePlaceholder": "XXXX-XXXX",
+      "verify": "Zweryfikuj",
+      "verifying": "Weryfikacja...",
+      "useBackupCode": "Użyj kodu zapasowego",
+      "useAuthenticatorCode": "Użyj kodu z aplikacji uwierzytelniającej",
+      "rememberDevice": "Zapamiętaj to urządzenie na 30 dni",
+      "rememberDeviceDescription": "Nie będziesz musiał wprowadzać kodów 2FA na tym urządzeniu przez 30 dni"
+    },
+    "messages": {
+      "enabledSuccess": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie włączone!",
+      "disabledSuccess": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie wyłączone",
+      "backupCodesGenerated": "Nowe kody zapasowe zostały pomyślnie wygenerowane",
+      "backupCodesCopied": "Kody zapasowe skopiowane do schowka",
+      "setupFailed": "Nie udało się wygenerować konfiguracji 2FA",
+      "verificationFailed": "Nieprawidłowy kod weryfikacyjny",
+      "disableFailed": "Nie udało się wyłączyć 2FA. Sprawdź swoje hasło.",
+      "backupCodesFailed": "Nie udało się wygenerować kodów zapasowych",
+      "backupCodesCopyFailed": "Nie udało się skopiować kodów zapasowych",
+      "statusLoadFailed": "Nie udało się załadować statusu 2FA",
+      "enterVerificationCode": "Wprowadź kod weryfikacyjny",
+      "enterPassword": "Wprowadź swoje hasło",
+      "deviceTrusted": "To urządzenie zostało oznaczone jako zaufane na 30 dni"
+    },
+    "errors": {
+      "invalidVerificationCode": "Nieprawidłowy kod weryfikacyjny",
+      "invalidTwoFactorCode": "Nieprawidłowy kod uwierzytelniania dwuskładnikowego",
+      "twoFactorRequired": "Wymagane uwierzytelnianie dwuskładnikowe",
+      "twoFactorAlreadyEnabled": "Uwierzytelnianie dwuskładnikowe jest już włączone",
+      "twoFactorNotEnabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone",
+      "passwordVerificationRequired": "Wymagana weryfikacja hasła",
+      "invalidPassword": "Nieprawidłowe hasło",
+      "userNotFound": "Nie znaleziono użytkownika"
+    },
+    "buttons": {
+      "enable2FA": "Włącz 2FA",
+      "disable2FA": "Wyłącz 2FA"
+    },
+    "deviceNames": {
+      "unknownDevice": "Nieznane urządzenie",
+      "browsers": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Edge"
+      },
+      "platforms": {
+        "windows": " na Windows",
+        "macos": " na macOS",
+        "linux": " na Linux",
+        "iphone": " na iPhone",
+        "android": " na Android"
+      }
+    },
+    "status": {
+      "label": "Status:",
+      "enabled": "Włączone",
+      "disabled": "Wyłączone"
+    },
+    "trustedDevices": {
+      "title": "Zaufane urządzenia - 2FA",
+      "description": "Urządzenia, które nie wymagają weryfikacji 2FA",
+      "noDevices": "Brak zaufanych urządzeń",
+      "deviceName": "Urządzenie",
+      "addedOn": "Dodano",
+      "expiresOn": "Wygasa",
+      "remove": "Usuń",
+      "removeAll": "Usuń wszystkie",
+      "confirmRemove": "Czy na pewno chcesz usunąć to zaufane urządzenie?",
+      "confirmRemoveAll": "Czy na pewno chcesz usunąć wszystkie zaufane urządzenia?",
+      "deviceRemoved": "Zaufane urządzenie zostało pomyślnie usunięte",
+      "allDevicesRemoved": "Wszystkie zaufane urządzenia zostały pomyślnie usunięte",
+      "loadFailed": "Nie udało się załadować zaufanych urządzeń",
+      "removeFailed": "Nie udało się usunąć zaufanego urządzenia",
+      "removeAllFailed": "Nie udało się usunąć wszystkich zaufanych urządzeń",
+      "loading": "Ładowanie zaufanych urządzeń...",
+      "noDevicesDescription": "Urządzenia pojawią się tutaj, gdy zdecydujesz się im zaufać podczas weryfikacji 2FA",
+      "tableHeaders": {
+        "device": "Urządzenie",
+        "added": "Dodano",
+        "expires": "Wygasa",
+        "lastUsed": "Ostatnio użyte",
+        "ipAddress": "Adres IP",
+        "actions": "Akcje"
+      },
+      "status": {
+        "never": "Nigdy",
+        "expired": "Wygasło"
+      },
+      "modals": {
+        "removeDevice": {
+          "title": "Usuń zaufane urządzenie",
+          "added": "Dodano:",
+          "ip": "IP:"
+        },
+        "removeAllDevices": {
+          "title": "Usuń wszystkie zaufane urządzenia",
+          "description": "Spowoduje to usunięcie {count} zaufanych urządzeń. Będziesz musiał zweryfikować 2FA na wszystkich urządzeniach ponownie."
+        },
+        "buttons": {
+          "cancel": "Anuluj",
+          "removing": "Usuwanie...",
+          "removeDevice": "Usuń urządzenie",
+          "removeAllDevices": "Usuń wszystkie urządzenia"
+        }
+      }
+    }
+  },
   "uploadFile": {
     "title": "Prześlij plik",
     "multipleTitle": "Prześlij pliki",
@@ -1542,98 +1713,5 @@
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",
     "required": "To pole jest wymagane"
-  },
-  "iconPicker": {
-    "title": "Wybierz ikonę",
-    "placeholder": "Wybierz ikonę",
-    "searchPlaceholder": "Szukaj ikon...",
-    "loadingMore": "Ładowanie kolejnych ikon...",
-    "allIconsLoaded": "Załadowano wszystkie {count} ikon",
-    "noIconsFound": "Nie znaleziono ikon dla \"{search}\"",
-    "tabs": {
-      "all": "Wszystkie ikony",
-      "popular": "Popularne",
-      "auth": "Dostawcy uwierzytelniania"
-    },
-    "stats": "{iconCount} ikon z {libraryCount} bibliotek",
-    "categoryBadge": "{category} ({count} ikon)"
-  },
-  "twoFactor": {
-    "title": "Uwierzytelnianie dwuskładnikowe",
-    "description": "Dodaj dodatkową warstwę zabezpieczeń do swojego konta",
-    "enabled": "Twoje konto jest chronione uwierzytelnianiem dwuskładnikowym",
-    "disabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone",
-    "setup": {
-      "title": "Włącz uwierzytelnianie dwuskładnikowe",
-      "description": "Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, a następnie wprowadź kod weryfikacyjny.",
-      "qrCode": "Kod QR",
-      "manualEntryKey": "Klucz do ręcznego wprowadzenia",
-      "verificationCode": "Kod weryfikacyjny",
-      "verificationCodePlaceholder": "Wprowadź 6-cyfrowy kod",
-      "verificationCodeDescription": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej",
-      "verifyAndEnable": "Zweryfikuj i włącz",
-      "cancel": "Anuluj"
-    },
-    "disable": {
-      "title": "Wyłącz uwierzytelnianie dwuskładnikowe",
-      "description": "Wprowadź hasło, aby potwierdzić wyłączenie uwierzytelniania dwuskładnikowego.",
-      "password": "Hasło",
-      "passwordPlaceholder": "Wprowadź swoje hasło",
-      "confirm": "Potwierdź wyłączenie",
-      "cancel": "Anuluj"
-    },
-    "backupCodes": {
-      "title": "Kody zapasowe",
-      "description": "Zapisz te kody zapasowe w bezpiecznym miejscu. Możesz ich użyć, aby uzyskać dostęp do swojego konta w przypadku utraty urządzenia uwierzytelniającego.",
-      "warning": "Ważne:",
-      "warningText": "Każdy kod zapasowy może być użyty tylko raz. Przechowuj je bezpiecznie i nie udostępniaj nikomu.",
-      "generateNew": "Wygeneruj nowe kody zapasowe",
-      "download": "Pobierz kody zapasowe",
-      "copyToClipboard": "Kopiuj do schowka",
-      "savedMessage": "Zapisałem moje kody zapasowe",
-      "available": "{count} dostępnych kodów zapasowych",
-      "instructions": [
-        "• Zapisz te kody w bezpiecznym miejscu",
-        "• Każdy kod zapasowy może być użyty tylko raz",
-        "• Możesz wygenerować nowe kody w dowolnym momencie"
-      ]
-    },
-    "verification": {
-      "title": "Uwierzytelnianie dwuskładnikowe",
-      "description": "Wprowadź 6-cyfrowy kod z aplikacji uwierzytelniającej",
-      "backupDescription": "Wprowadź jeden z kodów zapasowych, aby kontynuować",
-      "verificationCode": "Kod weryfikacyjny",
-      "backupCode": "Kod zapasowy",
-      "verificationCodePlaceholder": "000000",
-      "backupCodePlaceholder": "XXXX-XXXX",
-      "verify": "Zweryfikuj",
-      "verifying": "Weryfikacja...",
-      "useBackupCode": "Użyj kodu zapasowego",
-      "useAuthenticatorCode": "Użyj kodu z aplikacji uwierzytelniającej"
-    },
-    "messages": {
-      "enabledSuccess": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie włączone!",
-      "disabledSuccess": "Uwierzytelnianie dwuskładnikowe zostało pomyślnie wyłączone",
-      "backupCodesGenerated": "Nowe kody zapasowe zostały pomyślnie wygenerowane",
-      "backupCodesCopied": "Kody zapasowe skopiowane do schowka",
-      "setupFailed": "Nie udało się wygenerować konfiguracji 2FA",
-      "verificationFailed": "Nieprawidłowy kod weryfikacyjny",
-      "disableFailed": "Nie udało się wyłączyć 2FA. Sprawdź swoje hasło.",
-      "backupCodesFailed": "Nie udało się wygenerować kodów zapasowych",
-      "backupCodesCopyFailed": "Nie udało się skopiować kodów zapasowych",
-      "statusLoadFailed": "Nie udało się załadować statusu 2FA",
-      "enterVerificationCode": "Wprowadź kod weryfikacyjny",
-      "enterPassword": "Wprowadź swoje hasło"
-    },
-    "errors": {
-      "invalidVerificationCode": "Nieprawidłowy kod weryfikacyjny",
-      "invalidTwoFactorCode": "Nieprawidłowy kod uwierzytelniania dwuskładnikowego",
-      "twoFactorRequired": "Wymagane uwierzytelnianie dwuskładnikowe",
-      "twoFactorAlreadyEnabled": "Uwierzytelnianie dwuskładnikowe jest już włączone",
-      "twoFactorNotEnabled": "Uwierzytelnianie dwuskładnikowe nie jest włączone",
-      "passwordVerificationRequired": "Wymagana weryfikacja hasła",
-      "invalidPassword": "Nieprawidłowe hasło",
-      "userNotFound": "Nie znaleziono użytkownika"
-    }
   }
 }

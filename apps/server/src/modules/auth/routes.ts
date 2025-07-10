@@ -183,4 +183,101 @@ export async function authRoutes(app: FastifyInstance) {
     },
     authController.getCurrentUser.bind(authController)
   );
+
+  app.get(
+    "/auth/trusted-devices",
+    {
+      schema: {
+        tags: ["Authentication"],
+        operationId: "getTrustedDevices",
+        summary: "Get Trusted Devices",
+        description: "Get all trusted devices for the current user",
+        response: {
+          200: z.object({
+            devices: z.array(
+              z.object({
+                id: z.string().describe("Device ID"),
+                deviceName: z.string().nullable().describe("Device name"),
+                userAgent: z.string().nullable().describe("User agent"),
+                ipAddress: z.string().nullable().describe("IP address"),
+                createdAt: z.date().describe("Creation date"),
+                lastUsedAt: z.date().describe("Last used date"),
+                expiresAt: z.date().describe("Expiration date"),
+              })
+            ),
+          }),
+          401: z.object({ error: z.string().describe("Error message") }),
+        },
+      },
+      preValidation: async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+          await request.jwtVerify();
+        } catch (err) {
+          console.error(err);
+          reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+        }
+      },
+    },
+    authController.getTrustedDevices.bind(authController)
+  );
+
+  app.delete(
+    "/auth/trusted-devices/:id",
+    {
+      schema: {
+        tags: ["Authentication"],
+        operationId: "removeTrustedDevice",
+        summary: "Remove Trusted Device",
+        description: "Remove a specific trusted device",
+        params: z.object({
+          id: z.string().describe("Device ID"),
+        }),
+        response: {
+          200: z.object({
+            success: z.boolean().describe("Success status"),
+            message: z.string().describe("Success message"),
+          }),
+          401: z.object({ error: z.string().describe("Error message") }),
+        },
+      },
+      preValidation: async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+          await request.jwtVerify();
+        } catch (err) {
+          console.error(err);
+          reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+        }
+      },
+    },
+    authController.removeTrustedDevice.bind(authController)
+  );
+
+  app.delete(
+    "/auth/trusted-devices",
+    {
+      schema: {
+        tags: ["Authentication"],
+        operationId: "removeAllTrustedDevices",
+        summary: "Remove All Trusted Devices",
+        description: "Remove all trusted devices for the current user",
+        response: {
+          200: z.object({
+            success: z.boolean().describe("Success status"),
+            message: z.string().describe("Success message"),
+            removedCount: z.number().describe("Number of devices removed"),
+          }),
+          401: z.object({ error: z.string().describe("Error message") }),
+        },
+      },
+      preValidation: async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+          await request.jwtVerify();
+        } catch (err) {
+          console.error(err);
+          reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+        }
+      },
+    },
+    authController.removeAllTrustedDevices.bind(authController)
+  );
 }
