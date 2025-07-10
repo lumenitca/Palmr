@@ -278,6 +278,7 @@ model TrustedDevice {
   deviceName   String?
   userAgent    String?
   ipAddress    String?
+  lastUsedAt   DateTime @default(now())
   expiresAt    DateTime
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

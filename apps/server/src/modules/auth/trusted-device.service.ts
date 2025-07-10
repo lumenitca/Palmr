@@ -40,11 +40,13 @@ export class TrustedDeviceService {
         userAgent,
         ipAddress,
         expiresAt,
+        lastUsedAt: new Date(),
       },
       update: {
         expiresAt,
         userAgent,
         ipAddress,
+        lastUsedAt: new Date(),
       },
     });
   }
@@ -82,10 +84,25 @@ export class TrustedDeviceService {
     });
   }
 
-  async removeAllTrustedDevices(userId: string): Promise<void> {
-    await prisma.trustedDevice.deleteMany({
+  async removeAllTrustedDevices(userId: string): Promise<{ count: number }> {
+    const result = await prisma.trustedDevice.deleteMany({
       where: {
         userId,
+      },
+    });
+    return { count: result.count };
+  }
+
+  async updateLastUsed(userId: string, userAgent: string, ipAddress: string): Promise<void> {
+    const deviceHash = this.generateDeviceHash(userAgent, ipAddress);
+
+    await prisma.trustedDevice.updateMany({
+      where: {
+        userId,
+        deviceHash,
+      },
+      data: {
+        lastUsedAt: new Date(),
       },
     });
   }

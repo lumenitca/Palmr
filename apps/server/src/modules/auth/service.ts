@@ -87,6 +87,8 @@ export class AuthService {
       if (userAgent && ipAddress) {
         const isDeviceTrusted = await this.trustedDeviceService.isDeviceTrusted(user.id, userAgent, ipAddress);
         if (isDeviceTrusted) {
+          // Update last used timestamp for trusted device
+          await this.trustedDeviceService.updateLastUsed(user.id, userAgent, ipAddress);
           return UserResponseSchema.parse(user);
         }
       }
@@ -132,6 +134,12 @@ export class AuthService {
 
     if (rememberDevice && userAgent && ipAddress) {
       await this.trustedDeviceService.addTrustedDevice(userId, userAgent, ipAddress);
+    } else if (userAgent && ipAddress) {
+      // Update last used timestamp if this is already a trusted device
+      const isDeviceTrusted = await this.trustedDeviceService.isDeviceTrusted(userId, userAgent, ipAddress);
+      if (isDeviceTrusted) {
+        await this.trustedDeviceService.updateLastUsed(userId, userAgent, ipAddress);
+      }
     }
 
     return UserResponseSchema.parse(user);
@@ -202,5 +210,22 @@ export class AuthService {
       throw new Error("User not found");
     }
     return UserResponseSchema.parse(user);
+  }
+
+  async getTrustedDevices(userId: string) {
+    return await this.trustedDeviceService.getUserTrustedDevices(userId);
+  }
+
+  async removeTrustedDevice(userId: string, deviceId: string) {
+    return await this.trustedDeviceService.removeTrustedDevice(userId, deviceId);
+  }
+
+  async removeAllTrustedDevices(userId: string) {
+    const result = await this.trustedDeviceService.removeAllTrustedDevices(userId);
+    return {
+      success: true,
+      message: "All trusted devices removed successfully",
+      removedCount: result.count,
+    };
   }
 }
