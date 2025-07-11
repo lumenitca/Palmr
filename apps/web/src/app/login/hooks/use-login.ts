@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
-import { getAppInfo, getCurrentUser, login } from "@/http/endpoints";
+import { getCurrentUser, login } from "@/http/endpoints";
 import { completeTwoFactorLogin } from "@/http/endpoints/auth/two-factor";
 import type { LoginResponse } from "@/http/endpoints/auth/two-factor/types";
 import { LoginFormValues } from "../schemas/schema";
