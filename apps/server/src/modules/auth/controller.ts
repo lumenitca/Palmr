@@ -13,8 +13,12 @@ export class AuthController {
   private authService = new AuthService();
 
   private getClientInfo(request: FastifyRequest) {
-    const userAgent = request.headers["user-agent"] || "";
-    const ipAddress = request.ip || request.socket.remoteAddress || "";
+    const realIP = request.headers["x-real-ip"] as string;
+    const realUserAgent = request.headers["x-user-agent"] as string;
+
+    const userAgent = realUserAgent || request.headers["user-agent"] || "";
+    const ipAddress = realIP || request.ip || request.socket.remoteAddress || "";
+
     return { userAgent, ipAddress };
   }
 

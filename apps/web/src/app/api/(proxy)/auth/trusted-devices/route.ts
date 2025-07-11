@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { getClientHeaders } from "@/lib/proxy-utils";
+
 const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3333";
 
 export async function GET(req: NextRequest) {
@@ -7,10 +9,13 @@ export async function GET(req: NextRequest) {
     const cookieHeader = req.headers.get("cookie");
     const url = `${API_BASE_URL}/auth/trusted-devices`;
 
+    const clientHeaders = getClientHeaders(req);
+
     const apiRes = await fetch(url, {
       method: "GET",
       headers: {
         cookie: cookieHeader || "",
+        ...clientHeaders,
         ...Object.fromEntries(Array.from(req.headers.entries()).filter(([key]) => key.startsWith("authorization"))),
       },
       redirect: "manual",
@@ -41,10 +46,14 @@ export async function DELETE(req: NextRequest) {
     const cookieHeader = req.headers.get("cookie");
     const url = `${API_BASE_URL}/auth/trusted-devices`;
 
+    // Get real client IP and user agent headers
+    const clientHeaders = getClientHeaders(req);
+
     const apiRes = await fetch(url, {
       method: "DELETE",
       headers: {
         cookie: cookieHeader || "",
+        ...clientHeaders,
         ...Object.fromEntries(Array.from(req.headers.entries()).filter(([key]) => key.startsWith("authorization"))),
       },
       redirect: "manual",
