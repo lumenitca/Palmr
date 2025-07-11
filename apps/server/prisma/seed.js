@@ -303,6 +303,24 @@ const defaultAuthProviders = [
       supportsDiscovery: true,
     }),
   },
+  {
+    name: "pocketid",
+    displayName: "Pocket ID",
+    type: "oidc",
+    icon: "BsFillPSquareFill",
+    enabled: false,
+    issuerUrl: "https://your-pocket-id.domain.com",
+    authorizationEndpoint: "/authorize",
+    tokenEndpoint: "/api/oidc/token",
+    userInfoEndpoint: "/api/oidc/userinfo",
+    scope: "openid profile email",
+    sortOrder: 9,
+    metadata: JSON.stringify({
+      description: "Sign in with Pocket ID - Replace with your Pocket ID instance URL",
+      docs: "https://docs.pocket-id.org",
+      supportsDiscovery: true,
+    }),
+  },
 ];
 
 async function main() {

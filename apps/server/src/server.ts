@@ -11,11 +11,13 @@ import { appRoutes } from "./modules/app/routes";
 import { authProvidersRoutes } from "./modules/auth-providers/routes";
 import { authRoutes } from "./modules/auth/routes";
 import { fileRoutes } from "./modules/file/routes";
+import { ChunkManager } from "./modules/filesystem/chunk-manager";
 import { filesystemRoutes } from "./modules/filesystem/routes";
 import { healthRoutes } from "./modules/health/routes";
 import { reverseShareRoutes } from "./modules/reverse-share/routes";
 import { shareRoutes } from "./modules/share/routes";
 import { storageRoutes } from "./modules/storage/routes";
+import { twoFactorRoutes } from "./modules/two-factor/routes";
 import { userRoutes } from "./modules/user/routes";
 import { IS_RUNNING_IN_CONTAINER } from "./utils/container-detection";
 
@@ -69,6 +71,7 @@ async function startServer() {
 
   app.register(authRoutes);
   app.register(authProvidersRoutes, { prefix: "/auth" });
+  app.register(twoFactorRoutes, { prefix: "/auth" });
   app.register(userRoutes);
   app.register(fileRoutes);
 
@@ -103,6 +106,18 @@ async function startServer() {
 
   console.log("\n📚 API Documentation:");
   console.log(`   - API Reference: http://localhost:3333/docs\n`);
+
+  process.on("SIGINT", async () => {
+    const chunkManager = ChunkManager.getInstance();
+    chunkManager.destroy();
+    process.exit(0);
+  });
+
+  process.on("SIGTERM", async () => {
+    const chunkManager = ChunkManager.getInstance();
+    chunkManager.destroy();
+    process.exit(0);
+  });
 }
 
 startServer().catch((err) => {

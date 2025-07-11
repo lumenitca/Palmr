@@ -103,9 +103,6 @@ export function ReverseSharesModals({
         onCopyLink={onCopyLink}
         onUpdatePassword={onUpdatePassword}
         onToggleActive={onToggleActive}
-        onSuccess={() => {
-          console.log("Operation completed successfully - data updated");
-        }}
       />
 
       <ReceivedFilesModal

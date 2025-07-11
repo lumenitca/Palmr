@@ -1,13 +1,12 @@
 import * as fs from "fs";
-import * as path from "path";
 import { pipeline } from "stream/promises";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { FilesystemStorageProvider } from "../../providers/filesystem-storage.provider";
-import { FileService } from "../file/service";
+import { ChunkManager, ChunkMetadata } from "./chunk-manager";
 
 export class FilesystemController {
-  private fileService = new FileService();
+  private chunkManager = ChunkManager.getInstance();
 
   /**
    * Safely encode filename for Content-Disposition header
@@ -65,20 +64,119 @@ export class FilesystemController {
         return reply.status(400).send({ error: "Invalid or expired upload token" });
       }
 
-      // Use streaming for all files to avoid loading into RAM
-      await this.uploadFileStream(request, provider, tokenData.objectName);
+      const chunkMetadata = this.extractChunkMetadata(request);
 
-      provider.consumeUploadToken(token);
-      reply.status(200).send({ message: "File uploaded successfully" });
+      if (chunkMetadata) {
+        try {
+          const result = await this.handleChunkedUpload(request, chunkMetadata, tokenData.objectName);
+
+          if (result.isComplete) {
+            provider.consumeUploadToken(token);
+            reply.status(200).send({
+              message: "File uploaded successfully",
+              objectName: result.finalPath,
+              finalObjectName: result.finalPath,
+            });
+          } else {
+            reply.status(200).send({
+              message: "Chunk uploaded successfully",
+              progress: this.chunkManager.getUploadProgress(chunkMetadata.fileId),
+            });
+          }
+        } catch (chunkError: any) {
+          return reply.status(400).send({
+            error: chunkError.message || "Chunked upload failed",
+            details: chunkError.toString(),
+          });
+        }
+      } else {
+        await this.uploadFileStream(request, provider, tokenData.objectName);
+        provider.consumeUploadToken(token);
+        reply.status(200).send({ message: "File uploaded successfully" });
+      }
     } catch (error) {
-      console.error("Error in filesystem upload:", error);
       return reply.status(500).send({ error: "Internal server error" });
     }
   }
 
   private async uploadFileStream(request: FastifyRequest, provider: FilesystemStorageProvider, objectName: string) {
-    // Use the provider's streaming upload method directly
     await provider.uploadFileFromStream(objectName, request.raw);
+  }
+
+  /**
+   * Extract chunk metadata from request headers
+   */
+  private extractChunkMetadata(request: FastifyRequest): ChunkMetadata | null {
+    const fileId = request.headers["x-file-id"] as string;
+    const chunkIndex = request.headers["x-chunk-index"] as string;
+    const totalChunks = request.headers["x-total-chunks"] as string;
+    const chunkSize = request.headers["x-chunk-size"] as string;
+    const totalSize = request.headers["x-total-size"] as string;
+    const fileName = request.headers["x-file-name"] as string;
+    const isLastChunk = request.headers["x-is-last-chunk"] as string;
+
+    if (!fileId || !chunkIndex || !totalChunks || !chunkSize || !totalSize || !fileName) {
+      return null;
+    }
+
+    const metadata = {
+      fileId,
+      chunkIndex: parseInt(chunkIndex, 10),
+      totalChunks: parseInt(totalChunks, 10),
+      chunkSize: parseInt(chunkSize, 10),
+      totalSize: parseInt(totalSize, 10),
+      fileName,
+      isLastChunk: isLastChunk === "true",
+    };
+
+    return metadata;
+  }
+
+  /**
+   * Handle chunked upload with streaming
+   */
+  private async handleChunkedUpload(request: FastifyRequest, metadata: ChunkMetadata, originalObjectName: string) {
+    const stream = request.raw;
+
+    stream.on("error", (error) => {
+      console.error("Request stream error:", error);
+    });
+
+    return await this.chunkManager.processChunk(metadata, stream, originalObjectName);
+  }
+
+  /**
+   * Get upload progress for chunked uploads
+   */
+  async getUploadProgress(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { fileId } = request.params as { fileId: string };
+
+      const progress = this.chunkManager.getUploadProgress(fileId);
+
+      if (!progress) {
+        return reply.status(404).send({ error: "Upload not found" });
+      }
+
+      reply.status(200).send(progress);
+    } catch (error) {
+      return reply.status(500).send({ error: "Internal server error" });
+    }
+  }
+
+  /**
+   * Cancel chunked upload
+   */
+  async cancelUpload(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { fileId } = request.params as { fileId: string };
+
+      await this.chunkManager.cancelUpload(fileId);
+
+      reply.status(200).send({ message: "Upload cancelled successfully" });
+    } catch (error) {
+      return reply.status(500).send({ error: "Internal server error" });
+    }
   }
 
   async download(request: FastifyRequest, reply: FastifyReply) {
@@ -135,7 +233,6 @@ export class FilesystemController {
 
       provider.consumeDownloadToken(token);
     } catch (error) {
-      console.error("Error in filesystem download:", error);
       return reply.status(500).send({ error: "Internal server error" });
     }
   }
@@ -147,7 +244,6 @@ export class FilesystemController {
     try {
       await pipeline(readStream, decryptStream, reply.raw);
     } catch (error) {
-      console.error("Error streaming large file:", error);
       throw error;
     }
   }

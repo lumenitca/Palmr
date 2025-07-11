@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
+import { ChunkedUploader } from "@/utils/chunked-upload";
 import { getFileIcon } from "@/utils/file-icons";
 import { generateSafeFileName } from "@/utils/file-utils";
 import { formatFileSize } from "@/utils/format-file-size";
@@ -212,7 +213,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       try {
         await checkFile({
           name: fileName,
-          objectName: "checkFile",
+          objectName: safeObjectName,
           size: file.size,
           extension: extension,
         });
@@ -222,9 +223,9 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
         let errorMessage = t("uploadFile.error");
 
         if (errorData.code === "fileSizeExceeded") {
-          errorMessage = t(`uploadFile.${errorData.code}`, { maxsizemb: t(`${errorData.details}`) });
+          errorMessage = t(`uploadFile.${errorData.code}`, { maxsizemb: errorData.details || "0" });
         } else if (errorData.code === "insufficientStorage") {
-          errorMessage = t(`uploadFile.${errorData.code}`, { availablespace: t(`${errorData.details}`) });
+          errorMessage = t(`uploadFile.${errorData.code}`, { availablespace: errorData.details || "0" });
         } else if (errorData.code) {
           errorMessage = t(`uploadFile.${errorData.code}`);
         }
@@ -251,23 +252,55 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       const abortController = new AbortController();
       setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
-      await axios.put(url, file, {
-        headers: {
-          "Content-Type": file.type,
-        },
-        signal: abortController.signal,
-        onUploadProgress: (progressEvent) => {
-          const progress = (progressEvent.loaded / (progressEvent.total || file.size)) * 100;
-          setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress: Math.round(progress) } : u)));
-        },
-      });
+      const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
 
-      await registerFile({
-        name: fileName,
-        objectName: objectName,
-        size: file.size,
-        extension: extension,
-      });
+      if (shouldUseChunked) {
+        const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
+
+        const result = await ChunkedUploader.uploadFile({
+          file,
+          url,
+          chunkSize,
+          signal: abortController.signal,
+          onProgress: (progress) => {
+            setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress } : u)));
+          },
+        });
+
+        if (!result.success) {
+          throw new Error(result.error || "Chunked upload failed");
+        }
+
+        const finalObjectName = result.finalObjectName || objectName;
+
+        await registerFile({
+          name: fileName,
+          objectName: finalObjectName,
+          size: file.size,
+          extension: extension,
+        });
+      } else {
+        await axios.put(url, file, {
+          headers: {
+            "Content-Type": file.type,
+          },
+          signal: abortController.signal,
+          timeout: 300000, // 5 minutes timeout for direct uploads
+          maxContentLength: Infinity,
+          maxBodyLength: Infinity,
+          onUploadProgress: (progressEvent) => {
+            const progress = (progressEvent.loaded / (progressEvent.total || file.size)) * 100;
+            setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress: Math.round(progress) } : u)));
+          },
+        });
+
+        await registerFile({
+          name: fileName,
+          objectName: objectName,
+          size: file.size,
+          extension: extension,
+        });
+      }
 
       setFileUploads((prev) =>
         prev.map((u) =>
@@ -298,7 +331,6 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
   const startUploads = async () => {
     const pendingUploads = fileUploads.filter((u) => u.status === UploadStatus.PENDING);
 
-    // Reset the toast flag when starting new uploads
     setHasShownSuccessToast(false);
 
     const uploadPromises = pendingUploads.map((upload) => uploadFile(upload));
@@ -346,7 +378,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
 
     setFileUploads([]);
     setShowConfirmation(false);
-    setHasShownSuccessToast(false); // Reset toast flag when closing
+    setHasShownSuccessToast(false);
     onClose();
   };
 

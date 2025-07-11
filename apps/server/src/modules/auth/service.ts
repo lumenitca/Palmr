@@ -4,16 +4,20 @@ import bcrypt from "bcryptjs";
 import { prisma } from "../../shared/prisma";
 import { ConfigService } from "../config/service";
 import { EmailService } from "../email/service";
+import { TwoFactorService } from "../two-factor/service";
 import { UserResponseSchema } from "../user/dto";
 import { PrismaUserRepository } from "../user/repository";
 import { LoginInput } from "./dto";
+import { TrustedDeviceService } from "./trusted-device.service";
 
 export class AuthService {
   private userRepository = new PrismaUserRepository();
   private configService = new ConfigService();
   private emailService = new EmailService();
+  private twoFactorService = new TwoFactorService();
+  private trustedDeviceService = new TrustedDeviceService();
 
-  async login(data: LoginInput) {
+  async login(data: LoginInput, userAgent?: string, ipAddress?: string) {
     const user = await this.userRepository.findUserByEmailOrUsername(data.emailOrUsername);
     if (!user) {
       throw new Error("Invalid credentials");
@@ -75,6 +79,67 @@ export class AuthService {
       await prisma.loginAttempt.delete({
         where: { userId: user.id },
       });
+    }
+
+    const has2FA = await this.twoFactorService.isEnabled(user.id);
+
+    if (has2FA) {
+      if (userAgent && ipAddress) {
+        const isDeviceTrusted = await this.trustedDeviceService.isDeviceTrusted(user.id, userAgent, ipAddress);
+        if (isDeviceTrusted) {
+          // Update last used timestamp for trusted device
+          await this.trustedDeviceService.updateLastUsed(user.id, userAgent, ipAddress);
+          return UserResponseSchema.parse(user);
+        }
+      }
+
+      return {
+        requiresTwoFactor: true,
+        userId: user.id,
+        message: "Two-factor authentication required",
+      };
+    }
+
+    return UserResponseSchema.parse(user);
+  }
+
+  async completeTwoFactorLogin(
+    userId: string,
+    token: string,
+    rememberDevice: boolean = false,
+    userAgent?: string,
+    ipAddress?: string
+  ) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (!user.isActive) {
+      throw new Error("Account is inactive. Please contact an administrator.");
+    }
+
+    const verificationResult = await this.twoFactorService.verifyToken(userId, token);
+
+    if (!verificationResult.success) {
+      throw new Error("Invalid two-factor authentication code");
+    }
+
+    await prisma.loginAttempt.deleteMany({
+      where: { userId },
+    });
+
+    if (rememberDevice && userAgent && ipAddress) {
+      await this.trustedDeviceService.addTrustedDevice(userId, userAgent, ipAddress);
+    } else if (userAgent && ipAddress) {
+      // Update last used timestamp if this is already a trusted device
+      const isDeviceTrusted = await this.trustedDeviceService.isDeviceTrusted(userId, userAgent, ipAddress);
+      if (isDeviceTrusted) {
+        await this.trustedDeviceService.updateLastUsed(userId, userAgent, ipAddress);
+      }
     }
 
     return UserResponseSchema.parse(user);
@@ -145,5 +210,22 @@ export class AuthService {
       throw new Error("User not found");
     }
     return UserResponseSchema.parse(user);
+  }
+
+  async getTrustedDevices(userId: string) {
+    return await this.trustedDeviceService.getUserTrustedDevices(userId);
+  }
+
+  async removeTrustedDevice(userId: string, deviceId: string) {
+    return await this.trustedDeviceService.removeTrustedDevice(userId, deviceId);
+  }
+
+  async removeAllTrustedDevices(userId: string) {
+    const result = await this.trustedDeviceService.removeAllTrustedDevices(userId);
+    return {
+      success: true,
+      message: "All trusted devices removed successfully",
+      removedCount: result.count,
+    };
   }
 }
