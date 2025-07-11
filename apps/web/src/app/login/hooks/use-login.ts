@@ -27,7 +27,6 @@ export function useLogin() {
   const { isAuthenticated, setUser, setIsAdmin, setIsAuthenticated } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState<string | undefined>();
-  const [isInitialized, setIsInitialized] = useState(false);
   const [requiresTwoFactor, setRequiresTwoFactor] = useState(false);
   const [twoFactorUserId, setTwoFactorUserId] = useState<string | null>(null);
   const [twoFactorCode, setTwoFactorCode] = useState("");
@@ -61,43 +60,6 @@ export function useLogin() {
     }
   }, [searchParams, t]);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const appInfoResponse = await getAppInfo();
-        const appInfo = appInfoResponse.data;
-
-        if (appInfo.firstUserAccess) {
-          setUser(null);
-          setIsAdmin(false);
-          setIsAuthenticated(false);
-          setIsInitialized(true);
-          return;
-        }
-
-        const userResponse = await getCurrentUser();
-        if (!userResponse?.data?.user) {
-          throw new Error(t("errors.noUserData"));
-        }
-
-        const { isAdmin, ...userData } = userResponse.data.user;
-        setUser(userData);
-        setIsAdmin(isAdmin);
-        setIsAuthenticated(true);
-        router.push("/dashboard");
-      } catch (err) {
-        console.error(err);
-        setUser(null);
-        setIsAdmin(false);
-        setIsAuthenticated(false);
-      } finally {
-        setIsInitialized(true);
-      }
-    };
-
-    checkAuth();
-  }, [router, setUser, setIsAdmin, setIsAuthenticated, t]);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -115,8 +77,24 @@ export function useLogin() {
       }
 
       if (loginData.user) {
+        // Após login bem-sucedido, buscar dados completos do usuário incluindo a imagem
+        try {
+          const userResponse = await getCurrentUser();
+          if (userResponse?.data?.user) {
+            const { isAdmin, ...userData } = userResponse.data.user;
+            setUser(userData);
+            setIsAdmin(isAdmin);
+            setIsAuthenticated(true);
+            router.replace("/dashboard");
+            return;
+          }
+        } catch (userErr) {
+          console.warn("Failed to fetch complete user data, using login data:", userErr);
+        }
+
+        // Fallback para dados do login se falhar ao buscar dados completos
         const { isAdmin, ...userData } = loginData.user;
-        setUser({ ...userData, image: userData.image ?? null });
+        setUser({ ...userData, image: null });
         setIsAdmin(isAdmin);
         setIsAuthenticated(true);
         router.replace("/dashboard");
@@ -151,9 +129,24 @@ export function useLogin() {
         rememberDevice: rememberDevice,
       });
 
-      const { isAdmin, ...userData } = response.data.user;
+      // Após two-factor login bem-sucedido, buscar dados completos do usuário incluindo a imagem
+      try {
+        const userResponse = await getCurrentUser();
+        if (userResponse?.data?.user) {
+          const { isAdmin, ...userData } = userResponse.data.user;
+          setUser(userData);
+          setIsAdmin(isAdmin);
+          setIsAuthenticated(true);
+          router.replace("/dashboard");
+          return;
+        }
+      } catch (userErr) {
+        console.warn("Failed to fetch complete user data after 2FA, using response data:", userErr);
+      }
 
-      setUser(userData);
+      // Fallback para dados da resposta se falhar ao buscar dados completos
+      const { isAdmin, ...userData } = response.data.user;
+      setUser({ ...userData, image: userData.image ?? null });
       setIsAdmin(isAdmin);
       setIsAuthenticated(true);
       router.replace("/dashboard");
@@ -169,7 +162,7 @@ export function useLogin() {
   };
 
   return {
-    isAuthenticated: !isInitialized ? null : isAuthenticated,
+    isAuthenticated,
     error,
     isVisible,
     toggleVisibility,
