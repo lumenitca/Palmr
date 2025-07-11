@@ -1719,5 +1719,11 @@
     "lastNameRequired": "O sobrenome é necessário",
     "usernameLength": "O nome de usuário deve ter pelo menos 3 caracteres",
     "usernameSpaces": "O nome de usuário não pode conter espaços"
+  },
+  "imageEdit": {
+    "title": "Editar imagem",
+    "rotate": "Girar",
+    "zoom": "Ampliar",
+    "cropInstructions": "Arraste para reposicionar, redimensione os cantos para ajustar a área de recorte"
   }
 }

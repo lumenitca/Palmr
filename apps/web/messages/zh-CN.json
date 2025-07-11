@@ -1719,5 +1719,11 @@
     "passwordRequired": "密码为必填项",
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
+  },
+  "imageEdit": {
+    "title": "编辑图片",
+    "rotate": "旋转",
+    "zoom": "缩放",
+    "cropInstructions": "拖动以重新定位，调整角落大小以调整裁剪区域"
   }
 }

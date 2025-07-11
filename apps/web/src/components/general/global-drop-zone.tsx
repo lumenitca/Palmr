@@ -125,9 +125,10 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
         const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
-        const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
 
         if (shouldUseChunked) {
+          const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
+
           const result = await ChunkedUploader.uploadFile({
             file,
             url,

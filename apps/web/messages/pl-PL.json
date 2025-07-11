@@ -1719,5 +1719,11 @@
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",
     "required": "To pole jest wymagane"
+  },
+  "imageEdit": {
+    "title": "Edytuj obraz",
+    "rotate": "Obróć",
+    "zoom": "Powiększ",
+    "cropInstructions": "Przeciągnij, aby przesunąć, zmień rozmiar rogów, aby dostosować obszar przycięcia"
   }
 }

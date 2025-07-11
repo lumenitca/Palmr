@@ -1719,5 +1719,11 @@
     "passwordRequired": "비밀번호는 필수입니다",
     "nameRequired": "이름은 필수입니다",
     "required": "이 필드는 필수입니다"
+  },
+  "imageEdit": {
+    "title": "이미지 편집",
+    "rotate": "회전",
+    "zoom": "확대/축소",
+    "cropInstructions": "위치를 변경하려면 드래그하고, 자르기 영역을 조정하려면 모서리를 확대/축소하세요"
   }
 }

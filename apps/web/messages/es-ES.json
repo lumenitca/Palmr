@@ -1719,5 +1719,11 @@
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
+  },
+  "imageEdit": {
+    "title": "Editar Imagen",
+    "rotate": "Rotar",
+    "zoom": "Zoom",
+    "cropInstructions": "Arrastra para reubicar, ajusta las esquinas para ajustar el área de recorte"
   }
 }

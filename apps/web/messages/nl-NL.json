@@ -1719,5 +1719,11 @@
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",
     "required": "Dit veld is verplicht"
+  },
+  "imageEdit": {
+    "title": "Afbeelding bewerken",
+    "rotate": "Draai",
+    "zoom": "Vergroot",
+    "cropInstructions": "Sleep om te herpositioneren, verander de grootte van de hoeken om de uitsnijdgebied aan te passen"
   }
 }

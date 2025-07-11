@@ -1719,5 +1719,11 @@
     "passwordRequired": "Le mot de passe est requis",
     "nameRequired": "Nome é obrigatório",
     "required": "Este campo é obrigatório"
+  },
+  "imageEdit": {
+    "title": "Modifier l'Image",
+    "rotate": "Tourner",
+    "zoom": "Zoom",
+    "cropInstructions": "Glisser pour répositionner, redimensionner les coins pour ajuster la zone de découpe"
   }
 }

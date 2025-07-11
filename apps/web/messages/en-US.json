@@ -400,6 +400,12 @@
   "navigation": {
     "dashboard": "Dashboard"
   },
+  "imageEdit": {
+    "title": "Edit Image",
+    "rotate": "Rotate",
+    "zoom": "Zoom",
+    "cropInstructions": "Drag to reposition, resize corners to adjust crop area"
+  },
   "profile": {
     "password": {
       "title": "Change Password",
