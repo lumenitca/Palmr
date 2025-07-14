@@ -56,6 +56,7 @@ services:
     environment:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
+      # - DISABLE_FILESYSTEM_ENCRYPTION=false # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional)
       # - SECURE_SITE=false # Set to true if you are using a reverse proxy
     ports:
       - "5487:5487" # Web interface
@@ -102,9 +103,10 @@ services:
     environment:
       - ENABLE_S3=false
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
-      # - SECURE_SITE=false # Set to true if you are using a reverse proxy
       - PALMR_UID=1000 # UID for the container processes (default is 1001)
       - PALMR_GID=1000 # GID for the container processes (default is 1001)
+      # - DISABLE_FILESYSTEM_ENCRYPTION=false # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional)
+      # - SECURE_SITE=false # Set to true if you are using a reverse proxy
     ports:
       - "5487:5487" # Web port
       - "3333:3333" # API port (OPTIONAL EXPOSED - ONLY IF YOU WANT TO ACCESS THE API DIRECTLY)
@@ -128,13 +130,16 @@ docker-compose up -d
 
 Configure Palmr. behavior through environment variables:
 
-| Variable         | Default | Description                                             |
-| ---------------- | ------- | ------------------------------------------------------- |
-| `ENABLE_S3`      | `false` | Enable S3-compatible storage                            |
-| `ENCRYPTION_KEY` | -       | **Required**: Minimum 32 characters for file encryption |
-| `SECURE_SITE`    | `false` | Enable secure cookies for HTTPS/reverse proxy setups    |
+| Variable                        | Default | Description                                                                          |
+| ------------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| `ENABLE_S3`                     | `false` | Enable S3-compatible storage                                                         |
+| `ENCRYPTION_KEY`                | -       | **Required** (unless encryption disabled): Minimum 32 characters for file encryption |
+| `DISABLE_FILESYSTEM_ENCRYPTION` | `false` | Disable file encryption for direct filesystem access                                 |
+| `SECURE_SITE`                   | `false` | Enable secure cookies for HTTPS/reverse proxy setups                                 |
 
-> **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production. This key encrypts your files - losing it makes files permanently inaccessible.
+> **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production when encryption is enabled. This key encrypts your files - losing it makes files permanently inaccessible.
+
+> **🔓 File Encryption Control**: The `DISABLE_FILESYSTEM_ENCRYPTION` variable allows you to store files without encryption for direct filesystem access. When set to `true`, the `ENCRYPTION_KEY` becomes optional. **Important**: Once set, this configuration is permanent for your deployment. Switching between encrypted and unencrypted modes will break file access for existing uploads. Choose your strategy before uploading files.
 
 > **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.1-beta/reverse-proxy-configuration) guide for proper setup.
 
@@ -143,6 +148,8 @@ Configure Palmr. behavior through environment variables:
 Need a strong key for `ENCRYPTION_KEY`? Use our built-in generator to create cryptographically secure keys:
 
 <KeyGenerator />
+
+> **💡 Pro Tip**: If you're using `DISABLE_FILESYSTEM_ENCRYPTION=true`, you can skip the `ENCRYPTION_KEY` entirely for a simpler setup. However, remember that files will be stored unencrypted on your filesystem.
 
 ---
 
@@ -177,12 +184,16 @@ docker run -d \
   --name palmr \
   -e ENABLE_S3=false \
   -e ENCRYPTION_KEY=your-secure-key-min-32-chars \
+  # -e DISABLE_FILESYSTEM_ENCRYPTION=true # Uncomment to disable file encryption (ENCRYPTION_KEY becomes optional)
+  # -e SECURE_SITE=false # Set to true if you are using a reverse proxy
   -p 5487:5487 \
   -p 3333:3333 \
   -v palmr_data:/app/server \
   --restart unless-stopped \
   kyantech/palmr:latest
 ```
+
+> **Permission Configuration**: If you encounter permission issues with bind mounts (common on NAS systems), see our [UID/GID Configuration](/docs/3.1-beta/uid-gid-configuration) guide for automatic permission handling.
 
 **Bind Mount:**
 
@@ -191,6 +202,10 @@ docker run -d \
   --name palmr \
   -e ENABLE_S3=false \
   -e ENCRYPTION_KEY=your-secure-key-min-32-chars \
+  -e PALMR_UID=1000 # UID for the container processes (default is 1001)
+  -e PALMR_GID=1000 # GID for the container processes (default is 1001)
+  # -e DISABLE_FILESYSTEM_ENCRYPTION=true # Uncomment to disable file encryption (ENCRYPTION_KEY becomes optional)
+  # -e SECURE_SITE=false # Set to true if you are using a reverse proxy
   -p 5487:5487 \
   -p 3333:3333 \
   -v $(pwd)/data:/app/server \

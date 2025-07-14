@@ -133,6 +133,7 @@ set -e
 echo "Starting Palmr Application..."
 echo "Storage Mode: \${ENABLE_S3:-false}"
 echo "Secure Site: \${SECURE_SITE:-false}"
+echo "Encryption: \${DISABLE_FILESYSTEM_ENCRYPTION:-false}"
 echo "Database: SQLite"
 
 # Set global environment variables

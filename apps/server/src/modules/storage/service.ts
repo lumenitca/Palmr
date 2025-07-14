@@ -9,6 +9,8 @@ import { ConfigService } from "../config/service";
 const execAsync = promisify(exec);
 const prisma = new PrismaClient();
 
+// TODO: REMOVE LOGGING AFTER TESTING
+
 export class StorageService {
   private configService = new ConfigService();
 
@@ -19,6 +21,34 @@ export class StorageService {
   private _safeParseInt(value: string): number {
     const parsed = parseInt(value, 10);
     return Number.isNaN(parsed) ? 0 : parsed;
+  }
+
+  private _parseSize(value: string): number {
+    if (!value) return 0;
+
+    // Remove any whitespace and convert to lowercase
+    const cleanValue = value.trim().toLowerCase();
+
+    // Extract the numeric part
+    const numericMatch = cleanValue.match(/^(\d+(?:\.\d+)?)/);
+    if (!numericMatch) return 0;
+
+    const numericValue = parseFloat(numericMatch[1]);
+    if (Number.isNaN(numericValue)) return 0;
+
+    // Determine the unit multiplier
+    if (cleanValue.includes("t")) {
+      return Math.round(numericValue * 1024 * 1024 * 1024 * 1024); // TB to bytes
+    } else if (cleanValue.includes("g")) {
+      return Math.round(numericValue * 1024 * 1024 * 1024); // GB to bytes
+    } else if (cleanValue.includes("m")) {
+      return Math.round(numericValue * 1024 * 1024); // MB to bytes
+    } else if (cleanValue.includes("k")) {
+      return Math.round(numericValue * 1024); // KB to bytes
+    } else {
+      // Assume bytes if no unit
+      return Math.round(numericValue);
+    }
   }
 
   private async _tryDiskSpaceCommand(command: string): Promise<{ total: number; available: number } | null> {
@@ -53,17 +83,79 @@ export class StorageService {
           }
         }
       } else {
+        // Handle different Linux/Unix command formats
         const lines = stdout.trim().split("\n");
-        if (lines.length >= 2) {
-          const parts = lines[1].trim().split(/\s+/);
-          if (parts.length >= 4) {
-            const [, size, , avail] = parts;
-            if (command.includes("-B1")) {
-              total = this._safeParseInt(size);
-              available = this._safeParseInt(avail);
-            } else {
-              total = this._safeParseInt(size) * 1024;
-              available = this._safeParseInt(avail) * 1024;
+
+        // Handle findmnt command output
+        if (command.includes("findmnt")) {
+          if (lines.length >= 1) {
+            const parts = lines[0].trim().split(/\s+/);
+            if (parts.length >= 2) {
+              const [availStr, sizeStr] = parts;
+              available = this._parseSize(availStr);
+              total = this._parseSize(sizeStr);
+            }
+          }
+        }
+        // Handle stat -f command output
+        else if (command.includes("stat -f")) {
+          // Parse stat -f output (different format)
+          let blockSize = 0;
+          let totalBlocks = 0;
+          let freeBlocks = 0;
+
+          for (const line of lines) {
+            if (line.includes("Block size:")) {
+              blockSize = this._safeParseInt(line.split(":")[1].trim());
+            } else if (line.includes("Total blocks:")) {
+              totalBlocks = this._safeParseInt(line.split(":")[1].trim());
+            } else if (line.includes("Free blocks:")) {
+              freeBlocks = this._safeParseInt(line.split(":")[1].trim());
+            }
+          }
+
+          if (blockSize > 0 && totalBlocks > 0) {
+            total = totalBlocks * blockSize;
+            available = freeBlocks * blockSize;
+            console.log(
+              `📊 stat -f parsed: blockSize=${blockSize}, totalBlocks=${totalBlocks}, freeBlocks=${freeBlocks}`
+            );
+          } else {
+            console.warn(
+              `❌ stat -f parsing failed: blockSize=${blockSize}, totalBlocks=${totalBlocks}, freeBlocks=${freeBlocks}`
+            );
+            return null;
+          }
+        }
+        // Handle df --output format
+        else if (command.includes("--output=")) {
+          if (lines.length >= 2) {
+            const parts = lines[1].trim().split(/\s+/);
+            if (parts.length >= 2) {
+              const [availStr, sizeStr] = parts;
+              available = this._safeParseInt(availStr) * 1024; // df --output gives in KB
+              total = this._safeParseInt(sizeStr) * 1024;
+            }
+          }
+        }
+        // Handle regular df command output
+        else {
+          if (lines.length >= 2) {
+            const parts = lines[1].trim().split(/\s+/);
+            if (parts.length >= 4) {
+              const [, size, , avail] = parts;
+              if (command.includes("-B1")) {
+                total = this._safeParseInt(size);
+                available = this._safeParseInt(avail);
+              } else if (command.includes("-h")) {
+                // Handle human-readable format (e.g., "1.5G", "500M")
+                total = this._parseSize(size);
+                available = this._parseSize(avail);
+              } else {
+                // Default to KB (standard df output)
+                total = this._safeParseInt(size) * 1024;
+                available = this._safeParseInt(avail) * 1024;
+              }
             }
           }
         }
@@ -72,7 +164,7 @@ export class StorageService {
       if (total > 0 && available >= 0) {
         return { total, available };
       } else {
-        console.warn(`Invalid values parsed: total=${total}, available=${available}`);
+        console.warn(`Invalid values parsed: total=${total}, available=${available} for command: ${command}`);
         return null;
       }
     } catch (error) {
@@ -87,6 +179,7 @@ export class StorageService {
   private async _getMountInfo(path: string): Promise<{ filesystem: string; mountPoint: string; type: string } | null> {
     try {
       if (!fs.existsSync("/proc/mounts")) {
+        console.log("❌ /proc/mounts not found for mount info");
         return null;
       }
 
@@ -96,16 +189,35 @@ export class StorageService {
       let bestMatch = null;
       let bestMatchLength = 0;
 
+      console.log(`🔍 Getting mount info for path: ${path}`);
+
       for (const line of lines) {
         const parts = line.split(/\s+/);
         if (parts.length >= 3) {
           const [filesystem, mountPoint, type] = parts;
+
+          // Log interesting filesystems for debugging
+          if (
+            filesystem.includes("volume") ||
+            filesystem.includes("mapper") ||
+            type === "ext4" ||
+            type === "btrfs" ||
+            type === "xfs" ||
+            mountPoint.includes("volume") ||
+            mountPoint.includes("app")
+          ) {
+            console.log(`📋 Mount detail: ${filesystem} → ${mountPoint} (${type})`);
+          }
 
           if (path.startsWith(mountPoint) && mountPoint.length > bestMatchLength) {
             bestMatch = { filesystem, mountPoint, type };
             bestMatchLength = mountPoint.length;
           }
         }
+      }
+
+      if (bestMatch) {
+        console.log(`🎯 Selected mount info: ${bestMatch.filesystem} → ${bestMatch.mountPoint} (${bestMatch.type})`);
       }
 
       return bestMatch;
@@ -122,6 +234,7 @@ export class StorageService {
   private async _detectMountPoint(path: string): Promise<string | null> {
     try {
       if (!fs.existsSync("/proc/mounts")) {
+        console.log("❌ /proc/mounts not found, cannot detect mount points");
         return null;
       }
 
@@ -131,22 +244,32 @@ export class StorageService {
       let bestMatch = null;
       let bestMatchLength = 0;
 
+      console.log(`🔍 Checking ${lines.length} mount points for path: ${path}`);
+
       for (const line of lines) {
         const parts = line.split(/\s+/);
-        if (parts.length >= 2) {
-          const [, mountPoint] = parts;
+        if (parts.length >= 3) {
+          const [device, mountPoint, filesystem] = parts;
+
+          // Log useful mount information for debugging
+          if (mountPoint.includes("volume") || mountPoint.includes("app") || mountPoint === "/") {
+            console.log(`📍 Found mount: ${device} → ${mountPoint} (${filesystem})`);
+          }
 
           if (path.startsWith(mountPoint) && mountPoint.length > bestMatchLength) {
             bestMatch = mountPoint;
             bestMatchLength = mountPoint.length;
+            console.log(`✅ Better match found: ${mountPoint} (length: ${mountPoint.length})`);
           }
         }
       }
 
       if (bestMatch && bestMatch !== "/") {
+        console.log(`🎯 Selected mount point: ${bestMatch}`);
         return bestMatch;
       }
 
+      console.log("❌ No specific mount point found, using root");
       return null;
     } catch (error) {
       console.warn(`Could not detect mount point for ${path}:`, error);
@@ -174,11 +297,31 @@ export class StorageService {
           ? ["wmic logicaldisk get size,freespace,caption"]
           : process.platform === "darwin"
             ? [`df -k "${targetPath}"`, `df "${targetPath}"`]
-            : [`df -B1 "${targetPath}"`, `df -k "${targetPath}"`, `df "${targetPath}"`];
+            : [
+                // Try different df commands for better compatibility
+                `df -B1 "${targetPath}"`,
+                `df -k "${targetPath}"`,
+                `df "${targetPath}"`,
+                // Additional commands for Synology NAS and other systems
+                `df -h "${targetPath}"`,
+                `df -T "${targetPath}"`,
+                // Fallback to statfs if available
+                `stat -f "${targetPath}"`,
+                // Direct filesystem commands
+                `findmnt -n -o AVAIL,SIZE "${targetPath}"`,
+                `findmnt -n -o AVAIL,SIZE,TARGET "${targetPath}"`,
+                // Alternative df with different formatting
+                `df -P "${targetPath}"`,
+                `df --output=avail,size "${targetPath}"`,
+              ];
+
+      console.log(`🔍 Trying ${commandsToTry.length} commands for path: ${targetPath}`);
 
       for (const command of commandsToTry) {
+        console.log(`🔧 Executing command: ${command}`);
         const result = await this._tryDiskSpaceCommand(command);
         if (result) {
+          console.log(`✅ Command successful: ${command}`);
           return {
             ...result,
             mountPoint: mountPoint || undefined,
@@ -186,6 +329,7 @@ export class StorageService {
         }
       }
 
+      console.warn(`❌ All commands failed for path: ${targetPath}`);
       return null;
     } catch (error) {
       console.warn(`Error getting filesystem info for ${path}:`, error);
@@ -193,13 +337,58 @@ export class StorageService {
     }
   }
 
+  /**
+   * Dynamically detect Synology volume paths by reading /proc/mounts
+   */
+  private async _detectSynologyVolumes(): Promise<string[]> {
+    try {
+      if (!fs.existsSync("/proc/mounts")) {
+        return [];
+      }
+
+      const mountsContent = await fs.promises.readFile("/proc/mounts", "utf8");
+      const lines = mountsContent.split("\n").filter((line) => line.trim());
+      const synologyPaths: string[] = [];
+
+      for (const line of lines) {
+        const parts = line.split(/\s+/);
+        if (parts.length >= 2) {
+          const [, mountPoint] = parts;
+
+          // Check if this is a Synology volume mount point
+          if (mountPoint.match(/^\/volume\d+$/)) {
+            synologyPaths.push(mountPoint);
+            console.log(`🔍 Found Synology volume: ${mountPoint}`);
+          }
+        }
+      }
+
+      return synologyPaths;
+    } catch (error) {
+      console.warn("Could not detect Synology volumes:", error);
+      return [];
+    }
+  }
+
   private async _getDiskSpaceMultiplePaths(): Promise<{ total: number; available: number } | null> {
-    const pathsToTry = IS_RUNNING_IN_CONTAINER
-      ? ["/app/server/uploads", "/app/server", "/app", "/"]
+    // Base paths that work for all systems
+    const basePaths = IS_RUNNING_IN_CONTAINER
+      ? ["/app/server/uploads", "/app/server/temp-uploads", "/app/server/temp-chunks", "/app/server", "/app", "/"]
       : [".", "./uploads", process.cwd()];
 
+    // Dynamically detect Synology volume paths
+    const synologyPaths = await this._detectSynologyVolumes();
+
+    // Combine base paths with detected Synology paths
+    const pathsToTry = [...basePaths, ...synologyPaths];
+
+    console.log(`🔍 Attempting disk space detection for ${pathsToTry.length} paths...`);
+    console.log(`📋 Synology volumes detected: ${synologyPaths.length > 0 ? synologyPaths.join(", ") : "none"}`);
+
     for (const pathToCheck of pathsToTry) {
-      if (pathToCheck.includes("uploads")) {
+      console.log(`📁 Checking path: ${pathToCheck}`);
+
+      if (pathToCheck.includes("uploads") || pathToCheck.includes("temp-")) {
         try {
           if (!fs.existsSync(pathToCheck)) {
             fs.mkdirSync(pathToCheck, { recursive: true });
@@ -211,6 +400,7 @@ export class StorageService {
       }
 
       if (!fs.existsSync(pathToCheck)) {
+        console.log(`❌ Path does not exist: ${pathToCheck}`);
         continue;
       }
 
@@ -220,10 +410,16 @@ export class StorageService {
         if (result.mountPoint) {
           console.log(`✅ Storage resolved via bind mount: ${result.mountPoint}`);
         }
+        console.log(
+          `✅ Disk space detected for path ${pathToCheck}: ${(result.total / (1024 * 1024 * 1024)).toFixed(2)}GB total, ${(result.available / (1024 * 1024 * 1024)).toFixed(2)}GB available`
+        );
         return { total: result.total, available: result.available };
+      } else {
+        console.log(`❌ No filesystem info available for path: ${pathToCheck}`);
       }
     }
 
+    console.error("❌ All disk space detection attempts failed");
     return null;
   }
 

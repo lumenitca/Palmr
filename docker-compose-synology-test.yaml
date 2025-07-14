@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  palmr:
+    image: kyantech/palmr:v3.1.1-rc.1
+    container_name: palmr
+    environment:
+      - ENABLE_S3=false
+      - ENCRYPTION_KEY=palmr-test-encryption-key-2025
+      - PALMR_UID=1000 # UID for Synology NAS compatibility (default is 1001) | See our UID/GID Documentation for more information
+      - PALMR_GID=1000 # GID for Synology NAS compatibility (default is 1001) | See our UID/GID Documentation for more information
+      # - SECURE_SITE=true # Set to true if you are using a reverse proxy (OPTIONAL - default is false)
+      # - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional) | (OPTIONAL - default is false)
+      # Add any other environment variables as needed
+    ports:
+      - "5487:5487"
+      - "3333:3333"
+    volumes:
+      - /volume1/docker/palmr/uploads:/app/server/uploads
+      - /volume1/docker/palmr/temp-uploads:/app/server/temp-uploads
+      - /volume1/docker/palmr/temp-chunks:/app/server/temp-chunks
+      - /volume1/docker/palmr/prisma:/app/server/prisma
+    restart: unless-stopped

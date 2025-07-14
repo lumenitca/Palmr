@@ -101,7 +101,9 @@ async function startServer() {
   }
 
   console.log(`🌴 Palmr server running on port 3333 🌴`);
-  console.log(`📦 Storage mode: ${env.ENABLE_S3 === "true" ? "S3" : "Local Filesystem (Encrypted)"}`);
+  console.log(
+    `📦 Storage mode: ${env.ENABLE_S3 === "true" ? "S3" : `Local Filesystem ${env.DISABLE_FILESYSTEM_ENCRYPTION === "true" ? "(Unencrypted)" : "(Encrypted)"}`}`
+  );
   console.log(`🔐 Auth Providers: ${authProviders}`);
 
   console.log("\n📚 API Documentation:");

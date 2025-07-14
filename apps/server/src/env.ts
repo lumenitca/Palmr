@@ -3,6 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
   ENABLE_S3: z.union([z.literal("true"), z.literal("false")]).default("false"),
   ENCRYPTION_KEY: z.string().optional().default("palmr-default-encryption-key-2025"),
+  DISABLE_FILESYSTEM_ENCRYPTION: z.union([z.literal("true"), z.literal("false")]).default("false"),
   S3_ENDPOINT: z.string().optional(),
   S3_PORT: z.string().optional(),
   S3_USE_SSL: z.string().optional(),
