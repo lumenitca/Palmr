@@ -3,6 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
   ENABLE_S3: z.union([z.literal("true"), z.literal("false")]).default("false"),
   ENCRYPTION_KEY: z.string().optional().default("palmr-default-encryption-key-2025"),
+  DISABLE_FILESYSTEM_ENCRYPTION: z.union([z.literal("true"), z.literal("false")]).default("false"),
   S3_ENDPOINT: z.string().optional(),
   S3_PORT: z.string().optional(),
   S3_USE_SSL: z.string().optional(),
@@ -13,6 +14,7 @@ const envSchema = z.object({
   S3_FORCE_PATH_STYLE: z.union([z.literal("true"), z.literal("false")]).default("false"),
   SECURE_SITE: z.union([z.literal("true"), z.literal("false")]).default("false"),
   DATABASE_URL: z.string().optional().default("file:/app/server/prisma/palmr.db"),
+  DEMO_MODE: z.union([z.literal("true"), z.literal("false")]).default("false"),
 });
 
 export const env = envSchema.parse(process.env);

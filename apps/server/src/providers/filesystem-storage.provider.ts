@@ -8,12 +8,12 @@ import { pipeline } from "stream/promises";
 import { directoriesConfig, getTempFilePath } from "../config/directories.config";
 import { env } from "../env";
 import { StorageProvider } from "../types/storage";
-import { IS_RUNNING_IN_CONTAINER } from "../utils/container-detection";
 
 export class FilesystemStorageProvider implements StorageProvider {
   private static instance: FilesystemStorageProvider;
   private uploadsDir: string;
   private encryptionKey = env.ENCRYPTION_KEY;
+  private isEncryptionDisabled = env.DISABLE_FILESYSTEM_ENCRYPTION === "true";
   private uploadTokens = new Map<string, { objectName: string; expiresAt: number }>();
   private downloadTokens = new Map<string, { objectName: string; expiresAt: number; fileName?: string }>();
 
@@ -66,6 +66,15 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   public createEncryptStream(): Transform {
+    if (this.isEncryptionDisabled) {
+      return new Transform({
+        transform(chunk, encoding, callback) {
+          this.push(chunk);
+          callback();
+        },
+      });
+    }
+
     const key = this.createEncryptionKey();
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
@@ -101,6 +110,15 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   public createDecryptStream(): Transform {
+    if (this.isEncryptionDisabled) {
+      return new Transform({
+        transform(chunk, encoding, callback) {
+          this.push(chunk);
+          callback();
+        },
+      });
+    }
+
     const key = this.createEncryptionKey();
     let iv: Buffer | null = null;
     let decipher: crypto.Decipher | null = null;
@@ -213,32 +231,26 @@ export class FilesystemStorageProvider implements StorageProvider {
     }
   }
 
-  private encryptFileBuffer(buffer: Buffer): Buffer {
-    const key = this.createEncryptionKey();
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
-
-    const encrypted = Buffer.concat([iv, cipher.update(buffer), cipher.final()]);
-
-    return encrypted;
-  }
-
   async downloadFile(objectName: string): Promise<Buffer> {
     const filePath = this.getFilePath(objectName);
-    const encryptedBuffer = await fs.readFile(filePath);
+    const fileBuffer = await fs.readFile(filePath);
 
-    if (encryptedBuffer.length > 16) {
+    if (this.isEncryptionDisabled) {
+      return fileBuffer;
+    }
+
+    if (fileBuffer.length > 16) {
       try {
-        return this.decryptFileBuffer(encryptedBuffer);
+        return this.decryptFileBuffer(fileBuffer);
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.warn("Failed to decrypt with new method, trying legacy format", error.message);
         }
-        return this.decryptFileLegacy(encryptedBuffer);
+        return this.decryptFileLegacy(fileBuffer);
       }
     }
 
-    return this.decryptFileLegacy(encryptedBuffer);
+    return this.decryptFileLegacy(fileBuffer);
   }
 
   private decryptFileBuffer(encryptedBuffer: Buffer): Buffer {

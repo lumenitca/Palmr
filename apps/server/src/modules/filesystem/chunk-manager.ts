@@ -92,7 +92,6 @@ export class ChunkManager {
       console.log(`Chunk ${chunkIndex} already uploaded, treating as success`);
 
       if (isLastChunk && chunkInfo.uploadedChunks.size === totalChunks) {
-        // Check if already finalizing to prevent race condition
         if (this.finalizingUploads.has(fileId)) {
           console.log(`Upload ${fileId} is already being finalized, waiting...`);
           return { isComplete: false };
@@ -128,7 +127,6 @@ export class ChunkManager {
     );
 
     if (isLastChunk && chunkInfo.uploadedChunks.size === totalChunks) {
-      // Check if already finalizing to prevent race condition
       if (this.finalizingUploads.has(fileId)) {
         console.log(`Upload ${fileId} is already being finalized, waiting...`);
         return { isComplete: false };
@@ -199,7 +197,7 @@ export class ChunkManager {
   }
 
   /**
-   * Finalize upload by moving temp file to final location and encrypting
+   * Finalize upload by moving temp file to final location and encrypting (if enabled)
    */
   private async finalizeUpload(
     chunkInfo: ChunkInfo,
@@ -224,7 +222,7 @@ export class ChunkManager {
       const filePath = provider.getFilePath(finalObjectName);
       const dir = path.dirname(filePath);
 
-      console.log(`Starting encryption and finalization: ${finalObjectName}`);
+      console.log(`Starting finalization: ${finalObjectName}`);
 
       await fs.promises.mkdir(dir, { recursive: true });
 
@@ -236,7 +234,6 @@ export class ChunkManager {
       });
       const encryptStream = provider.createEncryptStream();
 
-      // Wait for encryption to complete BEFORE cleaning up temp file
       await new Promise<void>((resolve, reject) => {
         const startTime = Date.now();
 
@@ -245,18 +242,17 @@ export class ChunkManager {
           .pipe(writeStream)
           .on("finish", () => {
             const duration = Date.now() - startTime;
-            console.log(`File encrypted and saved to: ${filePath} in ${duration}ms`);
+            console.log(`File processed and saved to: ${filePath} in ${duration}ms`);
             resolve();
           })
           .on("error", (error) => {
-            console.error("Error during encryption:", error);
+            console.error("Error during processing:", error);
             reject(error);
           });
       });
 
-      console.log(`File successfully uploaded and encrypted: ${finalObjectName}`);
+      console.log(`File successfully uploaded and processed: ${finalObjectName}`);
 
-      // Clean up temp file AFTER encryption is complete
       await this.cleanupTempFile(chunkInfo.tempPath);
 
       this.activeUploads.delete(chunkInfo.fileId);
