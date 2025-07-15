@@ -14,6 +14,7 @@ const envSchema = z.object({
   S3_FORCE_PATH_STYLE: z.union([z.literal("true"), z.literal("false")]).default("false"),
   SECURE_SITE: z.union([z.literal("true"), z.literal("false")]).default("false"),
   DATABASE_URL: z.string().optional().default("file:/app/server/prisma/palmr.db"),
+  DEMO_MODE: z.union([z.literal("true"), z.literal("false")]).default("false"),
 });
 
 export const env = envSchema.parse(process.env);

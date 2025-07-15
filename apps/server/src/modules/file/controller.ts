@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
+import { env } from "../../env";
 import { prisma } from "../../shared/prisma";
 import { ConfigService } from "../config/service";
 import { CheckFileInput, CheckFileSchema, RegisterFileInput, RegisterFileSchema, UpdateFileSchema } from "./dto";
@@ -55,7 +56,17 @@ export class FileController {
         });
       }
 
-      const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+      // Check if DEMO_MODE is enabled
+      const isDemoMode = env.DEMO_MODE === "true";
+
+      let maxTotalStorage: bigint;
+      if (isDemoMode) {
+        // In demo mode, limit all users to 200MB
+        maxTotalStorage = BigInt(200 * 1024 * 1024); // 200MB in bytes
+      } else {
+        // Normal behavior - use maxTotalStoragePerUser configuration
+        maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+      }
 
       const userFiles = await prisma.file.findMany({
         where: { userId },
@@ -127,7 +138,17 @@ export class FileController {
         });
       }
 
-      const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+      // Check if DEMO_MODE is enabled
+      const isDemoMode = env.DEMO_MODE === "true";
+
+      let maxTotalStorage: bigint;
+      if (isDemoMode) {
+        // In demo mode, limit all users to 200MB
+        maxTotalStorage = BigInt(200 * 1024 * 1024); // 200MB in bytes
+      } else {
+        // Normal behavior - use maxTotalStoragePerUser configuration
+        maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+      }
 
       const userFiles = await prisma.file.findMany({
         where: { userId },

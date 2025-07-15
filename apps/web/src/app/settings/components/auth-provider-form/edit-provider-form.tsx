@@ -104,8 +104,10 @@ export function EditProviderForm({
       { pattern: "linkedin.com", scopes: ["r_liteprofile", "r_emailaddress"] },
       { pattern: "auth0.com", scopes: ["openid", "profile", "email"] },
       { pattern: "okta.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "authentik", scopes: ["openid", "profile", "email"] },
       { pattern: "kinde.com", scopes: ["openid", "profile", "email"] },
       { pattern: "zitadel.com", scopes: ["openid", "profile", "email"] },
+      { pattern: "pocketid", scopes: ["openid", "profile", "email"] },
     ];
 
     for (const { pattern, scopes } of providerPatterns) {
