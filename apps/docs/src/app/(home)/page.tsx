@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
 import {
@@ -10,6 +12,7 @@ import {
   LayoutIcon,
   LockIcon,
   MousePointer,
+  RadioIcon,
   RocketIcon,
   SearchIcon,
   TimerIcon,
@@ -79,7 +82,23 @@ function Hero() {
             <Link href={docsLink}>Documentation</Link>
           </div>
         </PulsatingButton>
+        <RippleButton
+          onClick={() => {
+            const demoId = `${Math.random().toString(36).substr(2, 9)}`;
+            const token = `${Math.random().toString(36).substr(2, 12)}`;
 
+            sessionStorage.setItem("demo_token", token);
+            sessionStorage.setItem("demo_id", demoId);
+            sessionStorage.setItem("demo_expires", (Date.now() + 5 * 60 * 1000).toString());
+
+            window.location.href = `/demo?id=${demoId}&token=${token}`;
+          }}
+        >
+          <div className="flex gap-2 items-center">
+            <RadioIcon size={18} />
+            Live Demo
+          </div>
+        </RippleButton>
         <RippleButton>
           <a
             href="https://github.com/kyantech/Palmr"
