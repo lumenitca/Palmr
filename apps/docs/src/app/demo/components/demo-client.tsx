@@ -150,7 +150,7 @@ function DemoClientInner() {
             <h1 className="text-2xl font-bold">Your demo is being generated, please wait...</h1>
             <p className="text-muted-foreground max-w-lg">
               This demo will be available for 30 minutes for testing. After that, all data will be permanently deleted
-              and become inaccessible. You can test Palmr. with a 300MB storage limit.
+              and become inaccessible. You can test Palmr. with a 200MB storage limit.
             </p>
           </div>
         </div>
