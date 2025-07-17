@@ -43,6 +43,16 @@ Palmr. uses **filesystem storage** as the default storage solution, keeping thin
 - Excellent performance for local file operations
 - Optional S3-compatible storage support for cloud deployments and scalability
 
+#### Performance Considerations with Encryption
+
+By default, filesystem storage uses encryption (AES-256-CBC) to protect files at rest, which adds CPU overhead during uploads (encryption) and downloads (decryption). This can make operations slower and consume more resources, particularly for large files or in resource-constrained environments like containers or low-end VMs.
+
+If performance is a priority and you don't need encryption (e.g., for non-sensitive data or testing), you can disable it by setting the environment variable `DISABLE_FILESYSTEM_ENCRYPTION=true` in your `.env` file or Docker configuration. Note that disabling encryption stores files in plaintext on disk, reducing security.
+
+For optimal performance with encryption enabled, ensure your hardware supports AES-NI acceleration (check with `cat /proc/cpuinfo | grep aes` on Linux).
+
+As an alternative, consider using S3-compatible object storage (e.g., AWS S3 or MinIO), which can offload file storage from the local filesystem and potentially reduce local CPU overhead for encryption/decryption. See [S3 Providers](/docs/3.1-beta/s3-providers) for setup instructions.
+
 ### Fastify + Zod + TypeScript
 
 The backend of Palmr. is powered by **Fastify**, **Zod**, and **TypeScript**, creating a robust and type-safe API layer. Fastify is a super-fast Node.js web framework optimized for performance and low overhead, designed to handle lots of concurrent requests with minimal resource usage. Zod provides runtime type validation and schema definition, ensuring all incoming data is properly validated before reaching business logic. TypeScript adds compile-time type safety throughout the entire backend codebase. This combination creates a highly reliable and maintainable backend that prevents bugs and security issues while maintaining excellent performance.

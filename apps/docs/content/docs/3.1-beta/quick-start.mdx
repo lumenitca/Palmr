@@ -144,7 +144,7 @@ Configure Palmr. behavior through environment variables:
 
 > **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production when encryption is enabled. This key encrypts your files - losing it makes files permanently inaccessible.
 
-> **🔓 File Encryption Control**: The `DISABLE_FILESYSTEM_ENCRYPTION` variable allows you to store files without encryption for direct filesystem access. When set to `true`, the `ENCRYPTION_KEY` becomes optional. **Important**: Once set, this configuration is permanent for your deployment. Switching between encrypted and unencrypted modes will break file access for existing uploads. Choose your strategy before uploading files.
+> **🔓 File Encryption Control**: The `DISABLE_FILESYSTEM_ENCRYPTION` variable allows you to store files without encryption for direct filesystem access. When set to `true`, the `ENCRYPTION_KEY` becomes optional. **Important**: Once set, this configuration is permanent for your deployment. Switching between encrypted and unencrypted modes will break file access for existing uploads. Choose your strategy before uploading files. For more details on performance implications of encryption, see [Performance Considerations with Encryption](/docs/3.1-beta/architecture#performance-considerations-with-encryption).
 
 > **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.1-beta/reverse-proxy-configuration) guide for proper setup.
 
