@@ -355,6 +355,12 @@
     "stats": "{iconCount} icone da {libraryCount} librerie",
     "categoryBadge": "{category} ({count} icone)"
   },
+  "imageEdit": {
+    "title": "Modifica Immagine",
+    "rotate": "Ruota",
+    "zoom": "Zoom",
+    "cropInstructions": "Trascina per riposizionare, ridimensiona gli angoli per adattare l'area di ritaglio"
+  },
   "login": {
     "welcome": "Benvenuto in",
     "signInToContinue": "Accedi per continuare",
@@ -1719,11 +1725,5 @@
     "passwordMinLength": "La password deve contenere almeno 6 caratteri",
     "nameRequired": "Il nome è obbligatorio",
     "required": "Questo campo è obbligatorio"
-  },
-  "imageEdit": {
-    "title": "Modifica Immagine",
-    "rotate": "Ruota",
-    "zoom": "Zoom",
-    "cropInstructions": "Trascina per riposizionare, ridimensiona gli angoli per adattare l'area di ritaglio"
   }
 }

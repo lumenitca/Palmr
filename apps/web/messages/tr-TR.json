@@ -355,6 +355,12 @@
     "stats": "{libraryCount} kütüphaneden {iconCount} simge",
     "categoryBadge": "{category} ({count} simge)"
   },
+  "imageEdit": {
+    "title": "Resmi Düzenle",
+    "rotate": "Döndür",
+    "zoom": "Yakınlaştır",
+    "cropInstructions": "Yerleştirmek için sürükleyin, kırpma alanını ayarlamak için köşeleri yeniden boyutlandırın"
+  },
   "login": {
     "welcome": "Hoş geldiniz'e",
     "signInToContinue": "Devam etmek için oturum açın",
@@ -1719,11 +1725,5 @@
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
-  },
-  "imageEdit": {
-    "title": "Resmi Düzenle",
-    "rotate": "Döndür",
-    "zoom": "Yakınlaştır",
-    "cropInstructions": "Yerleştirmek için sürükleyin, kırpma alanını ayarlamak için köşeleri yeniden boyutlandırın"
   }
 }

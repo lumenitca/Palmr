@@ -355,6 +355,12 @@
     "stats": "{libraryCount} लाइब्रेरी से {iconCount} आइकन",
     "categoryBadge": "{category} ({count} आइकन)"
   },
+  "imageEdit": {
+    "title": "छवि संपादित करें",
+    "rotate": "घुमाएं",
+    "zoom": "ज़ूम",
+    "cropInstructions": "छवि को पुनः स्थानांतरित करने के लिए खींचें, कोणों को समायोजित करने के लिए आकार बदलें"
+  },
   "login": {
     "welcome": "स्वागत है में",
     "signInToContinue": "जारी रखने के लिए साइन इन करें",
@@ -1719,11 +1725,5 @@
     "passwordRequired": "पासवर्ड आवश्यक है",
     "nameRequired": "नाम आवश्यक है",
     "required": "यह फ़ील्ड आवश्यक है"
-  },
-  "imageEdit": {
-    "title": "छवि संपादित करें",
-    "rotate": "घुमाएं",
-    "zoom": "ज़ूम",
-    "cropInstructions": "छवि को पुनः स्थानांतरित करने के लिए खींचें, कोणों को समायोजित करने के लिए आकार बदलें"
   }
 }

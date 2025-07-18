@@ -355,6 +355,12 @@
     "stats": "{libraryCount}ライブラリから{iconCount}個のアイコン",
     "categoryBadge": "{category}（{count}個のアイコン）"
   },
+  "imageEdit": {
+    "title": "画像を編集",
+    "rotate": "回転",
+    "zoom": "ズーム",
+    "cropInstructions": "位置を変更するにはドラッグし、カット領域を調整するには角をリサイズしてください"
+  },
   "login": {
     "welcome": "ようこそへ",
     "signInToContinue": "続行するにはサインインしてください",
@@ -1719,11 +1725,5 @@
     "passwordRequired": "パスワードは必須です",
     "nameRequired": "名前は必須です",
     "required": "このフィールドは必須です"
-  },
-  "imageEdit": {
-    "title": "画像を編集",
-    "rotate": "回転",
-    "zoom": "ズーム",
-    "cropInstructions": "位置を変更するにはドラッグし、カット領域を調整するには角をリサイズしてください"
   }
 }

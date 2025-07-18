@@ -355,6 +355,12 @@
     "stats": "{iconCount} أيقونة من {libraryCount} مكتبة",
     "categoryBadge": "{category} ({count} أيقونات)"
   },
+  "imageEdit": {
+    "title": "تعديل الصورة",
+    "rotate": "تدوير",
+    "zoom": "تكبير/تصغير",
+    "cropInstructions": "اسحب لإعادة تحديد الموضع، غير حجم الزوايا لضبط منطقة القص"
+  },
   "login": {
     "welcome": "مرحبا بك",
     "signInToContinue": "قم بتسجيل الدخول للمتابعة",
@@ -1721,11 +1727,5 @@
     "passwordRequired": "كلمة المرور مطلوبة",
     "nameRequired": "الاسم مطلوب",
     "required": "هذا الحقل مطلوب"
-  },
-  "imageEdit": {
-    "title": "تعديل الصورة",
-    "rotate": "تدوير",
-    "zoom": "تكبير/تصغير",
-    "cropInstructions": "اسحب لإعادة تحديد الموضع، غير حجم الزوايا لضبط منطقة القص"
   }
 }

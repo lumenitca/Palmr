@@ -355,6 +355,12 @@
     "stats": "{iconCount} iconos de {libraryCount} bibliotecas",
     "categoryBadge": "{category} ({count} iconos)"
   },
+  "imageEdit": {
+    "title": "Editar Imagen",
+    "rotate": "Rotar",
+    "zoom": "Zoom",
+    "cropInstructions": "Arrastra para reubicar, ajusta las esquinas para ajustar el área de recorte"
+  },
   "login": {
     "welcome": "Bienvenido a",
     "signInToContinue": "Inicia sesión para continuar",
@@ -1719,11 +1725,5 @@
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
-  },
-  "imageEdit": {
-    "title": "Editar Imagen",
-    "rotate": "Rotar",
-    "zoom": "Zoom",
-    "cropInstructions": "Arrastra para reubicar, ajusta las esquinas para ajustar el área de recorte"
   }
 }

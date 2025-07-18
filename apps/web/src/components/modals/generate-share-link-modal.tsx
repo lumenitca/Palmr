@@ -173,8 +173,8 @@ export function GenerateShareLinkModal({
 
             <DialogFooter>
               <Button onClick={downloadQRCode} disabled={isDownloading}>
-                <IconDownload className="h-4 w-4 mr-2" />
-                {t("qrCodeModal.download", { defaultValue: "Download QR Code" })}
+                <IconDownload className="h-4 w-4" />
+                {t("qrCodeModal.download")}
               </Button>
             </DialogFooter>
           </div>

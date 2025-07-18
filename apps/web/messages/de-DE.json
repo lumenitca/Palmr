@@ -355,6 +355,12 @@
     "stats": "{iconCount} Symbole aus {libraryCount} Bibliotheken",
     "categoryBadge": "{category} ({count} Symbole)"
   },
+  "imageEdit": {
+    "title": "Bild bearbeiten",
+    "rotate": "Drehen",
+    "zoom": "Zoom",
+    "cropInstructions": "Ziehen Sie, um die Position zu ändern, ändern Sie die Größe der Ecken, um die Zuschneidefläche anzupassen"
+  },
   "login": {
     "welcome": "Willkommen zu",
     "signInToContinue": "Melden Sie sich an, um fortzufahren",
@@ -1719,11 +1725,5 @@
     "passwordRequired": "Passwort ist erforderlich",
     "nameRequired": "Name ist erforderlich",
     "required": "Dieses Feld ist erforderlich"
-  },
-  "imageEdit": {
-    "title": "Bild bearbeiten",
-    "rotate": "Drehen",
-    "zoom": "Zoom",
-    "cropInstructions": "Ziehen Sie, um die Position zu ändern, ändern Sie die Größe der Ecken, um die Zuschneidefläche anzupassen"
   }
 }

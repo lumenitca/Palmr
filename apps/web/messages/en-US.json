@@ -360,6 +360,12 @@
     "stats": "{iconCount} icons from {libraryCount} libraries",
     "categoryBadge": "{category} ({count} icons)"
   },
+  "imageEdit": {
+    "title": "Edit Image",
+    "rotate": "Rotate",
+    "zoom": "Zoom",
+    "cropInstructions": "Drag to reposition, resize corners to adjust crop area"
+  },
   "login": {
     "welcome": "Welcome to",
     "signInToContinue": "Sign in to continue",
@@ -405,12 +411,6 @@
   "navigation": {
     "dashboard": "Dashboard"
   },
-  "imageEdit": {
-    "title": "Edit Image",
-    "rotate": "Rotate",
-    "zoom": "Zoom",
-    "cropInstructions": "Drag to reposition, resize corners to adjust crop area"
-  },
   "profile": {
     "password": {
       "title": "Change Password",
@@ -452,6 +452,11 @@
       "imageRemoved": "Profile image removed successfully"
     },
     "pageTitle": "Profile"
+  },
+  "qrCodeModal": {
+    "title": "Share QR Code",
+    "description": "Scan this QR code to access the link.",
+    "download": "Download QR Code"
   },
   "quickAccess": {
     "files": {
@@ -618,6 +623,7 @@
       "expired": "Expired",
       "expires": "Expires",
       "viewDetails": "View details",
+      "viewQrCode": "View QR Code",
       "copyLink": "Copy Link",
       "openInNewTab": "Open in New Tab",
       "editLink": "Edit Link",
@@ -640,7 +646,8 @@
       "viewDetails": "View Details",
       "edit": "Edit",
       "delete": "Delete",
-      "viewFiles": "Received Files"
+      "viewFiles": "Received Files",
+      "viewQrCode": "View QR Code"
     },
     "empty": {
       "title": "No receive links created",
@@ -1460,11 +1467,6 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
-  },
-  "qrCodeModal": {
-    "title": "Share QR Code",
-    "description": "Scan this QR code to access the shared files.",
-    "download": "Download QR Code"
   },
   "twoFactor": {
     "title": "Two-Factor Authentication",
