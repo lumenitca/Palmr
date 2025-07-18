@@ -138,6 +138,7 @@ echo "Database: SQLite"
 
 # Set global environment variables
 export DATABASE_URL="file:/app/server/prisma/palmr.db"
+export NEXT_PUBLIC_DEFAULT_LANGUAGE=\${DEFAULT_LANGUAGE:-en-US}
 
 # Ensure /app/server directory exists for bind mounts
 mkdir -p /app/server/uploads /app/server/temp-uploads /app/server/prisma

@@ -327,7 +327,12 @@
     "copyButton": "リンクをコピー",
     "success": "リンクが正常に生成されました",
     "error": "リンクの生成に失敗しました",
-    "copied": "リンクがクリップボードにコピーされました"
+    "copied": "リンクがクリップボードにコピーされました",
+    "readyDescription": "共有リンクが準備できました。QRコードを直接スキャンして、後で使用するためにダウンロードするか、リンクをコピーしてください。",
+    "tabs": {
+      "link": "リンク",
+      "qrcode": "QRコード"
+    }
   },
   "home": {
     "description": "WeTransferのオープンソース代替です。トラッキングや制限なしに安全にファイルを共有します。",
@@ -354,6 +359,12 @@
     },
     "stats": "{libraryCount}ライブラリから{iconCount}個のアイコン",
     "categoryBadge": "{category}（{count}個のアイコン）"
+  },
+  "imageEdit": {
+    "title": "画像を編集",
+    "rotate": "回転",
+    "zoom": "ズーム",
+    "cropInstructions": "位置を変更するにはドラッグし、カット領域を調整するには角をリサイズしてください"
   },
   "login": {
     "welcome": "ようこそへ",
@@ -613,7 +624,8 @@
       "createLink": "リンクを作成",
       "delete": "削除",
       "copyLinkTitle": "リンクをコピー",
-      "createLinkCTA": "受信リンクを作成"
+      "createLinkCTA": "受信リンクを作成",
+      "viewQrCode": "QRコードを表示"
     },
     "status": {
       "active": "有効",
@@ -629,7 +641,8 @@
       "viewDetails": "詳細を表示",
       "edit": "編集",
       "delete": "削除",
-      "viewFiles": "受信済みファイル"
+      "viewFiles": "受信済みファイル",
+      "viewQrCode": "QRコードを表示"
     },
     "empty": {
       "title": "受信リンクが作成されていません",
@@ -1230,7 +1243,10 @@
     "invalidDate": "無効な日付",
     "loadError": "共有詳細の読み込みに失敗しました",
     "editSecurity": "セキュリティを編集",
-    "editExpiration": "期限を編集"
+    "editExpiration": "期限を編集",
+    "clickToEnlargeQrCode": "QRコードを拡大",
+    "downloadQrCode": "QRコードをダウンロード",
+    "qrCode": "QRコード"
   },
   "shareExpiration": {
     "neverExpires": "期限なし",
@@ -1417,7 +1433,8 @@
       "copyLink": "リンクコピー",
       "notifyRecipients": "受信者に通知",
       "delete": "削除",
-      "downloadShareFiles": "すべてのファイルをダウンロードします"
+      "downloadShareFiles": "すべてのファイルをダウンロードします",
+      "viewQrCode": "QRコードを表示"
     },
     "bulkActions": {
       "delete": "削除",
@@ -1720,10 +1737,9 @@
     "nameRequired": "名前は必須です",
     "required": "このフィールドは必須です"
   },
-  "imageEdit": {
-    "title": "画像を編集",
-    "rotate": "回転",
-    "zoom": "ズーム",
-    "cropInstructions": "位置を変更するにはドラッグし、カット領域を調整するには角をリサイズしてください"
+  "qrCodeModal": {
+    "title": "QRコードを共有",
+    "description": "このQRコードをスキャンしてリンクにアクセスしてください。",
+    "download": "QRコードをダウンロード"
   }
 }

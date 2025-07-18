@@ -327,7 +327,12 @@
     "copyButton": "Link kopieren",
     "success": "Link erfolgreich generiert",
     "error": "Fehler beim Generieren des Links",
-    "copied": "Link in die Zwischenablage kopiert"
+    "copied": "Link in die Zwischenablage kopiert",
+    "readyDescription": "Ihr Freigabe-Link ist bereit. Sie können den QR-Code direkt scannen, ihn für die spätere Verwendung herunterladen oder den Link unten kopieren.",
+    "tabs": {
+      "link": "Link",
+      "qrcode": "QR-Code"
+    }
   },
   "home": {
     "description": "Die Open-Source-Alternative zu WeTransfer. Teilen Sie Dateien sicher, ohne Tracking oder Einschränkungen.",
@@ -354,6 +359,12 @@
     },
     "stats": "{iconCount} Symbole aus {libraryCount} Bibliotheken",
     "categoryBadge": "{category} ({count} Symbole)"
+  },
+  "imageEdit": {
+    "title": "Bild bearbeiten",
+    "rotate": "Drehen",
+    "zoom": "Zoom",
+    "cropInstructions": "Ziehen Sie, um die Position zu ändern, ändern Sie die Größe der Ecken, um die Zuschneidefläche anzupassen"
   },
   "login": {
     "welcome": "Willkommen zu",
@@ -613,10 +624,11 @@
       "createLink": "Link erstellen",
       "delete": "Löschen",
       "copyLinkTitle": "Link kopieren",
-      "createLinkCTA": "Empfangslink erstellen"
+      "createLinkCTA": "Empfangslink erstellen",
+      "viewQrCode": "QR-Code anzeigen"
     },
     "status": {
-      "active": "Aktiv",
+      "active": "Aktiv", 
       "inactive": "Inaktiv",
       "expired": "Abgelaufen",
       "protected": "Geschützt",
@@ -624,12 +636,13 @@
     },
     "actions": {
       "copyLink": "Link kopieren",
-      "editAlias": "Alias bearbeiten",
+      "editAlias": "Alias bearbeiten", 
       "createAlias": "Alias erstellen",
       "viewDetails": "Details anzeigen",
       "edit": "Bearbeiten",
       "delete": "Löschen",
-      "viewFiles": "Empfangene Dateien"
+      "viewFiles": "Empfangene Dateien",
+      "viewQrCode": "QR-Code anzeigen"
     },
     "empty": {
       "title": "Keine Empfangslinks erstellt",
@@ -1230,7 +1243,10 @@
     "invalidDate": "Ungültiges Datum",
     "loadError": "Fehler beim Laden der Freigabe-Details",
     "editSecurity": "Sicherheit bearbeiten",
-    "editExpiration": "Ablauf bearbeiten"
+    "editExpiration": "Ablauf bearbeiten",
+    "clickToEnlargeQrCode": "Klicken Sie zum Vergrößern des QR-Codes",
+    "downloadQrCode": "QR-Code herunterladen", 
+    "qrCode": "QR-Code"
   },
   "shareExpiration": {
     "neverExpires": "Läuft nie ab",
@@ -1417,7 +1433,8 @@
       "copyLink": "Link Kopieren",
       "notifyRecipients": "Empfänger Benachrichtigen",
       "delete": "Löschen",
-      "downloadShareFiles": "Laden Sie alle Dateien herunter"
+      "downloadShareFiles": "Laden Sie alle Dateien herunter",
+      "viewQrCode": "QR-Code anzeigen"
     },
     "bulkActions": {
       "delete": "Löschen",
@@ -1720,10 +1737,9 @@
     "nameRequired": "Name ist erforderlich",
     "required": "Dieses Feld ist erforderlich"
   },
-  "imageEdit": {
-    "title": "Bild bearbeiten",
-    "rotate": "Drehen",
-    "zoom": "Zoom",
-    "cropInstructions": "Ziehen Sie, um die Position zu ändern, ändern Sie die Größe der Ecken, um die Zuschneidefläche anzupassen"
+  "qrCodeModal": {
+    "title": "QR-Code teilen",
+    "description": "Scannen Sie diesen QR-Code, um auf den Link zuzugreifen.",
+    "download": "QR-Code herunterladen"
   }
 }

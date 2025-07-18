@@ -327,7 +327,12 @@
     "copyButton": "링크 복사",
     "success": "링크가 성공적으로 생성되었습니다",
     "error": "링크 생성에 실패했습니다",
-    "copied": "링크가 클립보드에 복사되었습니다"
+    "copied": "링크가 클립보드에 복사되었습니다",
+    "readyDescription": "공유 링크가 준비되었습니다. QR 코드를 직접 스캔하여 링크에 접근하거나, 나중에 사용하기 위해 다운로드하거나, 아래 링크를 복사할 수 있습니다.",
+    "tabs": {
+      "link": "링크",
+      "qrcode": "QR 코드"
+    }
   },
   "home": {
     "description": "WeTransfer의 오픈소스 대안입니다. 추적이나 제한 없이 파일을 안전하게 공유하세요.",
@@ -354,6 +359,12 @@
     },
     "stats": "{libraryCount}개의 라이브러리에서 {iconCount}개의 아이콘",
     "categoryBadge": "{category} ({count}개의 아이콘)"
+  },
+  "imageEdit": {
+    "title": "이미지 편집",
+    "rotate": "회전",
+    "zoom": "확대/축소",
+    "cropInstructions": "위치를 변경하려면 드래그하고, 자르기 영역을 조정하려면 모서리를 확대/축소하세요"
   },
   "login": {
     "welcome": "에 오신 것을 환영합니다",
@@ -613,7 +624,8 @@
       "createLink": "링크 생성",
       "delete": "삭제",
       "copyLinkTitle": "링크 복사",
-      "createLinkCTA": "수신 링크 생성"
+      "createLinkCTA": "수신 링크 생성",
+      "viewQrCode": "QR 코드 보기"
     },
     "status": {
       "active": "활성",
@@ -629,7 +641,8 @@
       "viewDetails": "상세 보기",
       "edit": "편집",
       "delete": "삭제",
-      "viewFiles": "받은 파일"
+      "viewFiles": "받은 파일",
+      "viewQrCode": "QR 코드 보기"
     },
     "empty": {
       "title": "생성된 수신 링크 없음",
@@ -1230,7 +1243,10 @@
     "invalidDate": "잘못된 날짜",
     "loadError": "공유 세부 정보 로드에 실패했습니다",
     "editSecurity": "보안 편집",
-    "editExpiration": "만료 편집"
+    "editExpiration": "만료 편집",
+    "clickToEnlargeQrCode": "QR 코드 확대",
+    "downloadQrCode": "QR 코드 다운로드",
+    "qrCode": "QR 코드"
   },
   "shareExpiration": {
     "neverExpires": "만료되지 않음",
@@ -1417,7 +1433,8 @@
       "copyLink": "링크 복사",
       "notifyRecipients": "받는 사람에게 알림",
       "delete": "삭제",
-      "downloadShareFiles": "모든 파일을 다운로드하십시오"
+      "downloadShareFiles": "모든 파일을 다운로드하십시오",
+      "viewQrCode": "QR 코드 보기"
     },
     "bulkActions": {
       "delete": "삭제",
@@ -1720,10 +1737,9 @@
     "nameRequired": "이름은 필수입니다",
     "required": "이 필드는 필수입니다"
   },
-  "imageEdit": {
-    "title": "이미지 편집",
-    "rotate": "회전",
-    "zoom": "확대/축소",
-    "cropInstructions": "위치를 변경하려면 드래그하고, 자르기 영역을 조정하려면 모서리를 확대/축소하세요"
+  "qrCodeModal": {
+    "title": "QR 코드 공유",
+    "description": "이 QR 코드를 스캔하여 링크에 접근할 수 있습니다.",
+    "download": "QR 코드 다운로드"
   }
 }

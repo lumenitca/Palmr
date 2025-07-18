@@ -7,6 +7,7 @@ services:
       - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY (REQUIRED if DISABLE_FILESYSTEM_ENCRYPTION is false)
       - PALMR_UID=1000 # UID for the container processes (OPTIONAL - default is 1001) | See our UID/GID Documentation for more information
       - PALMR_GID=1000 # GID for the container processes (OPTIONAL - default is 1001) | See our UID/GID Documentation for more information
+      # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US) | See the docs for see all supported languages
       # - SECURE_SITE=true # Set to true if you are using a reverse proxy (OPTIONAL - default is false)
       # - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional) | (OPTIONAL - default is false)
     ports:

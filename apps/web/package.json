@@ -1,6 +1,6 @@
 {
   "name": "palmr-web",
-  "version": "3.1.2-beta",
+  "version": "3.1.3-beta",
   "description": "Frontend for Palmr",
   "private": true,
   "author": "Daniel Luiz Alves <daniel@kyantech.com.br>",
@@ -70,6 +70,7 @@
     "react-hook-form": "^7.59.0",
     "react-icons": "^5.5.0",
     "react-image-crop": "^11.0.10",
+    "react-qr-code": "^2.0.18",
     "react-qr-reader": "3.0.0-beta-1",
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.1",

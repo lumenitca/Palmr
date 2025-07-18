@@ -327,7 +327,12 @@
     "copyButton": "Copiar enlace",
     "success": "Enlace generado exitosamente",
     "error": "Error al generar enlace",
-    "copied": "Enlace copiado al portapapeles"
+    "copied": "Enlace copiado al portapapeles",
+    "readyDescription": "Tu enlace de compartir está listo. Puedes escanear el código QR directamente, descargarlo para usarlo más tarde, o copiar el enlace a continuación.",
+    "tabs": {
+      "link": "Enlace",
+      "qrcode": "Código QR"
+    }
   },
   "home": {
     "description": "La alternativa de código abierto a WeTransfer. Comparte archivos de forma segura, sin rastreo ni limitaciones.",
@@ -354,6 +359,12 @@
     },
     "stats": "{iconCount} iconos de {libraryCount} bibliotecas",
     "categoryBadge": "{category} ({count} iconos)"
+  },
+  "imageEdit": {
+    "title": "Editar Imagen",
+    "rotate": "Rotar",
+    "zoom": "Zoom",
+    "cropInstructions": "Arrastra para reubicar, ajusta las esquinas para ajustar el área de recorte"
   },
   "login": {
     "welcome": "Bienvenido a",
@@ -613,7 +624,8 @@
       "createLink": "Crear Enlace",
       "delete": "Eliminar",
       "copyLinkTitle": "Copiar enlace",
-      "createLinkCTA": "Crear Enlace de Recepción"
+      "createLinkCTA": "Crear Enlace de Recepción",
+      "viewQrCode": "Ver Código QR"
     },
     "status": {
       "active": "Activo",
@@ -629,7 +641,8 @@
       "viewDetails": "Ver Detalles",
       "edit": "Editar",
       "delete": "Eliminar",
-      "viewFiles": "Archivos Recibidos"
+      "viewFiles": "Archivos Recibidos",
+      "viewQrCode": "Ver Código QR"
     },
     "empty": {
       "title": "Ningún enlace de recepción creado",
@@ -1230,7 +1243,10 @@
     "invalidDate": "Fecha inválida",
     "loadError": "Error al cargar detalles del compartir",
     "editSecurity": "Editar Seguridad",
-    "editExpiration": "Editar Expiración"
+    "editExpiration": "Editar Expiración",
+    "clickToEnlargeQrCode": "Haz clic para ampliar el Código QR",
+    "downloadQrCode": "Descargar Código QR",
+    "qrCode": "Código QR"
   },
   "shareExpiration": {
     "neverExpires": "Nunca Expira",
@@ -1417,7 +1433,8 @@
       "copyLink": "Copiar Enlace",
       "notifyRecipients": "Notificar Destinatarios",
       "delete": "Eliminar",
-      "downloadShareFiles": "Descargar todos los archivos"
+      "downloadShareFiles": "Descargar todos los archivos",
+      "viewQrCode": "Ver Código QR"
     },
     "bulkActions": {
       "delete": "Eliminar",
@@ -1720,10 +1737,9 @@
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
   },
-  "imageEdit": {
-    "title": "Editar Imagen",
-    "rotate": "Rotar",
-    "zoom": "Zoom",
-    "cropInstructions": "Arrastra para reubicar, ajusta las esquinas para ajustar el área de recorte"
+  "qrCodeModal": {
+    "title": "Compartir Código QR",
+    "description": "Escanea este código QR para acceder al enlace.",
+    "download": "Descargar Código QR"
   }
 }
