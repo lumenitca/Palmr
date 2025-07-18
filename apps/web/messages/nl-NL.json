@@ -327,7 +327,12 @@
     "copyButton": "Link kopiëren",
     "success": "Link succesvol gegenereerd",
     "error": "Fout bij het genereren van link",
-    "copied": "Link gekopieerd naar klembord"
+    "copied": "Link gekopieerd naar klembord",
+    "readyDescription": "Uw deel-link is klaar. U kunt de QR-code direct scannen, downloaden voor later gebruik, of de link hieronder kopiëren.",
+    "tabs": {
+      "link": "Link",
+      "qrcode": "QR Code"
+    }
   },
   "home": {
     "description": "Het open-source alternatief voor WeTransfer. Deel bestanden veilig, zonder tracking of beperkingen.",
@@ -619,7 +624,8 @@
       "createLink": "Link Aanmaken",
       "delete": "Verwijderen",
       "copyLinkTitle": "Link kopiëren",
-      "createLinkCTA": "Ontvangstlink Aanmaken"
+      "createLinkCTA": "Ontvangstlink Aanmaken",
+      "viewQrCode": "QR Code Bekijken"
     },
     "status": {
       "active": "Actief",
@@ -635,7 +641,8 @@
       "viewDetails": "Details Bekijken",
       "edit": "Bewerken",
       "delete": "Verwijderen",
-      "viewFiles": "Ontvangen Bestanden"
+      "viewFiles": "Ontvangen Bestanden",
+      "viewQrCode": "QR Code Bekijken"
     },
     "empty": {
       "title": "Geen ontvangstlinks aangemaakt",
@@ -1236,7 +1243,10 @@
     "invalidDate": "Ongeldige datum",
     "loadError": "Fout bij laden van delen details",
     "editSecurity": "Beveiliging Bewerken",
-    "editExpiration": "Vervaldatum Bewerken"
+    "editExpiration": "Vervaldatum Bewerken",
+    "clickToEnlargeQrCode": "Klik om QR Code te vergroten",
+    "downloadQrCode": "QR Code Downloaden",
+    "qrCode": "QR Code"
   },
   "shareExpiration": {
     "neverExpires": "Verloopt Nooit",
@@ -1423,7 +1433,8 @@
       "copyLink": "Link Kopiëren",
       "notifyRecipients": "Ontvangers Informeren",
       "delete": "Verwijderen",
-      "downloadShareFiles": "Download alle bestanden"
+      "downloadShareFiles": "Download alle bestanden",
+      "viewQrCode": "QR Code Bekijken"
     },
     "bulkActions": {
       "delete": "Verwijderen",
@@ -1725,5 +1736,10 @@
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",
     "required": "Dit veld is verplicht"
+  },
+  "qrCodeModal": {
+    "title": "QR Code Delen",
+    "description": "Scan deze QR-code om toegang te krijgen tot de link.",
+    "download": "QR Code Downloaden"
   }
 }

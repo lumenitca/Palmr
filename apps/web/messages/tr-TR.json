@@ -327,7 +327,12 @@
     "copyButton": "Bağlantıyı Kopyala",
     "success": "Bağlantı başarıyla oluşturuldu",
     "error": "Bağlantı oluşturulamadı",
-    "copied": "Bağlantı panoya kopyalandı"
+    "copied": "Bağlantı panoya kopyalandı",
+    "readyDescription": "Paylaşım bağlantınız hazır. QR kodu doğrudan tarayabilir, daha sonra kullanmak için indirebilir veya aşağıdaki bağlantıyı kopyalayabilirsiniz.",
+    "tabs": {
+      "link": "Bağlantı",
+      "qrcode": "QR Kodu"
+    }
   },
   "home": {
     "description": "WeTransfer'e açık kaynaklı alternatif. Takip veya kısıtlama olmadan dosyalarınızı güvenle paylaşın.",
@@ -619,7 +624,8 @@
       "createLink": "Bağlantı Oluştur",
       "delete": "Sil",
       "copyLinkTitle": "Bağlantıyı kopyala",
-      "createLinkCTA": "Alma Bağlantısı Oluştur"
+      "createLinkCTA": "Alma Bağlantısı Oluştur",
+      "viewQrCode": "QR Kodu Görüntüle"
     },
     "status": {
       "active": "Aktif",
@@ -635,7 +641,8 @@
       "viewDetails": "Detayları Görüntüle",
       "edit": "Düzenle",
       "delete": "Sil",
-      "viewFiles": "Alınan Dosyalar"
+      "viewFiles": "Alınan Dosyalar",
+      "viewQrCode": "QR Kodu Görüntüle"
     },
     "empty": {
       "title": "Alma bağlantısı oluşturulmadı",
@@ -1236,7 +1243,10 @@
     "invalidDate": "Geçersiz tarih",
     "loadError": "Paylaşım detaylarını yükleme başarısız",
     "editSecurity": "Güvenlik Düzenle",
-    "editExpiration": "Son Kullanma Düzenle"
+    "editExpiration": "Son Kullanma Düzenle",
+    "clickToEnlargeQrCode": "QR Kodu Büyüt",
+    "downloadQrCode": "QR Kodu İndir",
+    "qrCode": "QR Kodu"
   },
   "shareExpiration": {
     "neverExpires": "Asla Sona Ermez",
@@ -1423,7 +1433,8 @@
       "copyLink": "Bağlantıyı Kopyala",
       "notifyRecipients": "Alıcıları Bilgilendir",
       "delete": "Sil",
-      "downloadShareFiles": "Tüm dosyaları indirin"
+      "downloadShareFiles": "Tüm dosyaları indirin",
+      "viewQrCode": "QR Kodu Görüntüle"
     },
     "bulkActions": {
       "delete": "Sil",
@@ -1725,5 +1736,10 @@
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
+  },
+  "qrCodeModal": {
+    "title": "QR Kodu Paylaş",
+    "description": "Bu QR kodu tarayarak bağlantıya erişebilirsiniz.",
+    "download": "QR Kodu İndir"
   }
 }

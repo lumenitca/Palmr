@@ -327,7 +327,12 @@
     "copyButton": "लिंक कॉपी करें",
     "success": "लिंक सफलतापूर्वक उत्पन्न हुआ",
     "error": "लिंक उत्पन्न करने में विफल",
-    "copied": "लिंक क्लिपबोर्ड में कॉपी किया गया"
+    "copied": "लिंक क्लिपबोर्ड में कॉपी किया गया",
+    "readyDescription": "आपका साझाकरण लिंक तैयार है। आप डायरेक्ट रूप से QR कोड स्कैन कर सकते हैं, इसे बाद में उपयोग के लिए डाउनलोड कर सकते हैं, या नीचे लिंक कॉपी कर सकते हैं।",
+    "tabs": {
+      "link": "लिंक",
+      "qrcode": "QR कोड"
+    }
   },
   "home": {
     "description": "WeTransfer का ओपन-सोर्स विकल्प। फाइलें सुरक्षित रूप से साझा करें, बिना ट्रैकिंग या सीमाओं के।",
@@ -619,7 +624,8 @@
       "createLink": "लिंक बनाएं",
       "delete": "हटाएं",
       "copyLinkTitle": "लिंक कॉपी करें",
-      "createLinkCTA": "प्राप्ति लिंक बनाएं"
+      "createLinkCTA": "प्राप्ति लिंक बनाएं",
+      "viewQrCode": "QR कोड देखें"
     },
     "status": {
       "active": "सक्रिय",
@@ -635,7 +641,8 @@
       "viewDetails": "विवरण देखें",
       "edit": "संपादित करें",
       "delete": "हटाएं",
-      "viewFiles": "प्राप्त फ़ाइलें"
+      "viewFiles": "प्राप्त फ़ाइलें",
+      "viewQrCode": "QR कोड देखें"
     },
     "empty": {
       "title": "कोई प्राप्ति लिंक नहीं बनाया गया",
@@ -1236,7 +1243,10 @@
     "invalidDate": "अमान्य तिथि",
     "loadError": "साझाकरण विवरण लोड करने में विफल",
     "editSecurity": "सुरक्षा संपादित करें",
-    "editExpiration": "समाप्ति संपादित करें"
+    "editExpiration": "समाप्ति संपादित करें",
+    "clickToEnlargeQrCode": "QR कोड को बड़ा करने के लिए क्लिक करें",
+    "downloadQrCode": "QR कोड डाउनलोड करें",
+    "qrCode": "QR कोड"
   },
   "shareExpiration": {
     "neverExpires": "कभी समाप्त नहीं होता",
@@ -1423,7 +1433,8 @@
       "copyLink": "लिंक कॉपी करें",
       "notifyRecipients": "प्राप्तकर्ताओं को सूचित करें",
       "delete": "हटाएं",
-      "downloadShareFiles": "सभी फ़ाइलें डाउनलोड करें"
+      "downloadShareFiles": "सभी फ़ाइलें डाउनलोड करें",
+      "viewQrCode": "QR कोड देखें"
     },
     "bulkActions": {
       "delete": "हटाएं",
@@ -1725,5 +1736,10 @@
     "passwordRequired": "पासवर्ड आवश्यक है",
     "nameRequired": "नाम आवश्यक है",
     "required": "यह फ़ील्ड आवश्यक है"
+  },
+  "qrCodeModal": {
+    "title": "QR कोड साझा करें",
+    "description": "इस QR कोड को स्कैन करके लिंक तक पहुंच सकते हैं।",
+    "download": "QR कोड डाउनलोड करें"
   }
 }

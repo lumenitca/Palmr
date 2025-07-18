@@ -327,7 +327,12 @@
     "copyButton": "Copier le lien",
     "success": "Lien généré avec succès",
     "error": "Échec de la génération du lien",
-    "copied": "Lien copié dans le presse-papiers"
+    "copied": "Lien copié dans le presse-papiers",
+    "readyDescription": "Votre lien de partage est prêt. Vous pouvez scanner le QR code directement, le télécharger pour une utilisation ultérieure, ou copier le lien ci-dessous.",
+    "tabs": {
+      "link": "Lien",
+      "qrcode": "QR Code"
+    }
   },
   "home": {
     "description": "L'alternative open-source à WeTransfer. Partagez des fichiers en toute sécurité, sans suivi ni limitations.",
@@ -619,7 +624,8 @@
       "createLink": "Créer un Lien",
       "delete": "Supprimer",
       "copyLinkTitle": "Copier le lien",
-      "createLinkCTA": "Créer un Lien de Réception"
+      "createLinkCTA": "Créer un Lien de Réception",
+      "viewQrCode": "Voir le QR Code"
     },
     "status": {
       "active": "Actif",
@@ -635,7 +641,8 @@
       "viewDetails": "Voir les Détails",
       "edit": "Modifier",
       "delete": "Supprimer",
-      "viewFiles": "Fichiers Reçus"
+      "viewFiles": "Fichiers Reçus",
+      "viewQrCode": "Voir le QR Code"
     },
     "empty": {
       "title": "Aucun lien de réception créé",
@@ -1236,7 +1243,10 @@
     "invalidDate": "Date invalide",
     "loadError": "Échec du chargement des détails du partage",
     "editSecurity": "Modifier la Sécurité",
-    "editExpiration": "Modifier l'Expiration"
+    "editExpiration": "Modifier l'Expiration",
+    "clickToEnlargeQrCode": "Cliquez pour agrandir le Code QR",
+    "downloadQrCode": "Télécharger le Code QR",
+    "qrCode": "Code QR"
   },
   "shareExpiration": {
     "neverExpires": "N'expire Jamais",
@@ -1423,7 +1433,8 @@
       "copyLink": "Copier le Lien",
       "notifyRecipients": "Notifier les Destinataires",
       "delete": "Supprimer",
-      "downloadShareFiles": "Télécharger tous les fichiers"
+      "downloadShareFiles": "Télécharger tous les fichiers",
+      "viewQrCode": "Voir le QR Code"
     },
     "bulkActions": {
       "delete": "Supprimer",
@@ -1725,5 +1736,10 @@
     "passwordRequired": "Le mot de passe est requis",
     "nameRequired": "Nome é obrigatório",
     "required": "Este campo é obrigatório"
+  },
+  "qrCodeModal": {
+    "title": "Code QR de Partage",
+    "description": "Scannez ce code QR pour accéder au lien.",
+    "download": "Télécharger le Code QR"
   }
 }
