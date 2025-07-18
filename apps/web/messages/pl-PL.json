@@ -327,7 +327,12 @@
     "copyButton": "Skopiuj link",
     "success": "Link wygenerowany pomyślnie",
     "error": "Nie udało się wygenerować linku",
-    "copied": "Link skopiowany do schowka"
+    "copied": "Link skopiowany do schowka",
+    "readyDescription": "Twój link do udostępniania jest gotowy. Możesz skanować kod QR bezpośrednio, pobrać go do późniejszego użycia lub skopiować link poniżej.",
+    "tabs": {
+      "link": "Link",
+      "qrcode": "QR Code"
+    }
   },
   "home": {
     "description": "Otwartoźródłowa alternatywa dla WeTransfer. Udostępniaj pliki bezpiecznie, bez śledzenia i ograniczeń.",
@@ -354,6 +359,12 @@
     },
     "stats": "{iconCount} ikon z {libraryCount} bibliotek",
     "categoryBadge": "{category} ({count} ikon)"
+  },
+  "imageEdit": {
+    "title": "Edytuj obraz",
+    "rotate": "Obróć",
+    "zoom": "Powiększ",
+    "cropInstructions": "Przeciągnij, aby przesunąć, zmień rozmiar rogów, aby dostosować obszar przycięcia"
   },
   "login": {
     "welcome": "Witaj w",
@@ -613,7 +624,8 @@
       "createLink": "Utwórz link",
       "delete": "Usuń",
       "copyLinkTitle": "Skopiuj link",
-      "createLinkCTA": "Utwórz link do odbierania"
+      "createLinkCTA": "Utwórz link do odbierania",
+      "viewQrCode": "Wyświetl kod QR"
     },
     "status": {
       "active": "Aktywny",
@@ -629,7 +641,8 @@
       "viewDetails": "Wyświetl szczegóły",
       "edit": "Edytuj",
       "delete": "Usuń",
-      "viewFiles": "Odebrane pliki"
+      "viewFiles": "Odebrane pliki",
+      "viewQrCode": "Wyświetl kod QR"
     },
     "empty": {
       "title": "Brak utworzonych linków do odbierania",
@@ -1230,7 +1243,10 @@
     "recipients": "Odbiorcy",
     "notAvailable": "N/A",
     "invalidDate": "Nieprawidłowa data",
-    "loadError": "Nie udało się załadować szczegółów udostępnienia"
+    "loadError": "Nie udało się załadować szczegółów udostępnienia",
+    "clickToEnlargeQrCode": "Kliknij, aby powiększyć kod QR",
+    "downloadQrCode": "Pobierz kod QR",
+    "qrCode": "Kod QR"
   },
   "shareExpiration": {
     "title": "Ustawienia wygaśnięcia udostępnienia",
@@ -1417,7 +1433,8 @@
       "copyLink": "Skopiuj link",
       "notifyRecipients": "Powiadom odbiorców",
       "delete": "Usuń",
-      "downloadShareFiles": "Pobierz wszystkie pliki"
+      "downloadShareFiles": "Pobierz wszystkie pliki",
+      "viewQrCode": "Wyświetl kod QR"
     },
     "bulkActions": {
       "delete": "Usuń",
@@ -1720,10 +1737,9 @@
     "nameRequired": "Nazwa jest wymagana",
     "required": "To pole jest wymagane"
   },
-  "imageEdit": {
-    "title": "Edytuj obraz",
-    "rotate": "Obróć",
-    "zoom": "Powiększ",
-    "cropInstructions": "Przeciągnij, aby przesunąć, zmień rozmiar rogów, aby dostosować obszar przycięcia"
+  "qrCodeModal": {
+    "title": "Udostępnij kod QR",
+    "description": "Skanuj ten kod QR, aby uzyskać dostęp do linku.",
+    "download": "Pobierz kod QR"
   }
 }

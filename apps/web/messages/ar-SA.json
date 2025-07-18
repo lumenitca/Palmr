@@ -327,7 +327,12 @@
     "copyButton": "نسخ الرابط",
     "success": "تم إنشاء الرابط بنجاح",
     "error": "فشل في إنشاء الرابط",
-    "copied": "تم نسخ الرابط إلى الحافظة"
+    "copied": "تم نسخ الرابط إلى الحافظة",
+    "readyDescription": "رابط المشاركة الخاص بك جاهز. يمكنك مسح رمز QR مباشرة، أو تنزيله للاستخدام لاحقًا، أو نسخ الرابط أدناه.",
+    "tabs": {
+      "link": "الرابط",
+      "qrcode": "رمز QR"
+    }
   },
   "home": {
     "description": "البديل مفتوح المصدر لـ WeTransfer. شارك ملفاتك بأمان، دون تتبع أو قيود.",
@@ -354,6 +359,12 @@
     },
     "stats": "{iconCount} أيقونة من {libraryCount} مكتبة",
     "categoryBadge": "{category} ({count} أيقونات)"
+  },
+  "imageEdit": {
+    "title": "تعديل الصورة",
+    "rotate": "تدوير",
+    "zoom": "تكبير/تصغير",
+    "cropInstructions": "اسحب لإعادة تحديد الموضع، غير حجم الزوايا لضبط منطقة القص"
   },
   "login": {
     "welcome": "مرحبا بك",
@@ -613,11 +624,12 @@
       "createLink": "إنشاء رابط",
       "delete": "حذف",
       "copyLinkTitle": "نسخ الرابط",
-      "createLinkCTA": "إنشاء رابط استلام"
+      "createLinkCTA": "إنشاء رابط استلام",
+      "viewQrCode": "عرض رمز QR"
     },
     "status": {
       "active": "نشط",
-      "inactive": "غير نشط",
+      "inactive": "غير نشط", 
       "expired": "منتهي الصلاحية",
       "protected": "محمي",
       "public": "عام"
@@ -629,7 +641,8 @@
       "viewDetails": "عرض التفاصيل",
       "edit": "تحرير",
       "delete": "حذف",
-      "viewFiles": "الملفات المستلمة"
+      "viewFiles": "الملفات المستلمة",
+      "viewQrCode": "عرض رمز QR"
     },
     "empty": {
       "title": "لم يتم إنشاء روابط استلام",
@@ -1232,7 +1245,10 @@
     "invalidDate": "تاريخ غير صحيح",
     "loadError": "فشل في تحميل تفاصيل المشاركة",
     "editSecurity": "تحرير الأمان",
-    "editExpiration": "تحرير انتهاء الصلاحية"
+    "editExpiration": "تحرير انتهاء الصلاحية",
+    "clickToEnlargeQrCode": "انقر لتكبير رمز QR",
+    "downloadQrCode": "تحميل رمز QR",
+    "qrCode": "رمز QR"
   },
   "shareExpiration": {
     "neverExpires": "لا تنتهي صلاحيته أبداً",
@@ -1419,7 +1435,8 @@
       "copyLink": "نسخ الرابط",
       "notifyRecipients": "إشعار المستقبلين",
       "delete": "حذف",
-      "downloadShareFiles": "قم بتنزيل جميع الملفات"
+      "downloadShareFiles": "قم بتنزيل جميع الملفات",
+      "viewQrCode": "عرض رمز QR"
     },
     "bulkActions": {
       "delete": "حذف",
@@ -1722,10 +1739,9 @@
     "nameRequired": "الاسم مطلوب",
     "required": "هذا الحقل مطلوب"
   },
-  "imageEdit": {
-    "title": "تعديل الصورة",
-    "rotate": "تدوير",
-    "zoom": "تكبير/تصغير",
-    "cropInstructions": "اسحب لإعادة تحديد الموضع، غير حجم الزوايا لضبط منطقة القص"
+  "qrCodeModal": {
+    "title": "مشاركة رمز QR",
+    "description": "امسح رمز QR هذا للوصول إلى الرابط.",
+    "download": "تحميل رمز QR"
   }
 }

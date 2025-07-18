@@ -327,7 +327,12 @@
     "copyButton": "复制链接",
     "success": "链接生成成功",
     "error": "链接生成失败",
-    "copied": "链接已复制到剪贴板"
+    "copied": "链接已复制到剪贴板",
+    "readyDescription": "您的分享链接已准备就绪：",
+    "tabs": {
+      "link": "链接",
+      "qrcode": "QR Code"
+    }
   },
   "home": {
     "description": "WeTransfer的开源替代方案。安全分享文件，无需跟踪或限制。",
@@ -354,6 +359,12 @@
     },
     "stats": "来自 {libraryCount} 个库的 {iconCount} 个图标",
     "categoryBadge": "{category}（{count} 个图标）"
+  },
+  "imageEdit": {
+    "title": "编辑图片",
+    "rotate": "旋转",
+    "zoom": "缩放",
+    "cropInstructions": "拖动以重新定位，调整角落大小以调整裁剪区域"
   },
   "login": {
     "welcome": "欢迎您",
@@ -613,7 +624,8 @@
       "createLink": "创建链接",
       "delete": "删除",
       "copyLinkTitle": "复制链接",
-      "createLinkCTA": "创建接收链接"
+      "createLinkCTA": "创建接收链接",
+      "viewQrCode": "查看QR Code"
     },
     "status": {
       "active": "活动",
@@ -629,7 +641,8 @@
       "viewDetails": "查看详情",
       "edit": "编辑",
       "delete": "删除",
-      "viewFiles": "已接收文件"
+      "viewFiles": "已接收文件",
+      "viewQrCode": "查看QR Code"
     },
     "empty": {
       "title": "未创建接收链接",
@@ -1230,7 +1243,10 @@
     "description": "描述",
     "linkCopied": "链接已复制到剪贴板",
     "editSecurity": "编辑安全",
-    "editExpiration": "编辑过期"
+    "editExpiration": "编辑过期",
+    "clickToEnlargeQrCode": "点击放大QR Code",
+    "downloadQrCode": "下载QR Code",
+    "qrCode": "QR Code"
   },
   "shareExpiration": {
     "neverExpires": "永不过期",
@@ -1417,7 +1433,8 @@
       "copyLink": "复制链接",
       "notifyRecipients": "通知收件人",
       "delete": "删除",
-      "downloadShareFiles": "下载所有文件"
+      "downloadShareFiles": "下载所有文件",
+      "viewQrCode": "查看QR Code"
     },
     "bulkActions": {
       "delete": "删除",
@@ -1720,10 +1737,9 @@
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
   },
-  "imageEdit": {
-    "title": "编辑图片",
-    "rotate": "旋转",
-    "zoom": "缩放",
-    "cropInstructions": "拖动以重新定位，调整角落大小以调整裁剪区域"
+  "qrCodeModal": {
+    "title": "分享QR Code",
+    "description": "扫描此QR Code以访问链接。",
+    "download": "下载QR Code"
   }
 }

@@ -318,16 +318,21 @@
   "generateShareLink": {
     "generateTitle": "Generate Share Link",
     "updateTitle": "Update Share Link",
-    "generateDescription": "Generate a link to share your files",
-    "updateDescription": "Update the alias for this share link",
-    "aliasPlaceholder": "Enter alias",
-    "linkReady": "Your share link is ready:",
+    "generateDescription": "Generate a custom link for this share. You can customize the URL to make it more memorable.",
+    "updateDescription": "Update the custom link for this share. You can customize the URL to make it more memorable.",
+    "aliasPlaceholder": "Custom ID for link",
+    "linkReady": "Your share link is ready. You can copy it now.",
+    "readyDescription": "Your share link is ready. You can scan the QR code directly, download it for later use, or copy the link below.",
     "generateButton": "Generate Link",
     "updateButton": "Update Link",
     "copyButton": "Copy Link",
     "success": "Link generated successfully",
     "error": "Failed to generate link",
-    "copied": "Link copied to clipboard"
+    "copied": "Link copied to clipboard",
+    "tabs": {
+      "link": "Link",
+      "qrcode": "QR Code"
+    }
   },
   "home": {
     "description": "The open-source alternative to WeTransfer. Share files securely, without tracking or limitations.",
@@ -354,6 +359,12 @@
     },
     "stats": "{iconCount} icons from {libraryCount} libraries",
     "categoryBadge": "{category} ({count} icons)"
+  },
+  "imageEdit": {
+    "title": "Edit Image",
+    "rotate": "Rotate",
+    "zoom": "Zoom",
+    "cropInstructions": "Drag to reposition, resize corners to adjust crop area"
   },
   "login": {
     "welcome": "Welcome to",
@@ -400,12 +411,6 @@
   "navigation": {
     "dashboard": "Dashboard"
   },
-  "imageEdit": {
-    "title": "Edit Image",
-    "rotate": "Rotate",
-    "zoom": "Zoom",
-    "cropInstructions": "Drag to reposition, resize corners to adjust crop area"
-  },
   "profile": {
     "password": {
       "title": "Change Password",
@@ -447,6 +452,11 @@
       "imageRemoved": "Profile image removed successfully"
     },
     "pageTitle": "Profile"
+  },
+  "qrCodeModal": {
+    "title": "Share QR Code",
+    "description": "Scan this QR code to access the link.",
+    "download": "Download QR Code"
   },
   "quickAccess": {
     "files": {
@@ -613,6 +623,7 @@
       "expired": "Expired",
       "expires": "Expires",
       "viewDetails": "View details",
+      "viewQrCode": "View QR Code",
       "copyLink": "Copy Link",
       "openInNewTab": "Open in New Tab",
       "editLink": "Edit Link",
@@ -635,7 +646,8 @@
       "viewDetails": "View Details",
       "edit": "Edit",
       "delete": "Delete",
-      "viewFiles": "Received Files"
+      "viewFiles": "Received Files",
+      "viewQrCode": "View QR Code"
     },
     "empty": {
       "title": "No receive links created",
@@ -1206,34 +1218,36 @@
   },
   "shareDetails": {
     "title": "Share Details",
-    "subtitle": "Detailed information about this share",
+    "subtitle": "View and manage details for this share",
     "basicInfo": "Basic Information",
     "name": "Name",
     "description": "Description",
-    "noDescription": "No description provided",
-    "untitled": "Untitled",
     "shareLink": "Share Link",
-    "editLink": "Edit Link",
-    "generateLink": "Generate Link",
-    "noLink": "No link generated yet",
-    "copyLink": "Copy link",
-    "openLink": "Open in new tab",
-    "linkCopied": "Link copied to clipboard",
-    "views": "Views",
     "dates": "Dates",
+    "security": "Security",
+    "files": "Files",
+    "recipients": "Recipients",
+    "views": "Views",
     "created": "Created",
     "expires": "Expires",
     "never": "Never",
-    "security": "Security",
-    "editSecurity": "Edit Security",
-    "editExpiration": "Edit Expiration",
+    "untitled": "Untitled Share",
+    "noDescription": "No description",
+    "notAvailable": "N/A",
+    "invalidDate": "Invalid date",
     "passwordProtected": "Password Protected",
     "publicAccess": "Public Access",
     "maxViews": "Max Views:",
-    "files": "Files",
-    "recipients": "Recipients",
-    "notAvailable": "N/A",
-    "invalidDate": "Invalid date",
+    "noLink": "No link generated",
+    "generateLink": "Generate Link",
+    "editLink": "Edit Link",
+    "copyLink": "Copy Link",
+    "openLink": "Open Link",
+    "editSecurity": "Edit Security",
+    "editExpiration": "Edit Expiration",
+    "qrCode": "QR Code",
+    "downloadQrCode": "Download QR Code",
+    "clickToEnlargeQrCode": "Click to enlarge QR Code",
     "loadError": "Failed to load share details"
   },
   "shareExpiration": {
@@ -1419,6 +1433,7 @@
       "generateLink": "Generate Link",
       "editLink": "Edit Link",
       "copyLink": "Copy Link",
+      "viewQrCode": "View QR Code",
       "notifyRecipients": "Notify Recipients",
       "downloadShareFiles": "Download All Files",
       "delete": "Delete"
