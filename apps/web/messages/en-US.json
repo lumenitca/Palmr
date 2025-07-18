@@ -1703,8 +1703,8 @@
     "status": {
       "title": "Confirm Status Change",
       "confirmation": "Are you sure you want to {action} user {firstName} {lastName}?",
-      "activate": "activate",
-      "deactivate": "deactivate",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
       "user": "User"
     },
     "header": {
