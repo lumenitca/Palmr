@@ -1,7 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
 import { env } from "../../env";
+import { EmailService } from "../email/service";
 import { FileService } from "../file/service";
+import { UserService } from "../user/service";
 import {
   CreateReverseShareInput,
   ReverseShareResponseSchema,
@@ -41,6 +43,19 @@ const prisma = new PrismaClient();
 export class ReverseShareService {
   private reverseShareRepository = new ReverseShareRepository();
   private fileService = new FileService();
+  private emailService = new EmailService();
+  private userService = new UserService();
+
+  private uploadSessions = new Map<
+    string,
+    {
+      reverseShareId: string;
+      uploaderName: string;
+      uploaderEmail?: string;
+      files: string[];
+      timeout: NodeJS.Timeout;
+    }
+  >();
 
   async createReverseShare(data: CreateReverseShareInput, creatorId: string) {
     const reverseShare = await this.reverseShareRepository.create(data, creatorId);
@@ -295,6 +310,8 @@ export class ReverseShareService {
       size: BigInt(fileData.size),
     });
 
+    this.addFileToUploadSession(reverseShare, fileData);
+
     return this.formatFileResponse(file);
   }
 
@@ -344,6 +361,8 @@ export class ReverseShareService {
       ...fileData,
       size: BigInt(fileData.size),
     });
+
+    this.addFileToUploadSession(reverseShare, fileData);
 
     return this.formatFileResponse(file);
   }
@@ -635,6 +654,55 @@ export class ReverseShareService {
       createdAt: newFileRecord.createdAt.toISOString(),
       updatedAt: newFileRecord.updatedAt.toISOString(),
     };
+  }
+
+  private generateSessionKey(reverseShareId: string, uploaderIdentifier: string): string {
+    return `${reverseShareId}-${uploaderIdentifier}`;
+  }
+
+  private async sendBatchFileUploadNotification(reverseShare: any, uploaderName: string, fileNames: string[]) {
+    try {
+      const creator = await this.userService.getUserById(reverseShare.creatorId);
+      const reverseShareName = reverseShare.name || "Unnamed Reverse Share";
+      const fileCount = fileNames.length;
+      const fileList = fileNames.join(", ");
+
+      await this.emailService.sendReverseShareBatchFileNotification(
+        creator.email,
+        reverseShareName,
+        fileCount,
+        fileList,
+        uploaderName
+      );
+    } catch (error) {
+      console.error("Failed to send reverse share batch file notification:", error);
+    }
+  }
+
+  private addFileToUploadSession(reverseShare: any, fileData: UploadToReverseShareInput) {
+    const uploaderIdentifier = fileData.uploaderEmail || fileData.uploaderName || "anonymous";
+    const sessionKey = this.generateSessionKey(reverseShare.id, uploaderIdentifier);
+    const uploaderName = fileData.uploaderName || "Someone";
+
+    const existingSession = this.uploadSessions.get(sessionKey);
+    if (existingSession) {
+      clearTimeout(existingSession.timeout);
+      existingSession.files.push(fileData.name);
+    } else {
+      this.uploadSessions.set(sessionKey, {
+        reverseShareId: reverseShare.id,
+        uploaderName,
+        uploaderEmail: fileData.uploaderEmail,
+        files: [fileData.name],
+        timeout: null as any,
+      });
+    }
+
+    const session = this.uploadSessions.get(sessionKey)!;
+    session.timeout = setTimeout(async () => {
+      await this.sendBatchFileUploadNotification(reverseShare, session.uploaderName, session.files);
+      this.uploadSessions.delete(sessionKey);
+    }, 5000);
   }
 
   private formatReverseShareResponse(reverseShare: ReverseShareData) {
