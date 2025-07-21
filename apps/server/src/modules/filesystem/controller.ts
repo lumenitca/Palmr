@@ -226,8 +226,8 @@ export class FilesystemController {
         if (isLargeFile) {
           await this.downloadLargeFile(reply, provider, filePath);
         } else {
-          const buffer = await provider.downloadFile(tokenData.objectName);
-          reply.send(buffer);
+          const stream = provider.createDecryptedReadStream(tokenData.objectName);
+          reply.send(stream);
         }
       }
 
@@ -255,8 +255,14 @@ export class FilesystemController {
     start: number,
     end: number
   ) {
-    const buffer = await provider.downloadFile(objectName);
-    const chunk = buffer.slice(start, end + 1);
-    reply.send(chunk);
+    const filePath = provider.getFilePath(objectName);
+    const readStream = fs.createReadStream(filePath, { start, end });
+    const decryptStream = provider.createDecryptStream();
+
+    try {
+      await pipeline(readStream, decryptStream, reply.raw);
+    } catch (error) {
+      throw error;
+    }
   }
 }

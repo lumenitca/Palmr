@@ -313,7 +313,8 @@
     "title": "パスワードをお忘れですか？",
     "description": "メールアドレスを入力すると、パスワードリセットの指示を送信します。",
     "resetInstructions": "パスワードリセットの指示がメールに送信されました",
-    "pageTitle": "パスワードをお忘れですか？"
+    "pageTitle": "パスワードをお忘れですか？",
+    "passwordAuthDisabled": "パスワード認証が無効になっています。管理者に連絡するか、外部認証プロバイダーを使用してください。"
   },
   "generateShareLink": {
     "generateTitle": "共有リンクを生成",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "自己署名証明書を信頼",
         "description": "自己署名SSL/TLS証明書を信頼するように設定します（開発環境で便利）"
+      },
+      "passwordAuthEnabled": {
+        "title": "パスワード認証",
+        "description": "パスワード認証を有効または無効にする"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "設定の読み込みに失敗しました",
-      "updateFailed": "設定の更新に失敗しました"
+      "updateFailed": "設定の更新に失敗しました",
+      "passwordAuthRequiresProvider": "少なくとも1つのアクティブな認証プロバイダーがない場合、パスワード認証を無効にできません"
     },
     "messages": {
       "noChanges": "保存する変更はありません",

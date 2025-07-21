@@ -313,7 +313,8 @@
     "title": "忘记密码？",
     "description": "请输入您的电子邮件，我们将发送密码重置指令给您。",
     "resetInstructions": "密码重置指令已发送到您的电子邮件",
-    "pageTitle": "忘记密码？"
+    "pageTitle": "忘记密码？",
+    "passwordAuthDisabled": "密码认证已禁用。请联系您的管理员或使用外部认证提供商。"
   },
   "generateShareLink": {
     "generateTitle": "生成分享链接",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "信任自签名证书",
         "description": "启用此选项以信任自签名SSL/TLS证书（对开发环境有用）"
+      },
+      "passwordAuthEnabled": {
+        "title": "密码认证",
+        "description": "启用或禁用基于密码的认证"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "加载设置失败",
-      "updateFailed": "更新设置失败"
+      "updateFailed": "更新设置失败",
+      "passwordAuthRequiresProvider": "没有至少一个活动认证提供者时，无法禁用密码认证"
     },
     "messages": {
       "noChanges": "没有需要保存的更改",

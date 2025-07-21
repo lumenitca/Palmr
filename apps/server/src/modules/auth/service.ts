@@ -18,6 +18,11 @@ export class AuthService {
   private trustedDeviceService = new TrustedDeviceService();
 
   async login(data: LoginInput, userAgent?: string, ipAddress?: string) {
+    const passwordAuthEnabled = await this.configService.getValue("passwordAuthEnabled");
+    if (passwordAuthEnabled === "false") {
+      throw new Error("Password authentication is disabled. Please use an external authentication provider.");
+    }
+
     const user = await this.userRepository.findUserByEmailOrUsername(data.emailOrUsername);
     if (!user) {
       throw new Error("Invalid credentials");
@@ -146,6 +151,11 @@ export class AuthService {
   }
 
   async requestPasswordReset(email: string, origin: string) {
+    const passwordAuthEnabled = await this.configService.getValue("passwordAuthEnabled");
+    if (passwordAuthEnabled === "false") {
+      throw new Error("Password authentication is disabled. Password reset is not available.");
+    }
+
     const user = await this.userRepository.findUserByEmail(email);
     if (!user) {
       return;
@@ -171,6 +181,11 @@ export class AuthService {
   }
 
   async resetPassword(token: string, newPassword: string) {
+    const passwordAuthEnabled = await this.configService.getValue("passwordAuthEnabled");
+    if (passwordAuthEnabled === "false") {
+      throw new Error("Password authentication is disabled. Password reset is not available.");
+    }
+
     const resetRequest = await prisma.passwordReset.findFirst({
       where: {
         token,

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { env } from "../../env";
+import { ConfigService } from "../config/service";
 import {
   CompleteTwoFactorLoginSchema,
   createResetPasswordSchema,
@@ -11,6 +12,7 @@ import { AuthService } from "./service";
 
 export class AuthController {
   private authService = new AuthService();
+  private configService = new ConfigService();
 
   private getClientInfo(request: FastifyRequest) {
     const realIP = request.headers["x-real-ip"] as string;
@@ -165,6 +167,17 @@ export class AuthController {
 
       const result = await this.authService.removeAllTrustedDevices(userId);
       return reply.send(result);
+    } catch (error: any) {
+      return reply.status(400).send({ error: error.message });
+    }
+  }
+
+  async getAuthConfig(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const passwordAuthEnabled = await this.configService.getValue("passwordAuthEnabled");
+      return reply.send({
+        passwordAuthEnabled: passwordAuthEnabled === "true",
+      });
     } catch (error: any) {
       return reply.status(400).send({ error: error.message });
     }

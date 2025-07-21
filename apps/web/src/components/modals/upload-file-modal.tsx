@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
+import { getSystemInfo } from "@/http/endpoints/app";
 import { ChunkedUploader } from "@/utils/chunked-upload";
 import { getFileIcon } from "@/utils/file-icons";
 import { generateSafeFileName } from "@/utils/file-utils";
@@ -87,7 +88,22 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
   const [isDragOver, setIsDragOver] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
+  const [isS3Enabled, setIsS3Enabled] = useState<boolean | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const fetchSystemInfo = async () => {
+      try {
+        const response = await getSystemInfo();
+        setIsS3Enabled(response.data.s3Enabled);
+      } catch (error) {
+        console.warn("Failed to fetch system info, defaulting to filesystem mode:", error);
+        setIsS3Enabled(false);
+      }
+    };
+
+    fetchSystemInfo();
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -252,7 +268,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
       const abortController = new AbortController();
       setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
-      const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
+      const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size, isS3Enabled ?? undefined);
 
       if (shouldUseChunked) {
         const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
@@ -262,6 +278,7 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
           url,
           chunkSize,
           signal: abortController.signal,
+          isS3Enabled: isS3Enabled ?? undefined,
           onProgress: (progress) => {
             setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress } : u)));
           },

@@ -280,4 +280,23 @@ export async function authRoutes(app: FastifyInstance) {
     },
     authController.removeAllTrustedDevices.bind(authController)
   );
+
+  app.get(
+    "/auth/config",
+    {
+      schema: {
+        tags: ["Authentication"],
+        operationId: "getAuthConfig",
+        summary: "Get Authentication Configuration",
+        description: "Get authentication configuration settings",
+        response: {
+          200: z.object({
+            passwordAuthEnabled: z.boolean().describe("Whether password authentication is enabled"),
+          }),
+          400: z.object({ error: z.string().describe("Error message") }),
+        },
+      },
+    },
+    authController.getAuthConfig.bind(authController)
+  );
 }
