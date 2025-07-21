@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { useAuth } from "@/contexts/auth-context";
-import { getCurrentUser, login } from "@/http/endpoints";
+import { getAuthConfig, getCurrentUser, login } from "@/http/endpoints";
 import { completeTwoFactorLogin } from "@/http/endpoints/auth/two-factor";
 import type { LoginResponse } from "@/http/endpoints/auth/two-factor/types";
 import { LoginFormValues } from "../schemas/schema";
@@ -31,6 +31,8 @@ export function useLogin() {
   const [twoFactorUserId, setTwoFactorUserId] = useState<string | null>(null);
   const [twoFactorCode, setTwoFactorCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [passwordAuthEnabled, setPasswordAuthEnabled] = useState(true);
+  const [authConfigLoading, setAuthConfigLoading] = useState(true);
 
   useEffect(() => {
     const errorParam = searchParams.get("error");
@@ -60,6 +62,22 @@ export function useLogin() {
     }
   }, [searchParams, t]);
 
+  useEffect(() => {
+    const fetchAuthConfig = async () => {
+      try {
+        const response = await getAuthConfig();
+        setPasswordAuthEnabled((response as any).data.passwordAuthEnabled);
+      } catch (error) {
+        console.error("Failed to fetch auth config:", error);
+        setPasswordAuthEnabled(true);
+      } finally {
+        setAuthConfigLoading(false);
+      }
+    };
+
+    fetchAuthConfig();
+  }, []);
+
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -67,7 +85,12 @@ export function useLogin() {
     setIsSubmitting(true);
 
     try {
-      const response = await login(data);
+      if (!passwordAuthEnabled) {
+        setError(t("errors.passwordAuthDisabled"));
+        return;
+      }
+
+      const response = await login(data as any);
       const loginData = response.data as LoginResponse;
 
       if (loginData.requiresTwoFactor && loginData.userId) {
@@ -77,7 +100,6 @@ export function useLogin() {
       }
 
       if (loginData.user) {
-        // Após login bem-sucedido, buscar dados completos do usuário incluindo a imagem
         try {
           const userResponse = await getCurrentUser();
           if (userResponse?.data?.user) {
@@ -92,7 +114,6 @@ export function useLogin() {
           console.warn("Failed to fetch complete user data, using login data:", userErr);
         }
 
-        // Fallback para dados do login se falhar ao buscar dados completos
         const { isAdmin, ...userData } = loginData.user;
         setUser({ ...userData, image: null });
         setIsAdmin(isAdmin);
@@ -129,7 +150,6 @@ export function useLogin() {
         rememberDevice: rememberDevice,
       });
 
-      // Após two-factor login bem-sucedido, buscar dados completos do usuário incluindo a imagem
       try {
         const userResponse = await getCurrentUser();
         if (userResponse?.data?.user) {
@@ -144,7 +164,6 @@ export function useLogin() {
         console.warn("Failed to fetch complete user data after 2FA, using response data:", userErr);
       }
 
-      // Fallback para dados da resposta se falhar ao buscar dados completos
       const { isAdmin, ...userData } = response.data.user;
       setUser({ ...userData, image: userData.image ?? null });
       setIsAdmin(isAdmin);
@@ -172,5 +191,7 @@ export function useLogin() {
     setTwoFactorCode,
     onTwoFactorSubmit,
     isSubmitting,
+    passwordAuthEnabled,
+    authConfigLoading,
   };
 }

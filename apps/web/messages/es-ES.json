@@ -313,7 +313,8 @@
     "title": "Recuperar contraseña",
     "description": "Introduce tu dirección de correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.",
     "resetInstructions": "Instrucciones de restablecimiento enviadas a tu correo electrónico",
-    "pageTitle": "Recuperar contraseña"
+    "pageTitle": "Recuperar contraseña",
+    "passwordAuthDisabled": "La autenticación por contraseña está deshabilitada. Por favor, contacta a tu administrador o usa un proveedor de autenticación externo."
   },
   "generateShareLink": {
     "generateTitle": "Generar enlace de compartir",
@@ -1128,6 +1129,10 @@
           "tls": "STARTTLS (Puerto 587)",
           "none": "Ninguno (Inseguro)"
         }
+      },
+      "passwordAuthEnabled": {
+        "title": "Autenticación por Contraseña",
+        "description": "Habilitar o deshabilitar la autenticación basada en contraseña"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "Error al cargar la configuración",
-      "updateFailed": "Error al actualizar la configuración"
+      "updateFailed": "Error al actualizar la configuración",
+      "passwordAuthRequiresProvider": "No se puede deshabilitar la autenticación por contraseña sin tener al menos un proveedor de autenticación activo"
     },
     "messages": {
       "noChanges": "No hay cambios para guardar",

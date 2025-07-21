@@ -313,7 +313,8 @@
     "title": "Mot de Passe Oublié",
     "description": "Entrez votre adresse email et nous vous enverrons les instructions pour réinitialiser votre mot de passe.",
     "resetInstructions": "Instructions de réinitialisation envoyées à votre email",
-    "pageTitle": "Mot de Passe Oublié"
+    "pageTitle": "Mot de Passe Oublié",
+    "passwordAuthDisabled": "L'authentification par mot de passe est désactivée. Veuillez contacter votre administrateur ou utiliser un fournisseur d'authentification externe."
   },
   "generateShareLink": {
     "generateTitle": "Générer un lien de partage",
@@ -1131,6 +1132,10 @@
       "smtpTrustSelfSigned": {
         "title": "Faire Confiance aux Certificats Auto-signés",
         "description": "Activez cette option pour faire confiance aux certificats SSL/TLS auto-signés (utile pour les environnements de développement)"
+      },
+      "passwordAuthEnabled": {
+        "title": "Authentification par Mot de Passe",
+        "description": "Activer ou désactiver l'authentification basée sur mot de passe"
       }
     },
     "buttons": {
@@ -1140,7 +1145,8 @@
     },
     "errors": {
       "loadFailed": "Échec du chargement des paramètres",
-      "updateFailed": "Échec de la mise à jour des paramètres"
+      "updateFailed": "Échec de la mise à jour des paramètres",
+      "passwordAuthRequiresProvider": "Impossible de désactiver l'authentification par mot de passe sans avoir au moins un fournisseur d'authentification actif"
     },
     "messages": {
       "noChanges": "Aucun changement à enregistrer",

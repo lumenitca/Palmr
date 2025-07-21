@@ -148,6 +148,12 @@ const defaultConfigs = [
     group: "auth-providers",
   },
   {
+    key: "passwordAuthEnabled",
+    value: "true",
+    type: "boolean",
+    group: "security",
+  },
+  {
     key: "serverUrl",
     value: "http://localhost:3333",
     type: "string",

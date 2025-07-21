@@ -313,7 +313,8 @@
     "title": "Parola d'accesso Dimenticata",
     "description": "Inserisci il tuo indirizzo email e ti invieremo le istruzioni per reimpostare la parola d'accesso.",
     "resetInstructions": "Istruzioni di reimpostazione inviate alla tua email",
-    "pageTitle": "Parola d'accesso Dimenticata"
+    "pageTitle": "Parola d'accesso Dimenticata",
+    "passwordAuthDisabled": "L'autenticazione tramite password è disabilitata. Contatta il tuo amministratore o utilizza un provider di autenticazione esterno."
   },
   "generateShareLink": {
     "generateTitle": "Genera link di condivisione",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "Accetta Certificati Auto-Firmati",
         "description": "Abilita questa opzione per accettare certificati SSL/TLS auto-firmati (utile per ambienti di sviluppo)"
+      },
+      "passwordAuthEnabled": {
+        "title": "Autenticazione Password",
+        "description": "Abilita o disabilita l'autenticazione basata su password"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "Errore durante il caricamento delle impostazioni",
-      "updateFailed": "Errore durante l'aggiornamento delle impostazioni"
+      "updateFailed": "Errore durante l'aggiornamento delle impostazioni",
+      "passwordAuthRequiresProvider": "Impossibile disabilitare l'autenticazione password senza avere almeno un provider di autenticazione attivo"
     },
     "messages": {
       "noChanges": "Nessuna modifica da salvare",

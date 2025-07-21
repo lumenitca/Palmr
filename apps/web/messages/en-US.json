@@ -313,7 +313,8 @@
     "title": "Forgot Password",
     "description": "Enter your email address and we'll send you instructions to reset your password",
     "resetInstructions": "Reset instructions sent to your email",
-    "pageTitle": "Forgot Password"
+    "pageTitle": "Forgot Password",
+    "passwordAuthDisabled": "Password authentication is disabled. Please contact your administrator or use an external authentication provider."
   },
   "generateShareLink": {
     "generateTitle": "Generate Share Link",
@@ -1131,6 +1132,10 @@
       "serverUrl": {
         "title": "Server URL",
         "description": "Base URL of the Palmr server (e.g.: https://palmr.example.com)"
+      },
+      "passwordAuthEnabled": {
+        "title": "Password Authentication",
+        "description": "Enable or disable password-based authentication"
       }
     },
     "buttons": {
@@ -1140,7 +1145,8 @@
     },
     "errors": {
       "loadFailed": "Failed to load settings",
-      "updateFailed": "Failed to update settings"
+      "updateFailed": "Failed to update settings",
+      "passwordAuthRequiresProvider": "Cannot disable password authentication without having at least one active authentication provider"
     },
     "messages": {
       "noChanges": "No changes to save",

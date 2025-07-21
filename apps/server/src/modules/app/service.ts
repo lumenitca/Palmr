@@ -46,6 +46,17 @@ export class AppService {
       throw new Error("JWT Secret cannot be updated through this endpoint");
     }
 
+    if (key === "passwordAuthEnabled") {
+      if (value === "false") {
+        const canDisable = await this.configService.validatePasswordAuthDisable();
+        if (!canDisable) {
+          throw new Error(
+            "Password authentication cannot be disabled. At least one authentication provider must be active."
+          );
+        }
+      }
+    }
+
     const config = await prisma.appConfig.findUnique({
       where: { key },
     });
@@ -63,6 +74,15 @@ export class AppService {
   async bulkUpdateConfigs(updates: Array<{ key: string; value: string }>) {
     if (updates.some((update) => update.key === "jwtSecret")) {
       throw new Error("JWT Secret cannot be updated through this endpoint");
+    }
+    const passwordAuthUpdate = updates.find((update) => update.key === "passwordAuthEnabled");
+    if (passwordAuthUpdate && passwordAuthUpdate.value === "false") {
+      const canDisable = await this.configService.validatePasswordAuthDisable();
+      if (!canDisable) {
+        throw new Error(
+          "Password authentication cannot be disabled. At least one authentication provider must be active."
+        );
+      }
     }
 
     const keys = updates.map((update) => update.key);

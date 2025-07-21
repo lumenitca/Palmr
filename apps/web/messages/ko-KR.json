@@ -313,7 +313,8 @@
     "title": "비밀번호를 잊으셨나요?",
     "description": "이메일 주소를 입력하면 비밀번호 재설정 지침을 보내드립니다.",
     "resetInstructions": "비밀번호 재설정 지침이 이메일로 전송되었습니다",
-    "pageTitle": "비밀번호를 잊으셨나요?"
+    "pageTitle": "비밀번호를 잊으셨나요?",
+    "passwordAuthDisabled": "비밀번호 인증이 비활성화되어 있습니다. 관리자에게 문의하거나 외부 인증 공급자를 사용하세요."
   },
   "generateShareLink": {
     "generateTitle": "공유 링크 생성",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "자체 서명된 인증서 신뢰",
         "description": "자체 서명된 SSL/TLS 인증서를 신뢰하려면 활성화하세요 (개발 환경에서 유용)"
+      },
+      "passwordAuthEnabled": {
+        "title": "비밀번호 인증",
+        "description": "비밀번호 기반 인증 활성화 또는 비활성화"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "설정을 불러오는데 실패했습니다",
-      "updateFailed": "설정 업데이트에 실패했습니다"
+      "updateFailed": "설정 업데이트에 실패했습니다",
+      "passwordAuthRequiresProvider": "최소 하나의 활성 인증 제공자가 없으면 비밀번호 인증을 비활성화할 수 없습니다"
     },
     "messages": {
       "noChanges": "저장할 변경 사항이 없습니다",
