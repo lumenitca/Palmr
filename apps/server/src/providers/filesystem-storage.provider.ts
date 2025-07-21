@@ -32,6 +32,14 @@ export class FilesystemStorageProvider implements StorageProvider {
     return FilesystemStorageProvider.instance;
   }
 
+  public createDecryptedReadStream(objectName: string): NodeJS.ReadableStream {
+    const filePath = this.getFilePath(objectName);
+    const fileStream = fsSync.createReadStream(filePath);
+    const decryptStream = this.createDecryptStream();
+
+    return fileStream.pipe(decryptStream);
+  }
+
   private async ensureUploadsDir(): Promise<void> {
     try {
       await fs.access(this.uploadsDir);
