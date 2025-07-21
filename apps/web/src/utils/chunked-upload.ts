@@ -7,6 +7,7 @@ export interface ChunkedUploadOptions {
   onProgress?: (progress: number) => void;
   onChunkComplete?: (chunkIndex: number, totalChunks: number) => void;
   signal?: AbortSignal;
+  isS3Enabled?: boolean;
 }
 
 export interface ChunkedUploadResult {
@@ -23,7 +24,7 @@ export class ChunkedUploader {
   static async uploadFile(options: ChunkedUploadOptions): Promise<ChunkedUploadResult> {
     const { file, url, chunkSize, onProgress, onChunkComplete, signal } = options;
 
-    if (!this.shouldUseChunkedUpload(file.size)) {
+    if (!this.shouldUseChunkedUpload(file.size, options.isS3Enabled)) {
       throw new Error(
         `File ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)}MB) should not use chunked upload. Use regular upload instead.`
       );
@@ -238,8 +239,13 @@ export class ChunkedUploader {
 
   /**
    * Check if file should use chunked upload
+   * Only use chunked upload for filesystem storage, not for S3
    */
-  static shouldUseChunkedUpload(fileSize: number): boolean {
+  static shouldUseChunkedUpload(fileSize: number, isS3Enabled?: boolean): boolean {
+    if (isS3Enabled) {
+      return false;
+    }
+
     const threshold = 100 * 1024 * 1024; // 100MB
     const shouldUse = fileSize > threshold;
 

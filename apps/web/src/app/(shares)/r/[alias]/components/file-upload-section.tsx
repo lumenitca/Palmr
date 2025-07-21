@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { getPresignedUrlForUploadByAlias, registerFileUploadByAlias } from "@/http/endpoints";
+import { getSystemInfo } from "@/http/endpoints/app";
 import { ChunkedUploader } from "@/utils/chunked-upload";
 import { formatFileSize } from "@/utils/format-file-size";
 import { FILE_STATUS, UPLOAD_CONFIG, UPLOAD_PROGRESS } from "../constants";
@@ -25,8 +26,23 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
   const [uploaderEmail, setUploaderEmail] = useState("");
   const [description, setDescription] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const [isS3Enabled, setIsS3Enabled] = useState<boolean | null>(null);
 
   const t = useTranslations();
+
+  useEffect(() => {
+    const fetchSystemInfo = async () => {
+      try {
+        const response = await getSystemInfo();
+        setIsS3Enabled(response.data.s3Enabled);
+      } catch (error) {
+        console.warn("Failed to fetch system info, defaulting to filesystem mode:", error);
+        setIsS3Enabled(false);
+      }
+    };
+
+    fetchSystemInfo();
+  }, []);
 
   const validateFileSize = useCallback(
     (file: File): string | null => {
@@ -139,7 +155,7 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
     presignedUrl: string,
     onProgress?: (progress: number) => void
   ): Promise<void> => {
-    const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
+    const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size, isS3Enabled ?? undefined);
 
     if (shouldUseChunked) {
       const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
@@ -148,6 +164,7 @@ export function FileUploadSection({ reverseShare, password, alias, onUploadSucce
         file,
         url: presignedUrl,
         chunkSize,
+        isS3Enabled: isS3Enabled ?? undefined,
         onProgress,
       });
 
