@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { requestPasswordReset, getAuthConfig } from "@/http/endpoints";
+import { getAuthConfig, requestPasswordReset } from "@/http/endpoints";
 
 export type ForgotPasswordFormData = {
   email: string;

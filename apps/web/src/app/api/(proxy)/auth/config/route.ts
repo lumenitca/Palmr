@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3333";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const url = `${API_BASE_URL}/auth/config`;
 
