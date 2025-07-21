@@ -313,7 +313,8 @@
     "title": "Wachtwoord Vergeten",
     "description": "Voer je e-mailadres in en we sturen je instructies om je wachtwoord te resetten.",
     "resetInstructions": "Reset instructies verzonden naar je e-mail",
-    "pageTitle": "Wachtwoord Vergeten"
+    "pageTitle": "Wachtwoord Vergeten",
+    "passwordAuthDisabled": "Wachtwoordauthenticatie is uitgeschakeld. Neem contact op met uw beheerder of gebruik een externe authenticatieprovider."
   },
   "generateShareLink": {
     "generateTitle": "Deel-link genereren",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "Vertrouw Zelf-Ondertekende Certificaten",
         "description": "Schakel dit in om zelf-ondertekende SSL/TLS certificaten te vertrouwen (handig voor ontwikkelomgevingen)"
+      },
+      "passwordAuthEnabled": {
+        "title": "Wachtwoord Authenticatie",
+        "description": "Wachtwoord-gebaseerde authenticatie inschakelen of uitschakelen"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "Fout bij het laden van instellingen",
-      "updateFailed": "Fout bij het bijwerken van instellingen"
+      "updateFailed": "Fout bij het bijwerken van instellingen",
+      "passwordAuthRequiresProvider": "Wachtwoordauthenticatie kan niet worden uitgeschakeld zonder ten minste één actieve authenticatieprovider"
     },
     "messages": {
       "noChanges": "Geen wijzigingen om op te slaan",

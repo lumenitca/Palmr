@@ -53,6 +53,8 @@ export default function LoginPage() {
                 isVisible={login.isVisible}
                 onSubmit={login.onSubmit}
                 onToggleVisibility={login.toggleVisibility}
+                passwordAuthEnabled={login.passwordAuthEnabled}
+                authConfigLoading={login.authConfigLoading}
               />
             )}
           </motion.div>

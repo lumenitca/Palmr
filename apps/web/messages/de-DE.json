@@ -313,7 +313,8 @@
     "title": "Passwort vergessen",
     "description": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen Anweisungen zum Zurücksetzen Ihres Passworts.",
     "resetInstructions": "Anweisungen zum Zurücksetzen wurden an Ihre E-Mail gesendet",
-    "pageTitle": "Passwort vergessen"
+    "pageTitle": "Passwort vergessen",
+    "passwordAuthDisabled": "Passwortauthentifizierung ist deaktiviert. Bitte kontaktieren Sie Ihren Administrator oder verwenden Sie einen externen Authentifizierungsanbieter."
   },
   "generateShareLink": {
     "generateTitle": "Freigabe-Link generieren",
@@ -628,7 +629,7 @@
       "viewQrCode": "QR-Code anzeigen"
     },
     "status": {
-      "active": "Aktiv", 
+      "active": "Aktiv",
       "inactive": "Inaktiv",
       "expired": "Abgelaufen",
       "protected": "Geschützt",
@@ -636,7 +637,7 @@
     },
     "actions": {
       "copyLink": "Link kopieren",
-      "editAlias": "Alias bearbeiten", 
+      "editAlias": "Alias bearbeiten",
       "createAlias": "Alias erstellen",
       "viewDetails": "Details anzeigen",
       "edit": "Bearbeiten",
@@ -1128,6 +1129,10 @@
           "tls": "STARTTLS (Port 587)",
           "none": "Keine (Unsicher)"
         }
+      },
+      "passwordAuthEnabled": {
+        "title": "Passwort-Authentifizierung",
+        "description": "Passwort-basierte Authentifizierung aktivieren oder deaktivieren"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "Fehler beim Laden der Einstellungen",
-      "updateFailed": "Fehler beim Aktualisieren der Einstellungen"
+      "updateFailed": "Fehler beim Aktualisieren der Einstellungen",
+      "passwordAuthRequiresProvider": "Passwort-basierte Authentifizierung kann nicht deaktiviert werden, wenn kein aktiver Authentifizierungsanbieter vorhanden ist"
     },
     "messages": {
       "noChanges": "Keine Änderungen zum Speichern",
@@ -1245,7 +1251,7 @@
     "editSecurity": "Sicherheit bearbeiten",
     "editExpiration": "Ablauf bearbeiten",
     "clickToEnlargeQrCode": "Klicken Sie zum Vergrößern des QR-Codes",
-    "downloadQrCode": "QR-Code herunterladen", 
+    "downloadQrCode": "QR-Code herunterladen",
     "qrCode": "QR-Code"
   },
   "shareExpiration": {

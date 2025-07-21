@@ -313,7 +313,8 @@
     "title": "Şifrenizi mi Unuttunuz?",
     "description": "E-posta adresinizi girin, şifre sıfırlama talimatlarını göndereceğiz.",
     "resetInstructions": "Şifre sıfırlama talimatları e-posta adresinize gönderildi",
-    "pageTitle": "Şifrenizi mi Unuttunuz?"
+    "pageTitle": "Şifrenizi mi Unuttunuz?",
+    "passwordAuthDisabled": "Şifre doğrulama devre dışı. Lütfen yöneticinize başvurun veya dış doğrulama sağlayıcısı kullanın."
   },
   "generateShareLink": {
     "generateTitle": "Paylaşım Bağlantısı Oluştur",
@@ -1128,6 +1129,10 @@
       "smtpTrustSelfSigned": {
         "title": "Kendinden İmzalı Sertifikalara Güven",
         "description": "Kendinden imzalı SSL/TLS sertifikalarına güvenmek için bunu etkinleştirin (geliştirme ortamları için kullanışlıdır)"
+      },
+      "passwordAuthEnabled": {
+        "title": "Şifre Doğrulama",
+        "description": "Şifre tabanlı doğrulamayı etkinleştirme veya devre dışı bırakma"
       }
     },
     "buttons": {
@@ -1137,7 +1142,8 @@
     },
     "errors": {
       "loadFailed": "Ayarlar yüklenemedi",
-      "updateFailed": "Ayarlar güncellenemedi"
+      "updateFailed": "Ayarlar güncellenemedi",
+      "passwordAuthRequiresProvider": "En az bir aktif kimlik doğrulama sağlayıcısı olmadan şifre doğrulaması devre dışı bırakılamaz"
     },
     "messages": {
       "noChanges": "Kaydedilecek değişiklik yok",
