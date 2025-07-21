@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { checkFile, getPresignedUrl, registerFile } from "@/http/endpoints";
+import { getSystemInfo } from "@/http/endpoints/app";
 import { ChunkedUploader } from "@/utils/chunked-upload";
 import { getFileIcon } from "@/utils/file-icons";
 import { generateSafeFileName } from "@/utils/file-utils";
@@ -43,6 +44,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [fileUploads, setFileUploads] = useState<FileUpload[]>([]);
   const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
+  const [isS3Enabled, setIsS3Enabled] = useState<boolean | null>(null);
 
   const generateFileId = useCallback(() => {
     return Date.now().toString() + Math.random().toString(36).substr(2, 9);
@@ -124,7 +126,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         const abortController = new AbortController();
         setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, abortController } : u)));
 
-        const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size);
+        const shouldUseChunked = ChunkedUploader.shouldUseChunkedUpload(file.size, isS3Enabled ?? undefined);
 
         if (shouldUseChunked) {
           const chunkSize = ChunkedUploader.calculateOptimalChunkSize(file.size);
@@ -134,6 +136,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
             url,
             chunkSize,
             signal: abortController.signal,
+            isS3Enabled: isS3Enabled ?? undefined,
             onProgress: (progress) => {
               setFileUploads((prev) => prev.map((u) => (u.id === id ? { ...u, progress } : u)));
             },
@@ -196,7 +199,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         );
       }
     },
-    [t]
+    [t, isS3Enabled]
   );
 
   const handleDrop = useCallback(
@@ -255,6 +258,20 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
     },
     [uploadFile, t, createFileUpload]
   );
+
+  useEffect(() => {
+    const fetchSystemInfo = async () => {
+      try {
+        const response = await getSystemInfo();
+        setIsS3Enabled(response.data.s3Enabled);
+      } catch (error) {
+        console.warn("Failed to fetch system info, defaulting to filesystem mode:", error);
+        setIsS3Enabled(false);
+      }
+    };
+
+    fetchSystemInfo();
+  }, []);
 
   useEffect(() => {
     document.addEventListener("dragover", handleDragOver);
