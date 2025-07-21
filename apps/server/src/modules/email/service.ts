@@ -167,7 +167,7 @@ export class EmailService {
     });
   }
 
-  async sendShareNotification(to: string, shareLink: string, shareName?: string) {
+  async sendShareNotification(to: string, shareLink: string, shareName?: string, senderName?: string) {
     const transporter = await this.createTransporter();
     if (!transporter) {
       throw new Error("SMTP is not enabled");
@@ -178,19 +178,67 @@ export class EmailService {
     const appName = await this.configService.getValue("appName");
 
     const shareTitle = shareName || "Files";
+    const sender = senderName || "Someone";
 
     await transporter.sendMail({
       from: `"${fromName}" <${fromEmail}>`,
       to,
       subject: `${appName} - ${shareTitle} shared with you`,
       html: `
-        <h1>${appName} - Shared Files</h1>
-        <p>Someone has shared "${shareTitle}" with you.</p>
-        <p>Click the link below to access the shared files:</p>
-        <a href="${shareLink}">
-          Access Shared Files
-        </a>
-        <p>Note: This share may have an expiration date or view limit.</p>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>${appName} - Shared Files</title>
+        </head>
+        <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5; color: #333333;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); overflow: hidden; margin-top: 40px; margin-bottom: 40px;">
+            <!-- Header -->
+            <div style="background-color: #22B14C; padding: 30px 20px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">${appName}</h1>
+              <p style="margin: 2px 0 0 0; color: #ffffff; font-size: 16px; opacity: 0.9;">Shared Files</p>
+            </div>
+            
+            <!-- Content -->
+            <div style="padding: 40px 30px;">
+              <div style="text-align: center; margin-bottom: 32px;">
+                <h2 style="margin: 0 0 12px 0; color: #1f2937; font-size: 24px; font-weight: 600;">Files Shared With You</h2>
+                <p style="margin: 0; color: #6b7280; font-size: 16px; line-height: 1.6;">
+                  <strong style="color: #374151;">${sender}</strong> has shared <strong style="color: #374151;">"${shareTitle}"</strong> with you.
+                </p>
+              </div>
+              
+              <!-- CTA Button -->
+              <div style="text-align: center; margin: 32px 0;">
+                <a href="${shareLink}" style="display: inline-block; background-color: #22B14C; color: #ffffff; text-decoration: none; padding: 12px 24px; font-weight: 600; font-size: 16px; border: 2px solid #22B14C; border-radius: 8px; transition: all 0.3s ease;">
+                  Access Shared Files
+                </a>
+              </div>
+              
+              <!-- Info Box -->
+              <div style="background-color: #f9fafb; border-left: 4px solid #22B14C; padding: 16px 20px; margin-top: 32px;">
+                <p style="margin: 0; color: #4b5563; font-size: 14px; line-height: 1.5;">
+                  <strong>Important:</strong> This share may have an expiration date or view limit. Access it as soon as possible to ensure availability.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style="background-color: #f9fafb; padding: 24px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+              <p style="margin: 0; color: #6b7280; font-size: 14px;">
+                This email was sent by <strong>${appName}</strong>
+              </p>
+              <p style="margin: 8px 0 0 0; color: #9ca3af; font-size: 12px;">
+                If you didn't expect this email, you can safely ignore it.
+              </p>
+              <p style="margin: 4px 0 0 0; color: #9ca3af; font-size: 10px;">
+                Powered by <a href=" <a href="https://kyantech.com.br" style="color: #9ca3af; text-decoration: none;">Kyantech Solutions</a>
+              </p>
+            </div>
+          </div>
+        </body>
+        </html>
       `,
     });
   }
