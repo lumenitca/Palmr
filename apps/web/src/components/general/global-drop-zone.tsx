@@ -199,7 +199,7 @@ export function GlobalDropZone({ onSuccess, children }: GlobalDropZoneProps) {
         );
       }
     },
-    [t]
+    [t, isS3Enabled]
   );
 
   const handleDrop = useCallback(
