@@ -45,9 +45,6 @@ services:
     image: kyantech/palmr:latest
     container_name: palmr
     environment:
-      - ENABLE_S3=false
-      # - ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
-      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
       - PALMR_UID=1000
       - PALMR_GID=1000
     ports:
@@ -105,11 +102,8 @@ services:
     image: kyantech/palmr:latest
     container_name: palmr
     environment:
-      - ENABLE_S3=false
-      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
       - PALMR_UID=1000
       - PALMR_GID=1000
-      # - ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
     ports:
       - "5487:5487"
     volumes:
@@ -125,11 +119,8 @@ services:
     image: kyantech/palmr:latest
     container_name: palmr
     environment:
-      - ENABLE_S3=false
-      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
       - PALMR_UID=1026
       - PALMR_GID=100
-      # - ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
     ports:
       - "5487:5487"
     volumes:
@@ -145,11 +136,8 @@ services:
     image: kyantech/palmr:latest
     container_name: palmr
     environment:
-      - ENABLE_S3=false
-      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
       - PALMR_UID=1000
       - PALMR_GID=100
-      # - ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
     ports:
       - "5487:5487"
     volumes:
