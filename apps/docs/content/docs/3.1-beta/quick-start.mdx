@@ -55,8 +55,8 @@ services:
     container_name: palmr
     environment:
       - ENABLE_S3=false
-      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
-      # - DISABLE_FILESYSTEM_ENCRYPTION=false # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional)
+      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption (ENCRYPTION_KEY becomes required)
+      # - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY (REQUIRED if DISABLE_FILESYSTEM_ENCRYPTION is false)
       # - SECURE_SITE=false # Set to true if you are using a reverse proxy
       # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
     ports:
@@ -74,8 +74,8 @@ volumes:
 
 ```yaml
 environment:
-  - PALMR_UID=1000 # UID for the container processes (default is 1001)
-  - PALMR_GID=1000 # GID for the container processes (default is 1001)
+  - PALMR_UID=1000 # UID for the container processes (default is 1000)
+  - PALMR_GID=1000 # GID for the container processes (default is 1000)
 ```
 
 > **Note:** For more information about UID and GID, see our [UID/GID Configuration](/docs/3.1-beta/uid-gid-configuration) guide.
@@ -103,10 +103,10 @@ services:
     container_name: palmr
     environment:
       - ENABLE_S3=false
-      - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY
-      - PALMR_UID=1000 # UID for the container processes (default is 1001)
-      - PALMR_GID=1000 # GID for the container processes (default is 1001)
-      # - DISABLE_FILESYSTEM_ENCRYPTION=false # Set to true to disable file encryption (ENCRYPTION_KEY becomes optional)
+      - DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption (ENCRYPTION_KEY becomes required)
+      # - ENCRYPTION_KEY=change-this-key-in-production-min-32-chars # CHANGE THIS KEY FOR SECURITY (REQUIRED if DISABLE_FILESYSTEM_ENCRYPTION is false)
+      # - PALMR_UID=1000 # UID for the container processes (default is 1000)
+      # - PALMR_GID=1000 # GID for the container processes (default is 1000)
       # - SECURE_SITE=false # Set to true if you are using a reverse proxy
       # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
     ports:
@@ -135,26 +135,26 @@ Configure Palmr. behavior through environment variables:
 | Variable                        | Default | Description                                                                                                       |
 | ------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
 | `ENABLE_S3`                     | `false` | Enable S3-compatible storage                                                                                      |
-| `ENCRYPTION_KEY`                | -       | **Required** (unless encryption disabled): Minimum 32 characters for file encryption                              |
-| `DISABLE_FILESYSTEM_ENCRYPTION` | `false` | Disable file encryption for direct filesystem access                                                              |
+| `ENCRYPTION_KEY`                | -       | **Required** (when encryption enabled): Minimum 32 characters for file encryption                                |
+| `DISABLE_FILESYSTEM_ENCRYPTION` | `true`  | Disable file encryption for direct filesystem access (set to false to enable encryption)                         |
 | `SECURE_SITE`                   | `false` | Enable secure cookies for HTTPS/reverse proxy setups                                                              |
 | `DEFAULT_LANGUAGE`              | `en-US` | Set the default application language (see supported languages in docs [here](/docs/3.1-beta/available-languages)) |
-| `PALMR_UID`                     | `1001`  | Set the UID for the container processes (OPTIONAL - default is 1001)                                              |
-| `PALMR_GID`                     | `1001`  | Set the GID for the container processes (OPTIONAL - default is 1001)                                              |
+| `PALMR_UID`                     | `1000`  | Set the UID for the container processes (OPTIONAL - default is 1000)                                              |
+| `PALMR_GID`                     | `1000`  | Set the GID for the container processes (OPTIONAL - default is 1000)                                              |
 
-> **⚠️ Security Warning**: Always change the `ENCRYPTION_KEY` in production when encryption is enabled. This key encrypts your files - losing it makes files permanently inaccessible.
+> **🚀 Performance Optimized**: By default, Palmr stores files without encryption for optimal performance. This provides faster uploads/downloads and lower CPU usage, perfect for most use cases.
 
-> **🔓 File Encryption Control**: The `DISABLE_FILESYSTEM_ENCRYPTION` variable allows you to store files without encryption for direct filesystem access. When set to `true`, the `ENCRYPTION_KEY` becomes optional. **Important**: Once set, this configuration is permanent for your deployment. Switching between encrypted and unencrypted modes will break file access for existing uploads. Choose your strategy before uploading files. For more details on performance implications of encryption, see [Performance Considerations with Encryption](/docs/3.1-beta/architecture#performance-considerations-with-encryption).
+> **🔐 Optional Encryption**: To enable file encryption, set `DISABLE_FILESYSTEM_ENCRYPTION=false` and provide an `ENCRYPTION_KEY` (minimum 32 characters). **Important**: Once you choose encryption or no encryption, this configuration is permanent for your deployment. Switching modes will break file access for existing uploads. Choose your strategy before uploading files. For more details on performance implications of encryption, see [Performance Considerations with Encryption](/docs/3.1-beta/architecture#performance-considerations-with-encryption).
 
 > **🔗 Reverse Proxy**: If deploying behind a reverse proxy (Traefik, Nginx, etc.), set `SECURE_SITE=true` and review our [Reverse Proxy Configuration](/docs/3.1-beta/reverse-proxy-configuration) guide for proper setup.
 
-### Generate Secure Encryption Keys
+### Generate Secure Encryption Keys (Optional)
 
-Need a strong key for `ENCRYPTION_KEY`? Use our built-in generator to create cryptographically secure keys:
+Want to enable file encryption? Use our built-in generator to create cryptographically secure keys:
 
 <KeyGenerator />
 
-> **💡 Pro Tip**: If you're using `DISABLE_FILESYSTEM_ENCRYPTION=true`, you can skip the `ENCRYPTION_KEY` entirely for a simpler setup. However, remember that files will be stored unencrypted on your filesystem.
+> **💡 Pro Tip**: By default, Palmr runs without encryption for optimal performance. If you need encryption for sensitive data, set `DISABLE_FILESYSTEM_ENCRYPTION=false` and use the generated key above as your `ENCRYPTION_KEY`.
 
 ---
 
@@ -188,10 +188,10 @@ Prefer using Docker directly? Both storage options are supported:
 docker run -d \
   --name palmr \
   -e ENABLE_S3=false \
-  -e ENCRYPTION_KEY=your-secure-key-min-32-chars \
-  # -e PALMR_UID=1000 # UID for the container processes (default is 1001)
-  # -e PALMR_GID=1000 # GID for the container processes (default is 1001)
-  # -e DISABLE_FILESYSTEM_ENCRYPTION=true # Uncomment to disable file encryption (ENCRYPTION_KEY becomes optional)
+  # -e ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
+  # -e PALMR_UID=1000 # UID for the container processes (default is 1000)
+  # -e PALMR_GID=1000 # GID for the container processes (default is 1000)
+  -e DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
   # -e SECURE_SITE=false # Set to true if you are using a reverse proxy
   # -e DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
   -p 5487:5487 \
@@ -209,10 +209,10 @@ docker run -d \
 docker run -d \
   --name palmr \
   -e ENABLE_S3=false \
-  -e ENCRYPTION_KEY=your-secure-key-min-32-chars \
-  -e PALMR_UID=1000 # UID for the container processes (default is 1001)
-  -e PALMR_GID=1000 # GID for the container processes (default is 1001)
-  # -e DISABLE_FILESYSTEM_ENCRYPTION=true # Uncomment to disable file encryption (ENCRYPTION_KEY becomes optional)
+  # -e ENCRYPTION_KEY=your-secure-key-min-32-chars # Required only if encryption is enabled
+  # -e PALMR_UID=1000 # UID for the container processes (default is 1000)
+  # -e PALMR_GID=1000 # GID for the container processes (default is 1000)
+  -e DISABLE_FILESYSTEM_ENCRYPTION=true # Set to false to enable file encryption
   # -e SECURE_SITE=false # Set to true if you are using a reverse proxy
   # -e DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
   -p 5487:5487 \

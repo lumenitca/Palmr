@@ -45,9 +45,9 @@ Palmr. uses **filesystem storage** as the default storage solution, keeping thin
 
 #### Performance Considerations with Encryption
 
-By default, filesystem storage uses encryption (AES-256-CBC) to protect files at rest, which adds CPU overhead during uploads (encryption) and downloads (decryption). This can make operations slower and consume more resources, particularly for large files or in resource-constrained environments like containers or low-end VMs.
+By default, filesystem storage operates without encryption for optimal performance, providing fast uploads and downloads with minimal CPU overhead. This approach is ideal for most use cases where performance is prioritized.
 
-If performance is a priority and you don't need encryption (e.g., for non-sensitive data or testing), you can disable it by setting the environment variable `DISABLE_FILESYSTEM_ENCRYPTION=true` in your `.env` file or Docker configuration. Note that disabling encryption stores files in plaintext on disk, reducing security.
+If you need to protect sensitive files at rest, you can enable encryption by setting `DISABLE_FILESYSTEM_ENCRYPTION=false` and providing an `ENCRYPTION_KEY` in your configuration. When enabled, Palmr uses AES-256-CBC encryption, which adds CPU overhead during uploads (encryption) and downloads (decryption), particularly for large files or in resource-constrained environments like containers or low-end VMs.
 
 For optimal performance with encryption enabled, ensure your hardware supports AES-NI acceleration (check with `cat /proc/cpuinfo | grep aes` on Linux).
 
