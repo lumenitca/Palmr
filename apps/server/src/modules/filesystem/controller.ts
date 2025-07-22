@@ -8,9 +8,6 @@ import { ChunkManager, ChunkMetadata } from "./chunk-manager";
 export class FilesystemController {
   private chunkManager = ChunkManager.getInstance();
 
-  /**
-   * Safely encode filename for Content-Disposition header
-   */
   private encodeFilenameForHeader(filename: string): string {
     if (!filename || filename.trim() === "") {
       return 'attachment; filename="download"';
@@ -103,9 +100,6 @@ export class FilesystemController {
     await provider.uploadFileFromStream(objectName, request.raw);
   }
 
-  /**
-   * Extract chunk metadata from request headers
-   */
   private extractChunkMetadata(request: FastifyRequest): ChunkMetadata | null {
     const fileId = request.headers["x-file-id"] as string;
     const chunkIndex = request.headers["x-chunk-index"] as string;
@@ -132,9 +126,6 @@ export class FilesystemController {
     return metadata;
   }
 
-  /**
-   * Handle chunked upload with streaming
-   */
   private async handleChunkedUpload(request: FastifyRequest, metadata: ChunkMetadata, originalObjectName: string) {
     const stream = request.raw;
 
@@ -145,9 +136,6 @@ export class FilesystemController {
     return await this.chunkManager.processChunk(metadata, stream, originalObjectName);
   }
 
-  /**
-   * Get upload progress for chunked uploads
-   */
   async getUploadProgress(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { fileId } = request.params as { fileId: string };
@@ -164,9 +152,6 @@ export class FilesystemController {
     }
   }
 
-  /**
-   * Cancel chunked upload
-   */
   async cancelUpload(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { fileId } = request.params as { fileId: string };
@@ -194,7 +179,6 @@ export class FilesystemController {
       const filePath = provider.getFilePath(tokenData.objectName);
       const stats = await fs.promises.stat(filePath);
       const fileSize = stats.size;
-      const isLargeFile = fileSize > 50 * 1024 * 1024;
 
       const fileName = tokenData.fileName || "download";
       const range = request.headers.range;
@@ -207,28 +191,15 @@ export class FilesystemController {
         const parts = range.replace(/bytes=/, "").split("-");
         const start = parseInt(parts[0], 10);
         const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
-        const chunkSize = end - start + 1;
 
         reply.status(206);
         reply.header("Content-Range", `bytes ${start}-${end}/${fileSize}`);
-        reply.header("Content-Length", chunkSize);
+        reply.header("Content-Length", end - start + 1);
 
-        if (isLargeFile) {
-          await this.downloadLargeFileRange(reply, provider, tokenData.objectName, start, end);
-        } else {
-          const buffer = await provider.downloadFile(tokenData.objectName);
-          const chunk = buffer.slice(start, end + 1);
-          reply.send(chunk);
-        }
+        await this.downloadFileRange(reply, provider, tokenData.objectName, start, end);
       } else {
         reply.header("Content-Length", fileSize);
-
-        if (isLargeFile) {
-          await this.downloadLargeFile(reply, provider, filePath);
-        } else {
-          const stream = provider.createDecryptedReadStream(tokenData.objectName);
-          reply.send(stream);
-        }
+        await this.downloadFileStream(reply, provider, tokenData.objectName);
       }
 
       provider.consumeDownloadToken(token);
@@ -237,32 +208,75 @@ export class FilesystemController {
     }
   }
 
-  private async downloadLargeFile(reply: FastifyReply, provider: FilesystemStorageProvider, filePath: string) {
-    const readStream = fs.createReadStream(filePath);
-    const decryptStream = provider.createDecryptStream();
-
+  private async downloadFileStream(reply: FastifyReply, provider: FilesystemStorageProvider, objectName: string) {
     try {
-      await pipeline(readStream, decryptStream, reply.raw);
+      FilesystemStorageProvider.logMemoryUsage(`Download start: ${objectName}`);
+
+      const downloadStream = provider.createDownloadStream(objectName);
+
+      downloadStream.on("error", (error) => {
+        console.error("Download stream error:", error);
+        FilesystemStorageProvider.logMemoryUsage(`Download error: ${objectName}`);
+        if (!reply.sent) {
+          reply.status(500).send({ error: "Download failed" });
+        }
+      });
+
+      reply.raw.on("close", () => {
+        if (downloadStream.readable && typeof (downloadStream as any).destroy === "function") {
+          (downloadStream as any).destroy();
+        }
+        FilesystemStorageProvider.logMemoryUsage(`Download client disconnect: ${objectName}`);
+      });
+
+      await pipeline(downloadStream, reply.raw);
+
+      FilesystemStorageProvider.logMemoryUsage(`Download complete: ${objectName}`);
     } catch (error) {
-      throw error;
+      console.error("Download error:", error);
+      FilesystemStorageProvider.logMemoryUsage(`Download failed: ${objectName}`);
+      if (!reply.sent) {
+        reply.status(500).send({ error: "Download failed" });
+      }
     }
   }
 
-  private async downloadLargeFileRange(
+  private async downloadFileRange(
     reply: FastifyReply,
     provider: FilesystemStorageProvider,
     objectName: string,
     start: number,
     end: number
   ) {
-    const filePath = provider.getFilePath(objectName);
-    const readStream = fs.createReadStream(filePath, { start, end });
-    const decryptStream = provider.createDecryptStream();
-
     try {
-      await pipeline(readStream, decryptStream, reply.raw);
+      FilesystemStorageProvider.logMemoryUsage(`Range download start: ${objectName} (${start}-${end})`);
+
+      const rangeStream = await provider.createDownloadRangeStream(objectName, start, end);
+
+      rangeStream.on("error", (error) => {
+        console.error("Range download stream error:", error);
+        FilesystemStorageProvider.logMemoryUsage(`Range download error: ${objectName} (${start}-${end})`);
+        if (!reply.sent) {
+          reply.status(500).send({ error: "Download failed" });
+        }
+      });
+
+      reply.raw.on("close", () => {
+        if (rangeStream.readable && typeof (rangeStream as any).destroy === "function") {
+          (rangeStream as any).destroy();
+        }
+        FilesystemStorageProvider.logMemoryUsage(`Range download client disconnect: ${objectName} (${start}-${end})`);
+      });
+
+      await pipeline(rangeStream, reply.raw);
+
+      FilesystemStorageProvider.logMemoryUsage(`Range download complete: ${objectName} (${start}-${end})`);
     } catch (error) {
-      throw error;
+      console.error("Range download error:", error);
+      FilesystemStorageProvider.logMemoryUsage(`Range download failed: ${objectName} (${start}-${end})`);
+      if (!reply.sent) {
+        reply.status(500).send({ error: "Download failed" });
+      }
     }
   }
 }

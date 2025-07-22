@@ -22,7 +22,7 @@ export class FilesystemStorageProvider implements StorageProvider {
 
     this.ensureUploadsDir();
     setInterval(() => this.cleanExpiredTokens(), 5 * 60 * 1000);
-    setInterval(() => this.cleanupEmptyTempDirs(), 10 * 60 * 1000); // Every 10 minutes
+    setInterval(() => this.cleanupEmptyTempDirs(), 10 * 60 * 1000);
   }
 
   public static getInstance(): FilesystemStorageProvider {
@@ -30,14 +30,6 @@ export class FilesystemStorageProvider implements StorageProvider {
       FilesystemStorageProvider.instance = new FilesystemStorageProvider();
     }
     return FilesystemStorageProvider.instance;
-  }
-
-  public createDecryptedReadStream(objectName: string): NodeJS.ReadableStream {
-    const filePath = this.getFilePath(objectName);
-    const fileStream = fsSync.createReadStream(filePath);
-    const decryptStream = this.createDecryptStream();
-
-    return fileStream.pipe(decryptStream);
   }
 
   private async ensureUploadsDir(): Promise<void> {
@@ -261,6 +253,183 @@ export class FilesystemStorageProvider implements StorageProvider {
     return this.decryptFileLegacy(fileBuffer);
   }
 
+  createDownloadStream(objectName: string): NodeJS.ReadableStream {
+    const filePath = this.getFilePath(objectName);
+    const fileStream = fsSync.createReadStream(filePath);
+
+    if (this.isEncryptionDisabled) {
+      fileStream.on("end", () => {
+        if (global.gc) {
+          global.gc();
+        }
+      });
+
+      fileStream.on("close", () => {
+        if (global.gc) {
+          global.gc();
+        }
+      });
+
+      return fileStream;
+    }
+
+    const decryptStream = this.createDecryptStream();
+    let isDestroyed = false;
+
+    const cleanup = () => {
+      if (isDestroyed) return;
+      isDestroyed = true;
+
+      try {
+        if (fileStream && !fileStream.destroyed) {
+          fileStream.destroy();
+        }
+        if (decryptStream && !decryptStream.destroyed) {
+          decryptStream.destroy();
+        }
+      } catch (error) {
+        console.warn("Error during download stream cleanup:", error);
+      }
+
+      if (global.gc) {
+        global.gc();
+      }
+    };
+
+    fileStream.on("error", cleanup);
+    decryptStream.on("error", cleanup);
+    decryptStream.on("end", cleanup);
+    decryptStream.on("close", cleanup);
+
+    decryptStream.on("pipe", (src: any) => {
+      if (src && src.on) {
+        src.on("close", cleanup);
+        src.on("error", cleanup);
+      }
+    });
+
+    return fileStream.pipe(decryptStream);
+  }
+
+  async createDownloadRangeStream(objectName: string, start: number, end: number): Promise<NodeJS.ReadableStream> {
+    if (!this.isEncryptionDisabled) {
+      return this.createRangeStreamFromDecrypted(objectName, start, end);
+    }
+
+    const filePath = this.getFilePath(objectName);
+    return fsSync.createReadStream(filePath, { start, end });
+  }
+
+  private createRangeStreamFromDecrypted(objectName: string, start: number, end: number): NodeJS.ReadableStream {
+    const { Transform, PassThrough } = require("stream");
+    const filePath = this.getFilePath(objectName);
+    const fileStream = fsSync.createReadStream(filePath);
+    const decryptStream = this.createDecryptStream();
+    const rangeStream = new PassThrough();
+
+    let bytesRead = 0;
+    let rangeEnded = false;
+    let isDestroyed = false;
+
+    const rangeTransform = new Transform({
+      transform(chunk: Buffer, encoding: any, callback: any) {
+        if (rangeEnded || isDestroyed) {
+          callback();
+          return;
+        }
+
+        const chunkStart = bytesRead;
+        const chunkEnd = bytesRead + chunk.length - 1;
+        bytesRead += chunk.length;
+
+        if (chunkEnd < start) {
+          callback();
+          return;
+        }
+
+        if (chunkStart > end) {
+          rangeEnded = true;
+          this.end();
+          callback();
+          return;
+        }
+
+        let sliceStart = 0;
+        let sliceEnd = chunk.length;
+
+        if (chunkStart < start) {
+          sliceStart = start - chunkStart;
+        }
+
+        if (chunkEnd > end) {
+          sliceEnd = end - chunkStart + 1;
+          rangeEnded = true;
+        }
+
+        const slicedChunk = chunk.slice(sliceStart, sliceEnd);
+        this.push(slicedChunk);
+
+        if (rangeEnded) {
+          this.end();
+        }
+
+        callback();
+      },
+
+      flush(callback: any) {
+        if (global.gc) {
+          global.gc();
+        }
+        callback();
+      },
+    });
+
+    const cleanup = () => {
+      if (isDestroyed) return;
+      isDestroyed = true;
+
+      try {
+        if (fileStream && !fileStream.destroyed) {
+          fileStream.destroy();
+        }
+        if (decryptStream && !decryptStream.destroyed) {
+          decryptStream.destroy();
+        }
+        if (rangeTransform && !rangeTransform.destroyed) {
+          rangeTransform.destroy();
+        }
+        if (rangeStream && !rangeStream.destroyed) {
+          rangeStream.destroy();
+        }
+      } catch (error) {
+        console.warn("Error during stream cleanup:", error);
+      }
+
+      if (global.gc) {
+        global.gc();
+      }
+    };
+
+    fileStream.on("error", cleanup);
+    decryptStream.on("error", cleanup);
+    rangeTransform.on("error", cleanup);
+    rangeStream.on("error", cleanup);
+
+    rangeStream.on("close", cleanup);
+    rangeStream.on("end", cleanup);
+
+    rangeStream.on("pipe", (src: any) => {
+      if (src && src.on) {
+        src.on("close", cleanup);
+        src.on("error", cleanup);
+      }
+    });
+
+    fileStream.pipe(decryptStream).pipe(rangeTransform).pipe(rangeStream);
+
+    return rangeStream;
+  }
+
   private decryptFileBuffer(encryptedBuffer: Buffer): Buffer {
     const key = this.createEncryptionKey();
     const iv = encryptedBuffer.slice(0, 16);
@@ -275,6 +444,59 @@ export class FilesystemStorageProvider implements StorageProvider {
     const CryptoJS = require("crypto-js");
     const decrypted = CryptoJS.AES.decrypt(encryptedBuffer.toString("utf8"), this.encryptionKey);
     return Buffer.from(decrypted.toString(CryptoJS.enc.Utf8), "base64");
+  }
+
+  static logMemoryUsage(context: string = "Unknown"): void {
+    const memUsage = process.memoryUsage();
+    const formatBytes = (bytes: number) => {
+      const mb = bytes / 1024 / 1024;
+      return `${mb.toFixed(2)} MB`;
+    };
+
+    const rssInMB = memUsage.rss / 1024 / 1024;
+    const heapUsedInMB = memUsage.heapUsed / 1024 / 1024;
+
+    if (rssInMB > 1024 || heapUsedInMB > 512) {
+      console.warn(`[MEMORY WARNING] ${context} - High memory usage detected:`);
+      console.warn(`  RSS: ${formatBytes(memUsage.rss)}`);
+      console.warn(`  Heap Used: ${formatBytes(memUsage.heapUsed)}`);
+      console.warn(`  Heap Total: ${formatBytes(memUsage.heapTotal)}`);
+      console.warn(`  External: ${formatBytes(memUsage.external)}`);
+
+      if (global.gc) {
+        console.warn("  Forcing garbage collection...");
+        global.gc();
+
+        const afterGC = process.memoryUsage();
+        console.warn(`  After GC - RSS: ${formatBytes(afterGC.rss)}, Heap: ${formatBytes(afterGC.heapUsed)}`);
+      }
+    } else {
+      console.log(
+        `[MEMORY INFO] ${context} - RSS: ${formatBytes(memUsage.rss)}, Heap: ${formatBytes(memUsage.heapUsed)}`
+      );
+    }
+  }
+
+  static forceGarbageCollection(context: string = "Manual"): void {
+    if (global.gc) {
+      const beforeGC = process.memoryUsage();
+      global.gc();
+      const afterGC = process.memoryUsage();
+
+      const formatBytes = (bytes: number) => `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+
+      console.log(`[GC] ${context} - Before: RSS ${formatBytes(beforeGC.rss)}, Heap ${formatBytes(beforeGC.heapUsed)}`);
+      console.log(`[GC] ${context} - After:  RSS ${formatBytes(afterGC.rss)}, Heap ${formatBytes(afterGC.heapUsed)}`);
+
+      const rssSaved = beforeGC.rss - afterGC.rss;
+      const heapSaved = beforeGC.heapUsed - afterGC.heapUsed;
+
+      if (rssSaved > 0 || heapSaved > 0) {
+        console.log(`[GC] ${context} - Freed: RSS ${formatBytes(rssSaved)}, Heap ${formatBytes(heapSaved)}`);
+      }
+    } else {
+      console.warn(`[GC] ${context} - Garbage collection not available. Start Node.js with --expose-gc flag.`);
+    }
   }
 
   async fileExists(objectName: string): Promise<boolean> {
@@ -321,9 +543,6 @@ export class FilesystemStorageProvider implements StorageProvider {
     this.downloadTokens.delete(token);
   }
 
-  /**
-   * Clean up temporary file and its parent directory if empty
-   */
   private async cleanupTempFile(tempPath: string): Promise<void> {
     try {
       await fs.unlink(tempPath);
@@ -346,9 +565,6 @@ export class FilesystemStorageProvider implements StorageProvider {
     }
   }
 
-  /**
-   * Clean up empty temporary directories periodically
-   */
   private async cleanupEmptyTempDirs(): Promise<void> {
     try {
       const tempUploadsDir = directoriesConfig.tempUploads;
