@@ -20,6 +20,13 @@ export class FilesystemStorageProvider implements StorageProvider {
   private constructor() {
     this.uploadsDir = directoriesConfig.uploads;
 
+    if (!this.isEncryptionDisabled && !this.encryptionKey) {
+      throw new Error(
+        "Encryption is enabled but ENCRYPTION_KEY is not provided. " +
+          "Please set ENCRYPTION_KEY environment variable or set DISABLE_FILESYSTEM_ENCRYPTION=true to disable encryption."
+      );
+    }
+
     this.ensureUploadsDir();
     setInterval(() => this.cleanExpiredTokens(), 5 * 60 * 1000);
     setInterval(() => this.cleanupEmptyTempDirs(), 10 * 60 * 1000);
@@ -62,6 +69,11 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   private createEncryptionKey(): Buffer {
+    if (!this.encryptionKey) {
+      throw new Error(
+        "Encryption key is required when encryption is enabled. Please set ENCRYPTION_KEY environment variable."
+      );
+    }
     return crypto.scryptSync(this.encryptionKey, "salt", 32);
   }
 
@@ -441,6 +453,11 @@ export class FilesystemStorageProvider implements StorageProvider {
   }
 
   private decryptFileLegacy(encryptedBuffer: Buffer): Buffer {
+    if (!this.encryptionKey) {
+      throw new Error(
+        "Encryption key is required when encryption is enabled. Please set ENCRYPTION_KEY environment variable."
+      );
+    }
     const CryptoJS = require("crypto-js");
     const decrypted = CryptoJS.AES.decrypt(encryptedBuffer.toString("utf8"), this.encryptionKey);
     return Buffer.from(decrypted.toString(CryptoJS.enc.Utf8), "base64");
