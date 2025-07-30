@@ -159,7 +159,8 @@
     "passwordLabel": "Passwort",
     "create": "Freigabe Erstellen",
     "success": "Freigabe erfolgreich erstellt",
-    "error": "Fehler beim Erstellen der Freigabe"
+    "error": "Fehler beim Erstellen der Freigabe",
+    "namePlaceholder": "Geben Sie einen Namen für Ihre Freigabe ein"
   },
   "dashboard": {
     "loadError": "Fehler beim Laden der Dashboard-Daten",
@@ -1657,7 +1658,8 @@
       "title": "Dateien zum Hochladen ablegen",
       "description": "Loslassen, um Ihre Dateien hochzuladen"
     },
-    "pasteSuccess": "{count, plural, =1 {Bild erfolgreich eingefügt und hochgeladen} other {# Bilder erfolgreich eingefügt und hochgeladen}}"
+    "pasteSuccess": "{count, plural, =1 {Bild erfolgreich eingefügt und hochgeladen} other {# Bilder erfolgreich eingefügt und hochgeladen}}",
+    "filesQueued": "{count, plural, one {# Datei in der Warteschlange} other {# Dateien in der Warteschlange}}"
   },
   "users": {
     "modes": {

@@ -159,7 +159,8 @@
     "passwordLabel": "Hasło",
     "create": "Utwórz Udostępnienie",
     "success": "Udostępnienie utworzone pomyślnie",
-    "error": "Nie udało się utworzyć udostępnienia"
+    "error": "Nie udało się utworzyć udostępnienia",
+    "namePlaceholder": "Wprowadź nazwę dla swojego udostępnienia"
   },
   "dashboard": {
     "loadError": "Nie udało się załadować danych panelu głównego",
@@ -1657,7 +1658,8 @@
       "title": "Upuść pliki, aby przesłać",
       "description": "Zwolnij, aby przesłać pliki"
     },
-    "pasteSuccess": "{count, plural, =1 {Obraz wklejony i przesłany pomyślnie} other {# obrazy wklejone i przesłane pomyślnie}}"
+    "pasteSuccess": "{count, plural, =1 {Obraz wklejony i przesłany pomyślnie} other {# obrazy wklejone i przesłane pomyślnie}}",
+    "filesQueued": "{count, plural, one {# plik w kolejce do przesyłania} other {# pliki w kolejce do przesyłania}}"
   },
   "users": {
     "modes": {

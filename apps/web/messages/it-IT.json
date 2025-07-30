@@ -159,7 +159,8 @@
     "passwordLabel": "Password",
     "create": "Crea Condivisione",
     "success": "Condivisione creata con successo",
-    "error": "Errore nella creazione della condivisione"
+    "error": "Errore nella creazione della condivisione",
+    "namePlaceholder": "Inserisci un nome per la tua condivisione"
   },
   "dashboard": {
     "loadError": "Errore durante il caricamento dei dati del pannello di controllo",
@@ -1657,7 +1658,8 @@
       "title": "Rilascia i file per caricarli",
       "description": "Rilascia per caricare i tuoi file"
     },
-    "pasteSuccess": "{count, plural, =1 {Immagine incollata e caricata con successo} other {# immagini incollate e caricate con successo}}"
+    "pasteSuccess": "{count, plural, =1 {Immagine incollata e caricata con successo} other {# immagini incollate e caricate con successo}}",
+    "filesQueued": "{count, plural, one {# file in coda per il caricamento} other {# files in coda per il caricamento}}"
   },
   "users": {
     "modes": {

@@ -159,7 +159,8 @@
     "passwordLabel": "密码",
     "create": "创建分享",
     "success": "分享创建成功",
-    "error": "创建分享失败"
+    "error": "创建分享失败",
+    "namePlaceholder": "输入分享名称"
   },
   "dashboard": {
     "loadError": "加载仪表盘数据失败",
@@ -1657,7 +1658,8 @@
       "title": "拖放文件以上传",
       "description": "松开以上传您的文件"
     },
-    "pasteSuccess": "{count, plural, =1 {图片已成功粘贴并上传} other {# 张图片已成功粘贴并上传}}"
+    "pasteSuccess": "{count, plural, =1 {图片已成功粘贴并上传} other {# 张图片已成功粘贴并上传}}",
+    "filesQueued": "{count, plural, one {# 文件正在等待上传} other {# 文件正在等待上传}}"
   },
   "users": {
     "modes": {
