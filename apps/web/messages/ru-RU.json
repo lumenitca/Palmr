@@ -455,6 +455,11 @@
     },
     "pageTitle": "Профиль"
   },
+  "qrCodeModal": {
+    "title": "Поделиться QR-кодом",
+    "description": "Отсканируйте этот QR-код, чтобы получить доступ к ссылке.",
+    "download": "Скачать QR-код"
+  },
   "quickAccess": {
     "files": {
       "title": "Мои файлы",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "Требуется пароль",
     "nameRequired": "Требуется имя",
     "required": "Это поле обязательно"
-  },
-  "qrCodeModal": {
-    "title": "Поделиться QR-кодом",
-    "description": "Отсканируйте этот QR-код, чтобы получить доступ к ссылке.",
-    "download": "Скачать QR-код"
   }
 }

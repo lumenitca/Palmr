@@ -455,6 +455,11 @@
     },
     "pageTitle": "プロフィール"
   },
+  "qrCodeModal": {
+    "title": "QRコードを共有",
+    "description": "このQRコードをスキャンしてリンクにアクセスしてください。",
+    "download": "QRコードをダウンロード"
+  },
   "quickAccess": {
     "files": {
       "title": "マイファイル",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "パスワードは必須です",
     "nameRequired": "名前は必須です",
     "required": "このフィールドは必須です"
-  },
-  "qrCodeModal": {
-    "title": "QRコードを共有",
-    "description": "このQRコードをスキャンしてリンクにアクセスしてください。",
-    "download": "QRコードをダウンロード"
   }
 }

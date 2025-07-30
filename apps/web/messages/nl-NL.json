@@ -455,6 +455,11 @@
     },
     "pageTitle": "Profiel"
   },
+  "qrCodeModal": {
+    "title": "QR Code Delen",
+    "description": "Scan deze QR-code om toegang te krijgen tot de link.",
+    "download": "QR Code Downloaden"
+  },
   "quickAccess": {
     "files": {
       "title": "Mijn Bestanden",
@@ -1744,10 +1749,5 @@
     "passwordMinLength": "Wachtwoord moet minimaal 6 tekens bevatten",
     "nameRequired": "Naam is verplicht",
     "required": "Dit veld is verplicht"
-  },
-  "qrCodeModal": {
-    "title": "QR Code Delen",
-    "description": "Scan deze QR-code om toegang te krijgen tot de link.",
-    "download": "QR Code Downloaden"
   }
 }

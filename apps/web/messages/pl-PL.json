@@ -455,6 +455,11 @@
     },
     "pageTitle": "Profil"
   },
+  "qrCodeModal": {
+    "title": "Udostępnij kod QR",
+    "description": "Skanuj ten kod QR, aby uzyskać dostęp do linku.",
+    "download": "Pobierz kod QR"
+  },
   "quickAccess": {
     "files": {
       "title": "Moje pliki",
@@ -1744,10 +1749,5 @@
     "passwordMinLength": "Hasło musi mieć co najmniej 6 znaków",
     "nameRequired": "Nazwa jest wymagana",
     "required": "To pole jest wymagane"
-  },
-  "qrCodeModal": {
-    "title": "Udostępnij kod QR",
-    "description": "Skanuj ten kod QR, aby uzyskać dostęp do linku.",
-    "download": "Pobierz kod QR"
   }
 }
