@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { Favicon } from "@/components/layout/favicon";
 import { DynamicToaster } from "@/components/ui/dynamic-toaster";
+import { RedirectHandler } from "@/components/auth/redirect-handler";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ShareProvider } from "@/contexts/share-context";
@@ -39,7 +40,9 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <AuthProvider>
-              <ShareProvider>{children}</ShareProvider>
+              <RedirectHandler>
+                <ShareProvider>{children}</ShareProvider>
+              </RedirectHandler>
             </AuthProvider>
             <DynamicToaster />
           </ThemeProvider>

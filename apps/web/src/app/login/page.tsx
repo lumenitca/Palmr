@@ -17,7 +17,7 @@ export default function LoginPage() {
   const login = useLogin();
   const { firstAccess } = useAppInfo();
 
-  if (login.isAuthenticated === null) {
+  if (login.isAuthenticated === null || login.isAuthenticated === true) {
     return <LoadingScreen />;
   }
 

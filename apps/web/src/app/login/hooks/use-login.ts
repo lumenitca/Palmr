@@ -35,6 +35,12 @@ export function useLogin() {
   const [authConfigLoading, setAuthConfigLoading] = useState(true);
 
   useEffect(() => {
+    if (isAuthenticated === true) {
+      router.replace("/dashboard");
+    }
+  }, [isAuthenticated, router]);
+
+  useEffect(() => {
     const errorParam = searchParams.get("error");
     const messageParam = searchParams.get("message");
 

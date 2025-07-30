@@ -113,14 +113,21 @@ export class AuthController {
 
   async getCurrentUser(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const userId = (request as any).user?.userId;
+      let userId: string | null = null;
+      try {
+        await request.jwtVerify();
+        userId = (request as any).user?.userId;
+      } catch (err) {
+        return reply.send({ user: null });
+      }
+
       if (!userId) {
-        return reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
+        return reply.send({ user: null });
       }
 
       const user = await this.authService.getUserById(userId);
       if (!user) {
-        return reply.status(404).send({ error: "User not found" });
+        return reply.send({ user: null });
       }
 
       return reply.send({ user });

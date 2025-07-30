@@ -153,32 +153,28 @@ export async function authRoutes(app: FastifyInstance) {
         tags: ["Authentication"],
         operationId: "getCurrentUser",
         summary: "Get Current User",
-        description: "Returns the current authenticated user's information",
+        description: "Returns the current authenticated user's information or null if not authenticated",
         response: {
-          200: z.object({
-            user: z.object({
-              id: z.string().describe("User ID"),
-              firstName: z.string().describe("User first name"),
-              lastName: z.string().describe("User last name"),
-              username: z.string().describe("User username"),
-              email: z.string().email().describe("User email"),
-              image: z.string().nullable().describe("User profile image URL"),
-              isAdmin: z.boolean().describe("User is admin"),
-              isActive: z.boolean().describe("User is active"),
-              createdAt: z.date().describe("User creation date"),
-              updatedAt: z.date().describe("User last update date"),
+          200: z.union([
+            z.object({
+              user: z.object({
+                id: z.string().describe("User ID"),
+                firstName: z.string().describe("User first name"),
+                lastName: z.string().describe("User last name"),
+                username: z.string().describe("User username"),
+                email: z.string().email().describe("User email"),
+                image: z.string().nullable().describe("User profile image URL"),
+                isAdmin: z.boolean().describe("User is admin"),
+                isActive: z.boolean().describe("User is active"),
+                createdAt: z.date().describe("User creation date"),
+                updatedAt: z.date().describe("User last update date"),
+              }),
             }),
-          }),
-          401: z.object({ error: z.string().describe("Error message") }),
+            z.object({
+              user: z.null().describe("No user when not authenticated"),
+            }),
+          ]),
         },
-      },
-      preValidation: async (request: FastifyRequest, reply: FastifyReply) => {
-        try {
-          await request.jwtVerify();
-        } catch (err) {
-          console.error(err);
-          reply.status(401).send({ error: "Unauthorized: a valid token is required to access this resource." });
-        }
       },
     },
     authController.getCurrentUser.bind(authController)
