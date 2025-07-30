@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         const response = await getCurrentUser();
-        
+
         if (!isMounted) return;
 
         if (!response?.data?.user) {
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsAuthenticated(true);
       } catch (err) {
         if (!isMounted) return;
-        
+
         console.error(err);
         setUser(null);
         setIsAdmin(false);

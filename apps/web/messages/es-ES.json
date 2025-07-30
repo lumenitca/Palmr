@@ -455,6 +455,11 @@
     },
     "pageTitle": "Perfil"
   },
+  "qrCodeModal": {
+    "title": "Compartir Código QR",
+    "description": "Escanea este código QR para acceder al enlace.",
+    "download": "Descargar Código QR"
+  },
   "quickAccess": {
     "files": {
       "title": "Mis archivos",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "Se requiere la contraseña",
     "nameRequired": "El nombre es obligatorio",
     "required": "Este campo es obligatorio"
-  },
-  "qrCodeModal": {
-    "title": "Compartir Código QR",
-    "description": "Escanea este código QR para acceder al enlace.",
-    "download": "Descargar Código QR"
   }
 }

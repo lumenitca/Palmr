@@ -455,6 +455,11 @@
     },
     "pageTitle": "Profil"
   },
+  "qrCodeModal": {
+    "title": "QR Kodu Paylaş",
+    "description": "Bu QR kodu tarayarak bağlantıya erişebilirsiniz.",
+    "download": "QR Kodu İndir"
+  },
   "quickAccess": {
     "files": {
       "title": "Benim Dosyalarım",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "Şifre gerekli",
     "nameRequired": "İsim gereklidir",
     "required": "Bu alan zorunludur"
-  },
-  "qrCodeModal": {
-    "title": "QR Kodu Paylaş",
-    "description": "Bu QR kodu tarayarak bağlantıya erişebilirsiniz.",
-    "download": "QR Kodu İndir"
   }
 }

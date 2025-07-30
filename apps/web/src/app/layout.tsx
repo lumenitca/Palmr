@@ -4,9 +4,9 @@ import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 
+import { RedirectHandler } from "@/components/auth/redirect-handler";
 import { Favicon } from "@/components/layout/favicon";
 import { DynamicToaster } from "@/components/ui/dynamic-toaster";
-import { RedirectHandler } from "@/components/auth/redirect-handler";
 import { useAppInfo } from "@/contexts/app-info-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { ShareProvider } from "@/contexts/share-context";

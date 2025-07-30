@@ -455,6 +455,11 @@
     },
     "pageTitle": "Perfil"
   },
+  "qrCodeModal": {
+    "title": "Compartilhar QR Code",
+    "description": "Escaneie este código QR para acessar o link.",
+    "download": "Baixar QR Code"
+  },
   "quickAccess": {
     "files": {
       "title": "Meus Arquivos",
@@ -1744,10 +1749,5 @@
     "lastNameRequired": "O sobrenome é necessário",
     "usernameLength": "O nome de usuário deve ter pelo menos 3 caracteres",
     "usernameSpaces": "O nome de usuário não pode conter espaços"
-  },
-  "qrCodeModal": {
-    "title": "Compartilhar QR Code",
-    "description": "Escaneie este código QR para acessar o link.",
-    "download": "Baixar QR Code"
   }
 }

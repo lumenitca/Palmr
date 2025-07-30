@@ -455,6 +455,11 @@
     },
     "pageTitle": "프로필"
   },
+  "qrCodeModal": {
+    "title": "QR 코드 공유",
+    "description": "이 QR 코드를 스캔하여 링크에 접근할 수 있습니다.",
+    "download": "QR 코드 다운로드"
+  },
   "quickAccess": {
     "files": {
       "title": "내 파일",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "비밀번호는 필수입니다",
     "nameRequired": "이름은 필수입니다",
     "required": "이 필드는 필수입니다"
-  },
-  "qrCodeModal": {
-    "title": "QR 코드 공유",
-    "description": "이 QR 코드를 스캔하여 링크에 접근할 수 있습니다.",
-    "download": "QR 코드 다운로드"
   }
 }

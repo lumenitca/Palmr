@@ -455,6 +455,11 @@
     },
     "pageTitle": "प्रोफ़ाइल"
   },
+  "qrCodeModal": {
+    "title": "QR कोड साझा करें",
+    "description": "इस QR कोड को स्कैन करके लिंक तक पहुंच सकते हैं।",
+    "download": "QR कोड डाउनलोड करें"
+  },
   "quickAccess": {
     "files": {
       "title": "मेरी फाइलें",
@@ -1744,10 +1749,5 @@
     "passwordRequired": "पासवर्ड आवश्यक है",
     "nameRequired": "नाम आवश्यक है",
     "required": "यह फ़ील्ड आवश्यक है"
-  },
-  "qrCodeModal": {
-    "title": "QR कोड साझा करें",
-    "description": "इस QR कोड को स्कैन करके लिंक तक पहुंच सकते हैं।",
-    "download": "QR कोड डाउनलोड करें"
   }
 }

@@ -455,6 +455,11 @@
     },
     "pageTitle": "个人资料"
   },
+  "qrCodeModal": {
+    "title": "分享QR Code",
+    "description": "扫描此QR Code以访问链接。",
+    "download": "下载QR Code"
+  },
   "quickAccess": {
     "files": {
       "title": "我的文件",
@@ -1507,11 +1512,7 @@
       "copyToClipboard": "复制到剪贴板",
       "savedMessage": "我已保存备用码",
       "available": "可用备用码：{count}个",
-      "instructions": [
-        "• 将这些代码保存在安全的位置",
-        "• 每个备用码只能使用一次",
-        "• 您可以随时生成新的备用码"
-      ]
+      "instructions": ["• 将这些代码保存在安全的位置", "• 每个备用码只能使用一次", "• 您可以随时生成新的备用码"]
     },
     "verification": {
       "title": "双重认证",
@@ -1744,10 +1745,5 @@
     "passwordRequired": "密码为必填项",
     "nameRequired": "名称为必填项",
     "required": "此字段为必填项"
-  },
-  "qrCodeModal": {
-    "title": "分享QR Code",
-    "description": "扫描此QR Code以访问链接。",
-    "download": "下载QR Code"
   }
 }

@@ -455,6 +455,11 @@
     },
     "pageTitle": "الملف الشخصي"
   },
+  "qrCodeModal": {
+    "title": "مشاركة رمز QR",
+    "description": "امسح رمز QR هذا للوصول إلى الرابط.",
+    "download": "تحميل رمز QR"
+  },
   "quickAccess": {
     "files": {
       "title": "ملفاتي",
@@ -1746,10 +1751,5 @@
     "passwordRequired": "كلمة المرور مطلوبة",
     "nameRequired": "الاسم مطلوب",
     "required": "هذا الحقل مطلوب"
-  },
-  "qrCodeModal": {
-    "title": "مشاركة رمز QR",
-    "description": "امسح رمز QR هذا للوصول إلى الرابط.",
-    "download": "تحميل رمز QR"
   }
 }
