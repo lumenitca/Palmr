@@ -159,7 +159,8 @@
     "success": "Paylaşım başarıyla oluşturuldu",
     "error": "Paylaşım oluşturulamadı",
     "descriptionLabel": "Açıklama",
-    "descriptionPlaceholder": "Açıklama girin (isteğe bağlı)"
+    "descriptionPlaceholder": "Açıklama girin (isteğe bağlı)",
+    "namePlaceholder": "Paylaşımınız için bir ad girin"
   },
   "dashboard": {
     "loadError": "Gösterge paneli verileri yüklenemedi",
@@ -1657,7 +1658,8 @@
       "title": "Yüklemek için dosyaları bırakın",
       "description": "Dosyalarınızı yüklemek için bırakın"
     },
-    "pasteSuccess": "{count, plural, =1 {Görüntü yapıştırıldı ve başarıyla yüklendi} other {# görüntü yapıştırıldı ve başarıyla yüklendi}}"
+    "pasteSuccess": "{count, plural, =1 {Görüntü yapıştırıldı ve başarıyla yüklendi} other {# görüntü yapıştırıldı ve başarıyla yüklendi}}",
+    "filesQueued": "{count, plural, one {# dosya yükleme için bekliyor} other {# dosya yükleme için bekliyor}}"
   },
   "users": {
     "modes": {

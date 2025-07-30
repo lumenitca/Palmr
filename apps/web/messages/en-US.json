@@ -149,6 +149,7 @@
   "createShare": {
     "title": "Create Share",
     "nameLabel": "Share Name",
+    "namePlaceholder": "Enter a name for your share",
     "descriptionLabel": "Description",
     "descriptionPlaceholder": "Enter a description (optional)",
     "expirationLabel": "Expiration Date",
@@ -1634,6 +1635,7 @@
     "selectFile": "Click to select a file",
     "selectMultipleFiles": "Click to select one or multiple files",
     "dragAndDrop": "or drag and drop files here",
+    "filesQueued": "{count, plural, one {# file queued for upload} other {# files queued for upload}}",
     "preview": "Preview",
     "uploadProgress": "Upload progress",
     "upload": "Upload",

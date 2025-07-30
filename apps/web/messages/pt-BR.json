@@ -159,7 +159,8 @@
     "passwordLabel": "Senha",
     "create": "Criar compartilhamento",
     "success": "Compartilhamento criado com sucesso",
-    "error": "Falha ao criar compartilhamento"
+    "error": "Falha ao criar compartilhamento",
+    "namePlaceholder": "Digite um nome para seu compartilhamento"
   },
   "dashboard": {
     "loadError": "Falha ao carregar dados do painel",
@@ -643,7 +644,7 @@
       "edit": "Editar",
       "delete": "Excluir",
       "viewFiles": "Arquivos Recebidos",
-      "viewQrCode": "[TO_TRANSLATE] View QR Code"
+      "viewQrCode": "Ver QR Code"
     },
     "empty": {
       "title": "Nenhum link de recebimento criado",
@@ -1657,7 +1658,8 @@
       "continue": "Continuar Uploads",
       "cancel": "Cancelar Uploads"
     },
-    "pasteSuccess": "{count, plural, =1 {Imagem colada e enviada com sucesso} other {# imagens coladas e enviadas com sucesso}}"
+    "pasteSuccess": "{count, plural, =1 {Imagem colada e enviada com sucesso} other {# imagens coladas e enviadas com sucesso}}",
+    "filesQueued": "{count, plural, one {# arquivo na fila para upload} other {# arquivos na fila para upload}}"
   },
   "users": {
     "modes": {

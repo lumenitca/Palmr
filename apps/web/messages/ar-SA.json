@@ -159,7 +159,8 @@
     "passwordLabel": "كلمة المرور",
     "create": "إنشاء مشاركة",
     "success": "تم إنشاء المشاركة بنجاح",
-    "error": "فشل في إنشاء المشاركة"
+    "error": "فشل في إنشاء المشاركة",
+    "namePlaceholder": "أدخل اسمًا لمشاركتك"
   },
   "dashboard": {
     "loadError": "فشل في تحميل بيانات لوحة التحكم",
@@ -1659,7 +1660,8 @@
       "title": "إفلات الملفات للرفع",
       "description": "حرر للرفع ملفاتك"
     },
-    "pasteSuccess": "{count, plural, =1 {تم لصق الصورة ورفعها بنجاح} other {تم لصق # صور ورفعها بنجاح}}"
+    "pasteSuccess": "{count, plural, =1 {تم لصق الصورة ورفعها بنجاح} other {تم لصق # صور ورفعها بنجاح}}",
+    "filesQueued": "{count, plural, one {# ملف في الصف} other {# ملفات في الصف}}"
   },
   "users": {
     "modes": {

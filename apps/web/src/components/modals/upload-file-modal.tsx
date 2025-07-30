@@ -124,7 +124,11 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     let previewUrl: string | undefined;
 
     if (file.type.startsWith("image/")) {
-      previewUrl = URL.createObjectURL(file);
+      try {
+        previewUrl = URL.createObjectURL(file);
+      } catch (error) {
+        console.warn("Failed to create preview URL:", error);
+      }
     }
 
     return {
@@ -142,6 +146,10 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
     const newUploads = Array.from(files).map(createFileUpload);
     setFileUploads((prev) => [...prev, ...newUploads]);
     setHasShownSuccessToast(false);
+
+    if (newUploads.length > 0) {
+      toast.info(t("uploadFile.filesQueued", { count: newUploads.length }));
+    }
   };
 
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,7 +172,12 @@ export function UploadFileModal({ isOpen, onClose, onSuccess }: UploadFileModalP
   const handleDrop = (event: React.DragEvent) => {
     event.preventDefault();
     setIsDragOver(false);
-    handleFilesSelect(event.dataTransfer.files);
+    event.stopPropagation();
+
+    const files = event.dataTransfer.files;
+    if (files.length > 0) {
+      handleFilesSelect(files);
+    }
   };
 
   const renderFileIcon = (fileName: string) => {

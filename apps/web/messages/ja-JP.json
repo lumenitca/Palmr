@@ -159,7 +159,8 @@
     "passwordLabel": "パスワード",
     "create": "共有を作成",
     "success": "共有が正常に作成されました",
-    "error": "共有の作成に失敗しました"
+    "error": "共有の作成に失敗しました",
+    "namePlaceholder": "共有の名前を入力してください"
   },
   "dashboard": {
     "loadError": "ダッシュボードデータの読み込みに失敗しました",
@@ -1657,7 +1658,8 @@
       "title": "アップロードするファイルをドロップ",
       "description": "ファイルをアップロードするにはリリースしてください"
     },
-    "pasteSuccess": "{count, plural, =1 {画像が貼り付けられ、正常にアップロードされました} other {#個の画像が貼り付けられ、正常にアップロードされました}}"
+    "pasteSuccess": "{count, plural, =1 {画像が貼り付けられ、正常にアップロードされました} other {#個の画像が貼り付けられ、正常にアップロードされました}}",
+    "filesQueued": "{count, plural, one {# ファイルがアップロード待ち} other {# ファイルがアップロード待ち}}"
   },
   "users": {
     "modes": {

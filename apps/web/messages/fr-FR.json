@@ -159,7 +159,8 @@
     "passwordLabel": "Mot de Passe",
     "create": "Créer un Partage",
     "success": "Partage créé avec succès",
-    "error": "Échec de la création du partage"
+    "error": "Échec de la création du partage",
+    "namePlaceholder": "Entrez un nom pour votre partage"
   },
   "dashboard": {
     "loadError": "Échec du chargement des données du tableau de bord",
@@ -1657,7 +1658,8 @@
       "title": "Déposer des fichiers pour télécharger",
       "description": "Relâchez pour télécharger vos fichiers"
     },
-    "pasteSuccess": "{count, plural, =1 {Image collée et téléchargée avec succès} other {# images collées et téléchargées avec succès}}"
+    "pasteSuccess": "{count, plural, =1 {Image collée et téléchargée avec succès} other {# images collées et téléchargées avec succès}}",
+    "filesQueued": "{count, plural, one {# fichier en attente de téléchargement} other {# fichiers en attente de téléchargement}}"
   },
   "users": {
     "modes": {

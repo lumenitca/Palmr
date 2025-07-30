@@ -159,7 +159,8 @@
     "passwordLabel": "Contraseña",
     "create": "Crear Compartir",
     "success": "Compartir creado exitosamente",
-    "error": "Error al crear compartir"
+    "error": "Error al crear compartir",
+    "namePlaceholder": "Ingrese un nombre para su compartir"
   },
   "dashboard": {
     "loadError": "Error al cargar los datos del tablero",
@@ -1657,7 +1658,8 @@
       "title": "Suelta archivos para subir",
       "description": "Suelta para subir tus archivos"
     },
-    "pasteSuccess": "{count, plural, =1 {Imagen pegada y subida exitosamente} other {# imágenes pegadas y subidas exitosamente}}"
+    "pasteSuccess": "{count, plural, =1 {Imagen pegada y subida exitosamente} other {# imágenes pegadas y subidas exitosamente}}",
+    "filesQueued": "{count, plural, one {# archivo en cola para subir} other {# archivos en cola para subir}}"
   },
   "users": {
     "modes": {

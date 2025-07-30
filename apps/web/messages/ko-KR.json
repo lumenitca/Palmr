@@ -159,7 +159,8 @@
     "passwordLabel": "비밀번호",
     "create": "공유 생성",
     "success": "공유가 성공적으로 생성되었습니다",
-    "error": "공유 생성에 실패했습니다"
+    "error": "공유 생성에 실패했습니다",
+    "namePlaceholder": "공유 이름을 입력하세요"
   },
   "dashboard": {
     "loadError": "대시보드 데이터를 불러오는데 실패했습니다",
@@ -1657,7 +1658,8 @@
       "title": "업로드할 파일 드롭",
       "description": "파일을 업로드하려면 놓으세요"
     },
-    "pasteSuccess": "{count, plural, =1 {이미지가 성공적으로 붙여넣기 및 업로드되었습니다} other {# 개의 이미지가 성공적으로 붙여넣기 및 업로드되었습니다}}"
+    "pasteSuccess": "{count, plural, =1 {이미지가 성공적으로 붙여넣기 및 업로드되었습니다} other {# 개의 이미지가 성공적으로 붙여넣기 및 업로드되었습니다}}",
+    "filesQueued": "{count, plural, one {# 파일이 업로드 대기 중} other {# 파일이 업로드 대기 중}}"
   },
   "users": {
     "modes": {

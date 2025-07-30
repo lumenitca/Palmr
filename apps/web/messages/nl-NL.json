@@ -159,7 +159,8 @@
     "passwordLabel": "Wachtwoord",
     "create": "Delen Maken",
     "success": "Delen succesvol aangemaakt",
-    "error": "Fout bij het aanmaken van delen"
+    "error": "Fout bij het aanmaken van delen",
+    "namePlaceholder": "Voer een naam in voor uw delen"
   },
   "dashboard": {
     "loadError": "Fout bij het laden van controlepaneel gegevens",
@@ -1657,7 +1658,8 @@
       "title": "Sleep bestanden om te uploaden",
       "description": "Laat los om je bestanden te uploaden"
     },
-    "pasteSuccess": "{count, plural, =1 {Afbeelding geplakt en succesvol geüpload} other {# afbeeldingen geplakt en succesvol geüpload}}"
+    "pasteSuccess": "{count, plural, =1 {Afbeelding geplakt en succesvol geüpload} other {# afbeeldingen geplakt en succesvol geüpload}}",
+    "filesQueued": "{count, plural, one {# bestand in de wachtrij voor upload} other {# bestanden in de wachtrij voor upload}}"
   },
   "users": {
     "modes": {
