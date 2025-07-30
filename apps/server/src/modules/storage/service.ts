@@ -324,89 +324,45 @@ export class StorageService {
     uploadAllowed: boolean;
   }> {
     try {
-      const isDemoMode = env.DEMO_MODE === "true";
-
       if (isAdmin) {
-        if (isDemoMode) {
-          const demoMaxStorage = 200 * 1024 * 1024;
-          const demoMaxStorageGB = this._ensureNumber(demoMaxStorage / (1024 * 1024 * 1024), 0);
+        const diskInfo = await this._getDiskSpaceMultiplePaths();
 
-          const userFiles = await prisma.file.findMany({
-            where: { userId },
-            select: { size: true },
-          });
-
-          const totalUsedStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
-          const usedStorageGB = this._ensureNumber(Number(totalUsedStorage) / (1024 * 1024 * 1024), 0);
-          const availableStorageGB = this._ensureNumber(demoMaxStorageGB - usedStorageGB, 0);
-
-          return {
-            diskSizeGB: Number(demoMaxStorageGB.toFixed(2)),
-            diskUsedGB: Number(usedStorageGB.toFixed(2)),
-            diskAvailableGB: Number(availableStorageGB.toFixed(2)),
-            uploadAllowed: availableStorageGB > 0,
-          };
-        } else {
-          const diskInfo = await this._getDiskSpaceMultiplePaths();
-
-          if (!diskInfo) {
-            throw new Error("Unable to determine actual disk space - system configuration issue");
-          }
-
-          const { total, available } = diskInfo;
-          const used = total - available;
-
-          const diskSizeGB = this._ensureNumber(total / (1024 * 1024 * 1024), 0);
-          const diskUsedGB = this._ensureNumber(used / (1024 * 1024 * 1024), 0);
-          const diskAvailableGB = this._ensureNumber(available / (1024 * 1024 * 1024), 0);
-
-          return {
-            diskSizeGB: Number(diskSizeGB.toFixed(2)),
-            diskUsedGB: Number(diskUsedGB.toFixed(2)),
-            diskAvailableGB: Number(diskAvailableGB.toFixed(2)),
-            uploadAllowed: diskAvailableGB > 0.1,
-          };
+        if (!diskInfo) {
+          throw new Error("Unable to determine actual disk space - system configuration issue");
         }
+
+        const { total, available } = diskInfo;
+        const used = total - available;
+
+        const diskSizeGB = this._ensureNumber(total / (1024 * 1024 * 1024), 0);
+        const diskUsedGB = this._ensureNumber(used / (1024 * 1024 * 1024), 0);
+        const diskAvailableGB = this._ensureNumber(available / (1024 * 1024 * 1024), 0);
+
+        return {
+          diskSizeGB: Number(diskSizeGB.toFixed(2)),
+          diskUsedGB: Number(diskUsedGB.toFixed(2)),
+          diskAvailableGB: Number(diskAvailableGB.toFixed(2)),
+          uploadAllowed: diskAvailableGB > 0.1,
+        };
       } else if (userId) {
-        if (isDemoMode) {
-          const demoMaxStorage = 200 * 1024 * 1024;
-          const demoMaxStorageGB = this._ensureNumber(demoMaxStorage / (1024 * 1024 * 1024), 0);
+        const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
+        const maxStorageGB = this._ensureNumber(Number(maxTotalStorage) / (1024 * 1024 * 1024), 10);
 
-          const userFiles = await prisma.file.findMany({
-            where: { userId },
-            select: { size: true },
-          });
+        const userFiles = await prisma.file.findMany({
+          where: { userId },
+          select: { size: true },
+        });
 
-          const totalUsedStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
-          const usedStorageGB = this._ensureNumber(Number(totalUsedStorage) / (1024 * 1024 * 1024), 0);
-          const availableStorageGB = this._ensureNumber(demoMaxStorageGB - usedStorageGB, 0);
+        const totalUsedStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
+        const usedStorageGB = this._ensureNumber(Number(totalUsedStorage) / (1024 * 1024 * 1024), 0);
+        const availableStorageGB = this._ensureNumber(maxStorageGB - usedStorageGB, 0);
 
-          return {
-            diskSizeGB: Number(demoMaxStorageGB.toFixed(2)),
-            diskUsedGB: Number(usedStorageGB.toFixed(2)),
-            diskAvailableGB: Number(availableStorageGB.toFixed(2)),
-            uploadAllowed: availableStorageGB > 0,
-          };
-        } else {
-          const maxTotalStorage = BigInt(await this.configService.getValue("maxTotalStoragePerUser"));
-          const maxStorageGB = this._ensureNumber(Number(maxTotalStorage) / (1024 * 1024 * 1024), 10);
-
-          const userFiles = await prisma.file.findMany({
-            where: { userId },
-            select: { size: true },
-          });
-
-          const totalUsedStorage = userFiles.reduce((acc, file) => acc + file.size, BigInt(0));
-          const usedStorageGB = this._ensureNumber(Number(totalUsedStorage) / (1024 * 1024 * 1024), 0);
-          const availableStorageGB = this._ensureNumber(maxStorageGB - usedStorageGB, 0);
-
-          return {
-            diskSizeGB: Number(maxStorageGB.toFixed(2)),
-            diskUsedGB: Number(usedStorageGB.toFixed(2)),
-            diskAvailableGB: Number(availableStorageGB.toFixed(2)),
-            uploadAllowed: availableStorageGB > 0,
-          };
-        }
+        return {
+          diskSizeGB: Number(maxStorageGB.toFixed(2)),
+          diskUsedGB: Number(usedStorageGB.toFixed(2)),
+          diskAvailableGB: Number(availableStorageGB.toFixed(2)),
+          uploadAllowed: availableStorageGB > 0,
+        };
       }
 
       throw new Error("User ID is required for non-admin users");

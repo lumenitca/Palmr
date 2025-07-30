@@ -533,17 +533,7 @@ export class ReverseShareService {
       throw new Error(`File size exceeds the maximum allowed size of ${maxSizeMB}MB`);
     }
 
-    // Check if DEMO_MODE is enabled
-    const isDemoMode = env.DEMO_MODE === "true";
-
-    let maxTotalStorage: bigint;
-    if (isDemoMode) {
-      // In demo mode, limit all users to 200MB
-      maxTotalStorage = BigInt(200 * 1024 * 1024); // 200MB in bytes
-    } else {
-      // Normal behavior - use maxTotalStoragePerUser configuration
-      maxTotalStorage = BigInt(await configService.getValue("maxTotalStoragePerUser"));
-    }
+    const maxTotalStorage = BigInt(await configService.getValue("maxTotalStoragePerUser"));
 
     const userFiles = await prisma.file.findMany({
       where: { userId: creatorId },
