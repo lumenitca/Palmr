@@ -10,7 +10,15 @@ interface RedirectHandlerProps {
   children: React.ReactNode;
 }
 
-const publicPaths = ["/login", "/forgot-password", "/reset-password", "/auth/callback", "/auth/oidc/callback", "/s/", "/r/"];
+const publicPaths = [
+  "/login",
+  "/forgot-password",
+  "/reset-password",
+  "/auth/callback",
+  "/auth/oidc/callback",
+  "/s/",
+  "/r/",
+];
 const homePaths = ["/"];
 
 export function RedirectHandler({ children }: RedirectHandlerProps) {
