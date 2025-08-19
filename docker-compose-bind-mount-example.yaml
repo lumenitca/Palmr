@@ -11,6 +11,7 @@ services:
       # - PALMR_UID=1000 # UID for the container processes (OPTIONAL - default is 1000) | See our UID/GID Documentation for more information
       # - PALMR_GID=1000 # GID for the container processes (OPTIONAL - default is 1000) | See our UID/GID Documentation for more information
       # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US) | See the docs for see all supported languages
+      # - PRESIGNED_URL_EXPIRATION=3600 # Duration in seconds for presigned URL expiration (OPTIONAL - default is 3600 seconds / 1 hour)
       # - SECURE_SITE=true # Set to true if you are using a reverse proxy (OPTIONAL - default is false)
     ports:
       - "5487:5487" # Web port
