@@ -227,7 +227,7 @@ export class ReverseShareService {
       }
     }
 
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedPutUrl(objectName, expires);
 
     return { url, expiresIn: expires };
@@ -257,7 +257,7 @@ export class ReverseShareService {
       }
     }
 
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedPutUrl(objectName, expires);
 
     return { url, expiresIn: expires };
@@ -378,7 +378,7 @@ export class ReverseShareService {
     }
 
     const fileName = file.name;
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedGetUrl(file.objectName, expires, fileName);
     return { url, expiresIn: expires };
   }

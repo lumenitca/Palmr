@@ -69,6 +69,7 @@ Choose your storage method based on your needs:
           # - PALMR_GID=1000 # GID for the container processes (default is 1000)
           # - SECURE_SITE=false # Set to true if you are using a reverse proxy
           # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
+          # - PRESIGNED_URL_EXPIRATION=3600 # Duration in seconds for presigned URL expiration (optional, defaults to 3600 seconds / 1 hour)
         volumes:
           - palmr_data:/app/server
 
@@ -116,6 +117,7 @@ Choose your storage method based on your needs:
           # - PALMR_GID=1000 # GID for the container processes (default is 1000)
           # - SECURE_SITE=false # Set to true if you are using a reverse proxy
           # - DEFAULT_LANGUAGE=en-US # Default language for the application (optional, defaults to en-US)
+          # - PRESIGNED_URL_EXPIRATION=3600 # Duration in seconds for presigned URL expiration (optional, defaults to 3600 seconds / 1 hour)
         volumes:
           - ./data:/app/server
     ```
@@ -248,6 +250,40 @@ Prefer Docker commands over Compose? Here are the equivalent commands:
 
   </Tab>
 </Tabs>
+
+---
+
+## Common Configuration Options
+
+### Presigned URL Expiration
+
+Palmr. uses temporary URLs (presigned URLs) for secure file access. These URLs expire after a configurable time period to enhance security.
+
+**Default:** 1 hour (3600 seconds)
+
+You can customize this for all storage types (filesystem or S3) by adding:
+
+```yaml
+environment:
+  - PRESIGNED_URL_EXPIRATION=7200  # 2 hours
+```
+
+**When to adjust:**
+- **Shorter time (1800 = 30 min):** Higher security, but users may need to refresh download links
+- **Longer time (7200-21600 = 2-6 hours):** Better for large file transfers, but URLs stay valid longer
+- **Default (3600 = 1 hour):** Good balance for most use cases
+
+### File Encryption
+
+For filesystem storage, you can enable file encryption:
+
+```yaml
+environment:
+  - DISABLE_FILESYSTEM_ENCRYPTION=false
+  - ENCRYPTION_KEY=your-secure-32-character-key-here
+```
+
+**Note:** S3 storage handles encryption through your S3 provider's encryption features.
 
 ---
 
