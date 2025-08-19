@@ -4,6 +4,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 import { FilesystemStorageProvider } from "../../providers/filesystem-storage.provider";
 import { ChunkManager, ChunkMetadata } from "./chunk-manager";
+import { getContentType } from "../../utils/mime-types";
 
 export class FilesystemController {
   private chunkManager = ChunkManager.getInstance();
@@ -184,7 +185,7 @@ export class FilesystemController {
       const range = request.headers.range;
 
       reply.header("Content-Disposition", this.encodeFilenameForHeader(fileName));
-      reply.header("Content-Type", "application/octet-stream");
+      reply.header("Content-Type", getContentType(fileName));
       reply.header("Accept-Ranges", "bytes");
 
       if (range) {
