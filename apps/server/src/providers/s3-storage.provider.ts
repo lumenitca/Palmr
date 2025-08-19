@@ -3,6 +3,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 import { bucketName, s3Client } from "../config/storage.config";
 import { StorageProvider } from "../types/storage";
+import { getContentType } from "../utils/mime-types";
 
 export class S3StorageProvider implements StorageProvider {
   constructor() {
@@ -91,6 +92,7 @@ export class S3StorageProvider implements StorageProvider {
       Bucket: bucketName,
       Key: objectName,
       ResponseContentDisposition: this.encodeFilenameForHeader(rcdFileName),
+      ResponseContentType: getContentType(rcdFileName),
     });
 
     return await getSignedUrl(s3Client, command, { expiresIn: expires });
