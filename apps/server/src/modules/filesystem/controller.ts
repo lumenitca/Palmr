@@ -3,8 +3,8 @@ import { pipeline } from "stream/promises";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { FilesystemStorageProvider } from "../../providers/filesystem-storage.provider";
-import { ChunkManager, ChunkMetadata } from "./chunk-manager";
 import { getContentType } from "../../utils/mime-types";
+import { ChunkManager, ChunkMetadata } from "./chunk-manager";
 
 export class FilesystemController {
   private chunkManager = ChunkManager.getInstance();
