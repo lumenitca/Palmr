@@ -28,7 +28,7 @@ export class FileController {
       }
 
       const objectName = `${userId}/${Date.now()}-${filename}.${extension}`;
-      const expires = 3600;
+      const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
 
       const url = await this.fileService.getPresignedPutUrl(objectName, expires);
       return reply.send({ url, objectName });
@@ -172,7 +172,7 @@ export class FileController {
         return reply.status(404).send({ error: "File not found." });
       }
       const fileName = fileRecord.name;
-      const expires = 3600;
+      const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
       const url = await this.fileService.getPresignedGetUrl(objectName, expires, fileName);
       return reply.send({ url, expiresIn: expires });
     } catch (error) {

@@ -227,7 +227,7 @@ export class ReverseShareService {
       }
     }
 
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedPutUrl(objectName, expires);
 
     return { url, expiresIn: expires };
@@ -257,7 +257,7 @@ export class ReverseShareService {
       }
     }
 
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedPutUrl(objectName, expires);
 
     return { url, expiresIn: expires };
@@ -367,6 +367,25 @@ export class ReverseShareService {
     return this.formatFileResponse(file);
   }
 
+  async getFileInfo(fileId: string, creatorId: string) {
+    const file = await this.reverseShareRepository.findFileById(fileId);
+    if (!file) {
+      throw new Error("File not found");
+    }
+
+    if (file.reverseShare.creatorId !== creatorId) {
+      throw new Error("Unauthorized to access this file");
+    }
+
+    return {
+      id: file.id,
+      name: file.name,
+      size: file.size,
+      objectName: file.objectName,
+      extension: file.extension,
+    };
+  }
+
   async downloadReverseShareFile(fileId: string, creatorId: string) {
     const file = await this.reverseShareRepository.findFileById(fileId);
     if (!file) {
@@ -378,7 +397,7 @@ export class ReverseShareService {
     }
 
     const fileName = file.name;
-    const expires = 3600; // 1 hour
+    const expires = parseInt(env.PRESIGNED_URL_EXPIRATION);
     const url = await this.fileService.getPresignedGetUrl(file.objectName, expires, fileName);
     return { url, expiresIn: expires };
   }
