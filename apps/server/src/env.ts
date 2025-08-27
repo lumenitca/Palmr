@@ -33,6 +33,36 @@ const envSchema = z.object({
     .string()
     .optional()
     .transform((val) => (val ? parseFloat(val) : undefined)),
+
+  // White-label configuration
+  APP_NAME: z.string().optional().default("Palmr"),
+  COMPANY_NAME: z.string().optional().default("Palmr"),
+  COMPANY_URL: z.string().optional().default("https://palmr.kyantech.com.br"),
+  SUPPORT_EMAIL: z.string().optional().default("support@example.com"),
+  LOGO_URL: z.string().optional(),
+  FAVICON_URL: z.string().optional(),
+  PRIMARY_COLOR: z.string().optional(),
+  TERMS_URL: z.string().optional(),
+  PRIVACY_URL: z.string().optional(),
+  
+  // MSP Security Features
+  MSP_MODE: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  REQUIRE_PASSWORD_PROTECTION: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  MANDATORY_VIRUS_SCAN: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  DISABLE_PUBLIC_REGISTRATION: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  MAX_FILE_SIZE_MB: z.string().optional().transform((val) => (val ? parseInt(val, 10) : undefined)),
+  ALLOWED_FILE_EXTENSIONS: z.string().optional(),
+  BLOCKED_FILE_EXTENSIONS: z.string().optional(),
+  MIN_PASSWORD_LENGTH: z.string().optional().default("12"),
+  REQUIRE_2FA: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  SESSION_TIMEOUT_MINUTES: z.string().optional().default("60"),
+  
+  // UI Customization
+  HIDE_BRANDING: z.union([z.literal("true"), z.literal("false")]).default("false"),
+  CUSTOM_CSS: z.string().optional(),
+  SHOW_POWERED_BY: z.union([z.literal("true"), z.literal("false")]).default("true"),
+  DEFAULT_THEME: z.enum(["light", "dark", "system"]).default("system"),
+  DEFAULT_LANGUAGE: z.string().optional().default("en"),
 });
 
 export const env = envSchema.parse(process.env);
